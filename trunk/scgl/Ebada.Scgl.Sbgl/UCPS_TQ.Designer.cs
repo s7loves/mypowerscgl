@@ -49,6 +49,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btJSDJ = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -79,8 +80,9 @@
             this.btGdsList,
             this.btView,
             this.btXlList,
-            this.btGtList});
-            this.barManager1.MaxItemId = 18;
+            this.btGtList,
+            this.btJSDJ});
+            this.barManager1.MaxItemId = 19;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -105,7 +107,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btJSDJ, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -258,13 +261,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(668, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(811, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 303);
-            this.barDockControlBottom.Size = new System.Drawing.Size(668, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(811, 25);
             // 
             // barDockControlLeft
             // 
@@ -275,7 +278,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(668, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(811, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
             // 
             // gridControl1
@@ -290,7 +293,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(668, 278);
+            this.gridControl1.Size = new System.Drawing.Size(811, 278);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -309,6 +312,13 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // btJSDJ
+            // 
+            this.btJSDJ.Caption = "计算档距";
+            this.btJSDJ.Id = 18;
+            this.btJSDJ.Name = "btJSDJ";
+            this.btJSDJ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btJSDJ_ItemClick);
+            // 
             // UCPS_TQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -319,7 +329,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPS_TQ";
-            this.Size = new System.Drawing.Size(668, 328);
+            this.Size = new System.Drawing.Size(811, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
@@ -356,5 +366,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.BarEditItem btGtList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraBars.BarButtonItem btJSDJ;
     }
 }

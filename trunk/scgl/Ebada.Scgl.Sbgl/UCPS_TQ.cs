@@ -21,14 +21,13 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using DevExpress.Utils;
 
-namespace Ebada.Scgl.Sbgl
-{
+namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPS_TQ : DevExpress.XtraEditors.XtraUserControl
-    {
+    public partial class UCPS_TQ : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_tq> gridViewOperation;
 
         public event SendDataEventHandler<PS_tq> FocusedRowChanged;
@@ -36,11 +35,10 @@ namespace Ebada.Scgl.Sbgl
         frmtqEdit frm = new frmtqEdit();
         private string parentID = null;
         private PS_gt parentObj;
-        string mLineCode=string.Empty;
-        string mOrgCode=string.Empty;
+        string mLineCode = string.Empty;
+        string mOrgCode = string.Empty;
         private mOrg _mOrg = null;
-        public UCPS_TQ()
-        {
+        public UCPS_TQ() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<PS_tq>(gridControl1, gridView1, barManager1, frm);
@@ -53,24 +51,21 @@ namespace Ebada.Scgl.Sbgl
 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
             if (e.Value.Contractor != e.ValueOld.Contractor)
-                Client.ClientHelper.PlatformSqlMap.Update("Update", 
-                    string.Format("update ps_xl set Contractor='{0}' where left(linecode,{1})='{2}'",e.Value.Contractor,e.Value.tqCode.Length,e.Value.tqCode));
-        }
-        
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tq> e)
-        {
-           
+                Client.ClientHelper.PlatformSqlMap.Update("Update",
+                    string.Format("update ps_xl set Contractor='{0}' where left(linecode,{1})='{2}'", e.Value.Contractor, e.Value.tqCode.Length, e.Value.tqCode));
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tq> e)
-        {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tq> e) {
+
+        }
+
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PS_tq> e) {
             if (String.IsNullOrEmpty(frm.LineCode)) {
                 e.Cancel = true;
                 MsgBox.ShowWarningMessageBox("请先选择线路!");
             }
         }
-        protected override void OnLoad(EventArgs e)
-        {
+        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
             InitColumns();//初始列
@@ -80,90 +75,78 @@ namespace Ebada.Scgl.Sbgl
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
             btGtList.EditValueChanged += new EventHandler(btGtList_EditValueChanged);
-            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
-            {//如果是供电所人员，则锁定
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
 
         }
 
-        void btGtList_EditValueChanged(object sender, EventArgs e)
-        {
+        void btGtList_EditValueChanged(object sender, EventArgs e) {
             parentID = btGtList.EditValue.ToString();
-            if (parentID != "")
-            {
+            if (parentID != "") {
                 IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where gtID='" + parentID + "'");
                 PS_gt gt = null;
-                if (list.Count > 0)
-                {
+                if (list.Count > 0) {
                     gt = list[0];
                     ParentObj = gt;
                 }
             }
         }
 
-        void btXlList_EditValueChanged(object sender, EventArgs e)
-        {
-                frm.LineCode = btXlList.EditValue.ToString();
-                IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
-                repositoryItemLookUpEdit3.DataSource = list;
-                ParentObj = null;
-                if (frm.LineCode.Length == 6) {
-                    //RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
-                    RefreshData(string.Format("where xlcode='{0}'", frm.LineCode));
-                    //gridViewOperation.BindingList.Add(Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format("where xlcode2='{0}'", frm.LineCode)));
-                } else {
-                    RefreshData(string.Format("where xlcode2='{0}'",frm.LineCode));
-                }
+        void btXlList_EditValueChanged(object sender, EventArgs e) {
+            frm.LineCode = btXlList.EditValue.ToString();
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
+            repositoryItemLookUpEdit3.DataSource = list;
+            ParentObj = null;
+            if (frm.LineCode.Length == 6) {
+                //RefreshData(string.Format("where left(tqcode,{0})='{1}'", frm.LineCode.Length, frm.LineCode));
+                RefreshData(string.Format("where xlcode='{0}'", frm.LineCode));
+                //gridViewOperation.BindingList.Add(Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format("where xlcode2='{0}'", frm.LineCode)));
+            } else {
+                RefreshData(string.Format("where xlcode2='{0}'", frm.LineCode));
+            }
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
-        {
+        void btGdsList_EditValueChanged(object sender, EventArgs e) {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
             _mOrg = null;
             if (list.Count > 0)
                 _mOrg = list[0];
 
             frm.LineCode = string.Empty;
-            if (_mOrg != null)
-            {
+            if (_mOrg != null) {
                 frm.GdsCode = _mOrg.OrgCode;
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "' and linevol='10'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
-                
+
             }
-            
+
 
         }
-        private void initImageList()
-        {
+        private void initImageList() {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PS_tq);
         }
-        private void hideColumn(string colname)
-        {
+        private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void InitData()
-        {
+        public void InitData() {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
         }
         /// <summary>
         /// 初始化列,
         /// </summary>
-        public void InitColumns()
-        {
+        public void InitColumns() {
 
             //需要隐藏列时在这写代码
             //hideColumn("ParentID");
@@ -173,16 +156,14 @@ namespace Ebada.Scgl.Sbgl
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
-        public void RefreshData(string slqwhere)
-        {
+        public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PS_tq> GridViewOperation
-        {
+        public GridViewOperation<PS_tq> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -190,10 +171,9 @@ namespace Ebada.Scgl.Sbgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PS_tq newobj)
-        {
+        void gridViewOperation_CreatingObjectEvent(PS_tq newobj) {
             //if (parentID == null) return;
-            
+
             if (gridView1.FocusedRowHandle > -1) {
                 PS_tq tq = gridView1.GetFocusedRow() as PS_tq;
                 Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
@@ -201,16 +181,16 @@ namespace Ebada.Scgl.Sbgl
             }
             newobj.gtID = parentID;
             //newobj.tqCode = newobj.tqID = getcode();
-            newobj.tqID = newobj.CreateID();  
+            newobj.tqID = newobj.CreateID();
             newobj.tqCode = getcode();
-   
+
         }
         string getcode() {
             string code = "";
 
             if (gridViewOperation.BindingList.Count > 0) {
                 int maxcode = 0;
-                string tqcode=gridViewOperation.BindingList[0].tqCode ;
+                string tqcode = gridViewOperation.BindingList[0].tqCode;
                 foreach (PS_tq node in gridViewOperation.BindingList) {
                     tqcode = node.tqCode;
                     maxcode = Math.Max(maxcode, int.Parse(tqcode.Substring(tqcode.Length - 4, 4)));
@@ -218,7 +198,7 @@ namespace Ebada.Scgl.Sbgl
                 code = tqcode.Substring(0, tqcode.Length - 4) + (maxcode + 10).ToString("0000");
 
             } else {
-                code=frm.LineCode + "0010";
+                code = frm.LineCode + "0010";
             }
 
             return code;
@@ -229,18 +209,13 @@ namespace Ebada.Scgl.Sbgl
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         //[DesignTimeVisible(false)]
-        public string ParentID
-        {
+        public string ParentID {
             get { return parentID; }
-            set
-            {
+            set {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
+                if (!string.IsNullOrEmpty(value)) {
                     RefreshData(" where gtID='" + value + "' order by tqName");
-                }
-                else
-                {
+                } else {
                     string tempstr = " 235@$U#u#$";
                     RefreshData(" where gtID='" + tempstr + "' order by tqName");
                 }
@@ -249,8 +224,7 @@ namespace Ebada.Scgl.Sbgl
         /// <summary>
         /// 隐藏下选择列表
         /// </summary>
-        public void HideList()
-        {
+        public void HideList() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -258,19 +232,14 @@ namespace Ebada.Scgl.Sbgl
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PS_gt ParentObj
-        {
+        public PS_gt ParentObj {
             get { return parentObj; }
-            set
-            {
+            set {
 
                 parentObj = value;
-                if (value == null)
-                {
+                if (value == null) {
                     ParentID = null;
-                }
-                else
-                {
+                } else {
                     ParentID = value.gtID;
                     frm.LineCode = value.LineCode;
                 }
@@ -278,20 +247,17 @@ namespace Ebada.Scgl.Sbgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (gridView1.FocusedRowHandle>=0)
-            {
+            if (gridView1.FocusedRowHandle >= 0) {
                 gridControl1.ExportToExcelOld("C:\\temp.xls");
                 System.Diagnostics.Process.Start("C:\\temp.xls");
             }
-           
-           
         }
         PS_xl mXL = null;
         public PS_xl GetXL() {
 
             if (!string.IsNullOrEmpty(frm.LineCode)) {
                 if (mXL != null && mXL.LineCode == frm.LineCode) {
-                    
+
                 } else {
                     mXL = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + frm.LineCode + "'");
                 }
@@ -301,6 +267,24 @@ namespace Ebada.Scgl.Sbgl
         public mOrg GetmOrg() {
 
             return _mOrg;
+        }
+
+        private void btJSDJ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            //计算列表中所有台区下的低压线路
+            int ncount = 0;
+            WaitDialogForm dlg = new WaitDialogForm("", "正计算档距，请稍候。。。");
+            string info = "(第{0}共" + gridView1.RowCount + "个){1}";
+            foreach (var item in gridViewOperation.BindingList) {
+                ncount++;
+                try {
+                    dlg.Caption = string.Format(info, ncount, item.tqName);
+                    SbFuns.CountTQLen(item.tqCode);
+
+                } catch { }
+
+            }
+            dlg.Close();
+            MsgBox.ShowTipMessageBox("计算完毕,共计算了" + ncount + "个台区。");
         }
 
     }
