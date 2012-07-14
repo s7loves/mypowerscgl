@@ -13,21 +13,18 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Sbgl
-{
+namespace Ebada.Scgl.Sbgl {
     public partial class frmtqEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_tq> m_CityDic = new SortableSearchableBindingList<PS_tq>();
         private string gdsCode;
 
-        public string GdsCode
-        {
+        public string GdsCode {
             get { return gdsCode; }
             set { gdsCode = value; ComboBoxHelper.Fillgdsry(comboBoxEdit9, gdsCode); }
         }
         private string lineCode;
 
-        public string LineCode
-        {
+        public string LineCode {
             get { return lineCode; }
             set { lineCode = value; }
         }
@@ -67,7 +64,7 @@ namespace Ebada.Scgl.Sbgl
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "InDate");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
-            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "btkind");       
+            this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "btkind");
 
 
         }
@@ -85,13 +82,13 @@ namespace Ebada.Scgl.Sbgl
                 if (rowData == null) {
                     this.rowData = value as PS_tq;
                     if (string.IsNullOrEmpty(gdsCode))
-                        GdsCode = rowData.tqCode.Substring(0,3);
+                        GdsCode = rowData.tqCode.Substring(0, 3);
                     this.InitComboBoxData();
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PS_tq>(value as PS_tq, rowData);
                 }
-                if(rowData.tqCode==""){
+                if (rowData.tqCode == "") {
                     GdsCode = rowData.tqCode.Substring(0, 3);
                     rowData.InDate = DateTime.Now;
                 }
@@ -102,11 +99,12 @@ namespace Ebada.Scgl.Sbgl
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew)
-            {
+            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew) {
+                simpleButton1.Show();
                 simpleButton3.Show();
                 simpleButton4.Show();
             } else {
+                simpleButton1.Hide();
                 simpleButton3.Hide();
                 simpleButton4.Hide();
             }
@@ -122,11 +120,10 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit12.Properties.Items.Clear();
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where parentid in(select ID from pj_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='台区' and sx = '{0}' and nr!=''",  "变台型号"));
+            string.Format("select nr from pj_dyk where  dx='台区' and sx = '{0}' and nr!=''", "变台型号"));
             if (list.Count > 0)
                 comboBoxEdit12.Properties.Items.AddRange(list);
-            else
-            {
+            else {
                 comboBoxEdit12.Properties.Items.Add("砖台");
                 comboBoxEdit12.Properties.Items.Add("落地台");
                 comboBoxEdit12.Properties.Items.Add("H台");
@@ -137,8 +134,7 @@ namespace Ebada.Scgl.Sbgl
             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit13.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit13.Properties.Items.Add("一类");
                 comboBoxEdit13.Properties.Items.Add("二类");
                 comboBoxEdit13.Properties.Items.Add("三类");
@@ -147,8 +143,7 @@ namespace Ebada.Scgl.Sbgl
              string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "产权"));
             if (strlist.Count > 0)
                 comboBoxEdit6.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit6.Properties.Items.Add("局属");
                 comboBoxEdit6.Properties.Items.Add("自备");
             }
@@ -156,8 +151,7 @@ namespace Ebada.Scgl.Sbgl
              string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "运行班次"));
             if (strlist.Count > 0)
                 comboBoxEdit10.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit10.Properties.Items.Add("一班");
                 comboBoxEdit10.Properties.Items.Add("二班");
                 comboBoxEdit10.Properties.Items.Add("三班");
@@ -185,10 +179,8 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (comboBoxEdit1.Text == "")
-            {
+        private void btnOK_Click(object sender, EventArgs e) {
+            if (comboBoxEdit1.Text == "") {
                 MsgBox.ShowTipMessageBox("台区编号不能为空。");
                 comboBoxEdit1.Focus();
                 return;
@@ -197,33 +189,27 @@ namespace Ebada.Scgl.Sbgl
             this.Close();
         }
 
-        private void comboBoxEdit6_Properties_Click(object sender, EventArgs e)
-        {
+        private void comboBoxEdit6_Properties_Click(object sender, EventArgs e) {
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='台区' and sx='产权' and parentid=''");
-            if (parentObj != null)
-            {
+            if (parentObj != null) {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
                 // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    comboBoxEdit6.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr ;
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    comboBoxEdit6.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
                 }
             }
         }
 
-        private void comboBoxEdit10_Properties_Click(object sender, EventArgs e)
-        {
+        private void comboBoxEdit10_Properties_Click(object sender, EventArgs e) {
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='台区' and sx='运行班次' and parentid=''");
-            if (parentObj != null)
-            {
+            if (parentObj != null) {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
                 // dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
+                if (dlg.ShowDialog() == DialogResult.OK) {
                     comboBoxEdit10.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr;
                 }
             }
@@ -231,28 +217,28 @@ namespace Ebada.Scgl.Sbgl
 
         private void comboBoxEdit5_EditValueChanged(object sender, EventArgs e) {
             //分支线路改变时刷新杆塔号
-            string linecode=comboBoxEdit5.EditValue.ToString();
+            string linecode = comboBoxEdit5.EditValue.ToString();
             if (string.IsNullOrEmpty(linecode)) return;
-            lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_gt>("Where linecode='" + linecode + "'"); 
+            lookUpEdit1.Properties.DataSource = ClientHelper.PlatformSqlMap.GetList<PS_gt>("Where linecode='" + linecode + "'");
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            SbFuns.CountTQLen(rowData.tqCode);
+            MsgBox.ShowTipMessageBox("计算完毕。");
         }
         void simpleButton4_Click(object sender, EventArgs e) {
             //恢复经纬度
-            
+
             SbFuns.RestoreGTLatLngTQ(rowData.tqCode);
             Client.MsgBox.ShowTipMessageBox("恢复完成。");
         }
 
         void simpleButton3_Click(object sender, EventArgs e) {
             //备份经纬度
-            
+
             SbFuns.BackupGTLatLngTQ(rowData.tqCode);
             Client.MsgBox.ShowTipMessageBox("备份完成。");
         }
-      
+
     }
 }

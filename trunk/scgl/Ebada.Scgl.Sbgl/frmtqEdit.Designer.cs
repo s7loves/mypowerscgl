@@ -187,7 +187,7 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(88, 23);
             this.simpleButton1.TabIndex = 17;
-            this.simpleButton1.Text = "台区元素管理";
+            this.simpleButton1.Text = "档距计算";
             this.simpleButton1.Visible = false;
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
