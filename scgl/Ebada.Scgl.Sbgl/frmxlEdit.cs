@@ -13,8 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Sbgl
-{
+namespace Ebada.Scgl.Sbgl {
     public partial class frmxlEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_xl> m_CityDic = new SortableSearchableBindingList<PS_xl>();
 
@@ -26,52 +25,35 @@ namespace Ebada.Scgl.Sbgl
             simpleButton5.Click += new EventHandler(simpleButton5_Click);
         }
         UCPS_XLSec xlSec = null;
-        void simpleButton5_Click(object sender, EventArgs e)
-        {
-            
+        void simpleButton5_Click(object sender, EventArgs e) {
+
             groupControl1.Text = rowData.LineName;
-            if (xlSec == null)
-            {
+            if (xlSec == null) {
                 xlSec = new UCPS_XLSec(rowData);
                 xlSec.Dock = DockStyle.Fill;
                 groupControl2.Controls.Add(xlSec);
 
-            }
-            else
-            {
+            } else {
                 xlSec.ParentObj = rowData;
             }
             bool flag = groupBox1.Visible;
-            if (simpleButton5.Text == "线路信息")
-            {
+            if (simpleButton5.Text == "线路信息") {
                 flag = false;
-            } 
-            else
-            {
+            } else {
                 flag = true;
             }
             groupBox1.Visible = !flag;
             groupControl1.Visible = false;
             groupControl2.Visible = flag;
-            if (flag)
-            {
+            if (flag) {
                 simpleButton5.Text = "线路信息";
                 simpleButton2.Text = "杆塔信息";
-            }
-            else
-            {
+            } else {
                 simpleButton5.Text = "分段信息";
                 simpleButton2.Text = "杆塔信息";
             }
         }
-
-        
-
-        
-        
         void dataBind() {
-
-            
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "InDate");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "WireLength");
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "TotalLength");
@@ -98,7 +80,7 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//完好类型
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路类型
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "xlpy");//线路类型
-            
+
         }
         #region IPopupFormEdit Members
         private PS_xl rowData = null;
@@ -118,15 +100,15 @@ namespace Ebada.Scgl.Sbgl
                 } else {
                     ConvertHelper.CopyTo<PS_xl>(value as PS_xl, rowData);
                 }
-                if(rowData.LineType==""){
+                if (rowData.LineType == "") {
                     rowData.InDate = DateTime.Now;
                 }
                 isnew = false;
                 if (rowData.LineVol == "") {
                     rowData.LineVol = "10";
-                    
+
                 }
-                if(rowData.LineName=="")
+                if (rowData.LineName == "")
                     isnew = true;
             }
         }
@@ -134,8 +116,7 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             this.Invoke(new MethodInvoker(initParentGtList));
-            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew)
-            {
+            if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew) {
                 simpleButton1.Show();
                 simpleButton2.Show();
             } else {
@@ -148,12 +129,12 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
 
-            
+
         }
         #endregion
         private void initParentGtList() {
             //初始分支杆号
-            string sql =string.Format("select a.gtcode from ps_gt a ,ps_xl b where a.LineCode=b.Linecode and b.LineID='{0}'",rowData.ParentID);
+            string sql = string.Format("select a.gtcode from ps_gt a ,ps_xl b where a.LineCode=b.Linecode and b.LineID='{0}'", rowData.ParentID);
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
             comboBoxEdit15.Properties.Items.Clear();
             comboBoxEdit15.Properties.Items.AddRange(list);
@@ -165,15 +146,14 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit8.Properties.DataSource = list2;
             pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
             ComboBoxHelper.Fillgdsry(comboBoxEdit10, rowData.OrgCode);
-            this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye()); 
+            this.comboBoxEdit14.Properties.Items.AddRange(ComboBoxHelper.GetLineTye());
             ICollection strlist = new ArrayList();
             comboBoxEdit16.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "完好类型"));
             if (strlist.Count > 0)
                 comboBoxEdit16.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit16.Properties.Items.Add("一类");
                 comboBoxEdit16.Properties.Items.Add("二类");
                 comboBoxEdit16.Properties.Items.Add("三类");
@@ -183,8 +163,7 @@ namespace Ebada.Scgl.Sbgl
             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "线路类型"));
             if (strlist.Count > 0)
                 comboBoxEdit17.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit17.Properties.Items.Add("四线");
                 comboBoxEdit17.Properties.Items.Add("二线");
             }
@@ -192,8 +171,7 @@ namespace Ebada.Scgl.Sbgl
              string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "产权"));
             if (strlist.Count > 0)
                 comboBoxEdit9.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit9.Properties.Items.Add("局属");
                 comboBoxEdit9.Properties.Items.Add("自备");
             }
@@ -201,8 +179,7 @@ namespace Ebada.Scgl.Sbgl
              string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "运行状态"));
             if (strlist.Count > 0)
                 comboBoxEdit11.Properties.Items.AddRange(strlist);
-            else
-            {
+            else {
                 comboBoxEdit11.Properties.Items.Add("运行");
                 comboBoxEdit11.Properties.Items.Add("暂停");
             }
@@ -230,14 +207,12 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
         void simpleButton1_Click(object sender, EventArgs e) {
-            spinEdit2.Value = rowData.TotalLength=(int)SbFuns.CountLineLen(rowData);
+            spinEdit2.Value = rowData.TotalLength = (int)SbFuns.CountLineLen(rowData);
             spinEdit1.Value = rowData.WireLength;
-            MsgBox.ShowTipMessageBox("计算完成。");
+            MsgBox.ShowTipMessageBox("计算完毕。");
         }
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (comboBoxEdit2.Text == "")
-            {
+        private void btnOK_Click(object sender, EventArgs e) {
+            if (comboBoxEdit2.Text == "") {
                 MsgBox.ShowTipMessageBox("线路编号不能为空。");
                 comboBoxEdit2.Focus();
                 return;
@@ -247,7 +222,7 @@ namespace Ebada.Scgl.Sbgl
                 comboBoxEdit3.Focus();
                 return;
             }
-            
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -263,31 +238,25 @@ namespace Ebada.Scgl.Sbgl
                 gt.ParentObj = rowData;
             }
             bool flag = groupBox1.Visible;
-            if (simpleButton2.Text == "线路信息")
-            {
+            if (simpleButton2.Text == "线路信息") {
                 flag = false;
-            }
-            else
-            {
+            } else {
                 flag = true;
             }
             groupBox1.Visible = !flag;
             groupControl1.Visible = flag;
             groupControl2.Visible = false;
-            if (flag)
-            {
+            if (flag) {
                 simpleButton2.Text = "线路信息";
                 simpleButton5.Text = "分段信息";
-            }
-            else
-            {
+            } else {
                 simpleButton2.Text = "杆塔信息";
                 simpleButton5.Text = "分段信息";
             }
         }
         void simpleButton4_Click(object sender, EventArgs e) {
             //恢复经纬度
-            
+
             SbFuns.RestoreGTLatLng(rowData.LineCode);
             Client.MsgBox.ShowTipMessageBox("恢复完成。");
         }
@@ -302,19 +271,16 @@ namespace Ebada.Scgl.Sbgl
             simpleButton4.Visible = groupControl1.Visible;
         }
 
-        private void labelControl17_Click(object sender, EventArgs e)
-        {
+        private void labelControl17_Click(object sender, EventArgs e) {
 
         }
 
-        private void frmxlEdit_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        private void frmxlEdit_FormClosing(object sender, FormClosingEventArgs e) {
             simpleButton2.Text = "杆塔信息";
             simpleButton5.Text = "分段信息";
         }
 
-        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit3_TextChanged(object sender, EventArgs e) {
             rowData.xlpy = SelectorHelper.GetPysm(rowData.LineName);
             comboBoxEdit8.Text = rowData.xlpy;
             //IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where xlpy like '%"+comboBoxEdit3.Text +"%'");

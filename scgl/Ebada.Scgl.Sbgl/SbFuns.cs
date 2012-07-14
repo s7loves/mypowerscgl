@@ -15,6 +15,18 @@ namespace Ebada.Scgl.Sbgl {
             public double Lng;
         }
         /// <summary>
+        /// 计算台区下低压线路的档距
+        /// </summary>
+        /// <param name="tqcode"></param>
+        /// <returns></returns>
+        public static void CountTQLen(string tqcode) {
+            IList<PS_xl> xllist = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where linevol='0.4' and parentid='" + tqcode + "'");
+            foreach (var item in xllist) {
+                item.TotalLength =(int)CountLineLen(item);
+                Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(item);
+            }
+        }
+        /// <summary>
         /// 计算线路长度 单位米
         /// 1、计算线路杆塔的档距
         /// 2、统计线路长度，包括分支线路。
