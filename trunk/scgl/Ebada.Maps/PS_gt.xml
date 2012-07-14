@@ -225,7 +225,7 @@
     <select id="SelectPS_gtByStr" resultMap="PS_gt_AllColumns" parameterClass="string">
       $value$
     </select>
-    <select id="GetPS_tqcountbyProc" parameterClass="Hashtable">
+    <select id="GetPS_gtcountbyProc" parameterClass="Hashtable">
       DECLARE	@return_value int,
       @gtcount int
 
