@@ -417,7 +417,7 @@ namespace Ebada.Scgl.Gis {
                 gp.Markers.Add(m);
                 m.Polygon = gp;
             }
-            rMap1.Overlays.Add(lay);
+            rMap1.Overlays.Insert(0,lay);
         }
 
     }
