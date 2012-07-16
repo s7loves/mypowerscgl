@@ -21,9 +21,10 @@ namespace Ebada.Scgl.Sbgl
     public partial class frmgtEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_gt> m_CityDic = new SortableSearchableBindingList<PS_gt>();
         private Boolean multipleAdd = false;
-        XtraTabPage tqTab, kgTab;
+        XtraTabPage tqTab, kgTab,byqTab;
         UCPS_TQ ucps_tq;
         UCPS_KG ucps_kg;
+        UCPS_TQBYQ ucps_tqbyq;
         public Boolean MultipleAdd {
             get { return multipleAdd; }
             set { multipleAdd = value;
@@ -49,7 +50,7 @@ namespace Ebada.Scgl.Sbgl
                 if (ucps_tq == null) {
                     ucps_tq = new UCPS_TQ();
                     ucps_tq.Dock = DockStyle.Fill;
-                    
+
                     ucps_tq.ParentObj = rowData;
                     ucps_tq.HideList();
                     ucps_tq.Parent = tqTab;
@@ -62,6 +63,15 @@ namespace Ebada.Scgl.Sbgl
                     ucps_kg.ParentObj = rowData;
                     ucps_kg.HideList();
                     ucps_kg.Parent = kgTab;
+                }
+            } else if (e.Page == byqTab) {
+                if (ucps_tqbyq == null) {
+                    ucps_tqbyq = new UCPS_TQBYQ();
+                    ucps_tqbyq.Dock = DockStyle.Fill;
+
+                    ucps_tqbyq.ParentGT = rowData;
+                    ucps_tqbyq.HideList();
+                    ucps_tqbyq.Parent = byqTab;
                 }
             }
         }
@@ -145,6 +155,9 @@ namespace Ebada.Scgl.Sbgl
                     kgTab = new XtraTabPage();
                     kgTab.Text = "开关";
                     xtraTabControl1.TabPages.Add(kgTab);
+                    byqTab = new XtraTabPage();
+                    byqTab.Text = "变压器";
+                    xtraTabControl1.TabPages.Add(byqTab);
                 }
             }
         }
