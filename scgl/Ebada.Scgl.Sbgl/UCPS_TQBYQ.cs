@@ -276,6 +276,15 @@ namespace Ebada.Scgl.Sbgl
                 }
             }
         }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PS_gt ParentGT {
+            set {
+                bar3.Visible = false;
+                bar1.Visible = false; 
+                gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("where tqid in (select tqid from ps_tq where gtid='" + value.gtID + "') ");
+            }
+        }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle>=0)
