@@ -13,12 +13,9 @@ using Ebada.Core;
 using Ebada.Scgl.WFlow;
 using Ebada.Client.Platform;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class UCAQGJCKGL : UserControl
-    {
-        public UCAQGJCKGL()
-        {
+namespace Ebada.Scgl.Lcgl {
+    public partial class UCAQGJCKGL : UserControl {
+        public UCAQGJCKGL() {
             InitializeComponent();
         }
         string strSQL = "";
@@ -30,60 +27,48 @@ namespace Ebada.Scgl.Lcgl
         private LP_Temple parentTemple = null;
         private string varDbTableName = "LP_Record,PJ_anqgjcrkd";
         PJ_anqgjcrkd clccktemp = null;
-        public LP_Temple ParentTemple
-        {
+        public LP_Temple ParentTemple {
             get { return parentTemple; }
-            set
-            {
+            set {
                 parentTemple = value;
                 ucclck1.ParentTemple = value;
             }
         }
-        public bool IsWorkflowCall
-        {
-            set
-            {
+        public bool IsWorkflowCall {
+            set {
 
                 isWorkflowCall = value;
                 ucclck1.IsWorkflowCall = value;
 
             }
         }
-        public LP_Record CurrRecord
-        {
+        public LP_Record CurrRecord {
             get { return currRecord; }
-            set
-            {
+            set {
                 currRecord = value;
                 ucclck1.CurrRecord = value;
             }
         }
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
 
                 return WorkFlowData;
             }
-            set
-            {
+            set {
 
 
                 WorkFlowData = value;
 
-                if (isWorkflowCall)
-                {
-                    if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
-                    {
+                if (isWorkflowCall) {
+                    if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind)) {
                         barFJLY.Visible = true;
                         if (fjly == null) fjly = new frmModleFjly();
                     }
                     //liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     //liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
-                    foreach (WF_WorkTaskCommands wt in wtlist)
-                    {
+                    foreach (WF_WorkTaskCommands wt in wtlist) {
                         //if (wt.CommandName == "01")
                         //{
                         //    //SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
@@ -103,45 +88,40 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public string VarDbTableName
-        {
+        public string VarDbTableName {
             get { return varDbTableName; }
-            set
-            {
+            set {
                 varDbTableName = value;
                 ucclck1.VarDbTableName = value;
             }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            string  wpgg = " and 1=1 ", wpmc = " and 1=1 ";
-            
+        private void simpleButton2_Click(object sender, EventArgs e) {
+            string wpgg = " and 1=1 ", wpmc = " and 1=1 ";
+
             if (comboBoxEdit3.Text != "")
                 wpmc = " and wpmc='" + comboBoxEdit3.Text + "' ";
             if (comboBoxEdit4.Text != "")
                 wpgg = " and wpgg='" + comboBoxEdit4.Text + "' ";
             strSQL = " where  (type = '" + comboBoxEdit5.Text
                 + "' or type = '" + comboBoxEdit5.Text + "原始库存') "
-                + wpmc + wpgg+" and cast(kcsl as float)>0 order by wpmc,wpgg,cast( indate as datetime) ";
+                + wpmc + wpgg + " and cast(kcsl as float)>0 order by wpmc,wpgg,cast( indate as datetime) ";
             IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(strSQL);
-           gridControl1.DataSource  = datalist;
-           //hideColumn("OrgCode");
-           //hideColumn("OrgName");
-           //hideColumn("type");
-           //hideColumn("yt");
-           //hideColumn("cksl");
-           //hideColumn("kcsl");
-           //hideColumn("lqdw");
-           //hideColumn("kcsl");
-           //hideColumn("ckdate");
+            gridControl1.DataSource = datalist;
+            //hideColumn("OrgCode");
+            //hideColumn("OrgName");
+            //hideColumn("type");
+            //hideColumn("yt");
+            //hideColumn("cksl");
+            //hideColumn("kcsl");
+            //hideColumn("lqdw");
+            //hideColumn("kcsl");
+            //hideColumn("ckdate");
         }
-        private void hideColumn(string colname)
-        {
+        private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
-        private void UCCLCKGL_Load(object sender, EventArgs e)
-        {
+        private void UCCLCKGL_Load(object sender, EventArgs e) {
 
             comboBoxEdit5.SelectedIndex = 0;
             comboBoxEdit6.SelectedIndex = 0;
@@ -151,12 +131,11 @@ namespace Ebada.Scgl.Lcgl
                 + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpmc!='' ");
             comboBoxEdit3.Properties.Items.AddRange(mclist);
 
-            
+
         }
 
-        private void comboBoxEdit1_TextChanged(object sender, EventArgs e)
-        {
-            
+        private void comboBoxEdit1_TextChanged(object sender, EventArgs e) {
+
 
             comboBoxEdit3.Properties.Items.Clear();
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc  from PJ_anqgjcrkd where    ( type = '" + comboBoxEdit5.Text
@@ -169,8 +148,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
-        private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_TextChanged(object sender, EventArgs e) {
 
 
             comboBoxEdit3.Properties.Items.Clear();
@@ -179,13 +157,12 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit3.Properties.Items.AddRange(mclist);
 
             comboBoxEdit4.Properties.Items.Clear();
-             mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where   ( type = '" + comboBoxEdit5.Text
-                + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpgg!='' ");
+            mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg  from PJ_anqgjcrkd where   ( type = '" + comboBoxEdit5.Text
+               + "' or type = '" + comboBoxEdit5.Text + "原始库存') and wpgg!='' ");
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
-        private void comboBoxEdit3_TextChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit3_TextChanged(object sender, EventArgs e) {
 
 
             comboBoxEdit4.Properties.Items.Clear();
@@ -194,8 +171,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit4.Properties.Items.AddRange(mclist);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
+        private void simpleButton1_Click(object sender, EventArgs e) {
             frmAQGJCKXZ frm = new frmAQGJCKXZ();
             frm.strType = comboBoxEdit5.Text;
             if (clccktemp == null) clccktemp = new PJ_anqgjcrkd();
@@ -203,26 +179,20 @@ namespace Ebada.Scgl.Lcgl
             //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
             //       <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc  ");
             //frm.strNum = DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", i + 1);
-            
+
             IList<PJ_anqgjcrkd> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
-            if (clccktemp.num == "")
-            {
+            if (clccktemp.num == "") {
                 if (pnumli.Count == 0)
                     clccktemp.num = "JAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
-                else
-                {
+                else {
                     clccktemp.num = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) + 1);
 
                 }
-            }
-            else
-            {
-                if (pnumli.Count > 0)
-                {
+            } else {
+                if (pnumli.Count > 0) {
 
-                    if ((Convert.ToDecimal(clccktemp.num.Replace("JAQGJCK", ""))) - (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", ""))) > 1)
-                    {
+                    if ((Convert.ToDecimal(clccktemp.num.Replace("JAQGJCK", ""))) - (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", ""))) > 1) {
                         clccktemp.num = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "") + 1));
                     }
                 }
@@ -231,18 +201,17 @@ namespace Ebada.Scgl.Lcgl
             //frm.RowData = new PJ_anqgjcrkd();
             frm.RowData = clccktemp;
             ((PJ_anqgjcrkd)frm.RowData).ckdate = DateTime.Now;
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                string ssgc = " and 1=1 ",  wpgg = " and 1=1 ", wpmc = " and 1=1 ";
+            if (frm.ShowDialog() == DialogResult.OK) {
+                string ssgc = " and 1=1 ", wpgg = " and 1=1 ", wpmc = " and 1=1 ";
                 double isum = 0;
 
-                    wpmc = " and wpmc='" + frm.ReturnData.wpmc  + "' ";
+                wpmc = " and wpmc='" + frm.ReturnData.wpmc + "' ";
 
-                    wpgg = " and wpgg='" + frm.ReturnData.wpgg  + "' ";
-                    isum =Convert.ToDouble( frm.ReturnData.cksl);
-                  string   strsql = " where  (type = '" + comboBoxEdit5.Text
-                    + "' or type = '" + comboBoxEdit5.Text + "原始库存') "
-                    + ssgc + wpmc + wpgg + " and cast(kcsl as float)>0 order by cast( indate as datetime) ";
+                wpgg = " and wpgg='" + frm.ReturnData.wpgg + "' ";
+                isum = Convert.ToDouble(frm.ReturnData.cksl);
+                string strsql = " where  (type = '" + comboBoxEdit5.Text
+                  + "' or type = '" + comboBoxEdit5.Text + "原始库存') "
+                  + ssgc + wpmc + wpgg + " and cast(kcsl as float)>0 order by cast( indate as datetime) ";
                 IList<PJ_anqgjcrkd> datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
                     (strsql);
                 double cktemp = isum;
@@ -250,20 +219,18 @@ namespace Ebada.Scgl.Lcgl
                 double szkc = 0;
                 IList<PJ_anqgjcrkd> ckdatalist = new List<PJ_anqgjcrkd>();
                 decimal num = 0;
-                 pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                               <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
-                    if (pnumli.Count == 0)
-                        num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                    else
-                    {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")));
+                pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                              <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "'  order by id desc  ");
+                if (pnumli.Count == 0)
+                    num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
+                else {
+                    num = (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")));
 
-                    }
+                }
 
-                   
-                foreach (PJ_anqgjcrkd pc in datalist)
-                {
-                    PJ_anqgjcrkd ckd =new PJ_anqgjcrkd() ;
+
+                foreach (PJ_anqgjcrkd pc in datalist) {
+                    PJ_anqgjcrkd ckd = new PJ_anqgjcrkd();
                     ConvertHelper.CopyTo<PJ_anqgjcrkd>(pc, ckd);
                     ckd.ID = ckd.CreateID();
                     //int i = Client.ClientHelper.PlatformSqlMap.GetRowCount
@@ -277,16 +244,13 @@ namespace Ebada.Scgl.Lcgl
                     ckd.OrgName = frm.ReturnData.OrgName;
                     ckd.OrgCode = frm.ReturnData.OrgCode;
                     ckd.ckdate = DateTime.Now;
-                    if (cktemp >= Convert.ToDouble(pc.kcsl))
-                    {
+                    if (cktemp >= Convert.ToDouble(pc.kcsl)) {
                         ckd.cksl = pc.kcsl;
                         ckd.zkcsl = (zkc - Convert.ToDouble(pc.kcsl)).ToString();
                         cktemp = cktemp - Convert.ToDouble(pc.kcsl);
                         pc.kcsl = "0";
                         //ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
-                    }
-                    else
-                    {
+                    } else {
                         ckd.cksl = cktemp.ToString();
                         ckd.zkcsl = (zkc - cktemp).ToString();
 
@@ -297,29 +261,27 @@ namespace Ebada.Scgl.Lcgl
                     ckd.lyparent = pc.ID;
                     zkc = Convert.ToDouble(ckd.zkcsl);
                     Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    
+
                     //ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
 
                     ckdatalist.Add(ckd);
-                    if (cktemp<1) break;
+                    if (cktemp < 1) break;
                     //num=(num + 1);
                 }
                 frmAQGJCKXZShow frmshow = new frmAQGJCKXZShow();
                 frmshow.DataList = ckdatalist;
-                if (frmshow.ShowDialog() == DialogResult.OK)
-                {
+                if (frmshow.ShowDialog() == DialogResult.OK) {
                     cktemp = isum;
                     zkc = Convert.ToDouble(frm.ReturnData.zkcsl);
                     pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                        <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' ");
                     if (pnumli.Count == 0)
                         num = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                    else
-                    {
-                        num =  (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) );
+                    else {
+                        num = (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")));
 
                     }
-                    
+
                     datalist = ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>
                      (strsql);
                     decimal snum;
@@ -327,17 +289,14 @@ namespace Ebada.Scgl.Lcgl
                              <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单' and orgname='" + frm.ReturnData.OrgName + "'   order by id desc  ");
                     if (pnumli.Count == 0)
                         snum = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                    else
-                    {
+                    else {
                         snum = (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJRK", "")));
 
                     }
-                    if (clccktemp.num == "JAQGJCK" + num.ToString())
-                    {
+                    if (clccktemp.num == "JAQGJCK" + num.ToString()) {
                         snum = (snum + 1);
                     }
-                    foreach (PJ_anqgjcrkd pc in datalist)
-                    {
+                    foreach (PJ_anqgjcrkd pc in datalist) {
                         PJ_anqgjcrkd ckd = new PJ_anqgjcrkd();
 
                         ConvertHelper.CopyTo<PJ_anqgjcrkd>(pc, ckd);
@@ -349,16 +308,13 @@ namespace Ebada.Scgl.Lcgl
                         ckd.OrgName = frm.ReturnData.OrgName;
                         ckd.OrgCode = frm.ReturnData.OrgCode;
                         ckd.ckdate = DateTime.Now;
-                        if (cktemp >= Convert.ToDouble(pc.kcsl))
-                        {
+                        if (cktemp >= Convert.ToDouble(pc.kcsl)) {
                             ckd.cksl = pc.kcsl;
                             ckd.zkcsl = (zkc - Convert.ToDouble(pc.kcsl)).ToString();
                             cktemp = cktemp - Convert.ToDouble(pc.kcsl);
                             pc.kcsl = "0";
                             ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(pc);
-                        }
-                        else
-                        {
+                        } else {
                             ckd.cksl = cktemp.ToString();
                             ckd.zkcsl = (zkc - cktemp).ToString();
 
@@ -370,8 +326,7 @@ namespace Ebada.Scgl.Lcgl
                         zkc = Convert.ToDouble(ckd.zkcsl);
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
-                        if (isWorkflowCall)
-                        {
+                        if (isWorkflowCall) {
 
                             MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + ckd.ID + "' and RecordID='" + currRecord.ID + "'"
                                 + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -380,8 +335,7 @@ namespace Ebada.Scgl.Lcgl
                                 + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                         }
                         ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
-                        if (isWorkflowCall)
-                        {
+                        if (isWorkflowCall) {
                             WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                             mrwt.ModleRecordID = ckd.ID;
                             mrwt.RecordID = currRecord.ID;
@@ -396,7 +350,7 @@ namespace Ebada.Scgl.Lcgl
                         Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                         PJ_anqgjcrkd slkd = new PJ_anqgjcrkd();
                         //ConvertHelper.CopyTo<PJ_anqgjcrkd>(ckd, slkd);
-                        
+
 
 
                         slkd.ID = slkd.CreateID();
@@ -405,7 +359,7 @@ namespace Ebada.Scgl.Lcgl
                         slkd.wpdw = ckd.wpdw;
                         slkd.wpdj = ckd.wpdj;
                         slkd.wpsl = ckd.cksl;
-                        slkd.num = "SAQGJRK" + (snum );
+                        slkd.num = "SAQGJRK" + (snum);
                         slkd.type = "所安全工器具入库单";
                         slkd.lyparent = ckd.ID;
                         slkd.indate = ckd.ckdate;
@@ -429,8 +383,7 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void gridView1_DoubleClick(object sender, EventArgs e)
-        {
+        private void gridView1_DoubleClick(object sender, EventArgs e) {
             if (gridView1.FocusedRowHandle < -1)
                 return;
             PJ_anqgjcrkd rowdata = gridView1.GetFocusedRow() as PJ_anqgjcrkd;
@@ -444,19 +397,17 @@ namespace Ebada.Scgl.Lcgl
             <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + comboBoxEdit6.Text + "' order by id desc ");
             if (pnumli.Count == 0)
                 ((PJ_anqgjcrkd)frm.RowData).num = "JAQGJCK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
-            else
-            {
+            else {
                 ((PJ_anqgjcrkd)frm.RowData).num = "JAQGJCK" + (Convert.ToDecimal(pnumli[0].num.Replace("JAQGJCK", "")) + 1);
 
             }
             ((PJ_anqgjcrkd)frm.RowData).ckdate = DateTime.Now;
             double i = 0;
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
+            if (frm.ShowDialog() == DialogResult.OK) {
                 PJ_anqgjcrkd ckd = new PJ_anqgjcrkd();
                 ConvertHelper.CopyTo<PJ_anqgjcrkd>(rowdata, ckd);
                 ckd.ID = ckd.CreateID();
-               
+
                 System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneInt",
                     "select  sum(cast(kcsl as float) )  from PJ_anqgjcrkd where (type = '局安全工器具入库单' or type = '局安全工器具入库单原始库存')"
                     + " and wpmc='" + rowdata.wpmc + "' "
@@ -472,17 +423,14 @@ namespace Ebada.Scgl.Lcgl
                 ckd.OrgName = frm.ReturnData.OrgName;
                 ckd.OrgCode = frm.ReturnData.OrgCode;
                 ckd.ckdate = DateTime.Now;
-                if (cktemp >= Convert.ToDouble(rowdata.kcsl))
-                {
+                if (cktemp >= Convert.ToDouble(rowdata.kcsl)) {
                     ckd.cksl = rowdata.kcsl;
                     ckd.zkcsl = (zkc - Convert.ToDouble(rowdata.kcsl)).ToString();
                     cktemp = cktemp - Convert.ToDouble(rowdata.kcsl);
                     ckd.kcsl = "0";
                     rowdata.kcsl = "0";
                     ClientHelper.PlatformSqlMap.Update<PJ_anqgjcrkd>(rowdata);
-                }
-                else
-                {
+                } else {
                     ckd.cksl = cktemp.ToString();
                     ckd.zkcsl = (zkc - cktemp).ToString();
                     rowdata.kcsl = (Convert.ToDouble(rowdata.kcsl) - cktemp).ToString();
@@ -494,8 +442,7 @@ namespace Ebada.Scgl.Lcgl
                 zkc = Convert.ToDouble(ckd.zkcsl);
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
 
-                if (isWorkflowCall)
-                {
+                if (isWorkflowCall) {
 
                     MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + ckd.ID + "' and RecordID='" + currRecord.ID + "'"
                         + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
@@ -504,8 +451,7 @@ namespace Ebada.Scgl.Lcgl
                         + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
                 }
                 ClientHelper.PlatformSqlMap.Create<PJ_anqgjcrkd>(ckd);
-                if (isWorkflowCall)
-                {
+                if (isWorkflowCall) {
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                     mrwt.ModleRecordID = ckd.ID;
                     mrwt.RecordID = currRecord.ID;
@@ -526,12 +472,11 @@ namespace Ebada.Scgl.Lcgl
                          <PJ_anqgjcrkd>(" where  id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='所安全工器具入库单'  order by id desc  ");
                 if (pnumli.Count == 0)
                     snum = Convert.ToDecimal(DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 0));
-                else
-                {
+                else {
                     snum = (Convert.ToDecimal(pnumli[0].num.Replace("SAQGJRK", "")));
 
                 }
-                
+
                 slkd.ID = slkd.CreateID();
                 slkd.wpmc = ckd.wpmc;
                 slkd.wpgg = ckd.wpgg;
@@ -559,46 +504,35 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void TaskOverButton_Click(object sender, EventArgs e)
-        {
+        private void TaskOverButton_Click(object sender, EventArgs e) {
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK) {
                 //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
                 return;
             }
             string strmes = "";
 
-            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
-            {
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData)) {
 
                 RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
 
             }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
-            if (wt != null)
-            {
+            if (wt != null) {
                 strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
-            }
-            else
-            {
+            } else {
                 strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
             }
-            if (strmes.IndexOf("未提交至任何人") > -1)
-            {
+            if (strmes.IndexOf("未提交至任何人") > -1) {
                 MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
                 return;
-            }
-            else
+            } else
                 MsgBox.ShowTipMessageBox(strmes);
             fjly.btn_Submit_Click(sender, e);
             strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
-            if (strmes == "结束节点1")
-            {
+            if (strmes == "结束节点1") {
                 currRecord.Status = "存档";
-            }
-            else
-            {
+            } else {
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
@@ -609,8 +543,7 @@ namespace Ebada.Scgl.Lcgl
             gridControl1.FindForm().Close();
         }
 
-        private void barFJLY_Click(object sender, EventArgs e)
-        {
+        private void barFJLY_Click(object sender, EventArgs e) {
             if (fjly == null) fjly = new frmModleFjly();
             fjly.CurrRecord = currRecord;
             fjly.RecordWorkFlowData = WorkFlowData;
