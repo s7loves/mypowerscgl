@@ -596,13 +596,14 @@ namespace Ebada.Scgl.Lcgl
                        fjtable.Rows[itablecurrent]["Kind"] = "上传完毕"/* "等待上传中..."*/;
                        
                        itablecurrent = -1;
-                       upfilelist.Remove(upfilelist[0]);
+                       
                        progressBarControlTol.Position = Convert.ToInt32((100 * lupedTotleSize) / lupTotleSize);
                    }
                    else
                    {
                        MessageBox.Show(upfileErr);
                    }
+                   upfilelist.Remove(upfilelist[0]);
                }
            }
            catch

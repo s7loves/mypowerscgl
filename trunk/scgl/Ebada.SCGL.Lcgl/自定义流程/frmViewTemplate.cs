@@ -308,8 +308,8 @@ namespace Ebada.Scgl.Lcgl {
 
             //InitIndex();
 
-            //if (parentTemple != null)
-            //    InitContorl();
+            if (parentTemple != null)
+                InitContorl();
             ////currRecord = rowData;
             //if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
             //{              
@@ -359,7 +359,7 @@ namespace Ebada.Scgl.Lcgl {
             int index = 0;
             if (MaxWordWidth < 300) {
                 MaxWordWidth = 300;
-            }
+            }/*
             if (parentTemple != null && templeList != null) {
                 foreach (LP_Temple lp in templeList) {
                     bool flag;//= (lp.Status == CurrRecord.Status);
@@ -408,14 +408,15 @@ namespace Ebada.Scgl.Lcgl {
             }
             //InitEvent();
             InitData();
-            if (RecordWorkTask.HaveRunSPYJRole(kind)) {
-                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
-                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
-                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-                currentPosY = currentPosY + hqyjcontrol.Size.Height;
-                hqyjcontrol.RecordID = CurrRecord.ID;
-                dockPanel1.Controls.Add(hqyjcontrol);
-            }
+            */
+            //if (RecordWorkTask.HaveRunSPYJRole(kind)) {
+            //    if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+            //    hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+            //    hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+            //    currentPosY = currentPosY + hqyjcontrol.Size.Height;
+            //    hqyjcontrol.RecordID = CurrRecord.ID;
+            //    dockPanel1.Controls.Add(hqyjcontrol);
+            //}
 
             if (RecordWorkTask.HaveRunFuJianRole(kind)) {
 
@@ -435,16 +436,17 @@ namespace Ebada.Scgl.Lcgl {
                 filecontrol.RecordID = CurrRecord.ID;
                 dockPanel1.Controls.Add(filecontrol);
                 currentPosY += 20;
+                dockPanel1.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
             }
-            try {
-                if (currRecord.Status != "存档" || (WorkFlowData != null && RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))) {
-                    Button btn_Back = new Button();
-                    dockPanel1.Controls.Add(btn_Back);
-                    btn_Back.Click += new EventHandler(btn_Back_Click);
-                    btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
-                    btn_Back.Text = "退回";
-                }
-            } catch { }
+            //try {
+            //    if (currRecord.Status != "存档" || (WorkFlowData != null && RecordWorkTask.HaveWorkFlowBackRole(WorkFlowData.Rows[0]["WorkTaskId"].ToString(), WorkFlowData.Rows[0]["WorkFlowId"].ToString()))) {
+            //        Button btn_Back = new Button();
+            //        dockPanel1.Controls.Add(btn_Back);
+            //        btn_Back.Click += new EventHandler(btn_Back_Click);
+            //        btn_Back.Location = new Point(currentPosX + 80, currentPosY + 10);
+            //        btn_Back.Text = "退回";
+            //    }
+            //} catch { }
             Button btn_Submit = new Button();
             dockPanel1.Controls.Add(btn_Submit);
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
@@ -458,8 +460,8 @@ namespace Ebada.Scgl.Lcgl {
 
         }
         void btn_Close(object sender, EventArgs e) {
-            if (currRecord.Status != "存档" && currRecord.Status != "结束节点1")
-                dsoFramerWordControl1.FileSave();
+            //if (currRecord.Status != "存档" && currRecord.Status != "结束节点1")
+            //    dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
             dsoFramerWordControl1 = null;
@@ -1669,7 +1671,7 @@ namespace Ebada.Scgl.Lcgl {
                 //rowData = null;
 
 
-                dsoFramerWordControl1.FileSave();
+                //dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
                 dsoFramerWordControl1.Dispose();
                 //if (filecontrol != null)
