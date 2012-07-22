@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 16:24:55
+生成时间:2012-7-22 22:56:42
 ***********************************************/
 
 using System;
@@ -36,7 +36,23 @@ namespace Ebada.Kcgl.Model
         private DateTime _入库日期=new DateTime(1900,1,1); 
         private string _备注=String.Empty;   
         #endregion
-  
+		
+        #region const 成员
+        public const string f_ID= "ID"; 
+        public const string f_工程类别_ID= "工程类别_ID"; 
+        public const string f_供货厂家_ID= "供货厂家_ID"; 
+        public const string f_材料名称_ID= "材料名称_ID"; 
+        public const string f_工程类别= "工程类别"; 
+        public const string f_供货厂家= "供货厂家"; 
+        public const string f_材料名称= "材料名称"; 
+        public const string f_规格及型号= "规格及型号"; 
+        public const string f_计量单位= "计量单位"; 
+        public const string f_单价= "单价"; 
+        public const string f_数量= "数量"; 
+        public const string f_总计= "总计"; 
+        public const string f_入库日期= "入库日期"; 
+        public const string f_备注= "备注";   
+        #endregion
   
         #region Public 成员
    

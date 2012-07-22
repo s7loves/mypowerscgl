@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 16:24:55
+生成时间:2012-7-22 22:56:42
 ***********************************************/
 
 using System;
@@ -26,7 +26,13 @@ namespace Ebada.Kcgl.Model
         private string _工程类别name=String.Empty; 
         private string _备注=String.Empty;   
         #endregion
-  
+		
+        #region const 成员
+        public const string f_ID= "ID"; 
+        public const string f_序号= "序号"; 
+        public const string f_工程类别= "工程类别"; 
+        public const string f_备注= "备注";   
+        #endregion
   
         #region Public 成员
    
