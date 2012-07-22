@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 16:24:55
+生成时间:2012-7-22 22:56:42
 ***********************************************/
 
 using System;
@@ -28,7 +28,15 @@ namespace Ebada.Kcgl.Model
         private DateTime _开工日期=new DateTime(1900,1,1); 
         private DateTime _完成日期=new DateTime(1900,1,1);   
         #endregion
-  
+		
+        #region const 成员
+        public const string f_ID= "ID"; 
+        public const string f_工程类别= "工程类别"; 
+        public const string f_工程项目名称= "工程项目名称"; 
+        public const string f_预算费用= "预算费用"; 
+        public const string f_开工日期= "开工日期"; 
+        public const string f_完成日期= "完成日期";   
+        #endregion
   
         #region Public 成员
    

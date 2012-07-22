@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 16:24:55
+生成时间:2012-7-22 22:56:42
 ***********************************************/
 
 using System;
@@ -29,7 +29,16 @@ namespace Ebada.Kcgl.Model
         private string _规格及型号=String.Empty; 
         private string _parentid=String.Empty;   
         #endregion
-  
+		
+        #region const 成员
+        public const string f_ID= "ID"; 
+        public const string f_序号= "序号"; 
+        public const string f_材料代码= "材料代码"; 
+        public const string f_材料名称= "材料名称"; 
+        public const string f_计量单位= "计量单位"; 
+        public const string f_规格及型号= "规格及型号"; 
+        public const string f_ParentID= "ParentID";   
+        #endregion
   
         #region Public 成员
    
