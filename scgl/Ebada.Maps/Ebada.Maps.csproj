@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C2A8BD1A-52FA-4A05-8581-72C39C795C9C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -339,6 +339,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WF_workTastTrans.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Kcgl\供货厂家.xml" />
+    <EmbeddedResource Include="Kcgl\入库明细表.xml" />
+    <EmbeddedResource Include="Kcgl\出库单位.xml" />
+    <EmbeddedResource Include="Kcgl\出库明细表.xml" />
+    <EmbeddedResource Include="Kcgl\工程类别.xml" />
+    <EmbeddedResource Include="Kcgl\工程计划明细表.xml" />
+    <EmbeddedResource Include="Kcgl\工程项目.xml" />
+    <EmbeddedResource Include="Kcgl\材料名称表.xml" />
+    <EmbeddedResource Include="Kcgl\退货明细表.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />

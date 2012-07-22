@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="材料名称表" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="材料名称表"  type="Ebada.Kcgl.Model.材料名称表,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="材料名称表_AllColumns" class="材料名称表">
+        <result property="ID" column="ID" />
+        <result property="序号" column="序号" />
+        <result property="材料代码" column="材料代码" />
+        <result property="材料名称" column="材料名称" />
+        <result property="计量单位" column="计量单位" />
+        <result property="规格及型号" column="规格及型号" />
+        <result property="ParentID" column="ParentID" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Select材料名称表List" resultMap="材料名称表_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [序号],
+         [材料代码],
+         [材料名称],
+         [计量单位],
+         [规格及型号],
+         [ParentID]
+          FROM 材料名称表
+          $value$
+   </select>
+   <select id="Select材料名称表ByKey" resultMap="材料名称表_AllColumns" parameterClass="材料名称表">
+         SELECT 
+         [ID],
+         [序号],
+         [材料代码],
+         [材料名称],
+         [计量单位],
+         [规格及型号],
+         [ParentID]
+         FROM 材料名称表
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insert材料名称表" parameterClass="材料名称表">
+        INSERT INTO 材料名称表
+         (
+         [ID],
+         [序号],
+         [材料代码],
+         [材料名称],
+         [计量单位],
+         [规格及型号],
+         [ParentID]
+         )
+       VALUES
+         (
+         #ID#,
+         #序号#,
+         #材料代码#,
+         #材料名称#,
+         #计量单位#,
+         #规格及型号#,
+         #ParentID#
+         )
+
+   </insert> 
+   <update id="Update材料名称表" parameterClass="材料名称表" resultClass="int">
+          UPDATE 材料名称表
+           SET
+             [序号]=#序号#,
+             [材料代码]=#材料代码#,
+             [材料名称]=#材料名称#,
+             [计量单位]=#计量单位#,
+             [规格及型号]=#规格及型号#,
+             [ParentID]=#ParentID#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Update材料名称表ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE 材料名称表
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="序号">
+                [序号]=#序号#
+             </isNotNull>
+             <isNotNull prepend="," property="材料代码">
+                [材料代码]=#材料代码#
+             </isNotNull>
+             <isNotNull prepend="," property="材料名称">
+                [材料名称]=#材料名称#
+             </isNotNull>
+             <isNotNull prepend="," property="计量单位">
+                [计量单位]=#计量单位#
+             </isNotNull>
+             <isNotNull prepend="," property="规格及型号">
+                [规格及型号]=#规格及型号#
+             </isNotNull>
+             <isNotNull prepend="," property="ParentID">
+                [ParentID]=#ParentID#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Delete材料名称表" parameterClass="材料名称表">
+        DELETE FROM 
+         材料名称表
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Delete材料名称表ByWhere" parameterClass="string">
+     delete from 材料名称表 $value$
+   </delete>   
+   <delete id="Delete材料名称表ByKey" parameterClass="string">
+        DELETE FROM 
+         材料名称表
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Get材料名称表RowCount" parameterClass="string">
+    select count(*) from 材料名称表 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

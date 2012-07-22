@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="工程项目" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="工程项目"  type="Ebada.Kcgl.Model.工程项目,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="工程项目_AllColumns" class="工程项目">
+        <result property="ID" column="ID" />
+        <result property="工程类别" column="工程类别" />
+        <result property="工程项目名称" column="工程项目名称" />
+        <result property="预算费用" column="预算费用" />
+        <result property="开工日期" column="开工日期" />
+        <result property="完成日期" column="完成日期" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Select工程项目List" resultMap="工程项目_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [工程类别],
+         [工程项目名称],
+         [预算费用],
+         [开工日期],
+         [完成日期]
+          FROM 工程项目
+          $value$
+   </select>
+   <select id="Select工程项目ByKey" resultMap="工程项目_AllColumns" parameterClass="工程项目">
+         SELECT 
+         [ID],
+         [工程类别],
+         [工程项目名称],
+         [预算费用],
+         [开工日期],
+         [完成日期]
+         FROM 工程项目
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insert工程项目" parameterClass="工程项目">
+        INSERT INTO 工程项目
+         (
+         [ID],
+         [工程类别],
+         [工程项目名称],
+         [预算费用],
+         [开工日期],
+         [完成日期]
+         )
+       VALUES
+         (
+         #ID#,
+         #工程类别#,
+         #工程项目名称#,
+         #预算费用#,
+         #开工日期#,
+         #完成日期#
+         )
+
+   </insert> 
+   <update id="Update工程项目" parameterClass="工程项目" resultClass="int">
+          UPDATE 工程项目
+           SET
+             [工程类别]=#工程类别#,
+             [工程项目名称]=#工程项目名称#,
+             [预算费用]=#预算费用#,
+             [开工日期]=#开工日期#,
+             [完成日期]=#完成日期#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Update工程项目ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE 工程项目
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="工程类别">
+                [工程类别]=#工程类别#
+             </isNotNull>
+             <isNotNull prepend="," property="工程项目名称">
+                [工程项目名称]=#工程项目名称#
+             </isNotNull>
+             <isNotNull prepend="," property="预算费用">
+                [预算费用]=#预算费用#
+             </isNotNull>
+             <isNotNull prepend="," property="开工日期">
+                [开工日期]=#开工日期#
+             </isNotNull>
+             <isNotNull prepend="," property="完成日期">
+                [完成日期]=#完成日期#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Delete工程项目" parameterClass="工程项目">
+        DELETE FROM 
+         工程项目
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Delete工程项目ByWhere" parameterClass="string">
+     delete from 工程项目 $value$
+   </delete>   
+   <delete id="Delete工程项目ByKey" parameterClass="string">
+        DELETE FROM 
+         工程项目
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Get工程项目RowCount" parameterClass="string">
+    select count(*) from 工程项目 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
