@@ -12,8 +12,9 @@ namespace Ebada.Kcgl.App {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IList<Model.材料名称表> mm= Ebada.Client.ClientHelper.TransportSqlMap.GetList<Model.材料名称表>(null);
-            Application.Run(new Form1());
+            frmLogin dlg = new frmLogin();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            Application.Run(new FrmSystem());
         }
     }
 }
