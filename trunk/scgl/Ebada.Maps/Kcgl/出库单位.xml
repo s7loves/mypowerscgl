@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="出库单位" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="出库单位"  type="Ebada.Kcgl.Model.出库单位,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="出库单位_AllColumns" class="出库单位">
+        <result property="ID" column="ID" />
+        <result property="序号" column="序号" />
+        <result property="单位名称" column="单位名称" />
+        <result property="联系人" column="联系人" />
+        <result property="联系电话" column="联系电话" />
+        <result property="备注" column="备注" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Select出库单位List" resultMap="出库单位_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [序号],
+         [单位名称],
+         [联系人],
+         [联系电话],
+         [备注]
+          FROM 出库单位
+          $value$
+   </select>
+   <select id="Select出库单位ByKey" resultMap="出库单位_AllColumns" parameterClass="出库单位">
+         SELECT 
+         [ID],
+         [序号],
+         [单位名称],
+         [联系人],
+         [联系电话],
+         [备注]
+         FROM 出库单位
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insert出库单位" parameterClass="出库单位">
+        INSERT INTO 出库单位
+         (
+         [ID],
+         [序号],
+         [单位名称],
+         [联系人],
+         [联系电话],
+         [备注]
+         )
+       VALUES
+         (
+         #ID#,
+         #序号#,
+         #单位名称#,
+         #联系人#,
+         #联系电话#,
+         #备注#
+         )
+
+   </insert> 
+   <update id="Update出库单位" parameterClass="出库单位" resultClass="int">
+          UPDATE 出库单位
+           SET
+             [序号]=#序号#,
+             [单位名称]=#单位名称#,
+             [联系人]=#联系人#,
+             [联系电话]=#联系电话#,
+             [备注]=#备注#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Update出库单位ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE 出库单位
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="序号">
+                [序号]=#序号#
+             </isNotNull>
+             <isNotNull prepend="," property="单位名称">
+                [单位名称]=#单位名称#
+             </isNotNull>
+             <isNotNull prepend="," property="联系人">
+                [联系人]=#联系人#
+             </isNotNull>
+             <isNotNull prepend="," property="联系电话">
+                [联系电话]=#联系电话#
+             </isNotNull>
+             <isNotNull prepend="," property="备注">
+                [备注]=#备注#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Delete出库单位" parameterClass="出库单位">
+        DELETE FROM 
+         出库单位
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Delete出库单位ByWhere" parameterClass="string">
+     delete from 出库单位 $value$
+   </delete>   
+   <delete id="Delete出库单位ByKey" parameterClass="string">
+        DELETE FROM 
+         出库单位
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Get出库单位RowCount" parameterClass="string">
+    select count(*) from 出库单位 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

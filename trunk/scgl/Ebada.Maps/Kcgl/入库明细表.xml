@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="入库明细表" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="入库明细表"  type="Ebada.Kcgl.Model.入库明细表,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="入库明细表_AllColumns" class="入库明细表">
+        <result property="ID" column="ID" />
+        <result property="工程类别_ID" column="工程类别_ID" />
+        <result property="供货厂家_ID" column="供货厂家_ID" />
+        <result property="材料名称_ID" column="材料名称_ID" />
+        <result property="工程类别" column="工程类别" />
+        <result property="供货厂家" column="供货厂家" />
+        <result property="材料名称" column="材料名称" />
+        <result property="规格及型号" column="规格及型号" />
+        <result property="计量单位" column="计量单位" />
+        <result property="单价" column="单价" />
+        <result property="数量" column="数量" />
+        <result property="总计" column="总计" />
+        <result property="入库日期" column="入库日期" />
+        <result property="备注" column="备注" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Select入库明细表List" resultMap="入库明细表_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [工程类别_ID],
+         [供货厂家_ID],
+         [材料名称_ID],
+         [工程类别],
+         [供货厂家],
+         [材料名称],
+         [规格及型号],
+         [计量单位],
+         [单价],
+         [数量],
+         [总计],
+         [入库日期],
+         [备注]
+          FROM 入库明细表
+          $value$
+   </select>
+   <select id="Select入库明细表ByKey" resultMap="入库明细表_AllColumns" parameterClass="入库明细表">
+         SELECT 
+         [ID],
+         [工程类别_ID],
+         [供货厂家_ID],
+         [材料名称_ID],
+         [工程类别],
+         [供货厂家],
+         [材料名称],
+         [规格及型号],
+         [计量单位],
+         [单价],
+         [数量],
+         [总计],
+         [入库日期],
+         [备注]
+         FROM 入库明细表
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insert入库明细表" parameterClass="入库明细表">
+        INSERT INTO 入库明细表
+         (
+         [ID],
+         [工程类别_ID],
+         [供货厂家_ID],
+         [材料名称_ID],
+         [工程类别],
+         [供货厂家],
+         [材料名称],
+         [规格及型号],
+         [计量单位],
+         [单价],
+         [数量],
+         [总计],
+         [入库日期],
+         [备注]
+         )
+       VALUES
+         (
+         #ID#,
+         #工程类别_ID#,
+         #供货厂家_ID#,
+         #材料名称_ID#,
+         #工程类别#,
+         #供货厂家#,
+         #材料名称#,
+         #规格及型号#,
+         #计量单位#,
+         #单价#,
+         #数量#,
+         #总计#,
+         #入库日期#,
+         #备注#
+         )
+
+   </insert> 
+   <update id="Update入库明细表" parameterClass="入库明细表" resultClass="int">
+          UPDATE 入库明细表
+           SET
+             [工程类别_ID]=#工程类别_ID#,
+             [供货厂家_ID]=#供货厂家_ID#,
+             [材料名称_ID]=#材料名称_ID#,
+             [工程类别]=#工程类别#,
+             [供货厂家]=#供货厂家#,
+             [材料名称]=#材料名称#,
+             [规格及型号]=#规格及型号#,
+             [计量单位]=#计量单位#,
+             [单价]=#单价#,
+             [数量]=#数量#,
+             [总计]=#总计#,
+             [入库日期]=#入库日期#,
+             [备注]=#备注#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Update入库明细表ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE 入库明细表
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="工程类别_ID">
+                [工程类别_ID]=#工程类别_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="供货厂家_ID">
+                [供货厂家_ID]=#供货厂家_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="材料名称_ID">
+                [材料名称_ID]=#材料名称_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="工程类别">
+                [工程类别]=#工程类别#
+             </isNotNull>
+             <isNotNull prepend="," property="供货厂家">
+                [供货厂家]=#供货厂家#
+             </isNotNull>
+             <isNotNull prepend="," property="材料名称">
+                [材料名称]=#材料名称#
+             </isNotNull>
+             <isNotNull prepend="," property="规格及型号">
+                [规格及型号]=#规格及型号#
+             </isNotNull>
+             <isNotNull prepend="," property="计量单位">
+                [计量单位]=#计量单位#
+             </isNotNull>
+             <isNotNull prepend="," property="单价">
+                [单价]=#单价#
+             </isNotNull>
+             <isNotNull prepend="," property="数量">
+                [数量]=#数量#
+             </isNotNull>
+             <isNotNull prepend="," property="总计">
+                [总计]=#总计#
+             </isNotNull>
+             <isNotNull prepend="," property="入库日期">
+                [入库日期]=#入库日期#
+             </isNotNull>
+             <isNotNull prepend="," property="备注">
+                [备注]=#备注#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Delete入库明细表" parameterClass="入库明细表">
+        DELETE FROM 
+         入库明细表
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Delete入库明细表ByWhere" parameterClass="string">
+     delete from 入库明细表 $value$
+   </delete>   
+   <delete id="Delete入库明细表ByKey" parameterClass="string">
+        DELETE FROM 
+         入库明细表
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Get入库明细表RowCount" parameterClass="string">
+    select count(*) from 入库明细表 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

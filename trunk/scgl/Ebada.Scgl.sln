@@ -61,11 +61,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ibatis", "ibatis", "{A2487F78-4862-4224-9C4B-90455531A102}"
 	ProjectSection(SolutionItems) = preProject
 		output\Server\config\ibatis\SqlMap.config = output\Server\config\ibatis\SqlMap.config
+		output\Server\config\ibatis\SqlMap2.config = output\Server\config\ibatis\SqlMap2.config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D94F6475-E950-479D-9092-E6392630AE2E}"
 	ProjectSection(SolutionItems) = preProject
 		output\Server\config\remoting\RemotingTcpConfig.config = output\Server\config\remoting\RemotingTcpConfig.config
+		output\Server\config\remoting\RemotingTcpConfig2.config = output\Server\config\remoting\RemotingTcpConfig2.config
 		output\Server\config\remoting\ServerConfig.xml = output\Server\config\remoting\ServerConfig.xml
 	EndProjectSection
 EndProject
@@ -128,6 +130,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.ExpressCalculate", "TONLI.Client.ExpressCalculate\Ebada.SCGL.ExpressCalculate.csproj", "{3850C013-73AA-4C2A-8C2C-16D75DB6494F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.SCGL.CADLib", "Ebada.SCGL.CADLib\Ebada.SCGL.CADLib.csproj", "{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Kcgl.Model", "Ebada.Kcgl.Model\Ebada.Kcgl.Model.csproj", "{9BE9C4BA-2A44-4358-BD89-FBA3B5540406}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "库存管理", "库存管理", "{A26295D3-F020-4B12-AF10-62A5F99405E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Kcgl", "Ebada.Kcgl\Ebada.Kcgl.csproj", "{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Kcgl.App", "Ebada.Kcgl.App\Ebada.Kcgl.App.csproj", "{153CA839-0144-4F65-B2C7-F007BF89FB2A}"
 EndProject
 Global
 	GlobalSection(PowerDesigner) = preSolution
@@ -240,6 +250,18 @@ Global
 		{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE9C4BA-2A44-4358-BD89-FBA3B5540406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE9C4BA-2A44-4358-BD89-FBA3B5540406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE9C4BA-2A44-4358-BD89-FBA3B5540406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE9C4BA-2A44-4358-BD89-FBA3B5540406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{153CA839-0144-4F65-B2C7-F007BF89FB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{153CA839-0144-4F65-B2C7-F007BF89FB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{153CA839-0144-4F65-B2C7-F007BF89FB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{153CA839-0144-4F65-B2C7-F007BF89FB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -250,6 +272,7 @@ Global
 		{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{21244318-4997-4F52-8ED7-3293A026502A} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{8D912FC5-617B-4382-9666-3AC8B8195A59} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
+		{9BE9C4BA-2A44-4358-BD89-FBA3B5540406} = {AD009B7E-3820-4811-BF13-AAF81F3C3256}
 		{46A66D23-5698-4A91-8E65-6F09587A9CF3} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
 		{BC0CEF1A-20FD-49B4-8611-9BD8D4F168B9} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
 		{265E2ED8-B3D7-4AFC-971A-CFC28821CA67} = {C9D639EC-E301-4D45-899B-DEC9D9AC4016}
@@ -279,6 +302,9 @@ Global
 		{865AA81D-02C6-4563-8562-6A77E93DAE73} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{3850C013-73AA-4C2A-8C2C-16D75DB6494F} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{D3BDBDF2-B305-48A2-9BD1-CE51C4F805FB} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
+		{A26295D3-F020-4B12-AF10-62A5F99405E8} = {10DE0842-5BC6-406E-9A53-966CAF648BF8}
 		{9BF99007-7252-4BCE-9187-F556D0DDB4A8} = {DF487866-3181-456A-9DC8-F47147407B0D}
+		{7E26EB37-5C5B-407A-B6CD-23FD55AE821E} = {A26295D3-F020-4B12-AF10-62A5F99405E8}
+		{153CA839-0144-4F65-B2C7-F007BF89FB2A} = {A26295D3-F020-4B12-AF10-62A5F99405E8}
 	EndGlobalSection
 EndGlobal
