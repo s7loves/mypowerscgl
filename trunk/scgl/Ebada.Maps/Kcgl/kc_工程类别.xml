@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="工程类别" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="kc_工程类别" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="工程类别"  type="Ebada.Kcgl.Model.工程类别,Ebada.Kcgl.Model" />
+  <typeAlias alias="kc_工程类别"  type="Ebada.Kcgl.Model.kc_工程类别,Ebada.Kcgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="工程类别_AllColumns" class="工程类别">
+      <resultMap id="kc_工程类别_AllColumns" class="kc_工程类别">
         <result property="ID" column="ID" />
         <result property="序号" column="序号" />
-        <result property="工程类别Name" column="工程类别" />
+        <result property="工程类别" column="工程类别" />
         <result property="备注" column="备注" />
       </resultMap>
   </resultMaps>
   <statements>
-   <select id="Select工程类别List" resultMap="工程类别_AllColumns" parameterClass="string">
+   <select id="Selectkc_工程类别List" resultMap="kc_工程类别_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [序号],
          [工程类别],
          [备注]
-          FROM 工程类别
+          FROM kc_工程类别
           $value$
    </select>
-   <select id="Select工程类别ByKey" resultMap="工程类别_AllColumns" parameterClass="工程类别">
+   <select id="Selectkc_工程类别ByKey" resultMap="kc_工程类别_AllColumns" parameterClass="kc_工程类别">
          SELECT 
          [ID],
          [序号],
          [工程类别],
          [备注]
-         FROM 工程类别
+         FROM kc_工程类别
          WHERE 
            ID = #ID#
 
    </select> 
-   <insert id="Insert工程类别" parameterClass="工程类别">
-        INSERT INTO 工程类别
+   <insert id="Insertkc_工程类别" parameterClass="kc_工程类别">
+        INSERT INTO kc_工程类别
          (
          [ID],
          [序号],
@@ -44,29 +44,29 @@
          (
          #ID#,
          #序号#,
-         #工程类别Name#,
+         #工程类别#,
          #备注#
          )
 
    </insert> 
-   <update id="Update工程类别" parameterClass="工程类别" resultClass="int">
-          UPDATE 工程类别
+   <update id="Updatekc_工程类别" parameterClass="kc_工程类别" resultClass="int">
+          UPDATE kc_工程类别
            SET
              [序号]=#序号#,
-             [工程类别]=#工程类别Name#,
+             [工程类别]=#工程类别#,
              [备注]=#备注#
             WHERE 
               ID = #ID#
 
    </update>  
-   <update id="Update工程类别ByHash" parameterClass="Hashtable" resultClass="int">
-          UPDATE 工程类别
+   <update id="Updatekc_工程类别ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE kc_工程类别
          <dynamic prepend="set">
              <isNotNull prepend="," property="序号">
                 [序号]=#序号#
              </isNotNull>
              <isNotNull prepend="," property="工程类别">
-                [工程类别]=#工程类别Name#
+                [工程类别]=#工程类别#
              </isNotNull>
              <isNotNull prepend="," property="备注">
                 [备注]=#备注#
@@ -76,25 +76,25 @@
       ID = #ID#
 
    </update>  
-   <delete id="Delete工程类别" parameterClass="工程类别">
+   <delete id="Deletekc_工程类别" parameterClass="kc_工程类别">
         DELETE FROM 
-         工程类别
+         kc_工程类别
            WHERE
          ID = #ID#
 
    </delete>   
-   <delete id="Delete工程类别ByWhere" parameterClass="string">
-     delete from 工程类别 $value$
+   <delete id="Deletekc_工程类别ByWhere" parameterClass="string">
+     delete from kc_工程类别 $value$
    </delete>   
-   <delete id="Delete工程类别ByKey" parameterClass="string">
+   <delete id="Deletekc_工程类别ByKey" parameterClass="string">
         DELETE FROM 
-         工程类别
+         kc_工程类别
            WHERE
          ID = #ID#
     
    </delete>   
-   <select id="Get工程类别RowCount" parameterClass="string">
-    select count(*) from 工程类别 $value$
+   <select id="Getkc_工程类别RowCount" parameterClass="string">
+    select count(*) from kc_工程类别 $value$
    </select>
   </statements>
 </sqlMap>

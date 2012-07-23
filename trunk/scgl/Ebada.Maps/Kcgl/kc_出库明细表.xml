@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="出库明细表" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="kc_出库明细表" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="出库明细表"  type="Ebada.Kcgl.Model.出库明细表,Ebada.Kcgl.Model" />
+  <typeAlias alias="kc_出库明细表"  type="Ebada.Kcgl.Model.kc_出库明细表,Ebada.Kcgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="出库明细表_AllColumns" class="出库明细表">
+      <resultMap id="kc_出库明细表_AllColumns" class="kc_出库明细表">
         <result property="ID" column="ID" />
         <result property="工程类别_ID" column="工程类别_ID" />
         <result property="出库单位_ID" column="出库单位_ID" />
@@ -22,7 +22,7 @@
       </resultMap>
   </resultMaps>
   <statements>
-   <select id="Select出库明细表List" resultMap="出库明细表_AllColumns" parameterClass="string">
+   <select id="Selectkc_出库明细表List" resultMap="kc_出库明细表_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [工程类别_ID],
@@ -38,10 +38,10 @@
          [总计],
          [出库日期],
          [备注]
-          FROM 出库明细表
+          FROM kc_出库明细表
           $value$
    </select>
-   <select id="Select出库明细表ByKey" resultMap="出库明细表_AllColumns" parameterClass="出库明细表">
+   <select id="Selectkc_出库明细表ByKey" resultMap="kc_出库明细表_AllColumns" parameterClass="kc_出库明细表">
          SELECT 
          [ID],
          [工程类别_ID],
@@ -57,13 +57,13 @@
          [总计],
          [出库日期],
          [备注]
-         FROM 出库明细表
+         FROM kc_出库明细表
          WHERE 
            ID = #ID#
 
    </select> 
-   <insert id="Insert出库明细表" parameterClass="出库明细表">
-        INSERT INTO 出库明细表
+   <insert id="Insertkc_出库明细表" parameterClass="kc_出库明细表">
+        INSERT INTO kc_出库明细表
          (
          [ID],
          [工程类别_ID],
@@ -99,8 +99,8 @@
          )
 
    </insert> 
-   <update id="Update出库明细表" parameterClass="出库明细表" resultClass="int">
-          UPDATE 出库明细表
+   <update id="Updatekc_出库明细表" parameterClass="kc_出库明细表" resultClass="int">
+          UPDATE kc_出库明细表
            SET
              [工程类别_ID]=#工程类别_ID#,
              [出库单位_ID]=#出库单位_ID#,
@@ -119,8 +119,8 @@
               ID = #ID#
 
    </update>  
-   <update id="Update出库明细表ByHash" parameterClass="Hashtable" resultClass="int">
-          UPDATE 出库明细表
+   <update id="Updatekc_出库明细表ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE kc_出库明细表
          <dynamic prepend="set">
              <isNotNull prepend="," property="工程类别_ID">
                 [工程类别_ID]=#工程类别_ID#
@@ -166,25 +166,25 @@
       ID = #ID#
 
    </update>  
-   <delete id="Delete出库明细表" parameterClass="出库明细表">
+   <delete id="Deletekc_出库明细表" parameterClass="kc_出库明细表">
         DELETE FROM 
-         出库明细表
+         kc_出库明细表
            WHERE
          ID = #ID#
 
    </delete>   
-   <delete id="Delete出库明细表ByWhere" parameterClass="string">
-     delete from 出库明细表 $value$
+   <delete id="Deletekc_出库明细表ByWhere" parameterClass="string">
+     delete from kc_出库明细表 $value$
    </delete>   
-   <delete id="Delete出库明细表ByKey" parameterClass="string">
+   <delete id="Deletekc_出库明细表ByKey" parameterClass="string">
         DELETE FROM 
-         出库明细表
+         kc_出库明细表
            WHERE
          ID = #ID#
     
    </delete>   
-   <select id="Get出库明细表RowCount" parameterClass="string">
-    select count(*) from 出库明细表 $value$
+   <select id="Getkc_出库明细表RowCount" parameterClass="string">
+    select count(*) from kc_出库明细表 $value$
    </select>
   </statements>
 </sqlMap>

@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="供货厂家" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="kc_出库单位" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="供货厂家"  type="Ebada.Kcgl.Model.供货厂家,Ebada.Kcgl.Model" />
+  <typeAlias alias="kc_出库单位"  type="Ebada.Kcgl.Model.kc_出库单位,Ebada.Kcgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="供货厂家_AllColumns" class="供货厂家">
+      <resultMap id="kc_出库单位_AllColumns" class="kc_出库单位">
         <result property="ID" column="ID" />
         <result property="序号" column="序号" />
-        <result property="厂家名称" column="厂家名称" />
+        <result property="单位名称" column="单位名称" />
         <result property="联系人" column="联系人" />
         <result property="联系电话" column="联系电话" />
         <result property="备注" column="备注" />
       </resultMap>
   </resultMaps>
   <statements>
-   <select id="Select供货厂家List" resultMap="供货厂家_AllColumns" parameterClass="string">
+   <select id="Selectkc_出库单位List" resultMap="kc_出库单位_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [序号],
-         [厂家名称],
+         [单位名称],
          [联系人],
          [联系电话],
          [备注]
-          FROM 供货厂家
+          FROM kc_出库单位
           $value$
    </select>
-   <select id="Select供货厂家ByKey" resultMap="供货厂家_AllColumns" parameterClass="供货厂家">
+   <select id="Selectkc_出库单位ByKey" resultMap="kc_出库单位_AllColumns" parameterClass="kc_出库单位">
          SELECT 
          [ID],
          [序号],
-         [厂家名称],
+         [单位名称],
          [联系人],
          [联系电话],
          [备注]
-         FROM 供货厂家
+         FROM kc_出库单位
          WHERE 
            ID = #ID#
 
    </select> 
-   <insert id="Insert供货厂家" parameterClass="供货厂家">
-        INSERT INTO 供货厂家
+   <insert id="Insertkc_出库单位" parameterClass="kc_出库单位">
+        INSERT INTO kc_出库单位
          (
          [ID],
          [序号],
-         [厂家名称],
+         [单位名称],
          [联系人],
          [联系电话],
          [备注]
@@ -52,18 +52,18 @@
          (
          #ID#,
          #序号#,
-         #厂家名称#,
+         #单位名称#,
          #联系人#,
          #联系电话#,
          #备注#
          )
 
    </insert> 
-   <update id="Update供货厂家" parameterClass="供货厂家" resultClass="int">
-          UPDATE 供货厂家
+   <update id="Updatekc_出库单位" parameterClass="kc_出库单位" resultClass="int">
+          UPDATE kc_出库单位
            SET
              [序号]=#序号#,
-             [厂家名称]=#厂家名称#,
+             [单位名称]=#单位名称#,
              [联系人]=#联系人#,
              [联系电话]=#联系电话#,
              [备注]=#备注#
@@ -71,14 +71,14 @@
               ID = #ID#
 
    </update>  
-   <update id="Update供货厂家ByHash" parameterClass="Hashtable" resultClass="int">
-          UPDATE 供货厂家
+   <update id="Updatekc_出库单位ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE kc_出库单位
          <dynamic prepend="set">
              <isNotNull prepend="," property="序号">
                 [序号]=#序号#
              </isNotNull>
-             <isNotNull prepend="," property="厂家名称">
-                [厂家名称]=#厂家名称#
+             <isNotNull prepend="," property="单位名称">
+                [单位名称]=#单位名称#
              </isNotNull>
              <isNotNull prepend="," property="联系人">
                 [联系人]=#联系人#
@@ -94,25 +94,25 @@
       ID = #ID#
 
    </update>  
-   <delete id="Delete供货厂家" parameterClass="供货厂家">
+   <delete id="Deletekc_出库单位" parameterClass="kc_出库单位">
         DELETE FROM 
-         供货厂家
+         kc_出库单位
            WHERE
          ID = #ID#
 
    </delete>   
-   <delete id="Delete供货厂家ByWhere" parameterClass="string">
-     delete from 供货厂家 $value$
+   <delete id="Deletekc_出库单位ByWhere" parameterClass="string">
+     delete from kc_出库单位 $value$
    </delete>   
-   <delete id="Delete供货厂家ByKey" parameterClass="string">
+   <delete id="Deletekc_出库单位ByKey" parameterClass="string">
         DELETE FROM 
-         供货厂家
+         kc_出库单位
            WHERE
          ID = #ID#
     
    </delete>   
-   <select id="Get供货厂家RowCount" parameterClass="string">
-    select count(*) from 供货厂家 $value$
+   <select id="Getkc_出库单位RowCount" parameterClass="string">
+    select count(*) from kc_出库单位 $value$
    </select>
   </statements>
 </sqlMap>
