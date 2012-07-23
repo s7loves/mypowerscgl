@@ -247,19 +247,25 @@ namespace Ebada.Scgl.Yxgl {
             }
             ex.SetCellValue(jyuz, 21, 13);
             jyuz = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where (sbname='高压立瓶' or sbname='高压针式绝缘子')and (sbModle like  'fp%' or sbModle like  'p-%') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+//    ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where (sbname='高压立瓶' or sbname='高压针式绝缘子')and (sbModle like  'fp%' or sbModle like  'p-%'or sbModle like  '棕红色硅胶%') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+  
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where (sbname='高压立瓶' or sbname='高压针式绝缘子') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 22, 13);
             jyuz = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where  (sbname='高压悬垂' or sbname='高压悬式绝缘子')and (sbModle like  'fsw%' or sbModle like  'xp-%')  and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+     //       ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where  (sbname='高压悬垂' or sbname='高压悬式绝缘子')and (sbModle like  'fsw%' or sbModle like  'xp-%')  and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where  (sbname='高压悬垂' or sbname='高压悬式绝缘子') and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
             ex.SetCellValue(jyuz, 23, 13);
             jyuz = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张'and sbModle like 'j10%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+  //          ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张'and sbModle like 'j10%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select sum(sbNumber) from ps_gtsb Where sbname='10KV楔型耐张' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             if (ot != null) {
                 jyuz = ot.ToString();
             }
