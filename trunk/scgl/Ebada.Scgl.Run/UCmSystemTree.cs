@@ -69,13 +69,7 @@ namespace Ebada.Scgl.Run{
             List<object> list = new List<object>();
             string parentid = e.Value.Modu_ID;
             list.Add(e.Value);
-            //list.Add(createFun("btAdd", "增加", parentid));
-            //list.Add(createFun("btEdit", "修改", parentid));
-            //list.Add(createFun("btDelete", "删除", parentid));
-            //list.Add(createFun("btFind", "查询", parentid));
-            //list.Add(createFun("btExport", "导出", parentid));
-            
-            //Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
+          
             e.Cancel = true;
 
             treeViewOperator.BindingList.Add(e.Value);
