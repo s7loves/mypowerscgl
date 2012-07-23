@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 22:56:42
+生成时间:2012-7-23 10:43:51
 ***********************************************/
 
 using System;
@@ -13,11 +13,11 @@ using System.ComponentModel;
 namespace Ebada.Kcgl.Model
 {
     /// <summary>
-    ///[材料名称表]业务实体类
-    ///对应表名:材料名称表
+    ///[kc_材料名称表]业务实体类
+    ///对应表名:kc_材料名称表
     /// </summary>
     [Serializable]
-    public class 材料名称表
+    public class kc_材料名称表
     {
         
         #region Private 成员

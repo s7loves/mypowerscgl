@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 22:56:42
+生成时间:2012-7-23 10:43:52
 ***********************************************/
 
 using System;
@@ -13,44 +13,44 @@ using System.ComponentModel;
 namespace Ebada.Kcgl.Model
 {
     /// <summary>
-    ///[退货明细表]业务实体类
-    ///对应表名:退货明细表
+    ///[kc_入库明细表]业务实体类
+    ///对应表名:kc_入库明细表
     /// </summary>
     [Serializable]
-    public class 退货明细表
+    public class kc_入库明细表
     {
         
         #region Private 成员
         private string _id=Newid(); 
         private string _工程类别_id=String.Empty; 
-        private string _退货厂家_id=String.Empty; 
+        private string _供货厂家_id=String.Empty; 
         private string _材料名称_id=String.Empty; 
         private string _工程类别=String.Empty; 
-        private string _退货厂家=String.Empty; 
+        private string _供货厂家=String.Empty; 
         private string _材料名称=String.Empty; 
         private string _规格及型号=String.Empty; 
         private string _计量单位=String.Empty; 
         private decimal _单价=0; 
         private double _数量=0; 
         private double _总计=0; 
-        private DateTime _退货日期=new DateTime(1900,1,1); 
+        private DateTime _入库日期=new DateTime(1900,1,1); 
         private string _备注=String.Empty;   
         #endregion
 		
         #region const 成员
         public const string f_ID= "ID"; 
         public const string f_工程类别_ID= "工程类别_ID"; 
-        public const string f_退货厂家_ID= "退货厂家_ID"; 
+        public const string f_供货厂家_ID= "供货厂家_ID"; 
         public const string f_材料名称_ID= "材料名称_ID"; 
         public const string f_工程类别= "工程类别"; 
-        public const string f_退货厂家= "退货厂家"; 
+        public const string f_供货厂家= "供货厂家"; 
         public const string f_材料名称= "材料名称"; 
         public const string f_规格及型号= "规格及型号"; 
         public const string f_计量单位= "计量单位"; 
         public const string f_单价= "单价"; 
         public const string f_数量= "数量"; 
         public const string f_总计= "总计"; 
-        public const string f_退货日期= "退货日期"; 
+        public const string f_入库日期= "入库日期"; 
         public const string f_备注= "备注";   
         #endregion
   
@@ -83,6 +83,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[工程类别_ID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
         public string 工程类别_ID
         {
@@ -100,22 +101,23 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：退货厂家_ID
+        /// 属性名称：供货厂家_ID
         /// 属性描述：
-        /// 字段信息：[退货厂家_ID],nvarchar
+        /// 字段信息：[供货厂家_ID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
-        public string 退货厂家_ID
+        public string 供货厂家_ID
         {
-            get { return _退货厂家_id; }
+            get { return _供货厂家_id; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[退货厂家_ID]长度不能大于50!");
-                if (_退货厂家_id as object == null || !_退货厂家_id.Equals(value))
+                throw new Exception("[供货厂家_ID]长度不能大于50!");
+                if (_供货厂家_id as object == null || !_供货厂家_id.Equals(value))
                 {
-                    _退货厂家_id = value;
+                    _供货厂家_id = value;
                 }
             }			 
         }
@@ -125,6 +127,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[材料名称_ID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
         public string 材料名称_ID
         {
@@ -163,22 +166,22 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：退货厂家
+        /// 属性名称：供货厂家
         /// 属性描述：
-        /// 字段信息：[退货厂家],nvarchar
+        /// 字段信息：[供货厂家],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 退货厂家
+        public string 供货厂家
         {
-            get { return _退货厂家; }
+            get { return _供货厂家; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[退货厂家]长度不能大于50!");
-                if (_退货厂家 as object == null || !_退货厂家.Equals(value))
+                throw new Exception("[供货厂家]长度不能大于50!");
+                if (_供货厂家 as object == null || !_供货厂家.Equals(value))
                 {
-                    _退货厂家 = value;
+                    _供货厂家 = value;
                 }
             }			 
         }
@@ -301,19 +304,19 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：退货日期
+        /// 属性名称：入库日期
         /// 属性描述：
-        /// 字段信息：[退货日期],datetime
+        /// 字段信息：[入库日期],datetime
         /// </summary>
         [DisplayNameAttribute("")]
-        public DateTime 退货日期
+        public DateTime 入库日期
         {
-            get { return _退货日期; }
+            get { return _入库日期; }
             set
             {			
-                if (_退货日期 as object == null || !_退货日期.Equals(value))
+                if (_入库日期 as object == null || !_入库日期.Equals(value))
                 {
-                    _退货日期 = value;
+                    _入库日期 = value;
                 }
             }			 
         }

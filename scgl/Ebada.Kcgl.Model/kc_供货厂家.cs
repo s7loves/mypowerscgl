@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 22:56:42
+生成时间:2012-7-23 10:43:52
 ***********************************************/
 
 using System;
@@ -13,24 +13,28 @@ using System.ComponentModel;
 namespace Ebada.Kcgl.Model
 {
     /// <summary>
-    ///[工程类别]业务实体类
-    ///对应表名:工程类别
+    ///[kc_供货厂家]业务实体类
+    ///对应表名:kc_供货厂家
     /// </summary>
     [Serializable]
-    public class 工程类别
+    public class kc_供货厂家
     {
         
         #region Private 成员
         private string _id=Newid(); 
         private int _序号=0; 
-        private string _工程类别name=String.Empty; 
+        private string _厂家名称=String.Empty; 
+        private string _联系人=String.Empty; 
+        private string _联系电话=String.Empty; 
         private string _备注=String.Empty;   
         #endregion
 		
         #region const 成员
         public const string f_ID= "ID"; 
         public const string f_序号= "序号"; 
-        public const string f_工程类别= "工程类别"; 
+        public const string f_厂家名称= "厂家名称"; 
+        public const string f_联系人= "联系人"; 
+        public const string f_联系电话= "联系电话"; 
         public const string f_备注= "备注";   
         #endregion
   
@@ -77,22 +81,64 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：工程类别Name
+        /// 属性名称：厂家名称
         /// 属性描述：
-        /// 字段信息：[工程类别],nvarchar
+        /// 字段信息：[厂家名称],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 工程类别Name
+        public string 厂家名称
         {
-            get { return _工程类别name; }
+            get { return _厂家名称; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[工程类别]长度不能大于50!");
-                if (_工程类别name as object == null || !_工程类别name.Equals(value))
+                throw new Exception("[厂家名称]长度不能大于50!");
+                if (_厂家名称 as object == null || !_厂家名称.Equals(value))
                 {
-                    _工程类别name = value;
+                    _厂家名称 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：联系人
+        /// 属性描述：
+        /// 字段信息：[联系人],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 联系人
+        {
+            get { return _联系人; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[联系人]长度不能大于50!");
+                if (_联系人 as object == null || !_联系人.Equals(value))
+                {
+                    _联系人 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：联系电话
+        /// 属性描述：
+        /// 字段信息：[联系电话],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 联系电话
+        {
+            get { return _联系电话; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[联系电话]长度不能大于50!");
+                if (_联系电话 as object == null || !_联系电话.Equals(value))
+                {
+                    _联系电话 = value;
                 }
             }			 
         }
@@ -109,8 +155,8 @@ namespace Ebada.Kcgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[备注]长度不能大于50!");
+                if( value.ToString().Length > 100)
+                throw new Exception("[备注]长度不能大于100!");
                 if (_备注 as object == null || !_备注.Equals(value))
                 {
                     _备注 = value;

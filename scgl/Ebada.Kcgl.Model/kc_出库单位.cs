@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-22 22:56:42
+生成时间:2012-7-23 10:43:52
 ***********************************************/
 
 using System;
@@ -13,29 +13,29 @@ using System.ComponentModel;
 namespace Ebada.Kcgl.Model
 {
     /// <summary>
-    ///[工程项目]业务实体类
-    ///对应表名:工程项目
+    ///[kc_出库单位]业务实体类
+    ///对应表名:kc_出库单位
     /// </summary>
     [Serializable]
-    public class 工程项目
+    public class kc_出库单位
     {
         
         #region Private 成员
         private string _id=Newid(); 
-        private string _工程类别=String.Empty; 
-        private string _工程项目名称=String.Empty; 
-        private double _预算费用=0; 
-        private DateTime _开工日期=new DateTime(1900,1,1); 
-        private DateTime _完成日期=new DateTime(1900,1,1);   
+        private int _序号=0; 
+        private string _单位名称=String.Empty; 
+        private string _联系人=String.Empty; 
+        private string _联系电话=String.Empty; 
+        private string _备注=String.Empty;   
         #endregion
 		
         #region const 成员
         public const string f_ID= "ID"; 
-        public const string f_工程类别= "工程类别"; 
-        public const string f_工程项目名称= "工程项目名称"; 
-        public const string f_预算费用= "预算费用"; 
-        public const string f_开工日期= "开工日期"; 
-        public const string f_完成日期= "完成日期";   
+        public const string f_序号= "序号"; 
+        public const string f_单位名称= "单位名称"; 
+        public const string f_联系人= "联系人"; 
+        public const string f_联系电话= "联系电话"; 
+        public const string f_备注= "备注";   
         #endregion
   
         #region Public 成员
@@ -63,97 +63,103 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：工程类别
+        /// 属性名称：序号
         /// 属性描述：
-        /// 字段信息：[工程类别],nvarchar
+        /// 字段信息：[序号],int
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 工程类别
+        public int 序号
         {
-            get { return _工程类别; }
+            get { return _序号; }
+            set
+            {			
+                if (_序号 as object == null || !_序号.Equals(value))
+                {
+                    _序号 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：单位名称
+        /// 属性描述：
+        /// 字段信息：[单位名称],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 单位名称
+        {
+            get { return _单位名称; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[工程类别]长度不能大于50!");
-                if (_工程类别 as object == null || !_工程类别.Equals(value))
+                throw new Exception("[单位名称]长度不能大于50!");
+                if (_单位名称 as object == null || !_单位名称.Equals(value))
                 {
-                    _工程类别 = value;
+                    _单位名称 = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：工程项目名称
+        /// 属性名称：联系人
         /// 属性描述：
-        /// 字段信息：[工程项目名称],nvarchar
+        /// 字段信息：[联系人],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 工程项目名称
+        public string 联系人
         {
-            get { return _工程项目名称; }
+            get { return _联系人; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[工程项目名称]长度不能大于50!");
-                if (_工程项目名称 as object == null || !_工程项目名称.Equals(value))
+                throw new Exception("[联系人]长度不能大于50!");
+                if (_联系人 as object == null || !_联系人.Equals(value))
                 {
-                    _工程项目名称 = value;
+                    _联系人 = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：预算费用
+        /// 属性名称：联系电话
         /// 属性描述：
-        /// 字段信息：[预算费用],float
+        /// 字段信息：[联系电话],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public double 预算费用
+        public string 联系电话
         {
-            get { return _预算费用; }
+            get { return _联系电话; }
             set
             {			
-                if (_预算费用 as object == null || !_预算费用.Equals(value))
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[联系电话]长度不能大于50!");
+                if (_联系电话 as object == null || !_联系电话.Equals(value))
                 {
-                    _预算费用 = value;
+                    _联系电话 = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：开工日期
+        /// 属性名称：备注
         /// 属性描述：
-        /// 字段信息：[开工日期],datetime
+        /// 字段信息：[备注],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public DateTime 开工日期
+        public string 备注
         {
-            get { return _开工日期; }
+            get { return _备注; }
             set
             {			
-                if (_开工日期 as object == null || !_开工日期.Equals(value))
+                if(value==null)return;
+                if( value.ToString().Length > 150)
+                throw new Exception("[备注]长度不能大于150!");
+                if (_备注 as object == null || !_备注.Equals(value))
                 {
-                    _开工日期 = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：完成日期
-        /// 属性描述：
-        /// 字段信息：[完成日期],datetime
-        /// </summary>
-        [DisplayNameAttribute("")]
-        public DateTime 完成日期
-        {
-            get { return _完成日期; }
-            set
-            {			
-                if (_完成日期 as object == null || !_完成日期.Equals(value))
-                {
-                    _完成日期 = value;
+                    _备注 = value;
                 }
             }			 
         }
