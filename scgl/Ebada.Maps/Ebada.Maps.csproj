@@ -341,15 +341,15 @@
     <EmbeddedResource Include="WF_workTastTrans.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Kcgl\供货厂家.xml" />
-    <EmbeddedResource Include="Kcgl\入库明细表.xml" />
-    <EmbeddedResource Include="Kcgl\出库单位.xml" />
-    <EmbeddedResource Include="Kcgl\出库明细表.xml" />
-    <EmbeddedResource Include="Kcgl\工程类别.xml" />
-    <EmbeddedResource Include="Kcgl\工程计划明细表.xml" />
-    <EmbeddedResource Include="Kcgl\工程项目.xml" />
-    <EmbeddedResource Include="Kcgl\材料名称表.xml" />
-    <EmbeddedResource Include="Kcgl\退货明细表.xml" />
+    <EmbeddedResource Include="Kcgl\kc_供货厂家.xml" />
+    <EmbeddedResource Include="Kcgl\kc_入库明细表.xml" />
+    <EmbeddedResource Include="Kcgl\kc_出库单位.xml" />
+    <EmbeddedResource Include="Kcgl\kc_出库明细表.xml" />
+    <EmbeddedResource Include="Kcgl\kc_工程类别.xml" />
+    <EmbeddedResource Include="Kcgl\kc_工程计划明细表.xml" />
+    <EmbeddedResource Include="Kcgl\kc_工程项目.xml" />
+    <EmbeddedResource Include="Kcgl\kc_材料名称表.xml" />
+    <EmbeddedResource Include="Kcgl\kc_退货明细表.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="flow\" />
