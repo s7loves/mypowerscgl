@@ -12,9 +12,15 @@ namespace Ebada.Kcgl.App {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK)
-            Application.Run(new FrmSystem());
+
+            string str = Client.ClientHelper.TransportSqlMap.GetConnectionString();
+            kc_材料名称表 obj = Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>("1");
+            Client.ClientHelper.TransportSqlMap.SetDatabase("ebadakcgl2");
+            obj = Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>("1");
+            str = Client.ClientHelper.TransportSqlMap.GetConnectionString();
+            //frmLogin dlg = new frmLogin();
+            //if (dlg.ShowDialog() == DialogResult.OK)
+            Application.Run(new Form1());
         }
     }
 }
