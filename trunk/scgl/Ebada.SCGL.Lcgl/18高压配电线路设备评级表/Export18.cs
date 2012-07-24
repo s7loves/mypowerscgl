@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
+using System.IO;
 namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -19,7 +20,11 @@ namespace Ebada.Scgl.Lcgl {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\18双河所设备评级表.xls";
+            string fname0 = Application.StartupPath + "\\00记录模板\\18双河所设备评级表.xls";
+            string fname = Path.GetTempPath() + obj.OrgName + "设备评级表.xls";
+            try {
+                File.Copy(fname0, fname, true);
+            } catch { }
             IList<PJ_18gysbpjmx> objlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_18gysbpjmx>("SelectPJ_18gysbpjmxList", "where PJ_ID='" + obj.PJ_ID + "'");
 
 
