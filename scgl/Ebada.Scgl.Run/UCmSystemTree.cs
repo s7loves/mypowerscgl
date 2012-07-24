@@ -69,10 +69,7 @@ namespace Ebada.Scgl.Run{
             List<object> list = new List<object>();
             string parentid = e.Value.Modu_ID;
             list.Add(e.Value);
-          
-            e.Cancel = true;
-
-            treeViewOperator.BindingList.Add(e.Value);
+            //treeViewOperator.BindingList.Add(e.Value);
         }
         private mModulFun createFun(string code, string name,string parentid) {
             mModulFun fun = new mModulFun(); fun.FunID = fun.CreateID();
