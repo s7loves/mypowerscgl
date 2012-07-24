@@ -5,6 +5,7 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
 using Ebada.Client.Platform;
+using System.IO;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -24,8 +25,11 @@ namespace Ebada.Scgl.Yxgl {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\18双河所设备评级表.xls";
-
+            string fname0 = Application.StartupPath + "\\00记录模板\\18双河所设备评级表.xls";
+            string fname = Path.GetTempPath() + obj.OrgName + "设备评级表.xls";
+            try {
+                File.Copy(fname0, fname, true);
+            } catch { }
             ex.Open(fname);
             //此处写填充内容代码
             int pagecout = Ecommon.GetPagecount(objlist.Count, 29);
