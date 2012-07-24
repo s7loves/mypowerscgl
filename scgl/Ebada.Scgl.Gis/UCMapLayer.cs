@@ -307,7 +307,10 @@ namespace TLMapPlatform {
                 //            rect = RectLatLng.Union(rect, rll.Value);
                 //    }
                 //}
-                if (rect.IsEmpty) return;
+                if (rect.IsEmpty) {
+                    MsgBox.ShowAskMessageBox("导出接线图之前，请先相关线路显示并调好相应地图比例。");
+                    return;
+                }
                 rect.Inflate(0.002d, 0.002d);
                 GPoint p1 = mRMap.FromLatLngToLocal(rect.LocationTopLeft);
                 GPoint p2 = mRMap.FromLatLngToLocal(rect.LocationRightBottom);
@@ -456,7 +459,7 @@ namespace TLMapPlatform {
                 if (pj17 == null) {
                     pj17 = new PJ_17() { LineCode = xl.LineCode, LineName = xl.LineName, OrgCode = xl.OrgCode, CreateMan = "system" };
                 } else {
-                    result = MsgBox.ShowAskMessageBox(xl.LineName + "已经存在，是否要重新生成。\n生成条图需要几分钟，建议没有修改数据前不要重新生成。\n[确认]重新生成，[取消]打开已生成数据。");
+                    result = MsgBox.ShowAskMessageBox(xl.LineName + "条图已经生成，是否要重新生成。\n生成条图需要几分钟，建议没有修改数据前不要重新生成。\n[确认]重新生成，[取消]打开已生成数据。");
                 }
                 if (pj17.ID != xl.LineID || result == DialogResult.OK) {
                     setWaitMsg("正在生成“" + xl.LineName + "”条图数据");
