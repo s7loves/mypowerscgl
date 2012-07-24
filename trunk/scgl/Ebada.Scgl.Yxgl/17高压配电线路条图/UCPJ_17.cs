@@ -660,7 +660,7 @@ namespace Ebada.Scgl.Yxgl {
                                     }
                                 }
                             } else {
-                                ex.SetCellValue(xl.LineName, 5, itemp * 2 + 4);
+                                ex.SetCellValue(xl2.LineName, 5, itemp * 2 + 4);//分支线路
                                 PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
                                 if (tb2 != null) {
 
