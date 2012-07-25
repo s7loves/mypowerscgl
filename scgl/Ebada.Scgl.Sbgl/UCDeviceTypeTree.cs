@@ -11,6 +11,7 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
 namespace Ebada.Scgl.Sbgl {
+    [ToolboxItem(false)]
     public partial class UCDeviceTypeTree : UserControl {
 
         public event SendDataEventHandler<DeviceType> LineSelectionChanged;

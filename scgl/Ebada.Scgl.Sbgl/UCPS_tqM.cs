@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class UCPS_tqM : DevExpress.XtraEditors.XtraUserControl
     {
         public UCPS_tqM()

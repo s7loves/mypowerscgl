@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPs_byqxh : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_byqxh> gridViewOperation;
         

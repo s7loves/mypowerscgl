@@ -25,7 +25,8 @@ namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
-    public partial class UCPS_tqsbclbmain: DevExpress.XtraEditors.XtraUserControl {
+    [ToolboxItem(false)]
+    public partial class UCPS_tqsbclbmain : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_tqsbclb> gridViewOperation;
         
         public event SendDataEventHandler<PS_tqsbclb> FocusedRowChanged;

@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Sbgl
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPS_TQSB : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PS_tqsb> gridViewOperation;
