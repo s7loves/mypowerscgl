@@ -48,6 +48,31 @@
 	
       </configuration>
     </container>
-    
+     <container name="TransportServer">
+      <configuration>
+        <facilities>
+          <facility
+              id="remote.facility2"
+                  type="Castle.Facilities.Remoting.RemotingFacility, Castle.MicroKernel"
+                  isClient="true"
+                  remoteKernelUri="tcp://localhost:5102/kernel2.rem"
+                  baseUri="tcp://localhost:5102" >
+          </facility>
+        </facilities>
+        <components>
+          <component
+		    id="remote.math"
+		    service="Ebada.Components.IRemoteMath, Ebada.Components"
+		    type="Ebada.Components.RemoteMath, Ebada.Components"
+		    remoteclient="component"/>
+          <component
+            id="IBaseSqlMapDao"
+            service="Ebada.Components.IBaseSqlMapDao, Ebada.Components"
+            type="Ebada.Components.RemoteMath, Ebada.Components"
+            remoteclient="component"/>
+          
+        </components>
+      </configuration>
+    </container>
   </containers>
 </configuration>
