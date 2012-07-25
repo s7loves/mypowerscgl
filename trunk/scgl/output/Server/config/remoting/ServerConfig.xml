@@ -80,7 +80,7 @@
 			      id="IBaseSqlMapDao"
 			      service="Ebada.Components.IBaseSqlMapDao, Ebada.Components"
 			      type="Ebada.Components.BaseSqlMapDao, Ebada.Components"
-			      remoteserver="component">
+			      remoteserver="component" lifestyle="transient">
           </component>
         </components>
       </configuration>
