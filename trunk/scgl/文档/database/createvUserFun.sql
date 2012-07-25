@@ -9,7 +9,7 @@ CREATE VIEW [dbo].[vUserFun]
 AS
 SELECT DISTINCT 
                       TOP (100) PERCENT dbo.mUser.UserID, dbo.mModule.ModuTypes, dbo.mModulFun.FunCode, dbo.mModulFun.FunName, dbo.mUser.UserCode, 
-                      dbo.mUser.UserName, dbo.mUser.LoginID
+                      dbo.mUser.UserName, dbo.mUser.LoginID, dbo.mModule.Modu_ID
 FROM         dbo.mModule INNER JOIN
                       dbo.mModulFun ON dbo.mModule.Modu_ID = dbo.mModulFun.Modu_ID INNER JOIN
                       dbo.rRoleFun ON dbo.mModulFun.FunID = dbo.rRoleFun.FunID INNER JOIN
