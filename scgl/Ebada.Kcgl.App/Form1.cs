@@ -23,5 +23,20 @@ namespace Ebada.Kcgl.App {
 
             showmodul(new UC工程项目() { Dock = DockStyle.Fill },button1.Text);
         }
+
+        private void button5_Click(object sender, EventArgs e) {
+            Client.ClientHelper.TransportSqlMap.SetDatabase("ebadakcgl");
+
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+            Client.ClientHelper.TransportSqlMap.SetDatabase("ebadakcgl2");
+        }
+
+        private void button6_Click(object sender, EventArgs e) {
+            IList<Model.kc_工程项目> list = Client.ClientHelper.TransportSqlMap.GetList<Model.kc_工程项目>(null);
+            if (list.Count > 0)
+                MessageBox.Show(list[0].工程类别);
+        }
     }
 }

@@ -68,7 +68,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "remoting", "remoting", "{D9
 	ProjectSection(SolutionItems) = preProject
 		output\Server\config\remoting\RemotingTcpConfig.config = output\Server\config\remoting\RemotingTcpConfig.config
 		output\Server\config\remoting\RemotingTcpConfig2.config = output\Server\config\remoting\RemotingTcpConfig2.config
-		output\Server\config\remoting\ServerConfig.xml = output\Server\config\remoting\ServerConfig.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{265E2ED8-B3D7-4AFC-971A-CFC28821CA67}"

@@ -163,7 +163,7 @@
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
-            this.barSubItem1.Name = "barSubItem1";
+            this.barSubItem1.Name = "btAddp";
             // 
             // btAddM
             // 
