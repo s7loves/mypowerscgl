@@ -98,13 +98,13 @@ namespace Ebada.Scgl.Sbgl {
             }
         }
         protected override void OnLoad(EventArgs e) {
-            base.OnLoad(e);
+            base.OnLoad(e); simpleButton1.Show();
             if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew) {
                 simpleButton1.Show();
                 simpleButton3.Show();
                 simpleButton4.Show();
             } else {
-                simpleButton1.Hide();
+                //simpleButton1.Hide();
                 simpleButton3.Hide();
                 simpleButton4.Hide();
             }
