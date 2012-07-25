@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Sbgl
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPS_jcky : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_05jcky> gridViewOperation;

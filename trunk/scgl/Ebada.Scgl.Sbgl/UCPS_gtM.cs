@@ -10,6 +10,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class UCPS_gtM : DevExpress.XtraEditors.XtraUserControl
     {
         public UCPS_gtM()

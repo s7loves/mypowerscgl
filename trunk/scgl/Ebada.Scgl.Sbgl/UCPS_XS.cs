@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class UCPS_XS : DevExpress.XtraEditors.XtraUserControl
     {
         UCxsTree scLeft;

@@ -28,6 +28,7 @@ namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPS_xlSelect : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<PS_xl> treeViewOperator;
