@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Sbgl {
         public static double CountLineLen(PS_xl xl) {
             double dLen0 = 0;//总长度，包括下级线路
             double dLen1 = 0;//当前线路长度
-            IList<PS_gt> gtList = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + xl.LineCode + "'");
+            IList<PS_gt> gtList = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + xl.LineCode + "' order by gtcode");
             PS_gt gt0 = new PS_gt();
             List<object> updateList = new List<object>();
             for(int i=0;i<gtList.Count;i++) {
