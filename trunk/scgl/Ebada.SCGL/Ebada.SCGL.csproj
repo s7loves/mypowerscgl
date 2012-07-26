@@ -20,7 +20,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <ApplicationIcon>3d_software.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icon1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -259,6 +259,7 @@
     <None Include="Resources\2.gif" />
     <None Include="Resources\11.gif" />
     <None Include="Resources\21.gif" />
+    <Content Include="Resources\Icon1.ico" />
     <Content Include="Resources\刷新.png" />
     <None Include="Resources\设置副本.bmp" />
   </ItemGroup>
