@@ -410,10 +410,17 @@ namespace TLMapPlatform {
             UCGraph.ShowDialog(contextMenu.Tag.ToString());
         }
         void 单线图_Click(object sender, EventArgs e) {
+            
+            frmDxtSetup dlg2 = new frmDxtSetup();
+            dlg2.ShowDialog(this);
+            Application.DoEvents();
+            setWaitMsg("正在生成绘制单线图");
             System.Drawing.Image bt = new DrawingDxt2().GetImage(contextMenu.Tag.ToString());
+            setWaitMsg(null);
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.RestoreDirectory = true;
             dlg.Filter = "*.bmp|*.bmp";
+            dlg.FileName = treeList1.FindNodeByFieldValue("ID", contextMenu.Tag)["层"].ToString();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
                 openbmp(dlg.FileName);
