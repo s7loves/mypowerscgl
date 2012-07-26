@@ -247,8 +247,8 @@ namespace Ebada.SCGL {
                     barButtonItem1.Visibility = BarItemVisibility.Always;
                     barButtonItem2.Visibility = BarItemVisibility.Always;
                     ClientHelper.UserFuns = null;
-                    if (System.Net.Dns.GetHostName().Contains("tonli"))
-                        InitFunction(MainHelper.User.UserID);
+                    //if (System.Net.Dns.GetHostName().Contains("tonli"))
+                    //    InitFunction(MainHelper.User.UserID);
                 } else {
                     InitFunction(MainHelper.User.UserID);
                 }
