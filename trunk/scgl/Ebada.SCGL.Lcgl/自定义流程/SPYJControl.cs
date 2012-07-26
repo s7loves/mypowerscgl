@@ -67,5 +67,10 @@ namespace Ebada.Scgl.Lcgl
             e.Cancel = true;
 
         }
+
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+            nowMemoEdit.Text = e.ClickedItem.Text;
+        }
     }
 }

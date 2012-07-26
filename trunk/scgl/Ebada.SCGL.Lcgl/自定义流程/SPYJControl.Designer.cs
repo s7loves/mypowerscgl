@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.preMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.nowMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.同意ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.不同意ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -40,6 +44,7 @@
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.preMemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nowMemoEdit.Properties)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -89,8 +94,30 @@
             this.nowMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nowMemoEdit.Location = new System.Drawing.Point(0, 0);
             this.nowMemoEdit.Name = "nowMemoEdit";
+            this.nowMemoEdit.Properties.ContextMenuStrip = this.contextMenuStrip1;
             this.nowMemoEdit.Size = new System.Drawing.Size(268, 52);
             this.nowMemoEdit.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.同意ToolStripMenuItem,
+            this.不同意ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // 同意ToolStripMenuItem
+            // 
+            this.同意ToolStripMenuItem.Name = "同意ToolStripMenuItem";
+            this.同意ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.同意ToolStripMenuItem.Text = "同意";
+            // 
+            // 不同意ToolStripMenuItem
+            // 
+            this.不同意ToolStripMenuItem.Name = "不同意ToolStripMenuItem";
+            this.不同意ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.不同意ToolStripMenuItem.Text = "不同意";
             // 
             // SPYJControl
             // 
@@ -107,6 +134,7 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.preMemoEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nowMemoEdit.Properties)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -118,5 +146,8 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         public DevExpress.XtraEditors.MemoEdit nowMemoEdit;
         public DevExpress.XtraEditors.MemoEdit preMemoEdit;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 同意ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 不同意ToolStripMenuItem;
     }
 }
