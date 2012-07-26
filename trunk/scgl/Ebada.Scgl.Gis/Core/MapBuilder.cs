@@ -109,7 +109,7 @@ namespace Ebada.Scgl.Gis {
                          marker.Text = count+"";
                          marker.Tag = gt;
                          marker.Id = gt.gtID;
-                         layer.Markers.Add(marker);
+                         layer.Markers.Insert(0,marker);
                          route.Markers.Add(marker);
                          marker.Route = route;
                      }
