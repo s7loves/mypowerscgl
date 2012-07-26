@@ -466,7 +466,7 @@ namespace Ebada.Scgl.Yxgl {
 
                                     PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                     lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
-                                                        + " from PS_gt where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
+                                                        + " from PS_gt where 5=5 and gtjg='否' and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
                                     ctrl.Tag = lp;
                                 } else
                                     if (lp.CellName.IndexOf("表箱数") > -1) {
