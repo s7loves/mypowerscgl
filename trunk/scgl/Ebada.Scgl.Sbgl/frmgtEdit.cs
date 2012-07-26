@@ -116,8 +116,13 @@ namespace Ebada.Scgl.Sbgl
         private void setImage() {
             pictureEdit1.EditValue = null;
             imageData = null;
-            if (string.IsNullOrEmpty(rowData.ImageID)) return;
-            image=Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
+            if (string.IsNullOrEmpty(rowData.ImageID)) {
+               PS_gt gt=  Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>("where linecode='"+rowData.LineCode+"' and gtModle='直线杆' and len(imageid)>6");
+                if(gt!=null)
+                    image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(gt.ImageID);
+            } else {
+                image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
+            }
             if (image != null)
                 pictureEdit1.EditValue = image.ImageData;
             
