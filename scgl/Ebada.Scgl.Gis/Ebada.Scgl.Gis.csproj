@@ -138,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drawing\DrawingDxt2.cs" />
+    <Compile Include="frmDxtSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDxtSetup.Designer.cs">
+      <DependentUpon>frmDxtSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="ShapeHelper.cs" />
@@ -336,6 +342,9 @@
     <EmbeddedResource Include="Device\frmXLSbtj.resx">
       <DependentUpon>frmXLSbtj.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDxtSetup.resx">
+      <DependentUpon>frmDxtSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMapView.resx">
       <DependentUpon>frmMapView.cs</DependentUpon>

@@ -13,8 +13,8 @@ namespace Ebada.Scgl.Gis {
         public const string byqfilter = "select a.*,b.gtid from ps_tqbyq a ,ps_tq b,ps_gt c  where a.tqid=b.tqid and  b.gtid=c.gtid and c.Linecode='{0}' ";
         public const string tqfilter = " where gtid in (select gtid from ps_gt  where Linecode='{0}')";
         static Font mFont = new Font("宋体", 9);
-        int mWidth = 1400;
-        int mHeight = 600;
+        public static int mWidth = 1400;
+        public static int mHeight = 600;
         public Image GetImage(string linecode) {
             xl xl = new xl();
             Bitmap img = new Bitmap(mWidth, mHeight);
@@ -85,7 +85,7 @@ namespace Ebada.Scgl.Gis {
                 node.Location = new Point( 50 + (int)(i * step),top);
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
-                    drawchildxltop(g, xl0, offset, (int)step * 2, 250);
+                    drawchildxltop(g, xl0, offset, (int)step * 2, mHeight-300);
                     offset.Y *= -1;
                 }
                 
@@ -207,7 +207,7 @@ namespace Ebada.Scgl.Gis {
 
             //g.DrawString(name, mFont, Brushes.Black, x + 7 - sf.Width / 2, y - 15);
 
-            g.DrawString(name, mFont, Brushes.Black, x + 7 , y-5 );
+            g.DrawString(name, mFont, Brushes.Black, x + 7 , y-10 );
             
         }
         public static void renderkg(Graphics g, int x, int y, string name) {
