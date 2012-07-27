@@ -33,7 +33,7 @@ namespace Ebada.Kcgl {
         public UC工程项目() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1,true);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
