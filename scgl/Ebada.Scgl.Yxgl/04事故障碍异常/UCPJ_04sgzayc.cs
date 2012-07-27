@@ -116,8 +116,8 @@ namespace Ebada.Scgl.Yxgl {
             hideColumn("OrgCode");
             hideColumn("gznrID");
 
-            gridView1.Columns["tdsj"].DisplayFormat.FormatString = "YYYY-MM-dd HH:mm:ss";
-            gridView1.Columns["sdsj"].DisplayFormat.FormatString = "YYYY-MM-dd HH:mm:ss";
+            gridView1.Columns["tdsj"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["sdsj"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
 
         }
         /// <summary>
