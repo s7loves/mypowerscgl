@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Ebada.Scgl.Model;
 using DevExpress.Utils;
+using System.Windows.Forms;
 
 namespace Ebada.Scgl.Sbgl {
     public static class SbFuns {
@@ -48,6 +49,10 @@ namespace Ebada.Scgl.Sbgl {
                 if (d1 == 0) {
                     d1 = GetDistance(new PointLatLng(gt.gtLat, gt.gtLon), new PointLatLng(gt0.gtLat, gt0.gtLon));
                     gt.gtSpan = (decimal)Math.Round(d1, 1);
+                    if (gt.gtSpan > 9999) {
+                        string err=string.Format("数据异常，计算终止。异常杆塔号{0}-{1},所在线路{2}",gt0.gth,gt.gth,xl.LineName);
+                        throw new Exception(err);
+                    }
                 } else {
                     gt.gtSpan = 0;
                     d1 = 0;
