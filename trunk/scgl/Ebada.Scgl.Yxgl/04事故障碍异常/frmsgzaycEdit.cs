@@ -97,6 +97,11 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btnOK_Click(object sender, EventArgs e) {
+            if (rowData.sdsj < rowData.tdsj) {
+                MsgBox.ShowTipMessageBox("送电应在停电后!");
+                dateEdit3.Focus();
+                return;
+            }
             rowData.gtdsj = "";
             TimeSpan span = rowData.sdsj.Subtract(rowData.tdsj);
             if (span.Days > 0)
@@ -105,6 +110,7 @@ namespace Ebada.Scgl.Yxgl
                 rowData.gtdsj += span.Hours + "时";
             if (span.Minutes > -1)
                 rowData.gtdsj += span.Minutes + "分";
+            DialogResult = DialogResult.OK;
         }
     }
 }
