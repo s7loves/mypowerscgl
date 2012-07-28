@@ -1,6 +1,6 @@
 ﻿/**********************************************
 系统:库存管理
-模块:工程项目管理
+模块:工程类别管理
 作者:Rabbit
 创建时间:2012-7-28
 最后一次修改:2012-7-28
@@ -22,18 +22,18 @@ using DevExpress.XtraGrid.Views.Base;
 
 namespace Ebada.Kcgl {
     /// <summary>
-    /// 工程项目管理
+    /// 工程类别管理
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UC工程项目 : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<Model.kc_工程项目> gridViewOperation;
+    public partial class UC工程类别 : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<Model.kc_工程类别> gridViewOperation;
 
-        public event SendDataEventHandler<Model.kc_工程项目> FocusedRowChanged;
+        public event SendDataEventHandler<Model.kc_工程类别> FocusedRowChanged;
         private string parentID;
-        public UC工程项目() {
+        public UC工程类别() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1,true);
+            gridViewOperation = new GridViewOperation<Model.kc_工程类别>(gridControl1, gridView1, barManager1,true);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
@@ -51,7 +51,7 @@ namespace Ebada.Kcgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_工程项目);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_工程类别);
         }
         /// <summary>
         /// 初始化数据
@@ -80,7 +80,7 @@ namespace Ebada.Kcgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<Model.kc_工程项目> GridViewOperation {
+        public GridViewOperation<Model.kc_工程类别> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -88,7 +88,7 @@ namespace Ebada.Kcgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(Model.kc_工程项目 newobj) {
+        void gridViewOperation_CreatingObjectEvent(Model.kc_工程类别 newobj) {
             
         }
         /// <summary>
