@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-23 10:43:52
+生成时间:2012-7-28 15:12:37
 ***********************************************/
 
 using System;
@@ -25,6 +25,8 @@ namespace Ebada.Kcgl.Model
         private string _工程项目_id=String.Empty; 
         private string _工程类别_id=String.Empty; 
         private string _材料名称_id=String.Empty; 
+        private string _项目名称=String.Empty; 
+        private string _工程类别=String.Empty; 
         private string _材料名称=String.Empty; 
         private string _规格及型号=String.Empty; 
         private string _计量单位=String.Empty; 
@@ -42,6 +44,8 @@ namespace Ebada.Kcgl.Model
         public const string f_工程项目_ID= "工程项目_ID"; 
         public const string f_工程类别_ID= "工程类别_ID"; 
         public const string f_材料名称_ID= "材料名称_ID"; 
+        public const string f_项目名称= "项目名称"; 
+        public const string f_工程类别= "工程类别"; 
         public const string f_材料名称= "材料名称"; 
         public const string f_规格及型号= "规格及型号"; 
         public const string f_计量单位= "计量单位"; 
@@ -138,6 +142,48 @@ namespace Ebada.Kcgl.Model
                 if (_材料名称_id as object == null || !_材料名称_id.Equals(value))
                 {
                     _材料名称_id = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：项目名称
+        /// 属性描述：
+        /// 字段信息：[项目名称],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 项目名称
+        {
+            get { return _项目名称; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[项目名称]长度不能大于50!");
+                if (_项目名称 as object == null || !_项目名称.Equals(value))
+                {
+                    _项目名称 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：工程类别
+        /// 属性描述：
+        /// 字段信息：[工程类别],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 工程类别
+        {
+            get { return _工程类别; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[工程类别]长度不能大于50!");
+                if (_工程类别 as object == null || !_工程类别.Equals(value))
+                {
+                    _工程类别 = value;
                 }
             }			 
         }
