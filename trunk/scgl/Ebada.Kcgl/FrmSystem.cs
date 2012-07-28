@@ -88,7 +88,6 @@ namespace Ebada.Kcgl {
             nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
             nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
 
-
             string sqlwhere = "where  Description='kcgl'  order by Sequence";
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
 
@@ -122,7 +121,6 @@ namespace Ebada.Kcgl {
                 nbctSystem.Groups[0].ItemLinks[0].PerformClick();
                 nbctSystem.Groups[0].SelectedLinkIndex = 0;
             }
-
         }
 
 
