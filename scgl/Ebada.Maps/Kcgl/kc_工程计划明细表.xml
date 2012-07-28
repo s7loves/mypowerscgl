@@ -9,6 +9,8 @@
         <result property="工程项目_ID" column="工程项目_ID" />
         <result property="工程类别_ID" column="工程类别_ID" />
         <result property="材料名称_ID" column="材料名称_ID" />
+        <result property="项目名称" column="项目名称" />
+        <result property="工程类别" column="工程类别" />
         <result property="材料名称" column="材料名称" />
         <result property="规格及型号" column="规格及型号" />
         <result property="计量单位" column="计量单位" />
@@ -28,6 +30,8 @@
          [工程项目_ID],
          [工程类别_ID],
          [材料名称_ID],
+         [项目名称],
+         [工程类别],
          [材料名称],
          [规格及型号],
          [计量单位],
@@ -47,6 +51,8 @@
          [工程项目_ID],
          [工程类别_ID],
          [材料名称_ID],
+         [项目名称],
+         [工程类别],
          [材料名称],
          [规格及型号],
          [计量单位],
@@ -69,6 +75,8 @@
          [工程项目_ID],
          [工程类别_ID],
          [材料名称_ID],
+         [项目名称],
+         [工程类别],
          [材料名称],
          [规格及型号],
          [计量单位],
@@ -86,6 +94,8 @@
          #工程项目_ID#,
          #工程类别_ID#,
          #材料名称_ID#,
+         #项目名称#,
+         #工程类别#,
          #材料名称#,
          #规格及型号#,
          #计量单位#,
@@ -105,6 +115,8 @@
              [工程项目_ID]=#工程项目_ID#,
              [工程类别_ID]=#工程类别_ID#,
              [材料名称_ID]=#材料名称_ID#,
+             [项目名称]=#项目名称#,
+             [工程类别]=#工程类别#,
              [材料名称]=#材料名称#,
              [规格及型号]=#规格及型号#,
              [计量单位]=#计量单位#,
@@ -130,6 +142,12 @@
              </isNotNull>
              <isNotNull prepend="," property="材料名称_ID">
                 [材料名称_ID]=#材料名称_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="项目名称">
+                [项目名称]=#项目名称#
+             </isNotNull>
+             <isNotNull prepend="," property="工程类别">
+                [工程类别]=#工程类别#
              </isNotNull>
              <isNotNull prepend="," property="材料名称">
                 [材料名称]=#材料名称#
