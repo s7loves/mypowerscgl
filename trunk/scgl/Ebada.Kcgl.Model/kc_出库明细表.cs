@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-23 10:43:52
+生成时间:2012-7-28 15:12:37
 ***********************************************/
 
 using System;
@@ -22,6 +22,7 @@ namespace Ebada.Kcgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
+        private string _出库单_id=String.Empty; 
         private string _工程类别_id=String.Empty; 
         private string _出库单位_id=String.Empty; 
         private string _材料名称_id=String.Empty; 
@@ -39,6 +40,7 @@ namespace Ebada.Kcgl.Model
 		
         #region const 成员
         public const string f_ID= "ID"; 
+        public const string f_出库单_ID= "出库单_ID"; 
         public const string f_工程类别_ID= "工程类别_ID"; 
         public const string f_出库单位_ID= "出库单位_ID"; 
         public const string f_材料名称_ID= "材料名称_ID"; 
@@ -74,6 +76,28 @@ namespace Ebada.Kcgl.Model
                 if (_id as object == null || !_id.Equals(value))
                 {
                     _id = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：出库单_ID
+        /// 属性描述：
+        /// 字段信息：[出库单_ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string 出库单_ID
+        {
+            get { return _出库单_id; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[出库单_ID]长度不能大于50!");
+                if (_出库单_id as object == null || !_出库单_id.Equals(value))
+                {
+                    _出库单_id = value;
                 }
             }			 
         }
