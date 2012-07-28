@@ -37,13 +37,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="kc_供货厂家.cs" />
+    <Compile Include="kc_入库单.cs" />
     <Compile Include="kc_入库明细表.cs" />
+    <Compile Include="kc_出库单.cs" />
     <Compile Include="kc_出库单位.cs" />
     <Compile Include="kc_出库明细表.cs" />
     <Compile Include="kc_工程类别.cs" />
     <Compile Include="kc_工程计划明细表.cs" />
     <Compile Include="kc_工程项目.cs" />
     <Compile Include="kc_材料名称表.cs" />
+    <Compile Include="kc_账套.cs" />
+    <Compile Include="kc_退货单.cs" />
     <Compile Include="kc_退货明细表.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
