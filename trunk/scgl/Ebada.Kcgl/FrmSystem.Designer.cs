@@ -50,6 +50,7 @@
             this.labTime = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picback.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbctSystem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -174,8 +175,9 @@
             this.labSet.Name = "labSet";
             this.labSet.Size = new System.Drawing.Size(54, 20);
             this.labSet.TabIndex = 21;
-            this.labSet.Text = "       设置";
+            this.labSet.Text = "       登录";
             this.labSet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labSet.Visible = false;
             this.labSet.MouseLeave += new System.EventHandler(this.labSet_MouseLeave);
             this.labSet.Click += new System.EventHandler(this.labSet_Click);
             this.labSet.MouseEnter += new System.EventHandler(this.labSet_MouseEnter);
@@ -345,17 +347,25 @@
             this.panelControl1.Size = new System.Drawing.Size(693, 26);
             this.panelControl1.TabIndex = 27;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Location = new System.Drawing.Point(205, 136);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(693, 343);
+            this.panel1.TabIndex = 28;
+            this.panel1.Visible = false;
+            // 
             // FrmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(910, 530);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.labAbout);
             this.Controls.Add(this.labbuttom);
             this.Controls.Add(this.listView3);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.labSet);
             this.Controls.Add(this.nbctSystem);
             this.Controls.Add(this.labExit);
@@ -363,6 +373,8 @@
             this.Controls.Add(this.labdate);
             this.Controls.Add(this.labTime);
             this.Controls.Add(this.pictureEdit1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.picback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -405,6 +417,7 @@
         private DevExpress.XtraEditors.LabelControl labTime;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.Panel panel1;
 
 
     }
