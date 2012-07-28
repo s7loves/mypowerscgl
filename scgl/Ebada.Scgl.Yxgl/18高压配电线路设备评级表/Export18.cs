@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Yxgl {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname0 = Application.StartupPath + "\\00记录模板\\18双河所设备评级表.xls";
+            string fname0 = Application.StartupPath + "\\00记录模板\\18高压设备评级表.xls";
             string fname = Path.GetTempPath() + obj.OrgName + "设备评级表.xls";
             try {
                 File.Copy(fname0, fname, true);
