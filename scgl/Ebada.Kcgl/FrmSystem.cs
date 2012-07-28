@@ -21,6 +21,7 @@ namespace Ebada.Kcgl {
     //public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
     public partial class FrmSystem : Form {
         private string secondmenu = "";
+        bool allowClose=false;
         public FrmSystem() {
 
             InitializeComponent();
@@ -154,17 +155,32 @@ namespace Ebada.Kcgl {
             }
         }
         void showmodul(UserControl c, string text) {
-            Form dlg = new Form();
-            dlg.Text = text;
-            dlg.Size = new Size(800, 600);
-            dlg.StartPosition = FormStartPosition.CenterScreen;
-            dlg.Controls.Add(c); c.Dock = DockStyle.Fill;
-            dlg.Show();
+            c.Dock = DockStyle.Fill;
+            panel1.Controls.Add(c);
+            panel1.Show();
+            
+            //Form dlg = new Form();
+            //dlg.Text = text;
+            //dlg.Size = new Size(800, 600);
+            //dlg.StartPosition = FormStartPosition.CenterScreen;
+            //dlg.Controls.Add(c); 
+            //dlg.Show();
+        }
+        protected override void OnClosing(CancelEventArgs e) {
+            e.Cancel = !allowClose;
+            if (!allowClose) {
+                panel1.Controls.Clear();
+                panel1.Hide();
+            }
+            base.OnClosing(e);
         }
         private void nbctSystem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e) {
 
             CreateListView(e.Link.Item);
-
+            if (panel1.Visible) {
+                panel1.Controls.Clear();
+                panel1.Hide();
+            }
         }
 
         private void CreateListView(DevExpress.XtraNavBar.NavBarItem nbi) {
@@ -242,6 +258,7 @@ namespace Ebada.Kcgl {
         }
 
         private void labExit_Click(object sender, EventArgs e) {
+            allowClose = true;
             this.Close();
         }
 
