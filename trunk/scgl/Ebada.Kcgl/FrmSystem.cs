@@ -22,16 +22,19 @@ namespace Ebada.Kcgl {
     public partial class FrmSystem : Form {
         private string secondmenu = "";
         bool allowClose=false;
+        Image topBackbmp;
+        int topbarWidth;
         public FrmSystem() {
 
             InitializeComponent();
             //FormView.PaintAll(this);
             //FormView.PaintPicAll(picback);
-            FormView.PaintUP(pictureEdit1);
+            //FormView.PaintUP(pictureEdit1);
 
             this.Text = "绥化市郊农电局生产库存管理系统";
-            pictureEdit1.Image = ImageListRes.GetTop2();
-
+            topBackbmp =pictureEdit1.Image= ImageListRes.GetTop2();
+            topbarWidth = pictureEdit1.Width;
+            pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);
             labdate.Parent = pictureEdit1;
             labTime.Parent = pictureEdit1;
             labdate2.Parent = pictureEdit1;
@@ -42,10 +45,37 @@ namespace Ebada.Kcgl {
 
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
-            timer1.Start();
-
+            
         }
 
+        void pictureEdit1_SizeChanged(object sender, EventArgs e) {
+
+            if (pictureEdit1.Width > topbarWidth) {
+                Bitmap map = new Bitmap(pictureEdit1.Width, pictureEdit1.Height);
+                Graphics g = Graphics.FromImage(map);
+                Rectangle rect =new Rectangle(0,0,660,topBackbmp.Height);
+                Rectangle rect2 = new Rectangle(660, 0,map.Width- (topbarWidth -680)-660, topBackbmp.Height);
+                Rectangle rect3 = new Rectangle(map.Width- (topbarWidth -680), 0, topbarWidth - 680, topBackbmp.Height);
+                g.DrawImage(topBackbmp,rect, 0, 0, 660, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.DrawImage(topBackbmp, rect2, 660, 0, 20, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.DrawImage(topBackbmp, rect3, 680, 0, rect3.Width, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.Dispose();
+                pictureEdit1.Image = map;
+            } else {
+                pictureEdit1.Image = topBackbmp;
+            }
+
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            Application.DoEvents();
+            timer1.Start();
+            this.WindowState = FormWindowState.Maximized;
+            this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
+        }
+        void test() {
+            ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null);
+        }
         private void FrmSystem_Load(object sender, EventArgs e) {
             CreateMenu();
 
@@ -88,7 +118,10 @@ namespace Ebada.Kcgl {
                 nbctSystem.Refresh();
 
             }
-
+            if (nbctSystem.Groups.Count > 0 && nbctSystem.Groups[0].ItemLinks.Count > 0) {
+                nbctSystem.Groups[0].ItemLinks[0].PerformClick();
+                nbctSystem.Groups[0].SelectedLinkIndex = 0;
+            }
 
         }
 
