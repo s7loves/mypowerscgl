@@ -1003,11 +1003,15 @@
             this.dateEdit5.Name = "dateEdit5";
             this.dateEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit5.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
-            this.dateEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit5.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
-            this.dateEdit5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit5.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            this.dateEdit5.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateEdit5.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateEdit5.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
+
+            this.dateEdit5.Properties.ShowWeekNumbers = true;
+            this.dateEdit5.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit5.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit5.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit5.Size = new System.Drawing.Size(129, 21);
@@ -1020,11 +1024,15 @@
             this.dateEdit4.Name = "dateEdit4";
             this.dateEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit4.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
-            this.dateEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit4.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
-            this.dateEdit4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit4.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            this.dateEdit4.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateEdit4.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateEdit4.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
+
+            this.dateEdit4.Properties.ShowWeekNumbers = true;
+            this.dateEdit4.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit4.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit4.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit4.Size = new System.Drawing.Size(129, 21);
