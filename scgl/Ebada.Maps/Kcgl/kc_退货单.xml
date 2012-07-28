@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="kc_退货单" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="kc_退货单"  type="Ebada.Kcgl.Model.kc_退货单,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="kc_退货单_AllColumns" class="kc_退货单">
+        <result property="ID" column="ID" />
+        <result property="出货单号" column="出货单号" />
+        <result property="退货时间" column="退货时间" />
+        <result property="工程项目_ID" column="工程项目_ID" />
+        <result property="工程类别_ID" column="工程类别_ID" />
+        <result property="供货厂家_ID" column="供货厂家_ID" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Selectkc_退货单List" resultMap="kc_退货单_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [出货单号],
+         [退货时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [供货厂家_ID]
+          FROM kc_退货单
+          $value$
+   </select>
+   <select id="Selectkc_退货单ByKey" resultMap="kc_退货单_AllColumns" parameterClass="kc_退货单">
+         SELECT 
+         [ID],
+         [出货单号],
+         [退货时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [供货厂家_ID]
+         FROM kc_退货单
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insertkc_退货单" parameterClass="kc_退货单">
+        INSERT INTO kc_退货单
+         (
+         [ID],
+         [出货单号],
+         [退货时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [供货厂家_ID]
+         )
+       VALUES
+         (
+         #ID#,
+         #出货单号#,
+         #退货时间#,
+         #工程项目_ID#,
+         #工程类别_ID#,
+         #供货厂家_ID#
+         )
+
+   </insert> 
+   <update id="Updatekc_退货单" parameterClass="kc_退货单" resultClass="int">
+          UPDATE kc_退货单
+           SET
+             [出货单号]=#出货单号#,
+             [退货时间]=#退货时间#,
+             [工程项目_ID]=#工程项目_ID#,
+             [工程类别_ID]=#工程类别_ID#,
+             [供货厂家_ID]=#供货厂家_ID#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Updatekc_退货单ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE kc_退货单
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="出货单号">
+                [出货单号]=#出货单号#
+             </isNotNull>
+             <isNotNull prepend="," property="退货时间">
+                [退货时间]=#退货时间#
+             </isNotNull>
+             <isNotNull prepend="," property="工程项目_ID">
+                [工程项目_ID]=#工程项目_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="工程类别_ID">
+                [工程类别_ID]=#工程类别_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="供货厂家_ID">
+                [供货厂家_ID]=#供货厂家_ID#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Deletekc_退货单" parameterClass="kc_退货单">
+        DELETE FROM 
+         kc_退货单
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Deletekc_退货单ByWhere" parameterClass="string">
+     delete from kc_退货单 $value$
+   </delete>   
+   <delete id="Deletekc_退货单ByKey" parameterClass="string">
+        DELETE FROM 
+         kc_退货单
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Getkc_退货单RowCount" parameterClass="string">
+    select count(*) from kc_退货单 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

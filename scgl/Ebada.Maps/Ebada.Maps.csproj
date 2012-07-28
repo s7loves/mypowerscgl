@@ -352,6 +352,12 @@
     <EmbeddedResource Include="Kcgl\kc_退货明细表.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Kcgl\kc_入库单.xml" />
+    <Content Include="Kcgl\kc_出库单.xml" />
+    <Content Include="Kcgl\kc_账套.xml" />
+    <Content Include="Kcgl\kc_退货单.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

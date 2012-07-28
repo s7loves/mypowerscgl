@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="kc_出库单" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="kc_出库单"  type="Ebada.Kcgl.Model.kc_出库单,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="kc_出库单_AllColumns" class="kc_出库单">
+        <result property="ID" column="ID" />
+        <result property="出库单号" column="出库单号" />
+        <result property="出库时间" column="出库时间" />
+        <result property="工程项目_ID" column="工程项目_ID" />
+        <result property="工程类别_ID" column="工程类别_ID" />
+        <result property="出库单位_ID" column="出库单位_ID" />
+        <result property="提供人" column="提供人" />
+      </resultMap>
+  </resultMaps>
+  <statements>
+   <select id="Selectkc_出库单List" resultMap="kc_出库单_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [出库单号],
+         [出库时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [出库单位_ID],
+         [提供人]
+          FROM kc_出库单
+          $value$
+   </select>
+   <select id="Selectkc_出库单ByKey" resultMap="kc_出库单_AllColumns" parameterClass="kc_出库单">
+         SELECT 
+         [ID],
+         [出库单号],
+         [出库时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [出库单位_ID],
+         [提供人]
+         FROM kc_出库单
+         WHERE 
+           ID = #ID#
+
+   </select> 
+   <insert id="Insertkc_出库单" parameterClass="kc_出库单">
+        INSERT INTO kc_出库单
+         (
+         [ID],
+         [出库单号],
+         [出库时间],
+         [工程项目_ID],
+         [工程类别_ID],
+         [出库单位_ID],
+         [提供人]
+         )
+       VALUES
+         (
+         #ID#,
+         #出库单号#,
+         #出库时间#,
+         #工程项目_ID#,
+         #工程类别_ID#,
+         #出库单位_ID#,
+         #提供人#
+         )
+
+   </insert> 
+   <update id="Updatekc_出库单" parameterClass="kc_出库单" resultClass="int">
+          UPDATE kc_出库单
+           SET
+             [出库单号]=#出库单号#,
+             [出库时间]=#出库时间#,
+             [工程项目_ID]=#工程项目_ID#,
+             [工程类别_ID]=#工程类别_ID#,
+             [出库单位_ID]=#出库单位_ID#,
+             [提供人]=#提供人#
+            WHERE 
+              ID = #ID#
+
+   </update>  
+   <update id="Updatekc_出库单ByHash" parameterClass="Hashtable" resultClass="int">
+          UPDATE kc_出库单
+         <dynamic prepend="set">
+             <isNotNull prepend="," property="出库单号">
+                [出库单号]=#出库单号#
+             </isNotNull>
+             <isNotNull prepend="," property="出库时间">
+                [出库时间]=#出库时间#
+             </isNotNull>
+             <isNotNull prepend="," property="工程项目_ID">
+                [工程项目_ID]=#工程项目_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="工程类别_ID">
+                [工程类别_ID]=#工程类别_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="出库单位_ID">
+                [出库单位_ID]=#出库单位_ID#
+             </isNotNull>
+             <isNotNull prepend="," property="提供人">
+                [提供人]=#提供人#
+             </isNotNull>
+         </dynamic>
+    WHERE 
+      ID = #ID#
+
+   </update>  
+   <delete id="Deletekc_出库单" parameterClass="kc_出库单">
+        DELETE FROM 
+         kc_出库单
+           WHERE
+         ID = #ID#
+
+   </delete>   
+   <delete id="Deletekc_出库单ByWhere" parameterClass="string">
+     delete from kc_出库单 $value$
+   </delete>   
+   <delete id="Deletekc_出库单ByKey" parameterClass="string">
+        DELETE FROM 
+         kc_出库单
+           WHERE
+         ID = #ID#
+    
+   </delete>   
+   <select id="Getkc_出库单RowCount" parameterClass="string">
+    select count(*) from kc_出库单 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
