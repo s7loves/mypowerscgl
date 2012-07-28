@@ -10,6 +10,11 @@ namespace Ebada.Kcgl.App {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            button2.Click += new EventHandler(button2_Click);
+        }
+
+        void button2_Click(object sender, EventArgs e) {
+            showmodul(new UC材料名称() { Dock = DockStyle.Fill }, "材料名称");
         }
         void showmodul(UserControl c,string text) {
             Form dlg = new Form();

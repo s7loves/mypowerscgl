@@ -17,7 +17,7 @@ namespace Ebada.Kcgl.App {
             
             //frmLogin dlg = new frmLogin();
             //if (dlg.ShowDialog() == DialogResult.OK)
-            Application.Run(new Form1());
+            Application.Run(new FrmSystem());
         }
        static void testdatabase() {
             string str = Client.ClientHelper.TransportSqlMap.GetConnectionString();
