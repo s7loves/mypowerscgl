@@ -163,14 +163,14 @@
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
-            this.barSubItem1.Name = "btAddp";
+            this.barSubItem1.Name = "btAdd2";
             // 
             // btAddM
             // 
             this.btAddM.Caption = "杆塔";
             this.btAddM.Id = 17;
             this.btAddM.ImageIndex = 8;
-            this.btAddM.Name = "btAddM";
+            this.btAddM.Name = "btAdd21";
             this.btAddM.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAddM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM_ItemClick);
             // 
@@ -178,7 +178,7 @@
             // 
             this.btAddM2.Caption = "其它设备";
             this.btAddM2.Id = 19;
-            this.btAddM2.Name = "btAddM2";
+            this.btAddM2.Name = "btAdd22";
             this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // btEdit
