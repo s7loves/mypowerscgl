@@ -260,6 +260,7 @@ namespace TLMapPlatform {
             return new RectLatLng(t, l, r - l, t - b);
         }
         void 高压配电设备评级表_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             string code = (sender as MenuItem).Tag.ToString();
             mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + code + "'");
             if (org != null) {
@@ -270,6 +271,7 @@ namespace TLMapPlatform {
             }
         }
         void 高压设备完好率汇总表_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             string code = (sender as MenuItem).Tag.ToString();
             mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + code + "'");
             if (org != null) {
@@ -280,6 +282,7 @@ namespace TLMapPlatform {
             }
         }
         void 导出地理接线图_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             string code=(sender as MenuItem).Tag.ToString();
             mOrg org = ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + code + "'");
             if (org != null) {
@@ -426,9 +429,11 @@ namespace TLMapPlatform {
                 openbmp(dlg.FileName);
             }
         }void 低压台区完好率及台区网络图_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             show20dyt(contextMenu.Tag.ToString());
         }
         void 高压线路条图17_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             ShowTT(contextMenu.Tag.ToString());
         }
         static void show20dyt(string tqcode) {
@@ -496,6 +501,7 @@ namespace TLMapPlatform {
             }
         }
         void 条图汇总表16_Click(object sender, EventArgs e) {
+            Application.DoEvents();
             PS_xl xl = Ebada.Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'",contextMenu.Tag));
 
             if (xl != null) {
