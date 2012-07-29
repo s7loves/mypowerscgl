@@ -114,13 +114,17 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.whl = Convert.ToDecimal((line1 + line2) / (line1 + line2 + line3));
                 }
                 listmx.Add(pjmx);
+
+               
+            }
+            foreach (var pl in listxl) {
                 //台区
                 IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where SUBSTRING(xlCode, 1, 6) ='" + pl.LineCode + "'");
-
+                
                 foreach (PS_tq pq in listtq) {
                     if (string.IsNullOrEmpty(pq.tqName)) continue;
                     bh++;
-                    pjmx = new PJ_18gysbpjmx();
+                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
@@ -144,12 +148,14 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     listmx.Add(pjmx);
                 }
+            }
+            foreach (var pl in listxl) {
                 //开关
                 IList<PS_kg> listkg = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("WHERE (gtID IN(SELECT gtID FROM PS_gt WHERE (SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "')))");
                 foreach (PS_kg pq in listkg) {
                     if (string.IsNullOrEmpty(pq.kgName)) continue;
                     bh++;
-                    pjmx = new PJ_18gysbpjmx();
+                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
@@ -173,12 +179,16 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     listmx.Add(pjmx);
                 }
+                
+            }
+            foreach (var pl in listxl) {
+                
                 //变压器
                 IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
                 foreach (PS_tqbyq pq in listbyq) {
                     if (string.IsNullOrEmpty(pq.byqName)) continue;
                     bh++;
-                    pjmx = new PJ_18gysbpjmx();
+                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
