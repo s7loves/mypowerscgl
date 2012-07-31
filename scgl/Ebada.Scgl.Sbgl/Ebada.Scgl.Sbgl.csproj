@@ -129,6 +129,12 @@
     <Compile Include="frmPS_gtsbclbEdit.Designer.cs">
       <DependentUpon>frmPS_gtsbclbEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPopupSelectorBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPopupSelectorBase.Designer.cs">
+      <DependentUpon>UCPopupSelectorBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPS_gtsbclbMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -664,6 +670,9 @@
     <EmbeddedResource Include="frmPS_gtsbclbEdit.resx">
       <DependentUpon>frmPS_gtsbclbEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPopupSelectorBase.resx">
+      <DependentUpon>UCPopupSelectorBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_gtsbclbMain.resx">
       <DependentUpon>UCPS_gtsbclbMain.cs</DependentUpon>
