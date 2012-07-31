@@ -1,4 +1,5 @@
-﻿namespace Ebada.Scgl.Sbgl
+﻿using DevExpress.XtraEditors.Repository;
+namespace Ebada.Scgl.Sbgl
 {
     partial class UCPS_KG {
         /// <summary> 
@@ -30,7 +31,7 @@
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btXlList = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemLookUpEdit2 = new Ebada.Scgl.Sbgl.RepositoryItemComboBoxEx(this.components);
+            this.repositoryItemLookUpEdit2 = new RepositoryItemLookUpEdit();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.btGtList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -385,7 +386,7 @@
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
-        private RepositoryItemComboBoxEx repositoryItemLookUpEdit2;
+        private RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraBars.BarEditItem btGtList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
         private DevExpress.XtraBars.BarEditItem btXlList;
