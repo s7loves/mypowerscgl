@@ -40,6 +40,7 @@
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
+            this.btJSDJ = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -49,7 +50,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btJSDJ = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -98,7 +98,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", false, true, true, 99),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", false, true, true, 169),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGtList, "", false, true, true, 93),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
@@ -229,6 +229,13 @@
             this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btExport0.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
+            // btJSDJ
+            // 
+            this.btJSDJ.Caption = "计算档距";
+            this.btJSDJ.Id = 18;
+            this.btJSDJ.Name = "btJSDJ";
+            this.btJSDJ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btJSDJ_ItemClick);
+            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -311,13 +318,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btJSDJ
-            // 
-            this.btJSDJ.Caption = "计算档距";
-            this.btJSDJ.Id = 18;
-            this.btJSDJ.Name = "btJSDJ";
-            this.btJSDJ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btJSDJ_ItemClick);
             // 
             // UCPS_TQ
             // 

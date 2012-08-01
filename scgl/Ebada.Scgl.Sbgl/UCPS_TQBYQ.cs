@@ -21,6 +21,8 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using DevExpress.XtraEditors.Repository;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -37,6 +39,7 @@ namespace Ebada.Scgl.Sbgl
         frmtqbyqEdit frm = new frmtqbyqEdit();
         private string parentID = null;
         private PS_tq parentObj;
+        private UCPopupSelectorBase xlselector;
         public UCPS_TQBYQ()
         {
             InitializeComponent();
@@ -46,6 +49,8 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tqbyq> e)
@@ -71,7 +76,7 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            createXLSearch();
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
@@ -87,7 +92,24 @@ namespace Ebada.Scgl.Sbgl
             }
 
         }
+        private void createXLSearch() {
+            RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1 = new RepositoryItemPopupContainerEdit();
 
+            xlselector = new UCPopupSelectorBase();
+            xlselector.RowSelected += new EventHandler(xlselector_RowSelected);
+            repositoryItemPopupContainerEdit1.PopupControl = new PopupContainerControl();
+            repositoryItemPopupContainerEdit1.PopupControl.Size = xlselector.Size;
+            repositoryItemPopupContainerEdit1.PopupControl.Controls.Add(xlselector);
+            repositoryItemPopupContainerEdit1.NullText = "请选择线路";
+            btXlList.Edit = repositoryItemPopupContainerEdit1;
+        }
+        void xlselector_RowSelected(object sender, EventArgs e) {
+            PS_xl xl = xlselector.GetFocusedRow<PS_xl>();
+            if (xl != null) {
+                btXlList.EditValue = new Ebada.UI.Base.ListItem(xl.LineCode, xl.LineName);
+                gridControl1.Focus();
+            }
+        }
         void btTQList_EditValueChanged(object sender, EventArgs e)
         {
             parentID = btTQList.EditValue.ToString();
@@ -110,9 +132,14 @@ namespace Ebada.Scgl.Sbgl
  
         }
 
-        void btXlList_EditValueChanged(object sender, EventArgs e)
-        {
-            string xlcode = btXlList.EditValue.ToString();
+        void btXlList_EditValueChanged(object sender, EventArgs e) {
+            string code = string.Empty;
+            object obj = (sender as DevExpress.XtraBars.BarEditItem).EditValue;
+            if (obj is Ebada.UI.Base.ListItem) {
+                code = ((Ebada.UI.Base.ListItem)obj).ValueMember;
+            } else
+                code = obj.ToString();
+            string xlcode = code;
             if (string.IsNullOrEmpty(xlcode)) return;
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xlcode + "'");
             repositoryItemLookUpEdit3.DataSource = list;
@@ -132,10 +159,10 @@ namespace Ebada.Scgl.Sbgl
             if (org != null)
             {
                 IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "' and linevol='10'");
-                repositoryItemLookUpEdit2.DataSource = xlList;
+                xlselector.DataSource = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(PS_xl));
+                xlselector.SetColumnsVisible("LineName");
+                xlselector.SetFilterColumns("xlpy");
             }
-            
-
         }
         private void initImageList()
         {

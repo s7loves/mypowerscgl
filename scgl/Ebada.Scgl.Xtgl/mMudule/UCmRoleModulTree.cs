@@ -206,15 +206,15 @@ namespace Ebada.Scgl.Xtgl {
         {
             if (gridtable != null)gridtable.Rows.Clear();
             treeList1.Nodes.Clear();
-            mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where ModuName='工作流设置'");
-            if(md!=null)
-                IniWFData(md.Modu_ID );
             IList<mModule> li = MainHelper.PlatformSqlMap.GetList<mModule>("SelectmModuleList", slqwhere);
-            if (li.Count != 0)
-            {
+            if (li.Count != 0) {
                 gridtable = ConvertHelper.ToDataTable((IList)li);
                 treeList1.DataSource = gridtable;
             }
+            mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>(" where ModuName='工作流设置'");
+            if(md!=null)
+                IniWFData(md.Modu_ID );
+            
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -226,7 +226,7 @@ namespace Ebada.Scgl.Xtgl {
                 this.m_RoleID = value;
                 this.InitData();
                 this.InitChecked();
-                treeList1.ExpandAll();
+                //treeList1.ExpandAll();
             }
         }
 
