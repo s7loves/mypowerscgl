@@ -22,6 +22,9 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using DevExpress.Utils;
+using DevExpress.XtraEditors.Repository;
+using Ebada.UI.Base;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
@@ -39,6 +42,7 @@ namespace Ebada.Scgl.Sbgl {
         string mLineCode = string.Empty;
         string mOrgCode = string.Empty;
         private mOrg _mOrg = null;
+        private UCPopupSelectorBase xlselector;
         public UCPS_TQ() {
             InitializeComponent();
             initImageList();
@@ -48,6 +52,7 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeUpdate);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
@@ -68,7 +73,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            createXLSearch();//创建线路查询列
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
@@ -82,7 +87,24 @@ namespace Ebada.Scgl.Sbgl {
             }
 
         }
-
+        private void createXLSearch() {
+            RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1 = new RepositoryItemPopupContainerEdit();
+            
+            xlselector = new UCPopupSelectorBase();
+            xlselector.RowSelected += new EventHandler(xlselector_RowSelected);
+            repositoryItemPopupContainerEdit1.PopupControl = new PopupContainerControl();
+            repositoryItemPopupContainerEdit1.PopupControl.Size = xlselector.Size;
+            repositoryItemPopupContainerEdit1.PopupControl.Controls.Add(xlselector);
+            repositoryItemPopupContainerEdit1.NullText = "请选择线路";
+            btXlList.Edit = repositoryItemPopupContainerEdit1;
+        }
+        void xlselector_RowSelected(object sender, EventArgs e) {
+            PS_xl xl = xlselector.GetFocusedRow<PS_xl>();
+            if (xl != null) {
+                btXlList.EditValue = new ListItem(xl.LineCode, xl.LineName);
+                gridControl1.Focus();
+            }
+        }
         void btGtList_EditValueChanged(object sender, EventArgs e) {
             parentID = btGtList.EditValue.ToString();
             if (parentID != "") {
@@ -96,7 +118,14 @@ namespace Ebada.Scgl.Sbgl {
         }
 
         void btXlList_EditValueChanged(object sender, EventArgs e) {
-            frm.LineCode = btXlList.EditValue.ToString();
+            string code = string.Empty;
+            object obj = (sender as DevExpress.XtraBars.BarEditItem).EditValue;
+            if (obj is ListItem) {
+                code = ((ListItem)obj).ValueMember;
+            } else
+                code = obj.ToString();
+
+            frm.LineCode = code;
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + btXlList.EditValue.ToString() + "'");
             repositoryItemLookUpEdit3.DataSource = list;
             ParentObj = null;
@@ -118,12 +147,12 @@ namespace Ebada.Scgl.Sbgl {
             frm.LineCode = string.Empty;
             if (_mOrg != null) {
                 frm.GdsCode = _mOrg.OrgCode;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "' and len(linecode)=6 and linevol='10'");
-                repositoryItemLookUpEdit2.DataSource = xlList;
-
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + _mOrg.OrgCode + "' and  linevol='10'");
+                
+                xlselector.DataSource = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(PS_xl)); 
+                xlselector.SetColumnsVisible("LineName");
+                xlselector.SetFilterColumns("xlpy");
             }
-
-
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();

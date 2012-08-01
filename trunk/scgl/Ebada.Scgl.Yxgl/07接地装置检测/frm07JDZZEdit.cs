@@ -13,20 +13,16 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Yxgl
-{
-    public partial class frm07JDZZEdit : FormBase, IPopupFormEdit
-    {
+namespace Ebada.Scgl.Yxgl {
+    public partial class frm07JDZZEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_07jdzz> m_CityDic = new SortableSearchableBindingList<PJ_07jdzz>();
         private string parentID = "";
 
-        public string ParentID
-        {
+        public string ParentID {
             get { return parentID; }
             set { parentID = value; }
         }
-        public frm07JDZZEdit()
-        {
+        public frm07JDZZEdit() {
             InitializeComponent();
             //lookUpEdit1.Visible = true;
             //comboBoxEdit1.Properties.Columns[0].Visible = false;
@@ -34,8 +30,7 @@ namespace Ebada.Scgl.Yxgl
             //comboBoxEdit1.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
             //comboBoxEdit1.Properties.Columns[1].Width = 2;
         }
-        void dataBind()
-        {
+        void dataBind() {
 
 
             //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
@@ -49,11 +44,9 @@ namespace Ebada.Scgl.Yxgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jddz");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "tz");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "trdzr");
-            if (rowData.xhgg != "")
-            {
+            if (rowData.xhgg != "") {
                 string[] str = rowData.xhgg.Split("|".ToCharArray());
-                if (str.Length > 1)
-                {
+                if (str.Length > 1) {
                     comboBoxEdit5.Text = str[0];
                     comboBoxEdit9.Text = str[1];
                 }
@@ -63,23 +56,17 @@ namespace Ebada.Scgl.Yxgl
         #region IPopupFormEdit Members
         private PJ_07jdzz rowData = null;
 
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
-                if (rowData == null)
-                {
+                if (rowData == null) {
                     this.rowData = value as PJ_07jdzz;
                     this.InitComboBoxData();
                     dataBind();
-                }
-                else
-                {
+                } else {
                     ConvertHelper.CopyTo<PJ_07jdzz>(value as PJ_07jdzz, rowData);
                     InitComboBoxData();
                 }
@@ -89,8 +76,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private DataTable lineTable = new DataTable();
-        private void InitComboBoxData()
-        {
+        private void InitComboBoxData() {
 
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "设备名称", comboBoxEdit4);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5);
@@ -100,12 +86,11 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
-            lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList,typeof(PS_xl));
+            lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(PS_xl));
             //comboBoxEdit1.Properties.DataSource = xlList;
             //lookUpEdit1.Properties.DataSource = xlList;
             comboBoxEdit10.Properties.Items.Clear();
-            for (int i = 0; i < xlList.Count; i++)
-            {
+            for (int i = 0; i < xlList.Count; i++) {
                 ListItem ot = new ListItem();
                 ot.DisplayMember = xlList[i].LineName;
                 ot.ValueMember = xlList[i].LineCode;
@@ -113,15 +98,12 @@ namespace Ebada.Scgl.Yxgl
             }
             comboBoxEdit11.TextChanged -= comboBoxEdit11_TextChanged;
 
-            if (rowData.LineName == "")
-            {
+            if (rowData.LineName == "") {
                 PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(rowData.LineID);
                 if (xl != null) {
-                    rowData.LineName =comboBoxEdit10.Text = xl.LineName;
+                    rowData.LineName = comboBoxEdit10.Text = xl.LineName;
                 }
-            }
-            else
-            {
+            } else {
                 comboBoxEdit10.Text = rowData.LineName;
             }
             comboBoxEdit11.TextChanged += comboBoxEdit11_TextChanged;
@@ -136,8 +118,7 @@ namespace Ebada.Scgl.Yxgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
-        {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -151,10 +132,8 @@ namespace Ebada.Scgl.Yxgl
 
 
 
-        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
-            {
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(comboBoxEdit1.Text)) {
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit3.Properties.Items.Clear();
                 ICollection list = new ArrayList();
@@ -175,54 +154,46 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
+        private void btnOK_Click(object sender, EventArgs e) {
             //if (comboBoxEdit1.Text == "")
             //{
             //    MsgBox.ShowTipMessageBox("线路名称不能为空。");
             //    comboBoxEdit1.Focus();
             //    return;
             //}
-            
+
             PS_xl xl = null;
             xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
-            if (xl == null)
-            {
-                MsgBox.ShowTipMessageBox("线路名称不能对，没找到线路。");
+            if (xl == null) {
+                MsgBox.ShowTipMessageBox("线路名称不对，没找到线路。");
                 comboBoxEdit10.Focus();
                 return;
             }
-            if (xl != null)
-            {
+            if (xl != null) {
                 rowData.LineID = xl.LineID;
                 rowData.LineName = xl.LineName;
             }
-            if (comboBoxEdit4.Text == "")
-            {
+            if (comboBoxEdit4.Text == "") {
                 MsgBox.ShowTipMessageBox("保护设备名称不能为空。");
                 comboBoxEdit4.Focus();
                 return;
             }
-            if (comboBoxEdit5.Text == "")
-            {
+            if (comboBoxEdit5.Text == "") {
                 MsgBox.ShowTipMessageBox("保护设备型号不能为空。");
                 comboBoxEdit5.Focus();
                 return;
             }
-            if (comboBoxEdit9.Text == "")
-            {
+            if (comboBoxEdit9.Text == "") {
                 MsgBox.ShowTipMessageBox("保护设备规格不能为空。");
                 comboBoxEdit9.Focus();
                 return;
             }
-            if (Convert.ToDouble(comboBoxEdit6.Text) < 0)
-            {
+            if (Convert.ToDouble(comboBoxEdit6.Text) < 0) {
                 MsgBox.ShowTipMessageBox("接地电阻不能为负。");
                 comboBoxEdit6.Focus();
                 return;
             }
-            if (Convert.ToDouble(comboBoxEdit8.Text) < 0)
-            {
+            if (Convert.ToDouble(comboBoxEdit8.Text) < 0) {
                 MsgBox.ShowTipMessageBox("土壤电阻率不能为负。");
                 comboBoxEdit8.Focus();
                 return;
@@ -234,15 +205,12 @@ namespace Ebada.Scgl.Yxgl
             this.Close();
         }
 
-        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue.ToString()))
-            {
+        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue.ToString())) {
                 string sbmc = comboBoxEdit4.EditValue.ToString();
                 ICollection list = new ArrayList();
                 comboBoxEdit5.Properties.Items.Clear();
@@ -265,11 +233,10 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e) {
 
         }
-        
+
         private void comboBoxEdit11_TextChanged(object sender, EventArgs e) {
             DataRow[] rows = lineTable.Select("linename='" + comboBoxEdit11.Text + "'");
             if (rows.Length > 0) return;
@@ -286,12 +253,10 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
-        private void comboBoxEdit10_TextChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit10_TextChanged(object sender, EventArgs e) {
             PS_xl xl = null;
             xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
-            if (xl != null)
-            {
+            if (xl != null) {
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit3.Properties.Items.Clear();
                 comboBoxEdit11.Properties.Items.Clear();
@@ -303,21 +268,17 @@ namespace Ebada.Scgl.Yxgl
                 //IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where ParentID='" + comboBoxEdit1.EditValue.ToString() + "'and LineType IN ('1','2')");
                 //lookUpEdit1.Properties.DataSource = listXL; 
                 xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit10.Text + "'");
-                if (xl != null)
-                {
+                if (xl != null) {
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                         "select linename from PS_xl where ParentID='" + xl.LineID + "'");
                     comboBoxEdit11.Properties.Items.AddRange(list);
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqname from PS_tq where   left(tqCode,{1})='{0}' ", xl.LineCode, xl.LineCode.Length));
                     comboBoxEdit3.Properties.Items.AddRange(list);
                 }
-               
-            }
-            else
-            {
+
+            } else {
                 IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where xlpy like '" + comboBoxEdit10.Text + "%'");
-                if (list.Count > 0)
-                {
+                if (list.Count > 0) {
                     comboBoxEdit10.Properties.Items.Clear();
                     comboBoxEdit10.Properties.Items.AddRange(list);
                     comboBoxEdit10.ShowPopup();
@@ -325,17 +286,9 @@ namespace Ebada.Scgl.Yxgl
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
+        private void groupBox1_Enter(object sender, EventArgs e) {
 
         }
-
-       
-        
-     
-
-
-
 
     }
 }
