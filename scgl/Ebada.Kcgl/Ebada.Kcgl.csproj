@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataConvert.cs" />
     <Compile Include="FormView.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -100,6 +101,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="查询统计\UCv工程到货查询.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UCv工程到货查询.Designer.cs">
+      <DependentUpon>UCv工程到货查询.cs</DependentUpon>
     </Compile>
     <Compile Include="UC工程计划M.cs">
       <SubType>UserControl</SubType>
@@ -230,6 +237,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UCv工程到货查询.resx">
+      <DependentUpon>UCv工程到货查询.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC工程计划M.resx">
       <DependentUpon>UC工程计划M.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -323,9 +333,6 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="查询统计\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
