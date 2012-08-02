@@ -19,6 +19,11 @@ using DevExpress.XtraGrid.Columns;
 using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraEditors.Repository;
+using System.Collections;
+using Ebada.UI.Base;
+using DevExpress.XtraEditors.Controls;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -34,15 +39,24 @@ namespace Ebada.Kcgl {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<Model.kc_入库明细表>(gridControl1, gridView1, barManager1,true);
-            
+            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<Ebada.Kcgl.Model.kc_入库明细表>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
+            bar3.Visible = false;
+            gridView1.OptionsView.ColumnAutoWidth = true;
+        }
+
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<Ebada.Kcgl.Model.kc_入库明细表> e) {
+            if (ParentObj == null) e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
-            InitColumns();//初始列
-            InitData();//初始数据
+            
+                //InitColumns();//初始列
+                //InitData();//初始数据
+           
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -67,7 +81,73 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
+            gridView1.Columns[kc_入库明细表.f_总计].OptionsColumn.AllowEdit = false;
+            setColumnVisible(false, kc_入库明细表.f_供货厂家, kc_入库明细表.f_工程类别, kc_入库明细表.f_材料名称);
+            //gridView1.Columns[kc_入库明细表.f_材料名称_ID].VisibleIndex = 3 ;
 
+            gridView1.Columns[kc_入库明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            gridView1.Columns[kc_入库明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_入库明细表.f_材料名称_ID].ColumnEdit = getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
+            gridView1.Columns[kc_入库明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_入库明细表.f_供货厂家_ID].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_ID, kc_供货厂家.f_厂家名称);
+            gridView1.Columns[kc_入库明细表.f_供货厂家_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(供货厂家ColumnEdit_EditValueChanging);
+        }
+        void 供货厂家ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
+            if (obj != null) {
+                obj.供货厂家 = gridView1.GetFocusedDisplayText();
+            }
+        }
+
+        void 工程类别ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
+            if (obj != null) {
+                obj.工程类别 = gridView1.GetFocusedDisplayText();
+            }
+        }
+        void 材料名称表ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
+            if (obj != null) {
+                obj.材料名称 = gridView1.GetFocusedDisplayText();
+                var cl = Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>(e.NewValue);
+                if (cl != null) {
+                    obj.规格及型号 = cl.规格及型号;
+                    obj.计量单位 = cl.计量单位;
+                    obj.数量 = 0;
+                    obj.单价 = 0;
+                    obj.总计 = 0;
+                }
+            }
+        }
+
+        RepositoryItem getLookup<T>(string key, string value) {
+            IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);
+            List<ListItem> list = new List<ListItem>();
+            foreach (var item in dic.Keys) {
+                list.Add(new ListItem(item.ToString(), dic[item].ToString()));
+            }
+            return new LookUpDicType(list);
+        }
+        class LookUpDicType : RepositoryItemLookUpEdit {
+            public LookUpDicType(IList datasource)
+                : this(datasource, "ValueMember", "DisplayMember") {
+
+            }
+            public LookUpDicType(IList datasource, string key, string value) {
+                this.Columns.Add(new LookUpColumnInfo(key, "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default));
+                this.Columns.Add(new LookUpColumnInfo(value, ""));
+                this.DataSource = datasource;
+                this.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                this.Properties.DisplayMember = value;
+                this.Properties.ValueMember = key;
+                this.Properties.NullText = "";
+            }
+        }
+        private void setColumnVisible(bool visible, params string[] cols) {
+
+            foreach (var item in cols) {
+                try { gridView1.Columns[item].Visible = visible; } catch { }
+            }
         }
         /// <summary>
         /// 刷新数据
@@ -89,7 +169,8 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_入库明细表 newobj) {
-            
+            newobj.入库单_ID = ParentObj.ID;
+            newobj.入库日期 = ParentObj.入库时间;
         }
         /// <summary>
         /// 父表ID
@@ -99,6 +180,26 @@ namespace Ebada.Kcgl {
             get { return parentID; }
             set {
                 parentID = value;
+                if (!string.IsNullOrEmpty(value)) {
+                    RefreshData(" where 入库单_ID='" + value + "'");
+                } else {
+                    RefreshData(" where 1>0");
+                }
+            }
+        }
+        Model.kc_入库单 parentObj;
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Model.kc_入库单 ParentObj {
+            get { return parentObj; }
+            set {
+
+                parentObj = value;
+                if (value == null) {
+                    parentID = null;
+                } else {
+                    ParentID = value.ID;
+                }
             }
         }
     }
