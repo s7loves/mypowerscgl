@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-28 15:12:37
+生成时间:2012-8-2 13:43:56
 ***********************************************/
 
 using System;
@@ -22,7 +22,7 @@ namespace Ebada.Kcgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
-        private string _出货单号=String.Empty; 
+        private string _退货单号=String.Empty; 
         private DateTime _退货时间=new DateTime(1900,1,1); 
         private string _工程项目_id=String.Empty; 
         private string _工程类别_id=String.Empty; 
@@ -31,7 +31,7 @@ namespace Ebada.Kcgl.Model
 		
         #region const 成员
         public const string f_ID= "ID"; 
-        public const string f_出货单号= "出货单号"; 
+        public const string f_退货单号= "退货单号"; 
         public const string f_退货时间= "退货时间"; 
         public const string f_工程项目_ID= "工程项目_ID"; 
         public const string f_工程类别_ID= "工程类别_ID"; 
@@ -63,22 +63,22 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：出货单号
+        /// 属性名称：退货单号
         /// 属性描述：
-        /// 字段信息：[出货单号],nvarchar
+        /// 字段信息：[退货单号],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 出货单号
+        public string 退货单号
         {
-            get { return _出货单号; }
+            get { return _退货单号; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[出货单号]长度不能大于50!");
-                if (_出货单号 as object == null || !_出货单号.Equals(value))
+                throw new Exception("[退货单号]长度不能大于50!");
+                if (_退货单号 as object == null || !_退货单号.Equals(value))
                 {
-                    _出货单号 = value;
+                    _退货单号 = value;
                 }
             }			 
         }

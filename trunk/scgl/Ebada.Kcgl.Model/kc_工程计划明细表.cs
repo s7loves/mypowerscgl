@@ -4,7 +4,7 @@
 模块:库存管理
 Itop.com 版权所有
 生成者：Rabbit
-生成时间:2012-7-28 15:12:37
+生成时间:2012-8-2 14:54:18
 ***********************************************/
 
 using System;
@@ -34,9 +34,10 @@ namespace Ebada.Kcgl.Model
         private double _数量=0; 
         private double _总计=0; 
         private DateTime _计划日期=new DateTime(1900,1,1); 
-        private string _备注=String.Empty; 
-        private string _进货厂家=String.Empty; 
-        private DateTime _合同到货日期=new DateTime(1900,1,1);   
+        private string _供货厂家_id=String.Empty; 
+        private string _供货厂家=String.Empty; 
+        private DateTime _合同到货日期=new DateTime(1900,1,1); 
+        private string _备注=String.Empty;   
         #endregion
 		
         #region const 成员
@@ -53,9 +54,10 @@ namespace Ebada.Kcgl.Model
         public const string f_数量= "数量"; 
         public const string f_总计= "总计"; 
         public const string f_计划日期= "计划日期"; 
-        public const string f_备注= "备注"; 
-        public const string f_进货厂家= "进货厂家"; 
-        public const string f_合同到货日期= "合同到货日期";   
+        public const string f_供货厂家_ID= "供货厂家_ID"; 
+        public const string f_供货厂家= "供货厂家"; 
+        public const string f_合同到货日期= "合同到货日期"; 
+        public const string f_备注= "备注";   
         #endregion
   
         #region Public 成员
@@ -324,43 +326,43 @@ namespace Ebada.Kcgl.Model
         }
   
         /// <summary>
-        /// 属性名称：备注
+        /// 属性名称：供货厂家_ID
         /// 属性描述：
-        /// 字段信息：[备注],nvarchar
+        /// 字段信息：[供货厂家_ID],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 备注
+        public string 供货厂家_ID
         {
-            get { return _备注; }
+            get { return _供货厂家_id; }
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 100)
-                throw new Exception("[备注]长度不能大于100!");
-                if (_备注 as object == null || !_备注.Equals(value))
+                if( value.ToString().Length > 50)
+                throw new Exception("[供货厂家_ID]长度不能大于50!");
+                if (_供货厂家_id as object == null || !_供货厂家_id.Equals(value))
                 {
-                    _备注 = value;
+                    _供货厂家_id = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：进货厂家
+        /// 属性名称：供货厂家
         /// 属性描述：
-        /// 字段信息：[进货厂家],nvarchar
+        /// 字段信息：[供货厂家],nvarchar
         /// </summary>
         [DisplayNameAttribute("")]
-        public string 进货厂家
+        public string 供货厂家
         {
-            get { return _进货厂家; }
+            get { return _供货厂家; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[进货厂家]长度不能大于50!");
-                if (_进货厂家 as object == null || !_进货厂家.Equals(value))
+                throw new Exception("[供货厂家]长度不能大于50!");
+                if (_供货厂家 as object == null || !_供货厂家.Equals(value))
                 {
-                    _进货厂家 = value;
+                    _供货厂家 = value;
                 }
             }			 
         }
@@ -379,6 +381,27 @@ namespace Ebada.Kcgl.Model
                 if (_合同到货日期 as object == null || !_合同到货日期.Equals(value))
                 {
                     _合同到货日期 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：备注
+        /// 属性描述：
+        /// 字段信息：[备注],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("")]
+        public string 备注
+        {
+            get { return _备注; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 100)
+                throw new Exception("[备注]长度不能大于100!");
+                if (_备注 as object == null || !_备注.Equals(value))
+                {
+                    _备注 = value;
                 }
             }			 
         }

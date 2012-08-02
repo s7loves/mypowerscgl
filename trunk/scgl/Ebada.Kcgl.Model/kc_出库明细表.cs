@@ -128,7 +128,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[出库单位_ID],nvarchar
         /// </summary>
-        [Browsable(false)]
+        //[Browsable(false)]
         [DisplayNameAttribute("")]
         public string 出库单位_ID
         {

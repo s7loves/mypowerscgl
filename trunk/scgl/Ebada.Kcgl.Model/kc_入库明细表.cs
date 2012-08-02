@@ -107,7 +107,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[工程类别_ID],nvarchar
         /// </summary>
-        [Browsable(false)]
+        //[Browsable(false)]
         [DisplayNameAttribute("")]
         public string 工程类别_ID
         {
@@ -129,7 +129,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[供货厂家_ID],nvarchar
         /// </summary>
-        [Browsable(false)]
+        //[Browsable(false)]
         [DisplayNameAttribute("")]
         public string 供货厂家_ID
         {
@@ -151,7 +151,7 @@ namespace Ebada.Kcgl.Model
         /// 属性描述：
         /// 字段信息：[材料名称_ID],nvarchar
         /// </summary>
-        [Browsable(false)]
+        //[Browsable(false)]
         [DisplayNameAttribute("")]
         public string 材料名称_ID
         {
