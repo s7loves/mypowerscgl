@@ -19,6 +19,7 @@ using DevExpress.XtraGrid.Columns;
 using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -34,15 +35,46 @@ namespace Ebada.Kcgl {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1,true);
-            
+
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_工程项目>(gridViewOperation_BeforeSave);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+            gridView1.OptionsView.ColumnAutoWidth = true;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+
+        void gridViewOperation_BeforeSave(object render, ObjectOperationEventArgs<kc_工程项目> e) {
+            if (string.IsNullOrEmpty(e.Value.工程项目名称)) {
+                MsgBox.ShowAskMessageBox(string.Format("【{0}不能为空！】",kc_工程项目.f_工程项目名称)); e.Cancel = true;
+            }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
             InitColumns();//初始列
             InitData();//初始数据
+        }
+        private IViewOperation<kc_工程计划明细表> childView;
+        /// <summary>
+        /// 获取和设置子表的数据操作接口
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public IViewOperation<Model.kc_工程计划明细表> ChildView {
+            get { return childView; }
+            set {
+                childView = value;
+                if (value != null) {
+                    bar3.Visible = false;
+                    hideColumn(kc_工程项目.f_工程类别, kc_工程项目.f_开工日期, kc_工程项目.f_完成日期, kc_工程项目.f_预算费用);
+                }
+            }
+        }
+        private void hideColumn(string col, params string[] cols) {
+            try { gridView1.Columns[col].Visible = false; } catch { }
+            foreach (var item in cols) {
+                try { gridView1.Columns[item].Visible = false; } catch { }
+            }
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -89,7 +121,8 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程项目 newobj) {
-            
+            newobj.工程项目名称 = "工程项目";
+            newobj.开工日期 = DateTime.Now;
         }
         /// <summary>
         /// 父表ID

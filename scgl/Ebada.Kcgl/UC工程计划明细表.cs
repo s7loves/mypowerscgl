@@ -19,6 +19,11 @@ using DevExpress.XtraGrid.Columns;
 using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Kcgl.Model;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.Controls;
+using System.Collections;
+using Ebada.UI.Base;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -30,17 +35,37 @@ namespace Ebada.Kcgl {
 
         public event SendDataEventHandler<Model.kc_工程计划明细表> FocusedRowChanged;
         private string parentID;
+        private Model.kc_工程项目 parentObj;
         public UC工程计划明细表() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<Model.kc_工程计划明细表>(gridControl1, gridView1, barManager1,true);
-            
+            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<Ebada.Kcgl.Model.kc_工程计划明细表>(gridViewOperation_BeforeAdd);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            bar3.Visible = false;
+            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
+            gridView1.CellValueChanging += new CellValueChangedEventHandler(gridView1_CellValueChanging);
+        }
+
+        void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e) {
+            var obj = gridView1.GetRow(e.RowHandle) as kc_工程计划明细表;
+            if (obj == null) return;
+            if (e.Column.FieldName == kc_工程计划明细表.f_数量) {
+                obj.总计 =Convert.ToDouble( e.Value) * Convert.ToDouble(obj.单价);
+            } else if (e.Column.FieldName == kc_工程计划明细表.f_单价) {
+                obj.总计 = Convert.ToDouble(e.Value) * Convert.ToDouble(obj.数量);
+            }
+        }
+
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<Ebada.Kcgl.Model.kc_工程计划明细表> e) {
+            if (parentObj == null) e.Cancel = true;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
+            
             InitColumns();//初始列
             InitData();//初始数据
         }
@@ -67,7 +92,67 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
+            gridView1.Columns[kc_工程计划明细表.f_总计].OptionsColumn.AllowEdit = false;
+            setColumnVisible(false,kc_工程计划明细表.f_项目名称,kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称, kc_工程计划明细表.f_工程项目_ID);
+            //gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].VisibleIndex = 3 ;
+            
+            gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit = getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
+            gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_工程计划明细表.f_进货厂家].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_厂家名称, kc_供货厂家.f_厂家名称);
 
+        }
+
+        void 工程类别ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_工程计划明细表 obj= gridView1.GetFocusedRow() as kc_工程计划明细表;
+            if (obj != null) {
+                obj.工程类别=gridView1.GetFocusedDisplayText();
+            }
+        }
+        void 材料名称表ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_工程计划明细表 obj= gridView1.GetFocusedRow() as kc_工程计划明细表;
+            if (obj != null) {
+                obj.材料名称=gridView1.GetFocusedDisplayText();
+                var cl=Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>(e.NewValue);
+                if (cl != null) {
+                    obj.规格及型号 = cl.规格及型号;
+                    obj.计量单位 = cl.计量单位;
+                    obj.数量 = 0;
+                    obj.单价 = 0;
+                    obj.总计 = 0;
+                }
+            }
+        }
+        
+        RepositoryItem getLookup<T>(string key, string value) {
+            IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key,value);
+            List<ListItem> list = new List<ListItem>();
+            foreach (var item in dic.Keys) {
+                list.Add(new ListItem(item.ToString(), dic[item].ToString()));
+            }
+            return new LookUpDicType(list);
+        }
+        class LookUpDicType : RepositoryItemLookUpEdit {
+            public LookUpDicType(IList datasource)
+                : this(datasource, "ValueMember", "DisplayMember") {
+               
+            }
+            public LookUpDicType(IList datasource,string key,string value) {
+                this.Columns.Add(new LookUpColumnInfo(key, "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default));
+                this.Columns.Add(new LookUpColumnInfo(value, ""));
+                this.DataSource = datasource;
+                this.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                this.Properties.DisplayMember = value;
+                this.Properties.ValueMember = key;
+                this.Properties.NullText = "";
+            }
+        }
+        private void setColumnVisible(bool visible, params string[] cols) {
+            
+            foreach (var item in cols) {
+                try { gridView1.Columns[item].Visible = visible; } catch { }
+            }
         }
         /// <summary>
         /// 刷新数据
@@ -80,6 +165,7 @@ namespace Ebada.Kcgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public GridViewOperation<Model.kc_工程计划明细表> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -89,7 +175,10 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程计划明细表 newobj) {
-            
+            newobj.工程项目_ID = parentObj.ID;
+            newobj.项目名称 = parentObj.工程项目名称;
+            newobj.计划日期 = DateTime.Today;
+            newobj.合同到货日期 = DateTime.Today;
         }
         /// <summary>
         /// 父表ID
@@ -99,6 +188,25 @@ namespace Ebada.Kcgl {
             get { return parentID; }
             set {
                 parentID = value;
+                if (!string.IsNullOrEmpty(value)) {
+                    RefreshData(" where 工程项目_ID='" + value + "'");
+                } else {
+                    RefreshData(" where 1>0");
+                }
+            }
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Model.kc_工程项目 ParentObj {
+            get { return parentObj; }
+            set {
+
+                parentObj = value;
+                if (value == null) {
+                    parentID = null;
+                } else {
+                    ParentID = value.ID;
+                }
             }
         }
     }
