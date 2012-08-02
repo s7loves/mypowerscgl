@@ -93,29 +93,35 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns[kc_工程计划明细表.f_总计].OptionsColumn.AllowEdit = false;
-            setColumnVisible(false,kc_工程计划明细表.f_项目名称,kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称, kc_工程计划明细表.f_工程项目_ID);
+            //setColumnVisible(false,kc_工程计划明细表.f_项目名称,kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称, kc_工程计划明细表.f_工程项目_ID);
             //gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].VisibleIndex = 3 ;
             
             gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
             gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit = getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
             gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
-            gridView1.Columns[kc_工程计划明细表.f_进货厂家].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_厂家名称, kc_供货厂家.f_厂家名称);
-
+            gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_ID, kc_供货厂家.f_厂家名称);
+            gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(供货厂家ColumnEdit_EditValueChanging);
+        }
+        void 供货厂家ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
+            kc_工程计划明细表 obj = gridView1.GetFocusedRow() as kc_工程计划明细表;
+            if (obj != null) {
+                obj.供货厂家 = gridView1.GetDisplayTextByColumnValue(gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID],e.NewValue);
+            }
         }
 
         void 工程类别ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_工程计划明细表 obj= gridView1.GetFocusedRow() as kc_工程计划明细表;
             if (obj != null) {
-                obj.工程类别=gridView1.GetFocusedDisplayText();
+                obj.工程类别 = gridView1.GetDisplayTextByColumnValue(gridView1.Columns[kc_工程计划明细表.f_工程类别_ID], e.NewValue);
             }
         }
         void 材料名称表ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_工程计划明细表 obj= gridView1.GetFocusedRow() as kc_工程计划明细表;
             if (obj != null) {
-                obj.材料名称=gridView1.GetFocusedDisplayText();
                 var cl=Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>(e.NewValue);
                 if (cl != null) {
+                    obj.材料名称 = cl.材料名称;
                     obj.规格及型号 = cl.规格及型号;
                     obj.计量单位 = cl.计量单位;
                     obj.数量 = 0;
