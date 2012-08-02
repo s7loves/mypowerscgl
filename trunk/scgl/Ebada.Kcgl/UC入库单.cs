@@ -1,6 +1,6 @@
 ﻿/**********************************************
 系统:库存管理
-模块:工程项目管理
+模块:入库单管理
 作者:Rabbit
 创建时间:2012-7-28
 最后一次修改:2012-7-28
@@ -20,61 +20,61 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Kcgl.Model;
+using System.Collections;
 
 namespace Ebada.Kcgl {
     /// <summary>
-    /// 工程项目管理
+    /// 入库单管理
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UC工程项目 : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<Model.kc_工程项目> gridViewOperation;
+    public partial class UC入库单 : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<Model.kc_入库单> gridViewOperation;
 
-        public event SendDataEventHandler<Model.kc_工程项目> FocusedRowChanged;
+        public event SendDataEventHandler<Model.kc_入库单> FocusedRowChanged;
         private string parentID;
-        public UC工程项目() {
+        public UC入库单() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1,true);
-
-            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_工程项目>(gridViewOperation_BeforeSave);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_工程项目>(gridViewOperation_BeforeDelete);
+            gridViewOperation = new GridViewOperation<Model.kc_入库单>(gridControl1, gridView1, barManager1,true);
+            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_入库单>(gridViewOperation_BeforeSave);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_入库单>(gridViewOperation_BeforeDelete);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsView.ColumnAutoWidth = true;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_工程项目> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_入库单> e) {
             if (childView != null && childView.BindingList.Count > 0) {
                 e.Cancel = true;
-                MsgBox.ShowAskMessageBox("请先删除计划明细，再删除项目！");
+                MsgBox.ShowAskMessageBox("请先删除材料明细，再删除入库单！");
             }
         }
 
-        void gridViewOperation_BeforeSave(object render, ObjectOperationEventArgs<kc_工程项目> e) {
-            if (string.IsNullOrEmpty(e.Value.工程项目名称)) {
-                MsgBox.ShowAskMessageBox(string.Format("【{0}不能为空！】",kc_工程项目.f_工程项目名称)); e.Cancel = true;
+        void gridViewOperation_BeforeSave(object render, ObjectOperationEventArgs<kc_入库单> e) {
+            if (string.IsNullOrEmpty(e.Value.入库单号)) {
+                MsgBox.ShowAskMessageBox(string.Format("【{0}不能为空！】", kc_入库单.f_入库单号)); e.Cancel = true;
             }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
             InitColumns();//初始列
-            InitData();//初始数据
+            //InitData();//初始数据
         }
-        private IViewOperation<kc_工程计划明细表> childView;
+        private IViewOperation<kc_入库明细表> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public IViewOperation<Model.kc_工程计划明细表> ChildView {
+        public IViewOperation<Model.kc_入库明细表> ChildView {
             get { return childView; }
             set {
                 childView = value;
                 if (value != null) {
                     bar3.Visible = false;
-                    hideColumn(kc_工程项目.f_工程类别, kc_工程项目.f_开工日期, kc_工程项目.f_完成日期, kc_工程项目.f_预算费用);
+                    
                 }
             }
         }
@@ -91,7 +91,7 @@ namespace Ebada.Kcgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_工程项目);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_入库单);
         }
         /// <summary>
         /// 初始化数据
@@ -107,7 +107,7 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-
+            hideColumn(kc_入库单.f_工程类别_ID, kc_入库单.f_工程项目_ID, kc_入库单.f_供货厂家_ID);
         }
         /// <summary>
         /// 刷新数据
@@ -120,7 +120,7 @@ namespace Ebada.Kcgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<Model.kc_工程项目> GridViewOperation {
+        public GridViewOperation<Model.kc_入库单> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -128,9 +128,22 @@ namespace Ebada.Kcgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(Model.kc_工程项目 newobj) {
-            newobj.工程项目名称 = "工程项目";
-            newobj.开工日期 = DateTime.Now;
+        void gridViewOperation_CreatingObjectEvent(Model.kc_入库单 newobj) {
+            newobj.入库单号 = getbh();
+            newobj.入库时间 = DateTime.Now;
+        }
+        string getbh() {
+            string code = "RC" + DateTime.Today.ToString("yyyyMMdd");
+
+            IList list = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select max(入库单号) from kc_入库单 where 入库单号 like '"+code+"%'");
+            if (list.Count > 0 && list[0]!=null) {
+                string bh = list[0].ToString().Substring(10);
+                bh = (int.Parse("1" + bh) + 1).ToString().Substring(1);
+                code += bh;
+            } else {
+                code+= "001";
+            }
+            return code;
         }
         /// <summary>
         /// 父表ID
