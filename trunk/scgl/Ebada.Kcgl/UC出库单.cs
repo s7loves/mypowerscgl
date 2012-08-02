@@ -107,7 +107,7 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-            hideColumn(kc_出库单.f_工程类别_ID, kc_出库单.f_工程项目_ID, kc_出库单.f_出库单位_ID);
+            hideColumn(kc_出库单.f_工程类别_ID, kc_出库单.f_工程项目_ID, kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
         }
         /// <summary>
         /// 刷新数据

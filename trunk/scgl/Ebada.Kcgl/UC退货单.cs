@@ -133,7 +133,7 @@ namespace Ebada.Kcgl {
             newobj.退货时间 = DateTime.Now;
         }
         string getbh() {
-            string code = "RK" + DateTime.Today.ToString("yyyyMMdd");
+            string code = "TH" + DateTime.Today.ToString("yyyyMMdd");
 
             IList list = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select max(退货单号) from kc_退货单 where 退货单号 like '"+code+"%'");
             if (list.Count > 0 && list[0]!=null) {
