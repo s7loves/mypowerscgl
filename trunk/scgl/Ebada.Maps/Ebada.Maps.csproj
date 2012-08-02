@@ -358,6 +358,9 @@
     <EmbeddedResource Include="Kcgl\kc_退货单.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Kcgl\v工程到货查询表.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

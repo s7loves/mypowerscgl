@@ -18,9 +18,10 @@
         <result property="数量" column="数量" />
         <result property="总计" column="总计" />
         <result property="计划日期" column="计划日期" />
-        <result property="备注" column="备注" />
-        <result property="进货厂家" column="进货厂家" />
+        <result property="供货厂家_ID" column="供货厂家_ID" />
+        <result property="供货厂家" column="供货厂家" />
         <result property="合同到货日期" column="合同到货日期" />
+        <result property="备注" column="备注" />
       </resultMap>
   </resultMaps>
   <statements>
@@ -39,9 +40,10 @@
          [数量],
          [总计],
          [计划日期],
-         [备注],
-         [进货厂家],
-         [合同到货日期]
+         [供货厂家_ID],
+         [供货厂家],
+         [合同到货日期],
+         [备注]
           FROM kc_工程计划明细表
           $value$
    </select>
@@ -60,9 +62,10 @@
          [数量],
          [总计],
          [计划日期],
-         [备注],
-         [进货厂家],
-         [合同到货日期]
+         [供货厂家_ID],
+         [供货厂家],
+         [合同到货日期],
+         [备注]
          FROM kc_工程计划明细表
          WHERE 
            ID = #ID#
@@ -84,9 +87,10 @@
          [数量],
          [总计],
          [计划日期],
-         [备注],
-         [进货厂家],
-         [合同到货日期]
+         [供货厂家_ID],
+         [供货厂家],
+         [合同到货日期],
+         [备注]
          )
        VALUES
          (
@@ -103,9 +107,10 @@
          #数量#,
          #总计#,
          #计划日期#,
-         #备注#,
-         #进货厂家#,
-         #合同到货日期#
+         #供货厂家_ID#,
+         #供货厂家#,
+         #合同到货日期#,
+         #备注#
          )
 
    </insert> 
@@ -124,9 +129,10 @@
              [数量]=#数量#,
              [总计]=#总计#,
              [计划日期]=#计划日期#,
-             [备注]=#备注#,
-             [进货厂家]=#进货厂家#,
-             [合同到货日期]=#合同到货日期#
+             [供货厂家_ID]=#供货厂家_ID#,
+             [供货厂家]=#供货厂家#,
+             [合同到货日期]=#合同到货日期#,
+             [备注]=#备注#
             WHERE 
               ID = #ID#
 
@@ -170,14 +176,17 @@
              <isNotNull prepend="," property="计划日期">
                 [计划日期]=#计划日期#
              </isNotNull>
-             <isNotNull prepend="," property="备注">
-                [备注]=#备注#
+             <isNotNull prepend="," property="供货厂家_ID">
+                [供货厂家_ID]=#供货厂家_ID#
              </isNotNull>
-             <isNotNull prepend="," property="进货厂家">
-                [进货厂家]=#进货厂家#
+             <isNotNull prepend="," property="供货厂家">
+                [供货厂家]=#供货厂家#
              </isNotNull>
              <isNotNull prepend="," property="合同到货日期">
                 [合同到货日期]=#合同到货日期#
+             </isNotNull>
+             <isNotNull prepend="," property="备注">
+                [备注]=#备注#
              </isNotNull>
          </dynamic>
     WHERE 
