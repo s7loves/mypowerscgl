@@ -1,5 +1,5 @@
 ﻿namespace Ebada.Kcgl {
-    partial class UC出库明细表 {
+    partial class UC出库单 {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
