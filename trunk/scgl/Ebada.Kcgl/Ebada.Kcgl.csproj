@@ -179,6 +179,42 @@
     <Compile Include="UC出库明细表.Designer.cs">
       <DependentUpon>UC出库明细表.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC退货单.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC退货单.Designer.cs">
+      <DependentUpon>UC退货单.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC退货明细表.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC退货明细表.Designer.cs">
+      <DependentUpon>UC退货明细表.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC材料退货M.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC材料退货M.Designer.cs">
+      <DependentUpon>UC材料退货M.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC返库单.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC返库单.Designer.cs">
+      <DependentUpon>UC返库单.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC返库明细表.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC返库明细表.Designer.cs">
+      <DependentUpon>UC返库明细表.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC材料返库M.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC材料返库M.Designer.cs">
+      <DependentUpon>UC材料返库M.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmLogin.resx">
@@ -244,6 +280,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC出库明细表.resx">
       <DependentUpon>UC出库明细表.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC退货单.resx">
+      <DependentUpon>UC退货单.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC退货明细表.resx">
+      <DependentUpon>UC退货明细表.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC材料退货M.resx">
+      <DependentUpon>UC材料退货M.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC返库单.resx">
+      <DependentUpon>UC返库单.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC返库明细表.resx">
+      <DependentUpon>UC返库明细表.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC材料返库M.resx">
+      <DependentUpon>UC材料返库M.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

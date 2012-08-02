@@ -27,12 +27,12 @@ namespace Ebada.Kcgl {
     /// 入库单管理
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UC入库单 : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UC返库单 : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<Model.kc_入库单> gridViewOperation;
 
         public event SendDataEventHandler<Model.kc_入库单> FocusedRowChanged;
         private string parentID;
-        public UC入库单() {
+        public UC返库单() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<Model.kc_入库单>(gridControl1, gridView1, barManager1,true);
@@ -99,7 +99,7 @@ namespace Ebada.Kcgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData(" where 入库单号 like 'RK%' ");
+            RefreshData("where 入库单号 like 'FK%' ");
         }
         /// <summary>
         /// 初始化列,
@@ -133,7 +133,7 @@ namespace Ebada.Kcgl {
             newobj.入库时间 = DateTime.Now;
         }
         string getbh() {
-            string code = "RK" + DateTime.Today.ToString("yyyyMMdd");
+            string code = "FK" + DateTime.Today.ToString("yyyyMMdd");
 
             IList list = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select max(入库单号) from kc_入库单 where 入库单号 like '"+code+"%'");
             if (list.Count > 0 && list[0]!=null) {

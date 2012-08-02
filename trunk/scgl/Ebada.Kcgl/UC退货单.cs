@@ -1,6 +1,6 @@
 ﻿/**********************************************
 系统:库存管理
-模块:入库单管理
+模块:退货单管理
 作者:Rabbit
 创建时间:2012-7-28
 最后一次修改:2012-7-28
@@ -24,37 +24,37 @@ using System.Collections;
 
 namespace Ebada.Kcgl {
     /// <summary>
-    /// 入库单管理
+    /// 退货单管理
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UC入库单 : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<Model.kc_入库单> gridViewOperation;
+    public partial class UC退货单 : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<Model.kc_退货单> gridViewOperation;
 
-        public event SendDataEventHandler<Model.kc_入库单> FocusedRowChanged;
+        public event SendDataEventHandler<Model.kc_退货单> FocusedRowChanged;
         private string parentID;
-        public UC入库单() {
+        public UC退货单() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<Model.kc_入库单>(gridControl1, gridView1, barManager1,true);
+            gridViewOperation = new GridViewOperation<Model.kc_退货单>(gridControl1, gridView1, barManager1,true);
             gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
-            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_入库单>(gridViewOperation_BeforeSave);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_入库单>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_退货单>(gridViewOperation_BeforeSave);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_退货单>(gridViewOperation_BeforeDelete);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsView.ColumnAutoWidth = true;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_入库单> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_退货单> e) {
             if (childView != null && childView.BindingList.Count > 0) {
                 e.Cancel = true;
-                MsgBox.ShowAskMessageBox("请先删除材料明细，再删除入库单！");
+                MsgBox.ShowAskMessageBox("请先删除材料明细，再删除退货单！");
             }
         }
 
-        void gridViewOperation_BeforeSave(object render, ObjectOperationEventArgs<kc_入库单> e) {
-            if (string.IsNullOrEmpty(e.Value.入库单号)) {
-                MsgBox.ShowAskMessageBox(string.Format("【{0}不能为空！】", kc_入库单.f_入库单号)); e.Cancel = true;
+        void gridViewOperation_BeforeSave(object render, ObjectOperationEventArgs<kc_退货单> e) {
+            if (string.IsNullOrEmpty(e.Value.退货单号)) {
+                MsgBox.ShowAskMessageBox(string.Format("【{0}不能为空！】", kc_退货单.f_退货单号)); e.Cancel = true;
             }
         }
         protected override void OnLoad(EventArgs e) {
@@ -62,13 +62,13 @@ namespace Ebada.Kcgl {
             InitColumns();//初始列
             //InitData();//初始数据
         }
-        private IViewOperation<kc_入库明细表> childView;
+        private IViewOperation<kc_退货明细表> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public IViewOperation<Model.kc_入库明细表> ChildView {
+        public IViewOperation<Model.kc_退货明细表> ChildView {
             get { return childView; }
             set {
                 childView = value;
@@ -91,7 +91,7 @@ namespace Ebada.Kcgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_入库单);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as Model.kc_退货单);
         }
         /// <summary>
         /// 初始化数据
@@ -99,7 +99,7 @@ namespace Ebada.Kcgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData(" where 入库单号 like 'RK%' ");
+            RefreshData("");
         }
         /// <summary>
         /// 初始化列,
@@ -107,7 +107,7 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-            hideColumn(kc_入库单.f_工程类别_ID, kc_入库单.f_工程项目_ID, kc_入库单.f_供货厂家_ID);
+            hideColumn(kc_退货单.f_工程类别_ID, kc_退货单.f_工程项目_ID, kc_退货单.f_供货厂家_ID);
         }
         /// <summary>
         /// 刷新数据
@@ -120,7 +120,7 @@ namespace Ebada.Kcgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<Model.kc_入库单> GridViewOperation {
+        public GridViewOperation<Model.kc_退货单> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -128,14 +128,14 @@ namespace Ebada.Kcgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(Model.kc_入库单 newobj) {
-            newobj.入库单号 = getbh();
-            newobj.入库时间 = DateTime.Now;
+        void gridViewOperation_CreatingObjectEvent(Model.kc_退货单 newobj) {
+            newobj.退货单号 = getbh();
+            newobj.退货时间 = DateTime.Now;
         }
         string getbh() {
             string code = "RK" + DateTime.Today.ToString("yyyyMMdd");
 
-            IList list = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select max(入库单号) from kc_入库单 where 入库单号 like '"+code+"%'");
+            IList list = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select max(退货单号) from kc_退货单 where 退货单号 like '"+code+"%'");
             if (list.Count > 0 && list[0]!=null) {
                 string bh = list[0].ToString().Substring(10);
                 bh = (int.Parse("1" + bh) + 1).ToString().Substring(1);
