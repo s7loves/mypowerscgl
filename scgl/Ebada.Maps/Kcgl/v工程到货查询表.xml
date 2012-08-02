@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="v工程到货查询表" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="v工程到货查询表"  type="Ebada.Kcgl.Model.v工程到货查询表,Ebada.Kcgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="v工程到货查询表_AllColumns" class="v工程到货查询表">
+        <result property="项目名称" column="项目名称" />
+        <result property="工程类别" column="工程类别" />
+        <result property="材料名称" column="材料名称" />
+        <result property="规格及型号" column="规格及型号" />
+        <result property="计量单位" column="计量单位" />
+        <result property="计划数量" column="计划数量" />
+        <result property="到货数量" column="到货数量" />
+        <result property="差值" column="差值" />
+        <result property="计划日期" column="计划日期" />
+        <result property="合同到货日期" column="合同到货日期" />
+        <result property="供货厂家" column="供货厂家" />
+        <result property="联系人" column="联系人" />
+        <result property="联系电话" column="联系电话" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectv工程到货查询表List" resultMap="v工程到货查询表_AllColumns" parameterClass="string">
+        SELECT 
+         [项目名称],
+         [工程类别],
+         [材料名称],
+         [规格及型号],
+         [计量单位],
+         [计划数量],
+         [到货数量],
+         [差值],
+         [计划日期],
+         [合同到货日期],
+         [供货厂家],
+         [联系人],
+         [联系电话]
+          FROM v工程到货查询表
+          $value$
+   </select>
+   <select id="Getv工程到货查询表RowCount" parameterClass="string">
+    select count(*) from v工程到货查询表 $value$
+   </select>
+  
+   <insert id="Insertv工程到货查询表" parameterClass="v工程到货查询表">
+        INSERT INTO v工程到货查询表
+         (
+         [项目名称],
+         [工程类别],
+         [材料名称],
+         [规格及型号],
+         [计量单位],
+         [计划数量],
+         [到货数量],
+         [差值],
+         [计划日期],
+         [合同到货日期],
+         [供货厂家],
+         [联系人],
+         [联系电话]
+         )
+       VALUES
+         (
+         #项目名称#,
+         #工程类别#,
+         #材料名称#,
+         #规格及型号#,
+         #计量单位#,
+         #计划数量#,
+         #到货数量#,
+         #差值#,
+         #计划日期#,
+         #合同到货日期#,
+         #供货厂家#,
+         #联系人#,
+         #联系电话#
+         )
+
+   </insert>
+   <update id="Updatev工程到货查询表" parameterClass="v工程到货查询表" resultClass="int">
+          UPDATE v工程到货查询表
+           SET
+             [项目名称]=#项目名称#,
+             [工程类别]=#工程类别#,
+             [材料名称]=#材料名称#,
+             [规格及型号]=#规格及型号#,
+             [计量单位]=#计量单位#,
+             [计划数量]=#计划数量#,
+             [到货数量]=#到货数量#,
+             [差值]=#差值#,
+             [计划日期]=#计划日期#,
+             [合同到货日期]=#合同到货日期#,
+             [供货厂家]=#供货厂家#,
+             [联系人]=#联系人#,
+             [联系电话]=#联系电话#
+   </update>
+   <delete id="Deletev工程到货查询表" parameterClass="v工程到货查询表">
+        DELETE FROM 
+         v工程到货查询表
+
+   </delete>
+  </statements>
+</sqlMap>
+ 
