@@ -106,22 +106,23 @@ namespace Ebada.Kcgl {
         void 供货厂家ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
             if (obj != null) {
-                obj.供货厂家 = gridView1.GetFocusedDisplayText();
+                obj.供货厂家 = gridView1.GetDisplayTextByColumnValue(gridView1.Columns[kc_入库明细表.f_供货厂家_ID], e.NewValue);
             }
         }
 
         void 工程类别ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
             if (obj != null) {
-                obj.工程类别 = gridView1.GetFocusedDisplayText();
+                obj.工程类别 = gridView1.GetDisplayTextByColumnValue(gridView1.Columns[kc_入库明细表.f_工程类别_ID], e.NewValue);
             }
         }
         void 材料名称表ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
             if (obj != null) {
-                obj.材料名称 = gridView1.GetFocusedDisplayText();
+                
                 var cl = Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_材料名称表>(e.NewValue);
                 if (cl != null) {
+                    obj.材料名称 = cl.材料名称;
                     obj.规格及型号 = cl.规格及型号;
                     obj.计量单位 = cl.计量单位;
                     obj.数量 = 0;
