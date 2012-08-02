@@ -29,11 +29,13 @@ namespace Ebada.Kcgl {
             InitializeComponent();
             //接收TreeList行焦点改变事件
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Model.kc_出库单>(ucTop_FocusedRowChanged);
+            splitCC1.Panel1.Text = "出库单列表";
+            splitCC1.Panel2.Text = "出库明细表";
         }
 
         void ucTop_FocusedRowChanged(object sender, kc_出库单 obj) {
             ucBottom.ParentObj = obj;
-            splitCC1.Panel1.Text = "出库单列表";
+            
             splitCC1.Panel2.Text = "出库明细：" + (obj != null ? obj.出库单号 : "");
         }
 
