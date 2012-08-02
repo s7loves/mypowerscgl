@@ -149,12 +149,6 @@
     <Compile Include="UC入库明细表.Designer.cs">
       <DependentUpon>UC入库明细表.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC退货明细表.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UC退货明细表.Designer.cs">
-      <DependentUpon>UC退货明细表.cs</DependentUpon>
-    </Compile>
     <Compile Include="UC材料入库M.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,10 +224,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC入库明细表.resx">
       <DependentUpon>UC入库明细表.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UC退货明细表.resx">
-      <DependentUpon>UC退货明细表.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC材料入库M.resx">
