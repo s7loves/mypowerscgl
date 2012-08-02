@@ -101,6 +101,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="UC工程计划M.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC工程计划M.Designer.cs">
+      <DependentUpon>UC工程计划M.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC材料名称表.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC工程计划M.resx">
+      <DependentUpon>UC工程计划M.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC材料名称表.resx">
       <DependentUpon>UC材料名称表.cs</DependentUpon>
