@@ -46,6 +46,7 @@ namespace Ebada.Kcgl {
             gridView1.CellValueChanging += new CellValueChangedEventHandler(gridView1_CellValueChanging);
             gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
             bar3.Visible = false;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             gridView1.OptionsView.ColumnAutoWidth = true;
         }
 
@@ -93,7 +94,7 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns[kc_退货明细表.f_总计].OptionsColumn.AllowEdit = false;
-            setColumnVisible(false, kc_退货明细表.f_退货厂家_ID, kc_退货明细表.f_工程类别, kc_退货明细表.f_材料名称);
+            setColumnVisible(false, kc_退货明细表.f_退货厂家, kc_退货明细表.f_工程类别, kc_退货明细表.f_材料名称);
             //gridView1.Columns[kc_退货明细表.f_材料名称_ID].VisibleIndex = 3 ;
 
             gridView1.Columns[kc_退货明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);

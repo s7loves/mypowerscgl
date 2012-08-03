@@ -130,7 +130,7 @@ namespace Ebada.Kcgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_退货单 newobj) {
             newobj.退货单号 = getbh();
-            newobj.退货时间 = DateTime.Now;
+            newobj.退货时间 = DateTime.Today;
         }
         string getbh() {
             string code = "TH" + DateTime.Today.ToString("yyyyMMdd");

@@ -46,6 +46,7 @@ namespace Ebada.Kcgl {
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
             bar3.Visible = false;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             gridView1.OptionsView.ColumnAutoWidth = true;
         }
         void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e) {
