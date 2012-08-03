@@ -6,15 +6,18 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using DevExpress.XtraGrid.Columns;
 
 namespace Ebada.Kcgl {
     public partial class UC入库明细表查询 : UserControl {
         public UC入库明细表查询() {
             InitializeComponent();
+            gridControl1.DataSource = new List<Model.kc_入库明细表>();
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             init();
+            initColumns();
         }
         void init() {
             //初始查询列表
@@ -23,6 +26,13 @@ namespace Ebada.Kcgl {
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
             dateEdit1.EditValue = null;
             splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
+        }
+        void initColumns() {
+            
+            foreach (GridColumn item in gridView1.Columns) {
+                if (item.FieldName.Contains("_ID"))
+                    item.Visible = false;
+            }
         }
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             
