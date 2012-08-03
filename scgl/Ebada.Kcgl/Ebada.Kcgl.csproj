@@ -228,6 +228,18 @@
     <Compile Include="查询统计\UC入库明细表查询.Designer.cs">
       <DependentUpon>UC入库明细表查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="查询统计\UC出库明细表查询.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UC出库明细表查询.Designer.cs">
+      <DependentUpon>UC出库明细表查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查询统计\UC退货明细表查询.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UC退货明细表查询.Designer.cs">
+      <DependentUpon>UC退货明细表查询.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmLogin.resx">
@@ -324,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UC入库明细表查询.resx">
       <DependentUpon>UC入库明细表查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UC出库明细表查询.resx">
+      <DependentUpon>UC出库明细表查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UC退货明细表查询.resx">
+      <DependentUpon>UC退货明细表查询.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
