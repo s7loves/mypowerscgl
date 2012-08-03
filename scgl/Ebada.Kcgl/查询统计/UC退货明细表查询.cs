@@ -9,6 +9,7 @@ using System.Collections;
 using DevExpress.XtraGrid.Columns;
 
 namespace Ebada.Kcgl {
+    [ToolboxItem(false)]
     public partial class UC退货明细表查询 : UserControl {
         public UC退货明细表查询() {
             InitializeComponent();

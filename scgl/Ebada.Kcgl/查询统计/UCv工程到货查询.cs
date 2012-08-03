@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Collections;
 
 namespace Ebada.Kcgl {
+    [ToolboxItem(false)]
     public partial class UCv工程到货查询 : UserControl {
         public UCv工程到货查询() {
             InitializeComponent();
