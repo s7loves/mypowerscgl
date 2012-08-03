@@ -6,35 +6,23 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-using DevExpress.XtraGrid.Columns;
 
 namespace Ebada.Kcgl {
     [ToolboxItem(false)]
-    public partial class UC出库明细表查询 : UserControl {
-        public UC出库明细表查询() {
+    public partial class UCv库存明细表查询 : UserControl {
+        public UCv库存明细表查询() {
             InitializeComponent();
-            gridControl1.DataSource = new List<Model.kc_出库明细表>();
+            gridControl1.DataSource = new List<Model.v库存明细表>();
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             init();
-            initColumns();
         }
         void init() {
             //初始查询列表
             comboBoxEdit1.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
             comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
-            comboBoxEdit4.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 单位名称 from kc_出库单位"));
-            dateEdit1.EditValue = null;
-            splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
-        }
-        void initColumns() {
-            
-            foreach (GridColumn item in gridView1.Columns) {
-                if (item.FieldName.Contains("_ID"))
-                    item.Visible = false;
-            }
         }
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             
@@ -42,20 +30,16 @@ namespace Ebada.Kcgl {
         private void query() {
             string sql = "where 1=1  ";
             if(!string.IsNullOrEmpty(comboBoxEdit1.EditValue as string))
-                sql+=string.Format(" and 工程类别='{0}'",comboBoxEdit1.EditValue);
+                sql += string.Format(" and 工程类别='{0}'", comboBoxEdit1.EditValue);
             if(!string.IsNullOrEmpty(comboBoxEdit2.EditValue as string))
                 sql+=string.Format("  and 材料名称='{0}'",comboBoxEdit2.EditValue);
-            if (!string.IsNullOrEmpty(comboBoxEdit3.EditValue as string))
-                sql += string.Format("  and  规格及型号='{0}'", comboBoxEdit3.EditValue);
-            if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue as string))
-                sql += string.Format("  and  出库单位='{0}'", comboBoxEdit4.EditValue);
-            if (dateEdit1.EditValue != null)
-                sql += string.Format("  and  出库日期='{0}'", dateEdit1.EditValue);
+            if(!string.IsNullOrEmpty(comboBoxEdit3.EditValue as string))
+                sql+=string.Format("  and  规格及型号='{0}'",comboBoxEdit3.EditValue);
+            
 
+            IList list = Client.ClientHelper.TransportSqlMap.GetList("Select", "SELECT * FROM v库存明细表 "+sql);
 
-            var list = Client.ClientHelper.TransportSqlMap.GetList<Model.kc_出库明细表>(sql);
-
-            gridControl1.DataSource = list;
+            gridControl1.DataSource = DataConvert.HashTablesToDataTable(list);
         }
         private void simpleButton2_Click(object sender, EventArgs e) {
             query();

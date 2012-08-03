@@ -9,6 +9,7 @@ using System.Collections;
 using DevExpress.XtraGrid.Columns;
 
 namespace Ebada.Kcgl {
+    [ToolboxItem(false)]
     public partial class UC入库明细表查询 : UserControl {
         public UC入库明细表查询() {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Ebada.Kcgl {
             comboBoxEdit1.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
             comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
+            comboBoxEdit4.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 厂家名称 from kc_供货厂家"));
             dateEdit1.EditValue = null;
             splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
         }
@@ -43,9 +45,11 @@ namespace Ebada.Kcgl {
                 sql+=string.Format(" and 工程类别='{0}'",comboBoxEdit1.EditValue);
             if(!string.IsNullOrEmpty(comboBoxEdit2.EditValue as string))
                 sql+=string.Format("  and 材料名称='{0}'",comboBoxEdit2.EditValue);
-            if(!string.IsNullOrEmpty(comboBoxEdit3.EditValue as string))
-                sql+=string.Format("  and  规格及型号='{0}'",comboBoxEdit3.EditValue);
-            if (dateEdit1.EditValue!=null)
+            if (!string.IsNullOrEmpty(comboBoxEdit3.EditValue as string))
+                sql += string.Format("  and  规格及型号='{0}'", comboBoxEdit3.EditValue);
+            if (!string.IsNullOrEmpty(comboBoxEdit4.EditValue as string))
+                sql += string.Format("  and  供货厂家='{0}'", comboBoxEdit4.EditValue);
+            if (dateEdit1.EditValue != null)
                 sql += string.Format("  and  入库日期='{0}'", dateEdit1.EditValue);
 
 

@@ -37,6 +37,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -47,7 +48,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -76,6 +79,8 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl3);
             this.splitContainerControl1.Panel1.Controls.Add(this.comboBoxEdit2);
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl2);
+            this.splitContainerControl1.Panel1.Controls.Add(this.comboBoxEdit4);
+            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl5);
             this.splitContainerControl1.Panel1.Controls.Add(this.comboBoxEdit1);
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl1);
             this.splitContainerControl1.Panel1.ShowCaption = true;
@@ -92,7 +97,7 @@
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(66, 60);
+            this.dateEdit1.Location = new System.Drawing.Point(289, 60);
             this.dateEdit1.MenuManager = this.barManager1;
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -186,6 +191,15 @@
             this.barDockControlRight.Location = new System.Drawing.Point(878, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 338);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(459, 58);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(80, 23);
+            this.simpleButton2.TabIndex = 3;
+            this.simpleButton2.Text = "查询";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // simpleButton1
             // 
             this.simpleButton1.Location = new System.Drawing.Point(693, 28);
@@ -206,7 +220,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(12, 63);
+            this.labelControl4.Location = new System.Drawing.Point(235, 63);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 1;
@@ -274,14 +288,22 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // simpleButton2
+            // labelControl5
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(236, 58);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(80, 23);
-            this.simpleButton2.TabIndex = 3;
-            this.simpleButton2.Text = "查询";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.labelControl5.Location = new System.Drawing.Point(12, 63);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(48, 14);
+            this.labelControl5.TabIndex = 1;
+            this.labelControl5.Text = "供货厂家";
+            // 
+            // comboBoxEdit4
+            // 
+            this.comboBoxEdit4.Location = new System.Drawing.Point(66, 60);
+            this.comboBoxEdit4.Name = "comboBoxEdit4";
+            this.comboBoxEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit4.Size = new System.Drawing.Size(164, 21);
+            this.comboBoxEdit4.TabIndex = 2;
             // 
             // UC入库明细表查询
             // 
@@ -305,6 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -335,5 +358,7 @@
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
     }
 }
