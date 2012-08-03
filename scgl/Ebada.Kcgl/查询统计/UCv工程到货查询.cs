@@ -11,6 +11,7 @@ namespace Ebada.Kcgl {
     public partial class UCv工程到货查询 : UserControl {
         public UCv工程到货查询() {
             InitializeComponent();
+            gridControl1.DataSource = new List<Model.v工程到货查询表>();
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -42,7 +43,7 @@ namespace Ebada.Kcgl {
 
             IList list = Client.ClientHelper.TransportSqlMap.GetList("Select", "SELECT * FROM v工程到货查询表 "+sql);
 
-            gridControl1.DataSource = DataConvert.ToIList<Model.v工程到货查询表>(DataConvert.HashTablesToDataTable(list));
+            gridControl1.DataSource = DataConvert.HashTablesToDataTable(list);
         }
         private void simpleButton2_Click(object sender, EventArgs e) {
             query();
