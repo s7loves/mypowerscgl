@@ -157,7 +157,7 @@ namespace Ebada.Kcgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_入库单 newobj) {
             newobj.入库单号 = getbh();
-            newobj.入库时间 = DateTime.Now;
+            newobj.入库时间 = DateTime.Today;
         }
         string getbh() {
             string code = "RK" + DateTime.Today.ToString("yyyyMMdd");

@@ -36,7 +36,8 @@ namespace Ebada.Kcgl {
             gridViewOperation = new GridViewOperation<Model.kc_供货厂家>(gridControl1, gridView1, barManager1,true);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
-            gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

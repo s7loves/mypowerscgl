@@ -222,6 +222,12 @@
     <Compile Include="UC材料返库M.Designer.cs">
       <DependentUpon>UC材料返库M.cs</DependentUpon>
     </Compile>
+    <Compile Include="查询统计\UC入库明细表查询.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UC入库明细表查询.Designer.cs">
+      <DependentUpon>UC入库明细表查询.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmLogin.resx">
@@ -315,6 +321,9 @@
     <EmbeddedResource Include="UC材料返库M.resx">
       <DependentUpon>UC材料返库M.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UC入库明细表查询.resx">
+      <DependentUpon>UC入库明细表查询.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
