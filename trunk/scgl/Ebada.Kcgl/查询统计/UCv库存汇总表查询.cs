@@ -20,7 +20,7 @@ namespace Ebada.Kcgl {
         }
         void init() {
             //初始查询列表
-            comboBoxEdit1.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
+            //comboBoxEdit1.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
             comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
         }
@@ -29,8 +29,8 @@ namespace Ebada.Kcgl {
         }
         private void query() {
             string sql = "where 1=1  ";
-            if(!string.IsNullOrEmpty(comboBoxEdit1.EditValue as string))
-                sql += string.Format(" and 工程类别='{0}'", comboBoxEdit1.EditValue);
+            //if(!string.IsNullOrEmpty(comboBoxEdit1.EditValue as string))
+            //    sql += string.Format(" and 工程类别='{0}'", comboBoxEdit1.EditValue);
             if(!string.IsNullOrEmpty(comboBoxEdit2.EditValue as string))
                 sql+=string.Format("  and 材料名称='{0}'",comboBoxEdit2.EditValue);
             if(!string.IsNullOrEmpty(comboBoxEdit3.EditValue as string))
