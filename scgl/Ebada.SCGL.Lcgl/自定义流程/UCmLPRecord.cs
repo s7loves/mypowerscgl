@@ -34,6 +34,7 @@ using System.Threading;
 
 namespace Ebada.Scgl.Lcgl {
 
+    [ToolboxItem(false)]
     public partial class UCmLPRecord : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Record> gridViewOperation;
         private static string strKind;

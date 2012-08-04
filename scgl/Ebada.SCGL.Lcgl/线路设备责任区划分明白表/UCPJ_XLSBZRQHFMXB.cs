@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_XLSBZRQHFMXB : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_xlsbzrqhfmbb> gridViewOperation;

@@ -30,6 +30,7 @@ using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl {
 
+    [ToolboxItem(false)]
     public partial class UCmLPInquiryRecord : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Record> gridViewOperation;
         private static string strKind;

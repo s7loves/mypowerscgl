@@ -34,6 +34,7 @@ using System.Threading;
 
 namespace Ebada.Scgl.Lcgl {
 
+    [ToolboxItem(false)]
     public partial class UCmjddzInquiry : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_clcrkd> gridViewOperation;
         private static string strKind;

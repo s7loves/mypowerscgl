@@ -28,6 +28,7 @@ namespace Ebada.SCGL.WFlow.Tool
     /// <summary>
     /// 组织机构
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCmExcelTableTreeControl : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<LP_Temple> treeViewOperator;

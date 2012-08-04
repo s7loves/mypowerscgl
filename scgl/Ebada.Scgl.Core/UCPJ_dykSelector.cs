@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Core {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_dykSelector : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_dyk> gridViewOperation;
         private MemoEdit txt;

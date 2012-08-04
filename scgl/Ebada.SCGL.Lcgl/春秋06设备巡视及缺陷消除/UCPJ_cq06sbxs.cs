@@ -10,7 +10,8 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class UCPJ_06cqsbxs: DevExpress.XtraEditors.XtraUserControl
+    [ToolboxItem(false)]
+    public partial class UCPJ_06cqsbxs : DevExpress.XtraEditors.XtraUserControl
     {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;

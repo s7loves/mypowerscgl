@@ -12,6 +12,7 @@ using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl
 {
+    [ToolboxItem(false)]
     public partial class UCtestRecordM : UserControl
     {
         public UCtestRecordM()

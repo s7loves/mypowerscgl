@@ -22,7 +22,8 @@ using DevExpress.XtraEditors;
 using Ebada.Client;
 using Ebada.Client.Platform;
 namespace Ebada.Scgl.Gis {
-    public partial class UCMapBox : XtraUserControl,IMapView {
+    [ToolboxItem(false)]
+    public partial class UCMapBox : XtraUserControl, IMapView {
         static UCMapBox() {
 
             TLVector.SpecialCursors.LoadCursors();//加载光标资源 

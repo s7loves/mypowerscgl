@@ -10,6 +10,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Lcgl
 {
+    [ToolboxItem(false)]
     public partial class UCPS_byqM : DevExpress.XtraEditors.XtraUserControl
     {
         public UCPS_byqM()

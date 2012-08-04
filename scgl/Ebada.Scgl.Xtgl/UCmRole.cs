@@ -22,6 +22,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Xtgl {
 
+    [ToolboxItem(false)]
     public partial class UCmRole : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<mRole> gridViewOperation;
         

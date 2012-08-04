@@ -17,6 +17,7 @@ using DevExpress.Utils;
 
 namespace Ebada.Scgl.Lcgl
 {
+    [ToolboxItem(false)]
     public partial class UCCJSCTZInquiry : FormBase
     {
         public UCCJSCTZInquiry()

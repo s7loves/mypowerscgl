@@ -11,6 +11,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis
 {
+    [ToolboxItem(false)]
     public partial class UCGraph : UserControl
     {
         public UCGraph() {

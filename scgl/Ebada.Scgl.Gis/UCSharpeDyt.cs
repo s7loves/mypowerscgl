@@ -22,6 +22,7 @@ namespace Ebada.Scgl.Gis {
     /// <summary>
     /// 配电图形-低压图
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCSharpeDyt : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;

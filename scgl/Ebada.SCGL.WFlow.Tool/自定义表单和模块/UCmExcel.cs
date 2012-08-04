@@ -26,6 +26,7 @@ using DevExpress.Data;
 namespace Ebada.SCGL.WFlow.Tool
 {
 
+    [ToolboxItem(false)]
     public partial class UCmExcel : DevExpress.XtraEditors.XtraUserControl {
         public GridViewOperation<LP_Temple> gridViewOperation;
         private static string strParentID;

@@ -23,6 +23,7 @@ using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Yxgl{
 
+    [ToolboxItem(false)]
     public partial class UCmLine : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_xl> gridViewOperation;
         

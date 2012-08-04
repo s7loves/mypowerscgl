@@ -23,6 +23,7 @@ using System.Threading;
 
 namespace Ebada.Scgl.Xtgl {
 
+    [ToolboxItem(false)]
     public partial class UCmModulFun : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<mModulFun> gridViewOperation;
         

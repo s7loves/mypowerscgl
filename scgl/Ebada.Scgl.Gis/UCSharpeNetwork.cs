@@ -21,6 +21,7 @@ namespace Ebada.Scgl.Gis {
     /// <summary>
     /// 配电图形-网络图
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCSharpeNetwork : UserControl, IUCLayer {
 
         WaitDialogForm waitdlg;

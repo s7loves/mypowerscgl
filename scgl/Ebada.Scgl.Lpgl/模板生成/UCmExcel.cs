@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 namespace Ebada.Scgl.Lpgl
 {
 
+    [ToolboxItem(false)]
     public partial class UCmExcel : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Temple> gridViewOperation;
         private static string strParentID;
