@@ -24,6 +24,7 @@ namespace TLMapPlatform {
     /// <summary>
     /// 图层管理控件
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCMapLayer : UserControl {
 
         public UCMapLayer() {

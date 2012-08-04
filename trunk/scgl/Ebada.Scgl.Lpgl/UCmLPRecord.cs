@@ -31,6 +31,7 @@ using System.Text.RegularExpressions;
 
 namespace Ebada.Scgl.Lpgl {
 
+    [ToolboxItem(false)]
     public partial class UCmLPRecord : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<LP_Record> gridViewOperation;
         private static string strKind;

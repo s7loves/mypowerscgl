@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 组织机构
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCmModuleTree : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<mModule> treeViewOperator;

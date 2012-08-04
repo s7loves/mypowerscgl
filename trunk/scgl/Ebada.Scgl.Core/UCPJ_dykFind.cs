@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using Ebada.Client; 
 
 namespace Ebada.Scgl.Core {
+    [ToolboxItem(false)]
     public partial class UCPJ_dykFind : DevExpress.XtraEditors.XtraUserControl, IPopupFind {
         public UCPJ_dykFind() {
             InitializeComponent();

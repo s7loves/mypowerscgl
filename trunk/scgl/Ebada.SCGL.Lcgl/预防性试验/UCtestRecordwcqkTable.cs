@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCtestRecordwcqkTable : DevExpress.XtraEditors.XtraUserControl
     {
         public GridViewOperation<PJ_yfsyjl> gridViewOperation;

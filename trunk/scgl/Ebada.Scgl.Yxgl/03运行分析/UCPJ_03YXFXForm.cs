@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace Ebada.Scgl.Yxgl
 {
+    [ToolboxItem(false)]
     public partial class UCPJ_03YXFXForm : Form
     {
         public UCPJ_03YXFXForm()

@@ -10,7 +10,8 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class UCPJ_06sbxs: DevExpress.XtraEditors.XtraUserControl
+    [ToolboxItem(false)]
+    public partial class UCPJ_06sbxs : DevExpress.XtraEditors.XtraUserControl
     {
         public UCPJ_06sbxs()
         {

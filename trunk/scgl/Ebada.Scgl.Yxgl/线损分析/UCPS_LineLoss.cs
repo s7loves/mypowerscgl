@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Yxgl{
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPS_LineLoss : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<PS_xl> treeViewOperator;

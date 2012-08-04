@@ -28,6 +28,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_SBQX : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_qxfl> gridViewOperation;

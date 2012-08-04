@@ -32,6 +32,7 @@ namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_17 : DevExpress.XtraEditors.XtraUserControl {
 
         //TreeViewOperation<PS_xl> treeViewOperator;

@@ -15,6 +15,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl
 {
+    [ToolboxItem(false)]
     public partial class UCWGCJGCCLDGL : UserControl
     {
         public UCWGCJGCCLDGL()

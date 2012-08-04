@@ -14,6 +14,7 @@ using Ebada.Scgl.WFlow;
 using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl {
+    [ToolboxItem(false)]
     public partial class UCAQGJCKGL : UserControl {
         public UCAQGJCKGL() {
             InitializeComponent();

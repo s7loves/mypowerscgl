@@ -27,6 +27,7 @@ namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_14aqgj : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_aqgj> gridViewOperation;
         //记录当前安全工具的实验周期

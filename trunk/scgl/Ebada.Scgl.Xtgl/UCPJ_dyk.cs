@@ -30,6 +30,7 @@ namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCPJ_dyk : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_dyk> gridViewOperation;
         

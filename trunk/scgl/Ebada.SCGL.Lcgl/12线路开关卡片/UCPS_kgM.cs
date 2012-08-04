@@ -11,6 +11,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Lcgl
 {
+    [ToolboxItem(false)]
     public partial class UCPS_kgM : DevExpress.XtraEditors.XtraUserControl
     {
         public UCPS_kgM()

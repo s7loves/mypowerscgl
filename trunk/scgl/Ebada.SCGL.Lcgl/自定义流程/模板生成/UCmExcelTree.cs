@@ -29,6 +29,7 @@ namespace Ebada.Scgl.Lcgl
     /// <summary>
     /// 组织机构
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCmExcelTree : DevExpress.XtraEditors.XtraUserControl {
 
         TreeViewOperation<WF_WorkFlow> treeViewOperator;

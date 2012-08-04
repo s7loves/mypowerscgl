@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Lcgl
     /// 
     /// </summary>
     /// 
+    [ToolboxItem(false)]
     public partial class UCtestRecord : DevExpress.XtraEditors.XtraUserControl
     {
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]

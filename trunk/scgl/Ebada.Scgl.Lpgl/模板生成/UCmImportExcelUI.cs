@@ -20,6 +20,7 @@ namespace Ebada.Scgl.Lpgl
     /// <summary>
     /// 机构职员维护
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCmImportExcelUI : DevExpress.XtraEditors.XtraUserControl {
         /// <summary>
         /// 左TreeList右GridView，

@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Xtgl {
     /// <summary>
     /// 变电所维护
     /// </summary>
+    [ToolboxItem(false)]
     public partial class UCmOrgBds : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<mOrg> gridViewOperation;
         
