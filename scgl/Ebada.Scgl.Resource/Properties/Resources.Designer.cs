@@ -1508,6 +1508,12 @@ namespace Ebada.Scgl.Resource.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+         internal static System.Drawing.Bitmap 绥化农电库存管理 {
+            get {
+                object obj = ResourceManager.GetObject("绥化农电库存管理", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         internal static System.Drawing.Bitmap 规划报告 {
             get {
