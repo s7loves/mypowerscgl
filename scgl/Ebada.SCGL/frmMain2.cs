@@ -72,7 +72,7 @@ namespace Ebada.SCGL {
 
         }
         void OnHelpClick(object sender, ItemClickEventArgs e) {
-            string fname = Application.StartupPath + "\\00记录模板\\生产软件数据采集说明书.doc";
+            string fname = Application.StartupPath + "\\00记录模板\\生产管理系统使用说明.chm";
             try {
                 System.Diagnostics.Process.Start(fname);
             } catch {
