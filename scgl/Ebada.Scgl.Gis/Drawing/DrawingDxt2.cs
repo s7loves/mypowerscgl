@@ -14,7 +14,9 @@ namespace Ebada.Scgl.Gis {
         public const string tqfilter = " where gtid in (select gtid from ps_gt  where Linecode='{0}')";
         static Font mFont = new Font("宋体", 9);
         public static int mWidth = 1400;
-        public static int mHeight = 600;
+        public static int mHeight = 800;
+        public static int mMinDJ = 80;//最小档距
+        public static bool isHrow = true;//文字是否自动换行
         private int n300 = 300;
         public Image GetImage(string linecode) {
             xl xl = new xl();
@@ -112,7 +114,7 @@ namespace Ebada.Scgl.Gis {
             drawcount += 1;
             float step = height / drawcount;
 
-            step = Math.Min(80, step);
+            step = Math.Min(mMinDJ, step);
             height =(int) (step * drawcount);
             step *= offset.Y;
             int left = xl.parentNode.Location.X;
@@ -156,7 +158,7 @@ namespace Ebada.Scgl.Gis {
                 drawcount += 1;
             float step = width / drawcount;
 
-            step = Math.Min(80, step);
+            step = Math.Min(mMinDJ, step);
             width = (int)(step * drawcount);
             step *= offset.X;
             int left = xl.parentNode.Location.X;
@@ -197,8 +199,8 @@ namespace Ebada.Scgl.Gis {
             g.FillPolygon(Brushes.Blue, new Point[]{p1,p2,p3});
             g.DrawRectangle(Pens.Blue, r);
             Size sf = g.MeasureString(name, mFont).ToSize();
-
-            g.DrawString(name, mFont, Brushes.Black, x  - sf.Width / 2, y + 15);
+            Rectangle r2 = new Rectangle(x - sf.Width / 2, y + 15, 70, 30);
+            g.DrawString(name, mFont, Brushes.Black, x - sf.Width / 2, y + 15);
 
 
         }
@@ -216,8 +218,13 @@ namespace Ebada.Scgl.Gis {
             //Size sf = g.MeasureString(name, mFont).ToSize();
 
             //g.DrawString(name, mFont, Brushes.Black, x + 7 - sf.Width / 2, y - 15);
+            if (isHrow) {
+                Rectangle r3 = new Rectangle(x + 7, y - 10, mMinDJ, 30);
 
-            g.DrawString(name, mFont, Brushes.Black, x + 7 , y-10 );
+                g.DrawString(name, mFont, Brushes.Black, r3);
+            } else {
+                g.DrawString(name, mFont, Brushes.Black, x + 7, y - 10);
+            }
             
         }
         public static void renderkg(Graphics g, int x, int y, string name) {
