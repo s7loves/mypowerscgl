@@ -30,9 +30,15 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // spinEdit1
@@ -61,7 +67,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkEdit1);
+            this.groupBox1.Controls.Add(this.spinEdit3);
+            this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.spinEdit2);
+            this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.spinEdit1);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl1);
@@ -130,6 +140,55 @@
             this.simpleButton2.TabIndex = 3;
             this.simpleButton2.Text = "取消";
             // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(16, 85);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(121, 14);
+            this.labelControl3.TabIndex = 2;
+            this.labelControl3.Text = "最大档距(50-100象素)";
+            this.labelControl3.ToolTip = "杆塔图元之前最大距离";
+            // 
+            // spinEdit3
+            // 
+            this.spinEdit3.EditValue = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
+            this.spinEdit3.Location = new System.Drawing.Point(145, 82);
+            this.spinEdit3.Name = "spinEdit3";
+            this.spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEdit3.Properties.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.spinEdit3.Properties.MinValue = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.spinEdit3.Size = new System.Drawing.Size(117, 21);
+            this.spinEdit3.TabIndex = 0;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(16, 112);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(72, 14);
+            this.labelControl4.TabIndex = 2;
+            this.labelControl4.Text = "文字自动换行";
+            // 
+            // checkEdit1
+            // 
+            this.checkEdit1.Location = new System.Drawing.Point(145, 110);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "";
+            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit1.TabIndex = 3;
+            // 
             // frmDxtSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -147,6 +206,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,5 +221,9 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SpinEdit spinEdit2;
+        private DevExpress.XtraEditors.SpinEdit spinEdit3;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
     }
 }

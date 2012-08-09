@@ -13,11 +13,15 @@ namespace Ebada.Scgl.Gis {
             InitializeComponent();
             spinEdit1.Value = DrawingDxt2.mWidth;
             spinEdit2.Value = DrawingDxt2.mHeight;
+            spinEdit3.Value = DrawingDxt2.mMinDJ;
+            checkEdit1.Checked = DrawingDxt2.isHrow;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
             DrawingDxt2.mWidth = (int)spinEdit1.Value;
             DrawingDxt2.mHeight = (int)spinEdit2.Value;
+            DrawingDxt2.mMinDJ = (int)spinEdit3.Value;
+            DrawingDxt2.isHrow = checkEdit1.Checked;
             DialogResult = DialogResult.OK;
         }
     }
