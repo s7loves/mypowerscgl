@@ -15,12 +15,20 @@ namespace Ebada.Scgl.Gis {
         static Font mFont = new Font("宋体", 9);
         public static int mWidth = 1400;
         public static int mHeight = 600;
+        private int n300 = 300;
         public Image GetImage(string linecode) {
             xl xl = new xl();
             Bitmap img = new Bitmap(mWidth, mHeight);
             xl.xlValue=Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='"+ linecode + "'");
             if (xl.xlValue == null) return null;
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where  parentgt in (select gtcode from ps_gt where  linecode='" + xl.xlValue.LineCode + "')");
+            if (xlList.Count == 0) {
 
+                xlList = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where parentid='" + xl.xlValue.LineID + "'");
+                if (xlList.Count > 0)
+                    xl.xlValue = xlList[0];
+            }
+            n300 = mHeight / 2;
             buildChild(xl);
             draw(Graphics.FromImage(img), xl);
             
@@ -48,7 +56,7 @@ namespace Ebada.Scgl.Gis {
             g.Clear(Color.White);
             mOrg org= Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + xl.xlValue.OrgCode2 + "'");
             if (org != null) {
-                renderbdz(g, 50, 300, org.OrgName);
+                renderbdz(g, 50, n300, org.OrgName);
             }
             drawgt(g, xl);
             drawlineinfo(g, xl);
@@ -63,16 +71,18 @@ namespace Ebada.Scgl.Gis {
             if (!node0.NeedDraw)
             drawcount += 1;
             float step= (mWidth-150) *1.0f/drawcount;
-            int top = 300;
-            
-            g.DrawLine(Pens.BlueViolet, 50, top, mWidth-100, top);
+            int top = n300;
+
+            if (drawcount < 2) step = (mWidth - 150) * 1.0f / 2;
+
+            g.DrawLine(Pens.BlueViolet, 50, top, 50+step*drawcount, top);
             //if (!xl.nodes[0].NeedDraw) {
             //    xl.nodes[0].Location = new Point(50+(int)step, top);
             //    xl.nodes[0].render(g);
             //}
             
             if (!node0.NeedDraw) {
-                node0.Location = new Point(mWidth-100, top);
+                node0.Location = new Point(50 +(int)( step * drawcount), top);
                 node0.render(g);
             }
             int j = -1;
@@ -85,7 +95,7 @@ namespace Ebada.Scgl.Gis {
                 node.Location = new Point( 50 + (int)(i * step),top);
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
-                    drawchildxltop(g, xl0, offset, (int)step * 2, mHeight-300);
+                    drawchildxltop(g, xl0, offset, (int)step * 2, mHeight-n300);
                     offset.Y *= -1;
                 }
                 
@@ -102,7 +112,7 @@ namespace Ebada.Scgl.Gis {
             drawcount += 1;
             float step = height / drawcount;
 
-            step = Math.Min(50, step);
+            step = Math.Min(80, step);
             height =(int) (step * drawcount);
             step *= offset.Y;
             int left = xl.parentNode.Location.X;
@@ -129,7 +139,7 @@ namespace Ebada.Scgl.Gis {
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
                     
-                    drawchildxlright(g, xl0, offset,2* (int)Math.Abs(step), 100);
+                    drawchildxlright(g, xl0, offset, width,(int)Math.Abs(step)*3/2);
                     offset.X *= -1;
                 }
                 
@@ -146,7 +156,7 @@ namespace Ebada.Scgl.Gis {
                 drawcount += 1;
             float step = width / drawcount;
 
-            step = Math.Min(30, step);
+            step = Math.Min(80, step);
             width = (int)(step * drawcount);
             step *= offset.X;
             int left = xl.parentNode.Location.X;
@@ -171,10 +181,10 @@ namespace Ebada.Scgl.Gis {
                 i++;
                 node.Location = new Point( left + (int)(i * step),bottom);
                 node.render(g);
-                //foreach (xl xl0 in node.lines) {
-                //    drawchildxl(g, xl0, offset, (int)step * 2, 200);
-                //}
-                //offset.Y *= -1;
+                foreach (xl xl0 in node.lines) {
+                    drawchildxltop(g, xl0, offset, (int)step * 3/2, height);
+                }
+                offset.Y *= -1;
             }
         }
         void renderbdz(Graphics g, int x, int y, string name) {
