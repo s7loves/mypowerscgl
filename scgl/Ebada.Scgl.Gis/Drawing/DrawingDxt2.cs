@@ -112,8 +112,9 @@ namespace Ebada.Scgl.Gis {
             gtNode node0 = xl.nodes[xl.nodes.Count - 1];
             if (!node0.NeedDraw)
             drawcount += 1;
-            float step = height / drawcount;
 
+            float step = height / drawcount;
+            if (drawcount == 1) step /= 2;
             step = Math.Min(mMinDJ, step);
             height =(int) (step * drawcount);
             step *= offset.Y;
@@ -157,7 +158,7 @@ namespace Ebada.Scgl.Gis {
             if (!node0.NeedDraw)
                 drawcount += 1;
             float step = width / drawcount;
-
+            if (drawcount == 1) step /= 2;
             step = Math.Min(mMinDJ, step);
             width = (int)(step * drawcount);
             step *= offset.X;
