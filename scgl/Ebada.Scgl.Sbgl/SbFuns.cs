@@ -4,6 +4,8 @@ using System.Text;
 using Ebada.Scgl.Model;
 using DevExpress.Utils;
 using System.Windows.Forms;
+using System.Data;
+using System.Collections;
 
 namespace Ebada.Scgl.Sbgl {
     public static class SbFuns {
@@ -258,6 +260,47 @@ namespace Ebada.Scgl.Sbgl {
             xval = xval + X0;
             yval = yval + Y0;
             return new double[] { xval, yval };
+        }
+        /// <summary>
+        /// 计算供电半径
+        /// </summary>
+        /// <returns></returns>
+        public static double jsgdbj(string linecode) {
+            double ret = 0;
+            IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where linecode like '" + linecode + "%' and linevol='10'");
+            DataTable dt = Ebada.Core.ConvertHelper.ToDataTable((IList)list, typeof(PS_xl));
+            ret = getMaxLen(dt, null);
+
+            return ret;
+        }
+
+        private static double getMaxLen(DataTable dt, DataRow prow) {
+            double maxlen = 0;
+            string p = "";
+            if (prow != null)
+                p = prow["LineID"].ToString();
+            DataRow[] rows = dt.Select("parentid='" + p + "'");
+            foreach (DataRow row in rows) {
+                double len = getMaxLen(dt, row);
+                maxlen = Math.Max(maxlen, len + getLen(row, prow));
+            }
+            if (prow != null && rows.Length == 0) maxlen = (int)prow["WireLength"];
+            if (prow == null && rows.Length == 1) maxlen = Math.Max(maxlen, (int)rows[0]["WireLength"]);
+            return maxlen;
+        }
+        private static double getLen(DataRow row, DataRow prow) {
+            double ret = 0;
+            if (prow != null) {
+                string pgt = row["ParentGT"].ToString();
+                string plinecode = prow["LineCode"].ToString();
+                try {
+                    if (pgt.Length > 4)
+                        ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gtcode<='{1}'", plinecode, pgt));
+                    else if (pgt.Length == 4)
+                        ret = (int)Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(gtspan) from ps_gt where LineCode='{0}' and gth<='{1}'", plinecode, pgt));
+                } catch { }
+            }
+            return ret;
         }
     }
 }
