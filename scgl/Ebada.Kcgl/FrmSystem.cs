@@ -72,6 +72,20 @@ namespace Ebada.Kcgl {
             timer1.Start();
             this.WindowState = FormWindowState.Maximized;
             this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
+            frmLogin dlg = new frmLogin();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                if (MainHelper.User.LoginID == "rabbit") {
+                } else {
+                    InitFunction(MainHelper.User.UserID);
+                }
+            } else {
+                this.Close();
+            }
+        }
+        void InitFunction(string userID) {
+            try {
+                ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select Modu_ID+'_'+funcode from vuserfun where userid='" + userID + "'");
+            } catch { }
         }
         void test() {
             ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null);
@@ -175,12 +189,15 @@ namespace Ebada.Kcgl {
                 object[] para = new object[1];
                 para.SetValue(mdule, 0);
                 para = new object[0];
-
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("Modu_ID", mdule.Modu_ID);
                 object result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null, null, ref instance);
                 if (instance is Form) {
                     Form form = (Form)instance;
+                    form.Tag = dic;
                     form.Show();
                 } else {
+                    this.Tag = dic;
                     showmodul(instance as UserControl, mdule.ModuName);
                 }
             }
