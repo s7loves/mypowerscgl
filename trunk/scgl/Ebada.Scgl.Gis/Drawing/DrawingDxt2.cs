@@ -159,7 +159,10 @@ namespace Ebada.Scgl.Gis {
                 drawcount += 1;
             float step = width / drawcount;
             if (drawcount == 1) step /= 2;
+            
             step = Math.Min(mMinDJ, step);
+
+            while (step < 30) step *= 2;
             width = (int)(step * drawcount);
             step *= offset.X;
             int left = xl.parentNode.Location.X;
