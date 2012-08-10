@@ -209,6 +209,10 @@ namespace Ebada.Scgl.Sbgl {
         void simpleButton1_Click(object sender, EventArgs e) {
             spinEdit2.Value = rowData.TotalLength = (int)SbFuns.CountLineLen(rowData);
             spinEdit1.Value = rowData.WireLength;
+            if (rowData.LineCode.Length == 6) {
+                Client.ClientHelper.PlatformSqlMap.Update("Update", string.Format("update ps_xl set TotalLength={0},WireLength={1} where lineid='{3}'",rowData.TotalLength,rowData.WireLength,rowData.LineID));
+               rowData.gdbj=(int)SbFuns.jsgdbj(rowData.LineCode);
+            }
             MsgBox.ShowTipMessageBox("计算完毕。");
         }
         private void btnOK_Click(object sender, EventArgs e) {
