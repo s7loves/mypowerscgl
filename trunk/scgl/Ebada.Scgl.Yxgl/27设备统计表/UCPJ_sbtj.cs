@@ -116,7 +116,7 @@ namespace Ebada.Scgl.Yxgl
 
             if (org != null) {
                 ParentObj = org;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "' and len(Linecode)=6");
                 PS_xl xlTemp = new PS_xl();
                 xlTemp.LineCode = "0";
                 xlTemp.LineID = "0";
@@ -478,7 +478,7 @@ namespace Ebada.Scgl.Yxgl
                          string orgCode = btGdsList.EditValue.ToString();
                          if (orgCode!=null&&orgCode!="")
                          {
-                             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + orgCode + "'");
+                             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + orgCode + "' and len(linecode)=6");
                              foreach (PS_xl xl in xlList)
                              {
                                  string lineCode = xl.LineCode;
