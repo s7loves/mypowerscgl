@@ -13,10 +13,7 @@ namespace Ebada.Kcgl.App {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //testdictionary();
-            
-            //frmLogin dlg = new frmLogin();
-            //if (dlg.ShowDialog() == DialogResult.OK)
+            FrmSystem.STAThread = true;
             Application.Run(new FrmSystem());
         }
        static void testdatabase() {
