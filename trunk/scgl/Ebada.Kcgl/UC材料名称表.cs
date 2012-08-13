@@ -45,10 +45,26 @@ namespace Ebada.Kcgl {
             treeViewOperator.AfterEdit +=treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete +=treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-
+            treeList1.DoubleClick += new EventHandler(treeList1_DoubleClick);
+            btOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btOK_ItemClick);
             treeViewOperator.SqlMap = Client.ClientHelper.TransportSqlMap;
         }
 
+        void btOK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            btOKclick();
+        }
+
+        void treeList1_DoubleClick(object sender, EventArgs e) {
+            btOKclick();
+        }
+        void btOKclick() {
+            if (!ShowbtOK) return;
+            if (treeList1.FocusedNode != null) {
+                if (treeList1.FocusedNode.HasChildren) return;
+                var obj = treeList1.GetDataRecordByNode(treeList1.FocusedNode) as kc_材料名称表;
+                if (obj != null) this.ParentForm.DialogResult = DialogResult.OK;
+            }
+        }
         void treeViewOperator_AfterDelete(kc_材料名称表 newobj) {
             if (AfterDelete != null)
                 AfterDelete(treeList1, newobj);
@@ -149,6 +165,20 @@ namespace Ebada.Kcgl {
         /// </summary>
         public void InitData() {
             treeViewOperator.RefreshData("order by "+kc_材料名称表.f_序号);    
+        }
+
+        public bool ShowbtOK {
+            get {
+                return btOK.Visibility== DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            set {
+                btOK.Visibility = value ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+                if (value) {
+                    bar3.Visible = true;
+                    barStaticItem1.Caption = "双击材料代码确认选择,有子材料的不可以选择。";
+                }
+
+            }
         }
     }
 }

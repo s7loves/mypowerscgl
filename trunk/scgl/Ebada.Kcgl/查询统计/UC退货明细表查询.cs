@@ -27,6 +27,11 @@ namespace Ebada.Kcgl {
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
             dateEdit1.EditValue = null;
             splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
+            //初始合计列
+            this.gridView1.OptionsView.ShowFooter = true;
+            gridView1.Columns[Model.kc_退货明细表.f_总计].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridView1.Columns[Model.kc_退货明细表.f_总计].SummaryItem.DisplayFormat = "合计={0}";
+
         }
         void initColumns() {
             

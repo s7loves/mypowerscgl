@@ -24,6 +24,7 @@ namespace Ebada.Kcgl {
         bool allowClose=false;
         Image topBackbmp;
         int topbarWidth;
+        static public bool STAThread;
         public FrmSystem() {
 
             InitializeComponent();
@@ -45,9 +46,16 @@ namespace Ebada.Kcgl {
 
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
-            
+            if (!STAThread) {
+                labTime.Hide();
+                labdate.Hide();
+                labdate2.Hide();
+                labshow.Hide();
+            } else {
+                timer1.Start();
+            }
         }
-
+        
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
             if (pictureEdit1.Width > topbarWidth) {
@@ -69,7 +77,8 @@ namespace Ebada.Kcgl {
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             Application.DoEvents();
-            timer1.Start();
+            //timer1.Start();
+            
             this.WindowState = FormWindowState.Maximized;
             this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
             frmLogin dlg = new frmLogin();
@@ -79,6 +88,7 @@ namespace Ebada.Kcgl {
                     InitFunction(MainHelper.User.UserID);
                 }
             } else {
+                allowClose = true;
                 this.Close();
             }
         }

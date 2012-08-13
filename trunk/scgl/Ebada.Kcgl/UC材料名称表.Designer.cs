@@ -47,6 +47,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btOK = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -55,16 +57,14 @@
             // 
             this.treeList1.AllowDrop = true;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.KeyFieldName = "ID";
             this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.treeList1.OptionsBehavior.DragNodes = true;
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsBehavior.EnableFiltering = true;
-            this.treeList1.Size = new System.Drawing.Size(549, 326);
+            this.treeList1.Size = new System.Drawing.Size(624, 349);
             this.treeList1.TabIndex = 0;
-           
             // 
             // barManager1
             // 
@@ -85,8 +85,10 @@
             this.btRefresh,
             this.btClose,
             this.btExport,
-            this.btFind});
-            this.barManager1.MaxItemId = 10;
+            this.btFind,
+            this.btOK,
+            this.barStaticItem1});
+            this.barManager1.MaxItemId = 12;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -103,11 +105,13 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btOK)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
             this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
             // 
             // btAdd
@@ -183,6 +187,8 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -193,25 +199,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(549, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(624, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 352);
-            this.barDockControlBottom.Size = new System.Drawing.Size(549, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 375);
+            this.barDockControlBottom.Size = new System.Drawing.Size(624, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 349);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(549, 26);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 326);
+            this.barDockControlRight.Location = new System.Drawing.Point(624, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 349);
             // 
             // imageList1
             // 
@@ -231,8 +237,25 @@
             this.imageList1.Images.SetKeyName(11, "exit1.png");
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
+            this.imageList1.Images.SetKeyName(14, "OK.png");
             // 
-            // UCmModuleTree
+            // btOK
+            // 
+            this.btOK.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btOK.Caption = "确认";
+            this.btOK.Id = 10;
+            this.btOK.ImageIndex = 14;
+            this.btOK.Name = "btOK";
+            this.btOK.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btOK.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Id = 11;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // UC材料名称
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,8 +264,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCmModuleTree";
-            this.Size = new System.Drawing.Size(549, 374);
+            this.Name = "UC材料名称";
+            this.Size = new System.Drawing.Size(624, 400);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
@@ -268,5 +291,7 @@
         private DevExpress.XtraBars.BarButtonItem btExport;
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraBars.BarButtonItem btOK;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
     }
 }
