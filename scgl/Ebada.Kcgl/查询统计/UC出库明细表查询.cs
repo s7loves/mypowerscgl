@@ -28,6 +28,11 @@ namespace Ebada.Kcgl {
             comboBoxEdit4.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 单位名称 from kc_出库单位"));
             dateEdit1.EditValue = null;
             splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
+            //初始合计列
+            this.gridView1.OptionsView.ShowFooter = true;
+            gridView1.Columns[Model.kc_出库明细表.f_总计].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridView1.Columns[Model.kc_出库明细表.f_总计].SummaryItem.DisplayFormat = "合计={0}";
+
         }
         void initColumns() {
             

@@ -46,8 +46,20 @@ namespace Ebada.Kcgl {
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
-            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
+            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseUp;
+            gridView1.ShowButtonMode = ShowButtonModeEnum.ShowForFocusedRow;
+            gridView1.OptionsView.ColumnAutoWidth = true;
             gridView1.CellValueChanging += new CellValueChangedEventHandler(gridView1_CellValueChanging);
+            gridView1.IndicatorWidth = 40;//设置显示行号的列宽
+            gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
+        }
+
+        void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e) {
+            //设置显示行数
+            if (e.Info.IsRowIndicator) {
+                e.Info.DisplayText = (e.RowHandle+1).ToString();
+                e.Info.ImageIndex = -1;
+            }
         }
 
         void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e) {
@@ -93,13 +105,14 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns[kc_工程计划明细表.f_总计].OptionsColumn.AllowEdit = false;
-            //setColumnVisible(false,kc_工程计划明细表.f_项目名称,kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称, kc_工程计划明细表.f_工程项目_ID);
-            //gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].VisibleIndex = 3 ;
-            
+            setColumnVisible(false,kc_工程计划明细表.f_供货厂家, kc_工程计划明细表.f_项目名称, kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称_ID, kc_工程计划明细表.f_工程项目_ID);
+            gridView1.Columns[kc_工程计划明细表.f_规格及型号].OptionsColumn.AllowEdit = false;
+            gridView1.Columns[kc_工程计划明细表.f_计量单位].OptionsColumn.AllowEdit = false;
+            //gridView1.Columns[kc_工程计划明细表.f_材料名称].ShowButtonMode = ShowButtonModeEnum.ShowOnlyInEditor;
             gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
             gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
-            gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit = getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
-            gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_工程计划明细表.f_材料名称].ColumnEdit = getclSeach();// getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
+            //gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_ID, kc_供货厂家.f_厂家名称);
             gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(供货厂家ColumnEdit_EditValueChanging);
         }
@@ -130,7 +143,29 @@ namespace Ebada.Kcgl {
                 }
             }
         }
-        
+
+        RepositoryItem getclSeach() {
+            var edit = new RepositoryItemButtonEdit();
+            //edit.Buttons[0].Kind = ButtonPredefines.Ellipsis;
+            edit.Click += new EventHandler(edit_Click);
+            edit.TextEditStyle = TextEditStyles.DisableTextEditor;
+            return edit;
+        }
+
+        void edit_Click(object sender, EventArgs e) {
+            frmCLSelector dlg = new frmCLSelector();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                if (dlg.Selected材料 != null) {
+                   var row= gridView1.GetFocusedRow() as kc_工程计划明细表 ;
+                   row.材料名称_ID = dlg.Selected材料.ID;
+                   row.材料名称 = dlg.Selected材料.材料名称;
+                   row.规格及型号 = dlg.Selected材料.规格及型号;
+                   row.计量单位 = dlg.Selected材料.计量单位;
+                   Client.ClientHelper.TransportSqlMap.Update<kc_工程计划明细表>(row);
+                   gridView1.UpdateCurrentRow();
+                }
+            }
+        }
         RepositoryItem getLookup<T>(string key, string value) {
             IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key,value);
             List<ListItem> list = new List<ListItem>();

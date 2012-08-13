@@ -44,11 +44,27 @@ namespace Ebada.Kcgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.CellValueChanging += new CellValueChangedEventHandler(gridView1_CellValueChanging);
-            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown;
+            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseUp;
             bar3.Visible = false;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             gridView1.OptionsView.ColumnAutoWidth = true;
+            //初始合计列
+            this.gridView1.OptionsView.ShowFooter = true;
+            gridView1.Columns[Model.kc_入库明细表.f_总计].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridView1.Columns[Model.kc_入库明细表.f_总计].SummaryItem.DisplayFormat = "合计={0}";
+
+            gridView1.IndicatorWidth = 40;//设置显示行号的列宽
+            gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
         }
+
+        void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e) {
+            //设置显示行数
+            if (e.Info.IsRowIndicator) {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+                e.Info.ImageIndex = -1;
+            }
+        }
+
 
         void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e) {
             var obj = gridView1.GetRow(e.RowHandle) as kc_入库明细表;
@@ -94,15 +110,36 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns[kc_入库明细表.f_总计].OptionsColumn.AllowEdit = false;
-            setColumnVisible(false, kc_入库明细表.f_供货厂家, kc_入库明细表.f_工程类别, kc_入库明细表.f_材料名称);
-            //gridView1.Columns[kc_入库明细表.f_材料名称_ID].VisibleIndex = 3 ;
+            setColumnVisible(false, kc_入库明细表.f_供货厂家, kc_入库明细表.f_工程类别, kc_入库明细表.f_材料名称_ID);
+            gridView1.Columns[kc_入库明细表.f_规格及型号].OptionsColumn.AllowEdit = false;
+            gridView1.Columns[kc_入库明细表.f_计量单位].OptionsColumn.AllowEdit = false;
+
             gridView1.Columns[kc_入库明细表.f_供货厂家_ID].Caption = "返货单位";
             gridView1.Columns[kc_入库明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
             gridView1.Columns[kc_入库明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
-            gridView1.Columns[kc_入库明细表.f_材料名称_ID].ColumnEdit = getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
-            gridView1.Columns[kc_入库明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
+            gridView1.Columns[kc_入库明细表.f_材料名称].ColumnEdit = getclSeach();
             gridView1.Columns[kc_入库明细表.f_供货厂家_ID].ColumnEdit = getLookup<kc_出库单位>(kc_出库单位.f_ID, kc_出库单位.f_单位名称);
             gridView1.Columns[kc_入库明细表.f_供货厂家_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(供货厂家ColumnEdit_EditValueChanging);
+        }
+        RepositoryItem getclSeach() {
+            var edit = new RepositoryItemButtonEdit();
+            edit.Click += new EventHandler(edit_Click);
+            edit.TextEditStyle = TextEditStyles.DisableTextEditor;
+            return edit;
+        }
+
+        void edit_Click(object sender, EventArgs e) {
+            frmCLSelector dlg = new frmCLSelector();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                if (dlg.Selected材料 != null) {
+                    var row = gridView1.GetFocusedRow() as kc_入库明细表;
+                    row.材料名称_ID = dlg.Selected材料.ID;
+                    row.规格及型号 = dlg.Selected材料.规格及型号;
+                    row.计量单位 = dlg.Selected材料.计量单位;
+                    gridView1.SetRowCellValue(gridView1.FocusedRowHandle, gridView1.FocusedColumn, dlg.Selected材料.材料名称);//必须，用以触发更新记录事件
+                    gridView1.UpdateCurrentRow();
+                }
+            }
         }
         void 供货厂家ColumnEdit_EditValueChanging(object sender, ChangingEventArgs e) {
             kc_入库明细表 obj = gridView1.GetFocusedRow() as kc_入库明细表;
