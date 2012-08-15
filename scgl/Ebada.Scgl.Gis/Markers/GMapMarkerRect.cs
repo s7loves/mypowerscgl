@@ -19,6 +19,10 @@ namespace Ebada.Scgl.Gis.Markers {
             Rectangle r = new Rectangle(p1, SizeSt);
             g.FillRectangle(Brushes.White, r);
             g.DrawRectangle(Pen, r);
+		if (ShowText && !string.IsNullOrEmpty(Text)) {
+
+                g.DrawString(Text,Font , Brushes.Blue, r.Right + 3, r.Top - 3);
+            }
 
         }
     }
