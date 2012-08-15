@@ -55,6 +55,14 @@ namespace Ebada.Kcgl {
 
             gridView1.IndicatorWidth = 40;//设置显示行号的列宽
             gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
+            btExport1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btExport1_ItemClick);
+        }
+
+        void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
+            var obj = gridView1.GetFocusedRow() as kc_出库明细表;
+            if (obj != null)
+                PrintHelper.ExportCK(obj.出库单_ID);
         }
 
         void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e) {
