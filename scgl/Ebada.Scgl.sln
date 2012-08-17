@@ -139,9 +139,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebada.Kcgl.App", "Ebada.Kcgl.App\Ebada.Kcgl.App.csproj", "{153CA839-0144-4F65-B2C7-F007BF89FB2A}"
 EndProject
 Global
-	GlobalSection(PowerDesigner) = preSolution
-		HasSWS = 1
-	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
