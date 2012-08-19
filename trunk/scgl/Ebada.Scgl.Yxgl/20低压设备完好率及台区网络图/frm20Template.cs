@@ -443,7 +443,7 @@ namespace Ebada.Scgl.Yxgl {
                             foreach (PS_xl xl in xlli) {
                                 xlsum += lineLength(xl);
                             }
-                            ctrl.Text = (xlsum).ToString();
+                            ctrl.Text = (Math.Round(xlsum, 1)).ToString();
                         } else
                             if (lp.CellName.IndexOf("最大供电半径") > -1) {
 
@@ -460,7 +460,7 @@ namespace Ebada.Scgl.Yxgl {
                                         maxxl = xlsum;
                                     }
                                 }
-                                ctrl.Text = (maxxl / 2).ToString();
+                                ctrl.Text = (Math.Round(maxxl, 1) / 2).ToString();
                             } else
                                 if (lp.CellName.IndexOf("低压杆基数") > -1) {
 
@@ -487,8 +487,8 @@ namespace Ebada.Scgl.Yxgl {
                                             foreach (PS_xl xl in xlli) {
                                                 xlsum += lineLength(xl);
                                             }
-                                            if (xlsum != 0)
-                                                ctrl.Text = xlsum.ToString();
+                                            if (xlsum > 0)
+                                                ctrl.Text = Math.Round(xlsum,1).ToString();
                                         } else
                                             if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
 
@@ -501,8 +501,8 @@ namespace Ebada.Scgl.Yxgl {
                                                 foreach (PS_xl xl in xlli) {
                                                     xlsum += lineLength(xl);
                                                 }
-                                                if (xlsum != 0)
-                                                    ctrl.Text = xlsum.ToString();
+                                                if (xlsum > 0)
+                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
                                             } else
                                                 if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
 
@@ -515,8 +515,8 @@ namespace Ebada.Scgl.Yxgl {
                                                     foreach (PS_xl xl in xlli) {
                                                         xlsum += lineLength(xl);
                                                     }
-                                                    if (xlsum != 0)
-                                                        ctrl.Text = xlsum.ToString();
+                                                    if (xlsum > 0)
+                                                        ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                 } else
                                                     if (lp.CellName.IndexOf("二线的一类") > -1) {
 
@@ -529,8 +529,8 @@ namespace Ebada.Scgl.Yxgl {
                                                         foreach (PS_xl xl in xlli) {
                                                             xlsum += lineLength(xl);
                                                         }
-                                                        if (xlsum != 0)
-                                                            ctrl.Text = xlsum.ToString();
+                                                        if (xlsum > 0)
+                                                            ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                     } else
                                                         if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
 
@@ -543,8 +543,8 @@ namespace Ebada.Scgl.Yxgl {
                                                             foreach (PS_xl xl in xlli) {
                                                                 xlsum += lineLength(xl);
                                                             }
-                                                            if (xlsum != 0)
-                                                                ctrl.Text = xlsum.ToString();
+                                                            if (xlsum > 0)
+                                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                         } else
                                                             if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
 
@@ -557,8 +557,8 @@ namespace Ebada.Scgl.Yxgl {
                                                                 foreach (PS_xl xl in xlli) {
                                                                     xlsum += lineLength(xl);
                                                                 }
-                                                                if (xlsum != 0)
-                                                                    ctrl.Text = xlsum.ToString();
+                                                                if (xlsum > 0)
+                                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                             }
                 }
             }
@@ -633,7 +633,7 @@ namespace Ebada.Scgl.Yxgl {
                             foreach (PS_xl xl in xlli) {
                                 xlsum += lineLength(xl);
                             }
-                            ctrl.Text = (xlsum).ToString();
+                            ctrl.Text = Math.Round(xlsum, 1).ToString();
                         } else
                             if (lp.CellName.IndexOf("最大供电半径") > -1) {
 
@@ -650,7 +650,7 @@ namespace Ebada.Scgl.Yxgl {
                                         maxxl = xlsum;
                                     }
                                 }
-                                ctrl.Text = (maxxl / 2).ToString();
+                                ctrl.Text = (Math.Round(maxxl, 1) / 2).ToString();
                             } else
                                 if (lp.CellName.IndexOf("低压杆基数") > -1) {
 
@@ -678,7 +678,7 @@ namespace Ebada.Scgl.Yxgl {
                                                 xlsum += lineLength(xl);
                                             }
                                             if (xlsum != 0)
-                                                ctrl.Text = xlsum.ToString();
+                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
                                         } else
                                             if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
 
@@ -692,7 +692,7 @@ namespace Ebada.Scgl.Yxgl {
                                                     xlsum += lineLength(xl);
                                                 }
                                                 if (xlsum != 0)
-                                                    ctrl.Text = xlsum.ToString();
+                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
                                             } else
                                                 if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
 
@@ -706,7 +706,7 @@ namespace Ebada.Scgl.Yxgl {
                                                         xlsum += lineLength(xl);
                                                     }
                                                     if (xlsum != 0)
-                                                        ctrl.Text = xlsum.ToString();
+                                                        ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                 } else
                                                     if (lp.CellName.IndexOf("二线的一类") > -1) {
 
@@ -720,7 +720,7 @@ namespace Ebada.Scgl.Yxgl {
                                                             xlsum += lineLength(xl);
                                                         }
                                                         if (xlsum != 0)
-                                                            ctrl.Text = xlsum.ToString();
+                                                            ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                     } else
                                                         if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
 
@@ -734,7 +734,7 @@ namespace Ebada.Scgl.Yxgl {
                                                                 xlsum += lineLength(xl);
                                                             }
                                                             if (xlsum != 0)
-                                                                ctrl.Text = xlsum.ToString();
+                                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                         } else
                                                             if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
 
@@ -748,7 +748,7 @@ namespace Ebada.Scgl.Yxgl {
                                                                     xlsum += lineLength(xl);
                                                                 }
                                                                 if (xlsum != 0)
-                                                                    ctrl.Text = xlsum.ToString();
+                                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
                                                             }
                     if (ctrl.Tag != null)
                         InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
@@ -1501,6 +1501,9 @@ namespace Ebada.Scgl.Yxgl {
 
                     IList<string> strList = new List<string>();
                     if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                        if(string.IsNullOrEmpty(str))
+                            ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        else
                         ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
@@ -1523,6 +1526,9 @@ namespace Ebada.Scgl.Yxgl {
                         }
                     } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
                         int i = 0;
+                        if (string.IsNullOrEmpty(str))
+                            ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        else
                         ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i])) {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
@@ -1552,6 +1558,9 @@ namespace Ebada.Scgl.Yxgl {
                 string[] extraWord = lp.ExtraWord.Split(pchar);
                 List<int> arrCellCount = String2Int(arrtemp);
                 if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                    if (string.IsNullOrEmpty(str))
+                        ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    else
                     ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
@@ -1607,6 +1616,9 @@ namespace Ebada.Scgl.Yxgl {
                     int i = 0;
                     if (arrCellCount[0] != arrCellCount[1]) {
                         if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0])) {
+                            if (string.IsNullOrEmpty(str))
+                                ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                            else
                             ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
