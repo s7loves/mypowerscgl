@@ -140,8 +140,8 @@ namespace Ebada.SCGL
             dt.Rows.Clear();
             taskdt.Rows.Clear();
             string strflowinsid = "";
-
-            foreach (DataRow tdr in workTaskdt.Rows)
+            DataRow[] rows=workTaskdt.Select("len(FlowCaption)>0");
+            foreach (DataRow tdr in rows)
             {
 
                 DataRow taskdr = taskdt.NewRow();
@@ -217,6 +217,9 @@ namespace Ebada.SCGL
              * 
              * 
              * */
+            newsTabPage.Hide();
+            xtraTabControl2.TabPages.RemoveAt(0);
+            return;
             string pageName=System.AppDomain.CurrentDomain.BaseDirectory.ToString()+"NewsPage.htm";
             Encoding code = Encoding.GetEncoding("gb2312");
             StreamReader sr = new StreamReader(typeof(Desktop).Assembly.GetManifestResourceStream("Ebada.SCGL.NewsPage.htm"), code);//要读取的流和编码 
@@ -345,7 +348,7 @@ namespace Ebada.SCGL
                  frm.Kind = dr["FlowCaption"].ToString();
                  frm.RecordWorkFlowData = dt;
                  frm.ShowDialog();
-                
+                 refreshTreeData();
              }
              else
              {
