@@ -109,6 +109,7 @@ namespace Ebada.Scgl.Gis {
                 g.DrawLines(Pens.Blue,pts );
                 bool b1 = Math.Abs(pts[0].X - pts[1].X) > Math.Abs(pts[0].Y - pts[1].Y);
                 Point offset = new Point(b1 ? 0 : 20, b1 ? 20 : 0);
+                int gtnum = 0;
                 for(int i=0;i<pts.Length;i++) {
                     PS_gt gt =gts[xl][i];
                     if (gt.gtLat==0.0m||gt.gtLon==0.0m) continue;
@@ -159,9 +160,11 @@ namespace Ebada.Scgl.Gis {
                     if (gt.gtJg == "是") {
                         g.DrawEllipse(pen0, pts[i].X - 5, pts[i].Y - 5, 10, 10);
                     } else {
+                        gtnum += 1;
                         g.DrawEllipse(Pens.Blue, pts[i].X - 5, pts[i].Y - 5, 10, 10);
+                        g.DrawString((int)gt.gtHeight + "/" + (gtnum), f, Brushes.Black, pts[i].X - 10, pts[i].Y + 5);
+
                     }
-                    g.DrawString((int)gt.gtHeight + "/" + (i + 1), f, Brushes.Black, pts[i].X - 10, pts[i].Y + 5);
                 }
                 p0 = Point.Empty;
             }
