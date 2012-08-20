@@ -195,17 +195,20 @@ namespace Ebada.SCGL.CADLib
                 color.SetRGB(c1.R, c1.G, c1.B);
                 ple.TrueColor = color;
                 cad.Application.Update();
-
+                int gtnum = 0;
                 for (int i = 0; i < list.Count; i++)
                 {
                     double[] pnt = new double[3];
                     pnt[0] = Convert.ToDouble(list[i].gtLon.ToString("0.########"));
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
+                    
                     AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*bl);
                     cirz.Layer = "gt";
                     cirz.TrueColor = color;
-                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, list[i].gth);
+                    if (list[i].gtJg == "是") continue;
+                    gtnum++;
+                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gtnum.ToString());
                     ntext.Height = 0.0001*bl;
                     ntext.Layer = "gth";
                 }
