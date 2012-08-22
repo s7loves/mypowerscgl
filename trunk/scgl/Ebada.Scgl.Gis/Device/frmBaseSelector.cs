@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Gis.Device {
             InitData();
         }
         protected virtual void simpleButton1_Click(object sender, EventArgs e) {
+            if (GetSelected() == null) return;
             DialogResult = DialogResult.OK;
         }
         protected virtual void simpleButton2_Click(object sender, EventArgs e) {
