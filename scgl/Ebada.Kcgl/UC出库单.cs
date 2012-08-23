@@ -105,7 +105,7 @@ namespace Ebada.Kcgl {
         /// 初始化列,
         /// </summary>
         public void InitColumns() {
-
+            gridView1.Columns[kc_出库单.f_出库单号].OptionsColumn.AllowEdit = false;
             //需要隐藏列时在这写代码
             hideColumn(kc_出库单.f_工程类别_ID, kc_出库单.f_工程项目_ID, kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
         }

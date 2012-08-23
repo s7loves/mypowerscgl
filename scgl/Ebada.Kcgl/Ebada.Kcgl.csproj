@@ -109,6 +109,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="UC工程项目M.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC工程项目M.Designer.cs">
+      <DependentUpon>UC工程项目M.cs</DependentUpon>
+    </Compile>
     <Compile Include="查询统计\UCv工程到货查询.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -383,6 +389,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="00记录模板\出库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC工程项目M.resx">
+      <DependentUpon>UC工程项目M.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

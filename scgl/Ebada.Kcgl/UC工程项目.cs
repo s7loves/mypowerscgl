@@ -20,6 +20,10 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Kcgl.Model;
+using DevExpress.XtraEditors.Repository;
+using System.Collections;
+using Ebada.UI.Base;
+using DevExpress.XtraEditors.Controls;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -31,11 +35,12 @@ namespace Ebada.Kcgl {
 
         public event SendDataEventHandler<Model.kc_工程项目> FocusedRowChanged;
         private string parentID;
+        private Model.kc_工程类别 parentObj;
         public UC工程项目() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<Model.kc_工程项目>(gridControl1, gridView1, barManager1,true);
-
+            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<kc_工程项目>(gridViewOperation_BeforeSave);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_工程项目>(gridViewOperation_BeforeDelete);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
@@ -45,9 +50,10 @@ namespace Ebada.Kcgl {
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_工程项目> e) {
-            if (childView != null && childView.BindingList.Count > 0) {
+            int rows= Client.ClientHelper.TransportSqlMap.GetRowCount<UC出库明细表>("where 工程项目_ID='" + e.Value.工程类别 + "'");
+            if (rows > 0) {
                 e.Cancel = true;
-                MsgBox.ShowAskMessageBox("请先删除计划明细，再删除项目！");
+                MsgBox.ShowAskMessageBox("工程项目被引用,不能删除！");
             }
         }
 
@@ -58,9 +64,10 @@ namespace Ebada.Kcgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            gridViewOperation.SqlMap = Client.ClientHelper.TransportSqlMap;
+            
             InitColumns();//初始列
-            InitData();//初始数据
+            
+            //InitData();//初始数据
         }
         private IViewOperation<kc_工程计划明细表> childView;
         /// <summary>
@@ -108,6 +115,33 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             hideColumn( kc_工程项目.f_开工日期, kc_工程项目.f_完成日期, kc_工程项目.f_预算费用);
+            gridView1.Columns[kc_工程项目.f_工程类别].OptionsColumn.AllowEdit = false;
+            gridView1.Columns[kc_工程项目.f_工程类别].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            //gridView1.Columns[kc_工程项目.f_工程类别].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
+
+        }
+        RepositoryItem getLookup<T>(string key, string value) {
+            IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);
+            List<ListItem> list = new List<ListItem>();
+            foreach (var item in dic.Keys) {
+                list.Add(new ListItem(item.ToString(), dic[item].ToString()));
+            }
+            return new LookUpDicType(list);
+        }
+        class LookUpDicType : RepositoryItemLookUpEdit {
+            public LookUpDicType(IList datasource)
+                : this(datasource, "ValueMember", "DisplayMember") {
+
+            }
+            public LookUpDicType(IList datasource, string key, string value) {
+                this.Columns.Add(new LookUpColumnInfo(key, "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default));
+                this.Columns.Add(new LookUpColumnInfo(value, ""));
+                this.DataSource = datasource;
+                this.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                this.Properties.DisplayMember = value;
+                this.Properties.ValueMember = key;
+                this.Properties.NullText = "";
+            }
         }
         /// <summary>
         /// 刷新数据
@@ -124,13 +158,14 @@ namespace Ebada.Kcgl {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
-        /// <summary>
+        /// <summary>a22336789CCFFV
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程项目 newobj) {
             newobj.工程项目名称 = "新工程项目";
             newobj.开工日期 = DateTime.Now;
+            newobj.工程类别 = parentID;
         }
         /// <summary>
         /// 父表ID
@@ -140,6 +175,25 @@ namespace Ebada.Kcgl {
             get { return parentID; }
             set {
                 parentID = value;
+                if (!string.IsNullOrEmpty(value)) {
+                    RefreshData(" where 工程类别='" + value + "'");
+                } else {
+                    RefreshData(" where 1>0");
+                }
+            }
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Model.kc_工程类别 ParentObj {
+            get { return parentObj; }
+            set {
+
+                parentObj = value;
+                if (value == null) {
+                    ParentID = null;
+                } else {
+                    ParentID = value.ID;
+                }
             }
         }
     }

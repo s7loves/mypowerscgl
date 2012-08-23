@@ -244,7 +244,7 @@ namespace Ebada.Kcgl {
 
                 parentObj = value;
                 if (value == null) {
-                    parentID = null;
+                    ParentID = null;
                 } else {
                     ParentID = value.ID;
                 }
