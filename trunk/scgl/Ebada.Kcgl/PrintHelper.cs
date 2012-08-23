@@ -35,8 +35,8 @@ namespace Ebada.Kcgl {
 
             kc_入库单 rkobj=Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_入库单>(rkid);
             if(rkobj==null)return;
-            kc_工程项目 gcobj=Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_工程项目>(rkobj.工程项目_ID);
-            string kcname=gcobj!=null?gcobj.工程项目名称:"";
+            kc_工程类别 gcobj = Client.ClientHelper.TransportSqlMap.GetOneByKey<kc_工程类别>(rkobj.工程类别_ID);
+            string kcname=gcobj!=null?gcobj.工程类别:"";
             ea.SetCellValue(rkobj.入库时间.ToString("yyyy-MM-dd"),3,5);
             //数据源
             IList<Model.kc_入库明细表> list = Client.ClientHelper.TransportSqlMap.GetList<kc_入库明细表>("where 入库单_ID='" + rkid + "'");
@@ -57,7 +57,8 @@ namespace Ebada.Kcgl {
             }
 
             //显示文件
-            ea.ShowExcel();
+            ea.Print();
+            ea.DisPoseExcel();
         }
         internal static void ExportCK(string rkid) {
             ExcelAccess ea = new ExcelAccess();
@@ -148,7 +149,8 @@ namespace Ebada.Kcgl {
                 if (i > 37) break;
             }
             //显示文件
-            ea.ShowExcel();
+            ea.Print();
+            ea.DisPoseExcel();
         }
     }
 }
