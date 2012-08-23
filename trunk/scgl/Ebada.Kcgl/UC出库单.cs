@@ -21,6 +21,9 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Kcgl.Model;
 using System.Collections;
+using DevExpress.XtraEditors.Repository;
+using Ebada.UI.Base;
+using DevExpress.XtraEditors.Controls;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -107,7 +110,33 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
             gridView1.Columns[kc_出库单.f_出库单号].OptionsColumn.AllowEdit = false;
             //需要隐藏列时在这写代码
-            hideColumn(kc_出库单.f_工程类别_ID, kc_出库单.f_工程项目_ID, kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
+            hideColumn(kc_出库单.f_工程类别_ID,  kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
+            gridView1.Columns[kc_出库单.f_工程项目_ID].ColumnEdit = getLookup<kc_工程项目>(kc_工程项目.f_ID, kc_工程项目.f_工程项目名称);
+
+
+        }
+        RepositoryItem getLookup<T>(string key, string value) {
+            IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);
+            List<ListItem> list = new List<ListItem>();
+            foreach (var item in dic.Keys) {
+                list.Add(new ListItem(item.ToString(), dic[item].ToString()));
+            }
+            return new LookUpDicType(list);
+        }
+        class LookUpDicType : RepositoryItemLookUpEdit {
+            public LookUpDicType(IList datasource)
+                : this(datasource, "ValueMember", "DisplayMember") {
+
+            }
+            public LookUpDicType(IList datasource, string key, string value) {
+                this.Columns.Add(new LookUpColumnInfo(key, "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default));
+                this.Columns.Add(new LookUpColumnInfo(value, ""));
+                this.DataSource = datasource;
+                this.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+                this.Properties.DisplayMember = value;
+                this.Properties.ValueMember = key;
+                this.Properties.NullText = "";
+            }
         }
         /// <summary>
         /// 刷新数据

@@ -114,6 +114,7 @@ namespace Ebada.Kcgl {
         /// </summary>
         public void InitColumns() {
 
+            gridView1.Columns[kc_出库明细表.f_出库单位_ID].Caption = "工程项目";
             //需要隐藏列时在这写代码
             setColumnVisible(false, kc_出库明细表.f_出库单位, kc_出库明细表.f_工程类别, kc_出库明细表.f_材料名称_ID);
             gridView1.Columns[kc_出库明细表.f_总计].OptionsColumn.AllowEdit = false;
