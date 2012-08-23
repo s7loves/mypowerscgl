@@ -35,7 +35,7 @@ namespace Ebada.Kcgl {
 
         public event SendDataEventHandler<Model.kc_工程计划明细表> FocusedRowChanged;
         private string parentID;
-        private Model.kc_工程项目 parentObj;
+        private Model.kc_工程类别 parentObj;
         public UC工程计划明细表() {
             InitializeComponent();
             initImageList();
@@ -105,12 +105,12 @@ namespace Ebada.Kcgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns[kc_工程计划明细表.f_总计].OptionsColumn.AllowEdit = false;
-            setColumnVisible(false,kc_工程计划明细表.f_供货厂家, kc_工程计划明细表.f_项目名称, kc_工程计划明细表.f_工程类别, kc_工程计划明细表.f_材料名称_ID, kc_工程计划明细表.f_工程项目_ID);
+            setColumnVisible(false,kc_工程计划明细表.f_供货厂家, kc_工程计划明细表.f_项目名称, kc_工程计划明细表.f_工程类别_ID, kc_工程计划明细表.f_材料名称_ID, kc_工程计划明细表.f_工程项目_ID);
             gridView1.Columns[kc_工程计划明细表.f_规格及型号].OptionsColumn.AllowEdit = false;
             gridView1.Columns[kc_工程计划明细表.f_计量单位].OptionsColumn.AllowEdit = false;
             //gridView1.Columns[kc_工程计划明细表.f_材料名称].ShowButtonMode = ShowButtonModeEnum.ShowOnlyInEditor;
-            gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
-            gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
+            //gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            //gridView1.Columns[kc_工程计划明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_工程计划明细表.f_材料名称].ColumnEdit = getclSeach();// getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
             //gridView1.Columns[kc_工程计划明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_工程计划明细表.f_供货厂家_ID].ColumnEdit = getLookup<kc_供货厂家>(kc_供货厂家.f_ID, kc_供货厂家.f_厂家名称);
@@ -216,8 +216,8 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程计划明细表 newobj) {
-            newobj.工程项目_ID = parentObj.ID;
-            newobj.项目名称 = parentObj.工程项目名称;
+            newobj.工程类别_ID = parentObj.ID;
+            newobj.工程类别 = parentObj.工程类别;
             newobj.计划日期 = DateTime.Today;
             newobj.合同到货日期 = DateTime.Today;
         }
@@ -230,7 +230,7 @@ namespace Ebada.Kcgl {
             set {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value)) {
-                    RefreshData(" where 工程项目_ID='" + value + "'");
+                    RefreshData(" where 工程类别_ID='" + value + "'");
                 } else {
                     RefreshData(" where 1>0");
                 }
@@ -238,7 +238,7 @@ namespace Ebada.Kcgl {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Model.kc_工程项目 ParentObj {
+        public Model.kc_工程类别 ParentObj {
             get { return parentObj; }
             set {
 

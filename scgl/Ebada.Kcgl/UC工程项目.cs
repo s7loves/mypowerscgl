@@ -107,7 +107,7 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-
+            hideColumn( kc_工程项目.f_开工日期, kc_工程项目.f_完成日期, kc_工程项目.f_预算费用);
         }
         /// <summary>
         /// 刷新数据
@@ -129,7 +129,7 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程项目 newobj) {
-            newobj.工程项目名称 = "工程项目";
+            newobj.工程项目名称 = "新工程项目";
             newobj.开工日期 = DateTime.Now;
         }
         /// <summary>

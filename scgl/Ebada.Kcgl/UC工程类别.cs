@@ -19,6 +19,7 @@ using DevExpress.XtraGrid.Columns;
 using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     /// <summary>
@@ -38,6 +39,19 @@ namespace Ebada.Kcgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<kc_工程类别>(gridViewOperation_BeforeDelete);
+        }
+
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_工程类别> e) {
+
+            if (childView != null && childView.BindingList.Count > 0) {
+                e.Cancel = true;
+                MsgBox.ShowAskMessageBox("要删除工程类别，请先删除计划明细！");
+            }
+            if (childView2 != null && childView2.BindingList.Count > 0) {
+                e.Cancel = true;
+                MsgBox.ShowAskMessageBox("要删除工程类别，请先删除工程项目！");
+            }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -70,6 +84,23 @@ namespace Ebada.Kcgl {
             //需要隐藏列时在这写代码
 
         }
+        private IViewOperation<kc_工程项目> childView2;
+
+        private IViewOperation<kc_工程计划明细表> childView;
+        /// <summary>
+        /// 获取和设置子表的数据操作接口
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public IViewOperation<Model.kc_工程计划明细表> ChildView {
+            get { return childView; }
+            set {
+                childView = value;
+                if (value != null) {
+                    bar3.Visible = false;
+                }
+            }
+        }
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -90,7 +121,7 @@ namespace Ebada.Kcgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(Model.kc_工程类别 newobj) {
-            
+            newobj.工程类别 = "新工程类别";
         }
         /// <summary>
         /// 父表ID

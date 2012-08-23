@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.splitCC1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ucTop = new UC工程项目();
+            this.ucTop = new UC工程类别();
             this.ucBottom = new UC工程计划明细表();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
@@ -83,7 +83,7 @@
         #endregion
 
         public DevExpress.XtraEditors.SplitContainerControl splitCC1;
-        private UC工程项目 ucTop;
+        private UC工程类别 ucTop;
         private UC工程计划明细表 ucBottom;
 
     }

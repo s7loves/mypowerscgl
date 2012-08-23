@@ -28,13 +28,13 @@ namespace Ebada.Kcgl {
         public UC工程计划M() {
             InitializeComponent();
             //接收TreeList行焦点改变事件
-            ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Model.kc_工程项目>(ucTop_FocusedRowChanged);
+            ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Model.kc_工程类别>(ucTop_FocusedRowChanged);
         }
 
-        void ucTop_FocusedRowChanged(object sender, kc_工程项目 obj) {
+        void ucTop_FocusedRowChanged(object sender, kc_工程类别 obj) {
             ucBottom.ParentObj = obj;
-            splitCC1.Panel1.Text = "工程项目列表";
-            splitCC1.Panel2.Text = "工程计划明细：" + (obj != null ? obj.工程项目名称 : "");
+            splitCC1.Panel1.Text = "工程列表";
+            splitCC1.Panel2.Text = "工程计划明细：" + (obj != null ? obj.工程类别 : "");
         }
 
         protected override void OnLoad(EventArgs e) {
