@@ -110,8 +110,9 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-            hideColumn(kc_入库单.f_工程类别_ID,  kc_入库单.f_供货厂家_ID);
-            gridView1.Columns[kc_入库单.f_工程项目_ID].ColumnEdit = getLookup<kc_工程项目>(kc_工程项目.f_ID, kc_工程项目.f_工程项目名称);
+            gridView1.Columns[kc_入库单.f_入库单号].OptionsColumn.AllowEdit = false;
+            hideColumn(kc_入库单.f_工程项目_ID,  kc_入库单.f_供货厂家_ID);
+            gridView1.Columns[kc_入库单.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
         }
         RepositoryItem getLookup<T>(string key, string value) {
             IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);

@@ -120,7 +120,7 @@ namespace Ebada.Kcgl {
             gridView1.Columns[kc_出库明细表.f_规格及型号].OptionsColumn.AllowEdit = false;
             gridView1.Columns[kc_出库明细表.f_计量单位].OptionsColumn.AllowEdit = false;
 
-            gridView1.Columns[kc_出库明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            gridView1.Columns[kc_出库明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程项目>(kc_工程项目.f_ID, kc_工程项目.f_工程项目名称);
             gridView1.Columns[kc_出库明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_出库明细表.f_材料名称].ColumnEdit = getclSeach();// getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
             //gridView1.Columns[kc_出库明细表.f_材料名称_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(材料名称表ColumnEdit_EditValueChanging);

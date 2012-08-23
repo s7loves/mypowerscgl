@@ -47,7 +47,6 @@ namespace Ebada.Kcgl {
             gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseUp;
             bar3.Visible = false;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            gridView1.OptionsView.ColumnAutoWidth = true;
             //初始合计列
             this.gridView1.OptionsView.ShowFooter = true;
             gridView1.Columns[Model.kc_入库明细表.f_总计].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
@@ -85,6 +84,11 @@ namespace Ebada.Kcgl {
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<Ebada.Kcgl.Model.kc_入库明细表> e) {
             if (ParentObj == null) e.Cancel = true;
+
+            if (string.IsNullOrEmpty(ParentObj.工程类别_ID)) {
+                e.Cancel = true;
+                MsgBox.ShowAskMessageBox("请选择入库的工程类别");
+            }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

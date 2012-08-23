@@ -82,9 +82,18 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-
+            gridView1.Columns[kc_工程类别.f_序号].Visible = false;
         }
         private IViewOperation<kc_工程项目> childView2;
+
+        public IViewOperation<kc_工程项目> ChildView2 {
+            get { return childView2; }
+            set {
+                childView2 = value; if (value != null) {
+                    bar3.Visible = false;
+                }
+            }
+        }
 
         private IViewOperation<kc_工程计划明细表> childView;
         /// <summary>
@@ -98,6 +107,8 @@ namespace Ebada.Kcgl {
                 childView = value;
                 if (value != null) {
                     bar3.Visible = false;
+                    bar1.Visible = false;
+                    gridView1.OptionsBehavior.Editable = false;
                 }
             }
         }
