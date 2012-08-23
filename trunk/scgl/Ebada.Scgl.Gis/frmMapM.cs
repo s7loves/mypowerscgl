@@ -320,13 +320,25 @@ namespace Ebada.Scgl.Gis {
 
                 case 1:
                     rMap1.MapProvider = GoogleChinaMap.Instance;
+                    rMap1.MaxZoom = 16;
                     break;
                 case 2:
                     rMap1.MapProvider = GoogleChinaHybridMap.Instance;
+                    rMap1.MaxZoom = 16;
+                    break;
+                case 3:
+                    
+                    rMap1.MapProvider = GoogleChinaTerrainMap.Instance;
+                    
+                    rMap1.MaxZoom = 15;
+                    if (rMap1.Zoom > 15)
+                        rMap1.Zoom = 15;
+                    
                     break;
                 default:
+                    
                     rMap1.MapProvider = GoogleChinaMapNull.Instance;
-
+                    rMap1.MaxZoom = 16;
                     break;
             }
         }
