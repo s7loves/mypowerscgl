@@ -46,7 +46,7 @@ namespace Ebada.Kcgl {
             
         }
         private void query() {
-            string sql = "where 1=1  ";
+            string sql = "where (入库单_ID in (select ID from kc_入库单 where 入库单号 like 'RK%') ) ";
             if(!string.IsNullOrEmpty(comboBoxEdit1.EditValue as string))
                 sql+=string.Format(" and 工程类别='{0}'",comboBoxEdit1.EditValue);
             if(!string.IsNullOrEmpty(comboBoxEdit2.EditValue as string))
