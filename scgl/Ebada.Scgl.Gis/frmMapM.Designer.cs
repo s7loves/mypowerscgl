@@ -242,8 +242,9 @@
             this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("无地图", "0", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("城市地图", "1", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("卫星地图", "2", -1)});
-            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("卫星地图", "2", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("地形图", "3", -1)});
+           this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // barCAD
             // 
