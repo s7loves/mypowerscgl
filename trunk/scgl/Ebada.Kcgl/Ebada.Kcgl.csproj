@@ -265,6 +265,12 @@
     <Compile Include="查询统计\UCv库存汇总表查询.Designer.cs">
       <DependentUpon>UCv库存汇总表查询.cs</DependentUpon>
     </Compile>
+    <Compile Include="查询统计\UCv工程结算查询.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UCv工程结算查询.Designer.cs">
+      <DependentUpon>UCv工程结算查询.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmCLSelector.resx">
@@ -393,6 +399,9 @@
     <EmbeddedResource Include="UC工程项目M.resx">
       <DependentUpon>UC工程项目M.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UCv工程结算查询.resx">
+      <DependentUpon>UCv工程结算查询.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
