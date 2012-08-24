@@ -35,6 +35,13 @@ namespace Ebada.Kcgl {
 
                 if(c.FieldName.Contains("ID"))c.Visible=false;
             }
+            //初始合计列
+            this.gridView1.OptionsView.ShowFooter = true;
+            gridView1.Columns[Model.v工程结算查询.f_总价].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridView1.Columns[Model.v工程结算查询.f_总价].SummaryItem.DisplayFormat = "合计={0}";
+            this.gridView2.OptionsView.ShowFooter = true;
+            gridView2.Columns[Model.v工程结算查询.f_总价].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridView2.Columns[Model.v工程结算查询.f_总价].SummaryItem.DisplayFormat = "合计={0}";
         }
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //查询 [项目名称], [工程类别], [材料名称], [规格及型号],[计量单位],[计划数量],[到货数量],[差值],[计划日期],[合同到货日期],[供货厂家],[联系人],[联系电话]
