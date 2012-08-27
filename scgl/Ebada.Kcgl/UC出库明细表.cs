@@ -56,6 +56,7 @@ namespace Ebada.Kcgl {
             gridView1.IndicatorWidth = 40;//设置显示行号的列宽
             gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
             btExport1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btExport1_ItemClick);
+            btExport1.Caption = "打印";
         }
 
         void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
