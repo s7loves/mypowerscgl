@@ -254,7 +254,7 @@ namespace Ebada.Scgl.Yxgl {
             if (status == "edit") {
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                  " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + currRecord.tqCode + "' and WorkFlowInsId='" + currRecord.tqName + "' ");
-                
+
                 //wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 //ea.MyWorkBook = wb;
                 //ea.MyExcel = wb.Application;
@@ -346,25 +346,26 @@ namespace Ebada.Scgl.Yxgl {
             return strkind;
         }
         private decimal lineLength(PS_xl line) {
-            decimal length = 0, lineloss = 0;
-            IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
-            foreach (PS_gt gt in listGT) {
-                IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
-                if (listxl.Count == 0) {
-                    lineloss += gt.gtSpan;
-                    if (lineloss > length) {
-                        length = lineloss;
-                    }
-                } else {
-                    foreach (PS_xl xl in listxl) {
-                        lineloss += lineLength(xl);
-                        if (lineloss > length) {
-                            length = lineloss;
-                        }
-                    }
-                }
-            }
-            return length / 1000;
+            return line.WireLength / 1000m;
+            //decimal length = 0, lineloss = 0;
+            //IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
+            //foreach (PS_gt gt in listGT) {
+            //    IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+            //    if (listxl.Count == 0) {
+            //        lineloss += gt.gtSpan;
+            //        if (lineloss > length) {
+            //            length = lineloss;
+            //        }
+            //    } else {
+            //        foreach (PS_xl xl in listxl) {
+            //            lineloss += lineLength(xl);
+            //            if (lineloss > length) {
+            //                length = lineloss;
+            //            }
+            //        }
+            //    }
+            //}
+            //return length / 1000;
         }
         public void InitContorl() {
             int MaxWordWidth = CalcWidth();
@@ -434,7 +435,7 @@ namespace Ebada.Scgl.Yxgl {
                     } else
                         if (lp.CellName.IndexOf("低压线路") > -1) {
 
-                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                             strSQL = " where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                 + " and linevol='0.4'";
                             ctrl.Tag = lp;
@@ -460,18 +461,18 @@ namespace Ebada.Scgl.Yxgl {
                                         maxxl = xlsum;
                                     }
                                 }
-                                ctrl.Text = (Math.Round(maxxl, 1) / 2).ToString();
+                                ctrl.Text = (Math.Round(maxxl, 1)).ToString();
                             } else
                                 if (lp.CellName.IndexOf("低压杆基数") > -1) {
 
-                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + currRecord.tqCode + "'");
                                     lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
                                                         + " from PS_gt where 5=5 and gtjg='否' and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
                                     ctrl.Tag = lp;
                                 } else
                                     if (lp.CellName.IndexOf("表箱数") > -1) {
 
-                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + currRecord.tqCode + "'");
                                         lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
                                             + " and gtID in ("
                                             + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
@@ -479,7 +480,7 @@ namespace Ebada.Scgl.Yxgl {
                                     } else
                                         if (lp.CellName.IndexOf("四线的一类") > -1) {
 
-                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                             strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
                                             ctrl.Tag = lp;
                                             xlsum = 0;
@@ -488,11 +489,11 @@ namespace Ebada.Scgl.Yxgl {
                                                 xlsum += lineLength(xl);
                                             }
                                             if (xlsum > 0)
-                                                ctrl.Text = Math.Round(xlsum,1).ToString();
+                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
                                         } else
                                             if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
 
-                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                                 strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                 ctrl.Tag = lp;
@@ -506,7 +507,7 @@ namespace Ebada.Scgl.Yxgl {
                                             } else
                                                 if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
 
-                                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                                     strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                     ctrl.Tag = lp;
@@ -520,7 +521,7 @@ namespace Ebada.Scgl.Yxgl {
                                                 } else
                                                     if (lp.CellName.IndexOf("二线的一类") > -1) {
 
-                                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                                         strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                         ctrl.Tag = lp;
@@ -534,7 +535,7 @@ namespace Ebada.Scgl.Yxgl {
                                                     } else
                                                         if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
 
-                                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                                             strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                             ctrl.Tag = lp;
@@ -548,7 +549,7 @@ namespace Ebada.Scgl.Yxgl {
                                                         } else
                                                             if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
 
-                                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                                                 strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                                 ctrl.Tag = lp;
@@ -614,6 +615,7 @@ namespace Ebada.Scgl.Yxgl {
 
         void btn_rec_Click(object sender, EventArgs e) {
             if (parentTemple != null && templeList != null) {
+                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                 foreach (LP_Temple lp in templeList) {
                     Control ctrl = FindCtrl(lp.LPID);
                     string strSQL = "";
@@ -624,7 +626,7 @@ namespace Ebada.Scgl.Yxgl {
                     } else
                         if (lp.CellName.IndexOf("低压线路") > -1) {
 
-                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+
                             strSQL = " where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                 + " and linevol='0.4'";
                             ctrl.Tag = lp;
@@ -637,7 +639,7 @@ namespace Ebada.Scgl.Yxgl {
                         } else
                             if (lp.CellName.IndexOf("最大供电半径") > -1) {
 
-                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                 strSQL = "where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
                                 //ctrl.Tag = lp;
                                 xlsum = 0;
@@ -650,18 +652,18 @@ namespace Ebada.Scgl.Yxgl {
                                         maxxl = xlsum;
                                     }
                                 }
-                                ctrl.Text = (Math.Round(maxxl, 1) / 2).ToString();
+                                ctrl.Text = (Math.Round(maxxl, 1)).ToString();
                             } else
                                 if (lp.CellName.IndexOf("低压杆基数") > -1) {
 
-                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                    //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                     lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
                                                         + " from PS_gt where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
                                     ctrl.Tag = lp;
                                 } else
                                     if (lp.CellName.IndexOf("表箱数") > -1) {
 
-                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                        //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
                                         lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
                                             + " and gtID in ("
                                             + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
@@ -669,7 +671,7 @@ namespace Ebada.Scgl.Yxgl {
                                     } else
                                         if (lp.CellName.IndexOf("四线的一类") > -1) {
 
-                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                            //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                             strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
                                             ctrl.Tag = lp;
                                             xlsum = 0;
@@ -682,7 +684,7 @@ namespace Ebada.Scgl.Yxgl {
                                         } else
                                             if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
 
-                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                                 strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                 ctrl.Tag = lp;
@@ -696,7 +698,7 @@ namespace Ebada.Scgl.Yxgl {
                                             } else
                                                 if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
 
-                                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                    //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                                     strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                     ctrl.Tag = lp;
@@ -710,7 +712,7 @@ namespace Ebada.Scgl.Yxgl {
                                                 } else
                                                     if (lp.CellName.IndexOf("二线的一类") > -1) {
 
-                                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                        //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                                         strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                         ctrl.Tag = lp;
@@ -724,7 +726,7 @@ namespace Ebada.Scgl.Yxgl {
                                                     } else
                                                         if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
 
-                                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                            //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                                             strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                             ctrl.Tag = lp;
@@ -738,7 +740,7 @@ namespace Ebada.Scgl.Yxgl {
                                                         } else
                                                             if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
 
-                                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
                                                                 strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
 
                                                                 ctrl.Tag = lp;
@@ -1501,10 +1503,10 @@ namespace Ebada.Scgl.Yxgl {
 
                     IList<string> strList = new List<string>();
                     if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
-                        if(string.IsNullOrEmpty(str))
+                        if (string.IsNullOrEmpty(str))
                             ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         else
-                        ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                            ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
@@ -1529,7 +1531,7 @@ namespace Ebada.Scgl.Yxgl {
                         if (string.IsNullOrEmpty(str))
                             ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         else
-                        ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                            ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i])) {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
@@ -1561,7 +1563,7 @@ namespace Ebada.Scgl.Yxgl {
                     if (string.IsNullOrEmpty(str))
                         ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                     else
-                    ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                     if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
                         WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                         tfv.ControlValue = str;
@@ -1619,7 +1621,7 @@ namespace Ebada.Scgl.Yxgl {
                             if (string.IsNullOrEmpty(str))
                                 ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                             else
-                            ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                                ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
                             if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
                                 WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                                 tfv.ControlValue = str;
