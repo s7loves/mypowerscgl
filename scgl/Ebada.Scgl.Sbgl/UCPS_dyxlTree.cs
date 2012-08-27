@@ -234,7 +234,7 @@ namespace Ebada.Scgl.Sbgl {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(string.Format(" where left(linecode,{0})='{1}' and linevol='0.4' order by linecode",tq.tqCode.Length,tq.tqCode));
+                    RefreshData(string.Format(" where left(linecode,{0})='{1}' and linevol='0.4' order by parentid, linecode",tq.tqCode.Length,tq.tqCode));
                 }
             }
         }
