@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Gis {
         public static int mWidth = 1400;
         public static int mHeight = 800;
         public static int mMinDJ = 80;//最小档距
-        public static bool isHrow = true;//文字是否自动换行
+        public static bool isHrow = false;//文字是否自动换行
         private int n300 = 300;
         public Image GetImage(string linecode) {
             xl xl = new xl();
@@ -275,14 +275,14 @@ namespace Ebada.Scgl.Gis {
                 g.FillEllipse(Brushes.White, r);
                 g.DrawEllipse(Pens.BlueViolet, r);
                 Font f = new Font("宋体", 9);
-                g.DrawString(gtValue.gth, f, Brushes.Blue, p.X, Location.Y + 3);
+                g.DrawString(gtValue.gth, f, Brushes.Blue, p.X-22, Location.Y + 3);
                 int i = 0;
                 foreach (PS_tq tq in tqList) {
                     DrawingDxt2.renderbyq(g, Location.X, Location.Y+i*14, tq.tqName);
-                    i++;
+                    i++; break;
                 }
                 foreach (PS_kg kg in kgList) {
-                    DrawingDxt2.renderkg(g, Location.X, Location.Y, kg.kgModle);
+                    DrawingDxt2.renderkg(g, Location.X, Location.Y, kg.kgModle); break;
                 }
             }
         }
