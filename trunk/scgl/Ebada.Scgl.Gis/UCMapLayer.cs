@@ -402,6 +402,7 @@ namespace TLMapPlatform {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.RestoreDirectory = true;
             dlg.Filter = "*.bmp|*.bmp";
+            dlg.FileName = treeList1.FindNodeByFieldValue("ID", contextMenu.Tag)["层"].ToString();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 bt.Save(dlg.FileName);
                 openbmp(dlg.FileName);
