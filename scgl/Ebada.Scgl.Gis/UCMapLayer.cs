@@ -219,8 +219,11 @@ namespace TLMapPlatform {
                         }
                     }
                 } else if (e.Button == MouseButtons.Right) {
-
+                    if (hit.Node.Level == 0) return;
+                    if (hit.Node != treeList1.FocusedNode)
+                        treeList1.FocusedNode = hit.Node;
                     string code = hit.Node["ID"].ToString();
+                    
                     if (code.Length == 3) {
 
                         ContextMenu cm = new ContextMenu();
