@@ -304,14 +304,17 @@ namespace Ebada.Scgl.Sbgl {
             int ncount = 0;
             WaitDialogForm dlg = new WaitDialogForm("", "正计算档距，请稍候。。。");
             string info = "(第{0}共" + gridView1.RowCount + "个){1}";
-            foreach (var item in gridViewOperation.BindingList) {
-                ncount++;
-                try {
+            try {
+                foreach (var item in gridViewOperation.BindingList) {
+                    ncount++;
+
                     dlg.Caption = string.Format(info, ncount, item.tqName);
                     SbFuns.CountTQLen(item.tqCode);
 
-                } catch { }
-
+                }
+            } catch (Exception err) {
+                dlg.Close();
+                throw err;
             }
             dlg.Close();
             MsgBox.ShowTipMessageBox("计算完毕,共计算了" + ncount + "个台区。");
