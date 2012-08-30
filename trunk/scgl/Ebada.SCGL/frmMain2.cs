@@ -435,6 +435,7 @@ namespace Ebada.SCGL {
             return new String(c);
         }
         private void timer1_Tick(object sender, EventArgs e) {
+            return;
             IList<PJ_znts> strlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_znts>(
                 "where type='显示信息' "
            );
