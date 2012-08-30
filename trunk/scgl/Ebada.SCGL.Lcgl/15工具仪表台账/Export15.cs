@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Lcgl {
                     ex.CopySheet(1, 1);
                 }
             }
-            ex.ShowExcel();
+            ex.ShowExcel();int bh = 0;
             for (int j = 1; j <= pageindex; j++)
             {
 
@@ -45,15 +45,14 @@ namespace Ebada.Scgl.Lcgl {
                 //主题
                 int starow = prepageindex * 18 + 1;
                 int endrow = j * 18;
-                int bh = 0;
+                
                 if (objlist.Count > endrow)
                 {
                     for (int i = 0; i < 18; i++)
                     {
                         bh++;
 
-                        //ex.SetCellValue((bh.ToString(),rowcount + i, 1);
-                        ex.SetCellValue(bh.ToString(), rowcount + 1, 1);
+                        ex.SetCellValue(bh.ToString(),rowcount + i, 1);
                         ex.SetCellValue(objlist[starow - 1 + i].sbName, rowcount + i, 2);
                         ex.SetCellValue(objlist[starow - 1 + i].jdgg, rowcount + i, 3);
                         ex.SetCellValue(objlist[starow - 1 + i].dw, rowcount + i, 4);
