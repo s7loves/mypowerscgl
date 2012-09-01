@@ -573,9 +573,9 @@ namespace Ebada.SCGL.WFlow.Tool {
 
                     IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strli[0] + "'");
                     if (list.Count > 0 && 1 == 0) {
-                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
+                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
                     } else {
-                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 ";
+                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 ";
                     }
                     if (ceBind.Checked) {
                         if (strli[0] == "WF_TableFieldValueView")
