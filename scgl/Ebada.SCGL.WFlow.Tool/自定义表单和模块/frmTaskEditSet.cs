@@ -254,7 +254,7 @@ namespace Ebada.SCGL.WFlow.Tool {
                 if (mu.ModuTypes.ToLower() != "ebada.scgl.lcgl.frmlp") {
                     string varDbTableName = "";
                     WF_WorkTaskModle wtm = MainHelper.PlatformSqlMap.GetOne<WF_WorkTaskModle>
-                           (string.Format(" where  WorkTaskId='{1}'",
+                           (string.Format(" where  WorkTaskId='{0}'",
                           ((ListItem)cbxSWorkTastDataTable.SelectedItem).ID));
                     if (wtm != null) {
                         mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtm.Modu_ID);
@@ -264,13 +264,17 @@ namespace Ebada.SCGL.WFlow.Tool {
                             varDbTableName = fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null).ToString();
                         string[] strli = varDbTableName.Split(',');
                         IList tbli = new List<WF_WorkFlow>();
+                        string strname = "";
                         foreach (string str in strli) {
                             IList tbli2 = MainHelper.PlatformSqlMap.GetList("GetTableColumns", str);
                             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "Ebada.Scgl.Model.dll");
                             Type tpe = assembly.GetType("Ebada.Scgl.Model." + str);
                             foreach (WF_WorkFlow wf in tbli2) {
+                                strname = GetDisplayName(tpe, wf.Name);
+                                if (string.IsNullOrEmpty(strname)) continue;
                                 wf.WorkFlowId = str + " " + wf.Name;
-                                wf.Name = str + " " + GetDisplayName(tpe, wf.Name);
+
+                                wf.Name = str + " " + strname;
                                 tbli.Add(wf);
                             }
                         }
@@ -512,13 +516,16 @@ namespace Ebada.SCGL.WFlow.Tool {
                         varDbTableName = fromCtrl.GetType().GetProperty("VarDbTableName").GetValue(fromCtrl, null).ToString();
                     string[] strli = varDbTableName.Split(',');
                     IList tbli = new List<WF_WorkFlow>();
+                    string strname = "";
                     foreach (string str in strli) {
                         IList tbli2 = MainHelper.PlatformSqlMap.GetList("GetTableColumns", str);
                         Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + "Ebada.Scgl.Model.dll");
                         Type tpe = assembly.GetType("Ebada.Scgl.Model." + str);
                         foreach (WF_WorkFlow wf in tbli2) {
+                            strname=GetDisplayName(tpe, wf.Name);
+                            if (string.IsNullOrEmpty(strname)) continue;
                             wf.WorkFlowId = str + " " + wf.Name;
-                            wf.Name = str + " " + GetDisplayName(tpe, wf.Name);
+                            wf.Name = str + " " + strname;
                             tbli.Add(wf);
                         }
                     }
@@ -566,9 +573,9 @@ namespace Ebada.SCGL.WFlow.Tool {
 
                     IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + strli[0] + "'");
                     if (list.Count > 0 && 1 == 0) {
-                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
+                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
                     } else {
-                        tetTWorkSQL.Text = "select " + list[0] + " from " + strli[0] + " where 5=5 ";
+                        tetTWorkSQL.Text = "select " + strli[1] + " from " + strli[0] + " where 5=5 ";
                     }
                     if (ceBind.Checked) {
                         if (strli[0] == "WF_TableFieldValueView")
