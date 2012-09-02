@@ -140,7 +140,6 @@ namespace Ebada.Scgl.Lcgl {
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_05jcky> e) {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
 
-
             if (isWorkflowCall) {
 
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + e.Value.jckyID + "' and RecordID='" + currRecord.ID + "'"
@@ -167,7 +166,6 @@ namespace Ebada.Scgl.Lcgl {
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
-
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e) {
@@ -182,8 +180,6 @@ namespace Ebada.Scgl.Lcgl {
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-
-
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
