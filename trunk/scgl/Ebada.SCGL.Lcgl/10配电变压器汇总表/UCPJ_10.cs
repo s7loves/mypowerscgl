@@ -287,9 +287,6 @@ namespace Ebada.Scgl.Lcgl {
                 MsgBox.ShowTipMessageBox("没有选中数据。");
                 return;
             }
-
-
-
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -358,9 +355,6 @@ namespace Ebada.Scgl.Lcgl {
             } else {
                 MsgBox.ShowTipMessageBox("清除失败: " + strmess);
             }
-
-
-
         }
     }
 }
