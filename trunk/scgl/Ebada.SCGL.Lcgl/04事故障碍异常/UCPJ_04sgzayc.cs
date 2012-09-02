@@ -56,12 +56,9 @@ namespace Ebada.Scgl.Lcgl {
 
         public DataTable RecordWorkFlowData {
             get {
-
                 return WorkFlowData;
             }
             set {
-
-
                 WorkFlowData = value;
 
                 if (isWorkflowCall) {
