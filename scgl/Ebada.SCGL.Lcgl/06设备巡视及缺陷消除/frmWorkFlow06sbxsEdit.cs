@@ -15,70 +15,54 @@ using Ebada.Scgl.Core;
 using System.Collections;
 using System.Threading;
 using Ebada.Scgl.WFlow;
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class frmWorkFlow06sbxsEdit : FormBase, IPopupFormEdit
-    {
+namespace Ebada.Scgl.Lcgl {
+    public partial class frmWorkFlow06sbxsEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_06sbxsmx> m_CityDic = new SortableSearchableBindingList<PJ_06sbxsmx>();
-
 
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_06sbxsmx,LP_Record";
-        public LP_Temple ParentTemple
-        {
+        public LP_Temple ParentTemple {
             get { return parentTemple; }
-            set
-            {
+            set {
                 parentTemple = value;
             }
         }
-        public bool IsWorkflowCall
-        {
-            set
-            {
+        public bool IsWorkflowCall {
+            set {
 
                 isWorkflowCall = value;
             }
         }
-        public LP_Record CurrRecord
-        {
+        public LP_Record CurrRecord {
             get { return currRecord; }
-            set
-            {
+            set {
                 currRecord = value;
 
             }
         }
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
                 return WorkFlowData;
             }
-            set
-            {
+            set {
                 WorkFlowData = value;
             }
         }
-        public string VarDbTableName
-        {
+        public string VarDbTableName {
             get { return varDbTableName; }
-            set
-            {
+            set {
                 varDbTableName = value; ;
             }
         }
 
-        public frmWorkFlow06sbxsEdit()
-        {
+        public frmWorkFlow06sbxsEdit() {
             InitializeComponent();
         }
-        void dataBind()
-        {
+        void dataBind() {
 
 
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineID");
@@ -99,26 +83,20 @@ namespace Ebada.Scgl.Lcgl
         #region IPopupFormEdit Members
         private PJ_06sbxsmx rowData = null;
 
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 getxsr();
                 getxcr();
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
-                if (rowData == null)
-                {
+                if (rowData == null) {
                     this.rowData = value as PJ_06sbxsmx;
                     this.InitComboBoxData();
                     dataBind();
-                }
-                else
-                {
+                } else {
                     ConvertHelper.CopyTo<PJ_06sbxsmx>(value as PJ_06sbxsmx, rowData);
                     this.InitComboBoxData();
                 }
@@ -129,8 +107,7 @@ namespace Ebada.Scgl.Lcgl
 
         #endregion
 
-        private void InitComboBoxData()
-        {
+        private void InitComboBoxData() {
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
 
             comboBoxEdit3.Properties.Items.AddRange(ryList);
@@ -141,8 +118,7 @@ namespace Ebada.Scgl.Lcgl
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
-            if (xllit.Count == 0)
-            {
+            if (xllit.Count == 0) {
                 xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where 1=1");
             }
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
@@ -169,8 +145,7 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post)
-        {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -181,23 +156,19 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-        void setxsr()
-        {
+        void setxsr() {
             string str = rowData.xsr;
             comboBoxEdit3.EditValue = "";
             comboBoxEdit6.EditValue = "";
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            if (mans.Length >= 1)
-            {
+            if (mans.Length >= 1) {
                 comboBoxEdit3.EditValue = mans[0];
             }
-            if (mans.Length >= 2)
-            {
+            if (mans.Length >= 2) {
                 comboBoxEdit6.EditValue = mans[1];
             }
         }
-        void getxsr()
-        {
+        void getxsr() {
             string str = "";
             string yy1 = "";
             yy1 = comboBoxEdit3.EditValue.ToString();
@@ -209,23 +180,19 @@ namespace Ebada.Scgl.Lcgl
                 str += yy2 + ";";
             rowData.xsr = str;
         }
-        void setxcr()
-        {
+        void setxcr() {
             string str = rowData.xcr;
             comboBoxEdit5.EditValue = "";
             comboBoxEdit7.EditValue = "";
             string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            if (mans.Length >= 1)
-            {
+            if (mans.Length >= 1) {
                 comboBoxEdit5.EditValue = mans[0];
             }
-            if (mans.Length >= 2)
-            {
+            if (mans.Length >= 2) {
                 comboBoxEdit7.EditValue = mans[1];
             }
         }
-        void getxcr()
-        {
+        void getxcr() {
             string str = "";
             string yy1 = "";
             yy1 = comboBoxEdit5.EditValue.ToString();
@@ -238,18 +205,15 @@ namespace Ebada.Scgl.Lcgl
             rowData.xcr = str;
         }
 
-        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(lookUpEdit1.Text))
-            {
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(lookUpEdit1.Text)) {
                 rowData.LineID = lookUpEdit1.EditValue.ToString();
                 rowData.LineName = lookUpEdit1.Text;
                 comboBoxEdit2.Properties.Items.Clear();
                 //comboBoxEdit3.Properties.Items.Clear();
                 //comboBoxEdit6.Properties.Items.Clear();
                 IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + rowData.LineID + "'");
-                foreach (PJ_sbxsqd xsqd in xllit)
-                {
+                foreach (PJ_sbxsqd xsqd in xllit) {
                     comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
                     comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
                     comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
@@ -258,16 +222,14 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
+        private void simpleButton1_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
 
         }
 
 
 
-        private void comboBoxEdit3_Properties_SelectedValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit3_Properties_SelectedValueChanged(object sender, EventArgs e) {
             //string xsry = comboBoxEdit3.Properties.GetDisplayText(null);
             ////comboBoxEdit3.EditValue = "";
             //comboBoxEdit6.EditValue = "";
@@ -283,19 +245,16 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e) {
             string xsqdname = comboBoxEdit2.EditValue.ToString();
-           PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='"+xsqdname+"'and LineCode='"+rowData.LineID+"' ");
-            if (ps!=null)
-            {
+            PJ_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_sbxsqd>("where XsqdName='" + xsqdname + "'and LineCode='" + rowData.LineID + "' ");
+            if (ps != null) {
                 comboBoxEdit3.EditValue = ps.XSR1;
                 comboBoxEdit6.EditValue = ps.XSR2;
             }
         }
 
-        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e) {
             //ICollection list = new ArrayList();
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR1 from PJ_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
             //comboBoxEdit3.Properties.Items.Clear();
@@ -306,65 +265,56 @@ namespace Ebada.Scgl.Lcgl
             //comboBoxEdit6.Properties.Items.AddRange(list); 
         }
 
-        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e)
-        {
+        private void comboBoxEdit4_EditValueChanged(object sender, EventArgs e) {
 
-            DateTime dt = Convert.ToDateTime(rowData.xssj );
+            DateTime dt = Convert.ToDateTime(rowData.xssj);
             string dx = "", sx = "";
             int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
             dx = "06设备巡视及缺陷消除记录";
             sx = "紧急缺陷";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-            if (list.Count > 0)
-            {
+            if (list.Count > 0) {
                 dayspan1 = Convert.ToInt32(list[0]);
             }
 
             sx = "重大缺陷";
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-            if (list.Count > 0)
-            {
+            if (list.Count > 0) {
                 dayspan2 = Convert.ToInt32(list[0]);
             }
             sx = "一般缺陷";
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
-            if (list.Count > 0)
-            {
+            if (list.Count > 0) {
                 dayspan3 = Convert.ToInt32(list[0]);
             }
             if (comboBoxEdit4.EditValue == null) return;
-            switch (comboBoxEdit4.EditValue.ToString())
-                {
-                    case "紧急缺陷":
-                        rowData .xcqx = dt.AddDays(dayspan1).ToShortDateString();
-                        break;
-                    case "重大缺陷":
-                        rowData.xcqx = dt.AddDays(dayspan2).ToShortDateString();
-                        break;
-                    case "一般缺陷":
-                        rowData.xcqx = dt.AddDays(dayspan3).ToShortDateString();
-                        break;
-                }
+            switch (comboBoxEdit4.EditValue.ToString()) {
+                case "紧急缺陷":
+                    rowData.xcqx = dt.AddDays(dayspan1).ToShortDateString();
+                    break;
+                case "重大缺陷":
+                    rowData.xcqx = dt.AddDays(dayspan2).ToShortDateString();
+                    break;
+                case "一般缺陷":
+                    rowData.xcqx = dt.AddDays(dayspan3).ToShortDateString();
+                    break;
+            }
 
-          
+
         }
 
-        private void dateEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-            comboBoxEdit4_EditValueChanged(sender ,e);
+        private void dateEdit1_EditValueChanged(object sender, EventArgs e) {
+            comboBoxEdit4_EditValueChanged(sender, e);
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
+        private void btnOK_Click(object sender, EventArgs e) {
             PJ_06sbxsmx sbxs = RowData as PJ_06sbxsmx;
             string strmes = "";
             object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxsmx>(sbxs.ID);
             PJ_qxfl qxfj = new PJ_qxfl();
-            if (obj == null)
-            {
-                obj = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>("where  OrgCode='" + sbxs.OrgCode + "' and  LineID='" + sbxs.LineID + "' and xlqd='" + sbxs.xlqd+"'");
-                if (obj == null)
-                {
+            if (obj == null) {
+                obj = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>("where  OrgCode='" + sbxs.OrgCode + "' and  LineID='" + sbxs.LineID + "' and xlqd='" + sbxs.xlqd + "'");
+                if (obj == null) {
                     PJ_06sbxs sbxstemp = new PJ_06sbxs();
                     sbxstemp.OrgCode = sbxs.OrgCode;
                     sbxstemp.OrgName = sbxs.OrgName;
@@ -375,9 +325,7 @@ namespace Ebada.Scgl.Lcgl
                     sbxstemp.CreateMan = MainHelper.User.UserName;
                     MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxstemp);
                     sbxs.ParentID = sbxstemp.ID;
-                }
-                else
-                {
+                } else {
                     sbxs.ParentID = (obj as PJ_06sbxs).ID;
                 }
 
@@ -392,9 +340,8 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                if (sbxs.qxlb != "")
-                {
-                    
+                if (sbxs.qxlb != "") {
+
 
                     qxfj.CreateDate = sbxs.CreateDate;
                     qxfj.CreateMan = sbxs.CreateMan;
@@ -412,9 +359,7 @@ namespace Ebada.Scgl.Lcgl
                     qxfj.xssj = sbxs.xssj;
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(qxfj);
                 }
-            }
-            else
-            {
+            } else {
                 PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOne<PJ_qxfl>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + sbxs.CreateDate + "'"
                   + " and LineID='" + sbxs.LineID + "'"
                   + " and OrgCode='" + sbxs.OrgCode + "'"
@@ -422,8 +367,7 @@ namespace Ebada.Scgl.Lcgl
                    + " and xsr='" + sbxs.xsr + "'"
                    + " and xlqd='" + sbxs.xlqd + "'"
                   );
-                if (qxfltemp != null)
-                {
+                if (qxfltemp != null) {
                     qxfltemp.LineID = sbxs.LineID;
                     qxfltemp.LineName = sbxs.LineName;
                     qxfltemp.OrgCode = sbxs.OrgCode;
@@ -440,87 +384,65 @@ namespace Ebada.Scgl.Lcgl
                 }
                 MainHelper.PlatformSqlMap.Update<PJ_06sbxs>(sbxs);
             }
-           
-           
-                currRecord.LastChangeTime = DateTime.Now.ToString();
-                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
-                {
 
-                    RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, qxfj, currRecord });
 
-                }
-                WF_WorkTaskCommands wt;
-                //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
-                wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
-                if (wt != null)
-                {
-                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
-                }
-                else
-                {
-                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
-                }
-                if (strmes.IndexOf("未提交至任何人") > -1)
-                {
-                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
-                    return;
-                }
-                else
-                    MsgBox.ShowTipMessageBox(strmes);
-                strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
-                if (strmes == "结束节点1")
-                {
-                    currRecord.Status = "存档";
-                }
-                else
-                {
-                    currRecord.Status = strmes;
-                }
-                if (currRecord.ImageAttachment == null)
-                {
-                    currRecord.ImageAttachment = new byte[0];
-                }
-                if (currRecord.DocContent == null)
-                {
-                    currRecord.DocContent = new byte[0];
-                }
-                if (currRecord.SignImg == null)
-                {
-                    currRecord.SignImg = new byte[0];
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData)) {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, qxfj, currRecord });
+
+            }
+            WF_WorkTaskCommands wt;
+            //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+            wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null) {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            } else {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1) {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            } else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1") {
+                currRecord.Status = "存档";
+            } else {
+                currRecord.Status = strmes;
+            }
+            if (currRecord.ImageAttachment == null) {
+                currRecord.ImageAttachment = new byte[0];
+            }
+            if (currRecord.DocContent == null) {
+                currRecord.DocContent = new byte[0];
+            }
+            if (currRecord.SignImg == null) {
+                currRecord.SignImg = new byte[0];
+            }
+
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+            if (obj == null && (sbxs.qxlb != "")) {
+                DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
+                if (dttemp.Rows.Count > 0) {
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
+                    mrwt.ModleRecordID = qxfj.ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = dttemp.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = dttemp.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = dttemp.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.ModleTableName = qxfj.GetType().ToString();
+                    mrwt.WorkTaskInsId = dttemp.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 }
 
-                currRecord.LastChangeTime = DateTime.Now.ToString();
-                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
-                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
-                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
-                if (obj == null&& (sbxs.qxlb != ""))
-                {
-                    DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
-                    if (dttemp.Rows.Count > 0)
-                    {
-                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                        mrwt.ID = mrwt.CreateID();
-                        mrwt.ModleRecordID = qxfj.ID;
-                        mrwt.RecordID = currRecord.ID;
-                        mrwt.WorkFlowId = dttemp.Rows[0]["WorkFlowId"].ToString();
-                        mrwt.WorkFlowInsId = dttemp.Rows[0]["WorkFlowInsId"].ToString();
-                        mrwt.WorkTaskId = dttemp.Rows[0]["WorkTaskId"].ToString();
-                        mrwt.ModleTableName = qxfj.GetType().ToString();
-                        mrwt.WorkTaskInsId = dttemp.Rows[0]["WorkTaskInsId"].ToString();
-                        mrwt.CreatTime = DateTime.Now;
-                        MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                    }
-
-                }
+            }
         }
-
-
-
-
-
-
-
-
     }
 }
