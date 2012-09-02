@@ -22,26 +22,23 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPJ_11byqdy : DevExpress.XtraEditors.XtraUserControl
-    {
+    public partial class UCPJ_11byqdy : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_11byqdydl> gridViewOperation;
-        
+
         public event SendDataEventHandler<PJ_11byqdydl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
         private PS_tqbyq _parentobj;
-        public UCPJ_11byqdy()
-        {
+        public UCPJ_11byqdy() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_11byqdydl>(gridControl1, gridView1, barManager1,new frm11byqdydlEdit());
+            gridViewOperation = new GridViewOperation<PJ_11byqdydl>(gridControl1, gridView1, barManager1, new frm11byqdydlEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_11byqdydl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_11byqdydl>(gridViewOperation_BeforeDelete);
@@ -49,36 +46,29 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_11byqdydl>(gridViewOperation_AfterAdd);
         }
 
-      
-        void gridViewOperation_AfterAdd(PJ_11byqdydl obj)
-        {
+
+        void gridViewOperation_AfterAdd(PJ_11byqdydl obj) {
             RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
         }
-        public PS_tqbyq PSObj
-        {
+        public PS_tqbyq PSObj {
             get { return _parentobj; }
-            set
-            {
+            set {
                 _parentobj = value;
-                if (ParentID != null && PSObj != null)
-                {
+                if (ParentID != null && PSObj != null) {
                     RefreshData(" where OrgCode='" + ParentID + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
                 }
 
             }
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_11byqdydl> e)
-        {
-           
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_11byqdydl> e) {
+
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_11byqdydl> e)
-        {
-            if (parentID == null || PSObj==null)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_11byqdydl> e) {
+            if (parentID == null || PSObj == null)
                 e.Cancel = true;
         }
-        protected override void OnLoad(EventArgs e)
-        {
+        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
             InitColumns();//初始列
@@ -89,50 +79,43 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
-        {
+        void btGdsList_EditValueChanged(object sender, EventArgs e) {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
-            if (org != null)
-            {
+
+            if (org != null) {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
-        private void initImageList()
-        {
+        private void initImageList() {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_11byqdydl);
         }
-        private void hideColumn(string colname)
-        {
+        private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void InitData()
-        {
+        public void InitData() {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
         }
         /// <summary>
         /// 初始化列,
         /// </summary>
-        public void InitColumns()
-        {
+        public void InitColumns() {
 
             //需要隐藏列时在这写代码
 
@@ -143,16 +126,14 @@ namespace Ebada.Scgl.Lcgl
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
-        public void RefreshData(string slqwhere)
-        {
+        public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_11byqdydl> GridViewOperation
-        {
+        public GridViewOperation<PJ_11byqdydl> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -160,11 +141,9 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_11byqdydl newobj)
-        {
-           
-            if (PSObj == null || parentID == null)
-            {
+        void gridViewOperation_CreatingObjectEvent(PJ_11byqdydl newobj) {
+
+            if (PSObj == null || parentID == null) {
                 return;
             }
             newobj.byqID = PSObj.byqID;
@@ -180,41 +159,32 @@ namespace Ebada.Scgl.Lcgl
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ParentID
-        {
+        public string ParentID {
             get { return parentID; }
-            set
-            {
+            set {
                 parentID = value;
-               
-                if (!string.IsNullOrEmpty(value) && PSObj != null)
-                {
+
+                if (!string.IsNullOrEmpty(value) && PSObj != null) {
                     RefreshData(" where OrgCode='" + value + "'  and byqID='" + PSObj.byqID + "'  order by id desc");
                 }
             }
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj
-        {
+        public mOrg ParentObj {
             get { return parentObj; }
-            set
-            {
+            set {
 
                 parentObj = value;
-                if (value == null)
-                {
+                if (value == null) {
                     parentID = null;
-                }
-                else
-                {
+                } else {
                     ParentID = value.OrgID;
                 }
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //if (PSObj!=null&&gridView1.RowCount>0)
             //{
             //     IList<PJ_11byqdydl> pjlist=new List<PJ_11byqdydl>();
@@ -224,8 +194,8 @@ namespace Ebada.Scgl.Lcgl
             //    }
             //    Export14.ExportExcel(PSObj, pjlist);
             //}
-           
-           
+
+
         }
     }
 }
