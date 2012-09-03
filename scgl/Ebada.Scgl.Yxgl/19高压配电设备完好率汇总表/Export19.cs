@@ -64,14 +64,14 @@ namespace Ebada.Scgl.Yxgl {
                         //
                         ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}' ))", obj.LineCode.Length, obj.LineCode);
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}' and linevol='10'))", obj.LineCode.Length, obj.LineCode);
 
-                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'and linevol='10'", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
-                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'and linevol='10'", obj.LineCode.Length, obj.LineCode));
                         length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
@@ -227,13 +227,13 @@ namespace Ebada.Scgl.Yxgl {
                         //
                         ex.SetCellValue(obj.LineName, 8 + i, 1);
                         //配电线路
-                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode));
+                        object nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'and linevol='10'", obj.LineCode.Length, obj.LineCode));
                         string length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
-                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}'))", obj.LineCode.Length, obj.LineCode);
+                        string gtcon = string.Format(" gtID in (select gtID from ps_gt WHERE LineCode IN (SELECT  LineCode from ps_xl where left(LineCode,{0})='{1}'and linevol='10'))", obj.LineCode.Length, obj.LineCode);
                         string tqcon = "tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')";
                         ex.SetCellValue(length, 8 + i, 2);
                         xlsum += Convert.ToDouble(length);
-                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'", obj.LineCode.Length, obj.LineCode)).ToString();
+                        nobj = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_xllength", string.Format("where  left(LineCode,{0})='{1}'and linevol='10'", obj.LineCode.Length, obj.LineCode)).ToString();
                         length = nobj == null ? "0" : Convert.ToDouble(nobj) / 1000.0 + "";
                         ex.SetCellValue(length, 8 + i, 3);
                         xl1 += Convert.ToDouble(length);
