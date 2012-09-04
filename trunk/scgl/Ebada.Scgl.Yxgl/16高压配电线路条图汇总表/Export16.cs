@@ -116,43 +116,43 @@ namespace Ebada.Scgl.Yxgl {
                         rl = ot.ToString();
                     }
                     ex.SetCellValue(rl, 15, 1);
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='6'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='6%'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     rl = "0";
                     if (ot != null) {
                         rl = ot.ToString();
                     }
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='6'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='6%'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
 
                     if (ot != null) {
                         ts = ot.ToString();
                     }
                     ex.SetCellValue(rl + "/" + ts, 15, 2);
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='10'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='10%'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     rl = "0";
                     if (ot != null) {
                         rl = ot.ToString();
                     }
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='10'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='10%'AND byqPhase='单相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     if (ot != null) {
                         ts = ot.ToString();
                     }
                     ex.SetCellValue(rl + "/" + ts, 15, 3);
                     rl = "0";
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='6'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='6%'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     if (ot != null) {
                         rl = ot.ToString();
                     }
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='6'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='6%'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     if (ot != null) {
                         ts = ot.ToString();
                     }
                     ex.SetCellValue(rl + "/" + ts, 15, 4);
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='10'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqVol='10%'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     rl = "0";
                     if (ot != null) {
                         rl = ot.ToString();
                     }
-                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='10'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
+                    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqVol='10%'AND byqPhase='三相'and tqID in (select tqID from ps_tq where xlCode ='" + obj.LineCode + "')");
                     if (ot != null) {
                         ts = ot.ToString();
                     }
