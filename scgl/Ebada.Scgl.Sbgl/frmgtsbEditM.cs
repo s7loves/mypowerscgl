@@ -275,7 +275,7 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit12.Properties.Items.AddRange(mclist);
 
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct mc from PS_sbcs order by mc"));
+            string.Format("select  mc from PS_sbcs where len(bh)=5  order by mc"));
             if (strlist.Count > 0)
                 repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
@@ -304,6 +304,12 @@ namespace Ebada.Scgl.Sbgl
             DataRow dr = gridView1.GetFocusedDataRow(); 
             repositoryItemComboBox2.Properties.Items.Clear();
             dr["name"] = ((ComboBoxEdit)sender).EditValue;
+            object obj = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 bh from ps_sbcs where mc='" + dr["name"] + "' and len(bh)=5");
+            if (obj != null) {
+                dr["type"] = obj;
+                dr["code"] = obj;
+                dr["sbgg"] = "";
+            }
             System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + ((ComboBoxEdit)sender).EditValue  + "' and xh is not null ");
             if (mclist.Count > 0)
                 repositoryItemComboBox2.Properties.Items.AddRange(mclist);
