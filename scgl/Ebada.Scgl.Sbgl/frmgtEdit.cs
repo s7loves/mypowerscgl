@@ -119,6 +119,7 @@ namespace Ebada.Scgl.Sbgl
             if (string.IsNullOrEmpty(rowData.ImageID)) {
                 string gtid="0000000000";//
                 PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + rowData.LineCode + "'");
+                if (xl == null) return;
                 if (xl.LineVol == "0.4")
                     gtid = "1111111111";
                //PS_gt gt=  Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>("where linecode='"+rowData.LineCode+"' and gtModle='直线杆' and len(imageid)>6 order by gtcode");
