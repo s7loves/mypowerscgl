@@ -255,6 +255,7 @@ namespace Ebada.Scgl.Yxgl {
                     MsgBox.ShowWarningMessageBox("数据出错，没找到线路");
                     return -1;
                 }
+                string strLinexh = xl.WireType;//导线型号
                 PS_gt gtformer = null;
                 IList<PS_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
                 gtformer = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>(" Where gtID='" + xl.ParentGT + "'");
@@ -547,13 +548,17 @@ namespace Ebada.Scgl.Yxgl {
                                 ex.SetCellValue(dxlist[j].ToString(), ihang + j, jlie);
                         }
 
+                    } else {
+                        ex.SetCellValue(strLinexh, ihang, jlie);
                     }
 
                     ihang += dxRowCount;
-
+                    if (i == 15) {
+                        int nn = 0;
+                    }
                     //档        距（m）
-                    if (gtobj != null) {
-                        if (jlie > 2)
+                    if (gtobj != null && gtobj.gtSpan>0) {
+                        if (jlie > 3)
                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
                         else
                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
@@ -567,7 +572,7 @@ namespace Ebada.Scgl.Yxgl {
                         double sum = 0;
                         int ista = i, item = i;
                         for (item = i; item > 0; item--) {
-                            PS_gt gttemp = gtlis[item - 1];
+                            PS_gt gttemp = gtlis[item ];
                             if (gttemp != null) {
                                 sum += Convert.ToDouble(gttemp.gtSpan);
                             }
