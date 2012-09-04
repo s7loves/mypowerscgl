@@ -216,7 +216,7 @@
             // 
             // repositoryItemComboBox1
             // 
-            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.PopupSizeable = true;
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
