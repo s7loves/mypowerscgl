@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue("'" + obj.gh, 10, 16);
             ex.SetCellValue(obj.cqfw, 11, 4);
             ex.SetCellValue(obj.cqdw, 13, 4);
-            ex.SetCellValue(obj.cqdw, 15, 8);
+            ex.SetCellValue(obj.cqdw, 17, 9);
             ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
             ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
             ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
