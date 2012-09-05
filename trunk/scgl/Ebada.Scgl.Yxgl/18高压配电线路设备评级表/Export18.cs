@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Yxgl {
             }
             for (int p = 0; p < pagecout; p++) {
                 ex.ActiveSheet(p + 1);
-                ex.SetCellValue("绥化农电局  " + obj.OrgName, 4, 1);
+                ex.SetCellValue("绥化市郊农电局  " + obj.OrgName, 4, 1);
 
                 for (int i = 0; i < 29; i++) {
                     if (p * 29 + i >= objlist.Count) {
@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.tqName;
+                    pjmx.sbdy = pq.tqName + "台区";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.btKind) {
@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.kgName;
+                    pjmx.sbdy = pq.kgName + "开关";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.kgkind) {
@@ -192,7 +192,7 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.byqName;
+                    pjmx.sbdy = pq.byqName + "变压器";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.byqkind) {
