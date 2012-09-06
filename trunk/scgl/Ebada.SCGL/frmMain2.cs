@@ -252,7 +252,7 @@ namespace Ebada.SCGL {
                 } else {
                     InitFunction(MainHelper.User.UserID);
                 }
-                //showMessage(3, "欢迎 " + MainHelper.User.UserName + " 登陆，您今天有" + WorkFlowInstance.WorkflowToDoWorkTasks(MainHelper.User.UserID, 999).Rows.Count.ToString() + "个任务待处理");
+                showMessage(3, "欢迎 " + MainHelper.User.UserName + " 登陆，您有任务需要处理");
                 timer1.Enabled = false;
                 timer1.Interval = 8000;
                 timer1.Enabled = true;
