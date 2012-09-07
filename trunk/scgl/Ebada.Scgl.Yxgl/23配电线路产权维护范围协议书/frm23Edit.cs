@@ -224,10 +224,11 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit6_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit6.EditValue == null) return;
+            if (comboBoxEdit6.EditValue == null || comboBoxEdit6.EditValue == "") return;
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit6.Text + "'");
             if (xl == null) return;
             comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit7.Properties.Items.Clear();   //zjm
             IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where ParentID='" + xl.LineCode + "'");
             if (list.Count == 0)
             {
@@ -237,11 +238,19 @@ namespace Ebada.Scgl.Yxgl
             {
                 comboBoxEdit5.Properties.Items.Add(pl.LineName);
             }
+            if (comboBoxEdit5.EditValue == null || comboBoxEdit5.EditValue == "")   //zjm
+            {
+                IList<PS_gt> list1 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "'");    //zjm
+                foreach (PS_gt pl1 in list1)    //zjm
+                {
+                    comboBoxEdit7.Properties.Items.Add(pl1.gth);   //zjm
+                }
+            }
         }
 
         private void comboBoxEdit5_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit5.EditValue == null) return;
+            if (comboBoxEdit5.EditValue == null || comboBoxEdit5.EditValue == "") return;
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit5.Text + "'");
             if (xl == null) return;
             comboBoxEdit7.Properties.Items.Clear();
