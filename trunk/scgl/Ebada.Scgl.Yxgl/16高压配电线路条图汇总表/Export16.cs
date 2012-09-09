@@ -160,39 +160,52 @@ namespace Ebada.Scgl.Yxgl {
                 }
 
             }
-
+            object ot1 = null, ot2 = null;
+            int 小计 = 0;
+            int 合计 = 0;
 
 
             //开关
             string kg = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
-                kg = ot.ToString();
-            }
-            ex.SetCellValue(kg, 14, 8);
+
         //    ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle='油开关'and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
             ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%DW%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
-                kg = ot.ToString();
-            }
+            ot = ot ?? 0;
+            合计 += Convert.ToInt32(ot);
+            kg = ot.ToString();
             ex.SetCellValue(kg, 15, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%ZW%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
-                kg = ot.ToString();
-            }
-            ex.SetCellValue(kg, 16, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%SF6%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null) {
-                kg = ot.ToString();
-            }
-            ex.SetCellValue(kg, 17, 8);
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%智能%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
-            if (ot != null)
-            {
-                kg = ot.ToString();
-            }
-            ex.SetCellValue(kg, 18, 8);
 
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%ZW%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = ot ?? 0;
+            合计 += Convert.ToInt32(ot);
+            kg = ot.ToString();
+            ex.SetCellValue(kg, 16, 8);
+
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%SF6%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = ot ?? 0;
+            合计 += Convert.ToInt32(ot);
+            kg = ot.ToString();
+            
+            ex.SetCellValue(kg, 17, 8);
+
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where kgModle like '%智能%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+            ot = ot ?? 0;
+            合计 += Convert.ToInt32(ot);
+            kg = ot.ToString();
+            ex.SetCellValue(kg, 18, 8);
+            //跌落开关
+            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_tqsb Where sbname='跌落保险'  and tqID in(select tqid from ps_tq WHERE xlCode ='{0}' )", obj.LineCode));
+            ot = ot ?? 0;
+            合计 += Convert.ToInt32(ot);
+            kg = ot.ToString();
+            ex.SetCellValue(kg, 19, 8);
+            //开关合计
+            //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
+
+            kg = 合计.ToString();
+            ex.SetCellValue(kg, 14, 8);
+
+            合计 = 0;
             //台区
             ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqRowCount", "Where   xlCode ='" + obj.LineCode + "'");
             ts = "0";
@@ -214,29 +227,41 @@ namespace Ebada.Scgl.Yxgl {
             ex.SetCellValue(ts, 23, 8);
             //避雷器
             string blq = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))",obj.LineCode.Length,obj.LineCode));
-            if (ot != null) {
-                blq = ot.ToString();
-            }
-            ex.SetCellValue(blq, 14, 13);
-            blq = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器'and sbModle like 'Y%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
-            if (ot != null) {
-                blq = ot.ToString();
-            }
+            
+
+            //统计型号'Y%'
+            //统计杆塔设备库
+            ot1 = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器' and sbModle like 'Y%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            //统计台区设备库
+            ot2 = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_tqsb Where sbname='避雷器' and sbModle like 'Y%' and tqID in(select tqid from ps_tq WHERE xlCode ='{0}' )", obj.LineCode));
+            ot1 = ot1 ?? 0;
+            ot2 = ot2 ?? 0;
+            小计 = Convert.ToInt32(ot1) + Convert.ToInt32(ot2);
+            合计 += 小计;
+            blq = 小计.ToString();
             ex.SetCellValue(blq, 15, 13);
-            blq = "0";
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器'and sbModle like 'FZ%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
-            if (ot != null) {
-                blq = ot.ToString();
-            }
+
+            //统计型号'FZ%'            
+            ot1 = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_gtsb Where sbname='避雷器' and sbModle like 'FZ%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
+            ot2 = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_tqsb Where sbname='避雷器' and sbModle like 'FZ%' and tqID in(select tqid from ps_tq WHERE xlCode ='{0}' )", obj.LineCode));
+            ot1 = ot1 ?? 0;
+            ot2 = ot2 ?? 0;
+            小计 = Convert.ToInt32(ot1) + Convert.ToInt32(ot2);
+            合计 += 小计;
+            blq = 小计.ToString();
             ex.SetCellValue(blq, 16, 13);
+
+            //
             blq = "0";
             //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", string.Format("Where sbname='避雷器'and sbModle like '%Y5WZ-17/45%' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT linecode from ps_xl where left(LineCode,{0})='{1}' and linevol='10' ))", obj.LineCode.Length, obj.LineCode));
             if (ot != null) {
                 blq = ot.ToString();
             }
             ex.SetCellValue(blq, 17, 13);
+            
+            blq = 合计.ToString();
+            ex.SetCellValue(blq, 14, 13);
+            合计 = 0;
             //绝缘子
             string jyuz = "0";
           //  ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_gtsbRowCount", "Where sbname='绝缘子' and gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
