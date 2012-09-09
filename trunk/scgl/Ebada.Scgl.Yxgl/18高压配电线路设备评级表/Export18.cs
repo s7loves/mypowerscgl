@@ -91,17 +91,18 @@ namespace Ebada.Scgl.Yxgl {
             ExportExcel(obj, BuildPj(obj, false));
         }
         public static List<PJ_18gysbpjmx> BuildPj(PJ_18gysbpj obj,bool save) {
-            IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + obj.OrgCode + "'and ParentID = ''");
+            IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + obj.OrgCode + "'and len(ParentID) <3");
             List<PJ_18gysbpjmx> listmx = new List<PJ_18gysbpjmx>();
             int bh = 0;
             string loginname=MainHelper.User.UserName;
+            int bl = 1000;
             foreach (PS_xl pl in listxl) {
                 bh++;
                 //线路
                 PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
                 pjmx.PJ_ID = obj.PJ_ID;
                 pjmx.xh = bh;
-                pjmx.sbdy = pl.LineName;
+                pjmx.sbdy = pl.LineName.Trim();
                 pjmx.CreateDate = DateTime.Now;
                 pjmx.CreateMan = loginname;
                 int line1 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and  SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '一类')"));
@@ -112,6 +113,8 @@ namespace Ebada.Scgl.Yxgl {
                 pjmx.three = line3;
                 if ((line1 + line2 + line3) != 0) {
                     pjmx.whl = Convert.ToDecimal((line1 + line2) / (line1 + line2 + line3));
+                } else {
+                    continue;
                 }
                 listmx.Add(pjmx);
 
@@ -128,21 +131,25 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.tqName + "台区";
+                    pjmx.sbdy = pq.tqName.Trim()+ "台区";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.btKind) {
                         case "一类":
-                            pjmx.one = 1;
+                            pjmx.one = 1 * bl;
                             pjmx.whl = 1;
                             break;
                         case "二类":
-                            pjmx.two = 2;
+                            pjmx.two = 1 * bl;
                             pjmx.whl = 1;
                             break;
                         case "三类":
-                            pjmx.three = 1;
+                            pjmx.three = 1 * bl;
                             pjmx.whl = 0;
+                            break;
+                        default:
+                            pjmx.one = 1 * bl;
+                            pjmx.whl = 1;
                             break;
 
                     }
@@ -159,32 +166,37 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.kgName + "开关";
+                    pjmx.sbdy = pq.kgName.Trim()+ "开关";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.kgkind) {
                         case "一类":
-                            pjmx.one = 1;
+                            pjmx.one = 1 * bl;
                             pjmx.whl = 1;
                             break;
                         case "二类":
-                            pjmx.two = 2;
+                            pjmx.two = 1 * bl;
                             pjmx.whl = 1;
                             break;
                         case "三类":
-                            pjmx.three = 1;
+                            pjmx.three = 1 * bl;
                             pjmx.whl = 0;
                             break;
-
+                        default:
+                            pjmx.one = 1 * bl;
+                            pjmx.whl = 1;
+                            break;
                     }
                     listmx.Add(pjmx);
                 }
                 
             }
+            
             foreach (var pl in listxl) {
                 
                 //变压器
                 IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
+                
                 foreach (PS_tqbyq pq in listbyq) {
                     if (string.IsNullOrEmpty(pq.byqName)) continue;
                     bh++;
@@ -192,21 +204,25 @@ namespace Ebada.Scgl.Yxgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.byqName + "变压器";
+                    pjmx.sbdy = pq.byqName.Trim()+ "变压器";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
                     switch (pq.byqkind) {
                         case "一类":
-                            pjmx.one = 1;
-                            pjmx.whl = 1;
+                            pjmx.one = 1 * bl;
+                            pjmx.whl = 1 ;
                             break;
                         case "二类":
-                            pjmx.two = 2;
-                            pjmx.whl = 1;
+                            pjmx.two = 1 * bl;
+                            pjmx.whl = 1 ;
                             break;
                         case "三类":
-                            pjmx.three = 1;
+                            pjmx.three = 1 * bl;
                             pjmx.whl = 0;
+                            break;
+                        default:
+                            pjmx.one = 1 * bl;
+                            pjmx.whl = 1 ;
                             break;
 
                     }
