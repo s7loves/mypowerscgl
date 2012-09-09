@@ -36,6 +36,45 @@ namespace Ebada.Scgl.Gis {
         public static Bitmap GetDytqMap(string tqcode) {
             return GetDytqMap(tqcode, 800, 600);
         }
+        static void drawArrow(Graphics g, float x0, float y0, float x1, float y1) {
+            //float d=(float)Math.Sqrt((y1-y0)*(y1-y0)+(x1-x0)*(x1-x0));
+            //float Xa = x1 + 10 * ((x0 - x1) + (y0 - y1) / 2) / d;
+            //float Ya = y1 + 10 * ((y0 - y1) - (x0 - x1) / 2) / d;
+            //float Xb = x1 + 10 * ((x0 - x1) - (y0 - y1) / 2) / d;
+            //float Yb = y1 + 10 * ((y0 - y1) + (x0 - x1) / 2) / d;
+            //g.DrawLine(Pens.Black, new PointF(x0, y0), new PointF(x1, y1));
+            //g.DrawLine(Pens.Black, new PointF(Xa, Ya), new PointF(Xb, Yb));
+            PointF p3 = new PointF(x0+(x1 -x0)*2 / 3, y0 + (y1-y0) *2/ 3);
+            Pen pen=getPenArrow();
+            g.DrawLine(pen, new PointF(x0, y0), p3);
+            //pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            //g.DrawLine(pen, p3, new PointF(x1, y1));
+        }
+        static Pen getPenArrow() {
+            System.Drawing.Drawing2D.AdjustableArrowCap lineCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 6, true);
+
+            Pen RedPen = new Pen(Color.Black, 2);
+
+            RedPen.CustomEndCap = lineCap;
+
+            return RedPen;
+        }
+        private static void draw指南针(Graphics g) {
+            Rectangle r =new Rectangle(0,0,20,20);
+            Pen pen = new Pen(Color.Black);
+            pen.Width = 1.5f;
+            pen.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
+            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            g.DrawEllipse(pen, r);
+            Point p0= new Point(10,0);
+            Point p1 = new Point(4, 16);
+            Point p2 = new Point(10, 10);
+            Point p3 = new Point(16, 16);
+            Point[] pts = new Point[]{p0,p1,p2,p3,p0,p2 };
+
+            g.DrawLines(pen, pts);
+        }
         /// <summary>
         ///获取低压台区网络图
         /// </summary>
@@ -168,7 +207,25 @@ namespace Ebada.Scgl.Gis {
                 }
                 p0 = Point.Empty;
             }
+            //绘制10线路方向
 
+            IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + tqcode + "' and linevol ='0.4' ");
+            foreach (PS_xl xl0 in xllist0) {
+
+                IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + xl0.LineCode + "' order by gtcode");
+                if (gtlist.Count >= 2) {
+                    PointF p1 = new PointF((float)gtlist[0].gtLon * bl, (float)gtlist[0].gtLat * bl);
+                    PointF p2 = new PointF((float)gtlist[1].gtLon * bl, (float)gtlist[1].gtLat * bl);
+                    PointF[] pts = new PointF[] { p1, p2 };
+                    matrix.TransformPoints(pts);
+                    drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
+                }
+
+            }
+            //绘制指南针
+            g.TranslateTransform(width - 50, 20);
+            g.ScaleTransform(1.5f, 1.5f);
+            draw指南针(g);
             return bp;
         }
     }
