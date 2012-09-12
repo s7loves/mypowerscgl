@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="RS_bx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="RS_bx"  type="Ebada.Scgl.Model.RS_bx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="RS_bx_AllColumns" class="RS_bx">
+        <result property="ID" column="ID" />
+        <result property="year" column="year" />
+        <result property="month" column="month" />
+        <result property="type" column="type" />
+        <result property="保险编号" column="保险编号" />
+        <result property="身份证号" column="身份证号" />
+        <result property="缴费工资" column="缴费工资" />
+        <result property="职工合计" column="职工合计" />
+        <result property="职工单位缴费" column="职工单位缴费" />
+        <result property="职工个人应缴" column="职工个人应缴" />
+        <result property="姓名" column="姓名" />
+        <result property="参保类别" column="参保类别" />
+        <result property="单位缴纳大额" column="单位缴纳大额" />
+        <result property="个人缴纳大额" column="个人缴纳大额" />
+        <result property="单位入个人" column="单位入个人" />
+        <result property="生育保险" column="生育保险" />
+        <result property="补充保险" column="补充保险" />
+        <result property="合计金额" column="合计金额" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="rowversion" column="rowversion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectRS_bxList" resultMap="RS_bx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [year],
+         [month],
+         [type],
+         [保险编号],
+         [身份证号],
+         [缴费工资],
+         [职工合计],
+         [职工单位缴费],
+         [职工个人应缴],
+         [姓名],
+         [参保类别],
+         [单位缴纳大额],
+         [个人缴纳大额],
+         [单位入个人],
+         [生育保险],
+         [补充保险],
+         [合计金额],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [rowversion]
+          FROM RS_bx
+          $value$
+   </select>
+   
+   <select id="SelectRS_bxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [year],
+         [month],
+         [type],
+         [保险编号],
+         [身份证号],
+         [缴费工资],
+         [职工合计],
+         [职工单位缴费],
+         [职工个人应缴],
+         [姓名],
+         [参保类别],
+         [单位缴纳大额],
+         [个人缴纳大额],
+         [单位入个人],
+         [生育保险],
+         [补充保险],
+         [合计金额],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [rowversion]
+          FROM RS_bx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="year">[year]='$year$'</isNotNull>
+       <isNotNull prepend="AND" property="month">[month]='$month$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="保险编号">[保险编号]='$保险编号$'</isNotNull>
+       <isNotNull prepend="AND" property="身份证号">[身份证号]='$身份证号$'</isNotNull>
+       <isNotNull prepend="AND" property="缴费工资">[缴费工资]='$缴费工资$'</isNotNull>
+       <isNotNull prepend="AND" property="职工合计">[职工合计]='$职工合计$'</isNotNull>
+       <isNotNull prepend="AND" property="职工单位缴费">[职工单位缴费]='$职工单位缴费$'</isNotNull>
+       <isNotNull prepend="AND" property="职工个人应缴">[职工个人应缴]='$职工个人应缴$'</isNotNull>
+       <isNotNull prepend="AND" property="姓名">[姓名]='$姓名$'</isNotNull>
+       <isNotNull prepend="AND" property="参保类别">[参保类别]='$参保类别$'</isNotNull>
+       <isNotNull prepend="AND" property="单位缴纳大额">[单位缴纳大额]='$单位缴纳大额$'</isNotNull>
+       <isNotNull prepend="AND" property="个人缴纳大额">[个人缴纳大额]='$个人缴纳大额$'</isNotNull>
+       <isNotNull prepend="AND" property="单位入个人">[单位入个人]='$单位入个人$'</isNotNull>
+       <isNotNull prepend="AND" property="生育保险">[生育保险]='$生育保险$'</isNotNull>
+       <isNotNull prepend="AND" property="补充保险">[补充保险]='$补充保险$'</isNotNull>
+       <isNotNull prepend="AND" property="合计金额">[合计金额]='$合计金额$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectRS_bxByKey" resultMap="RS_bx_AllColumns" parameterClass="RS_bx">
+         SELECT 
+         [ID],
+         [year],
+         [month],
+         [type],
+         [保险编号],
+         [身份证号],
+         [缴费工资],
+         [职工合计],
+         [职工单位缴费],
+         [职工个人应缴],
+         [姓名],
+         [参保类别],
+         [单位缴纳大额],
+         [个人缴纳大额],
+         [单位入个人],
+         [生育保险],
+         [补充保险],
+         [合计金额],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [rowversion]
+         FROM RS_bx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteRS_bx" parameterClass="RS_bx">
+        DELETE FROM 
+         RS_bx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteRS_bxByWhere" parameterClass="string">
+     delete from RS_bx $value$
+   </delete>
+   
+   <delete id="DeleteRS_bxByKey" parameterClass="long">
+        DELETE FROM 
+         RS_bx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateRS_bx" parameterClass="RS_bx" resultClass="int">
+          UPDATE RS_bx
+           SET
+             [year]=#year#,
+             [month]=#month#,
+             [type]=#type#,
+             [保险编号]=#保险编号#,
+             [身份证号]=#身份证号#,
+             [缴费工资]=#缴费工资#,
+             [职工合计]=#职工合计#,
+             [职工单位缴费]=#职工单位缴费#,
+             [职工个人应缴]=#职工个人应缴#,
+             [姓名]=#姓名#,
+             [参保类别]=#参保类别#,
+             [单位缴纳大额]=#单位缴纳大额#,
+             [个人缴纳大额]=#个人缴纳大额#,
+             [单位入个人]=#单位入个人#,
+             [生育保险]=#生育保险#,
+             [补充保险]=#补充保险#,
+             [合计金额]=#合计金额#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertRS_bx" parameterClass="RS_bx">
+        INSERT INTO RS_bx
+         (
+         [year],
+         [month],
+         [type],
+         [保险编号],
+         [身份证号],
+         [缴费工资],
+         [职工合计],
+         [职工单位缴费],
+         [职工个人应缴],
+         [姓名],
+         [参保类别],
+         [单位缴纳大额],
+         [个人缴纳大额],
+         [单位入个人],
+         [生育保险],
+         [补充保险],
+         [合计金额],
+         [c1],
+         [c2],
+         [c3],
+         [c4]
+         )
+       VALUES
+         (
+         #year#,
+         #month#,
+         #type#,
+         #保险编号#,
+         #身份证号#,
+         #缴费工资#,
+         #职工合计#,
+         #职工单位缴费#,
+         #职工个人应缴#,
+         #姓名#,
+         #参保类别#,
+         #单位缴纳大额#,
+         #个人缴纳大额#,
+         #单位入个人#,
+         #生育保险#,
+         #补充保险#,
+         #合计金额#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#
+         )
+
+   </insert>
+   
+   <select id="GetRS_bxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM RS_bx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="year">[year]='$year$'</isNotNull>
+       <isNotNull prepend="AND" property="month">[month]='$month$'</isNotNull>
+       <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+       <isNotNull prepend="AND" property="保险编号">[保险编号]='$保险编号$'</isNotNull>
+       <isNotNull prepend="AND" property="身份证号">[身份证号]='$身份证号$'</isNotNull>
+       <isNotNull prepend="AND" property="缴费工资">[缴费工资]='$缴费工资$'</isNotNull>
+       <isNotNull prepend="AND" property="职工合计">[职工合计]='$职工合计$'</isNotNull>
+       <isNotNull prepend="AND" property="职工单位缴费">[职工单位缴费]='$职工单位缴费$'</isNotNull>
+       <isNotNull prepend="AND" property="职工个人应缴">[职工个人应缴]='$职工个人应缴$'</isNotNull>
+       <isNotNull prepend="AND" property="姓名">[姓名]='$姓名$'</isNotNull>
+       <isNotNull prepend="AND" property="参保类别">[参保类别]='$参保类别$'</isNotNull>
+       <isNotNull prepend="AND" property="单位缴纳大额">[单位缴纳大额]='$单位缴纳大额$'</isNotNull>
+       <isNotNull prepend="AND" property="个人缴纳大额">[个人缴纳大额]='$个人缴纳大额$'</isNotNull>
+       <isNotNull prepend="AND" property="单位入个人">[单位入个人]='$单位入个人$'</isNotNull>
+       <isNotNull prepend="AND" property="生育保险">[生育保险]='$生育保险$'</isNotNull>
+       <isNotNull prepend="AND" property="补充保险">[补充保险]='$补充保险$'</isNotNull>
+       <isNotNull prepend="AND" property="合计金额">[合计金额]='$合计金额$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetRS_bxRowCount" parameterClass="string">
+    select count(*) from RS_bx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
