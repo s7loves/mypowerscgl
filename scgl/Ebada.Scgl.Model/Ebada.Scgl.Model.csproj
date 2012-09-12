@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -155,6 +155,7 @@
     <Compile Include="PX_Objects.cs" />
     <Compile Include="rRoleFun.cs" />
     <Compile Include="rRoleModul.cs" />
+    <Compile Include="RS_bx.cs" />
     <Compile Include="rUserRole.cs" />
     <Compile Include="TX_Layer.cs" />
     <Compile Include="TX_Line.cs" />
