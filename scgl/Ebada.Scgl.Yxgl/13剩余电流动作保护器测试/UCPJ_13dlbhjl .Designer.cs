@@ -143,7 +143,7 @@
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
             // btExport
@@ -236,13 +236,7 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // UCPJ_13dlbhjl

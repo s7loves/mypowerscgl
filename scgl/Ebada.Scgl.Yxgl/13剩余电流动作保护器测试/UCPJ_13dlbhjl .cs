@@ -53,6 +53,8 @@ namespace Ebada.Scgl.Yxgl
         {
             
             CreatRiZhi(obj);
+            ParentObj.dzsj = obj.dzsj;
+            Client.ClientHelper.PlatformSqlMap.Update<PS_tqdlbh>(ParentObj);
         }
         public static void CreatRiZhi(PJ_13dlbhjl obj)
         {

@@ -282,7 +282,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit7.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit7.TabIndex = 14;
-            this.comboBoxEdit7.Visible = false;
+            this.comboBoxEdit7.Visible = true;
             // 
             // comboBoxEdit11
             // 
