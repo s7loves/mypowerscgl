@@ -45,15 +45,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jddz");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "tz");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "trdzr");
-            if (rowData.xhgg != "")
-            {
-                string[] str = rowData.xhgg.Split("|".ToCharArray());
-                if (str.Length > 1)
-                {
-                    comboBoxEdit5.Text = str[0];
-                    comboBoxEdit9.Text = str[1];
-                }
-            }
+            
 
         }
         #region IPopupFormEdit Members
@@ -78,6 +70,13 @@ namespace Ebada.Scgl.Lcgl
                 {
                     ConvertHelper.CopyTo<PJ_07jdzz>(value as PJ_07jdzz, rowData);
                     InitComboBoxData();
+                }
+                if (rowData.xhgg != "") {
+                    string[] str = rowData.xhgg.Split("|".ToCharArray());
+                    if (str.Length > 1) {
+                        comboBoxEdit5.Text = str[0];
+                        comboBoxEdit9.Text = str[1];
+                    }
                 }
             }
         }
