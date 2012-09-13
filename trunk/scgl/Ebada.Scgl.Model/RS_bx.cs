@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[year],varchar
         /// </summary>
-        [DisplayNameAttribute("year")]
+        [DisplayNameAttribute("年")]
         public string year
         {
             get { return _year; }
@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[month],varchar
         /// </summary>
-        [DisplayNameAttribute("month")]
+        [DisplayNameAttribute("月")]
         public string month
         {
             get { return _month; }
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[type],varchar
         /// </summary>
-        [DisplayNameAttribute("type")]
+        [DisplayNameAttribute("分类")]
         public string type
         {
             get { return _type; }
@@ -393,6 +393,11 @@ namespace Ebada.Scgl.Model
                     _合计金额 = value;
                 }
             }			 
+        }
+        [DisplayNameAttribute("显示总金额")]
+        public decimal 显示总金额 {
+            get { return 职工个人应缴 + 单位入个人; }
+            set { }
         }
   
         /// <summary>
