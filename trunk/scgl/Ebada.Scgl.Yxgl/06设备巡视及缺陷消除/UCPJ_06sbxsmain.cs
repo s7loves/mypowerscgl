@@ -258,7 +258,7 @@ namespace Ebada.Scgl.Yxgl
                     IList<PJ_06sbxsmx> ilist = null;
                     if (dt.Rows .Count== 0)
                     {
-                       ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "' order by CreateDate desc");
+                       ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "' order by CreateDate ");
                     }
                     else
                     {
@@ -273,7 +273,7 @@ namespace Ebada.Scgl.Yxgl
                                 sely += "'" + dt.Rows[i][0].ToString() + "')";
 
                         }
-                        ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "'and year(xssj) in"+sely+ "order by CreateDate desc");
+                        ilist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID='" + _pj.ID + "'and year(xssj) in"+sely+ "order by CreateDate ");
                     }
                     if (ilist.Count == 0)
                     {
