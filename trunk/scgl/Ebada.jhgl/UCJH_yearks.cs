@@ -35,8 +35,8 @@ namespace Ebada.jhgl {
         public event SendDataEventHandler<JH_yearks> FocusedRowChanged;
         private string parentID;
         private mOrg org;
-        private string type1="1";//1-区分科室、2-供电所
-        private string type2 = "全年计划";
+        private string type1="";//1-区分科室、2-供电所
+        private string type2 = "";
         private bool 全局 = false;
         string filter = "";
         public UCJH_yearks() {
@@ -201,11 +201,16 @@ namespace Ebada.jhgl {
 
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<JH_yearks> e) {
+            if (string.IsNullOrEmpty(type1) || string.IsNullOrEmpty(type2)) {
+                e.Cancel = true;
+                MsgBox.ShowAskMessageBox("操作非法，增加失败!");
+                return;
+            }
             if (parentID == null) {
                 e.Cancel = true;
 
                 MsgBox.ShowAskMessageBox("请先选择计划年份");
-
+                return;
             }
             if (org == null) {
                 e.Cancel = true;
@@ -373,9 +378,13 @@ namespace Ebada.jhgl {
                 string where = "where parentid='" + value + "'";
                 if (全局) {}
                 else{
-                    where += " and (单位分类='9' or 单位分类='" + type1 + "')";
+                    if(!string.IsNullOrEmpty(type1))
+                        where += " and (单位分类='9' or 单位分类='" + type1 + "')";
                     if (org != null)
                         where += " and 单位代码='" + org.OrgCode + "'";
+                    if (!string.IsNullOrEmpty(type2)) {
+                        where += " and 计划分类='" + type2 + "'";
+                    }
                 }
 
                 RefreshData(where);
