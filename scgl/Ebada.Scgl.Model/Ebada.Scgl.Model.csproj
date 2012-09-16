@@ -37,6 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Empolyees.cs" />
+    <Compile Include="JH_monthks.cs" />
+    <Compile Include="JH_monthkst.cs" />
+    <Compile Include="JH_weekks.cs" />
+    <Compile Include="JH_weekkst.cs" />
+    <Compile Include="JH_yearks.cs" />
+    <Compile Include="JH_yearkst.cs" />
     <Compile Include="LP_Record.cs" />
     <Compile Include="LP_Temple.cs" />
     <Compile Include="mModule.cs" />
