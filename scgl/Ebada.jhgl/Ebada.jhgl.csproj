@@ -78,13 +78,56 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="frmJH_yearksEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJH_yearksEdit.Designer.cs">
+      <DependentUpon>frmJH_yearksEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCJH_date.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_date.Designer.cs">
+      <DependentUpon>UCJH_date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCJH_yearkst.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_yearkst.Designer.cs">
+      <DependentUpon>UCJH_yearkst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCJH_yearks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_yearks.Designer.cs">
+      <DependentUpon>UCJH_yearks.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmJH_yearksEdit.resx">
+      <DependentUpon>frmJH_yearksEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UCJH_date.resx">
+      <DependentUpon>UCJH_date.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_yearkst.resx">
+      <DependentUpon>UCJH_yearkst.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_yearks.resx">
+      <DependentUpon>UCJH_yearks.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
