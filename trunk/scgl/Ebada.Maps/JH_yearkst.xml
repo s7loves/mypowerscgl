@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="JH_yearkst" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="JH_yearkst"  type="Ebada.Scgl.Model.JH_yearkst,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="JH_yearkst_AllColumns" class="JH_yearkst">
+        <result property="ID" column="ID" />
+        <result property="单位代码" column="单位代码" />
+        <result property="单位名称" column="单位名称" />
+        <result property="开始日期" column="开始日期" />
+        <result property="结束日期" column="结束日期" />
+        <result property="标题" column="标题" />
+        <result property="年" column="年" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectJH_yearkstList" resultMap="JH_yearkst_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_yearkst
+          $value$
+   </select>
+   
+   <select id="SelectJH_yearkstByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_yearkst
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年">[年]='$年$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectJH_yearkstByKey" resultMap="JH_yearkst_AllColumns" parameterClass="JH_yearkst">
+         SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年],
+         [c1],
+         [c2],
+         [c3]
+         FROM JH_yearkst
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteJH_yearkst" parameterClass="JH_yearkst">
+        DELETE FROM 
+         JH_yearkst
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteJH_yearkstByWhere" parameterClass="string">
+     delete from JH_yearkst $value$
+   </delete>
+   
+   <delete id="DeleteJH_yearkstByKey" parameterClass="string">
+        DELETE FROM 
+         JH_yearkst
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateJH_yearkst" parameterClass="JH_yearkst" resultClass="int">
+          UPDATE JH_yearkst
+           SET
+             [单位代码]=#单位代码#,
+             [单位名称]=#单位名称#,
+             [开始日期]=#开始日期#,
+             [结束日期]=#结束日期#,
+             [标题]=#标题#,
+             [年]=#年#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertJH_yearkst" parameterClass="JH_yearkst">
+        INSERT INTO JH_yearkst
+         (
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #单位代码#,
+         #单位名称#,
+         #开始日期#,
+         #结束日期#,
+         #标题#,
+         #年#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="GetJH_yearkstRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM JH_yearkst
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年">[年]='$年$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetJH_yearkstRowCount" parameterClass="string">
+    select count(*) from JH_yearkst $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

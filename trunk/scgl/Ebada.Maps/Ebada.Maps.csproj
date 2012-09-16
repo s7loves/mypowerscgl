@@ -364,6 +364,14 @@
     <EmbeddedResource Include="RS_bx.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="JH_monthks.xml" />
+    <EmbeddedResource Include="JH_monthkst.xml" />
+    <EmbeddedResource Include="JH_weekks.xml" />
+    <EmbeddedResource Include="JH_weekkst.xml" />
+    <EmbeddedResource Include="JH_yearks.xml" />
+    <EmbeddedResource Include="JH_yearkst.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="JH_weekks" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="JH_weekks"  type="Ebada.Scgl.Model.JH_weekks,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="JH_weekks_AllColumns" class="JH_weekks">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="单位代码" column="单位代码" />
+        <result property="单位名称" column="单位名称" />
+        <result property="计划项目" column="计划项目" />
+        <result property="实施内容" column="实施内容" />
+        <result property="主要负责人" column="主要负责人" />
+        <result property="参加人员" column="参加人员" />
+        <result property="预计时间" column="预计时间" />
+        <result property="预计时间2" column="预计时间2" />
+        <result property="计划种类" column="计划种类" />
+        <result property="计划分类" column="计划分类" />
+        <result property="完成标记" column="完成标记" />
+        <result property="完成时间" column="完成时间" />
+        <result property="总结提升" column="总结提升" />
+        <result property="未完成原因" column="未完成原因" />
+        <result property="可选标记" column="可选标记" />
+        <result property="单位分类" column="单位分类" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectJH_weekksList" resultMap="JH_weekks_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [计划项目],
+         [实施内容],
+         [主要负责人],
+         [参加人员],
+         [预计时间],
+         [预计时间2],
+         [计划种类],
+         [计划分类],
+         [完成标记],
+         [完成时间],
+         [总结提升],
+         [未完成原因],
+         [可选标记],
+         [单位分类],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM JH_weekks
+          $value$
+   </select>
+   
+   <select id="SelectJH_weekksByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [计划项目],
+         [实施内容],
+         [主要负责人],
+         [参加人员],
+         [预计时间],
+         [预计时间2],
+         [计划种类],
+         [计划分类],
+         [完成标记],
+         [完成时间],
+         [总结提升],
+         [未完成原因],
+         [可选标记],
+         [单位分类],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM JH_weekks
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="计划项目">[计划项目]='$计划项目$'</isNotNull>
+       <isNotNull prepend="AND" property="实施内容">[实施内容]='$实施内容$'</isNotNull>
+       <isNotNull prepend="AND" property="主要负责人">[主要负责人]='$主要负责人$'</isNotNull>
+       <isNotNull prepend="AND" property="参加人员">[参加人员]='$参加人员$'</isNotNull>
+       <isNotNull prepend="AND" property="预计时间">[预计时间]='$预计时间$'</isNotNull>
+       <isNotNull prepend="AND" property="预计时间2">[预计时间2]='$预计时间2$'</isNotNull>
+       <isNotNull prepend="AND" property="计划种类">[计划种类]='$计划种类$'</isNotNull>
+       <isNotNull prepend="AND" property="计划分类">[计划分类]='$计划分类$'</isNotNull>
+       <isNotNull prepend="AND" property="完成标记">[完成标记]='$完成标记$'</isNotNull>
+       <isNotNull prepend="AND" property="完成时间">[完成时间]='$完成时间$'</isNotNull>
+       <isNotNull prepend="AND" property="总结提升">[总结提升]='$总结提升$'</isNotNull>
+       <isNotNull prepend="AND" property="未完成原因">[未完成原因]='$未完成原因$'</isNotNull>
+       <isNotNull prepend="AND" property="可选标记">[可选标记]='$可选标记$'</isNotNull>
+       <isNotNull prepend="AND" property="单位分类">[单位分类]='$单位分类$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectJH_weekksByKey" resultMap="JH_weekks_AllColumns" parameterClass="JH_weekks">
+         SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [计划项目],
+         [实施内容],
+         [主要负责人],
+         [参加人员],
+         [预计时间],
+         [预计时间2],
+         [计划种类],
+         [计划分类],
+         [完成标记],
+         [完成时间],
+         [总结提升],
+         [未完成原因],
+         [可选标记],
+         [单位分类],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM JH_weekks
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteJH_weekks" parameterClass="JH_weekks">
+        DELETE FROM 
+         JH_weekks
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteJH_weekksByWhere" parameterClass="string">
+     delete from JH_weekks $value$
+   </delete>
+   
+   <delete id="DeleteJH_weekksByKey" parameterClass="string">
+        DELETE FROM 
+         JH_weekks
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateJH_weekks" parameterClass="JH_weekks" resultClass="int">
+          UPDATE JH_weekks
+           SET
+             [ParentID]=#ParentID#,
+             [单位代码]=#单位代码#,
+             [单位名称]=#单位名称#,
+             [计划项目]=#计划项目#,
+             [实施内容]=#实施内容#,
+             [主要负责人]=#主要负责人#,
+             [参加人员]=#参加人员#,
+             [预计时间]=#预计时间#,
+             [预计时间2]=#预计时间2#,
+             [计划种类]=#计划种类#,
+             [计划分类]=#计划分类#,
+             [完成标记]=#完成标记#,
+             [完成时间]=#完成时间#,
+             [总结提升]=#总结提升#,
+             [未完成原因]=#未完成原因#,
+             [可选标记]=#可选标记#,
+             [单位分类]=#单位分类#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertJH_weekks" parameterClass="JH_weekks">
+        INSERT INTO JH_weekks
+         (
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [计划项目],
+         [实施内容],
+         [主要负责人],
+         [参加人员],
+         [预计时间],
+         [预计时间2],
+         [计划种类],
+         [计划分类],
+         [完成标记],
+         [完成时间],
+         [总结提升],
+         [未完成原因],
+         [可选标记],
+         [单位分类],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #单位代码#,
+         #单位名称#,
+         #计划项目#,
+         #实施内容#,
+         #主要负责人#,
+         #参加人员#,
+         #预计时间#,
+         #预计时间2#,
+         #计划种类#,
+         #计划分类#,
+         #完成标记#,
+         #完成时间#,
+         #总结提升#,
+         #未完成原因#,
+         #可选标记#,
+         #单位分类#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="GetJH_weekksRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM JH_weekks
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="计划项目">[计划项目]='$计划项目$'</isNotNull>
+       <isNotNull prepend="AND" property="实施内容">[实施内容]='$实施内容$'</isNotNull>
+       <isNotNull prepend="AND" property="主要负责人">[主要负责人]='$主要负责人$'</isNotNull>
+       <isNotNull prepend="AND" property="参加人员">[参加人员]='$参加人员$'</isNotNull>
+       <isNotNull prepend="AND" property="预计时间">[预计时间]='$预计时间$'</isNotNull>
+       <isNotNull prepend="AND" property="预计时间2">[预计时间2]='$预计时间2$'</isNotNull>
+       <isNotNull prepend="AND" property="计划种类">[计划种类]='$计划种类$'</isNotNull>
+       <isNotNull prepend="AND" property="计划分类">[计划分类]='$计划分类$'</isNotNull>
+       <isNotNull prepend="AND" property="完成标记">[完成标记]='$完成标记$'</isNotNull>
+       <isNotNull prepend="AND" property="完成时间">[完成时间]='$完成时间$'</isNotNull>
+       <isNotNull prepend="AND" property="总结提升">[总结提升]='$总结提升$'</isNotNull>
+       <isNotNull prepend="AND" property="未完成原因">[未完成原因]='$未完成原因$'</isNotNull>
+       <isNotNull prepend="AND" property="可选标记">[可选标记]='$可选标记$'</isNotNull>
+       <isNotNull prepend="AND" property="单位分类">[单位分类]='$单位分类$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetJH_weekksRowCount" parameterClass="string">
+    select count(*) from JH_weekks $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
