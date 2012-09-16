@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**********************************************
+系统:计划管理
+模块:年计划
+作者:Rabbit
+创建时间:2012-9-12
+最后一次修改:2012-9-15
+***********************************************/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

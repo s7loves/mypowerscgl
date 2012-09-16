@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012-9-16 10:28:39
+生成时间:2012-9-16 13:32:02
 ***********************************************/
 
 using System;
@@ -22,6 +22,7 @@ namespace Ebada.Scgl.Model
         
         #region Private 成员
         private string _id=Newid(); 
+        private string _parentid=String.Empty; 
         private string _单位代码=String.Empty; 
         private string _单位名称=String.Empty; 
         private DateTime _开始日期=new DateTime(1900,1,1); 
@@ -54,6 +55,27 @@ namespace Ebada.Scgl.Model
                 if (_id as object == null || !_id.Equals(value))
                 {
                     _id = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：ParentID
+        /// 属性描述：
+        /// 字段信息：[ParentID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("ParentID")]
+        public string ParentID
+        {
+            get { return _parentid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[ParentID]长度不能大于50!");
+                if (_parentid as object == null || !_parentid.Equals(value))
+                {
+                    _parentid = value;
                 }
             }			 
         }
