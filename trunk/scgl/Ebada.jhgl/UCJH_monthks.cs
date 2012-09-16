@@ -29,26 +29,26 @@ namespace Ebada.jhgl {
     /// 工程类别管理
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCJH_yearks : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<JH_yearks> gridViewOperation;
+    public partial class UCJH_monthks : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<JH_monthks> gridViewOperation;
 
-        public event SendDataEventHandler<JH_yearks> FocusedRowChanged;
+        public event SendDataEventHandler<JH_monthks> FocusedRowChanged;
         private string parentID;
         private mOrg org;
         private string type1="1";//1-区分科室、2-供电所
         private string type2 = "全年计划";
         private bool 全局 = false;
         string filter = "";
-        public UCJH_yearks() {
+        public UCJH_monthks() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<JH_yearks>(gridControl1, gridView1, barManager1,new frmJH_yearksEdit());
+            gridViewOperation = new GridViewOperation<JH_monthks>(gridControl1, gridView1, barManager1);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeDelete);
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeAdd);
             barEditItem1.EditValueChanged += new EventHandler(barEditItem1_EditValueChanged);
             gridView1.IndicatorWidth = 40;//设置显示行号的列宽
             gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
@@ -58,11 +58,11 @@ namespace Ebada.jhgl {
             treeList1.OptionsSelection.InvertSelection = true;
             org = MainHelper.UserOrg;
             splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<JH_yearks>(gridViewOperation_AfterAdd);
-            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeEdit);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<JH_monthks>(gridViewOperation_AfterAdd);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeEdit);
         }
 
-        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<JH_yearks> e) {
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<JH_monthks> e) {
             if (e.Value.计划分类 != type2 ||e.Value.单位分类 != type1) {
 
                 MsgBox.ShowAskMessageBox("此记录不能修改");
@@ -70,7 +70,7 @@ namespace Ebada.jhgl {
             }
         }
 
-        void gridViewOperation_AfterAdd(JH_yearks obj) {
+        void gridViewOperation_AfterAdd(JH_monthks obj) {
             string[] dws = obj.c1.Split("、".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             StringBuilder sb =new StringBuilder();
             bool hasgds = false;
@@ -89,7 +89,7 @@ namespace Ebada.jhgl {
             }
             if (list.Count > 0) {
 
-                List<JH_yearks> listadd = new List<JH_yearks>();
+                List<JH_monthks> listadd = new List<JH_monthks>();
                 foreach (var o in list) {
                     IList<mOrg> list2 =Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='"+o.OrgID+"'");
                     if (list2.Count > 0) {
@@ -104,8 +104,8 @@ namespace Ebada.jhgl {
             }
 
         }
-        JH_yearks createjh(mOrg o,JH_yearks s) {
-            JH_yearks jh = new JH_yearks();
+        JH_monthks createjh(mOrg o,JH_monthks s) {
+            JH_monthks jh = new JH_monthks();
             ConvertHelper.CopyTo(s, jh);
             jh.ID = jh.CreateID();
             jh.单位代码 = o.OrgCode;
@@ -200,7 +200,7 @@ namespace Ebada.jhgl {
         }
 
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<JH_yearks> e) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<JH_monthks> e) {
             if (parentID == null) {
                 e.Cancel = true;
 
@@ -214,7 +214,7 @@ namespace Ebada.jhgl {
             }
         }
 
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<JH_yearks> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<JH_monthks> e) {
 
             
         }
@@ -230,7 +230,7 @@ namespace Ebada.jhgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as JH_yearks);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as JH_monthks);
         }
         /// <summary>
         /// 初始化数据
@@ -284,8 +284,8 @@ namespace Ebada.jhgl {
             gridView1.Columns["未完成原因"].Visible = false;
             gridView1.Columns["单位代码"].Visible = false;
             //gridView1.Columns["计划分类"].Visible = false;
-            //gridView1.Columns["预计时间"].Visible = false;
-            //gridView1.Columns["预计时间2"].Visible = false;
+            gridView1.Columns["预计时间"].Visible = false;
+            gridView1.Columns["预计时间2"].Visible = false;
             gridView1.Columns["完成标记"].Visible = false;
             gridView1.Columns["完成时间"].Visible = false;
             gridView1.Columns["总结提升"].Visible = false;
@@ -301,9 +301,9 @@ namespace Ebada.jhgl {
             //box1.Items.AddRange(new string[] { "全年计划", "临时计划" });
             //gridView1.Columns["计划分类"].ColumnEdit = box1;
         }
-        private IViewOperation<JH_yearks> childView2;
+        private IViewOperation<JH_monthks> childView2;
 
-        public IViewOperation<JH_yearks> ChildView2 {
+        public IViewOperation<JH_monthks> ChildView2 {
             get { return childView2; }
             set {
                 childView2 = value; if (value != null) {
@@ -312,13 +312,13 @@ namespace Ebada.jhgl {
             }
         }
 
-        private IViewOperation<JH_yearks> childView;
+        private IViewOperation<JH_monthks> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public IViewOperation<JH_yearks> ChildView {
+        public IViewOperation<JH_monthks> ChildView {
             get { return childView; }
             set {
                 childView = value;
@@ -340,7 +340,7 @@ namespace Ebada.jhgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<JH_yearks> GridViewOperation {
+        public GridViewOperation<JH_monthks> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -348,7 +348,7 @@ namespace Ebada.jhgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(JH_yearks newobj) {
+        void gridViewOperation_CreatingObjectEvent(JH_monthks newobj) {
             newobj.ParentID = parentID;
             newobj.单位分类 = type1;
             if (org != null) {

@@ -6,6 +6,7 @@
   <resultMaps>
       <resultMap id="JH_yearkst_AllColumns" class="JH_yearkst">
         <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
         <result property="单位代码" column="单位代码" />
         <result property="单位名称" column="单位名称" />
         <result property="开始日期" column="开始日期" />
@@ -22,6 +23,7 @@
    <select id="SelectJH_yearkstList" resultMap="JH_yearkst_AllColumns" parameterClass="string">
         SELECT 
          [ID],
+         [ParentID],
          [单位代码],
          [单位名称],
          [开始日期],
@@ -38,6 +40,7 @@
    <select id="SelectJH_yearkstByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
+         [ParentID],
          [单位代码],
          [单位名称],
          [开始日期],
@@ -50,6 +53,7 @@
           FROM JH_yearkst
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
        <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
        <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
@@ -64,6 +68,7 @@
    <select id="SelectJH_yearkstByKey" resultMap="JH_yearkst_AllColumns" parameterClass="JH_yearkst">
          SELECT 
          [ID],
+         [ParentID],
          [单位代码],
          [单位名称],
          [开始日期],
@@ -102,6 +107,7 @@
    <update id="UpdateJH_yearkst" parameterClass="JH_yearkst" resultClass="int">
           UPDATE JH_yearkst
            SET
+             [ParentID]=#ParentID#,
              [单位代码]=#单位代码#,
              [单位名称]=#单位名称#,
              [开始日期]=#开始日期#,
@@ -120,6 +126,7 @@
         INSERT INTO JH_yearkst
          (
          [ID],
+         [ParentID],
          [单位代码],
          [单位名称],
          [开始日期],
@@ -133,6 +140,7 @@
        VALUES
          (
          #ID#,
+         #ParentID#,
          #单位代码#,
          #单位名称#,
          #开始日期#,
@@ -151,6 +159,7 @@
           FROM JH_yearkst
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
        <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
        <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
