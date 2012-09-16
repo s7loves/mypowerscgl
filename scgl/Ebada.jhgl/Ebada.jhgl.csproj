@@ -109,6 +109,12 @@
     <Compile Include="UCJH_monthks.Designer.cs">
       <DependentUpon>UCJH_monthks.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCJH_weekks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_weekks.Designer.cs">
+      <DependentUpon>UCJH_weekks.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
@@ -136,6 +142,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCJH_monthks.resx">
       <DependentUpon>UCJH_monthks.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_weekks.resx">
+      <DependentUpon>UCJH_weekks.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
