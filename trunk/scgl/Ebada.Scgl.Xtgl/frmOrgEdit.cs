@@ -49,6 +49,7 @@ namespace Ebada.Scgl.Xtgl
                 } else {
                     ConvertHelper.CopyTo<mOrg>(value as mOrg, rowData);
                     checkEdit1.Checked = false;
+                    checkEdit2.Checked = false;
                     if (rowData.C1 == "是")
                         checkEdit1.Checked = true;
                     if (rowData.C3 == "是")
