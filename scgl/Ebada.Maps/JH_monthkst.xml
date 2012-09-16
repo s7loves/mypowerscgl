@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="JH_monthkst" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="JH_monthkst"  type="Ebada.Scgl.Model.JH_monthkst,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="JH_monthkst_AllColumns" class="JH_monthkst">
+        <result property="ID" column="ID" />
+        <result property="单位代码" column="单位代码" />
+        <result property="单位名称" column="单位名称" />
+        <result property="开始日期" column="开始日期" />
+        <result property="结束日期" column="结束日期" />
+        <result property="标题" column="标题" />
+        <result property="年月" column="年月" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectJH_monthkstList" resultMap="JH_monthkst_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_monthkst
+          $value$
+   </select>
+   
+   <select id="SelectJH_monthkstByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_monthkst
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年月">[年月]='$年月$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectJH_monthkstByKey" resultMap="JH_monthkst_AllColumns" parameterClass="JH_monthkst">
+         SELECT 
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月],
+         [c1],
+         [c2],
+         [c3]
+         FROM JH_monthkst
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteJH_monthkst" parameterClass="JH_monthkst">
+        DELETE FROM 
+         JH_monthkst
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteJH_monthkstByWhere" parameterClass="string">
+     delete from JH_monthkst $value$
+   </delete>
+   
+   <delete id="DeleteJH_monthkstByKey" parameterClass="string">
+        DELETE FROM 
+         JH_monthkst
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateJH_monthkst" parameterClass="JH_monthkst" resultClass="int">
+          UPDATE JH_monthkst
+           SET
+             [单位代码]=#单位代码#,
+             [单位名称]=#单位名称#,
+             [开始日期]=#开始日期#,
+             [结束日期]=#结束日期#,
+             [标题]=#标题#,
+             [年月]=#年月#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertJH_monthkst" parameterClass="JH_monthkst">
+        INSERT INTO JH_monthkst
+         (
+         [ID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #单位代码#,
+         #单位名称#,
+         #开始日期#,
+         #结束日期#,
+         #标题#,
+         #年月#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="GetJH_monthkstRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM JH_monthkst
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年月">[年月]='$年月$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetJH_monthkstRowCount" parameterClass="string">
+    select count(*) from JH_monthkst $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
