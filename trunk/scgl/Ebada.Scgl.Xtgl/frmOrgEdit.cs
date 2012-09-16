@@ -51,6 +51,8 @@ namespace Ebada.Scgl.Xtgl
                     checkEdit1.Checked = false;
                     if (rowData.C1 == "是")
                         checkEdit1.Checked = true;
+                    if (rowData.C3 == "是")
+                        checkEdit2.Checked = true;
                 }
             }
         }
@@ -103,7 +105,10 @@ namespace Ebada.Scgl.Xtgl
                 rowData.C1 = "是";
             else
                 rowData.C1 = "否";
-
+            if (checkEdit2.Checked)
+                rowData.C3 = "是";
+            else
+                rowData.C3 = "否";
         }
     }
 }
