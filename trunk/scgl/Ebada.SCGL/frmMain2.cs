@@ -15,6 +15,8 @@ using Ebada.SCGL.WFlow.Engine;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Reflection;
+using System.Globalization;
 
 namespace Ebada.SCGL {
     public partial class frmMain2 : DevExpress.XtraEditors.XtraForm {
@@ -107,12 +109,10 @@ namespace Ebada.SCGL {
             this.Cursor = Cursors.WaitCursor;
             try {
                 object result = null;
-                if (obj.MethodParam == null || obj.MethodParam == "")
+                if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName) )
                     result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
                 else {
-
-
-                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(','), this, ref instance);
+                    result = Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(),StringSplitOptions.RemoveEmptyEntries), this, ref instance);
                 }
                 if (result is UserControl) {
                     instance = showControl(result as UserControl, obj.Modu_ID);
@@ -134,6 +134,51 @@ namespace Ebada.SCGL {
             } finally {
                 barEditItem1.Visibility = BarItemVisibility.Never;
             }
+        }
+        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance) {
+
+            if (assemblyName == null)
+                assemblyName = string.Empty;
+            if (className == null || className == string.Empty)
+                return null;
+            if (string.IsNullOrEmpty(methodName))
+                methodName = "Show";
+            if (paramValues == null)
+                paramValues = new object[0];
+            object result = null;
+
+            Type type = Assembly.GetExecutingAssembly().GetType(className);
+            if (null == type) {
+                Assembly asm = (assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + "\\" + assemblyName);
+                type = asm.GetType(className, true);
+            }
+            //
+            Type[] ptypes = new Type[paramValues.Length];
+            for (int i = 0; i < paramValues.Length; i++)
+                ptypes[i] = paramValues[i].GetType();
+
+            MethodInfo method = type.GetMethod(methodName, ptypes);
+            if (method != null) {
+                ParameterInfo[] paramInfos = method.GetParameters();
+                if (paramInfos.Length == paramValues.Length) {
+                    // 参数个数相同才会执行
+                    object[] methodParams = new object[paramValues.Length];
+
+                    for (int i = 0; i < paramValues.Length; i++)
+                        methodParams[i] = Convert.ChangeType(paramValues[i], paramInfos[i].ParameterType, CultureInfo.InvariantCulture);
+                    if (classInstance == null) {
+                        classInstance = (method.IsStatic) ? null : Activator.CreateInstance(type);
+                    }
+                    if (classInstance is Form && mdi is Form) {
+                        ((Form)classInstance).MdiParent = mdi;
+                    } else if (classInstance is UserControl) {
+                        //return classInstance;
+                    }
+                    result = method.Invoke(classInstance, methodParams);
+                }
+            }
+
+            return result;
         }
         /// <summary>
         /// 模块关闭时发生
