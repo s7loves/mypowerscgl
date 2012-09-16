@@ -31,21 +31,23 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
@@ -53,14 +55,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(221, 204);
+            this.btnCancel.Location = new System.Drawing.Point(220, 221);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 0;
@@ -70,7 +72,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(166, 204);
+            this.btnOK.Location = new System.Drawing.Point(165, 221);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(49, 23);
             this.btnOK.TabIndex = 0;
@@ -79,6 +81,7 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.checkEdit2);
             this.groupControlOrg.Controls.Add(this.checkEdit1);
             this.groupControlOrg.Controls.Add(this.lookUpEdit1);
             this.groupControlOrg.Controls.Add(this.dateEdit2);
@@ -95,9 +98,17 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(297, 239);
+            this.groupControlOrg.Size = new System.Drawing.Size(301, 267);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Text = "单位信息";
+            // 
+            // checkEdit1
+            // 
+            this.checkEdit1.Location = new System.Drawing.Point(84, 181);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "生产部门";
+            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit1.TabIndex = 5;
             // 
             // lookUpEdit1
             // 
@@ -151,6 +162,14 @@
             this.labelControl4.TabIndex = 2;
             this.labelControl4.Text = "人生安全\r\n启始时间";
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(20, 96);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(24, 14);
+            this.labelControl6.TabIndex = 2;
+            this.labelControl6.Text = "种类";
+            // 
             // labelControl2
             // 
             this.labelControl2.Location = new System.Drawing.Point(20, 66);
@@ -199,27 +218,19 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl6
+            // checkEdit2
             // 
-            this.labelControl6.Location = new System.Drawing.Point(20, 96);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(24, 14);
-            this.labelControl6.TabIndex = 2;
-            this.labelControl6.Text = "种类";
-            // 
-            // checkEdit1
-            // 
-            this.checkEdit1.Location = new System.Drawing.Point(84, 181);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "生产部门";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit1.TabIndex = 5;
+            this.checkEdit2.Location = new System.Drawing.Point(184, 181);
+            this.checkEdit2.Name = "checkEdit2";
+            this.checkEdit2.Properties.Caption = "计划部门";
+            this.checkEdit2.Size = new System.Drawing.Size(75, 19);
+            this.checkEdit2.TabIndex = 5;
             // 
             // frmOrgEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 239);
+            this.ClientSize = new System.Drawing.Size(301, 267);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -229,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
@@ -236,7 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -259,6 +271,7 @@
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.CheckEdit checkEdit2;
 
     }
 }
