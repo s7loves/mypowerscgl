@@ -191,10 +191,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="00记录模板\pdca循环一览表.xls" />
     <None Include="绥化农电计划管理.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="00记录模板\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
