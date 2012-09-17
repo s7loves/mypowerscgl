@@ -43,7 +43,7 @@ namespace Ebada.jhgl {
         public UCJH_monthks() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<JH_monthks>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<JH_monthks>(gridControl1, gridView1, barManager1,true);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
@@ -164,14 +164,14 @@ namespace Ebada.jhgl {
         public Control showall() {
             全局 = true;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         public Control showdw() {
             全局 = false;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
