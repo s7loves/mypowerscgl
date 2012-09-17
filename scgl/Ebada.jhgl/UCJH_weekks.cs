@@ -43,7 +43,7 @@ namespace Ebada.jhgl {
         public UCJH_weekks() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<JH_weekks>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<JH_weekks>(gridControl1, gridView1, barManager1,true);
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
@@ -80,7 +80,7 @@ namespace Ebada.jhgl {
         }
 
         void ks_RowDoubleClicked(object sender, JH_yearks obj) {
-            if (parentID == null) {
+            if (parentID == null || parentID.Length!=7) {
                 MsgBox.ShowAskMessageBox("请先选择计划周");
                 return;
             }
@@ -321,11 +321,15 @@ namespace Ebada.jhgl {
             gridView1.Columns["可选标记"].Visible = false;
             gridView1.Columns["单位分类"].Visible = false;
             gridView1.Columns["c5"].Visible = false;
+            gridView1.Columns["计划分类"].Visible = false;
 
+            RepositoryItemComboBox box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] { "常规计划", "一次性计划" });
+            gridView1.Columns["计划种类"].ColumnEdit = box1;
 
-            //RepositoryItemComboBox box1 = new RepositoryItemComboBox();
-            //box1.Items.AddRange(new string[] {"常规计划","一次性计划" });
-            //gridView1.Columns["计划种类"].ColumnEdit = box1;
+            box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] { "完成", "未完成" });
+            gridView1.Columns["完成标记"].ColumnEdit = box1;
             //box1 = new RepositoryItemComboBox();
             //box1.Items.AddRange(new string[] { "全年计划", "临时计划" });
             //gridView1.Columns["计划分类"].ColumnEdit = box1;
@@ -399,7 +403,7 @@ namespace Ebada.jhgl {
             set {
                 if (value == null) return;
                 parentID = value;
-                string where = "where parentid='" + value + "'";
+                string where = "where parentid like '" + value + "%'";
                 if (全局) {}
                 else{
                     if(!string.IsNullOrEmpty(type1))
