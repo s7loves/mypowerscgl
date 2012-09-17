@@ -39,7 +39,7 @@ namespace Ebada.jhgl {
         private string type2 = "";
         private bool 全局 = false;
         string filter = "";
-        
+        UCJH_yearks ucjh_year;
         public UCJH_monthks() {
             InitializeComponent();
             initImageList();
@@ -61,6 +61,47 @@ namespace Ebada.jhgl {
             //splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
             gridViewOperation.AfterAdd += new ObjectEventHandler<JH_monthks>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeEdit);
+            createcontrol();
+        }
+        void createcontrol() {
+            UCJH_yearks ks = new UCJH_yearks();
+            ks.Dock = DockStyle.Fill;
+            ks.showread("", "0000");
+            ucjh_year = ks;
+            SplitContainerControl split = new SplitContainerControl();
+            split.Dock = DockStyle.Fill;
+            split.Horizontal = false;
+            split.FixedPanel = SplitFixedPanel.Panel2;
+            split.Parent = splitContainerControl1.Panel2;
+            split.SplitterPosition = 200;
+            ks.Parent = split.Panel2;
+            gridControl1.Parent = split.Panel1;
+            ks.RowDoubleClicked += new SendDataEventHandler<JH_yearks>(ks_RowDoubleClicked);
+        }
+
+        void ks_RowDoubleClicked(object sender, JH_yearks obj) {
+            if (parentID == null) {
+                MsgBox.ShowAskMessageBox("请先选择计划月份");
+                return;
+            }
+            foreach (JH_monthks jh in gridViewOperation.BindingList) {
+                if (obj.ID == jh.c2) return;
+            }
+            JH_monthks addjh = new JH_monthks();
+            ConvertHelper.CopyTo(obj, addjh);
+
+            Type t = addjh.GetType();
+            Type t2 = obj.GetType();
+            foreach (PropertyInfo p in t.GetProperties()) {
+                
+                    p.SetValue(addjh, t2.GetProperty(p.Name).GetValue(obj, null), null);
+                
+            }
+            addjh.ID = addjh.CreateID();
+            addjh.c2 = obj.ID;
+            addjh.ParentID = parentID;
+            Client.ClientHelper.PlatformSqlMap.Create<JH_monthks>(addjh);
+            gridViewOperation.BindingList.Add(addjh);
         }
         void inittree(string year) {
             treeList1.Columns[0].Caption = "周期";
@@ -164,9 +205,10 @@ namespace Ebada.jhgl {
         }
         void barEditItem1_EditValueChanged(object sender, EventArgs e) {
             string year = barEditItem1.EditValue.ToString();
-            inittree(year);
             parentID = null;
             RefreshData("where 1>2");
+            inittree(year);
+            ucjh_year.showread(全局 ? "0" : "", year);            
         }
 
         void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e) {

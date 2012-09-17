@@ -33,6 +33,7 @@ namespace Ebada.jhgl {
         private GridViewOperation<JH_yearks> gridViewOperation;
 
         public event SendDataEventHandler<JH_yearks> FocusedRowChanged;
+        public event SendDataEventHandler<JH_yearks> RowDoubleClicked;
         private string parentID;
         private mOrg org;
         private string type1="";//1-区分科室、2-供电所
@@ -47,6 +48,7 @@ namespace Ebada.jhgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeAdd);
             barEditItem1.EditValueChanged += new EventHandler(barEditItem1_EditValueChanged);
@@ -60,6 +62,20 @@ namespace Ebada.jhgl {
             splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
             gridViewOperation.AfterAdd += new ObjectEventHandler<JH_yearks>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeEdit);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<JH_yearks>(gridViewOperation_AfterDelete);
+            gridControl1.DoubleClick += new EventHandler(gridControl1_DoubleClick);
+        }
+
+        void gridControl1_DoubleClick(object sender, EventArgs e) {
+           JH_yearks obj = gridView1.GetFocusedRow() as JH_yearks;
+           if (obj != null & RowDoubleClicked != null) {
+
+               RowDoubleClicked(this.gridView1, obj);
+           }
+        }
+
+        void gridViewOperation_AfterDelete(JH_yearks obj) {
+            Client.ClientHelper.PlatformSqlMap.DeleteByWhere<JH_yearks>("where c2='" + obj.ID + "'");
         }
 
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<JH_yearks> e) {
@@ -71,6 +87,7 @@ namespace Ebada.jhgl {
         }
 
         void gridViewOperation_AfterAdd(JH_yearks obj) {
+            if (type1 == "2") return;
             string[] dws = obj.c1.Split("、".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             StringBuilder sb =new StringBuilder();
             bool hasgds = false;
@@ -151,6 +168,7 @@ namespace Ebada.jhgl {
             type2 = "临时";
             return this;
         }
+       
         public Control showall() {
             全局 = true;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -165,12 +183,15 @@ namespace Ebada.jhgl {
             btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
-        public Control showtype(string where) {
-            filter = where;
-           
-
-
-            return this;
+        public void showread(string type, string year) {
+            type1 = type;
+            btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            bar3.Visible = false;
+            ParentID = year;
         }
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             org = treeList1.GetDataRecordByNode(e.Node) as mOrg;
@@ -380,7 +401,7 @@ namespace Ebada.jhgl {
                 else{
                     if(!string.IsNullOrEmpty(type1))
                         where += " and (单位分类='9' or 单位分类='" + type1 + "')";
-                    if (org != null)
+                    if (org != null && type1!="0")
                         where += " and 单位代码='" + org.OrgCode + "'";
                     if (!string.IsNullOrEmpty(type2)) {
                         where += " and 计划分类='" + type2 + "'";
