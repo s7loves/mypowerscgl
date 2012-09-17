@@ -187,10 +187,10 @@ namespace Ebada.jhgl {
             if (org != null) {
 
                 ParentID = org.年;
-
+                ParentOBJ = org;
             }
         }
-
+        JH_yearkst ParentOBJ=new JH_yearkst();
         void treeList1_NodeChanged(object sender, DevExpress.XtraTreeList.NodeChangedEventArgs e) {
 
             
@@ -400,6 +400,12 @@ namespace Ebada.jhgl {
 
                 RefreshData(where);
             }
+        }
+
+        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<JH_monthks> list1=gridView1.DataSource as IList<JH_monthks>;
+            ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
         }
     }
 }

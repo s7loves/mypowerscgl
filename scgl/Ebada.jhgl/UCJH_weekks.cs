@@ -194,12 +194,13 @@ namespace Ebada.jhgl {
 
             return this;
         }
+        JH_yearkst ParentOBJ = new JH_yearkst();
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             JH_yearkst org = treeList1.GetDataRecordByNode(e.Node) as JH_yearkst;
             if (org != null && org.年.Length>6) {
 
                 ParentID = org.年;
-
+                ParentOBJ = org;
             }
         }
 
@@ -362,6 +363,7 @@ namespace Ebada.jhgl {
                 }
             }
         }
+        
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -414,6 +416,12 @@ namespace Ebada.jhgl {
 
                 RefreshData(where);
             }
+        }
+
+        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<JH_weekks> list1 = gridView1.DataSource as IList<JH_weekks>;
+            ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
         }
     }
 }

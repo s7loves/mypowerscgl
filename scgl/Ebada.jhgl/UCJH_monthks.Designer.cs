@@ -47,9 +47,9 @@
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -177,6 +177,7 @@
             this.btExport.ImageIndex = 7;
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExport_ItemClick);
             // 
             // btClose
             // 
@@ -282,6 +283,18 @@
             this.treeListColumn2.FieldName = "OrgCode";
             this.treeListColumn2.Name = "treeListColumn2";
             // 
+            // treeListColumn3
+            // 
+            this.treeListColumn3.Caption = "treeListColumn3";
+            this.treeListColumn3.FieldName = "OrgID";
+            this.treeListColumn3.Name = "treeListColumn3";
+            // 
+            // treeListColumn4
+            // 
+            this.treeListColumn4.Caption = "treeListColumn4";
+            this.treeListColumn4.FieldName = "ParentID";
+            this.treeListColumn4.Name = "treeListColumn4";
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,18 +308,6 @@
             this.splitContainerControl1.SplitterPosition = 159;
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // treeListColumn3
-            // 
-            this.treeListColumn3.Caption = "treeListColumn3";
-            this.treeListColumn3.FieldName = "OrgID";
-            this.treeListColumn3.Name = "treeListColumn3";
-            // 
-            // treeListColumn4
-            // 
-            this.treeListColumn4.Caption = "treeListColumn4";
-            this.treeListColumn4.FieldName = "ParentID";
-            this.treeListColumn4.Name = "treeListColumn4";
             // 
             // UCJH_monthks
             // 
