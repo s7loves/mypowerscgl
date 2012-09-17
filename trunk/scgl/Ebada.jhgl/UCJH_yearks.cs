@@ -411,5 +411,10 @@ namespace Ebada.jhgl {
                 RefreshData(where);
             }
         }
+
+        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

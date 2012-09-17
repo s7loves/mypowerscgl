@@ -58,6 +58,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Ebada.Scgl.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Ebada.Scgl.Resource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Scgl.Resource.dll</HintPath>
@@ -78,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ExportPDCA.cs" />
     <Compile Include="frmJH_yearksEdit.cs">
       <SubType>Form</SubType>
     </Compile>
