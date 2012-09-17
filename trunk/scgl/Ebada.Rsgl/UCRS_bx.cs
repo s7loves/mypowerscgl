@@ -1,6 +1,6 @@
 ﻿/**********************************************
-系统:库存管理
-模块:工程类别管理
+系统:人事管理
+模块:保险
 作者:Rabbit
 创建时间:2012-7-28
 最后一次修改:2012-7-28
@@ -23,7 +23,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Rsgl {
     /// <summary>
-    /// 工程类别管理
+    /// 人事保险
     /// </summary>
     [ToolboxItem(false)]
     public partial class UCRS_bx : DevExpress.XtraEditors.XtraUserControl {
