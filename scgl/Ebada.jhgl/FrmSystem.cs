@@ -155,7 +155,7 @@ namespace Ebada.jhgl {
             mModule mdule = e.Group.Tag as mModule;
             //string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
             //IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
-            DataRow[] rows = progtable.Select("Description = 'kcgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
+            DataRow[] rows = progtable.Select("Description = 'jhgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);
                 ListViewItem listItem = new ListViewItem();
@@ -201,7 +201,7 @@ namespace Ebada.jhgl {
                 para = new object[0];
                 Dictionary<string, object> dic = new Dictionary<string, object>();
                 dic.Add("Modu_ID", mdule.Modu_ID);
-                object result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null, null, ref instance);
+                object result = Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, mdule.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), null, ref instance);
                 if (instance is Form) {
                     Form form = (Form)instance;
                     form.Tag = dic;
@@ -248,7 +248,7 @@ namespace Ebada.jhgl {
                 return;
             listView1.Items.Clear();
             listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
-            DataRow[] rows = progtable.Select("Description = 'kcgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
+            DataRow[] rows = progtable.Select("Description = 'jhgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);
                 ListViewItem listItem = new ListViewItem();
@@ -369,6 +369,50 @@ namespace Ebada.jhgl {
 
 
         #endregion
+        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance) {
 
+            if (assemblyName == null)
+                assemblyName = string.Empty;
+            if (className == null || className == string.Empty)
+                return null;
+            if (string.IsNullOrEmpty(methodName))
+                methodName = "Show";
+            if (paramValues == null)
+                paramValues = new object[0];
+            object result = null;
+
+            Type type = Assembly.GetExecutingAssembly().GetType(className);
+            if (null == type) {
+                Assembly asm = (assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + "\\" + assemblyName);
+                type = asm.GetType(className, true);
+            }
+            //
+            Type[] ptypes = new Type[paramValues.Length];
+            for (int i = 0; i < paramValues.Length; i++)
+                ptypes[i] = paramValues[i].GetType();
+
+            MethodInfo method = type.GetMethod(methodName, ptypes);
+            if (method != null) {
+                ParameterInfo[] paramInfos = method.GetParameters();
+                if (paramInfos.Length == paramValues.Length) {
+                    // 参数个数相同才会执行
+                    object[] methodParams = new object[paramValues.Length];
+
+                    for (int i = 0; i < paramValues.Length; i++)
+                        methodParams[i] = Convert.ChangeType(paramValues[i], paramInfos[i].ParameterType, CultureInfo.InvariantCulture);
+                    if (classInstance == null) {
+                        classInstance = (method.IsStatic) ? null : Activator.CreateInstance(type);
+                    }
+                    if (classInstance is Form && mdi is Form) {
+                        ((Form)classInstance).MdiParent = mdi;
+                    } else if (classInstance is UserControl) {
+                        //return classInstance;
+                    }
+                    result = method.Invoke(classInstance, methodParams);
+                }
+            }
+
+            return result;
+        }
     }
 }
