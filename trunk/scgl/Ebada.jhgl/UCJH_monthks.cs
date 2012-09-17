@@ -164,15 +164,15 @@ namespace Ebada.jhgl {
         public Control showall() {
             全局 = true;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         public Control showdw() {
             全局 = false;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         public Control showtype(string where) {
@@ -389,6 +389,7 @@ namespace Ebada.jhgl {
                 string where = "where parentid='" + value + "'";
                 if (全局) {}
                 else{
+                    if (!string.IsNullOrEmpty(type1))
                     where += " and (单位分类='9' or 单位分类='" + type1 + "')";
                     if (org != null)
                         where += " and 单位代码='" + org.OrgCode + "'";
