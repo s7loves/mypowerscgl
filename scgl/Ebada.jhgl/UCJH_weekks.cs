@@ -177,14 +177,14 @@ namespace Ebada.jhgl {
             全局 = true;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         public Control showdw() {
             全局 = false;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         public Control showtype(string where) {

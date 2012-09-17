@@ -294,25 +294,28 @@ namespace Ebada.jhgl {
             gridView1.Columns["预计时间2"].Caption = "结束日期";
 
             gridView1.Columns["c3"].Visible = false;
-            //gridView1.Columns["单位名称"].Visible = false;
+            gridView1.Columns["计划分类"].Visible = false;
             gridView1.Columns["c4"].Visible = false;
             gridView1.Columns["ParentID"].Visible = false;
-            gridView1.Columns["未完成原因"].Visible = false;
+            //gridView1.Columns["未完成原因"].Visible = false;
             gridView1.Columns["单位代码"].Visible = false;
             //gridView1.Columns["计划分类"].Visible = false;
             //gridView1.Columns["预计时间"].Visible = false;
             //gridView1.Columns["预计时间2"].Visible = false;
-            gridView1.Columns["完成标记"].Visible = false;
-            gridView1.Columns["完成时间"].Visible = false;
-            gridView1.Columns["总结提升"].Visible = false;
+            //gridView1.Columns["完成标记"].Visible = false;
+            //gridView1.Columns["完成时间"].Visible = false;
+            //gridView1.Columns["总结提升"].Visible = false;
             gridView1.Columns["可选标记"].Visible = false;
             gridView1.Columns["单位分类"].Visible = false;
             gridView1.Columns["c5"].Visible = false;
 
-
-            //RepositoryItemComboBox box1 = new RepositoryItemComboBox();
-            //box1.Items.AddRange(new string[] {"常规计划","一次性计划" });
-            //gridView1.Columns["计划种类"].ColumnEdit = box1;
+            RepositoryItemComboBox box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] { "常规计划", "一次性计划" });
+            gridView1.Columns["计划种类"].ColumnEdit = box1;
+            box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] { "完成", "未完成" });
+            gridView1.Columns["完成标记"].ColumnEdit = box1;
+            
             //box1 = new RepositoryItemComboBox();
             //box1.Items.AddRange(new string[] { "全年计划", "临时计划" });
             //gridView1.Columns["计划分类"].ColumnEdit = box1;
