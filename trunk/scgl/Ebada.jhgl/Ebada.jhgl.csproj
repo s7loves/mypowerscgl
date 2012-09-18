@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Ecommonjh.cs" />
     <Compile Include="ExportPDCA.cs" />
     <Compile Include="frmJH_yearksEdit.cs">
       <SubType>Form</SubType>
