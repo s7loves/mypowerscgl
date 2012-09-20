@@ -36,8 +36,8 @@ namespace Ebada.jhgl
            ex.ActiveSheet(1);
            ex.SetCellValue(year.标题,row,col);
            ex.SetCellValue(year.单位代码,row+2,col);;
-           ex.SetCellValue(year.开始日期.ToString(), 3, 9);
-           ex.SetCellValue(year.结束日期.ToString(), 3, 11);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
 
            for (int j = 1; j <= pageindex; j++)
            {
@@ -111,8 +111,8 @@ namespace Ebada.jhgl
            ex.ActiveSheet(1);
            ex.SetCellValue(year.标题, row, col);
            ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString(), 3, 9);
-           ex.SetCellValue(year.结束日期.ToString(), 3, 11);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
            for (int j = 1; j <= pageindex; j++)
            {
                ex.ActiveSheet(j);

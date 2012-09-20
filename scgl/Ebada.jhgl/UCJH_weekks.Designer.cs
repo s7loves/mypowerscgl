@@ -34,6 +34,7 @@
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
+           this.btExport1 = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -78,6 +79,7 @@
             this.btClose,
             this.bsItem1,
             this.btExport,
+           this.btExport1,
             this.barEditItem1,
             this.barStaticItem1});
             this.barManager1.MaxItemId = 16;
@@ -101,6 +103,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+               new DevExpress.XtraBars.LinkPersistInfo(this.btExport1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -176,8 +179,18 @@
             this.btExport.Id = 8;
             this.btExport.ImageIndex = 7;
             this.btExport.Name = "btExport";
+            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExport_ItemClick);
+             // 
+            // btExport1
+            // 
+            this.btExport1.Caption = "导出";
+            this.btExport1.Id = 9;
+            this.btExport1.ImageIndex = 7;
+            this.btExport1.Name = "btExport1";
+            this.btExport1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+             this.btExport1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExport1_ItemClick); 
             // 
             // btClose
             // 
@@ -346,6 +359,7 @@
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;
+        private DevExpress.XtraBars.BarButtonItem btExport1;
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
