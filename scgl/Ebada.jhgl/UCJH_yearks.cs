@@ -80,7 +80,7 @@ namespace Ebada.jhgl {
 
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<JH_yearks> e) {
             if (e.Value.计划分类 != type2 ||e.Value.单位分类 != type1) {
-
+                e.Cancel = true;
                 MsgBox.ShowAskMessageBox("此记录不能修改");
                 return;
             }

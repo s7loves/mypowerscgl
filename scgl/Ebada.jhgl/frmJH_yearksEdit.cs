@@ -30,10 +30,10 @@ namespace Ebada.jhgl
         void dataBind() {
 
 
-            this.textEdit1.DataBindings.Add("EditValue", rowData, "主要负责人");
-            this.textEdit2.DataBindings.Add("EditValue", rowData, "参加人员");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "主要负责人");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "参加人员");
             //this.textEdit3.DataBindings.Add("EditValue", rowData, "c1");
-            this.textEdit4.DataBindings.Add("EditValue", rowData, "c1");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "c1");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "计划项目");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "实施内容");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "计划种类");
@@ -66,7 +66,19 @@ namespace Ebada.jhgl
         #endregion
 
         private void InitComboBoxData() {
-            
+            ICollection list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRyfzr(MainHelper.User.OrgCode);
+            if(list.Count==0)
+                list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
+             comboBoxEdit2.Properties.Items.AddRange( list);
+             ICollection ic= Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
+             foreach (string sr in ic) {
+                 comboBoxEdit3.Properties.Items.Add(sr, CheckState.Unchecked, true);
+             }
+            IList<mOrg> list2 =Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
+
+            foreach (mOrg org in list2) {
+                comboBoxEdit4.Properties.Items.Add(org.OrgName, CheckState.Unchecked, true);
+            }
         }
 
         
