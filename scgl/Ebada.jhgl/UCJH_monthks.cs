@@ -33,6 +33,8 @@ namespace Ebada.jhgl {
         private GridViewOperation<JH_monthks> gridViewOperation;
 
         public event SendDataEventHandler<JH_monthks> FocusedRowChanged;
+
+        public event SendDataEventHandler<JH_monthks> RowDoubleClicked;
         private string parentID;
         private mOrg org;
         private string type1="";//1-区分科室、2-供电所
@@ -40,6 +42,7 @@ namespace Ebada.jhgl {
         private bool 全局 = false;
         string filter = "";
         UCJH_yearks ucjh_year;
+        bool selected;
         public UCJH_monthks() {
             InitializeComponent();
             initImageList();
@@ -61,7 +64,62 @@ namespace Ebada.jhgl {
             //splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
             gridViewOperation.AfterAdd += new ObjectEventHandler<JH_monthks>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeEdit);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<JH_monthks>(gridViewOperation_AfterDelete);
             createcontrol();
+        }
+
+        void gridViewOperation_AfterDelete(JH_monthks obj) {
+            //恢复列表
+            if (obj.计划种类.Contains("一")) {
+               JH_yearks ks= Client.ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearks>(obj.c2);
+               if (ks != null) {
+                   ks.可选标记 = "";
+                   ClientHelper.PlatformSqlMap.Update<JH_yearks>(ks);
+               }
+            }
+        }
+        public UCJH_monthks(bool all) {
+            InitializeComponent();
+            initImageList();
+            gridViewOperation = new GridViewOperation<JH_monthks>(gridControl1, gridView1, barManager1);
+
+            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
+            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeAdd);
+            barEditItem1.EditValueChanged += new EventHandler(barEditItem1_EditValueChanged);
+            gridView1.IndicatorWidth = 40;//设置显示行号的列宽
+            gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
+            treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(treeList1_FocusedNodeChanged);
+            treeList1.OptionsBehavior.Editable = false;
+            treeList1.OptionsSelection.EnableAppearanceFocusedCell = true;
+            treeList1.OptionsSelection.InvertSelection = true;
+            org = MainHelper.UserOrg;
+            //splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
+            gridViewOperation.AfterAdd += new ObjectEventHandler<JH_monthks>(gridViewOperation_AfterAdd);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_monthks>(gridViewOperation_BeforeEdit);
+            //全局 = all;
+            selected = true;
+
+            gridControl1.DoubleClick += new EventHandler(gridControl1_DoubleClick);
+            bar1.Visible = false;
+            bar3.Visible = false;
+            splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
+        }
+
+        void gridControl1_DoubleClick(object sender, EventArgs e) {
+            JH_monthks obj = gridView1.GetFocusedRow() as JH_monthks;
+            if (obj != null & RowDoubleClicked != null) {
+
+                RowDoubleClicked(this.gridView1, obj);
+                btRefresh.PerformClick();
+            }
+        }
+        public void showread(string type,string month) {
+            type1 = type;
+            ParentID = month;
+
         }
         void createcontrol() {
             UCJH_yearks ks = new UCJH_yearks();
@@ -88,7 +146,7 @@ namespace Ebada.jhgl {
                 if (obj.ID == jh.c2) return;
             }
             JH_monthks addjh = new JH_monthks();
-            ConvertHelper.CopyTo(obj, addjh);
+            //ConvertHelper.CopyTo(obj, addjh);
 
             Type t = addjh.GetType();
             Type t2 = obj.GetType();
@@ -102,6 +160,10 @@ namespace Ebada.jhgl {
             addjh.ParentID = parentID;
             Client.ClientHelper.PlatformSqlMap.Create<JH_monthks>(addjh);
             gridViewOperation.BindingList.Add(addjh);
+            if (obj.计划种类.Contains("一")) {
+                obj.可选标记 = "否";
+                Client.ClientHelper.PlatformSqlMap.Update<JH_yearks>(obj);
+            }
         }
         void inittree(string year) {
             treeList1.Columns[0].Caption = "周期";
@@ -390,11 +452,13 @@ namespace Ebada.jhgl {
                 if (value == null) return;
                 parentID = value;
                 string where = "where parentid='" + value + "'";
+                if (selected)
+                    where += " and 可选标记<>'否' ";
                 if (全局) {}
                 else{
                     if (!string.IsNullOrEmpty(type1))
                     where += " and (单位分类='9' or 单位分类='" + type1 + "')";
-                    if (org != null)
+                    if (org != null && type1!="0")
                         where += " and 单位代码='" + org.OrgCode + "'";
                 }
 

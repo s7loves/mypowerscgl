@@ -39,7 +39,8 @@ namespace Ebada.jhgl {
         private string type2 = "全年计划";
         private bool 全局 = false;
         string filter = "";
-        UCJH_yearks ucjh_year;
+
+        UCJH_monthks ucjh_year;
         public UCJH_weekks() {
             InitializeComponent();
             initImageList();
@@ -61,12 +62,23 @@ namespace Ebada.jhgl {
             //splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
             gridViewOperation.AfterAdd += new ObjectEventHandler<JH_weekks>(gridViewOperation_AfterAdd);
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_weekks>(gridViewOperation_BeforeEdit);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<JH_weekks>(gridViewOperation_AfterDelete);
             createcontrol();
         }
+
+        void gridViewOperation_AfterDelete(JH_weekks obj) {
+            //恢复列表
+            if (obj.计划种类.Contains("一")) {
+                JH_monthks ks = Client.ClientHelper.PlatformSqlMap.GetOneByKey<JH_monthks>(obj.c2);
+                if (ks != null) {
+                    ks.可选标记 = "";
+                    ClientHelper.PlatformSqlMap.Update<JH_monthks>(ks);
+                }
+            }
+        }
         void createcontrol() {
-            UCJH_yearks ks = new UCJH_yearks();
+            UCJH_monthks ks = new UCJH_monthks(全局);
             ks.Dock = DockStyle.Fill;
-            ks.showread("", "0000");
             ucjh_year = ks;
             SplitContainerControl split = new SplitContainerControl();
             split.Dock = DockStyle.Fill;
@@ -76,10 +88,10 @@ namespace Ebada.jhgl {
             split.SplitterPosition = 200;
             ks.Parent = split.Panel2;
             gridControl1.Parent = split.Panel1;
-            ks.RowDoubleClicked += new SendDataEventHandler<JH_yearks>(ks_RowDoubleClicked);
+            ks.RowDoubleClicked += new SendDataEventHandler<JH_monthks>(ks_RowDoubleClicked);
         }
 
-        void ks_RowDoubleClicked(object sender, JH_yearks obj) {
+        void ks_RowDoubleClicked(object sender, JH_monthks obj) {
             if (parentID == null || parentID.Length!=7) {
                 MsgBox.ShowAskMessageBox("请先选择计划周");
                 return;
@@ -88,7 +100,7 @@ namespace Ebada.jhgl {
                 if (obj.ID == jh.c2) return;
             }
             JH_weekks addjh = new JH_weekks();
-            ConvertHelper.CopyTo(obj, addjh);
+            //ConvertHelper.CopyTo(obj, addjh);
 
             Type t = addjh.GetType();
             Type t2 = obj.GetType();
@@ -102,6 +114,10 @@ namespace Ebada.jhgl {
             addjh.ParentID = parentID;
             Client.ClientHelper.PlatformSqlMap.Create<JH_weekks>(addjh);
             gridViewOperation.BindingList.Add(addjh);
+            if (obj.计划种类.Contains("一")) {
+                obj.可选标记 = "否";
+                Client.ClientHelper.PlatformSqlMap.Update<JH_monthks>(obj);
+            }
         }
         void inittree(string year) {
             treeList1.Columns[0].Caption = "周期";
@@ -201,6 +217,7 @@ namespace Ebada.jhgl {
 
                 ParentID = org.年;
                 ParentOBJ = org;
+                ucjh_year.showread(全局 ? "0" : "", ParentID.Substring(0,6));    
             }
         }
 
@@ -221,7 +238,8 @@ namespace Ebada.jhgl {
             parentID = null;
             RefreshData("where 1>2");
             inittree(year);
-            ucjh_year.showread(全局 ? "0" : "", year);      
+
+            ucjh_year.showread(全局 ? "0" : "", "");      
         }
 
         void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e) {
