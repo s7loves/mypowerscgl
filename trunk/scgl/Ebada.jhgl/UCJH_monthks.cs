@@ -407,5 +407,10 @@ namespace Ebada.jhgl {
             IList<JH_monthks> list1=gridView1.DataSource as IList<JH_monthks>;
             ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
         }
+        private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<JH_monthks> list1 = gridView1.DataSource as IList<JH_monthks>;
+            ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
+        }
     }
 }
