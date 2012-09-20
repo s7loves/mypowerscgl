@@ -30,7 +30,16 @@ namespace Ebada.Scgl.Core {
                 return true;
             }
         }
+       public static void ClearCache() {
+           mCache.Clear();
+       }
         static bool mUseCache = false;
+        public bool UseCache {
+            get { return mUseCache; }
+            set {                
+                mUseCache = value;            
+            }
+        }
         /// <summary>
         /// 获取供电所人员列表
         /// </summary>
@@ -85,7 +94,7 @@ namespace Ebada.Scgl.Core {
         /// <returns></returns>
         public static ICollection GetGdsRyfzr(string gdsID)
         {
-            string key = "all" + gdsID;
+            string key = "fzr" + gdsID;
 
             ICollection list = null;
 
