@@ -38,6 +38,7 @@ namespace Ebada.jhgl {
         private mOrg org;
         private string type1="";//1-区分科室、2-供电所
         private string type2 = "";
+        private bool selected = false;
         private bool 全局 = false;
         string filter = "";
         public UCJH_yearks() {
@@ -71,6 +72,7 @@ namespace Ebada.jhgl {
            if (obj != null & RowDoubleClicked != null) {
 
                RowDoubleClicked(this.gridView1, obj);
+               btRefresh.PerformClick();
            }
         }
 
@@ -192,6 +194,7 @@ namespace Ebada.jhgl {
             barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
             ParentID = year;
+            selected = true;
         }
         void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e) {
             org = treeList1.GetDataRecordByNode(e.Node) as mOrg;
@@ -397,6 +400,8 @@ namespace Ebada.jhgl {
                 if (value == null) return;
                 parentID = value;
                 string where = "where parentid='" + value + "'";
+                if (selected)
+                    where += " and 可选标记=''";
                 if (全局) {}
                 else{
                     if(!string.IsNullOrEmpty(type1))
