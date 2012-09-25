@@ -457,8 +457,8 @@ namespace Ebada.jhgl {
                     where += " and 可选标记<>'否' ";
                 if (全局) {}
                 else{
-                    if (!string.IsNullOrEmpty(type1))
-                    where += " and (单位分类='9' or 单位分类='" + type1 + "')";
+                    //if (!string.IsNullOrEmpty(type1))
+                    //where += " and (单位分类='9' or 单位分类='" + type1 + "')";
                     if (org != null && type1!="0")
                         where += " and 单位代码='" + org.OrgCode + "'";
                 }
