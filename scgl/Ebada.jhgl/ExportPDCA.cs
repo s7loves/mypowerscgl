@@ -125,6 +125,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
                      
@@ -142,6 +143,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
 
@@ -199,6 +201,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       if(nrList[starow - 1 + i].完成时间.Year!=1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
 
@@ -216,6 +219,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
 
