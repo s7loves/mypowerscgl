@@ -49,7 +49,7 @@ namespace Ebada.jhgl {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            //btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeAdd);
             barEditItem1.EditValueChanged += new EventHandler(barEditItem1_EditValueChanged);
@@ -176,6 +176,8 @@ namespace Ebada.jhgl {
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btReport1.ItemClick += btExport_ItemClick;
             return this;
         }
         public Control showdw() {
@@ -183,6 +185,8 @@ namespace Ebada.jhgl {
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btReport1.ItemClick += btExport_ItemClick;
             return this;
         }
         public void showread(string type, string year) {
@@ -412,14 +416,16 @@ namespace Ebada.jhgl {
                         where += " and 计划分类='" + type2 + "'";
                     }
                 }
-
+                filter = where;
                 RefreshData(where);
             }
         }
-
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            JH_yearkst kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(parentID);
 
+            IList<JH_yearks> list = ClientHelper.PlatformSqlMap.GetList<JH_yearks>(filter);
+            ExportPDCA.ExportExcelYear(kst, list);
         }
     }
 }

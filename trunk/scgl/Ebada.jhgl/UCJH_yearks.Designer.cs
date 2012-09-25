@@ -50,6 +50,7 @@
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btReport1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -79,8 +80,9 @@
             this.bsItem1,
             this.btExport,
             this.barEditItem1,
-            this.barStaticItem1});
-            this.barManager1.MaxItemId = 16;
+            this.barStaticItem1,
+            this.btReport1});
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -101,6 +103,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReport1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -211,25 +214,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(594, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
-            this.barDockControlBottom.Size = new System.Drawing.Size(479, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 312);
+            this.barDockControlBottom.Size = new System.Drawing.Size(594, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 264);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 287);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 264);
+            this.barDockControlRight.Location = new System.Drawing.Point(594, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 287);
             // 
             // gridControl1
             // 
@@ -243,7 +246,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(314, 264);
+            this.gridControl1.Size = new System.Drawing.Size(429, 287);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -266,7 +269,7 @@
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
-            this.treeList1.Size = new System.Drawing.Size(159, 264);
+            this.treeList1.Size = new System.Drawing.Size(159, 287);
             this.treeList1.TabIndex = 9;
             // 
             // treeListColumn1
@@ -304,10 +307,18 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(479, 264);
+            this.splitContainerControl1.Size = new System.Drawing.Size(594, 287);
             this.splitContainerControl1.SplitterPosition = 159;
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // btReport1
+            // 
+            this.btReport1.Caption = "导出";
+            this.btReport1.Id = 16;
+            this.btReport1.ImageIndex = 7;
+            this.btReport1.Name = "btReport1";
+            this.btReport1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // UCJH_yearks
             // 
@@ -319,7 +330,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCJH_yearks";
-            this.Size = new System.Drawing.Size(479, 314);
+            this.Size = new System.Drawing.Size(594, 337);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -359,5 +370,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
+        private DevExpress.XtraBars.BarButtonItem btReport1;
     }
 }
