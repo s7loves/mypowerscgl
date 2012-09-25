@@ -64,6 +64,8 @@ namespace Ebada.jhgl {
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<JH_weekks>(gridViewOperation_BeforeEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<JH_weekks>(gridViewOperation_AfterDelete);
             createcontrol();
+            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
         }
 
         void gridViewOperation_AfterDelete(JH_weekks obj) {
@@ -90,13 +92,12 @@ namespace Ebada.jhgl {
             gridControl1.Parent = split.Panel1;
             ks.RowDoubleClicked += new SendDataEventHandler<JH_monthks>(ks_RowDoubleClicked);
         }
-
         void ks_RowDoubleClicked(object sender, JH_monthks obj) {
             if (parentID == null || parentID.Length!=7) {
                 MsgBox.ShowAskMessageBox("请先选择计划周");
                 return;
             }
-            foreach (JH_weekks jh in gridViewOperation.BindingList) {
+            foreach (JH_weekks jh in gridViewOperation.BindingList){
                 if (obj.ID == jh.c2) return;
             }
             JH_weekks addjh = new JH_weekks();
@@ -443,8 +444,31 @@ namespace Ebada.jhgl {
         }
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_monthks> list1 = gridView1.DataSource as IList<JH_monthks>;
-            ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
+            IList<JH_weekks> list1 = gridView1.DataSource as IList<JH_weekks>;
+            ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+        }
+
+        private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (MsgBox.ShowAskMessageBox("此操作将未完成的计划转至下一期") == DialogResult.OK) {
+
+                foreach (var item in gridViewOperation.BindingList) {
+                    if (item.完成标记 != "完成") {
+                        int pid = int.Parse(item.ParentID) + 1;
+                        JH_yearkst kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(pid.ToString());
+                        if (kst == null) {
+                            if (item.ParentID.Length == 7) {
+                                pid = int.Parse(item.ParentID.Substring(0, 6)) + 1;
+                                kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(pid.ToString());
+                            }
+                        }
+                        if (kst != null) {
+                            item.ParentID = kst.ID;
+                            ClientHelper.PlatformSqlMap.Update<JH_weekks>(item);
+                        }
+                    }
+                }
+                btRefresh.PerformClick();
+            }
         }
     }
 }

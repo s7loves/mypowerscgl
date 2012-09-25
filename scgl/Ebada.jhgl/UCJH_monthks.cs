@@ -106,6 +106,7 @@ namespace Ebada.jhgl {
             bar1.Visible = false;
             bar3.Visible = false;
             splitContainerControl1.PanelVisibility = SplitPanelVisibility.Panel2;
+            btJZ.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         void gridControl1_DoubleClick(object sender, EventArgs e) {
@@ -475,6 +476,29 @@ namespace Ebada.jhgl {
         {
             IList<JH_monthks> list1 = gridView1.DataSource as IList<JH_monthks>;
             ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
+        }
+
+        private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (MsgBox.ShowAskMessageBox("此操作将未完成的计划转至下一期") == DialogResult.OK) {
+
+                foreach(var item in gridViewOperation.BindingList){
+                    if (item.完成标记 != "完成") {
+                        int pid = int.Parse(item.ParentID) + 1;
+                        JH_yearkst kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(pid.ToString());
+                        if (kst == null) {
+                            if (item.ParentID.Length == 7) {
+                                pid = int.Parse(item.ParentID.Substring(0, 6)) + 1;
+                                kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(pid.ToString());
+                            }
+                        }
+                        if (kst != null) {
+                            item.ParentID = kst.ID;
+                            ClientHelper.PlatformSqlMap.Update<JH_monthks>(item);
+                        }
+                    }
+                }
+                btRefresh.PerformClick();
+            }
         }
     }
 }
