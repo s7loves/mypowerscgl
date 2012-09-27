@@ -18,6 +18,7 @@ namespace Ebada.Scgl.Gis {
         public static int mMinDJ = 80;//最小档距
         public static bool isHrow = false;//文字是否自动换行
         private int n300 = 300;
+        public List<string> strList = new List<string>();
         public Image GetImage(string linecode) {
             xl xl = new xl();
             Bitmap img = new Bitmap(mWidth, mHeight);
@@ -31,6 +32,7 @@ namespace Ebada.Scgl.Gis {
                     xl.xlValue = xlList[0];
             }
             n300 = mHeight / 2;
+            xlList.Clear();
             buildChild(xl);
             draw(Graphics.FromImage(img), xl);
             
@@ -43,6 +45,8 @@ namespace Ebada.Scgl.Gis {
            IList<PS_xl> xlList= Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where  parentgt in (select gtcode from ps_gt where  linecode='" + line.xlValue.LineCode + "')");
            line.addXl(xlList);
            foreach (xl xl in line.lines) {
+               if (strList.Contains(xl.xlValue.LineCode)) continue;
+               strList.Add(xl.xlValue.LineCode);
                buildChild(xl);
            }
         }
@@ -60,6 +64,8 @@ namespace Ebada.Scgl.Gis {
             if (org != null) {
                 renderbdz(g, 50, n300, org.OrgName);
             }
+            strList.Clear();
+            strList.Add(xl.xlValue.LineCode);
             drawgt(g, xl);
             drawlineinfo(g, xl);
         }
@@ -97,6 +103,8 @@ namespace Ebada.Scgl.Gis {
                 node.Location = new Point( 50 + (int)(i * step),top);
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
+                    if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    strList.Add(xl0.xlValue.LineCode);
                     drawchildxltop(g, xl0, offset, (int)step * 2, mHeight-n300);
                     offset.Y *= -1;
                 }
@@ -141,7 +149,8 @@ namespace Ebada.Scgl.Gis {
                 node.Location = new Point(left,bottom+(int)(i * step));
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
-                    
+                    if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    strList.Add(xl0.xlValue.LineCode);
                     drawchildxlright(g, xl0, offset, width,(int)Math.Abs(step)*3/2);
                     offset.X *= -1;
                 }
@@ -161,7 +170,7 @@ namespace Ebada.Scgl.Gis {
             if (drawcount == 1) step /= 2;
             
             step = Math.Min(mMinDJ, step);
-
+            step = Math.Max(1, step);
             while (step < 30) step *= 2;
             width = (int)(step * drawcount);
             step *= offset.X;
@@ -188,6 +197,8 @@ namespace Ebada.Scgl.Gis {
                 node.Location = new Point( left + (int)(i * step),bottom);
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
+                    if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    strList.Add(xl0.xlValue.LineCode);
                     drawchildxltop(g, xl0, offset, (int)step * 3/2, height);
                 }
                 offset.Y *= -1;
