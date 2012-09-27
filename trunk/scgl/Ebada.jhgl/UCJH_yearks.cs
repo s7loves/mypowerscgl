@@ -50,6 +50,7 @@ namespace Ebada.jhgl {
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            btReport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_yearks>(gridViewOperation_BeforeAdd);
             barEditItem1.EditValueChanged += new EventHandler(barEditItem1_EditValueChanged);
@@ -178,6 +179,7 @@ namespace Ebada.jhgl {
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btReport1.ItemClick += btExport_ItemClick;
+            btReport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             return this;
         }
         public Control showdw() {
@@ -186,6 +188,7 @@ namespace Ebada.jhgl {
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btReport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             btReport1.ItemClick += btExport_ItemClick;
             return this;
         }
