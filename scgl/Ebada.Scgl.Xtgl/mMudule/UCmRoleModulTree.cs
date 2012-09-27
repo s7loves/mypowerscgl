@@ -188,8 +188,14 @@ namespace Ebada.Scgl.Xtgl {
             try
             {
                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-                list3.Add(obj3);
-                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+                //List<mModule> list4 = new List<mModule>();
+                foreach (var item in list2)
+                {
+                    MainHelper.PlatformSqlMap.Update("InsertWFmModule", item);
+                    //list4.Add(item);
+                }
+                //list3.Add(obj3);
+                //MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             }
             catch (Exception exception)
             {
