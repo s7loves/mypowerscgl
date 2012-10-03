@@ -40,10 +40,6 @@
             this.groupControlOrg.SuspendLayout();
             this.SuspendLayout();
             // 
-            // m_DefaultLookAndFeel
-            // 
-            ;
-            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";

@@ -17,6 +17,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_06sbxs>(ucTop_FocusedRowChanged);
+            splitContainerControl1.SplitterPosition = 500;
         }
         void ucTop_FocusedRowChanged(object sender, PJ_06sbxs obj)
         {

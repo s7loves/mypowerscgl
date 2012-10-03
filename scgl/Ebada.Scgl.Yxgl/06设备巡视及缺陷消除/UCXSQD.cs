@@ -22,14 +22,12 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 
-namespace Ebada.Scgl.Yxgl
-{
+namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCXSQD : DevExpress.XtraEditors.XtraUserControl
-    {
+    public partial class UCXSQD : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PJ_sbxsqd> gridViewOperation;
 
         public event SendDataEventHandler<PJ_sbxsqd> FocusedRowChanged;
@@ -38,8 +36,7 @@ namespace Ebada.Scgl.Yxgl
         private mOrg parentObj;
         private PJ_06sbxs xsobj;
         frmxsDialog fdialog = null;
-        public UCXSQD()
-        {
+        public UCXSQD() {
             InitializeComponent();
             fdialog = new frmxsDialog();
             initImageList();
@@ -48,31 +45,28 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforEdit);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbxsqd>(gridViewOperation_BeforeDelete);
-            
+
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            bar3.Visible = false;
+
         }
-        void gridViewOperation_BeforEdit(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
-        {
-            if (ParentID==null)
-            {
+        void gridViewOperation_BeforEdit(object render, ObjectOperationEventArgs<PJ_sbxsqd> e) {
+            if (ParentID == null) {
                 e.Cancel = true;
             }
             fdialog.orgcode = parentObj.OrgID;
             //fdialog.RowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_sbxsqd;
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
-        {
-           
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbxsqd> e) {
+
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbxsqd> e)
-        {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbxsqd> e) {
             if (parentID == null)
                 e.Cancel = true;
-            
+
         }
-        protected override void OnLoad(EventArgs e)
-        {
+        protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
             InitColumns();//初始列
@@ -80,94 +74,85 @@ namespace Ebada.Scgl.Yxgl
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
-            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
-            {//如果是供电所人员，则锁定
+            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
 
         }
 
-        void btGdsList_EditValueChanged(object sender, EventArgs e)
-        {
+        void btGdsList_EditValueChanged(object sender, EventArgs e) {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
-            if (org != null)
-            {
+
+            if (org != null) {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
-        private void initImageList()
-        {
+        private void initImageList() {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sbxsqd);
         }
-        private void hideColumn(string colname)
-        {
+        private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void InitData()
-        {
+        public void InitData() {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
         }
         /// <summary>
         /// 初始化列,
         /// </summary>
-        public void InitColumns()
-        {
+        public void InitColumns() {
 
             //需要隐藏列时在这写代码
 
             //hideColumn("OrgCode");
             //hideColumn("LineCode");
-            Init_linecode();
+            //Init_linecode();
             //hideColumn("gzrjID");
         }
         //将关联单位标识改为关联单位
         //并以中文显示
-        public void Init_linecode()
-        {
-            gridView1.Columns["LineCode"].Caption = "关联单位";
-            DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            gridView1.Columns["LineCode"].ColumnEdit = comboBox;
-            IList<PS_xl> xl_list = ClientHelper.PlatformSqlMap.GetList<PS_xl>("");
+        DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox;
+        public void Init_linecode() {
+            if (comboBox == null) {
+                gridView1.Columns["LineCode"].Caption = "关联单位";
+                comboBox = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+                gridView1.Columns["LineCode"].ColumnEdit = comboBox;
+                comboBox.DisplayMember = "LineName";
+                comboBox.ValueMember = "LineID";
+            }
+            IList<PS_xl> xl_list = ClientHelper.PlatformSqlMap.GetList<PS_xl>(string.Format(" where orgcode='{0}' and  linevol='10'", parentObj.OrgCode));
             comboBox.DataSource = xl_list;
-            comboBox.DisplayMember = "LineName";
-            comboBox.ValueMember = "LineID";
-
 
         }
         /// <summary>
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
-        public void RefreshData(string slqwhere)
-        {
+        public void RefreshData(string slqwhere) {
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_sbxsqd> GridViewOperation
-        {
+        public GridViewOperation<PJ_sbxsqd> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -175,8 +160,7 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_sbxsqd newobj)
-        {
+        void gridViewOperation_CreatingObjectEvent(PJ_sbxsqd newobj) {
             if (parentID == null) return;
             fdialog.orgcode = parentObj.OrgID;
             fdialog.lineid = xsobj.LineID;
@@ -192,15 +176,12 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ParentID
-        {
+        public string ParentID {
             get { return parentID; }
-            set
-            {
+            set {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
-                    RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value+ "')");
+                if (!string.IsNullOrEmpty(value)) {
+                    RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value + "')");
                 }
             }
         }
@@ -209,11 +190,9 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PJ_06sbxs SbxsObj
-        {
+        public PJ_06sbxs SbxsObj {
             get { return xsobj; }
-            set
-            {
+            set {
                 xsobj = value;
                 //if (!string.IsNullOrEmpty(value))
                 //{
@@ -223,26 +202,21 @@ namespace Ebada.Scgl.Yxgl
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj
-        {
+        public mOrg ParentObj {
             get { return parentObj; }
-            set
-            {
+            set {
 
                 parentObj = value;
-                if (value == null)
-                {
+                if (value == null) {
                     parentID = null;
-                }
-                else
-                {
+                } else {
                     ParentID = value.OrgID;
                 }
+                Init_linecode();
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             //frm06sbxsLine frm = new frm06sbxsLine();
             //frm.orgcode = btGdsList.EditValue.ToString();
             //if (frm.ShowDialog()==DialogResult.OK)
@@ -252,10 +226,7 @@ namespace Ebada.Scgl.Yxgl
             //    pj06list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineName='" + frm.linename + "'");
             //    Export06.ExportExcel(pj06list);
             //}
-            
-            
-            
-           
+
         }
     }
 }
