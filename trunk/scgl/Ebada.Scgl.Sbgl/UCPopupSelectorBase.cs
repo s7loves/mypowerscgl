@@ -22,7 +22,7 @@ namespace Ebada.Scgl.Sbgl {
             gridView1.OptionsView.ShowColumnHeaders = false;
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsSelection.InvertSelection = true;
-            textEdit1.Properties.NullText = "输入拼音码查询";
+            textEdit1.Properties.NullText = "输入 拼音码 查询";
             gridControl1.GetToolTipController().SetToolTip(gridControl1, "双击进行选择");
             clist = new List<string>();
             this.Dock = DockStyle.Fill; gridControl1.MouseDoubleClick += new MouseEventHandler(gridControl1_MouseDoubleClick);
