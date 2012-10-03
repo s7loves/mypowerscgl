@@ -139,7 +139,7 @@ namespace Ebada.Scgl.Core {
             if (mUseCache && mCache.ContainsKey(key)) {
                 list = mCache[key];
             } else {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + gdsID + "'or OrgCode2='" + gdsID + "'and LineType='1'");
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + gdsID + "' and LineType='1' and linevol='10'");
                 if (mUseCache)
                     mCache.Add(key, list);
             }
