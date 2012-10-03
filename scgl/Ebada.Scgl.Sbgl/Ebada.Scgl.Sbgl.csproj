@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -128,6 +128,9 @@
     </Compile>
     <Compile Include="frmPS_gtsbclbEdit.Designer.cs">
       <DependentUpon>frmPS_gtsbclbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPopupLine.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UCPopupSelectorBase.cs">
       <SubType>UserControl</SubType>
