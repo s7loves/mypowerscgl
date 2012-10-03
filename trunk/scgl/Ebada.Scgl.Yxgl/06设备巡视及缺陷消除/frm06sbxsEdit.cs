@@ -13,12 +13,13 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Yxgl
 {
     public partial class frm06sbxsEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_06sbxs> m_CityDic = new SortableSearchableBindingList<PJ_06sbxs>();
-
+        UCPopupLine popLine = new UCPopupLine();
         public frm06sbxsEdit()
         {
             InitializeComponent();
@@ -37,7 +38,11 @@ namespace Ebada.Scgl.Yxgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "qxnr", false, DataSourceUpdateMode.OnPropertyChanged);
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "xcr");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "xcrq");
-
+            popLine.Bounds = comboBoxEdit1.Bounds;
+            comboBoxEdit1.Hide();
+            popLine.Parent = comboBoxEdit1.Parent;
+            this.popLine.DataBindings.Add("EditValue", rowData, "LineID");
+            this.popLine.EditValueChanged += comboBoxEdit1_EditValueChanged;
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -67,8 +72,8 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
-                    this.InitComboBoxData();
+                   this.InitComboBoxData();
+                   ConvertHelper.CopyTo<PJ_06sbxs>(value as PJ_06sbxs, rowData);
                 }
                 setxsr();
                 setxcr();
@@ -90,26 +95,27 @@ namespace Ebada.Scgl.Yxgl
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10.0 ");
-            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
-            comboBoxEdit1.Properties.Items.Clear();
-            for (int i = 0; i < xllit.Count; i++)
-            {
-                ListItem ot = new ListItem();
-                ot.DisplayMember = xllit[i].LineName;
-                ot.ValueMember = xllit[i].LineCode;
-                comboBoxEdit1.Properties.Items.Add(ot);
-            }
-            if (rowData.LineName == "")
-            {
-                if (comboBoxEdit1.Properties.Items.Count > 0)
-                {
-                    comboBoxEdit1.SelectedIndex = 0;
-                }
-            }
-            else
-            {
-                comboBoxEdit1.Text = rowData.LineName;
-            }
+            popLine.DataSource = xllit;
+            //SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+            //comboBoxEdit1.Properties.Items.Clear();
+            //for (int i = 0; i < xllit.Count; i++)
+            //{
+            //    ListItem ot = new ListItem();
+            //    ot.DisplayMember = xllit[i].LineName;
+            //    ot.ValueMember = xllit[i].LineCode;
+            //    comboBoxEdit1.Properties.Items.Add(ot);
+            //}
+            //if (rowData.LineName == "")
+            //{
+            //    if (comboBoxEdit1.Properties.Items.Count > 0)
+            //    {
+            //        comboBoxEdit1.SelectedIndex = 0;
+            //    }
+            //}
+            //else
+            //{
+            //    comboBoxEdit1.Text = rowData.LineName;
+            //}
 
 
                 //巡视区段
@@ -338,34 +344,35 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            PS_xl xl = null;
-            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
-            if (xl != null)
-            {
-                rowData.LineID = xl.LineID;
-                rowData.LineName = xl.LineName;
-            }
-            else
-            {
-                rowData.LineName = comboBoxEdit1.Text;
-            }
+            //PS_xl xl = null;
+            //xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
+            //if (xl != null)
+            //{
+            //    rowData.LineID = xl.LineID;
+            //    rowData.LineName = xl.LineName;
+            //}
+            //else
+            //{
+            //    rowData.LineName = comboBoxEdit1.Text;
+            //}
+            if(rowData.CreateDate.Year==1900)
             rowData.CreateDate = rowData.xssj;
         }
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
-            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
+            if (!string.IsNullOrEmpty(popLine.Text))
             {
-                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit1.EditValue.ToString() + "'");
-              
-                rowData.LineName = comboBoxEdit1.EditValue.ToString(); ;
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where lineid='" + popLine.EditValue.ToString() + "'");
+
+                rowData.LineName = popLine.GetDisplayText();
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit3.Properties.Items.Clear();
                 comboBoxEdit6.Properties.Items.Clear();
                 if (xl != null)
                 {
-                    rowData.LineID = xl.LineID;
+                    //rowData.LineID = xl.LineID;
                     IList<PJ_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbxsqd>(" where LineCode='" + xl.LineID + "'");
                     foreach (PJ_sbxsqd xsqd in xllit)
                     {

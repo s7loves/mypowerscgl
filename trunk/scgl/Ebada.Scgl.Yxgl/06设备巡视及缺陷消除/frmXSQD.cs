@@ -13,27 +13,24 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Yxgl
-{
-    public partial class frmXSQD : DevExpress.XtraEditors.XtraForm
-    {
+namespace Ebada.Scgl.Yxgl {
+    public partial class frmXSQD : DevExpress.XtraEditors.XtraForm {
 
-        public frmXSQD()
-        {
+        public frmXSQD() {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
         public mOrg parentobj;
         public PJ_06sbxs xsobj;
-        private void frmXSQD_Load(object sender, EventArgs e)
-        {
+        private void frmXSQD_Load(object sender, EventArgs e) {
             ucxsqd1.ParentObj = parentobj;
             ucxsqd1.SbxsObj = xsobj;
+            
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+        private void simpleButton2_Click(object sender, EventArgs e) {
             this.Close();
         }
-        
+
     }
 }
