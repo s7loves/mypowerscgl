@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Lcgl
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
-            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + orgcode + "'");
+            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + orgcode + "'and linevol>=10.0 ");
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
         
             
