@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit5.Properties.Items.AddRange(ryList);
             comboBoxEdit6.Properties.Items.AddRange(ryList);
             comboBoxEdit7.Properties.Items.AddRange(ryList);
-            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'");
+            IList<PS_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10.0 ");
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit as IList);
             if (org != null)
             {
