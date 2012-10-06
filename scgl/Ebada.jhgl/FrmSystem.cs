@@ -25,6 +25,7 @@ namespace Ebada.jhgl {
         Image topBackbmp;
         int topbarWidth;
         static public bool STAThread;
+string xtdm="jhgl";
         public FrmSystem() {
 
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace Ebada.jhgl {
             labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
             labshow.Parent = panelControl1;
+            labSet.Text = "      设置";
 
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
@@ -84,6 +86,7 @@ namespace Ebada.jhgl {
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 if (MainHelper.User.LoginID == "rabbit") {
+                      labSet.Show();
                 } else {
                     InitFunction(MainHelper.User.UserID);
                 }
@@ -310,9 +313,9 @@ namespace Ebada.jhgl {
         }
 
         private void labSet_Click(object sender, EventArgs e) {
-            //frmModule frm = new frmModule();
-            //frm.ShowDialog();
-            //CreateMenu();
+            Ebada.Scgl.Run.frmModule frm = new Ebada.Scgl.Run.frmModule(xtdm);
+            frm.ShowDialog();
+            CreateMenu();
         }
 
         private void labExit_Click(object sender, EventArgs e) {
