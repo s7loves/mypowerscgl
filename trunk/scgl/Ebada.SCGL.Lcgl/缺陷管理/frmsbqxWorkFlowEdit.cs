@@ -27,6 +27,14 @@ namespace Ebada.Scgl.Lcgl
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_qxfl,LP_Record";
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
+        private bool readOnly = false;
+        public bool ReadOnly {
+            get { return readOnly; }
+            set {
+                readOnly = value;
+                btnOK.Visible = !value;
+            }
+        }
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
