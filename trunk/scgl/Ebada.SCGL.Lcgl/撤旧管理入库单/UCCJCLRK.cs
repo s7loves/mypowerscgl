@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Lcgl
                 btAdd.Enabled = !value;
                 btEdit.Enabled = !value;
                 btDelete.Enabled = !value;
-                btAddKuCun = !value;
+                btAddKuCun.Enabled = !value;
             }
         }
 
