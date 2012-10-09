@@ -58,6 +58,22 @@ namespace Ebada.Scgl.Lcgl {
             }
         }
 
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+                liuchbarSubItem.Enabled = !value;
+                btAdd.Enabled = !value;
+                btEdit.Enabled = !value;
+                btDelete.Enabled = !value;
+
+            }
+        }
+
         public LP_Temple ParentTemple {
             get { return parentTemple; }
             set {
