@@ -29,6 +29,29 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PS_kg,LP_Record";
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+                //liuchbarSubItem.Enabled = !value;
+                //btAdd.Enabled = !value;
+                //btEdit.Enabled = !value;
+                //btDelete.Enabled = !value;
+                ucpS_kg1.ReadOnly = value;
+                ucpJ_12kgbd1.ReadOnly = value;
+                ucpJ_12kgjx1.ReadOnly = value;
+                ucpJ_12kgsy1.ReadOnly = value; 
+
+            }
+        }
+
+
+
+
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
