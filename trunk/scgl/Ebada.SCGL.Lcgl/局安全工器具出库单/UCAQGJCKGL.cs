@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Lcgl {
                 // btnOK.Visible = 
                 TaskOverButton.Visible= !value;
                 simpleButton1.Visible = !value;
+                ucclck1.ReadOnly = value;
             }
         }
 
