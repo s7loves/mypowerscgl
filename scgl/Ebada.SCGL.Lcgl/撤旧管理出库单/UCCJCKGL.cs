@@ -38,6 +38,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 readOnly = value;
                 simpleButton1.Visible =  !value;
+                TaskOverButton.Visible = !value;
             }
         }
 
