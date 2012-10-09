@@ -31,6 +31,21 @@ namespace Ebada.Scgl.Lcgl
     public partial class UCPJ_07jdzzjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_07jdzzjl> gridViewOperation;
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+                //liuchbarSubItem.Enabled = !value;
+                btAdd.Enabled = !value;
+                btEdit.Enabled = !value;
+                btDelete.Enabled = !value;
+
+            }
+        }
 
         public event SendDataEventHandler<PJ_07jdzzjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
