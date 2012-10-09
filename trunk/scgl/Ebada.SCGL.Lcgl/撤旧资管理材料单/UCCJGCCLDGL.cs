@@ -30,6 +30,20 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "LP_Record,PJ_clcrkd";
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+                TaskOverButton.Visible = !value;
+                simpleButton1.Visible = !value;
+
+            }
+        }
+
         PJ_clcrkd clccktemp = null;
         public LP_Temple ParentTemple
         {
