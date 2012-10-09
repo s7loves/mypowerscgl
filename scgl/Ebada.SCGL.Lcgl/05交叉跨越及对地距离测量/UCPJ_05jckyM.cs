@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Lcgl {
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_05jcky,PJ_05jckyjl,LP_Record";
-        public LP_Temple ParentTemple
+         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
             set
