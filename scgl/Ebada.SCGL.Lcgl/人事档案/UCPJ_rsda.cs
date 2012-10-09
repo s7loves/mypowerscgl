@@ -58,8 +58,8 @@ namespace Ebada.Scgl.Lcgl
                 readOnly = value;
                 // btnOK.Visible = 
                 liuchbarSubItem.Enabled = !value;
-                btAdd.Enabled = !value;
-                btEdit.Enabled = !value;
+                btReAdd.Enabled = !value;
+                btReEdit.Enabled = !value;
                 btDelete.Enabled = !value;
 
             }

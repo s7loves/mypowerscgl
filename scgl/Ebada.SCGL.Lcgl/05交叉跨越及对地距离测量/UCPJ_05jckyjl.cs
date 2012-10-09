@@ -32,6 +32,22 @@ namespace Ebada.Scgl.Lcgl {
         public event SendDataEventHandler<PJ_05jckyjl> FocusedRowChanged;
         private string parentID=null;
         private PJ_05jcky parentObj;
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+               // liuchbarSubItem.Enabled = !value;
+                btAdd.Enabled = !value;
+                btEdit.Enabled = !value;
+                btDelete.Enabled = !value;
+
+            }
+        }
+
         public UCPJ_05jckyjl() {
             InitializeComponent();
             bar3.Visible = false;
