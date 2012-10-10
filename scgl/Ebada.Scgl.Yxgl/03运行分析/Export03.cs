@@ -53,14 +53,16 @@ namespace Ebada.Scgl.Yxgl
             //{
             //    pagemax = Ecommon.GetPagecount(listjldc.Count, 6);
             //}
+            List<string> listpy = Ecommon.ResultStrList("领导检查评语：" + obj.py, zc);
+            Ecommon.Resultstrbystartbd(ref listpy);
 
-            int[] strnumcol = { 0, listztstring.Count, listztstring.Count +listjy.Count};
-            int[] statnum = { 3, 3, 6 };
+            int[] strnumcol = { 0, listztstring.Count, listztstring.Count + listjy.Count, listztstring.Count + listjy.Count + listjldc.Count };
+            int[] statnum = { 3, 3, 6, 7 };
             List<string> strcol = new List<string>();
             Ecommon.addstring(listztstring, ref strcol);
             Ecommon.addstring(listjy, ref strcol);
             Ecommon.addstring(listjldc, ref strcol);
-
+            Ecommon.addstring(listpy, ref strcol);
             //Ecommon.CreatandWritesheet(ex, strcol, 15, 9, 1);
 
             Ecommon.CreatandWritesheet1(ex, strcol, 15, 9, 1,strnumcol,statnum);
@@ -73,21 +75,18 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.rq.Day.ToString(), 4, 9);
 
             ////出席人员
-            //string[] ary = obj.cjry.Split(';');
-            //int n = ary.Length % 5;
-            //for (int i = 0; i < ary.Length; i++)
-            //{
-            //    int tempcol = col + 1 + i % 5;
-            //    if (i % 5==1||i % 5==2||i % 5==3)
-            //    {
-            //        tempcol = col + 1 + i % 5 + 1;
-            //    }
-            //    if (i % 5==4)
-            //    {
-            //        tempcol = col + 1 + i % 5 + 2;
-            //    }
-            //    ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
-            //}
+            string[] ary = obj.cjry.Split(';');
+            int n = ary.Length % 5;
+            for (int i = 0; i < ary.Length; i++) {
+                int tempcol = col + 1 + i % 5;
+                if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3) {
+                    tempcol = col + 1 + i % 5 + 1;
+                }
+                if (i % 5 == 4) {
+                    tempcol = col + 1 + i % 5 + 2;
+                }
+                ex.SetCellValue(ary[i], row + 4 + i / 5, tempcol);
+            }
             //主持人
             ex.SetCellValue(obj.zcr,5,11);
             //检查人签字
@@ -95,7 +94,7 @@ namespace Ebada.Scgl.Yxgl
             //ex.ActiveSheet(2);
             //ex.SetCellValue("kakaka", 24, 4);
             //ex.ActiveSheet(1);
-         //   ex.SetCellValue(obj.qz, 24, 4);
+            ex.SetCellValue(obj.qz, 24, 4);
             //签字时间
           //  if (ComboBoxHelper.CompreDate(obj.qzrq))
          //   {

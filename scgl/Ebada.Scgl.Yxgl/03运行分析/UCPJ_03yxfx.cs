@@ -382,8 +382,7 @@ namespace Ebada.Scgl.Yxgl
                 //fm.RecordWorkFlowData = dt;
                 fm.RowData = yxfx;
                 
-                fm.ShowDialog();
-                //InitData();
+                if(fm.ShowDialog()== DialogResult.OK)
                 RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type='" + recordIkind + "' order by id desc");
             }
             else
