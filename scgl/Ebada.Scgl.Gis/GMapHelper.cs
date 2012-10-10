@@ -50,6 +50,25 @@ namespace Ebada.Scgl.Gis {
             //pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             //g.DrawLine(pen, p3, new PointF(x1, y1));
         }
+
+        static double getAngle(float px1, float py1, float px2, float py2) {
+            //两点的x、y值
+            float x = px2 - px1;
+            float y = py2 - py1;
+            double hypotenuse = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+            //斜边长度
+            double cos = x / hypotenuse;
+            double radian = Math.Acos(cos);
+            //求出弧度
+            double angle = 180 / (Math.PI / radian);
+            //用弧度算出角度        
+            if (y < 0) {
+                angle = -angle;
+            } else if ((y == 0) && (x < 0)) {
+                angle = 180;
+            }
+            return angle;
+        }
         static Pen getPenArrow() {
             System.Drawing.Drawing2D.AdjustableArrowCap lineCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 6, true);
 
@@ -207,6 +226,29 @@ namespace Ebada.Scgl.Gis {
                 }
                 p0 = Point.Empty;
             }
+            foreach (PS_xl xl in gts.Keys) {
+                plist.Clear();
+                foreach (PS_gt gt in gts[xl]) {
+                    plist.Add(new PointF((float)gt.gtLon * bl, (float)gt.gtLat * bl));
+                }
+                if (plist.Count < 2) continue;
+                PointF[] pts = plist.ToArray();
+
+                matrix.TransformPoints(pts);
+                for (int i = 0; i < pts.Length; i++) {
+                    pts[i].Y = h - pts[i].Y;
+                }
+                PointF curgt = pts[0];
+                for (int i = 1; i < pts.Length; i++) {
+                    PS_gt gt = gts[xl][i];
+                    if (gt.gtSpan > 1) {
+                        drawSpan(g,(int)gt.gtSpan, curgt.X, curgt.Y, pts[i].X, pts[i].Y);
+                    }
+                    curgt = pts[i];
+                }
+                drawLineModel(g, xl.WireType, pts[pts.Length - 2].X, pts[pts.Length -2].Y, pts[pts.Length - 1].X, pts[pts.Length - 1].Y);
+            }
+
             //绘制10线路方向
 
             IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + tqcode + "' and linevol ='0.4' ");
@@ -227,6 +269,38 @@ namespace Ebada.Scgl.Gis {
             g.ScaleTransform(1.5f, 1.5f);
             draw指南针(g);
             return bp;
+        }
+
+        private static void drawSpan(Graphics g, int p, float x0, float y0, float x1, float y1) {
+            var gc= g.BeginContainer();
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            float x = (x1 + x0) / 2;
+            float y = (y1 + y0) / 2;
+            g.TranslateTransform(x-5, y);
+            Font f = new Font("Arial Narrow", 8);
+            float angle = (float)getAngle(x0, y0, x1, y1);
+            if (angle > 90) angle -= 180;
+            g.RotateTransform(angle);
+            g.DrawString(p.ToString(), f, Brushes.Red, 0, 0);
+            g.EndContainer(gc);
+        }
+        private static void drawLineModel(Graphics g, string xh, float x0, float y0, float x1, float y1) {
+            if (string.IsNullOrEmpty(xh)) return;
+            var gc = g.BeginContainer();
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            float x = (x1 + x0) / 2;
+            float y = (y1 + y0) / 2;
+            g.TranslateTransform(x - 5, y-20);
+            Font f = new Font("Arial Black", 9);
+            float angle = (float)getAngle(x0, y0, x1, y1);
+            if (float.IsNaN(angle)) return;
+            if (x1 < x0 && y1 < y0) angle -= 180;
+            if (angle > 90) angle -= 180;
+            g.RotateTransform(angle);
+            g.DrawString(xh, f, Brushes.BlueViolet, 0, 0);
+            g.EndContainer(gc);
         }
     }
 }
