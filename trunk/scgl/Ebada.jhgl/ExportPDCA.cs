@@ -30,9 +30,11 @@ namespace Ebada.jhgl
            }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
            ex.ActiveSheet(1);
+     
            ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+
            ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 8);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
            ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
 
            for (int j = 1; j <= pageindex; j++) {
@@ -102,7 +104,7 @@ namespace Ebada.jhgl
            ex.ActiveSheet(1);
            ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
            ex.SetCellValue(year.单位代码,row+2,col);;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 8);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
            ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
 
            for (int j = 1; j <= pageindex; j++)
@@ -159,7 +161,7 @@ namespace Ebada.jhgl
 
            ExcelAccess ex = new ExcelAccess();
            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-           string fname = Application.StartupPath + "\\00记录模板\\pdca循环一览表.xls";
+           string fname = Application.StartupPath + "\\00记录模板\\pdca周循环一览表.xls";
            ex.Open(fname);
            int row = 1;
            int col = 1;
@@ -177,9 +179,22 @@ namespace Ebada.jhgl
                }
            }
            ex.ActiveSheet(1);
-           ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           string strWeek = "";
+           string strYearMonth = "";
+           int pos = year.标题.IndexOf("第");
+           if (pos >= 0)
+           {
+               strWeek = year.标题.Substring(pos, 3);
+               strYearMonth = year.标题.Substring(0, pos);
+           }
+
+          // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           ex.SetCellValue(strYearMonth, row, 1);
+           ex.SetCellValue("("+strWeek+")", row, 7);
+           ex.SetCellValue("PDCA循环一览表", row, 8);
+
            ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 8);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
            ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
            for (int j = 1; j <= pageindex; j++)
            {
