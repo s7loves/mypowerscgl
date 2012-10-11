@@ -1,4 +1,5 @@
 use ebadascgl
+ALTER   TABLE   mModulFun   NOCHECK   CONSTRAINT   ALL
 Delete From [mModule] Where Description='sjgx'
 
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('信息设备管理','Ebada.sjgx.UCPT_InfoDevice','Ebada.sjgx.dll','0','','','my_pc',1,1,'','sjgx','20121003181424173753','20121003161238814852','')
@@ -30,3 +31,6 @@ Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[Met
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('财务计划-支出预算','Ebada.sjgx.UCFA_cwzcysbm','Ebada.sjgx.dll','1','','','投资估算6',1,1,'','sjgx','20121011083838000000','20121006175939879125','')
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('财务计划-支出预算-供电所','Ebada.sjgx.UCFA_cwzcysgds','Ebada.sjgx.dll','4','','','投资估算6',1,1,'','sjgx','20121011084003000000','20121006175939879125','')
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('财务账目-职工工资-供电所职工','Ebada.sjgx.UCFA_zggzgds','Ebada.sjgx.dll','12','','','投资估算6',1,1,'','sjgx','20121011084309500000','20121006175939879125','')
+
+
+ALTER   TABLE   mModulFun   CHECK   CONSTRAINT   ALL   
