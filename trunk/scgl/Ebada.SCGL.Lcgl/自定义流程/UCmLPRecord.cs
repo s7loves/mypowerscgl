@@ -1634,12 +1634,26 @@ namespace Ebada.Scgl.Lcgl {
 
                         } else if (obj is frmsbqxWorkFlowEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "'" + " and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
-                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                             +  " and (ModleTableName='Ebada.Scgl.Model.PJ_qxfl' or ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx')"
+                               +  " order by CreatTime desc");
                             PJ_qxfl qxfl = new PJ_qxfl();
                             if (li.Count > 0) {
-                                qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                //qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                PJ_06sbxsmx qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxsmx>(li[0].ModleRecordID);
 
+                                qxfl.CreateDate = qxfltemp.CreateDate;
+                                qxfl.LineID = qxfltemp.LineID;
+                                qxfl.LineName = qxfltemp.LineName;
+                                qxfl.OrgCode = qxfltemp.OrgCode;
+                                qxfl.OrgName = qxfltemp.OrgName;
+                                qxfl.qxlb = qxfltemp.qxlb;
+                                qxfl.qxnr = qxfltemp.qxnr;
+                                qxfl.xssj = qxfltemp.xssj;
+                                qxfl.xsr = qxfltemp.xsr;
+                                qxfl.xcqx = qxfltemp.xcqx;
+                                qxfl.xlqd = qxfltemp.xlqd;
+                                qxfl.CreateDate = DateTime.Now;
+                                qxfl.CreateMan = MainHelper.User.UserName;
                             } else {
                                 qxfl = new PJ_qxfl();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
@@ -1651,20 +1665,14 @@ namespace Ebada.Scgl.Lcgl {
 
                         } else if (obj is frmWorkFlow06sbxsEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                              + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx'"
-                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                              + "  and (ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx' )"
+                                + "  order by CreatTime desc");
                             PJ_06sbxsmx qxfl = new PJ_06sbxsmx();
                             if (li.Count > 0) {
-                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
+                                PJ_06sbxsmx qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxsmx>(li[0].ModleRecordID);
 
 
-                                qxfl = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxsmx>(" where CONVERT(varchar, CreateDate, 120 ) =  '" + qxfltemp.CreateDate + "'"
-                                    + " and LineID='" + qxfltemp.LineID + "'"
-                                    + " and OrgCode='" + qxfltemp.OrgCode + "'"
-                                     + " and qxlb='" + qxfltemp.qxlb + "'"
-                                     + " and xsr='" + qxfltemp.xsr + "'"
-                                     + " and xlqd='" + qxfltemp.xlqd + "'"
-                                    );
+                                qxfl = qxfltemp;
                                 if (qxfl == null) {
                                     qxfl = new PJ_06sbxsmx();
                                     qxfl.CreateDate = qxfltemp.CreateDate;
