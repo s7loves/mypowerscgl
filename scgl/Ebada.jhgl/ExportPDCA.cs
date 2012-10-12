@@ -54,8 +54,12 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
+
+                      // ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
+                      // ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
 
 
                    }
@@ -68,8 +72,13 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                      if (nrList[starow - 1 + i].完成时间.Year != 1900)
                        ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
+
+
+                      // ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
+                       //ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
 
                    }
                }
@@ -190,12 +199,12 @@ namespace Ebada.jhgl
 
           // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
            ex.SetCellValue(strYearMonth, row, 1);
-           ex.SetCellValue("("+strWeek+")", row, 7);
-           ex.SetCellValue("PDCA循环一览表", row, 8);
+           ex.SetCellValue("("+strWeek+")", row, 6);
+           ex.SetCellValue("PDCA循环一览表", row, 7);
 
            ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
-           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
+           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
+           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
            for (int j = 1; j <= pageindex; j++)
            {
                ex.ActiveSheet(j);
@@ -214,11 +223,11 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].主要负责人, row + 5 + i, 4);
                        ex.SetCellValue(nrList[starow - 1 + i].参加人员, row + 5 + i, 5);
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
-                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
-                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 9);
                        if(nrList[starow - 1 + i].完成时间.Year!=1900)
-                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
-                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 11);
 
 
                    }
@@ -232,11 +241,11 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].主要负责人, row + 5 + i, 4);
                        ex.SetCellValue(nrList[starow - 1 + i].参加人员, row + 5 + i, 5);
                        ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
-                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 7);
-                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 9);
                        if (nrList[starow - 1 + i].完成时间.Year != 1900)
-                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 9);
-                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 11);
 
                    }
                }
