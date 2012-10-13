@@ -314,7 +314,46 @@ namespace Ebada.Scgl.Lcgl {
         private void dateEdit1_EditValueChanged(object sender, EventArgs e) {
             comboBoxEdit4_EditValueChanged(sender, e);
         }
+        public static void update(PJ_06sbxsmx qxjl) {
+           PJ_06sbxsmx sbxs = qxjl;
+            string strmes = "";
+            object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxsmx>(sbxs.ID);
+            PJ_qxfl qxfj = new PJ_qxfl();
+            if (obj == null) {
+                obj = MainHelper.PlatformSqlMap.GetOne<PJ_06sbxs>("where  OrgCode='" + sbxs.OrgCode + "' and  LineID='" + sbxs.LineID + "' and xlqd='" + sbxs.xlqd + "'");
+                if (obj == null) {
+                    PJ_06sbxs sbxstemp = new PJ_06sbxs();
+                    sbxstemp.OrgCode = sbxs.OrgCode;
+                    sbxstemp.OrgName = sbxs.OrgName;
+                    sbxstemp.LineID = sbxs.LineID;
+                    sbxstemp.LineName = sbxs.LineName;
+                    sbxstemp.xlqd = sbxs.xlqd;
+                    sbxstemp.xssj = DateTime.Now;
+                    sbxstemp.CreateMan = MainHelper.User.UserName;
+                    MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxstemp);
+                    sbxs.ParentID = sbxstemp.ID;
+                } else {
+                    sbxs.ParentID = (obj as PJ_06sbxs).ID;
+                }
 
+                MainHelper.PlatformSqlMap.Create<PJ_06sbxsmx>(sbxs);
+            } else {
+                PJ_06sbxsmx qxfltemp = obj as PJ_06sbxsmx;
+                qxfltemp.LineID = sbxs.LineID;
+                qxfltemp.LineName = sbxs.LineName;
+                qxfltemp.OrgCode = sbxs.OrgCode;
+                qxfltemp.OrgName = sbxs.OrgName;
+                qxfltemp.qxlb = sbxs.qxlb;
+                qxfltemp.qxnr = sbxs.qxnr;
+                qxfltemp.xssj = sbxs.xssj;
+                qxfltemp.xsr = sbxs.xsr;
+                qxfltemp.xcqx = sbxs.xcqx;
+                qxfltemp.xlqd = sbxs.xlqd; ;
+                qxfltemp.xcr = sbxs.xcr;
+                qxfltemp.xcrq = sbxs.xcrq;
+                MainHelper.PlatformSqlMap.Update<PJ_06sbxsmx>(qxfltemp);
+            }
+        }
         private void btnOK_Click(object sender, EventArgs e) {
             PJ_06sbxsmx sbxs = RowData as PJ_06sbxsmx;
             string strmes = "";
@@ -338,16 +377,16 @@ namespace Ebada.Scgl.Lcgl {
                 }
 
                 MainHelper.PlatformSqlMap.Create<PJ_06sbxsmx>(sbxs);
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = sbxs.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = sbxs.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                //WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                //mrwt.ModleRecordID = sbxs.ID;
+                //mrwt.RecordID = currRecord.ID;
+                //mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                //mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                //mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                //mrwt.ModleTableName = sbxs.GetType().ToString();
+                //mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                //mrwt.CreatTime = DateTime.Now;
+                //MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
                 if (sbxs.qxlb != "") {
 
 
@@ -390,7 +429,7 @@ namespace Ebada.Scgl.Lcgl {
                     qxfltemp.xcrq = sbxs.xcrq;
                     MainHelper.PlatformSqlMap.Update<PJ_qxfl>(qxfltemp);
                 }
-                MainHelper.PlatformSqlMap.Update<PJ_06sbxs>(sbxs);
+                MainHelper.PlatformSqlMap.Update<PJ_06sbxsmx>(sbxs);
             }
 
 
