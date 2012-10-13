@@ -486,15 +486,15 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl = new PJ_qxfl();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
-
+                                qxfl.xssj = DateTime.Today;
                             }
 
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
 
                         } else if (obj is frmWorkFlow06sbxsEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                              + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx'"
-                                + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
+                              + "  and (ModleTableName='Ebada.Scgl.Model.PJ_qxfl' or ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx' )"
+                                + "  order by CreatTime desc");
                             PJ_06sbxsmx qxfl = new PJ_06sbxsmx();
                             if (li.Count > 0) {
                                 qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_06sbxsmx>(li[0].ModleRecordID);
@@ -1658,6 +1658,7 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl = new PJ_qxfl();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
+                                qxfl.xssj = DateTime.Today;
 
                             }
 
@@ -1665,7 +1666,7 @@ namespace Ebada.Scgl.Lcgl {
 
                         } else if (obj is frmWorkFlow06sbxsEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                              + "  and (ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx' )"
+                              + "  and (ModleTableName='Ebada.Scgl.Model.PJ_qxfl' or ModleTableName='Ebada.Scgl.Model.PJ_06sbxsmx' )"
                                 + "  order by CreatTime desc");
                             PJ_06sbxsmx qxfl = new PJ_06sbxsmx();
                             if (li.Count > 0) {
