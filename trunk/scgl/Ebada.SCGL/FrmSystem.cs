@@ -31,6 +31,7 @@ namespace Ebada.SCGL {
 
             InitializeComponent();
             createPanel();
+            panelControl1.Anchor |= AnchorStyles.Right;
             //FormView.PaintAll(this);
             //FormView.PaintPicAll(picback);
             
@@ -57,7 +58,7 @@ namespace Ebada.SCGL {
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.MaximizeBox = true;
             this.MinimizeBox = true;
-            panelControl1.Anchor |= AnchorStyles.Right;
+            
         }
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
@@ -122,6 +123,7 @@ namespace Ebada.SCGL {
             base.OnClosed(e);
             if (this.WindowState == FormWindowState.Normal) {
                 Settings.Default.frmSystemSize = this.Size;
+                Settings.Default.Save();
             }
         }
         void InitFunction(string userID) {
