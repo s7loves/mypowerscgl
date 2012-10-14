@@ -56,7 +56,12 @@ namespace Ebada.Kcgl {
             gridView1.IndicatorWidth = 40;//设置显示行号的列宽
             gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
             btExport1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btExport1_ItemClick);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<kc_出库明细表>(gridViewOperation_AfterAdd);
             btExport1.Caption = "打印";
+        }
+
+        void gridViewOperation_AfterAdd(kc_出库明细表 obj) {
+            gridView1.FocusedRowHandle=(gridView1.RowCount - 1);
         }
 
         void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
@@ -121,7 +126,8 @@ namespace Ebada.Kcgl {
             gridView1.Columns[kc_出库明细表.f_总计].OptionsColumn.AllowEdit = false;
             gridView1.Columns[kc_出库明细表.f_规格及型号].OptionsColumn.AllowEdit = false;
             gridView1.Columns[kc_出库明细表.f_计量单位].OptionsColumn.AllowEdit = false;
-
+            gridView1.Columns[kc_出库明细表.f_工程类别_ID].OptionsColumn.AllowEdit = false;
+            gridView1.Columns[kc_出库明细表.f_出库单位_ID].OptionsColumn.AllowEdit = false;
             gridView1.Columns[kc_出库明细表.f_工程类别_ID].ColumnEdit = getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
             gridView1.Columns[kc_出库明细表.f_工程类别_ID].ColumnEdit.EditValueChanging += new ChangingEventHandler(工程类别ColumnEdit_EditValueChanging);
             gridView1.Columns[kc_出库明细表.f_材料名称].ColumnEdit = getclSeach();// getLookup<kc_材料名称表>(kc_材料名称表.f_ID, kc_材料名称表.f_材料名称);
@@ -176,9 +182,11 @@ namespace Ebada.Kcgl {
                 }
             }
         }
-
+        Dictionary<Type, IDictionary> xmdic = new Dictionary<Type, IDictionary>();
         RepositoryItem getLookup<T>(string key, string value) {
+            
             IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);
+            xmdic.Add(typeof(T), dic);
             List<ListItem> list = new List<ListItem>();
             foreach (var item in dic.Keys) {
                 list.Add(new ListItem(item.ToString(), dic[item].ToString()));
@@ -228,6 +236,10 @@ namespace Ebada.Kcgl {
         void gridViewOperation_CreatingObjectEvent(Model.kc_出库明细表 newobj) {
             newobj.出库单_ID = ParentObj.ID;
             newobj.出库日期 = ParentObj.出库时间;
+            newobj.工程类别_ID = ParentObj.工程类别_ID;
+            newobj.出库单位_ID = ParentObj.工程项目_ID;
+            newobj.出库单位 = xmdic[typeof(kc_工程项目)][ParentObj.工程项目_ID].ToString();
+            newobj.工程类别 = xmdic[typeof(kc_工程类别)][ParentObj.工程类别_ID].ToString();
         }
         /// <summary>
         /// 父表ID

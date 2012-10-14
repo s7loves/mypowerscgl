@@ -34,6 +34,9 @@ namespace Ebada.Kcgl {
         private GridViewOperation<Model.kc_出库单> gridViewOperation;
 
         public event SendDataEventHandler<Model.kc_出库单> FocusedRowChanged;
+        RepositoryItemLookUpEdit gclbLookup;
+        RepositoryItemPopupContainerEdit xmLookup;
+
         private string parentID;
         public UC出库单() {
             InitializeComponent();
@@ -46,6 +49,7 @@ namespace Ebada.Kcgl {
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsView.ColumnAutoWidth = true;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseUp;
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<kc_出库单> e) {
@@ -110,12 +114,29 @@ namespace Ebada.Kcgl {
         public void InitColumns() {
             gridView1.Columns[kc_出库单.f_出库单号].OptionsColumn.AllowEdit = false;
             //需要隐藏列时在这写代码
-            hideColumn(kc_出库单.f_工程类别_ID,  kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
-            gridView1.Columns[kc_出库单.f_工程项目_ID].ColumnEdit = getLookup<kc_工程项目>(kc_工程项目.f_ID, kc_工程项目.f_工程项目名称);
-
-
+            hideColumn( kc_出库单.f_出库单位_ID,kc_出库单.f_提供人);
+            //gridView1.Columns[kc_出库单.f_工程项目_ID].ColumnEdit =xmLookup= getLookup<kc_工程项目>(kc_工程项目.f_ID, kc_工程项目.f_工程项目名称);
+            gridView1.Columns[kc_出库单.f_工程类别_ID].ColumnEdit =gclbLookup= getLookup<kc_工程类别>(kc_工程类别.f_ID, kc_工程类别.f_工程类别);
+            gridView1.Columns[kc_出库单.f_工程项目_ID].ColumnEdit =xmLookup= createxmpop();
+            gridView1.Columns[kc_出库单.f_工程类别_ID].VisibleIndex = 1;
+            gridView1.Columns[kc_出库单.f_工程项目_ID].VisibleIndex = 2;
+            //xmLookup.Buttons.RemoveAt(0);
+            //xmLookup.Buttons.Add(new EditorButton(ButtonPredefines.Ellipsis));
+            //xmLookup.ButtonClick += new ButtonPressedEventHandler(xmLookup_ButtonClick);
         }
-        RepositoryItem getLookup<T>(string key, string value) {
+        UCRepositoryItemPopupEdit createxmpop() {
+            UCRepositoryItemPopupEdit pe = new UCRepositoryItemPopupEdit();
+            pe.GridView = this.gridView1;
+            pe.ValueField = kc_工程项目.f_ID;
+            pe.DisplayField = kc_工程项目.f_工程项目名称;
+            pe.DataSource = Client.ClientHelper.TransportSqlMap.GetList<kc_工程项目>(null);
+
+            return pe;
+        }
+        void xmLookup_ButtonClick(object sender, ButtonPressedEventArgs e) {
+            MsgBox.ShowAskMessageBox(e.Button.Caption);
+        }
+        RepositoryItemLookUpEdit getLookup<T>(string key, string value) {
             IDictionary dic = Client.ClientHelper.TransportSqlMap.GetDictionary<T>(null, key, value);
             List<ListItem> list = new List<ListItem>();
             foreach (var item in dic.Keys) {

@@ -29,6 +29,7 @@ namespace Ebada.Kcgl {
             InitializeComponent();
             //接收TreeList行焦点改变事件
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Model.kc_出库单>(ucTop_FocusedRowChanged);
+            splitCC1.SplitterPosition =350;
             splitCC1.Panel1.Text = "出库单列表";
             splitCC1.Panel2.Text = "出库明细表";
         }
