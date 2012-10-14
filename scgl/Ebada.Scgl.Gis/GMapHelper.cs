@@ -44,9 +44,9 @@ namespace Ebada.Scgl.Gis {
             //float Yb = y1 + 10 * ((y0 - y1) + (x0 - x1) / 2) / d;
             //g.DrawLine(Pens.Black, new PointF(x0, y0), new PointF(x1, y1));
             //g.DrawLine(Pens.Black, new PointF(Xa, Ya), new PointF(Xb, Yb));
-            PointF p3 = new PointF(x0+(x1 -x0)*2 / 3, y0 + (y1-y0) *2/ 3);
+            PointF p3 = new PointF(x0-(x1 -x0)*3, y0 - (y1-y0) *3);
             Pen pen=getPenArrow();
-            g.DrawLine(pen, new PointF(x0, y0), p3);
+            g.DrawLine(pen, p3, new PointF(x1, y1));
             //pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             //g.DrawLine(pen, p3, new PointF(x1, y1));
         }
@@ -57,6 +57,7 @@ namespace Ebada.Scgl.Gis {
             float y = py2 - py1;
             double hypotenuse = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
             //斜边长度
+            if (x < 0) { x *= -1; y *= -1; }//保存角度在-90到90之间
             double cos = x / hypotenuse;
             double radian = Math.Acos(cos);
             //求出弧度
@@ -252,6 +253,7 @@ namespace Ebada.Scgl.Gis {
             //绘制10线路方向
 
             IList<PS_xl> xllist0 = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + tqcode + "' and linevol ='0.4' ");
+            
             foreach (PS_xl xl0 in xllist0) {
 
                 IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + xl0.LineCode + "' order by gtcode");
@@ -260,9 +262,27 @@ namespace Ebada.Scgl.Gis {
                     PointF p2 = new PointF((float)gtlist[1].gtLon * bl, (float)gtlist[1].gtLat * bl);
                     PointF[] pts = new PointF[] { p1, p2 };
                     matrix.TransformPoints(pts);
-                    drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
+                    //drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
                 }
 
+            }
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='" + tqcode + "'");
+            if (tq != null) {
+                IList<PS_gt> gtlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("where linecode='" + tq.xlCode2 + "' order by gtcode");
+                if (gtlist.Count>1) {
+                    for(int i=0;i<gtlist.Count;i++) {
+                        if (gtlist[i].gtCode == tq.gtID) {
+                            if (i > 0) {
+                                PointF p1 = new PointF((float)gtlist[i-1].gtLon * bl, (float)gtlist[i-1].gtLat * bl);
+                                PointF p2 = new PointF((float)gtlist[i].gtLon * bl, (float)gtlist[i].gtLat * bl);
+                                PointF[] pts = new PointF[] { p1, p2 };
+                                matrix.TransformPoints(pts);
+                                drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
+                            }
+                            break;
+                        }
+                    }
+                }
             }
             //绘制指南针
             g.TranslateTransform(width - 50, 20);
@@ -296,8 +316,12 @@ namespace Ebada.Scgl.Gis {
             Font f = new Font("Arial Black", 9);
             float angle = (float)getAngle(x0, y0, x1, y1);
             if (float.IsNaN(angle)) return;
-            if (x1 < x0 && y1 < y0) angle -= 180;
-            if (angle > 90) angle -= 180;
+            if (angle > 0) g.TranslateTransform(15, 0);
+            //if (x1 < x0 && y1 < y0) angle += 180;
+            //if (angle > 90) { 
+            //    angle -= 180; 
+            //    g.TranslateTransform(-15, 0); 
+            //}
             g.RotateTransform(angle);
             g.DrawString(xh, f, Brushes.BlueViolet, 0, 0);
             g.EndContainer(gc);
