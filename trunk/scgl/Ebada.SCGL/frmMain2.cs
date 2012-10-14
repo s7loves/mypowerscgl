@@ -267,7 +267,7 @@ namespace Ebada.SCGL {
             };
 
 
-            btLogin.PerformClick();
+            login();
             Application.DoEvents();
             try {
                 BeginInvoke(m);
@@ -277,10 +277,12 @@ namespace Ebada.SCGL {
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e) {
             ucModulBar1.RefreshData("where ModuTypes != 'hide' order by Sequence"); InitMenu("");
         }
-
-        private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
+        private void login() {
             frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) {
+            DialogResult result = DialogResult.OK;
+            if (string.IsNullOrEmpty(MainHelper.LoginName))
+                result = dlg.ShowDialog();
+            if (result == DialogResult.OK) {
 
 
 
@@ -323,8 +325,12 @@ namespace Ebada.SCGL {
 
 #endif
             }
-            barButtonItem3.Enabled = (dlg.DialogResult == DialogResult.OK);
+            barButtonItem3.Enabled = (result == DialogResult.OK);
+        }
+        private void btLogin_ItemClick(object sender, ItemClickEventArgs e) {
 
+            MainHelper.LoginName = "";
+            login();
         }
 
         void bw_DoWork(object sender, DoWorkEventArgs e) {
