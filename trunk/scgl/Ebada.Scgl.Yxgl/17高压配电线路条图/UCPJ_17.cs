@@ -241,7 +241,7 @@ namespace Ebada.Scgl.Yxgl {
             string fname = Application.StartupPath + "\\00记录模板\\17线路条图.xls";
             float fxstart = 0, fystart = 0, fwidth = 0, fheight = 0;
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
-            string outfname = Path.GetTempPath() + "~" + Guid.NewGuid().ToString() + ".xls";
+            string outfname = Path.GetTempFileName() + ".xls";
             File.Copy(fname, outfname);
             dsoFramerWordControl1.FileOpen(outfname);
             Microsoft.Office.Interop.Excel.Worksheet xx;
