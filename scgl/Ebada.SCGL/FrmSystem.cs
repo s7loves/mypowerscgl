@@ -17,23 +17,28 @@ using Ebada.Scgl.Resource;
 using System.Globalization;
 using System.Reflection;
 using Ebada.Scgl.Run;
-namespace Ebada.SCGL
-{
+using Ebada.Core;
+using Ebada.SCGL.Properties;
+namespace Ebada.SCGL {
     //public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
-        public partial class FrmSystem : Form
-    {
+    public partial class FrmSystem : Form {
         private string secondmenu = "";
-        public FrmSystem()
-        {
-            
+        bool allowClose = false;
+        Image topBackbmp;
+        int topbarWidth;
+        private Panel panel1;
+        public FrmSystem() {
+
             InitializeComponent();
+            createPanel();
             //FormView.PaintAll(this);
             //FormView.PaintPicAll(picback);
-            FormView.PaintUP(pictureEdit1);
+            
 
             this.Text = "绥化市郊农电信息管理平台";
-            pictureEdit1.Image = ImageListRes.GetTop2();
-           
+            topBackbmp = pictureEdit1.Image = ImageListRes.GetTop2();
+            topbarWidth = pictureEdit1.Width;
+            pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);
             labdate.Parent = pictureEdit1;
             labTime.Parent = pictureEdit1;
             labdate2.Parent = pictureEdit1;
@@ -41,36 +46,108 @@ namespace Ebada.SCGL
             labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
             labshow.Parent = panelControl1;
-           
+            labSet.Hide();
             //labshow.Parent = pictureEdit2;
-            labdate.Text = DateTime.Now.ToString("m") + ""+DateTime.Now.ToString("dddd");
+            labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
             timer1.Start();
+            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
 
+            this.MinimumSize = this.Size;
+            this.Size = Settings.Default.frmSystemSize;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            panelControl1.Anchor |= AnchorStyles.Right;
         }
+        void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
-        private void FrmSystem_Load(object sender, EventArgs e)
-        {
+            if (pictureEdit1.Width > topbarWidth) {
+                Bitmap map = new Bitmap(pictureEdit1.Width, pictureEdit1.Height);
+                Graphics g = Graphics.FromImage(map);
+                Rectangle rect = new Rectangle(0, 0, 660, topBackbmp.Height);
+                Rectangle rect2 = new Rectangle(660, 0, map.Width - (topbarWidth - 680) - 660, topBackbmp.Height);
+                Rectangle rect3 = new Rectangle(map.Width - (topbarWidth - 680), 0, topbarWidth - 680, topBackbmp.Height);
+                g.DrawImage(topBackbmp, rect, 0, 0, 660, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.DrawImage(topBackbmp, rect2, 660, 0, 20, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.DrawImage(topBackbmp, rect3, 680, 0, rect3.Width, topBackbmp.Height, GraphicsUnit.Pixel);
+                g.Dispose();
+                pictureEdit1.Image = map;
+            } else {
+                pictureEdit1.Image = topBackbmp;
+            }
+            FormView.PaintUP(pictureEdit1);
+        }
+        void createPanel() {
+            panel1 = new Panel();
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                       | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Location = new System.Drawing.Point(205, 136);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(693, 343);
+            this.panel1.TabIndex = 28;
+            this.panel1.Visible = false;
+            this.Controls.Add(panel1);
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            Application.DoEvents();
+            //timer1.Start();
+
+            
+            //this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
+            frmLogin dlg = new frmLogin();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                if (MainHelper.User.LoginID == "rabbit") {
+                    labSet.Show();
+                } else {
+                    InitFunction(MainHelper.User.UserID);
+                }
+                //this.WindowState = FormWindowState.Maximized;
+            } else {
+                allowClose = true;
+                this.Close();
+            }
+        }
+        protected override void OnClosing(CancelEventArgs e) {
+            e.Cancel = !allowClose;
+            if (!allowClose) {
+                panel1.Controls.Clear();
+                panel1.Hide();
+            }
+            base.OnClosing(e);
+        }
+        protected override void OnClosed(EventArgs e) {
+            base.OnClosed(e);
+            if (this.WindowState == FormWindowState.Normal) {
+                Settings.Default.frmSystemSize = this.Size;
+            }
+        }
+        void InitFunction(string userID) {
+            try {
+                ClientHelper.UserFuns = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select Modu_ID+'_'+funcode from vuserfun where userid='" + userID + "'");
+            } catch { }
+        }
+        private void FrmSystem_Load(object sender, EventArgs e) {
+            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
+            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
             CreateMenu();
 
         }
-        private void CreateMenu()
-        {
+        DataTable moduleTable;
+        private void CreateMenu() {
             nbctSystem.Groups.Clear();
             nbctSystem.Items.Clear();
 
-            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
-            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
-
-
             string sqlwhere = "where  Description='system'  order by Sequence";
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
-           
-            DataTable table = Ebada.Core.ConvertHelper.ToDataTable((IList)mlist);
+            moduleTable = Ebada.Core.ConvertHelper.ToDataTable((IList)mlist);
+            DataTable table = moduleTable;
 
             DataRow[] Rows = table.Select(string.Format("ParentID='{0}'", "0"));
 
-            foreach (DataRow row in Rows)
-            {
+            foreach (DataRow row in Rows) {
                 DevExpress.XtraNavBar.NavBarGroup nbg = new DevExpress.XtraNavBar.NavBarGroup();
                 nbg.Name = row["ModuName"].ToString();
                 nbg.Tag = Ebada.Core.ConvertHelper.RowToObject<mModule>(row);
@@ -78,14 +155,13 @@ namespace Ebada.SCGL
                 nbg.LargeImage = ((ImageList)nbctSystem.LargeImages).Images[row["IconName"].ToString()];
 
                 DataRow[] Rows2 = table.Select(string.Format(" ParentID='{0}'", row["Modu_ID"].ToString()));
-                foreach (DataRow  row2 in Rows2)
-                {
+                foreach (DataRow row2 in Rows2) {
                     DevExpress.XtraNavBar.NavBarItem nbi = new DevExpress.XtraNavBar.NavBarItem();
                     nbi.Name = row2["ModuName"].ToString();
                     nbi.Tag = Ebada.Core.ConvertHelper.RowToObject<mModule>(row2);
                     nbi.Caption = row2["ModuName"].ToString();
                     nbi.SmallImage = ((ImageList)nbctSystem.SmallImages).Images[row2["IconName"].ToString()];
-                    nbi.Hint = row["Sequence"].ToString();
+                    //nbi.Hint = row["Sequence"].ToString();
                     nbctSystem.Items.Add(nbi);
                     nbg.ItemLinks.Add(nbi);
                 }
@@ -94,87 +170,58 @@ namespace Ebada.SCGL
 
             }
 
-           
+
         }
-        //private void CreateMenu()
-        //{
-        //    nbctSystem.Groups.Clear();
-        //    nbctSystem.Items.Clear();
-
-        //    nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
-        //    nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
-
-
-        //    string sqlwhere = "where ParentID='0' and  Description='system'  order by Sequence";
-        //    IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
-
-        //    for (int i = 0; i < mlist.Count; i++)
-        //    {
-        //        DevExpress.XtraNavBar.NavBarGroup nbg = new DevExpress.XtraNavBar.NavBarGroup();
-        //        nbg.Name = mlist[i].ModuName;
-        //        nbg.Tag = mlist[i];
-        //        nbg.Caption = mlist[i].ModuName;
-        //        nbg.LargeImage = ((ImageList)nbctSystem.LargeImages).Images[mlist[i].IconName];
-
-        //        string slqwhrer2 = "where Description = 'system' and ParentID='" + mlist[i].Modu_ID + "'  order by Sequence";
-        //        IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
-        //        for (int j = 0; j < mlist2.Count; j++)
-        //        {
-        //            DevExpress.XtraNavBar.NavBarItem nbi = new DevExpress.XtraNavBar.NavBarItem();
-        //            nbi.Name = mlist2[j].ModuName;
-        //            nbi.Tag = mlist2[j];
-        //            nbi.Caption = mlist2[j].ModuName;
-        //            nbi.SmallImage = ((ImageList)nbctSystem.SmallImages).Images[mlist2[j].IconName];
-        //            nbi.Hint = mlist2[j].Sequence.ToString();
-        //            nbctSystem.Items.Add(nbi);
-        //            nbg.ItemLinks.Add(nbi);
-        //        }
-        //        nbctSystem.Groups.Add(nbg);
-        //        nbctSystem.Refresh();
-        //    }
-        //}
-
-        private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
-        {
-            listView1.Items.Clear();
+      
+        private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e) {
             secondmenu = "";
-            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
             mModule mdule = e.Group.Tag as mModule;
-            string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
-            IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
-            for (int j = 0; j < mlist2.Count; j++)
-            {
-                ListViewItem listItem = new ListViewItem();
-                listItem.Text = mlist2[j].ModuName.ToString();
-                listItem.Tag = mlist2[j];
-                listItem.ImageKey = mlist2[j].IconName.ToString();
-                
-                //listItem.BackColor = System.Drawing.Color.Blue;
-                listView1.Items.Add(listItem);
-            }
+            createListView(mdule);
+
             //显示上部位置名称
             labshow.Text = ">>" + mdule.ModuName;
             //显示下部说明
             labbuttom.Text = mdule.IsCores;
         }
+        void createListView(mModule m) {
+            if (m == null) return;
+            listView1.Items.Clear();
+
+            //listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+            mModule mdule = m;
+            string slqwhrer2 = "ParentID='" + mdule.Modu_ID + "'";//order by Sequence
+            DataRow[] rows = moduleTable.Select(slqwhrer2, "Sequence");
+            //IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
+            for (int j = 0; j < rows.Length; j++) {
+                mModule obj = ConvertHelper.RowToObject<mModule>(rows[j]);
+                ListViewItem listItem = new ListViewItem();
+                listItem.Text = obj.ModuName.ToString();
+                listItem.Tag = obj;
+                listItem.ImageKey = obj.IconName.ToString();
+
+                //listItem.BackColor = System.Drawing.Color.Blue;
+                listView1.Items.Add(listItem);
+            }
+        }
         //激活程序
-         private void listView1_ItemActivate(object sender, EventArgs e)
-        {
+        private void listView1_ItemActivate(object sender, EventArgs e) {
             mModule mdule = listView1.FocusedItem.Tag as mModule;
+            if(showForms.ContainsKey(mdule.Modu_ID)){
+                Form form=showForms[mdule.Modu_ID];
+                form.WindowState = FormWindowState.Maximized;
+                
+                return;
+            }
             //显示上部位置名称
-            if (secondmenu=="")
-            {
+            if (secondmenu == "") {
                 labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + mdule.ModuName;
+            } else {
+                labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + secondmenu + "->" + mdule.ModuName;
             }
-            else
-            {
-                labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption +"->"+ secondmenu+"->" + mdule.ModuName;
-            }
-            
+
             //显示下部说明
             labbuttom.Text = mdule.IsCores;
-            if (mdule.ModuName.Contains("生产管理系统"))
-            {
+            if (mdule.ModuName.Contains("生产管理系统")) {
                 frmMain2 frm = new frmMain2();
                 frm.ShowDialog();
                 return;
@@ -183,76 +230,83 @@ namespace Ebada.SCGL
                 return;
 
             string exe = mdule.ModuTypes;
-            if (mdule.ModuTypes.ToLower().Contains(".exe")  )
-            {             
+            if (mdule.ModuTypes.ToLower().Contains(".exe")) {
                 System.Diagnostics.Process.Start(Application.StartupPath + "\\" + exe);
-            }
-            else if(mdule.ModuTypes.ToLower().Contains("http"))
-	        {
+            } else if (mdule.ModuTypes.ToLower().Contains("http")) {
                 System.Diagnostics.Process.Start(exe);
-	        }
-            else
-            {
-                object instance=null;
+            } else {
+                object instance = null;
                 object[] para = new object[1];
                 para.SetValue(mdule, 0);
                 para = new object[0];
-                
-                object result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null,null,ref instance);
-                Form form = (Form)instance;
-                form.Show();
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("Modu_ID", mdule.Modu_ID);
+                object result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null, null, ref instance);
+                if (instance is Form) {
+                    Form form = (Form)instance;
+                    form.Tag = dic;
+                    form.StartPosition = FormStartPosition.CenterScreen;
+                    form.WindowState = FormWindowState.Maximized;
+                    form.Owner = this;
+                    form.FormClosed += new FormClosedEventHandler(form_FormClosed);
+                    showForms.Add(mdule.Modu_ID,form);
+                    form.Show();
+                } else {
+                    this.Tag = dic;
+                    showmodul(instance as UserControl, mdule.ModuName);
+                }
             }
-
-           
-        }
-         private void nbctSystem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-         {
-
-           CreateListView(e.Link.Item);
-            
         }
 
-         private void CreateListView(DevExpress.XtraNavBar.NavBarItem nbi)
-         {
-             mModule mdule = nbi.Tag as mModule;
-             secondmenu = mdule.ModuName;
-             if (mdule == null)
-                 return;
-             listView1.Items.Clear();
-             listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
-             string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
-             IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
-             for (int j = 0; j < mlist2.Count; j++)
-             {
-                 ListViewItem listItem = new ListViewItem();
-                 listItem.Text = mlist2[j].ModuName.ToString();
-                 listItem.Tag = mlist2[j];
-                 listItem.ImageKey = mlist2[j].IconName.ToString();
+        void form_FormClosed(object sender, FormClosedEventArgs e) {
+            Form form = sender as Form;
+            foreach(var item in showForms){
+                if (item.Value == form) {
+                    showForms.Remove(item.Key); break;
+                }
+            }
+        }
+        Dictionary<string, Form> showForms = new Dictionary<string, Form>();
+        void showmodul(UserControl c, string text) {
+            c.Dock = DockStyle.Fill;
+            panel1.Controls.Add(c);
+            panel1.Show();
+            panel1.BringToFront();
+        }
+        private void nbctSystem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e) {
 
-                 //listItem.BackColor = System.Drawing.Color.Blue;
-                 listView1.Items.Add(listItem);
-             }
-             //显示上部位置名称
-             labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + mdule.ModuName;
-             //显示下部说明
-             labbuttom.Text = mdule.IsCores;
-         }
-         
-        private void timer1_Tick(object sender, EventArgs e)
-        {
+            CreateListView(e.Link.Item);
+            if (panel1.Visible) {
+                panel1.Controls.Clear();
+                panel1.Hide();
+            }
+        }
+
+        private void CreateListView(DevExpress.XtraNavBar.NavBarItem nbi) {
+            mModule mdule = nbi.Tag as mModule;
+            secondmenu = mdule.ModuName;
+            if (mdule == null)
+                return;
+            createListView(mdule);
+            //显示上部位置名称
+            labshow.Text = ">>" + nbctSystem.ActiveGroup.Caption + "->" + mdule.ModuName;
+            //显示下部说明
+            labbuttom.Text = mdule.IsCores;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
             labTime.Text = DateTime.Now.ToString("HH:mm");
         }
         //显示农历日期
-        string GetCNDate()
-        {
-             DateTime m_Date; //今天的日期
-             int cny; //农历的年月日
-             int cnm; //农历的年月日
-             int cnd; //农历的年月日
-             int icnm; //农历闰月
+        string GetCNDate() {
+            DateTime m_Date; //今天的日期
+            int cny; //农历的年月日
+            int cnm; //农历的年月日
+            int cnd; //农历的年月日
+            int icnm; //农历闰月
 
-             m_Date = DateTime.Today;
-            ChineseLunisolarCalendar cnCalendar =new ChineseLunisolarCalendar();
+            m_Date = DateTime.Today;
+            ChineseLunisolarCalendar cnCalendar = new ChineseLunisolarCalendar();
             cny = cnCalendar.GetSexagenaryYear(m_Date);
             cnm = cnCalendar.GetMonth(m_Date);
             cnd = cnCalendar.GetDayOfMonth(m_Date);
@@ -272,8 +326,7 @@ namespace Ebada.SCGL
             //格式化月份显示
             string[] cnMonth ={ "", "正月", "二月", "三月", "四月", "五月", "六月"
                 , "七月", "八月", "九月", "十月", "十一月", "十二月", "十二月" };
-            if (icnm > 0)
-            {
+            if (icnm > 0) {
                 for (int i = icnm + 1; i < 13; i++)
                     cnMonth[icnm] = cnMonth[icnm - 1];
                 cnMonth[icnm] = "闰" + cnMonth[icnm];
@@ -287,82 +340,66 @@ namespace Ebada.SCGL
             return txcns;
         }
 
-        private void labSet_Click(object sender, EventArgs e)
-        {
+        private void labSet_Click(object sender, EventArgs e) {
             frmModule frm = new frmModule();
             frm.ShowDialog();
             CreateMenu();
         }
 
-        private void labExit_Click(object sender, EventArgs e)
-        {
+        private void labExit_Click(object sender, EventArgs e) {
+            allowClose = true;
             this.Close();
         }
 
-        private void labSet_MouseEnter(object sender, EventArgs e)
-        {
+        private void labSet_MouseEnter(object sender, EventArgs e) {
             labSet.BackColor = Color.YellowGreen;
         }
 
-        private void labSet_MouseLeave(object sender, EventArgs e)
-        {
+        private void labSet_MouseLeave(object sender, EventArgs e) {
             labSet.BackColor = Color.Transparent;
         }
 
-        private void labExit_MouseEnter(object sender, EventArgs e)
-        {
+        private void labExit_MouseEnter(object sender, EventArgs e) {
             labExit.BackColor = Color.Red;
         }
 
-        private void labExit_MouseLeave(object sender, EventArgs e)
-        {
+        private void labExit_MouseLeave(object sender, EventArgs e) {
             labExit.BackColor = Color.Transparent;
         }
 
         #region 美化窗体
         private bool m_isMouseDown = false;
         private Point m_mousePos = new Point();
-            private void pictureEdit1_MouseDown(object sender, MouseEventArgs e)
-            {
-                base.OnMouseDown(e);
+        private void pictureEdit1_MouseDown(object sender, MouseEventArgs e) {
+            base.OnMouseDown(e);
+            m_mousePos = Cursor.Position;
+            m_isMouseDown = true;
+        }
+
+        private void pictureEdit1_MouseEnter(object sender, EventArgs e) {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pictureEdit1_MouseLeave(object sender, EventArgs e) {
+            this.Cursor = Cursors.Default;
+        }
+
+        private void pictureEdit1_MouseMove(object sender, MouseEventArgs e) {
+            base.OnMouseMove(e);
+            if (m_isMouseDown) {
+                Point tempPos = Cursor.Position;
+                this.Location = new Point(Location.X + (tempPos.X - m_mousePos.X), Location.Y + (tempPos.Y - m_mousePos.Y));
                 m_mousePos = Cursor.Position;
-                m_isMouseDown = true;
             }
+        }
 
-            private void pictureEdit1_MouseEnter(object sender, EventArgs e)
-            {
-                this.Cursor = Cursors.Hand;
-            }
-
-            private void pictureEdit1_MouseLeave(object sender, EventArgs e)
-            {
-                this.Cursor = Cursors.Default;
-            }
-
-            private void pictureEdit1_MouseMove(object sender, MouseEventArgs e)
-            {
-                base.OnMouseMove(e);
-                if (m_isMouseDown)
-                {
-                    Point tempPos = Cursor.Position;
-                    this.Location = new Point(Location.X + (tempPos.X - m_mousePos.X), Location.Y + (tempPos.Y - m_mousePos.Y));
-                    m_mousePos = Cursor.Position;
-                }
-            }
-
-            private void pictureEdit1_MouseUp(object sender, MouseEventArgs e)
-            {
-                base.OnMouseUp(e);
-                m_isMouseDown = false;
-            }
+        private void pictureEdit1_MouseUp(object sender, MouseEventArgs e) {
+            base.OnMouseUp(e);
+            m_isMouseDown = false;
+        }
 
 
         #endregion
-       
 
-        
-        
-
-       
     }
 }
