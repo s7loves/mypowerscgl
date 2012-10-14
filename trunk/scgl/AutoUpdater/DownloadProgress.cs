@@ -200,7 +200,7 @@ namespace EbadaAutoupdater
                     System.IO.FileInfo f = new FileInfo(newPath);
                     if (!file.Size.ToString().Equals(f.Length.ToString()) && !file.FileName.ToString().EndsWith(".xml"))
                     {
-                        ShowErrorAndRestartApplication();
+                        ShowErrorAndRestartApplication("文件大小不一致："+file.DownloadUrl);
                     }
 
 
@@ -356,7 +356,10 @@ namespace EbadaAutoupdater
             MessageBox.Show(ConstFile.NOTNETWORK,ConstFile.MESSAGETITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
             CommonUnitity.RestartApplication();
         }
-
+        private void ShowErrorAndRestartApplication(string errmsg) {
+            MessageBox.Show(ConstFile.NOTNETWORK+"\r\n"+errmsg, ConstFile.MESSAGETITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CommonUnitity.RestartApplication();
+        }
         #endregion
     }
 }
