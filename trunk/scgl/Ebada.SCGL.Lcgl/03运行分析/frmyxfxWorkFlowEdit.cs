@@ -306,7 +306,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 PJ_gzrjnr gzr = new PJ_gzrjnr();
                 gzr.ParentID = yxfx.ID;
-                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
+                IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where GdsCode='" + MainHelper.User.OrgCode + "' and rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
                 if (gzrj01.Count > 0)
                 {
                     gzr.gzrjID = gzrj01[0].gzrjID;
