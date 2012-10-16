@@ -23,6 +23,13 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_04sgzayc,LP_Record";
+        private bool readOnly = false;
+
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set { readOnly = value; btnOK.Visible = !value; }
+        }
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -158,21 +165,21 @@ namespace Ebada.Scgl.Lcgl
 
             else
             {
-                MainHelper.PlatformSqlMap.Update<PJ_04sgzayc>(obj);
+                MainHelper.PlatformSqlMap.Update<PJ_04sgzayc>(sbxs);
 
             }
             if (isWorkflowCall)
             {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = sbxs.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = sbxs.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                //WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                //mrwt.ModleRecordID = sbxs.ID;
+                //mrwt.RecordID = currRecord.ID;
+                //mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                //mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                //mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                //mrwt.ModleTableName = sbxs.GetType().ToString();
+                //mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                //mrwt.CreatTime = DateTime.Now;
+                //MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
 
                 currRecord.LastChangeTime = DateTime.Now.ToString();
                 if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
