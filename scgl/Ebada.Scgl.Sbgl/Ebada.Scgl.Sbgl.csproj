@@ -565,7 +565,6 @@
       <DependentUpon>frmxlEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="台区元素\UCPJ_20.resx">
       <DependentUpon>UCPJ_20.cs</DependentUpon>
       <SubType>Designer</SubType>
