@@ -534,7 +534,7 @@ namespace Ebada.Scgl.Lcgl {
 
                         if (!gridFlag) {
                             gridFlag = true;
-                            if (dt.Table.Rows[dt.Table.Rows.Count - 1][0].ToString() == "") return;
+                            //if (dt.Table.Rows[dt.Table.Rows.Count - 1][0].ToString() == "") return;
                             dt.Table.Rows.Add(dt.Table.NewRow());
                         }
                         gridView1.FocusedRowHandle = dt.Table.Rows.Count - 1;
