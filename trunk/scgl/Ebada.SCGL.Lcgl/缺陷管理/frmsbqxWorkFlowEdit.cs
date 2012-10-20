@@ -304,7 +304,7 @@ namespace Ebada.Scgl.Lcgl {
 
             DateTime dt = Convert.ToDateTime(rowData.xssj);
             string dx = "", sx = "";
-            int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
+            int dayspan1 = 1, dayspan2 = 3, dayspan3 = 30;
             dx = "06设备巡视及缺陷消除记录";
             sx = "紧急缺陷";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
