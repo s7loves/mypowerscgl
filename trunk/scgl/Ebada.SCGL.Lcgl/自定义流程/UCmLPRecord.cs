@@ -1752,6 +1752,7 @@ namespace Ebada.Scgl.Lcgl {
                                         qxfl.gtdsj += span.Minutes + "分";
                                     qxfl.fsdd = qxfltemp.jxnr;
                                     qxfl.CreateDate = DateTime.Now; qxfl.ID = qxfl.ID;
+                                    qxfl.CreateMan = MainHelper.User.UserName;
                                     MainHelper.PlatformSqlMap.Create<PJ_04sgzayc>(qxfl);
 
                                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
@@ -1769,6 +1770,7 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl = new PJ_04sgzayc();
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
+                                qxfl.CreateMan = MainHelper.User.UserName;
                                 MainHelper.PlatformSqlMap.Create<PJ_04sgzayc>(qxfl);
 
                                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
