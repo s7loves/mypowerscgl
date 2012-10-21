@@ -362,6 +362,7 @@ namespace Ebada.Scgl.Lcgl
 
                 ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 5);
                 ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 6);
+                if(!string.IsNullOrEmpty(datalist[j].wpdj))
                 ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl)*Convert.ToDouble(datalist[j].wpdj)).ToString()
                     , row + j % rowcount, col + 7);
                  
