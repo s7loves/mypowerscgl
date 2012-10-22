@@ -1390,7 +1390,7 @@ namespace Ebada.Scgl.Lcgl {
                     }
                 InitData(strKind);
             }
-
+/*
             IList wfli = MainHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct tlcid from WF_WorkTastTrans where slcid='" +
                          recordWorkFlowData.Rows[0]["WorkFlowId"]
                          + "' and cdfs like '下拉%' ");
@@ -1408,7 +1408,7 @@ namespace Ebada.Scgl.Lcgl {
                 lp.Status = dttemp.Rows[0]["TaskCaption"].ToString();
                 MainHelper.PlatformSqlMap.Create<LP_Record>(lp);
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            }
+            }*/
             //获得编辑按钮的状态
             this.btEditfrm.Caption = lpr.Status;
         }
