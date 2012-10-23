@@ -1584,7 +1584,7 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.OrgCode = MainHelper.UserOrg.OrgCode;
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
                                 qxfl.xssj = DateTime.Today;
-
+                                qxfl.CreateMan = MainHelper.User.UserName;
                             }
 
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;

@@ -2011,14 +2011,13 @@ namespace Ebada.Scgl.Lcgl {
             Dictionary<string, object> dic = new Dictionary<string, object>();
             IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + workflowdata.Rows[0]["WorkTaskId"].ToString() + "' and tlcjdzdlx = '模块'");
             foreach (WF_WorkTastTrans wtt in wttli) {
-                //Control ctrl = FindCtrl(wtt.tlcjdzdid);
-                //if (ctrl != null) {
-                //    InitTaskCtrlData(ctrl, wtt.sSQL, wtt);
-                //}
+                IList list=GetTaskCtrlData2(record,temp,wtt.sSQL,wtt);
+                if (list.Count > 0)
+                    dic.Add(wtt.slcjdzdid, list[0]);
             }
             return dic;
         }
-        public static void InitTaskCtrlData2(LP_Record record,LP_Temple lp, string sqlSentence, WF_WorkTastTrans wtt) {
+        public static IList GetTaskCtrlData2(LP_Record record,LP_Temple lp, string sqlSentence, WF_WorkTastTrans wtt) {
 
             //LP_Temple lp =null ;
             string ctrltype = "";
@@ -2159,7 +2158,7 @@ namespace Ebada.Scgl.Lcgl {
                     li.Add("出错:" + ex.Message);
                 }
             }
-            
+            return li;
         }
         public void InitData() {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
