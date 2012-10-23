@@ -368,6 +368,7 @@ namespace Ebada.Scgl.Lcgl {
                     sbxstemp.LineID = sbxs.LineID;
                     sbxstemp.LineName = sbxs.LineName;
                     sbxstemp.xlqd = sbxs.xlqd;
+                    sbxstemp.xsr = sbxs.xsr;
                     sbxstemp.xssj = DateTime.Now;
                     sbxstemp.CreateMan = MainHelper.User.UserName;
                     MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(sbxstemp);
@@ -472,24 +473,24 @@ namespace Ebada.Scgl.Lcgl {
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
-            if (obj == null && (sbxs.qxlb != "")) {
-                DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
-                if (dttemp.Rows.Count > 0) {
-                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                    mrwt.ID = mrwt.CreateID();
-                    mrwt.ModleRecordID = qxfj.ID;
-                    mrwt.RecordID = currRecord.ID;
-                    mrwt.WorkFlowId = dttemp.Rows[0]["WorkFlowId"].ToString();
-                    mrwt.WorkFlowInsId = dttemp.Rows[0]["WorkFlowInsId"].ToString();
-                    mrwt.WorkTaskId = dttemp.Rows[0]["WorkTaskId"].ToString();
-                    mrwt.ModleTableName = qxfj.GetType().ToString();
-                    mrwt.WorkTaskInsId = dttemp.Rows[0]["WorkTaskInsId"].ToString();
-                    mrwt.CreatTime = DateTime.Now;
-                    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                }
+            //if (obj == null ) {//&& (sbxs.qxlb != "")
+            //    DataTable dttemp = RecordWorkTask.GetRecordWorkFlowData(currRecord.ID);
+            //    if (dttemp.Rows.Count > 0) {
+            //        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            //        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            //        mrwt.ID = mrwt.CreateID();
+            //        mrwt.ModleRecordID = sbxs.ID;
+            //        mrwt.RecordID = currRecord.ID;
+            //        mrwt.WorkFlowId = dttemp.Rows[0]["WorkFlowId"].ToString();
+            //        mrwt.WorkFlowInsId = dttemp.Rows[0]["WorkFlowInsId"].ToString();
+            //        mrwt.WorkTaskId = dttemp.Rows[0]["WorkTaskId"].ToString();
+            //        mrwt.ModleTableName = sbxs.GetType().ToString();
+            //        mrwt.WorkTaskInsId = dttemp.Rows[0]["WorkTaskInsId"].ToString();
+            //        mrwt.CreatTime = DateTime.Now;
+            //        MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            //    }
 
-            }
+            //}
         }
     }
 }

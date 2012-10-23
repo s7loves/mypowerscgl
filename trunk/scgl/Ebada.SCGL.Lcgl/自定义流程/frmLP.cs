@@ -2007,6 +2007,160 @@ namespace Ebada.Scgl.Lcgl {
             if (lp.CellName == "编号") strNumber = ctrl.Text;
             if (ctrlNumber != null && strNumber != "") ctrlNumber.Text = strNumber;
         }
+        public static Dictionary<string,object> ReadTaskData(DataTable workflowdata, LP_Temple temp, LP_Record record) {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + workflowdata.Rows[0]["WorkTaskId"].ToString() + "' and tlcjdzdlx = '模块'");
+            foreach (WF_WorkTastTrans wtt in wttli) {
+                //Control ctrl = FindCtrl(wtt.tlcjdzdid);
+                //if (ctrl != null) {
+                //    InitTaskCtrlData(ctrl, wtt.sSQL, wtt);
+                //}
+            }
+            return dic;
+        }
+        public static void InitTaskCtrlData2(LP_Record record,LP_Temple lp, string sqlSentence, WF_WorkTastTrans wtt) {
+
+            //LP_Temple lp =null ;
+            string ctrltype = "";
+            
+            //if (lp.CtrlType.IndexOf(',') == -1)
+            //    ctrltype = lp.CtrlType;
+            //else
+            //    ctrltype = lp.CtrlType.Substring(0, lp.CtrlType.IndexOf(','));
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            if (sqlSentence.IndexOf("Excel:") == 0) {
+                //int index1 = sqlSentence.LastIndexOf(":");
+                //string tablename = sqlSentence.Substring(6, index1 - 6);
+                //string cellpos = sqlSentence.Substring(index1 + 1);
+                //string[] arrCellPos = cellpos.Split('|');
+                //arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                //string strcellvalue = "";
+                //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                //ExcelAccess ea = new ExcelAccess();
+                //ea.MyWorkBook = wb;
+                //ea.MyExcel = wb.Application;
+                //Excel.Worksheet sheet;
+                //sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+
+                //for (int i = 0; i < arrCellPos.Length; i++) {
+                //    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                //    strcellvalue += range.Value2;
+                //}
+                //li.Add(strcellvalue);
+            } else if (sqlSentence != "") {
+                if (sqlSentence.IndexOf("{recordparentid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{recordparentid}", record.ParentID);
+                }
+                if (sqlSentence.IndexOf("{recordid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{recordid}", record.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                if (sqlSentence.IndexOf("{orgname}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                }
+                if (sqlSentence.IndexOf("{username}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "") {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0) {
+                        //Control ct = FindCtrl(listLPID[0].LPID);
+                        //if (ct != null) {
+                        //    if (ct is DateEdit) {
+                        //        ((DateEdit)ct).Properties.EditMask = listLPID[0].WordCount;
+                        //        ((DateEdit)ct).Properties.DisplayFormat.FormatString = listLPID[0].WordCount;
+                        //    }
+                        //    sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                        //} else {
+                            string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                  + " UserControlId='" + listLPID[0].ParentID + "' "
+                                  + "and FieldId='" + listLPID[0].LPID + "' and ID='" + record.ID + "'";
+                            li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                            if (li.Count > 0) {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                            } else {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
+                        //}
+
+                    } else {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
+                    }
+                }
+                //r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                //if (r1.Match(sqlSentence).Value != "") {
+                //    string sortid = r1.Match(sqlSentence).Value;
+                //    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                //    if (listLPID.Count > 0) {
+                //        Control ct = FindCtrl(listLPID[0].LPID);
+                //        if (ct != null) {
+                //            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("SelectmOrgList",
+                //                "where OrgName='" + ct.Text + "'");
+                //            if (list.Count > 0)
+                //                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", RecordWorkTask.CreatWorkFolwNo(list[0], listLPID[0].ParentID, "编号规则一"));
+                //            else
+                //                sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "");
+
+                //        } else {
+                //            sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                //        }
+                //    } else {
+                //        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
+
+                //    }
+
+                //}
+                try {
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                    if (sqlSentence.IndexOf("where 9=9") > -1) {
+                        string strtemp = li[0].ToString();
+                        li.Clear();
+                        r1 = new Regex(@"[0-9]+\+[0-9]+");
+                        if (r1.Match(strtemp).Value != "") {
+                            int istart = 1;
+                            int ilen = 10;
+                            r1 = new Regex(@"[0-9]+(?=\+)");
+                            if (r1.Match(strtemp).Value != "") {
+                                istart = Convert.ToInt32(r1.Match(strtemp).Value);
+                            }
+                            r1 = new Regex(@"(?<=\+)[0-9]+");
+                            if (r1.Match(strtemp).Value != "") {
+                                ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
+                            }
+                            for (int i = istart; i <= ilen; i++) {
+                                li.Add(string.Format("{0}", i));
+                            }
+                        } else {
+                            string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
+                            foreach (string ss in strli) {
+                                li.Add(ss);
+                            }
+                        }
+                    }
+                } catch (Exception ex) {
+                    li.Add("出错:" + ex.Message);
+                }
+            }
+            
+        }
         public void InitData() {
             foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
                 //UpdateRelateData(ctrl);
