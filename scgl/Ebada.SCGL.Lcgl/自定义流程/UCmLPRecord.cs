@@ -1635,18 +1635,18 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
                                 qxfl.CreateDate = DateTime.Now;
                                 qxfl.CreateMan = MainHelper.User.UserName;
-                                //MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
+                                MainHelper.PlatformSqlMap.Create<PJ_06sbxs>(qxfl);
 
-                                //WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                                //mrwt.ModleRecordID = qxfl.ID;
-                                //mrwt.RecordID = currRecord.ID;
-                                //mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
-                                //mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
-                                //mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
-                                //mrwt.ModleTableName = qxfl.GetType().ToString();
-                                //mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
-                                //mrwt.CreatTime = DateTime.Now;
-                                //MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                                mrwt.ModleRecordID = qxfl.ID;
+                                mrwt.RecordID = currRecord.ID;
+                                mrwt.WorkFlowId = dt.Rows[0]["WorkFlowId"].ToString();
+                                mrwt.WorkFlowInsId = dt.Rows[0]["WorkFlowInsId"].ToString();
+                                mrwt.WorkTaskId = dt.Rows[0]["WorkTaskId"].ToString();
+                                mrwt.ModleTableName = qxfl.GetType().ToString();
+                                mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
+                                mrwt.CreatTime = DateTime.Now;
+                                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
 
                             }
 
