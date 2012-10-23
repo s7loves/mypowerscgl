@@ -73,7 +73,8 @@ namespace Ebada.Scgl.Yxgl
             list.Add(new DicType("1", "供电所"));
             list.Add(new DicType("2", "变电所"));
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-          //  ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            comboBoxEdit4.Properties.Items.Clear();
+            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" +rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (PS_xl pl in xlList)
             {
