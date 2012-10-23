@@ -214,9 +214,8 @@ namespace Ebada.Scgl.Yxgl
             ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
             comboBoxEdit18.Properties.Items.Clear();
-            comboBoxEdit18.Properties.Items.Add("会议室");
-            comboBoxEdit18.Properties.Items.Add("所长室");
-            comboBoxEdit18.Properties.Items.Add("配电班");
+            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit18.Properties);
+
         }
 
         /// <summary>
