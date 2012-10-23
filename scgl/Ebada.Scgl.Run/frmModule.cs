@@ -16,6 +16,12 @@ namespace Ebada.Scgl.Run
             InitializeComponent();
             this.Text = "子系统管理";
         }
+        public frmModule(string xtdm)
+        {
+            InitializeComponent();
+            this.Text = "子系统管理";
+uCmSystemTree1.xtdm=xtdm;
+        }
 
         private void frmModule_Load(object sender, EventArgs e)
         {

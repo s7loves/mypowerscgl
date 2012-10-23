@@ -101,10 +101,12 @@ namespace Ebada.Scgl.Run{
 
         void treeViewOperator_CreatingObject(mModule newobj) {
             newobj.visiableFlag = true;
-            newobj.Description = "system";
+            newobj.Description = xtdm;
             newobj.ActivityFlag = true;
 
         }
+	public string xtdm="system";
+	
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             Init();
@@ -122,7 +124,7 @@ namespace Ebada.Scgl.Run{
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData(" where Description='system' order by parentid,sequence");
+            treeViewOperator.RefreshData(" where Description='"+xtdm+"' order by parentid,sequence");
         }
 
     }
