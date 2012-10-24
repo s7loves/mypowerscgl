@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Core;
 using Ebada.Client;
 using System.Text.RegularExpressions;
+using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.SCGL.WFlow.Tool
 {
@@ -102,6 +103,8 @@ namespace Ebada.SCGL.WFlow.Tool
             gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
             //gridView1.OptionsBehavior.Editable = false;
             ListItem lt = new ListItem("RepositoryItemComboBox", "下拉控件");
+            comboBox1.Items.Add(lt); 
+            lt = new ListItem("RepositoryItemCheckedComboBoxEdit", "下拉多选控件");
             comboBox1.Items.Add(lt);
             lt = new ListItem("RepositoryItemDateEdit", "时间控件");
             comboBox1.Items.Add(lt);
