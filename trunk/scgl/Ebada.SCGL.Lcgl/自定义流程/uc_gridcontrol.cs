@@ -182,6 +182,12 @@ namespace Ebada.Scgl.Lcgl {
 
                     }
                     ((System.ComponentModel.ISupportInitialize)(lue1)).EndInit();
+                } else if (strcom.IndexOf("RepositoryItemCheckedComboBoxEdit") > -1) {
+                    DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit lue1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+
+                    lue1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+                    grid.Columns[i].ColumnEdit = lue1;
+                    //colctrllist.Add(lue1);
                 } else {
 
                     DevExpress.XtraEditors.Repository.RepositoryItemComboBox lue1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -263,9 +269,170 @@ namespace Ebada.Scgl.Lcgl {
                     string sortid = r1.Match(sqlSentence).Value;
                     IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
                     if (listLPID.Count > 0) {
+                        string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                              + " UserControlId='" + listLPID[0].ParentID + "' "
+                              + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                        li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                        if (li.Count > 0) {
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                        } else {
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                            break;
+                        }
+
+                    } else {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
+                    }
+                }
+                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                if (r1.Match(sqlSentence).Value != "") {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0) {
+
+                        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
 
 
+                    } else {
+                        sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
 
+                    }
+
+                }
+
+                sqlSentence = sqlSentence.Replace("\r\n", "");
+
+                try {
+                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+                } catch (Exception ex) {
+                    li.Add(sqlSentence + "出错:" + ex.Message);
+
+                }
+                if (sqlSentence.IndexOf("where 9=9") == -1) {
+                    foreach (string strname in li) {
+                        combox.Items.Add(strname);
+                    }
+                } else {
+
+                    switch (li[0].ToString()) {
+                        case "{年}":
+                            combox.Items.Clear();
+                            for (int j = 0; j <= 20; j++) {
+                                combox.Items.Add(string.Format("{0}", j + DateTime.Now.Year));
+
+                            }
+
+                            break;
+                        case "{月}":
+                            combox.Items.Clear();
+                            for (int j = 1; j <= 12; j++) {
+                                combox.Items.Add(string.Format("{0:D2}", j));
+
+                            }
+                            break;
+                        case "{日}":
+                            combox.Items.Clear();
+                            for (int j = 1; j <= 31; j++) {
+                                combox.Items.Add(string.Format("{0:D2}", j));
+
+                            }
+                            break;
+                        case "{时}":
+                            combox.Items.Clear();
+                            for (int j = 1; j <= 24; j++) {
+                                combox.Items.Add(string.Format("{0:D2}", j));
+
+                            }
+                            break;
+                        case "{分}":
+                        case "{秒}":
+                            combox.Items.Clear();
+                            for (int j = 0; j <= 59; j++) {
+                                combox.Items.Add(string.Format("{0:D2}", j));
+
+                            }
+                            break;
+                        default:
+                            string strexpress = li[0].ToString();
+                            r1 = new Regex(@"[0-9]+\+[0-9]+");
+                            if (r1.Match(strexpress).Value != "") {
+                                int istart = 1;
+                                int ilen = 10;
+                                r1 = new Regex(@"[0-9]+(?=\+)");
+                                if (r1.Match(strexpress).Value != "") {
+                                    istart = Convert.ToInt32(r1.Match(strexpress).Value);
+                                }
+                                r1 = new Regex(@"(?<=\+)[0-9]+");
+                                if (r1.Match(strexpress).Value != "") {
+                                    ilen = Convert.ToInt32(r1.Match(strexpress).Value); ;
+                                }
+                                for (int i = istart; i <= ilen; i++) {
+                                    combox.Items.Add(string.Format("{0}", i));
+                                }
+                            } else {
+                                string[] strItem = SelectorHelper.ToDBC(strexpress).Split(',');
+                                for (int i = 0; i < strItem.Length; i++) {
+                                    combox.Items.Add(strItem[i]);
+                                }
+
+                            }
+                            break;
+                    }
+
+                }
+            }
+        }
+        public void InitCtrlData2(RepositoryItemCheckedComboBoxEdit combox, int index, LP_Temple lp, string sqlSentence, DSOFramerControl dsoFramerWordControl1, LP_Record currRecord) {
+
+
+            string ctrltype = "";
+            if (lp.CtrlType.IndexOf(',') == -1)
+                ctrltype = lp.CtrlType;
+            else
+                ctrltype = lp.CtrlType.Substring(0, lp.CtrlType.IndexOf(','));
+            /*
+             * 
+             * SELECT   cellname,  SqlSentence,SqlColName
+                FROM         LP_Temple
+                where SqlSentence !=''
+             * 
+             * */
+            IList li = new ArrayList();
+            if (sqlSentence.IndexOf("Excel:") == 0) {
+                int index1 = sqlSentence.LastIndexOf(":");
+                string tablename = sqlSentence.Substring(6, index1 - 6);
+                string cellpos = sqlSentence.Substring(index1 + 1);
+                string[] arrCellPos = cellpos.Split('|');
+                arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
+                string strcellvalue = "";
+                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                Excel.Worksheet sheet;
+                sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+
+                for (int i = 0; i < arrCellPos.Length; i++) {
+                    Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
+                    strcellvalue += range.Value2;
+                }
+                li.Add(strcellvalue);
+            } else if (sqlSentence != "") {
+                if (sqlSentence.IndexOf("{recordid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
+                }
+                if (sqlSentence.IndexOf("{orgcode}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
+                }
+                if (sqlSentence.IndexOf("{userid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
+                }
+                Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
+                while (r1.Match(sqlSentence).Value != "") {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0) {
                         string strSQL = "select ControlValue from WF_TableFieldValueView where"
                               + " UserControlId='" + listLPID[0].ParentID + "' "
                               + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
@@ -397,7 +564,17 @@ namespace Ebada.Scgl.Lcgl {
                     if (sqlSentence != "")
                         InitCtrlData(combox, i, lp, sqlSentence, dsoFramerWordControl1, currRecord);
 
+                } else if (gridView1.Columns[i].ColumnEdit is RepositoryItemCheckedComboBoxEdit) {
+                    RepositoryItemCheckedComboBoxEdit combox = gridView1.Columns[i].ColumnEdit as RepositoryItemCheckedComboBoxEdit;
+                    combox.Items.Clear();
 
+                    Regex r1 = new Regex(@"(?<=\[" + i + ":).*?(?=\\])");
+                    string sqlSentence = "";
+                    if (r1.Match(sql).Value != "") {
+                        sqlSentence = r1.Match(sql).Value;
+                    }
+                    if (sqlSentence != "")
+                        InitCtrlData2(combox, i, lp, sqlSentence, dsoFramerWordControl1, currRecord);
                 }
             }
 
