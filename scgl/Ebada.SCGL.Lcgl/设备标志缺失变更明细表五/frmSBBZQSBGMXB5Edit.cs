@@ -86,10 +86,11 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit1.Properties.Items.Add("线路始端杆塔");
-                comboBoxEdit1.Properties.Items.Add("线路末端杆塔");
-                comboBoxEdit1.Properties.Items.Add("转角杆");
-                comboBoxEdit1.Properties.Items.Add("分支杆");
+                //comboBoxEdit1.Properties.Items.Add("线路始端杆塔");
+                //comboBoxEdit1.Properties.Items.Add("线路末端杆塔");
+                //comboBoxEdit1.Properties.Items.Add("转角杆");
+                //comboBoxEdit1.Properties.Items.Add("分支杆");
+                comboBoxEdit1.Properties.Items.Add("电缆走向桩");
             }
 
             comboBoxEdit2.Properties.Items.Clear();
@@ -99,7 +100,10 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit2.Properties.Items.Add("10KV双西线");
+                comboBoxEdit2.Properties.Items.Clear();  //zjm
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");  //zjm
+                comboBoxEdit2.Properties.Items.AddRange(list);  //zjm
+ 
 
             }
 

@@ -27,14 +27,14 @@
         private void InitializeComponent() {
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsbbzqsbgmxB11 = new Ebada.Scgl.Lcgl.UCSBBZQSBGMXB1();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsbbzqsbgmxB21 = new Ebada.Scgl.Lcgl.UCSBBZQSBGMXB2();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsbbzqsbgmxB31 = new Ebada.Scgl.Lcgl.UCSBBZQSBGMXB3();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsbbzqsbgmxB41 = new Ebada.Scgl.Lcgl.UCSBBZQSBGMXB4();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.ucsbbzqsbgmxB51 = new Ebada.Scgl.Lcgl.UCSBBZQSBGMXB5();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -64,36 +64,8 @@
             // 
             this.xtraTabPage1.Controls.Add(this.ucsbbzqsbgmxB11);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(601, 301);
+            this.xtraTabPage1.Size = new System.Drawing.Size(599, 298);
             this.xtraTabPage1.Text = "设备标志缺失变更明细表一（杆号牌）";
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.ucsbbzqsbgmxB21);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(601, 301);
-            this.xtraTabPage2.Text = "明细表二（名称及编号标志牌）";
-            // 
-            // xtraTabPage3
-            // 
-            this.xtraTabPage3.Controls.Add(this.ucsbbzqsbgmxB31);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(601, 301);
-            this.xtraTabPage3.Text = "明细表三（警告牌）";
-            // 
-            // xtraTabPage4
-            // 
-            this.xtraTabPage4.Controls.Add(this.ucsbbzqsbgmxB41);
-            this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(601, 301);
-            this.xtraTabPage4.Text = "明细表四（高低压相位牌）";
-            // 
-            // xtraTabPage5
-            // 
-            this.xtraTabPage5.Controls.Add(this.ucsbbzqsbgmxB51);
-            this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(601, 301);
-            this.xtraTabPage5.Text = "明细表五（杆塔相位牌）";
             // 
             // ucsbbzqsbgmxB11
             // 
@@ -102,10 +74,18 @@
             this.ucsbbzqsbgmxB11.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB11.Name = "ucsbbzqsbgmxB11";
             this.ucsbbzqsbgmxB11.ParentTemple = null;
+            this.ucsbbzqsbgmxB11.ReadOnly = false;
             this.ucsbbzqsbgmxB11.RecordWorkFlowData = null;
-            this.ucsbbzqsbgmxB11.Size = new System.Drawing.Size(601, 301);
+            this.ucsbbzqsbgmxB11.Size = new System.Drawing.Size(599, 298);
             this.ucsbbzqsbgmxB11.TabIndex = 0;
             this.ucsbbzqsbgmxB11.VarDbTableName = "PJ_sbbzqsbgmxb1,LP_Record";
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.ucsbbzqsbgmxB21);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(599, 298);
+            this.xtraTabPage2.Text = "明细表二（开关编号牌）";
             // 
             // ucsbbzqsbgmxB21
             // 
@@ -114,10 +94,18 @@
             this.ucsbbzqsbgmxB21.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB21.Name = "ucsbbzqsbgmxB21";
             this.ucsbbzqsbgmxB21.ParentTemple = null;
+            this.ucsbbzqsbgmxB21.ReadOnly = false;
             this.ucsbbzqsbgmxB21.RecordWorkFlowData = null;
-            this.ucsbbzqsbgmxB21.Size = new System.Drawing.Size(601, 301);
+            this.ucsbbzqsbgmxB21.Size = new System.Drawing.Size(599, 298);
             this.ucsbbzqsbgmxB21.TabIndex = 0;
             this.ucsbbzqsbgmxB21.VarDbTableName = "PJ_sbbzqsbgmxb2,LP_Record";
+            // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.ucsbbzqsbgmxB31);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(599, 298);
+            this.xtraTabPage3.Text = "明细表三（变台、变电亭、箱式变编号牌）";
             // 
             // ucsbbzqsbgmxB31
             // 
@@ -126,10 +114,18 @@
             this.ucsbbzqsbgmxB31.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB31.Name = "ucsbbzqsbgmxB31";
             this.ucsbbzqsbgmxB31.ParentTemple = null;
+            this.ucsbbzqsbgmxB31.ReadOnly = false;
             this.ucsbbzqsbgmxB31.RecordWorkFlowData = null;
-            this.ucsbbzqsbgmxB31.Size = new System.Drawing.Size(601, 301);
+            this.ucsbbzqsbgmxB31.Size = new System.Drawing.Size(599, 298);
             this.ucsbbzqsbgmxB31.TabIndex = 0;
             this.ucsbbzqsbgmxB31.VarDbTableName = "PJ_sbbzqsbgmxb3,LP_Record";
+            // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Controls.Add(this.ucsbbzqsbgmxB41);
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(599, 298);
+            this.xtraTabPage4.Text = "明细表四（相位牌）";
             // 
             // ucsbbzqsbgmxB41
             // 
@@ -138,10 +134,18 @@
             this.ucsbbzqsbgmxB41.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB41.Name = "ucsbbzqsbgmxB41";
             this.ucsbbzqsbgmxB41.ParentTemple = null;
+            this.ucsbbzqsbgmxB41.ReadOnly = false;
             this.ucsbbzqsbgmxB41.RecordWorkFlowData = null;
-            this.ucsbbzqsbgmxB41.Size = new System.Drawing.Size(601, 301);
+            this.ucsbbzqsbgmxB41.Size = new System.Drawing.Size(599, 298);
             this.ucsbbzqsbgmxB41.TabIndex = 0;
             this.ucsbbzqsbgmxB41.VarDbTableName = "PJ_sbbzqsbgmxb4,LP_Record";
+            // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Controls.Add(this.ucsbbzqsbgmxB51);
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(599, 298);
+            this.xtraTabPage5.Text = "明细表五（电缆走向桩）";
             // 
             // ucsbbzqsbgmxB51
             // 
@@ -150,8 +154,9 @@
             this.ucsbbzqsbgmxB51.Location = new System.Drawing.Point(0, 0);
             this.ucsbbzqsbgmxB51.Name = "ucsbbzqsbgmxB51";
             this.ucsbbzqsbgmxB51.ParentTemple = null;
+            this.ucsbbzqsbgmxB51.ReadOnly = false;
             this.ucsbbzqsbgmxB51.RecordWorkFlowData = null;
-            this.ucsbbzqsbgmxB51.Size = new System.Drawing.Size(601, 301);
+            this.ucsbbzqsbgmxB51.Size = new System.Drawing.Size(599, 298);
             this.ucsbbzqsbgmxB51.TabIndex = 0;
             this.ucsbbzqsbgmxB51.VarDbTableName = "PJ_sbbzqsbgmxb5,LP_Record";
             // 

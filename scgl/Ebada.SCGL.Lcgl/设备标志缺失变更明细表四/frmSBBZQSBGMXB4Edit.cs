@@ -86,10 +86,10 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit1.Properties.Items.Add("变台");
-                comboBoxEdit1.Properties.Items.Add("变电亭");
-                comboBoxEdit1.Properties.Items.Add("箱式配电站");
-                comboBoxEdit1.Properties.Items.Add("开关");
+                comboBoxEdit1.Properties.Items.Add("变台、变电亭、箱式配电站");
+                //comboBoxEdit1.Properties.Items.Add("变电亭");
+                //comboBoxEdit1.Properties.Items.Add("箱式配电站");
+                //comboBoxEdit1.Properties.Items.Add("开关");
             }
 
             comboBoxEdit2.Properties.Items.Clear();
@@ -99,8 +99,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit2.Properties.Items.Add("10KV双西线");
-
+              comboBoxEdit2.Properties.Items.Add( MainHelper.UserOrg.OrgName);
+               //  MainHelper.UserOrg.OrgName
             }
 
             comboBoxEdit3.Properties.Items.Clear();
@@ -120,9 +120,9 @@ namespace Ebada.Scgl.Lcgl
             //    comboBoxEdit3.Properties.Items.Add("20#");
 
             //}
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 301; i++)
             {
-                comboBoxEdit3.Properties.Items.Add(i + "#");
+                comboBoxEdit3.Properties.Items.Add(i + "号");
             }
 
          
