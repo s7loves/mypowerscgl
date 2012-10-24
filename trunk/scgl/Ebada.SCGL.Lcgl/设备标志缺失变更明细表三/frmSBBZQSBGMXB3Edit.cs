@@ -84,10 +84,10 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit1.Properties.Items.Add("变台");
-                comboBoxEdit1.Properties.Items.Add("变电亭");
-                comboBoxEdit1.Properties.Items.Add("箱式配电站");
-                comboBoxEdit1.Properties.Items.Add("开关");
+                comboBoxEdit1.Properties.Items.Add("相序牌");
+              //  comboBoxEdit1.Properties.Items.Add("变电亭");
+              //  comboBoxEdit1.Properties.Items.Add("箱式配电站");
+              //  comboBoxEdit1.Properties.Items.Add("开关");
             }
 
             comboBoxEdit2.Properties.Items.Clear();
@@ -97,7 +97,14 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit2.Properties.Items.Add("10KV双西线");
+               // comboBoxEdit2.Properties.Items.Add("10KV双西线");
+                comboBoxEdit2.Properties.Items.Clear();  //zjm
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");  //zjm
+                comboBoxEdit2.Properties.Items.AddRange(list);  //zjm
+                ICollection tqList = ComboBoxHelper.Getbtq(rowData.OrgCode);//获取供电所台区列表  //zjm
+                comboBoxEdit2.Properties.Items.AddRange(tqList);   //zjm
+
+
 
             }
 
@@ -108,9 +115,9 @@ namespace Ebada.Scgl.Lcgl
             //    comboBoxEdit3.Properties.Items.AddRange(strlist);
             //else
             //{
-            //    comboBoxEdit3.Properties.Items.Add("1#");
-            //    comboBoxEdit3.Properties.Items.Add("2#");
-            //    comboBoxEdit3.Properties.Items.Add("3#");
+               comboBoxEdit3.Properties.Items.Add("A相*个");
+               comboBoxEdit3.Properties.Items.Add("B相*个");
+               comboBoxEdit3.Properties.Items.Add("C相*个");
             //    comboBoxEdit3.Properties.Items.Add("8#");
             //    comboBoxEdit3.Properties.Items.Add("9#");
             //    comboBoxEdit3.Properties.Items.Add("13#");
@@ -118,10 +125,10 @@ namespace Ebada.Scgl.Lcgl
             //    comboBoxEdit3.Properties.Items.Add("20#");
 
             //}
-            for (int i = 0; i < 50; i++)
-            {
-                comboBoxEdit3.Properties.Items.Add(i + "#");
-            }
+           // for (int i = 0; i < 50; i++)
+          //  {
+          //      comboBoxEdit3.Properties.Items.Add(i + "#");
+          //  }
 
          
           

@@ -82,8 +82,22 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
            
             //填充下拉列表数据
-            comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
+            comboBoxEdit3.Properties.Items.AddRange(strlist);
+            comboBoxEdit4.Properties.Items.Clear();
+         //    IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+
+              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电容器厂家"));
+            comboBoxEdit4.Properties.Items.AddRange(strlist);
+            comboBoxEdit8.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "投切方式"));
+            comboBoxEdit8.Properties.Items.AddRange(strlist);
+            comboBoxEdit5.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
@@ -92,6 +106,11 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit5.Properties.Items.Add("15GH-F");
                 comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
             }
+
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
+            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit6.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
@@ -125,78 +144,14 @@ namespace Ebada.Scgl.Lcgl
             }
             comboBoxEdit2.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
+             string.Format("select LineName from ps_xl where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
+          // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
+          //  where LineVol='10'
             if (strlist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-                
-                    comboBoxEdit2.Properties.Items.Add("长南线");
-                    comboBoxEdit2.Properties.Items.Add("长西线");
-                    comboBoxEdit2.Properties.Items.Add("长北线");
-                    comboBoxEdit2.Properties.Items.Add("长东线");
-                    comboBoxEdit2.Properties.Items.Add("红南线");
-                    comboBoxEdit2.Properties.Items.Add("红东线");
-                    comboBoxEdit2.Properties.Items.Add("津东线");
-                    comboBoxEdit2.Properties.Items.Add("津内线");
-                    comboBoxEdit2.Properties.Items.Add("津北线");
-                    comboBoxEdit2.Properties.Items.Add("连内线");
-                    comboBoxEdit2.Properties.Items.Add("连东线");
-                    comboBoxEdit2.Properties.Items.Add("连西线");
-                    comboBoxEdit2.Properties.Items.Add("镇内线");
-                    comboBoxEdit2.Properties.Items.Add("富力线");
-                    comboBoxEdit2.Properties.Items.Add("铁东线");
-                    comboBoxEdit2.Properties.Items.Add("铁西线");
-                    comboBoxEdit2.Properties.Items.Add("镇西线");
-                    comboBoxEdit2.Properties.Items.Add("镇东线");
-                    comboBoxEdit2.Properties.Items.Add("镇北线");
-                    comboBoxEdit2.Properties.Items.Add("台内线");
-                    comboBoxEdit2.Properties.Items.Add("台西线");
-                    comboBoxEdit2.Properties.Items.Add("台东线");
-                    comboBoxEdit2.Properties.Items.Add("台民线");
-                    comboBoxEdit2.Properties.Items.Add("平东线");
-                    comboBoxEdit2.Properties.Items.Add("平西线");
-                    comboBoxEdit2.Properties.Items.Add("平南线");
-                    comboBoxEdit2.Properties.Items.Add("平北线");
-                    comboBoxEdit2.Properties.Items.Add("营东线");
-                    comboBoxEdit2.Properties.Items.Add("营南线");
-                    comboBoxEdit2.Properties.Items.Add("营西线");
-                    comboBoxEdit2.Properties.Items.Add("华东线");
-                    comboBoxEdit2.Properties.Items.Add("华西线");
-                    comboBoxEdit2.Properties.Items.Add("华南线");
-                    comboBoxEdit2.Properties.Items.Add("华北线");
-                    comboBoxEdit2.Properties.Items.Add("团结线");
-                    comboBoxEdit2.Properties.Items.Add("粮库线");
-                    comboBoxEdit2.Properties.Items.Add("三井线");
-                    comboBoxEdit2.Properties.Items.Add("联合线");
-                    comboBoxEdit2.Properties.Items.Add("新生线");
-                    comboBoxEdit2.Properties.Items.Add("民吉线");
-                    comboBoxEdit2.Properties.Items.Add("中心线");
-                    comboBoxEdit2.Properties.Items.Add("源林线");
-                    comboBoxEdit2.Properties.Items.Add("污水线");
-                    comboBoxEdit2.Properties.Items.Add("双东线");
-                    comboBoxEdit2.Properties.Items.Add("双南线");
-                    comboBoxEdit2.Properties.Items.Add("双西线");
-                    comboBoxEdit2.Properties.Items.Add("双北线");
-                    comboBoxEdit2.Properties.Items.Add("宝山线");
-                    comboBoxEdit2.Properties.Items.Add("光大线");
-                    comboBoxEdit2.Properties.Items.Add("郊西线");
-                    comboBoxEdit2.Properties.Items.Add("先锋线");
-                    comboBoxEdit2.Properties.Items.Add("郊东线");
-                    comboBoxEdit2.Properties.Items.Add("郊北线");
-                    comboBoxEdit2.Properties.Items.Add("农东线");
-                    comboBoxEdit2.Properties.Items.Add("铁水线");
-                    comboBoxEdit2.Properties.Items.Add("东园线");
-                    comboBoxEdit2.Properties.Items.Add("永太线");
-                    comboBoxEdit2.Properties.Items.Add("永胜线");
-                    comboBoxEdit2.Properties.Items.Add("永农线");
-                    comboBoxEdit2.Properties.Items.Add("永镇线");
-                    comboBoxEdit2.Properties.Items.Add("利民线");
-                    comboBoxEdit2.Properties.Items.Add("利北线");
-                    comboBoxEdit2.Properties.Items.Add("民东线");
-                    comboBoxEdit2.Properties.Items.Add("龙太线");
-                    comboBoxEdit2.Properties.Items.Add("东津线");
-                    comboBoxEdit2.Properties.Items.Add("提水线");
+              
             }
             dateEdit1.DateTime = DateTime.Now;
            

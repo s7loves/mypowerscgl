@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
            
             //填充下拉列表数据
-           
+       
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -94,8 +94,10 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit2.Properties.Items.Add("10KV双西线");
-
+         //       comboBoxEdit2.Properties.Items.Add("10KV双西线");
+                comboBoxEdit2.Properties.Items.Clear();
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");
+                comboBoxEdit2.Properties.Items.AddRange(list);
             }
 
             comboBoxEdit3.Properties.Items.Clear();
@@ -174,6 +176,16 @@ namespace Ebada.Scgl.Lcgl
         private void btnOK_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit3.Properties.Items.Clear();
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineName='{0}' ", comboBoxEdit2.EditValue.ToString()));
+            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit3.Properties.Items.AddRange(list);
+
         }
 
       

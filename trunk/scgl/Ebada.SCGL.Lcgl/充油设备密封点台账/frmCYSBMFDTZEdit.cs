@@ -160,6 +160,16 @@ namespace Ebada.Scgl.Lcgl
 
 
 
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            comboBoxEdit7.Properties.Items.AddRange(ryList);
+
+            ICollection tqList = ComboBoxHelper.Getbtq(rowData.OrgCode);//获取供电所台区列表
+            comboBoxEdit6.Properties.Items.AddRange(tqList);
+
+
+
+
+
 
         }
 
