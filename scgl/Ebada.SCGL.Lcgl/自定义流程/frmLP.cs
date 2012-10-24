@@ -2007,6 +2007,18 @@ namespace Ebada.Scgl.Lcgl {
             if (lp.CellName == "编号") strNumber = ctrl.Text;
             if (ctrlNumber != null && strNumber != "") ctrlNumber.Text = strNumber;
         }
+        public static void ReadTaskData(object des, DataTable workflowdata, LP_Temple temp, LP_Record record) {
+            Type t = des.GetType();
+            t.GetProperties();
+            Dictionary<string, object> dic = ReadTaskData(workflowdata, temp, record);
+            string key="";
+            foreach (var p in t.GetProperties()) {
+                key=t.Name+" "+p.Name;
+                if (dic.ContainsKey(key)) {
+                    p.SetValue(des, dic[key], null);
+                }
+            }
+        }
         public static Dictionary<string,object> ReadTaskData(DataTable workflowdata, LP_Temple temp, LP_Record record) {
             Dictionary<string, object> dic = new Dictionary<string, object>();
             IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + workflowdata.Rows[0]["WorkTaskId"].ToString() + "' and tlcjdzdlx = '模块'");

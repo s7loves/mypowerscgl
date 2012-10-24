@@ -1483,6 +1483,8 @@ namespace Ebada.Scgl.Lcgl {
                     InitData(strKind);
                 }
             } else {
+                LP_Temple lp = RecordWorkTask.GetWorkTaskTemple(dt, currRecord);
+                object readObj = null;
                 if (obj.GetType().GetProperty("IsWorkflowCall") != null)
                     obj.GetType().GetProperty("IsWorkflowCall").SetValue(obj, true, null);
                 else {
@@ -1540,6 +1542,7 @@ namespace Ebada.Scgl.Lcgl {
                                 ((frmyxfxWorkFlowEdit)obj).RecordStatus = 0;
                                 yxfx.rq = DateTime.Now;
                                 ((frmyxfxWorkFlowEdit)obj).RowData = yxfx;
+                                readObj = yxfx;
                             }
                             switch (dt.Rows[0]["TaskInsCaption"].ToString()) {
                                 case "填写":
@@ -1585,6 +1588,7 @@ namespace Ebada.Scgl.Lcgl {
                                 qxfl.OrgName = MainHelper.UserOrg.OrgName;
                                 qxfl.xssj = DateTime.Today;
                                 qxfl.CreateMan = MainHelper.User.UserName;
+                                readObj = qxfl;
                             }
 
                             ((frmsbqxWorkFlowEdit)obj).RowData = qxfl;
@@ -1647,7 +1651,7 @@ namespace Ebada.Scgl.Lcgl {
                                 mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                 mrwt.CreatTime = DateTime.Now;
                                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-
+                                readObj = qxfl;
                             }
 
 
@@ -1665,6 +1669,7 @@ namespace Ebada.Scgl.Lcgl {
                                  + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
                                 if (li.Count > 0) {
                                     qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_08sbtdjx>(li[0].ModleRecordID);
+                                    readObj = qxfl;
                                 } else {
                                     qxfl.OrgCode = qxfltemp.OrgCode;
                                     qxfl.OrgName = qxfltemp.OrgName;
@@ -1694,6 +1699,7 @@ namespace Ebada.Scgl.Lcgl {
                                     mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                     mrwt.CreatTime = DateTime.Now;
                                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                    readObj = qxfl;
                                 }
 
                             } else {
@@ -1721,7 +1727,7 @@ namespace Ebada.Scgl.Lcgl {
                                 mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                 mrwt.CreatTime = DateTime.Now;
                                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-
+                                readObj = qxfl;
                             }
 
                             ((frm08SBTDJXWorkFlowEdit)obj).RowData = qxfl;
@@ -1765,6 +1771,7 @@ namespace Ebada.Scgl.Lcgl {
                                     mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                     mrwt.CreatTime = DateTime.Now;
                                     MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                    readObj = qxfl;
                                 }
                             } else {
                                 qxfl = new PJ_04sgzayc();
@@ -1783,6 +1790,7 @@ namespace Ebada.Scgl.Lcgl {
                                 mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                 mrwt.CreatTime = DateTime.Now;
                                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                readObj = qxfl;
                             }
 
                             ((frmsgzaycWorkFlowEdit)obj).RowData = qxfl;
@@ -1823,6 +1831,7 @@ namespace Ebada.Scgl.Lcgl {
                                 mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                 mrwt.CreatTime = DateTime.Now;
                                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                readObj = qxfl;
                             }
 
                             ((frmTDJHWorkFlowEdit)obj).RowData = qxfl;
@@ -1870,6 +1879,7 @@ namespace Ebada.Scgl.Lcgl {
                                 mrwt.WorkTaskInsId = dt.Rows[0]["WorkTaskInsId"].ToString();
                                 mrwt.CreatTime = DateTime.Now;
                                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                                readObj = qxfl;
                             }
 
                             ((frm24WorkFlowEdit)obj).RowData = qxfl;
@@ -1908,7 +1918,7 @@ namespace Ebada.Scgl.Lcgl {
                                 if (mrv != null) {
                                     qxfl.ProjecNR = mrv.ControlValue;
                                 }
-
+                                readObj = qxfl;
                             }
 
                             ((frmJGGCJHWorkFlowEdit)obj).RowData = qxfl;
@@ -1926,12 +1936,14 @@ namespace Ebada.Scgl.Lcgl {
                             } else {
                                 qxfl = new PJ_26();
 
-
+                                readObj = qxfl;
                             }
 
                             ((frm26WorkFlowEdit)obj).RowData = qxfl;
 
                         }
+                        if (readObj != null)
+                            frmLP.ReadTaskData(readObj, dt, lp, currRecord);
                         if (((Form)obj).ShowDialog() == DialogResult.OK) {
                             if (obj is WorkFlowLineSelectForm) {
 
