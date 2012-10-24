@@ -38,6 +38,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private char pcomboxchar = '，';
         private string strNumber = "";
         private Control ctrlNumber = null;
+        private Control ctrlNumber2 = null;
         private Control ctrlOrgName = null;
         private string activeSheetName = "";
         private int activeSheetIndex = 1;
@@ -402,6 +403,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     if (lp.CellName == "编号")
                     {
                         ctrlNumber = ctrl;
+                    }
+                    if (lp.CellName.Contains( "编号2"))
+                    {
+                        ctrlNumber2 = ctrl;
                     }
                     if (lp.CellName == "单位")
                     {
@@ -1131,12 +1136,18 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     else
                     {
+                        int step = 1;
+                        if (ctrlNumber2 != null) step = 2;
                         if (listLPRecord.Count == 0)
                             strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                         else
                         {
                             decimal udw = Convert.ToDecimal(listLPRecord[0].ToString().Substring(listLPRecord[0].ToString().Length - 3));
-                            strNumber = listLPRecord[0].ToString().Substring(0, listLPRecord[0].ToString().Length - 3) + (udw + 1).ToString().PadLeft(3, '0');
+                            strNumber = listLPRecord[0].ToString().Substring(0, listLPRecord[0].ToString().Length - 3) + (udw + step).ToString().PadLeft(3, '0');
+                        }
+                        if (ctrlNumber2 != null)
+                        {
+                            ctrlNumber2.Text = strNumber.Substring(0, strNumber.Length - 3) + (int.Parse(strNumber.Substring(strNumber.Length - 3)) + 1).ToString("000");
                         }
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
                     }
