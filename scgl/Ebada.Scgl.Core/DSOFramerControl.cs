@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Core {
             tempPath = Path.GetTempPath();
             axFramerControl1.ActivationPolicy = DSOFramer.dsoActivationPolicy.dsoKeepUIActiveOnAppDeactive;
             axFramerControl1.FrameHookPolicy = DSOFramer.dsoFrameHookPolicy.dsoSetOnFirstOpen;
-            this.axFramerControl1.set_EnableFileCommand(DSOFramer.dsoFileCommandType.dsoFilePrintPreview, false);
+            //this.axFramerControl1.set_EnableFileCommand(DSOFramer.dsoFileCommandType.dsoFilePrintPreview, false);
         }
 
         private void initCom() {
