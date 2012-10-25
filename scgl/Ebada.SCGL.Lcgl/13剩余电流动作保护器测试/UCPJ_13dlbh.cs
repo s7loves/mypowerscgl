@@ -249,7 +249,7 @@ namespace Ebada.Scgl.Lcgl {
             hideColumn("MadeDate");
             hideColumn("InstallDate");
             hideColumn("State");
-            hideColumn("dzsj");
+            //hideColumn("dzsj");
         }
         /// <summary>
         /// 刷新数据
