@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Lcgl
 
                 isWorkflowCall = value;
 
-              
+
             }
         }
         public LP_Record CurrRecord
@@ -165,20 +165,24 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
         }
-        private void initbh(PJ_23 obj) {
+        private void initbh(PJ_23 obj)
+        {
             if (!string.IsNullOrEmpty(obj.xybh)) return;
             string ret = string.Empty;
             string year = DateTime.Now.Year.ToString();
-            string gds = parentObj.OrgName.Replace("供电所","");
-            string strname = SelectorHelper.GetPysm(gds, true)+parentObj.OrgCode+"-"+year+"-";
-            strname=strname.ToUpper();
-            string strmax = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select max(xybh) from pj_23 where xybh like '" + strname+"%'") as string;
-            if (string.IsNullOrEmpty(strmax)) {
+            string gds = parentObj.OrgName.Replace("供电所", "");
+            string strname = SelectorHelper.GetPysm(gds, true) + year + "";
+            strname = strname.ToUpper();
+            string strmax = MainHelper.PlatformSqlMap.GetObject("SelectOneStr", "select max(xybh) from pj_23 where xybh like '" + strname + "%'") as string;
+            if (string.IsNullOrEmpty(strmax))
+            {
                 ret = strname + "001";
-            } else {
-                int count= int.Parse( strmax.Substring(strmax.Length - 3, 3))+1;
+            }
+            else
+            {
+                int count = int.Parse(strmax.Substring(strmax.Length - 3, 3)) + 1;
 
-                ret =strname+count.ToString("000") ;
+                ret = strname + count.ToString("000");
             }
             obj.xybh = ret;
         }
@@ -186,7 +190,8 @@ namespace Ebada.Scgl.Lcgl
         {
             if (parentID == null)
                 e.Cancel = true;
-            else {
+            else
+            {
                 initbh(e.Value);
             }
         }
@@ -250,17 +255,17 @@ namespace Ebada.Scgl.Lcgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
         private void initImageList()
@@ -336,7 +341,7 @@ namespace Ebada.Scgl.Lcgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
-           
+
         }
         void gridViewOperation_AfterAdd(PJ_23 newobj)
         {
@@ -394,7 +399,8 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             PJ_23 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
             //if (OBJECT.BigData != null)
             //{
@@ -442,7 +448,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           
+
         }
 
         private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -458,7 +464,7 @@ namespace Ebada.Scgl.Lcgl
             if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
             {
 
-                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] {currRecord });
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
 
             }
             WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
