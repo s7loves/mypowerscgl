@@ -41,14 +41,14 @@ namespace Ebada.Scgl.Lcgl
             this.textEdit2.DataBindings.Add("EditValue", rowData, "Number");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "MadeDate");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "InDate");
-            this.dateEdit5.DataBindings.Add("EditValue", rowData, "InstallDate");
+           // this.dateEdit5.DataBindings.Add("EditValue", rowData, "InstallDate");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "State");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "glr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
+           // this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Factory");
 
@@ -58,6 +58,8 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
+                if (dateEdit5.EditValue != null)
+                    rowData.dzsj = dateEdit5.DateTime.ToString("yyyy-MM-dd");
                 return rowData;
             }
             set {
@@ -70,6 +72,8 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
+                    if (!string.IsNullOrEmpty(rowData.dzsj))
+                        this.dateEdit5.EditValue = Convert.ToDateTime(rowData.dzsj);
                     this.InitComboBoxData();
                 }
                 if(rowData.sbCode==""){
