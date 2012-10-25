@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit8.Properties.Items.AddRange(strlist);
             comboBoxEdit5.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电容器型号"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
             else
@@ -113,7 +113,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit6.Properties.Items.AddRange(list);
             comboBoxEdit10.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电容器容量"));
             if (strlist.Count > 0)
                 comboBoxEdit10.Properties.Items.AddRange(strlist);
             else
@@ -122,27 +122,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit10.Properties.Items.Add("120");
                 comboBoxEdit10.Properties.Items.Add("150");
             }
-            comboBoxEdit4.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
-            if (strlist.Count > 0)
-                comboBoxEdit4.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit4.Properties.Items.Add("闽东电机厂");
-                comboBoxEdit4.Properties.Items.Add("指月集团有限公司");
-            }
-            comboBoxEdit8.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
-            if (strlist.Count > 0)
-                comboBoxEdit8.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit8.Properties.Items.Add("手动");
-                comboBoxEdit8.Properties.Items.Add("自动");
-            }
-            comboBoxEdit2.Properties.Items.Clear();
+
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
              string.Format("select LineName from ps_xl where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
           // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
@@ -194,7 +174,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("线路电力电容器台帐", "备注", memoEdit3);
+            SelectorHelper.SelectDyk("公用属性", "备注", memoEdit3);
         }
 
        
