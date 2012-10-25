@@ -2030,7 +2030,7 @@ namespace Ebada.Scgl.Lcgl {
             foreach (WF_WorkTastTrans wtt in wttli) {
                 IList list=GetTaskCtrlData2(record,temp,wtt.sSQL,wtt);
                 if (list.Count > 0)
-                    dic.Add(wtt.slcjdzdid, list[0]);
+                    dic.Add(wtt.tlcjdzdid, list[0]);
             }
             return dic;
         }
