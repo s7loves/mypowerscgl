@@ -15,13 +15,27 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Xtgl
 {
-    public partial class frmOrgEdit : FormBase, IPopupFormEdit {
+    public partial class frmOrgEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<mOrg> m_CityDic = new SortableSearchableBindingList<mOrg>();
 
-        public frmOrgEdit() {
+        public frmOrgEdit()
+        {
             InitializeComponent();
+            textEdit1.KeyPress += new KeyPressEventHandler(textEdit1_KeyPress);
         }
-        void dataBind() {
+
+        void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = e.KeyChar < '0' || e.KeyChar > '9';
+            if (e.KeyChar == 8)
+            {
+                e.Handled = false;
+            }
+        }
+
+        void dataBind()
+        {
 
 
             this.textEdit1.DataBindings.Add("EditValue", rowData, "OrgCode");
@@ -35,18 +49,24 @@ namespace Ebada.Scgl.Xtgl
         #region IPopupFormEdit Members
         private mOrg rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 return rowData;
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as mOrg;
                     this.InitComboBoxData();
                     dataBind();
                     checkEdit1.Checked = false;
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<mOrg>(value as mOrg, rowData);
                     checkEdit1.Checked = false;
                     checkEdit2.Checked = false;
@@ -55,12 +75,14 @@ namespace Ebada.Scgl.Xtgl
                     if (rowData.C3 == "是")
                         checkEdit2.Checked = true;
                 }
+                oldOrgCode = rowData.OrgCode;
             }
         }
 
         #endregion
 
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<mOrg>(" WHERE Citylevel = '2'"));
             IList<DicType> list = new List<DicType>();
@@ -82,7 +104,8 @@ namespace Ebada.Scgl.Xtgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -94,22 +117,50 @@ namespace Ebada.Scgl.Xtgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        private string oldOrgCode = "";
+        private string newOrgCode = "";
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //rowData.C1 = checkEdit1.Checked ? 0 : 1;
-            if ( checkEdit1.Checked)
-                rowData.C1 = "是";
-            else
-                rowData.C1 = "否";
-            if (checkEdit2.Checked)
-                rowData.C3 = "是";
-            else
-                rowData.C3 = "否";
+            newOrgCode = textEdit1.EditValue.ToString();
+            int num;
+            if (textEdit1.Text.Length == 3)
+            {
+                if (int.TryParse(textEdit1.Text, out num))
+                {
+                    if (oldOrgCode != newOrgCode)
+                    {
+                        var org = MainHelper.PlatformSqlMap.GetOne<mOrg>(" where OrgCode='" + newOrgCode + "'");
+                        if (org != null)
+                        {
+                            MsgBox.ShowWarningMessageBox("已存在该编号！");
+                        }
+                        else
+                        {
+                            //rowData.C1 = checkEdit1.Checked ? 0 : 1;
+                            if (checkEdit1.Checked)
+                                rowData.C1 = "是";
+                            else
+                                rowData.C1 = "否";
+                            if (checkEdit2.Checked)
+                                rowData.C3 = "是";
+                            else
+                                rowData.C3 = "否";
+
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
+                else
+                {
+                    MsgBox.ShowWarningMessageBox("编号只能为三位数字！");
+                    textEdit1.Focus();
+                }
+            }
         }
     }
 }
