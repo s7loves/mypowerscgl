@@ -12,12 +12,9 @@ using Ebada.Client.Platform;
 using Ebada.Scgl.WFlow;
 using Ebada.Client;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class WorkFlowTaskSelectForm : FormBase
-    {
-        public WorkFlowTaskSelectForm()
-        {
+namespace Ebada.Scgl.Lcgl {
+    public partial class WorkFlowTaskSelectForm : FormBase {
+        public WorkFlowTaskSelectForm() {
             InitializeComponent();
         }
 
@@ -26,15 +23,12 @@ namespace Ebada.Scgl.Lcgl
         private DataTable retWorkFlowData = null;//实例流程信息
 
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
 
                 return WorkFlowData;
             }
-            set
-            {
+            set {
 
 
                 WorkFlowData = value;
@@ -43,62 +37,51 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        public DataTable RetWorkFlowData
-        {
+        public DataTable RetWorkFlowData {
             get { return retWorkFlowData; }
         }
 
 
-        private void WorkFlowTaskSelectForm_Load(object sender, EventArgs e)
-        {
-            string taskid="";
-            string workFlowId="";
+        private void WorkFlowTaskSelectForm_Load(object sender, EventArgs e) {
+            string taskid = "";
+            string workFlowId = "";
             Hashtable checkkeys = new Hashtable();
-            for (int i = 0; i < WorkFlowData.Rows.Count; i++)
-            {
+            for (int i = 0; i < WorkFlowData.Rows.Count; i++) {
 
                 if (!checkkeys.ContainsKey(WorkFlowData.Rows[i]["WorkTaskId"]))
-                checkkeys.Add(WorkFlowData.Rows[i]["WorkTaskId"], WorkFlowData.Rows[i]["TaskCaption"]);
+                    checkkeys.Add(WorkFlowData.Rows[i]["WorkTaskId"], WorkFlowData.Rows[i]["TaskCaption"]);
             }
             ArrayList akeys = new ArrayList(checkkeys.Keys);
             comboBoxEdit1.Properties.Items.Clear();
-            foreach (string strtask in akeys)
-            {
+            foreach (string strtask in akeys) {
                 ListItem lt = new ListItem();
                 lt.DisplayMember = checkkeys[strtask].ToString();
                 lt.ValueMember = strtask;
                 comboBoxEdit1.Properties.Items.Add(lt);
             }
-           
+
         }
 
-        private void btCancel_Click(object sender, EventArgs e)
-        {
+        private void btCancel_Click(object sender, EventArgs e) {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void btSubmit_Click(object sender, EventArgs e)
-        {
+        private void btSubmit_Click(object sender, EventArgs e) {
             retWorkFlowData = WorkFlowData.Clone();
             retWorkFlowData.Rows.Clear();
-            if (comboBoxEdit1.SelectedIndex > -1)
-            {
+            if (comboBoxEdit1.SelectedIndex > -1) {
                 DataRow dr = retWorkFlowData.NewRow();
-                foreach (DataRow drtemp in WorkFlowData.Rows)
-                {
+                foreach (DataRow drtemp in WorkFlowData.Rows) {
                     if (drtemp["WorkTaskId"].ToString() != ((ListItem)comboBoxEdit1.SelectedItem).ValueMember)
                         continue;
-                    foreach (DataColumn dc in WorkFlowData.Columns)
-                    {
+                    foreach (DataColumn dc in WorkFlowData.Columns) {
                         dr[dc.ColumnName] = drtemp[dc.ColumnName];
                     }
                 }
                 retWorkFlowData.Rows.Add(dr);
                 this.DialogResult = DialogResult.OK;
-            }
-            else
-            {
+            } else {
 
                 this.DialogResult = DialogResult.Cancel;
             }

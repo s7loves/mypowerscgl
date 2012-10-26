@@ -15,30 +15,23 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.Utils;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class WorkFlowOne : FormBase
-    {
-        public WorkFlowOne()
-        {
+namespace Ebada.Scgl.Lcgl {
+    public partial class WorkFlowOne : FormBase {
+        public WorkFlowOne() {
             InitializeComponent();
         }
-        public void WorkFlowOne_DG(string strname)
-        {
+        public void WorkFlowOne_DG(string strname) {
             //InitializeComponent();
             //ucpJ_03yxfx1.RecordIkind = "定期分析";
             //ucpJ_03yxfx1.InitColumns();
             //ucpJ_03yxfx1.InitData();
             //mModule md = MainHelper.PlatformSqlMap.GetOne<mModule>("where ModuName='" + this.Text  + "'");
-            WF_WorkFlow wf=MainHelper.PlatformSqlMap.GetOne<WF_WorkFlow>("where FlowCaption='" + strname + "'");
-            if (wf != null)
-            {
+            WF_WorkFlow wf = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlow>("where FlowCaption='" + strname + "'");
+            if (wf != null) {
                 this.uCmLPRecord1.ParentObj = wf;
 
                 this.Show();
-            }
-            else
-            {
+            } else {
                 MsgBox.ShowWarningMessageBox("strname参数不对，没找到 " + strname + " 对应的流程！");
                 this.uCmLPRecord1.ParentObj = null;
                 this.Show();
@@ -47,19 +40,5 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-       
-
-
-       
-
-
-
-    
-  
-       
-
-      
-
-       
     }
 }

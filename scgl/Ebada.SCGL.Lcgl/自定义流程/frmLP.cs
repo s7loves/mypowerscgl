@@ -264,7 +264,6 @@ namespace Ebada.Scgl.Lcgl {
                     wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
                     wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                 }
-
                 wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
                                  + " and   WorkflowId='" + wfv.WorkFlowId + "'"
                                  + " and   RecordId='" + wfv.RecordId + "'"
@@ -356,7 +355,6 @@ namespace Ebada.Scgl.Lcgl {
                         ctl.Focus();
                     } else {
 
-
                         IList<WF_TableFieldValue> tfvlitemp = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                     " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + WorkFlowData.Rows[0]["WorkflowId"] + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'  and FieldId='" + tfvli[i].FieldId.ToString() + "' and FieldName='" + tfvli[i].FieldName + "完整时间' order by id desc, YExcelPos,XExcelPos");
                         if (tfvlitemp.Count > 0) {
@@ -365,8 +363,6 @@ namespace Ebada.Scgl.Lcgl {
                         //((DevExpress.XtraEditors.DateEdit)ctl).DateTime = Convert.ToDateTime(tfvli[i].ControlValue);
                     }
                 }
-
-
             }
             dsoFramerWordControl1.FileSave();
             //保护工作表
