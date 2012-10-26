@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count<2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = ('{0}')", rowData.OrgCode));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = '{0}'and linevol='{1}'", rowData.OrgCode,"10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
@@ -137,7 +137,8 @@ namespace Ebada.Scgl.Lcgl
                         comboBoxEdit4.Properties.Items.Add("160");
                         comboBoxEdit4.Properties.Items.Add("200");
                         comboBoxEdit4.Properties.Items.Add("250");
-                        comboBoxEdit4.Properties.Items.Add("315400");
+                        comboBoxEdit4.Properties.Items.Add("315");
+                        comboBoxEdit4.Properties.Items.Add("400");
                         comboBoxEdit4.Properties.Items.Add("500");
                         comboBoxEdit4.Properties.Items.Add("630");
                         comboBoxEdit4.Properties.Items.Add("1000");
@@ -167,7 +168,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count < 2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = ('{0}')", rowData.OrgCode));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = '{0}'　and linevol='{1}'", rowData.OrgCode, "10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
