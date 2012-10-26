@@ -227,9 +227,9 @@ namespace Ebada.Scgl.Lcgl
 
                 ex.SetCellValue(datalist[j].cldw, row + j % rowcount, col + 3);
                 ex.SetCellValue(datalist[j].clsl, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].Status, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].cfdd, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 5);
+                //ex.SetCellValue(datalist[j].cfdd, row + j % rowcount, col + 6);
+                //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
 
 
             }

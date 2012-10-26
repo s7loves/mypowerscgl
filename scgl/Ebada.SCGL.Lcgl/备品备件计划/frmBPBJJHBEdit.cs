@@ -461,7 +461,7 @@ namespace Ebada.Scgl.Lcgl {
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e) {
             if(comboBoxEdit1.SelectedIndex==-1)return;
             string bh = sbcsDic[comboBoxEdit1.SelectedItem.ToString()];
-            comboBoxEdit1.Properties.Items.Clear();
+            //comboBoxEdit1.Properties.Items.Clear();
             IList strList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",string.Format("select distinct xh from ps_sbcs where parentid in ('{0}','{1}')",bh,bh.Substring(0,2)+"001"));
             comboBoxEdit2.Properties.Items.AddRange(strList);
         }

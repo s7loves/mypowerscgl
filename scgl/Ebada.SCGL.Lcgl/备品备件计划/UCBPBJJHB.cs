@@ -227,7 +227,9 @@ namespace Ebada.Scgl.Lcgl {
             hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
-
+            hideColumn("Status");
+            hideColumn("zrr");
+            hideColumn("cfdd");
 
         }
         /// <summary>
