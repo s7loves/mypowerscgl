@@ -141,7 +141,9 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].tqfs, row + j % rowcount, col + 8);
                 ex.SetCellValue(datalist[j].khVol, row + j % rowcount, col + 9);
                 ex.SetCellValue(datalist[j].tyStatus, row + j % rowcount, col + 10);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 11);
+                ex.SetCellValue(datalist[j].S1, row + j % rowcount, col + 11);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 12);
+
 
 
             }

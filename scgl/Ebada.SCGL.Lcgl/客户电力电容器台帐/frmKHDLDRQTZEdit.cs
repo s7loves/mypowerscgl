@@ -41,7 +41,10 @@ namespace Ebada.Scgl.Lcgl {
 
         public object RowData {
             get {
-
+                if (dateEdit1.EditValue!=null)
+                {
+                    rowData.S1 = dateEdit1.DateTime.ToString("yyyy-MM-dd");
+                }
                 return rowData;
 
             }
@@ -50,9 +53,15 @@ namespace Ebada.Scgl.Lcgl {
                 if (rowData == null) {
                     this.rowData = value as PJ_khdldrqtz;
                     this.InitComboBoxData();
+                   
+                    
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<PJ_khdldrqtz>(value as PJ_khdldrqtz, rowData);
+                }
+                if (!string.IsNullOrEmpty(rowData.S1))
+                {
+                    dateEdit1.DateTime = Convert.ToDateTime(rowData.S1);
                 }
 
             }
