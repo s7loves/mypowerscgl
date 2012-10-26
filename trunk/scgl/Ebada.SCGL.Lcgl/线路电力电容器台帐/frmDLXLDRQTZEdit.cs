@@ -115,6 +115,14 @@ namespace Ebada.Scgl.Lcgl
             else
             {
 
+            ICollection list = new ArrayList();
+            if (comboBoxEdit2.EditValue!=null)
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
+                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+                comboBoxEdit6.Properties.Items.AddRange(list);
+            }
+          
             }
            
             comboBoxEdit10.Properties.Items.Clear();
@@ -174,26 +182,22 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("公用属性", "备注", memoEdit3);
         }
 
-        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            comboBoxEdit6.Properties.Items.Clear();
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit6.Properties.Items.AddRange(list);
-        }
-
-        private void comboBoxEdit2_MouseClick(object sender, MouseEventArgs e)
+        private void comboBoxEdit2_SelectedValueChanged(object sender, EventArgs e)
         {
             comboBoxEdit6.Properties.Items.Clear();
             ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit6.Properties.Items.AddRange(list);
-
+            if (comboBoxEdit2.EditValue != null)
+            {
+                PS_xl pl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linename='" + comboBoxEdit2.EditValue.ToString() + "'");
+                if (pl!=null)
+                { 
+                    list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select right(gth,4) from PS_gt where   LineCode='{0}' ",pl.LineCode));
+                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+                comboBoxEdit6.Properties.Items.AddRange(list);
+                }
+              
+            }
         }
-
        
     }
 }

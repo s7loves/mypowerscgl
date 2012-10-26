@@ -80,8 +80,13 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
 
             //填充下拉列表数据
-            comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
+            comboBoxEdit3.Properties.Items.AddRange(strlist);
+
+            comboBoxEdit5.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='配变电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
@@ -120,7 +125,26 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit8.Properties.Items.Add("手动");
                 comboBoxEdit8.Properties.Items.Add("自动");
             }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", rowData.OrgCode, rowData.OrgCode.Length));
+            // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
+            //  where LineVol='10'
+            if (strlist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            else
+            {
+
+            }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select LineName from ps_xl where orgcode='{0}'and LineType='1' and  LineVol='10'", rowData.OrgCode));
+           
+            if (strlist.Count > 0)
+                comboBoxEdit6.Properties.Items.AddRange(strlist);
+            else
+            {
+
+            }
             dateEdit1.DateTime = DateTime.Now;
+
         }
 
         /// <summary>
