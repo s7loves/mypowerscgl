@@ -106,11 +106,17 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit5.Properties.Items.Add("15GH-F");
                 comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
             }
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select LineName from ps_xl where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
+            // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
+            //  where LineVol='10'
+            if (strlist.Count > 0)
+                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            else
+            {
 
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit6.Properties.Items.AddRange(list);
+            }
+           
             comboBoxEdit10.Properties.Items.Clear();
              strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电容器容量"));
@@ -123,16 +129,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit10.Properties.Items.Add("150");
             }
 
-            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-             string.Format("select LineName from ps_xl where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
-          // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
-          //  where LineVol='10'
-            if (strlist.Count > 0)
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
-            else
-            {
-              
-            }
+
             dateEdit1.DateTime = DateTime.Now;
            
         }
@@ -175,6 +172,26 @@ namespace Ebada.Scgl.Lcgl
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("公用属性", "备注", memoEdit3);
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            comboBoxEdit6.Properties.Items.Clear();
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
+            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit6.Properties.Items.AddRange(list);
+        }
+
+        private void comboBoxEdit2_MouseClick(object sender, MouseEventArgs e)
+        {
+            comboBoxEdit6.Properties.Items.Clear();
+            ICollection list = new ArrayList();
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit2.EditValue.ToString()));
+            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            comboBoxEdit6.Properties.Items.AddRange(list);
+
         }
 
        
