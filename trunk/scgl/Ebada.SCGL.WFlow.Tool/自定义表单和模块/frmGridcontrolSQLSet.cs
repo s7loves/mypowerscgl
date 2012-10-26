@@ -14,65 +14,50 @@ using Ebada.Scgl.Core;
 using Ebada.Client;
 using System.Text.RegularExpressions;
 
-namespace Ebada.SCGL.WFlow.Tool
-{
-    public partial class frmGridcontrolSQLSet : FormBase
-    {
-        public frmGridcontrolSQLSet()
-        {
+namespace Ebada.SCGL.WFlow.Tool {
+    public partial class frmGridcontrolSQLSet : FormBase {
+        public frmGridcontrolSQLSet() {
             InitializeComponent();
         }
         private LP_Temple rowData = null;
         private DataTable griddt = null;
         private string strSQL = "";
         private ArrayList excelList = null;
-        public ArrayList ExcelList
-        {
-            get
-            {
+        public ArrayList ExcelList {
+            get {
                 return excelList;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 excelList = value;
             }
         }
-        public string StrSQL
-        {
-            get
-            {
+        public string StrSQL {
+            get {
                 return strSQL;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 strSQL = value;
             }
         }
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
-                
-                    this.rowData = value as LP_Temple;
+
+                this.rowData = value as LP_Temple;
             }
         }
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
+        private void simpleButton1_Click(object sender, EventArgs e) {
             int i = 0;
             strSQL = "";
-            foreach (DataRow dr in griddt.Rows)
-            {
-                if (dr["sql"].ToString() != "")
-                {
+            foreach (DataRow dr in griddt.Rows) {
+                if (dr["sql"].ToString() != "") {
                     strSQL += "[" + i + ":" + dr["sql"] + "]";
                 }
                 i++;
@@ -80,8 +65,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.DialogResult = DialogResult.OK;
         }
 
-        private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
-        {
+        private void frmExcelEditSQLSet_Load(object sender, EventArgs e) {
             int i = 0;
             IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", " where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) order by cellname ");
             DataTable dt = ConvertHelper.ToDataTable(li);
@@ -89,54 +73,48 @@ namespace Ebada.SCGL.WFlow.Tool
 
             LP_Temple tp = ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(rowData.ParentID);
 
-           
-           cbxWorkExcelTable.Items.Clear();
-            for (i = 0; i < excelList.Count; i++)
-           {
 
-               
-                   try
-                   {
-                       
-                           cbxWorkExcelTable.Items.Add(excelList[i]);
-                       
+            cbxWorkExcelTable.Items.Clear();
+            for (i = 0; i < excelList.Count; i++) {
 
-                   }
-                   catch { }
 
-               
-           }
+                try {
+
+                    cbxWorkExcelTable.Items.Add(excelList[i]);
+
+
+                } catch { }
+
+
+            }
 
             if (excelList.Count > 0) cbxWorkExcelTable.Text = excelList[0].ToString();
-             li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
-             //dt = ConvertHelper.ToDataTable(li);
-             dt = new DataTable();
-             dt.Columns.Add("name", typeof(string));
-             
-             for ( i = 0; i < li.Count; i++)
-             {
-                 DataRow dr = dt.NewRow();
-                 dr["name"] = li[i];
-                 dt.Rows.Add(dr);
-             }
-             WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
-             memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select name as 'name' from sysobjects where xtype='U'  or xtype='V' order by xtype ,name");
+            //dt = ConvertHelper.ToDataTable(li);
+            dt = new DataTable();
+            dt.Columns.Add("name", typeof(string));
+
+            for (i = 0; i < li.Count; i++) {
+                DataRow dr = dt.NewRow();
+                dr["name"] = li[i];
+                dt.Rows.Add(dr);
+            }
+            WinFormFun.LoadComboBox(cbxWorkDbTable, dt, "name", "name");
+            memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n{编号规则一:单位的sortid}:把26个供电所按顺序编号分别为01、02、03以此类推，001为单据编号\r\n";
             this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
 
             string[] comItem = SelectorHelper.ToDBC(rowData.ColumnName).Split('|');
             griddt = new DataTable();
-            griddt.Columns.Add("name",typeof(string));
-            griddt.Columns.Add("sql",typeof(string));
+            griddt.Columns.Add("name", typeof(string));
+            griddt.Columns.Add("sql", typeof(string));
             griddt.Rows.Clear();
             i = 0;
-            foreach (string strname in comItem)
-            {
+            foreach (string strname in comItem) {
                 DataRow dr = griddt.NewRow();
                 if (strname == "") continue;
                 dr["name"] = strname;
-                Regex r1 = new Regex(@"(?<=\["+i+":).*?(?=\\])");
-                if (r1.Match(rowData.SqlSentence.Replace("\r\n"," ")).Value!="")
-                {
+                Regex r1 = new Regex(@"(?<=\[" + i + ":).*?(?=\\])");
+                if (r1.Match(rowData.SqlSentence.Replace("\r\n", " ")).Value != "") {
                     dr["sql"] = r1.Match(rowData.SqlSentence.Replace("\r\n", " ")).Value;
                 }
                 griddt.Rows.Add(dr);
@@ -147,23 +125,20 @@ namespace Ebada.SCGL.WFlow.Tool
             gridView1.Columns["name"].Caption = "列名";
             gridView1.Columns["name"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["name"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-             gridView1.Columns["name"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-             gridView1.Columns["sql"].Caption = "SQL语句";
-             gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
+            gridView1.Columns["name"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gridView1.Columns["sql"].Caption = "SQL语句";
+            gridView1.Columns["sql"].OptionsColumn.AllowEdit = true;
             gridView1.Columns["sql"].AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             gridView1.Columns["sql"].AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             //gridView1.OptionsBehavior.Editable = true;
-           
+
         }
-        void setComoboxFocusIndex(ComboBox cbx,string text)
-        {
-            int focusindex =-1, i = 0;
-            foreach (ListItem it in cbx.Items)
-            {
+        void setComoboxFocusIndex(ComboBox cbx, string text) {
+            int focusindex = -1, i = 0;
+            foreach (ListItem it in cbx.Items) {
 
                 ListItem l = it as ListItem;
-                if (l.ID == text)
-                {
+                if (l.ID == text) {
                     focusindex = i;
                     break;
                 }
@@ -171,28 +146,21 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             cbx.SelectedIndex = focusindex;
         }
-        private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns)
-        {
-            if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0)
-            {
+        private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns) {
+            if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0) {
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + ((ListItem)cbxDbTable.SelectedItem).ID + "'");
-                if (list.Count > 0&&1==0)
-                {
+                if (list.Count > 0 && 1 == 0) {
                     tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
-                }
-                else
-                {
+                } else {
                     tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 ";
                 }
-                if (ceBind.Checked)
-                {
+                if (ceBind.Checked) {
                     if (cbxDbTable.Text == "WF_TableFieldValueView")
                         tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
                     else
                         if (cbxDbTable.Text == "LP_Record")
                             tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
-                        else
-                        {
+                        else {
 
 
                             tetSQL.Text = "" + tetSQL.Text + " and " + list[0].ToString()
@@ -203,10 +171,9 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
-        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e) {
 
-            if (cbxWorkDbTable.SelectedIndex <1) return;
+            if (cbxWorkDbTable.SelectedIndex < 1) return;
             IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxWorkDbTable.SelectedItem).ID);
             DataTable dt = ConvertHelper.ToDataTable(li);
             WinFormFun.LoadComboBox(cbxWorkDbTableColumns, dt, "name", "name");
@@ -214,95 +181,74 @@ namespace Ebada.SCGL.WFlow.Tool
             SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
         }
 
-        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e) {
             SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+        private void simpleButton2_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
+        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e) {
             e.Cancel = true;
         }
 
-        private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e) {
             if (cbxWorkDataTable.SelectedIndex < 1) return;
             IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
                 "where ParentID ='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' order by sortid");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            for (int i = 0; i < dt.Rows.Count&&li.Count>0; i++)
-            {
+            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++) {
                 dt.Rows[i]["cellname"] = dt.Rows[i]["SortID"] + " " + dt.Rows[i]["cellname"];
-            
+
             }
-                WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "LPID", "cellname");
+            WinFormFun.LoadComboBox(cbxWorkTableColumns, dt, "LPID", "cellname");
             cbxWorkTableColumns.SelectedIndex = 0;
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
+        private void simpleButton3_Click(object sender, EventArgs e) {
             string strSQLtemp = "";
             simpleButton3.Text = "修改";
-            if (rbnWorkFixValue.Checked == true)
-            {
+            if (rbnWorkFixValue.Checked == true) {
 
-                strSQLtemp = "select top 1 '" + tetWorkFixValue.Text.Replace("\r\n"," ") + "' from LP_Temple where 9=9";
-            }
-            else if (rbnWorkTable.Checked == true)
-            {
+                strSQLtemp = "select top 1 '" + tetWorkFixValue.Text.Replace("\r\n", " ") + "' from LP_Temple where 9=9";
+            } else if (rbnWorkTable.Checked == true) {
                 strSQLtemp = "select ControlValue from WF_TableFieldValue where 10=10  "
                     + "and UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
                     + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
-                if (ceBind.Checked)
-                {
+                if (ceBind.Checked) {
                     strSQLtemp = strSQLtemp + " and RecordId='{recordid}'";
                 }
 
-            }
-            else if (rbnWorkExcel.Checked == true)
-            {
+            } else if (rbnWorkExcel.Checked == true) {
                 strSQLtemp = "Excel:" + cbxWorkExcelTable.Text + ":" + tetWorkPos.Text;
-            }
-            else if (rbnWorkDatabase.Checked == true)
-            {
+            } else if (rbnWorkDatabase.Checked == true) {
                 strSQLtemp = tetWorkSQL.Text;
             }
 
-            
+
             int i = 0;
-            foreach (DataRow dr in griddt.Rows)
-            {
-                if (dr["name"].ToString() == columnBox.Text)
-                {
+            foreach (DataRow dr in griddt.Rows) {
+                if (dr["name"].ToString() == columnBox.Text) {
                     dr["sql"] = strSQLtemp;
                     break;
                 }
                 i++;
             }
-            if ( columnBox.Items.Count>i+1) ((ListItem)columnBox.Items[i + 1]).ID = strSQLtemp;
+            if (columnBox.Items.Count > i + 1) ((ListItem)columnBox.Items[i + 1]).ID = strSQLtemp;
         }
 
-        private void columnBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void columnBox_SelectedIndexChanged(object sender, EventArgs e) {
             string strSQLtemp = ((ListItem)columnBox.SelectedItem).ID;
             if (columnBox.SelectedIndex < 1) return;
-            if (strSQLtemp != "")
-            {
+            if (strSQLtemp != "") {
                 simpleButton3.Text = "修改";
-                if (strSQLtemp.IndexOf("9=9") > -1)
-                {
+                if (strSQLtemp.IndexOf("9=9") > -1) {
                     rbnWorkFixValue.Checked = true;
 
                     tetWorkFixValue.Text = strSQLtemp.Replace("select top 1 '", "").Replace("' from LP_Temple where 9=9", "");
-                }
-                else if (strSQLtemp.IndexOf("Excel:") > -1)
-                {
+                } else if (strSQLtemp.IndexOf("Excel:") > -1) {
                     rbnWorkExcel.Checked = true;
                     int index1 = strSQLtemp.LastIndexOf(":");
                     string tablename = strSQLtemp.Substring(6, index1 - 6);
@@ -310,9 +256,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     cbxWorkExcelTable.Text = tablename;
                     tetWorkPos.Text = cellpos;
-                }
-                else if (strSQLtemp.IndexOf("10=10") > -1)
-                {
+                } else if (strSQLtemp.IndexOf("10=10") > -1) {
                     rbnWorkTable.Checked = true;
                     Regex r1 = new Regex(@"(?<=UserControlId=').*?(?=')");
                     //cbxWorkDataTable.Text = r1.Match(strSQL).Value;
@@ -320,9 +264,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     r1 = new Regex(@"(?<=FieldId=').*?(?=')");
                     //cbxWorkTableColumns.Text = r1.Match(strSQL).Value;
                     setComoboxFocusIndex(cbxWorkTableColumns, r1.Match(strSQLtemp).Value);
-                }
-                else
-                {
+                } else {
                     rbnWorkDatabase.Checked = true;
                     int index1 = strSQLtemp.ToLower().IndexOf("select");
                     int index2 = strSQLtemp.ToLower().IndexOf("from");
@@ -338,18 +280,16 @@ namespace Ebada.SCGL.WFlow.Tool
                     tetWorkSQL.Text = strSQLtemp;
                 }
 
-            }
-            else
-            {
+            } else {
                 tetWorkFixValue.Text = "";
                 tetWorkSQL.Text = "";
                 simpleButton3.Text = "添加";
             }
         }
 
-          
 
-       
+
+
 
     }
 }
