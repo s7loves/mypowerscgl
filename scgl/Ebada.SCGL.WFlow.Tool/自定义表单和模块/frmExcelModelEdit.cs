@@ -13,50 +13,41 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.SCGL.WFlow.Tool
-{
+namespace Ebada.SCGL.WFlow.Tool {
     public partial class frmExcelModelEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<LP_Temple> m_CityDic = new SortableSearchableBindingList<LP_Temple>();
         private string parentID;
         bool isclose = true;
         private DSOFramerControl dsoFramerWordControl1 = null;
-        public DSOFramerControl DsoFramerWordControl1
-        {
-            get
-            {
+        public DSOFramerControl DsoFramerWordControl1 {
+            get {
                 return dsoFramerWordControl1;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 dsoFramerWordControl1 = value;
             }
         }
         private ArrayList excelList = null;
-        public ArrayList ExcelList
-        {
-            get
-            {
+        public ArrayList ExcelList {
+            get {
                 return excelList;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 excelList = value;
             }
         }
-        public string ParentID
-        {
+        public string ParentID {
             get { return parentID; }
             set { parentID = value; }
         }
         public frmExcelModelEdit() {
             InitializeComponent();
         }
-        public frmExcelModelEdit(string parentid)
-        {
+        public frmExcelModelEdit(string parentid) {
             ParentID = parentid;
             InitializeComponent();
         }
@@ -71,7 +62,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.textEdit3.DataBindings.Add("EditValue", rowData, "SqlSentence");
             //this.textEdit7.DataBindings.Add("EditValue", rowData, "SortID");
 
-            this.textEdit4.DataBindings.Add("EditValue", rowData, "SortID");       
+            this.textEdit4.DataBindings.Add("EditValue", rowData, "SortID");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "CtrlType");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "EventName");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "ExtraWord");
@@ -82,7 +73,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //this.checkEdit1.DataBindings.Add("EditValue", rowData, "IsVisible");
             this.textEdit9.DataBindings.Add("EditValue", rowData, "ColumnName");
             //this.textEdit10.DataBindings.Add("EditValue", rowData, "Status");
-            this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");  
+            this.lookUpEdit2.DataBindings.Add("EditValue", rowData, "Status");
             this.textEdit11.DataBindings.Add("EditValue", rowData, "ComBoxItem");
             this.textEdit12.DataBindings.Add("EditValue", rowData, "SqlColName");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "isExplorer");
@@ -102,7 +93,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     this.rowData = value as LP_Temple;
                     dataBind();
                     //this.InitComboBoxData();
-                   
+
                 } else {
                     ConvertHelper.CopyTo<LP_Temple>(value as LP_Temple, rowData);
                 }
@@ -120,7 +111,7 @@ namespace Ebada.SCGL.WFlow.Tool
             list.Add(new DicType("DevExpress.XtraEditors.SpinEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.SpinEdit"));
             list.Add(new DicType("DevExpress.XtraEditors.MemoEdit,DevExpress.XtraEditors,Version=10.1.7.0,Culture=neutral,PublicKeyToken=b88d1754d700e49a", "DevExpress.XtraEditors.MemoEdit"));
             list.Add(new DicType("uc_gridcontrol", "uc_gridcontrol"));
-           
+
             //list.Add(new DicType("xlqxp", "抢修票"));停电操作票
             this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);
             comboBoxEdit5.Properties.Items.Clear();
@@ -158,56 +149,46 @@ namespace Ebada.SCGL.WFlow.Tool
             //    list.Add(new DicType(wf.TaskCaption, wf.TaskCaption));
             //}
             //this.SetComboBoxData(this.lookUpEdit2, "Value", "Key", "请选择", "状态", list);
-           //DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
+            //DSOFramerControl dsoFramerWordControl1 =new DSOFramerControl ();
             if (dsoFramerWordControl1 == null) dsoFramerWordControl1 = new DSOFramerControl();
-           //bool isadd = true;
-           if (tp == null)
-           {
-               dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
-               rowData.DocContent = new byte[0];
-           }
-           else
-           {
-               dsoFramerWordControl1.FileDataGzip = tp.DocContent;
-               
-           }
-           if (excelList == null) excelList = new ArrayList();
-           excelList.Clear();
-           Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-           Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
-           comboBoxEdit4.Properties.Items.Clear();
-           int j = 0;
-            for (int i = 1; i <= wb.Application.Sheets.Count; i++)
-           {
+            //bool isadd = true;
+            if (tp == null) {
+                dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
+                rowData.DocContent = new byte[0];
+            } else {
+                dsoFramerWordControl1.FileDataGzip = tp.DocContent;
 
-               Microsoft.Office.Interop.Excel.Worksheet tmpSheet = (Microsoft.Office.Interop.Excel.Worksheet)wb.Application.Sheets.get_Item(i);
-                   try
-                   {
-                       if (tmpSheet != null)
-                       {
-                           //tmpSheet.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
-                           excelList.Add(tmpSheet.Name);
-                           if (xx.Name == tmpSheet.Name)
-                           {
-                               j = comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
-                             
-                           }
-                           else
-                           {
-                                comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
-                           }
-                       }
+            }
+            if (excelList == null) excelList = new ArrayList();
+            excelList.Clear();
+            Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+            comboBoxEdit4.Properties.Items.Clear();
+            int j = 0;
+            for (int i = 1; i <= wb.Application.Sheets.Count; i++) {
 
-                   }
-                   catch { }
+                Microsoft.Office.Interop.Excel.Worksheet tmpSheet = (Microsoft.Office.Interop.Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+                try {
+                    if (tmpSheet != null) {
+                        //tmpSheet.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
+                        excelList.Add(tmpSheet.Name);
+                        if (xx.Name == tmpSheet.Name) {
+                            j = comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
+
+                        } else {
+                            comboBoxEdit4.Properties.Items.Add(tmpSheet.Name);
+                        }
+                    }
+
+                } catch { }
 
 
-           }
+            }
             //dsoFramerWordControl1.FileSave();
             //dsoFramerWordControl1.FileClose();
             //dsoFramerWordControl1.Dispose();
             comboBoxEdit4.SelectedIndex = j;
-           //comboBoxEdit4.Text = xx.Name;
+            //comboBoxEdit4.Text = xx.Name;
         }
 
         /// <summary>
@@ -231,65 +212,53 @@ namespace Ebada.SCGL.WFlow.Tool
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit1_EditValueChanged(object sender, EventArgs e) {
             string strpos = textEdit1.Text;
-            if(strpos=="")return;
+            if (strpos == "") return;
             setWordLen();
         }
-        private void setWordLen()
-        {
+        private void setWordLen() {
             if (textEdit7.Visible == false) return;
             string strpos = textEdit1.Text;
             string strlen = textEdit7.Text;
             if (strpos.Substring(strpos.Length - 1) != "|")
                 strpos = strpos + "|";
-            if (strlen.Length> 0)
-            {
+            if (strlen.Length > 0) {
                 if (strlen.Substring(strlen.Length - 1) != "|")
                     strlen = strlen + "|";
             }
             string[] celpos = strpos.Split('|');
             string[] cellen = strlen.Split('|');
             //位置比大小限制多
-            if (celpos.Length != cellen.Length)
-            {
+            if (celpos.Length != cellen.Length) {
                 if (strlen.Length > 0)
-                labelTip.Text = (celpos.Length - cellen.Length).ToString()+"   ";
+                    labelTip.Text = (celpos.Length - cellen.Length).ToString() + "   ";
                 else
                     labelTip.Text = (celpos.Length - cellen.Length + 1).ToString() + "   ";
 
-            }
-           
-            else
-            {
-                labelTip.Text ="";
+            } else {
+                labelTip.Text = "";
             }
         }
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
+        private void groupControlOrg_Paint(object sender, PaintEventArgs e) {
 
         }
 
-      
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (textEdit7.Text == "" && textEdit7.Visible)
-            {
+
+        private void btnOK_Click(object sender, EventArgs e) {
+            if (textEdit7.Text == "" && textEdit7.Visible) {
                 MsgBox.ShowWarningMessageBox("控件字数不能为空");
                 isclose = false;
                 return;
             }
-            if (textEdit5.Text == "")
-            {
+            if (textEdit5.Text == "") {
                 MsgBox.ShowWarningMessageBox("控件大小不能为空");
                 isclose = false;
-                
+
                 return;
             }
-            if (lookUpEdit1.EditValue==null || lookUpEdit1.EditValue.ToString() == "")
-            {
+            if (lookUpEdit1.EditValue == null || lookUpEdit1.EditValue.ToString() == "") {
                 MsgBox.ShowWarningMessageBox("控件类型不能为空");
                 isclose = false;
 
@@ -297,14 +266,12 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             isclose = true;
             object ob = new object();
-           
-            if (comboBoxEdit5.Visible)
-            {
+
+            if (comboBoxEdit5.Visible) {
                 //rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
                 rowData.WordCount = comboBoxEdit5.Text;
             }
-            if (comboBoxEdit7.Visible)
-            {
+            if (comboBoxEdit7.Visible) {
                 //rowData.WordCount = ((ListItem)comboBoxEdit5.SelectedItem).ID;
                 rowData.WordCount = comboBoxEdit7.Text;
             }
@@ -314,67 +281,61 @@ namespace Ebada.SCGL.WFlow.Tool
             this.DialogResult = DialogResult.OK;
         }
 
-        private void frmExcelModelEdit_Load(object sender, EventArgs e)
-        {
+        private void frmExcelModelEdit_Load(object sender, EventArgs e) {
             comboBoxEdit3.SelectedIndex = rowData.isExplorer;
-            if (rowData.DocContent.Length>0)
-            {
+            if (rowData.DocContent.Length > 0) {
                 //DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
                 if (dsoFramerWordControl1 == null) dsoFramerWordControl1 = new DSOFramerControl();
                 dsoFramerWordControl1.FileDataGzip = rowData.DocContent;
                 Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
                 Microsoft.Office.Interop.Excel.Worksheet xx = wb.Application.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
-                if (rowData.KindTable=="") rowData.KindTable = xx.Name;
-                
-            
+                if (rowData.KindTable == "") rowData.KindTable = xx.Name;
+
+
             }
             InitComboBoxData();
-            if (rowData.KindTable == "")
-            {
+            if (rowData.KindTable == "") {
 
-                if (comboBoxEdit4.Properties.Items.Count > 0)
-                {
+                if (comboBoxEdit4.Properties.Items.Count > 0) {
                     rowData.KindTable = comboBoxEdit4.Properties.Items[0].ToString();
                     comboBoxEdit4.Text = rowData.KindTable;
                 }
             }
-            if (rowData.CtrlType.IndexOf("DateEdit")>-1)
-            {
-                if (rowData.WordCount.IndexOf("|") == -1)
-                { 
-                    comboBoxEdit5.Text=rowData.WordCount;
-                //switch (rowData.WordCount)
-                //{
-                //    case "yyyy-MM-dd":
-                //        comboBoxEdit5.SelectedIndex =0;
-                //    break;
-                //    case "MM-dd日":
-                //        comboBoxEdit5.SelectedIndex = 1;
-                //    break;
-                //    case "yyyy-MM-dd HH:mm":
-                //        comboBoxEdit5.SelectedIndex = 2;
-                //        break;
-                //    case "yyyy-MM-dd HH:mm:ss":
-                //        comboBoxEdit5.SelectedIndex = 3;
-                //        break;
-                //    case "MM-dd日 HH:mm":
-                //        comboBoxEdit5.SelectedIndex = 4;
-                //        break;
-                //    case "dd日 HH:mm":
-                //        comboBoxEdit5.SelectedIndex = 5;
-                //        break;
-                //    case "HH:mm:ss":
-                //        comboBoxEdit5.SelectedIndex = 6;
-                //        break;
-                //    case "HH:mm":
-                //        comboBoxEdit5.SelectedIndex = 7;
-                //        break;
-                //    default:
-                //        comboBoxEdit5.Text = rowData.WordCount;
-                //        break;
-                
-                //}
-                
+            if (rowData.CtrlType.IndexOf("DateEdit") > -1) {
+                if (rowData.WordCount.IndexOf("|") == -1) {
+                    comboBoxEdit5.Text = rowData.WordCount;
+                    //switch (rowData.WordCount)
+                    //{
+                    //    case "yyyy-MM-dd":
+                    //        comboBoxEdit5.SelectedIndex =0;
+                    //    break;
+                    //    case "MM-dd日":
+                    //        comboBoxEdit5.SelectedIndex = 1;
+                    //    break;
+                    //    case "yyyy-MM-dd HH:mm":
+                    //        comboBoxEdit5.SelectedIndex = 2;
+                    //        break;
+                    //    case "yyyy-MM-dd HH:mm:ss":
+                    //        comboBoxEdit5.SelectedIndex = 3;
+                    //        break;
+                    //    case "MM-dd日 HH:mm":
+                    //        comboBoxEdit5.SelectedIndex = 4;
+                    //        break;
+                    //    case "dd日 HH:mm":
+                    //        comboBoxEdit5.SelectedIndex = 5;
+                    //        break;
+                    //    case "HH:mm:ss":
+                    //        comboBoxEdit5.SelectedIndex = 6;
+                    //        break;
+                    //    case "HH:mm":
+                    //        comboBoxEdit5.SelectedIndex = 7;
+                    //        break;
+                    //    default:
+                    //        comboBoxEdit5.Text = rowData.WordCount;
+                    //        break;
+
+                    //}
+
                 }
                 //else
                 //    comboBoxEdit5.SelectedIndex = 0;
@@ -388,10 +349,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 labelControl24.Visible = true;
                 comboBoxEdit5.Visible = true;
                 comboBoxEdit5.TabIndex = 4;
-            }
-            else
-                if (rowData.CtrlType.IndexOf("SpinEdit") > -1)
-                {
+            } else
+                if (rowData.CtrlType.IndexOf("SpinEdit") > -1) {
                     comboBoxEdit7.Text = rowData.WordCount;
 
                     labelControl3.Visible = false;
@@ -403,9 +362,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     labelControl26.Visible = true;
                     comboBoxEdit7.Visible = true;
                     comboBoxEdit7.TabIndex = 4;
-                }
-                else
-                {
+                } else {
                     labelControl3.Visible = true;
                     textEdit7.Visible = true;
                     textEdit7.TabIndex = 4;
@@ -416,14 +373,13 @@ namespace Ebada.SCGL.WFlow.Tool
                     labelControl26.Visible = false;
                     comboBoxEdit7.Visible = false;
 
-                  
+
                 }
-            checkEdit1.Checked= rowData.IsVisible==0? true:false;
-           
+            checkEdit1.Checked = rowData.IsVisible == 0 ? true : false;
+
         }
 
-        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
-        {
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e) {
             comboBoxEdit6.Properties.Items.Clear();
             //comboBoxEdit3.Properties.Items.Add("SelectedIndexChanged");
             comboBoxEdit6.Properties.Items.Add("TextChanged");
@@ -436,8 +392,7 @@ namespace Ebada.SCGL.WFlow.Tool
             labelControl24.Visible = false;
             comboBoxEdit5.Visible = false;
 
-            if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1)
-            {
+            if (lookUpEdit1.EditValue.ToString().IndexOf("DateEdit") > -1) {
 
                 labelControl3.Visible = false;
                 textEdit7.Visible = false;
@@ -452,9 +407,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit2.Properties.Items.Clear();
                 comboBoxEdit2.Properties.Items.Add("{0}年{1}月{2}日");
                 comboBoxEdit2.Properties.Items.Add("合同编号");
-            }
-            else if (lookUpEdit1.EditValue.ToString().IndexOf("SpinEdit") > -1)
-            {
+            } else if (lookUpEdit1.EditValue.ToString().IndexOf("SpinEdit") > -1) {
 
                 labelControl3.Visible = false;
                 textEdit7.Visible = false;
@@ -485,16 +438,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 comboBoxEdit7.Properties.Items.Add(lt);
                 lt = new ListItem("000.##", "000.##");
                 comboBoxEdit7.Properties.Items.Add(lt);
-            }
-                 else  if (lookUpEdit1.EditValue.ToString().IndexOf("uc_gridcontrol") > -1)
-            {
-                   comboBoxEdit2.Properties.Items.Clear();
-                   comboBoxEdit2.Properties.Items.Add("横向");
-            }
-            else
-            {
-                if (lookUpEdit1.EditValue.ToString().IndexOf("ComboBoxEdit") > -1)
-                {
+            } else if (lookUpEdit1.EditValue.ToString().IndexOf("uc_gridcontrol") > -1) {
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit2.Properties.Items.Add("横向");
+            } else {
+                if (lookUpEdit1.EditValue.ToString().IndexOf("ComboBoxEdit") > -1) {
                     comboBoxEdit6.Properties.Items.Clear();
                     comboBoxEdit6.Properties.Items.Add("SelectedIndexChanged");
                     comboBoxEdit6.Properties.Items.Add("TextChanged");
@@ -512,137 +460,114 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            if (rowData.CtrlType.IndexOf("uc_gridcontrol") == -1)
-            {
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            if (rowData.CtrlType.IndexOf("uc_gridcontrol") == -1) {
                 frmExcelEditSQLSet fees = new frmExcelEditSQLSet();
                 fees.RowData = rowData;
                 fees.StrSQL = textEdit3.Text;
                 fees.ExcelList = excelList;
-                if (fees.ShowDialog() == DialogResult.OK)
-                {
+                if (fees.ShowDialog() == DialogResult.OK) {
                     textEdit3.Text = fees.StrSQL;
                     rowData.SqlSentence = fees.StrSQL;
                 }
-            }
-            else
-            {
+            } else {
                 simpleButton2_Click(sender, e);
             }
         }
 
-        private void frmExcelModelEdit_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!isclose)
-            {
+        private void frmExcelModelEdit_FormClosing(object sender, FormClosingEventArgs e) {
+            if (!isclose) {
                 e.Cancel = true;
                 return;
             }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+        private void simpleButton2_Click(object sender, EventArgs e) {
             frmGridcontrolSQLSet fees = new frmGridcontrolSQLSet();
             fees.RowData = rowData;
             fees.StrSQL = textEdit3.Text;
             fees.ExcelList = excelList;
-            if (fees.ShowDialog() == DialogResult.OK)
-            {
+            if (fees.ShowDialog() == DialogResult.OK) {
                 textEdit3.Text = fees.StrSQL;
                 rowData.SqlSentence = fees.StrSQL;
             }
         }
 
-        private void labelTip_Click(object sender, EventArgs e)
-        {
+        private void labelTip_Click(object sender, EventArgs e) {
             string strpos = textEdit1.Text;
             string strlen = textEdit7.Text;
             if (strpos.Length > 1 && strpos.Substring(strpos.Length - 1) != "|")
                 strpos = strpos + "|";
-            if (strlen.Length>1&&strlen.Substring(strlen.Length - 1) != "|")
+            if (strlen.Length > 1 && strlen.Substring(strlen.Length - 1) != "|")
                 strlen = strlen + "|";
             string[] celpos = strpos.Split('|');
             string[] cellen = strlen.Split('|');
             //位置比大小限制多
-            if (celpos.Length > cellen.Length)
-            {
-                for(int i=0;i<celpos.Length - cellen.Length;i++)
-                {
+            if (celpos.Length > cellen.Length) {
+                for (int i = 0; i < celpos.Length - cellen.Length; i++) {
                     strlen += "50|";
                 }
                 textEdit7.Text = strlen;
                 rowData.WordCount = textEdit7.Text;
-            }
-            else if (celpos.Length < cellen.Length)//位置比大小限制少
+            } else if (celpos.Length < cellen.Length)//位置比大小限制少
             {
                 int j = 0;
-                string strtemp = strlen.Substring(0, strlen.Length-1);
-                for (int i = 0; i <cellen.Length- celpos.Length  ; i++)
-                {
+                string strtemp = strlen.Substring(0, strlen.Length - 1);
+                for (int i = 0; i < cellen.Length - celpos.Length; i++) {
                     j = strtemp.LastIndexOf("|");
-                    strtemp=strtemp.Substring(0,j);
+                    strtemp = strtemp.Substring(0, j);
                 }
                 textEdit7.Text = strtemp;
                 rowData.WordCount = textEdit7.Text;
             }
         }
 
-        private void textEdit7_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit7_EditValueChanged(object sender, EventArgs e) {
             string strpos = textEdit1.Text;
             if (strpos == "") return;
             setWordLen();
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
+        private void simpleButton3_Click(object sender, EventArgs e) {
             frmGridcontrolColumnSet fees = new frmGridcontrolColumnSet();
             fees.RowData = rowData;
             fees.StrSQL = textEdit11.Text;
-            if (fees.ShowDialog() == DialogResult.OK)
-            {
+            if (fees.ShowDialog() == DialogResult.OK) {
                 textEdit11.Text = fees.StrSQL;
                 rowData.ComBoxItem = fees.StrSQL;
             }
         }
 
-        private void textEdit9_EditValueChanged(object sender, EventArgs e)
-        {
-           
+        private void textEdit9_EditValueChanged(object sender, EventArgs e) {
+
             string strcolumn = textEdit9.Text;
             if (strcolumn == "") return;
             if (strcolumn.Substring(strcolumn.Length - 1) != "|")
                 strcolumn = strcolumn + "|";
             string strlen = textEdit11.Text;
-            if (strlen.Length > 0)
-            {
+            if (strlen.Length > 0) {
                 if (strlen.Substring(strlen.Length - 1) != "|")
                     strlen = strlen + "|";
             }
             string[] celcolumn = strcolumn.Split('|');
             string[] cellen = strlen.Split('|');
             //位置比大小限制多
-            if (celcolumn.Length > cellen.Length)
-            {
+            if (celcolumn.Length > cellen.Length) {
                 //if (cellen.Length == 1 && cellen[0].ToString() == "")
                 //{
                 //    strlen = "[0:RepositoryItemComboBox]|";
                 //}
                 strlen = "";
-                for (int i = cellen.Length-1; i <celcolumn.Length - cellen.Length; i++)
-                {
+                for (int i = cellen.Length - 1; i < celcolumn.Length - cellen.Length; i++) {
                     strlen += "[" + i + ":RepositoryItemComboBox]|";
                 }
                 textEdit11.Text = strlen;
                 rowData.ComBoxItem = textEdit11.Text;
-            }
-            else if (celcolumn.Length < cellen.Length)//位置比大小限制少
+            } else if (celcolumn.Length < cellen.Length)//位置比大小限制少
             {
                 int j = 0;
                 string strtemp = strlen.Substring(0, strlen.Length - 1);
-                for (int i = 0; i < cellen.Length - celcolumn.Length; i++)
-                {
+                for (int i = 0; i < cellen.Length - celcolumn.Length; i++) {
                     j = strtemp.LastIndexOf("|");
                     strtemp = strtemp.Substring(0, j);
                 }
@@ -651,16 +576,13 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void lookUpEdit5_Properties_EditValueChanged(object sender, EventArgs e)
-        {
+        private void lookUpEdit5_Properties_EditValueChanged(object sender, EventArgs e) {
 
         }
 
-        private void labelEffTip_Click(object sender, EventArgs e)
-        {
+        private void labelEffTip_Click(object sender, EventArgs e) {
             string strcolumn = lookUpEdit5.EditValue.ToString();
-            if (strcolumn == "")
-            {
+            if (strcolumn == "") {
                 textEdit8.Text = "";
                 rowData.AffectEvent = textEdit8.Text;
                 return;
@@ -668,86 +590,72 @@ namespace Ebada.SCGL.WFlow.Tool
             if (strcolumn.Substring(strcolumn.Length - 1) != "|")
                 strcolumn = strcolumn + "|";
             string strlen = textEdit8.Text;
-            if (strlen.Length > 0)
-            {
+            if (strlen.Length > 0) {
                 if (strlen.Substring(strlen.Length - 1) != "|")
                     strlen = strlen + "|";
             }
             string[] celcolumn = strcolumn.Split('|');
             string[] cellen = strlen.Split('|');
             //位置比大小限制多
-            if (celcolumn.Length > cellen.Length)
-            {
+            if (celcolumn.Length > cellen.Length) {
                 //if (cellen.Length == 1 && cellen[0].ToString() == "")
                 //{
                 //    strlen =comboBoxEdit6.Text+ "|";
                 //}
 
-                for (int i = 0; i <  celcolumn.Length - cellen.Length; i++)
-                {
-                    strlen += comboBoxEdit6.Text +"|";
+                for (int i = 0; i < celcolumn.Length - cellen.Length; i++) {
+                    strlen += comboBoxEdit6.Text + "|";
                 }
                 textEdit8.Text = strlen;
                 rowData.AffectEvent = textEdit8.Text;
-            }
-            else if (celcolumn.Length < cellen.Length)//位置比大小限制少
+            } else if (celcolumn.Length < cellen.Length)//位置比大小限制少
             {
                 int j = 0;
                 string strtemp = strlen.Substring(0, strlen.Length - 1);
-                for (int i = 0; i < cellen.Length - celcolumn.Length; i++)
-                {
+                for (int i = 0; i < cellen.Length - celcolumn.Length; i++) {
                     j = strtemp.LastIndexOf("|");
                     strtemp = strtemp.Substring(0, j);
                 }
-                textEdit8.Text = strtemp+"|";
+                textEdit8.Text = strtemp + "|";
                 rowData.AffectEvent = textEdit8.Text;
             }
-           
+
         }
 
-        private void lookUpEdit5_EditValueChanged(object sender, EventArgs e)
-        {
+        private void lookUpEdit5_EditValueChanged(object sender, EventArgs e) {
             //if (lookUpEdit5.EditValue.ToString() == "") return;
             setWordEff();
         }
-        private void setWordEff()
-        {
+        private void setWordEff() {
             string strpos = lookUpEdit5.EditValue.ToString();
             string strlen = textEdit8.Text;
-            if (strpos.Length > 0)
-            {
+            if (strpos.Length > 0) {
                 if (strpos.Substring(strpos.Length - 1) != "|")
                     strpos = strpos + "|";
             }
-            if (strlen.Length > 0)
-            {
+            if (strlen.Length > 0) {
                 if (strlen.Substring(strlen.Length - 1) != "|")
                     strlen = strlen + "|";
             }
             string[] celpos = strpos.Split('|');
             string[] cellen = strlen.Split('|');
             //位置比大小限制多
-            if (celpos.Length != cellen.Length)
-            {
+            if (celpos.Length != cellen.Length) {
                 if (cellen.Length > 0)
                     labelEffTip.Text = (celpos.Length - cellen.Length).ToString() + "   ";
                 else
                     labelEffTip.Text = (celpos.Length - cellen.Length + 1).ToString() + "   ";
 
-            }
-
-            else
-            {
+            } else {
                 labelEffTip.Text = "";
             }
         }
-        private void textEdit8_EditValueChanged(object sender, EventArgs e)
-        {
+        private void textEdit8_EditValueChanged(object sender, EventArgs e) {
 
             //if (textEdit8.Text == "") return;
             setWordEff();
         }
 
-       
+
     }
 }

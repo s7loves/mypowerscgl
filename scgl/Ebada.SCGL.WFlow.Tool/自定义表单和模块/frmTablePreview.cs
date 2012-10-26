@@ -21,18 +21,16 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using Ebada.Scgl.Core;
 
-namespace Ebada.SCGL.WFlow.Tool
-{
-    public partial class frmTablePreview : Form,IPopupFormEdit
-    {
+namespace Ebada.SCGL.WFlow.Tool {
+    public partial class frmTablePreview : Form, IPopupFormEdit {
         #region 字段
 
         const int wordWidth = 13;
         private LP_Temple parentTemple = null;
         private IList<LP_Temple> templeList;
-        private IList<Control> tempCtrlList=null;
+        private IList<Control> tempCtrlList = null;
         private LP_Record currRecord = null;
-        private string kind,status;
+        private string kind, status;
         private string plitchar = "|";
         private char pchar = '|';
         private char pcomboxchar = '，';
@@ -43,13 +41,11 @@ namespace Ebada.SCGL.WFlow.Tool
         private string activeSheetName = "";
         private int activeSheetIndex = 1;
 
-        public LP_Temple ParentTemple
-        {
+        public LP_Temple ParentTemple {
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public string Kind
-        {
+        public string Kind {
             get { return kind; }
             set { kind = value; }
         }
@@ -60,8 +56,7 @@ namespace Ebada.SCGL.WFlow.Tool
             set { status = value; }
         }
 
-        public LP_Record CurrRecord
-        {
+        public LP_Record CurrRecord {
             get { return currRecord; }
             set { currRecord = value; }
         }
@@ -70,50 +65,39 @@ namespace Ebada.SCGL.WFlow.Tool
         #region IPopupFormEdit Members
         private LP_Record rowData = null;
 
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 rowData = currRecord;
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
-                if (rowData == null)
-                {
-                    this.rowData = value as LP_Record;                  
+                if (rowData == null) {
+                    this.rowData = value as LP_Record;
                     dataBind();
-                }
-                else
-                {
-                    ConvertHelper.CopyTo<LP_Record>(value as LP_Record, rowData);                    
+                } else {
+                    ConvertHelper.CopyTo<LP_Record>(value as LP_Record, rowData);
                 }
             }
         }
 
         #endregion
-        public frmTablePreview()
-        {
+        public frmTablePreview() {
             InitializeComponent();
         }
         Hashtable bhht = new Hashtable();
-        void dataBind()
-        {        
-            
+        void dataBind() {
+
         }
         private DataTable WorkFlowData = null;//实例流程信息
         Excel.Worksheet xx;
 
-        public DataTable RecordWorkFlowData
-        {
-            get
-            {
+        public DataTable RecordWorkFlowData {
+            get {
 
                 return WorkFlowData;
             }
-            set
-            {
+            set {
 
 
                 WorkFlowData = value;
@@ -121,11 +105,10 @@ namespace Ebada.SCGL.WFlow.Tool
 
             }
         }
-       /// <summary>
+        /// <summary>
         ///设置保护工作表
-       /// </summary>
-        private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx)
-        {
+        /// </summary>
+        private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
 
             //try
             //{
@@ -139,10 +122,8 @@ namespace Ebada.SCGL.WFlow.Tool
             //catch { }
         }
 
-        protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel)
-        {
-            if ((bool)(Target.Locked))
-            {
+        protected void wb_SheetBeforeDoubleClick(object Sh, Microsoft.Office.Interop.Excel.Range Target, ref bool Cancel) {
+            if ((bool)(Target.Locked)) {
                 Cancel = true;
             }
         }
@@ -150,8 +131,7 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 去保护工作表
         /// </summary>
-        private void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx)
-        {
+        private void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
             //try
             //{
 
@@ -162,8 +142,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //}
             //catch { }
         }
-        public static string GetWorkFlowNmae(string kind)
-        {
+        public static string GetWorkFlowNmae(string kind) {
             string strkind = kind;
             if (kind == "dzczp")
                 strkind = "电力线路倒闸操作票";
@@ -180,18 +159,15 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
         }
-        private void LPFrm_Load(object sender, EventArgs e)
-        {
-            if (tempCtrlList==null)
-            {
+        private void LPFrm_Load(object sender, EventArgs e) {
+            if (tempCtrlList == null) {
                 tempCtrlList = new List<Control>();
             }
             //InitializeComponent();
-            InitIndex();            
-                //InitContorl();
+            InitIndex();
+            //InitContorl();
 
-            if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1)
-            {
+            if (GetWorkFlowNmae(kind).IndexOf("电力线路") > -1) {
                 bhht.Clear();
                 bhht.Add("宝山供电所", "01");
                 bhht.Add("长发供电所", "02");
@@ -238,23 +214,19 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
             }
-            if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0)
-            {              
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;            
+            if (status == "add" && parentTemple.DocContent != null && parentTemple.DocContent.Length > 0) {
+                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
                 InitContorl();
-            }
-            else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0)
-            {
+            } else if (status == "edit" && currRecord.DocContent != null && currRecord.DocContent.Length > 0) {
                 this.dsoFramerWordControl1.FileDataGzip = currRecord.DocContent;
                 if (parentTemple != null)
-                    InitContorl();               
+                    InitContorl();
                 LoadContent();
             }
-         
+
         }
 
-        protected override void OnShown(EventArgs e)
-        {
+        protected override void OnShown(EventArgs e) {
             //InitializeComponent();
             base.OnShown(e);
 
@@ -273,30 +245,25 @@ namespace Ebada.SCGL.WFlow.Tool
             //    LoadContent();
             //}
 
-           // this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
+            // this.dsoFramerWordControl1.FileDataGzip = this.rowData.DocContent;
         }
-        public void InitIndex()
-        {
-            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID +"' and Kind='" + kind + "' Order by SortID");
+        public void InitIndex() {
+            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID ='" + parentTemple.LPID + "' and Kind='" + kind + "' Order by SortID");
             //IList<LP_Temple> parentlist = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", "where ParentID='0' and Kind='" + kind + "'");
             //if (parentlist.Count > 0)
             //    parentTemple = parentlist[0];
-           // dsoFramerWordControl1.
+            // dsoFramerWordControl1.
         }
 
-        public void InitContorl()
-        {
+        public void InitContorl() {
             int MaxWordWidth = CalcWidth();
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
-            if (MaxWordWidth < 300)
-            {
+            if (MaxWordWidth < 300) {
                 MaxWordWidth = 300;
-            } try
-            {
-                foreach (LP_Temple lp in templeList)
-                {
+            } try {
+                foreach (LP_Temple lp in templeList) {
                     bool flag = (lp.Status == CurrRecord.Status);
                     flag = true;
                     Label label = new Label();
@@ -308,12 +275,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     label.Location = new Point(currentPosX, currentPosY);
                     label.Size = new Size(MaxWordWidth, 14);
                     label.Visible = flag;
-                    if (flag)
-                    {
+                    if (flag) {
                         currentPosY += 20;
                     }
-                    if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "")
-                    {
+                    if (lp.CtrlType.Contains("MemoEdit") && flag && lp.SqlSentence != "") {
                         btTip = new ComboBoxEdit();
                         btTip.Name = "bt" + lp.LPID;
                         btTip.Location = new Point(currentPosX, currentPosY);
@@ -328,10 +293,8 @@ namespace Ebada.SCGL.WFlow.Tool
                         ceTip.Checked = false;
 
                         currentPosY += 30;
-                    }
-                    else
-                        if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "")
-                        {
+                    } else
+                        if (lp.CtrlType.Contains("TextEdit") && flag && lp.SqlSentence != "") {
                             btTip = new ComboBoxEdit();
                             btTip.Name = "bt" + lp.LPID;
                             btTip.Location = new Point(currentPosX, currentPosY);
@@ -351,26 +314,22 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     Control ctrl;
 
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
+                    if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         ctrl = new uc_gridcontrol();
                         ((uc_gridcontrol)ctrl).CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
                         ((uc_gridcontrol)ctrl).FocusedColumnChanged += new FocusedColumnChangedEventHandler(gridView1_FocusedColumnChanged);
-                    }
-                    else
+                    } else
                         ctrl = (Control)Activator.CreateInstance(Type.GetType(lp.CtrlType));
                     ctrl.Location = new Point(currentPosX, currentPosY);
                     if (size[0] != "" && size[1] != "")
                         ctrl.Size = new Size(int.Parse(size[0]), int.Parse(size[1]));
-                    else
-                    {
+                    else {
                         ctrl.Size = new Size(200, 20);
                         size[0] = "200";
                         size[1] = "20";
 
                     }
-                    if (flag)
-                    {
+                    if (flag) {
                         currentPosY += int.Parse(size[1]) + 10;
                     }
 
@@ -382,41 +341,33 @@ namespace Ebada.SCGL.WFlow.Tool
                     ctrl.Tag = lp;
                     ctrl.TabIndex = index;
                     index++;
-                    if (btTip != null)
-                    {
+                    if (btTip != null) {
                         btTip.TabIndex = index;
                         index++;
                         btTip.TextChanged += new EventHandler(btTip_Click);
                     }
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
+                    if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar), lp);
                     }
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
-                    if (btTip != null)
-                    {
+                    if (btTip != null) {
                         dockPanel1.Controls.Add(btTip);
                         dockPanel1.Controls.Add(ceTip);
                     }
                     dockPanel1.Controls.Add(ctrl);
-                    if (lp.CellName == "编号")
-                    {
+                    if (lp.CellName == "编号") {
                         ctrlNumber = ctrl;
                     }
-                    if (lp.CellName.Contains( "编号2"))
-                    {
+                    if (lp.CellName.Contains("编号2")) {
                         ctrlNumber2 = ctrl;
                     }
-                    if (lp.CellName == "单位")
-                    {
+                    if (lp.CellName == "单位") {
                         ctrlOrgName = ctrl;
                     }
-                    if (lp.CtrlType.IndexOf("DateEdit") > -1)
-                    {
+                    if (lp.CtrlType.IndexOf("DateEdit") > -1) {
 
-                        if (lp.WordCount.ToLower().IndexOf("hh") > -1)
-                        {
+                        if (lp.WordCount.ToLower().IndexOf("hh") > -1) {
                             ((DateEdit)ctrl).Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
                             ((DateEdit)ctrl).Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
                         }
@@ -424,17 +375,13 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
                     }
-                    if (lp.CtrlType.Contains("SpinEdit") && lp.WordCount != "")
-                    {
+                    if (lp.CtrlType.Contains("SpinEdit") && lp.WordCount != "") {
                         SpinEdit lue1 = (SpinEdit)ctrl;
-                        if (lp.WordCount.IndexOf("p") > -1)
-                        {
+                        if (lp.WordCount.IndexOf("p") > -1) {
                             lue1.Properties.Increment = (decimal)0.0001;
                             lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                        }
-                        else
-                            if (lp.WordCount.IndexOf(".") > -1)
-                            {
+                        } else
+                            if (lp.WordCount.IndexOf(".") > -1) {
                                 Regex r2 = new Regex(@"(?<=\.).*");
                                 lue1.Properties.Increment = (decimal)Math.Pow(0.1, r2.Match(lp.WordCount).Value.Length / 2);
                                 lue1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -449,8 +396,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 InitEvent();
                 InitData();
-            }
-            catch { }
+            } catch { }
             Button btn_Submit = new Button();
             btn_Submit.TabIndex = index;
             index++;
@@ -461,40 +407,33 @@ namespace Ebada.SCGL.WFlow.Tool
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
         }
-      
-        void btn_Submit_Click(object sender, EventArgs e)
-        {
+
+        void btn_Submit_Click(object sender, EventArgs e) {
             //dsoFramerWordControl1.FileSave();
             //dsoFramerWordControl1.FileClose();
             this.DialogResult = DialogResult.OK;
         }
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
             ctrl_Leave(sender, e);
 
         }
-        private void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
-        {
+        private void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e) {
 
 
-            LP_Temple lp = (LP_Temple)(sender as  Control).Tag;
+            LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             if (lp == null) return;
             //string str = (sender as Control).Text;
-            if (dsoFramerWordControl1.MyExcel == null)
-            {
+            if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             Excel.Worksheet xx;
-            
-            if (lp.KindTable != "")
-            {
+
+            if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
                 xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
-            }
-            else
-            {
+            } else {
 
                 xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
@@ -504,148 +443,112 @@ namespace Ebada.SCGL.WFlow.Tool
             unLockExcel(wb, xx);
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            int i = e.FocusedColumn.VisibleIndex,j=Convert.ToInt32( e.FocusedColumn.Tag);
+            int i = e.FocusedColumn.VisibleIndex, j = Convert.ToInt32(e.FocusedColumn.Tag);
             if (i > arrCellpos.Length || i < 0) i = 0;
-            if (j< 0) j = 0;
-            if (arrCellpos.Length >= 1)
-            {
+            if (j < 0) j = 0;
+            if (arrCellpos.Length >= 1) {
                 //if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range;
-                if (lp.ExtraWord == "横向")
-                {
+                if (lp.ExtraWord == "横向") {
                     range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0],
                     GetCellPos(arrCellpos[i])[1] + j],
                     xx.Cells[GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1] + j]);
-                }
-                else
-                {
+                } else {
 
-                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0]+j,
+                    range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[i])[0] + j,
                     GetCellPos(arrCellpos[i])[1]],
                     xx.Cells[GetCellPos(arrCellpos[i])[0] + j, GetCellPos(arrCellpos[i])[1]]);
                 }
                 range.Select();
                 bool isfind = false;
-                for ( i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
-                {
+                for (i = 1; i <= xx.Protection.AllowEditRanges.Count; i++) {
                     Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
-                    if (editRange.Title == lp.CellPos.Replace("|", ""))
-                    {
+                    if (editRange.Title == lp.CellPos.Replace("|", "")) {
                         isfind = true;
                         break;
                     }
                 }
-                if (!isfind)
-                {
+                if (!isfind) {
                     xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
                 }
             }
             LockExcel(wb, xx);
         }
 
-        public string GetContent()
-        {
+        public string GetContent() {
             StringBuilder strBuild = new StringBuilder();
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
-                if (ctrl.Tag != null)
-                {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
+                if (ctrl.Tag != null) {
                     LP_Temple lp = ctrl.Tag as LP_Temple;
                     strBuild.Append(lp.LPID);
                     strBuild.Append(",");
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
+                    if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         strBuild.Append((ctrl as uc_gridcontrol).ConvertBetweenDataTableAndXML_AX((ctrl as uc_gridcontrol).GetDS()));
-                    }
-                    else
+                    } else
                         strBuild.Append(ctrl.Text);
                     strBuild.Append(plitchar);
                 }
             }
             return strBuild.ToString();
         }
-        public void ClearContent()
-        {
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
-                if (ctrl.Tag != null)
-                {
+        public void ClearContent() {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
+                if (ctrl.Tag != null) {
                     LP_Temple lp = ctrl.Tag as LP_Temple;
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
+                    if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         (ctrl as uc_gridcontrol).SetDs(null);
-                    }
-                    else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-                    {
+                    } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
                         (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = System.DateTime.Now;
-                    }
-                    else
+                    } else
                         ctrl.Text = "";
                 }
             }
         }
-        public void LoadContent()
-        {
+        public void LoadContent() {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             string[] arrContent = currRecord.Content.Split(pchar);
-            for (int i = 0; i < arrContent.Length; i++)
-            {
-                if (arrContent[i] != "")
-                {
+            for (int i = 0; i < arrContent.Length; i++) {
+                if (arrContent[i] != "") {
                     int index = arrContent[i].IndexOf(',');
                     dict[arrContent[i].Substring(0, index)] = arrContent[i].Substring(index + 1);
                 }
             }
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
-                if (ctrl.Tag != null)
-                {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
+                if (ctrl.Tag != null) {
                     LP_Temple lp = ctrl.Tag as LP_Temple;
-                    if (lp.CtrlType.Contains("uc_gridcontrol"))
-                    {
+                    if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         (ctrl as uc_gridcontrol).SetDs((ctrl as uc_gridcontrol).ConvertBetweenDataTableAndXML_AX(dict[lp.LPID]));
-                    }
-                    else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-                    {
+                    } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
                         (ctrl as DevExpress.XtraEditors.DateEdit).DateTime = Convert.ToDateTime(dict[lp.LPID]);
-                    }
-                    else
+                    } else
                         ctrl.Text = dict[lp.LPID];
                     //ContentChanged(ctrl);
                 }
             }
         }
 
-        public void InitEvent()
-        {
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
-                if (ctrl.Tag != null) 
-                {
+        public void InitEvent() {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
+                if (ctrl.Tag != null) {
                     RelateEvent(ctrl);
                 }
             }
         }
 
-        public void InitData()
-        {
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
+        public void InitData() {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
                 //UpdateRelateData(ctrl);
-                if (ctrl.Tag != null && (!tempCtrlList.Contains(ctrl)))
-                {
+                if (ctrl.Tag != null && (!tempCtrlList.Contains(ctrl))) {
                     if (ctrl.Name.IndexOf("bt") > -1)
                         continue;
                     InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
                 }
             }
         }
-        void ContentChanged(Control ctrl)
-        {
+        void ContentChanged(Control ctrl) {
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             string str = ctrl.Text;
-            if (dsoFramerWordControl1.MyExcel == null)
-            {
+            if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
 
@@ -655,24 +558,18 @@ namespace Ebada.SCGL.WFlow.Tool
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
 
-            if (lp.KindTable != "")
-            {
+            if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
                 sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
                 activeSheetIndex = sheet.Index;
-            }
-            else
-            {
+            } else {
 
                 sheet = wb.Application.Sheets[1] as Excel.Worksheet;
                 activeSheetIndex = sheet.Index;
                 activeSheetName = sheet.Name;
             }
             unLockExcel(wb, sheet);
-            if (lp.CtrlType.Contains("uc_gridcontrol"))
-            { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; }
-            else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            {
+            if (lp.CtrlType.Contains("uc_gridcontrol")) { FillTable(ea, lp, (ctrl as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar)))); return; } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
                 FillTime(ea, lp, (ctrl as DateEdit).DateTime);
                 return;
             }
@@ -681,41 +578,33 @@ namespace Ebada.SCGL.WFlow.Tool
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
-            {
-                if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-               
-            }
-            else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
-            {
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+
+            } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
 
                 StringHelper help = new StringHelper();
-                if (lp.CellName == "编号")
-                {
-                    for (int j = 0; j < arrCellpos.Length; j++)
-                    {
-                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]))
-                        {
+                if (lp.CellName == "编号") {
+                    for (int j = 0; j < arrCellpos.Length; j++) {
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j])) {
                             string strNew = str.Substring(0, (str.Length > 0 ? str.Length : 1) - 1) + (j + 1).ToString();
-                            if (lp.isExplorer != 1)ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                            
+                            if (lp.isExplorer != 1) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+
                         }
                     }
                     return;
                 }
                 int i = 0;
-                if (arrCellCount[0] != arrCellCount[1])
-                {
-                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0]))
-                    {
-                        if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
-                       
+                if (arrCellCount[0] != arrCellCount[1]) {
+                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0])) {
+                        if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+
                         return;
                     }
-                    if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                        GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
-                    
+                    if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                         str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                         GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+
 
                     str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
                         str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
@@ -727,35 +616,27 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             LockExcel(wb, sheet);
         }
-        void btTip_Click(object sender, EventArgs e)
-        {
+        void btTip_Click(object sender, EventArgs e) {
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
             Control ct = FindCtrl(lp.LPID);
-            Control ce = FindCtrl("ce"+lp.LPID);
-            if (ct != null && ct.Text.IndexOf(str) == -1)
-            {
+            Control ce = FindCtrl("ce" + lp.LPID);
+            if (ct != null && ct.Text.IndexOf(str) == -1) {
                 if (lp.CellName.Replace(" ", "").Substring(lp.CellName.Replace(" ", "").Length - 1) == "人"
-                    || lp.CellName.Replace(" ", "").IndexOf("人员")>-1 
-                    || lp.CellName.Replace(" ", "").IndexOf("成员")>-1)
-                {
+                    || lp.CellName.Replace(" ", "").IndexOf("人员") > -1
+                    || lp.CellName.Replace(" ", "").IndexOf("成员") > -1) {
                     if (ct.Text == "" || !((CheckEdit)ce).Checked)
                         ct.Text = str;
                     else
                         ct.Text += "，" + str;
-                }
-                else
-                {
-                    if (lp.CtrlType.Contains("MemoEdit"))
-                    {
+                } else {
+                    if (lp.CtrlType.Contains("MemoEdit")) {
                         if (ct.Text == "" || !((CheckEdit)ce).Checked)
                             ct.Text = str;
                         else
                             ct.Text += "\r\n" + str;
-                    }
-                    else
-                        if (lp.CtrlType.Contains("TextEdit"))
-                        {
+                    } else
+                        if (lp.CtrlType.Contains("TextEdit")) {
                             if (ct.Text == "" || !((CheckEdit)ce).Checked)
                                 ct.Text = str;
                             else
@@ -765,25 +646,20 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
             }
         }
-        void ctrl_Enter(object sender, EventArgs e)
-        {
+        void ctrl_Enter(object sender, EventArgs e) {
 
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
-            if (dsoFramerWordControl1.MyExcel == null)
-            {
+            if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             Excel.Worksheet xx;
-            if (lp.KindTable != "")
-            {
+            if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
                 xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
-            }
-            else
-            {
+            } else {
 
                 xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
@@ -792,25 +668,18 @@ namespace Ebada.SCGL.WFlow.Tool
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            if (lp.KindTable != "")
-            {
+            if (lp.KindTable != "") {
                 ea.ActiveSheet(lp.KindTable);
-            }
-            else
-            {
+            } else {
                 ea.ActiveSheet(1);
             }
             unLockExcel(wb, xx);
-            if (lp.CellPos == "")
-            {
-                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1)
-                {
+            if (lp.CellPos == "") {
+                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1) {
 
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    if (tb != null)
-                    {
-                        if (tb.picName != "表箱")
-                        {
+                    if (tb != null) {
+                        if (tb.picName != "表箱") {
                             string tempPath = Path.GetTempPath();
                             string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
                             FileStream fs;
@@ -831,9 +700,7 @@ namespace Ebada.SCGL.WFlow.Tool
                             DataObject dataObject = new DataObject();
                             dataObject.SetData(DataFormats.Bitmap, bt);
                             Clipboard.SetDataObject(dataObject, true);
-                        }
-                        else
-                        {
+                        } else {
                             Microsoft.Office.Interop.Excel.Shape activShape = null;
                             activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
                                 (float)153.75, (float)162.75, (float)22.5, (float)10.5);
@@ -848,44 +715,35 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (arrCellpos.Length >= 1)
-            {
+            if (arrCellpos.Length >= 1) {
                 //if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 Excel.Range range = (Excel.Range)xx.get_Range(xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]], xx.Cells[GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]]);
                 range.Select();
                 bool isfind = false;
-                for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++)
-                {
+                for (int i = 1; i <= xx.Protection.AllowEditRanges.Count; i++) {
                     Excel.AllowEditRange editRange = xx.Protection.AllowEditRanges.get_Item(i);
-                    if (editRange.Title == lp.CellPos.Replace("|", ""))
-                    {
+                    if (editRange.Title == lp.CellPos.Replace("|", "")) {
                         isfind = true;
                         break;
                     }
                 }
-                if (!isfind)
-                {
+                if (!isfind) {
                     xx.Protection.AllowEditRanges.Add(lp.CellPos.Replace("|", ""), range, Type.Missing);
                 }
             }
             LockExcel(wb, xx);
         }
-        void ctrl_Leave(object sender, EventArgs e)
-        {
+        void ctrl_Leave(object sender, EventArgs e) {
 
 
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
-            if (lp.CellPos == "")
-            {
-                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1 )
-                {
+            if (lp.CellPos == "") {
+                if (lp.SqlSentence.IndexOf("PJ_tbsj") > -1) {
 
                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
-                    if (tb != null)
-                    {
-                        if (tb.picName != "表箱")
-                        {
+                    if (tb != null) {
+                        if (tb.picName != "表箱") {
                             string tempPath = Path.GetTempPath();
                             string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
                             FileStream fs;
@@ -906,9 +764,7 @@ namespace Ebada.SCGL.WFlow.Tool
                             DataObject dataObject = new DataObject();
                             dataObject.SetData(DataFormats.Bitmap, bt);
                             Clipboard.SetDataObject(dataObject, true);
-                        }
-                        else
-                        {
+                        } else {
                             Microsoft.Office.Interop.Excel.Shape activShape = null;
                             activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
                                 (float)153.75, (float)162.75, (float)22.5, (float)10.5);
@@ -921,49 +777,37 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 return;
             }
-            if (dsoFramerWordControl1.MyExcel == null)
-            {
+            if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            if (lp.KindTable != "")
-            {
+            if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
                 xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
-            }
-            else
-            {
+            } else {
                 xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
                 activeSheetName = xx.Name;
             }
-            if (lp.KindTable != "")
-            {
+            if (lp.KindTable != "") {
                 ea.ActiveSheet(lp.KindTable);
-            }
-            else
-            {
+            } else {
                 ea.ActiveSheet(1);
             }
             unLockExcel(wb, xx);
-            if (lp.CtrlType.Contains("uc_gridcontrol"))
-            {
+            if (lp.CtrlType.Contains("uc_gridcontrol")) {
                 FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
                 LockExcel(wb, xx);
                 return;
-            }
-            else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit"))
-            {
+            } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
                 FillTime(ea, lp, (sender as DateEdit).DateTime);
                 LockExcel(wb, xx);
                 return;
-            }
-            else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit"))
-            {
+            } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit")) {
                 FillDoubleValue(ea, lp, (sender as SpinEdit));
                 LockExcel(wb, xx);
                 return;
@@ -972,69 +816,53 @@ namespace Ebada.SCGL.WFlow.Tool
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             //string[] extraWord = lp.ExtraWord.Split(pchar);
-            string value=lp.ExtraWord;
-            if (lp.ExtraWord == "合同编号")
-            {
-                for (int j = 0; j < arrCellpos.Length; j++)
-                {
-                    if (str.Length > j)
-                    {
+            string value = lp.ExtraWord;
+            if (lp.ExtraWord == "合同编号") {
+                for (int j = 0; j < arrCellpos.Length; j++) {
+                    if (str.Length > j) {
                         string strNew = str.Substring(j, 1);
-                        if (lp.isExplorer != 1)ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                    }
-                    else
+                        if (lp.isExplorer != 1) ea.SetCellValue(strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                    } else
                         break;
 
                 }
                 LockExcel(wb, xx);
                 return;
-            }
-            else
-            if (lp.ExtraWord != "")
-            {
-                str = value.Replace("{0}", str);
-               
-            }
+            } else
+                if (lp.ExtraWord != "") {
+                    str = value.Replace("{0}", str);
 
-            if (lp.CellName == "工作班人员" || lp.CellName == "抢修班人员" || lp.CellName == "工作班成员")
-            {
+                }
+
+            if (lp.CellName == "工作班人员" || lp.CellName == "抢修班人员" || lp.CellName == "工作班成员") {
                 LP_Temple lpt = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where CellName='人数' and ParentID='" + parentTemple.LPID + "'");
                 Control relateCtrl = FindCtrl(lp.LPID);
                 Control resCtrl = FindCtrl(lpt.LPID);
-                if (relateCtrl != null)
-                {
+                if (relateCtrl != null) {
                     string[] strcount = SelectorHelper.ToDBC(relateCtrl.Text).Split('、');
                     int irencount = 0;
-                    for (int iren = 0; iren < strcount.Length; iren++)
-                    {
+                    for (int iren = 0; iren < strcount.Length; iren++) {
                         if (strcount[iren] != "") irencount++;
                     }
-                    if (irencount != 0)
-                    {
+                    if (irencount != 0) {
                         resCtrl.Text = irencount.ToString();
                     }
                 }
             }
             List<int> arrCellCount = String2Int(arrtemp);
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
-            {
-                
-                    if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-              
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
 
-            }
-            else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
-            {
+                if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+
+
+            } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
                 StringHelper help = new StringHelper();
-                if (lp.CellName == "编号")
-                {
-                    for (int j = 0; j < arrCellpos.Length; j++)
-                    {
-                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "")
-                        {
+                if (lp.CellName == "编号") {
+                    for (int j = 0; j < arrCellpos.Length; j++) {
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "") {
                             string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
                             if (lp.isExplorer != 1) ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                           
+
                         }
                     }
                     LockExcel(wb, xx);
@@ -1042,40 +870,34 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
                 int i = 0;
                 //if (arrCellCount.Count > 1 && arrCellCount[0] != arrCellCount[1])
-                if (arrCellCount.Count>1)
-                {
+                if (arrCellCount.Count > 1) {
 
-                    if ((lp.CtrlType.IndexOf("uc_gridcontrol") == -1  && str.Length <= help.GetFristLen(str, arrCellCount[i])) || (lp.CtrlType.IndexOf("uc_gridcontrol") > -1 && str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])))
-                    {
-                        if (lp.isExplorer != 1)ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
-                      
+                    if ((lp.CtrlType.IndexOf("uc_gridcontrol") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i])) || (lp.CtrlType.IndexOf("uc_gridcontrol") > -1 && str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[i]))) {
+                        if (lp.isExplorer != 1) ea.SetCellValue(str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+
 
                         LockExcel(wb, xx);
                         return;
                     }
-                    if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
-                    {
-                        if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                            GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                    if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1) {
+                        if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                             str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                             GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
                         str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
                             str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
                         i++;
                         str = help.GetPlitString(str, arrCellCount[1]);
-                    }
-                    else
-                    {
+                    } else {
                         int i1 = str.IndexOf("\r\n");
-                        if(i1>help.GetFristLen(str, arrCellCount[0]))
-                        i1=help.GetFristLen(str, arrCellCount[0]);
+                        if (i1 > help.GetFristLen(str, arrCellCount[0]))
+                            i1 = help.GetFristLen(str, arrCellCount[0]);
                         if (i1 == -1)
                             i1 = help.GetFristLen(str, arrCellCount[0]);
-                        if (str.Length > i1 + 1 && (str.Substring(i1, 1) == "，" || str.Substring(i1, 1) == "。" || str.Substring(i1 + 1, 1) == "、" || str.Substring(i1 + 1, 1) == "：" || str.Substring(i1 + 1, 1) == "！"))
-                        {
+                        if (str.Length > i1 + 1 && (str.Substring(i1, 1) == "，" || str.Substring(i1, 1) == "。" || str.Substring(i1 + 1, 1) == "、" || str.Substring(i1 + 1, 1) == "：" || str.Substring(i1 + 1, 1) == "！")) {
                             i1 = i1 + 1;
                         }
-                        if (lp.isExplorer != 1)ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        if (lp.isExplorer != 1) ea.SetCellValue(str.Substring(0, i1), GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
 
                         str = str.Substring(i1);
                         i++;
@@ -1085,22 +907,17 @@ namespace Ebada.SCGL.WFlow.Tool
                 }
 
             }
-            if (lp.CellName == "单位")
-            {
+            if (lp.CellName == "单位") {
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
-                if (list.Count > 0)
-                {
-                    switch (kind)
-                    {
+                if (list.Count > 0) {
+                    switch (kind) {
                         case "电力线路第一种工作票":
                         case "yzgzp":
                             //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            if (bhht[str] != null)
-                            {
+                            if (bhht[str] != null) {
                                 strNumber = "07" + bhht[str].ToString();
 
-                            }
-                            else
+                            } else
                                 strNumber = "07";
                             break;
                         case "电力线路第二种工作票":
@@ -1123,30 +940,24 @@ namespace Ebada.SCGL.WFlow.Tool
                             break;
                     }
                     IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
-                    if (kind == "yzgzp" || parentTemple.CellName == "电力线路第一种工作票")
-                    {
+                    if (kind == "yzgzp" || parentTemple.CellName == "电力线路第一种工作票") {
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
                         if (listLPRecord.Count == 0)
                             strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                        else
-                        {
+                        else {
                             decimal udw = Convert.ToDecimal(listLPRecord[0]);
                             strNumber = "0" + (udw + 1).ToString().PadLeft(3, '0');
                         }
-                    }
-                    else
-                    {
+                    } else {
                         int step = 1;
                         if (ctrlNumber2 != null) step = 2;
                         if (listLPRecord.Count == 0)
                             strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                        else
-                        {
+                        else {
                             decimal udw = Convert.ToDecimal(listLPRecord[0].ToString().Substring(listLPRecord[0].ToString().Length - 3));
                             strNumber = listLPRecord[0].ToString().Substring(0, listLPRecord[0].ToString().Length - 3) + (udw + step).ToString().PadLeft(3, '0');
                         }
-                        if (ctrlNumber2 != null)
-                        {
+                        if (ctrlNumber2 != null) {
                             ctrlNumber2.Text = strNumber.Substring(0, strNumber.Length - 3) + (int.Parse(strNumber.Substring(strNumber.Length - 3)) + 1).ToString("000");
                         }
                         //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
@@ -1160,54 +971,44 @@ namespace Ebada.SCGL.WFlow.Tool
             LockExcel(wb, xx);
         }
 
-        public void FillTable(ExcelAccess ea, LP_Temple lp, string[] content)
-        {
+        public void FillTable(ExcelAccess ea, LP_Temple lp, string[] content) {
             string[] arrCol = lp.CellPos.Split(pchar);
             arrCol = StringHelper.ReplaceEmpty(arrCol).Split(pchar);
             string[] arrtemp = lp.WordCount.Split(pchar);
             arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
-            for (int i = 0; i < arrCol.Length; i++)
-            {
-                if (string.IsNullOrEmpty(arrCol[i]))
-                {
+            for (int i = 0; i < arrCol.Length; i++) {
+                if (string.IsNullOrEmpty(arrCol[i])) {
                     continue;
                 }
-                if (content.Length>i&&content[i] != null)
+                if (content.Length > i && content[i] != null)
                     FillMutilRowsT(ea, lp, content[i], arrCellCount[i], arrCol[i]);
             }
         }
 
-        public void FillMutilRows(ExcelAccess ea, int i, LP_Temple lp, string str, List<int> arrCellCount, string[] arrCellPos)
-        {
+        public void FillMutilRows(ExcelAccess ea, int i, LP_Temple lp, string str, List<int> arrCellCount, string[] arrCellPos) {
             StringHelper help = new StringHelper();
-            
+
             string[] extraWord = lp.ExtraWord.Split(pchar);
-            if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1)
-            {
+            if (lp.CtrlType.IndexOf("uc_gridcontrol") > -1) {
                 str = help.GetPlitString(str, arrCellCount[1]);
                 string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 int j = 0;
-                for (; i < arrCellPos.Length; i++)
-                {
+                for (; i < arrCellPos.Length; i++) {
                     if (j >= arrRst.Length)
                         break;
-                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                    if (lp.isExplorer != 1) ea.SetCellValue(arrRst[j], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
 
                     j++;
                 }
-            }
-            else
-            {
+            } else {
                 string strarrRst = str;
                 int i1 = strarrRst.IndexOf("\r\n");
-                for (; i < arrCellPos.Length; i++)
-                {
+                for (; i < arrCellPos.Length; i++) {
                     i1 = strarrRst.IndexOf("\r\n");
                     if (i1 > help.GetFristLen(strarrRst, arrCellCount[i]))
                         i1 = help.GetFristLen(strarrRst, arrCellCount[i]);
-                    if (i1 == 0)
-                    {
+                    if (i1 == 0) {
                         strarrRst = strarrRst.Substring(2);
                         i1 = strarrRst.IndexOf("\r\n");
                         if (i1 > help.GetFristLen(strarrRst, arrCellCount[i]))
@@ -1215,9 +1016,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     if (i1 == -1)
                         i1 = help.GetFristLen(strarrRst, arrCellCount[i]);
-                    if (strarrRst.Length>i1+1&&(strarrRst.Substring(i1, 1) == "，" || strarrRst.Substring(i1, 1) == "。" || strarrRst.Substring(i1 + 1, 1) == "、" || strarrRst.Substring(i1 + 1, 1) == "：" || strarrRst.Substring(i1 + 1, 1) == "！"))
-                    {
-                        i1=i1 + 1;
+                    if (strarrRst.Length > i1 + 1 && (strarrRst.Substring(i1, 1) == "，" || strarrRst.Substring(i1, 1) == "。" || strarrRst.Substring(i1 + 1, 1) == "、" || strarrRst.Substring(i1 + 1, 1) == "：" || strarrRst.Substring(i1 + 1, 1) == "！")) {
+                        i1 = i1 + 1;
                     }
                     //if (strarrRst.Length <= help.GetFristLen(str, arrCellCount[i]))
                     //{
@@ -1227,54 +1027,45 @@ namespace Ebada.SCGL.WFlow.Tool
                     //else
                     {
 
-                        if (strarrRst.Length >= i1)
-                        {
-                            if (lp.isExplorer != 1)ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        if (strarrRst.Length >= i1) {
+                            if (lp.isExplorer != 1) ea.SetCellValue(strarrRst.Substring(0, i1), GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             strarrRst = strarrRst.Substring(i1);
-                        }
-                        else
-                        {
-                            if (lp.isExplorer != 1)ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
+                        } else {
+                            if (lp.isExplorer != 1) ea.SetCellValue(strarrRst, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
                             strarrRst = "";
                         }
 
-                        
-                        
+
+
                         //strarrRst = help.GetPlitString(strarrRst, arrCellCount[i]);
                     }
-                    
+
                     if (strarrRst.Length == 0) break;
-                   
+
                 }
             }
         }
-        public void FillDoubleValue(ExcelAccess ea, LP_Temple lp, SpinEdit se)
-        {
+        public void FillDoubleValue(ExcelAccess ea, LP_Temple lp, SpinEdit se) {
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
             string[] extraWord = lp.ExtraWord.Split(pchar);
             IList<string> strList = new List<string>();
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1]))
-            {
-                if (lp.isExplorer != 1)ea.SetCellValue(se.Text, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                if (lp.isExplorer != 1) ea.SetCellValue(se.Text, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
 
-            }
-            else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1])))
-            {
-               
-                if (lp.isExplorer != 1)ea.SetCellValue(se.Text, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+            } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
+
+                if (lp.isExplorer != 1) ea.SetCellValue(se.Text, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
             }
         }
-    
-        public void FillTime(ExcelAccess ea, LP_Temple lp, DateTime dt)
-        {
+
+        public void FillTime(ExcelAccess ea, LP_Temple lp, DateTime dt) {
             string[] arrCellPos = lp.CellPos.Split(pchar);
             arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split(pchar);
             string[] extraWord = lp.ExtraWord.Split(pchar);
             IList<string> strList = new List<string>();
-            
-            switch (lp.WordCount)
-            {
+
+            switch (lp.WordCount) {
                 case "yyyy-MM-dd":
                     strList.Add(dt.Year.ToString());
                     strList.Add(string.Format("{0:D2}", dt.Month));
@@ -1309,44 +1100,38 @@ namespace Ebada.SCGL.WFlow.Tool
                     strList.Add(string.Format("{0:D2}", dt.Minute));
                     break;
                 default:
-                    if (lp.WordCount.IndexOf("yyyy") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("yyyy") > -1) {
                         if (lp.WordCount.IndexOf("yyyy年") > -1)
                             strList.Add(dt.Year.ToString() + "年");
                         else
                             strList.Add(dt.Year.ToString());
 
                     }
-                    if (lp.WordCount.IndexOf("MM") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("MM") > -1) {
                         if (lp.WordCount.IndexOf("MM月") > -1)
                             strList.Add(string.Format("{0:D2}", dt.Month) + "月");
                         else
                             strList.Add(string.Format("{0:D2}", dt.Month));
                     }
-                    if (lp.WordCount.IndexOf("dd") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("dd") > -1) {
                         if (lp.WordCount.IndexOf("dd日") > -1)
                             strList.Add(string.Format("{0:D2}", dt.Day) + "日");
                         else
                             strList.Add(string.Format("{0:D2}", dt.Day));
                     }
-                    if (lp.WordCount.IndexOf("HH") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("HH") > -1) {
                         if (lp.WordCount.IndexOf("HH时") > -1)
                             strList.Add(string.Format("{0:D2}", dt.Hour) + "时");
                         else
                             strList.Add(string.Format("{0:D2}", dt.Hour));
                     }
-                    if (lp.WordCount.IndexOf("mm") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("mm") > -1) {
                         if (lp.WordCount.IndexOf("mm分") > -1)
                             strList.Add(string.Format("{0:D2}", dt.Minute) + "分");
                         else
                             strList.Add(string.Format("{0:D2}", dt.Minute));
                     }
-                    if (lp.WordCount.IndexOf("ss") > -1)
-                    {
+                    if (lp.WordCount.IndexOf("ss") > -1) {
                         if (lp.WordCount.IndexOf("ss秒") > -1)
                             strList.Add(string.Format("{0:D2}", dt.Second) + "秒");
                         else
@@ -1362,52 +1147,40 @@ namespace Ebada.SCGL.WFlow.Tool
             // int i = 0;
             string value = lp.ExtraWord;
             //value = "{0}年{1}月{2}日";
-            for (int i = 0; i < strList.Count; i++)
-            {
-           
-                if (lp.ExtraWord == "")
-                {
-                    if (dt.ToString("yyyyMMdd") == "00010101")
-                    {
+            for (int i = 0; i < strList.Count; i++) {
+
+                if (lp.ExtraWord == "") {
+                    if (dt.ToString("yyyyMMdd") == "00010101") {
                         strList[i] = " ";
                     }
 
                     if (arrCellPos.Length > 1)
                         if (lp.isExplorer != 1) ea.SetCellValue("'" + strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                    else
-                    {
-                        if (dt.ToString("yyyyMMdd") == "00010101")
-                        {
-                            //for (int item = 0; i < strList.Count; i++)
-                            if (strList[i].IndexOf("年") > -1) strList[i] = "年";
-                            else
-                                if (strList[i].IndexOf("月") > -1) strList[i] = "      月";
+                        else {
+                            if (dt.ToString("yyyyMMdd") == "00010101") {
+                                //for (int item = 0; i < strList.Count; i++)
+                                if (strList[i].IndexOf("年") > -1) strList[i] = "年";
                                 else
-                                    if (strList[i].IndexOf("日") > -1) strList[i] = "      日";
+                                    if (strList[i].IndexOf("月") > -1) strList[i] = "      月";
                                     else
-                                        if (strList[i].IndexOf("时") > -1) strList[i] = "      时";
+                                        if (strList[i].IndexOf("日") > -1) strList[i] = "      日";
                                         else
-                                            if (strList[i].IndexOf("分") > -1) strList[i] = "      分";
-                        }
+                                            if (strList[i].IndexOf("时") > -1) strList[i] = "      时";
+                                            else
+                                                if (strList[i].IndexOf("分") > -1) strList[i] = "      分";
+                            }
                             value += strList[i];
-                            if (strList.Count == i+1)
-                            if (lp.isExplorer != 1)ea.SetCellValue("'"+value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
-                    }
-                }
-                else
-                {
-                    if (lp.ExtraWord.IndexOf("|") == -1)
-                    {
+                            if (strList.Count == i + 1)
+                                if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
+                        }
+                } else {
+                    if (lp.ExtraWord.IndexOf("|") == -1) {
                         value = value.Replace("{" + i + "}", strList[i]);
-                        if (i == strList.Count - 1)
-                        {
+                        if (i == strList.Count - 1) {
                             if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[0])[0], GetCellPos(arrCellPos[0])[1]);
                         }
-                    }
-                    else
-                    {
-                        if (dt.ToString("yyyyMMdd") == "00010101")
-                        {
+                    } else {
+                        if (dt.ToString("yyyyMMdd") == "00010101") {
                             strList[i] = " ";
                         }
                         string[] strextrlist = lp.ExtraWord.Split('|');
@@ -1415,42 +1188,35 @@ namespace Ebada.SCGL.WFlow.Tool
                         if (strextrlist.Length > i)
                             value += strextrlist[i];
                         if (lp.isExplorer != 1) ea.SetCellValue("'" + value, GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
-                       
+
                     }
                 }
-                   
-               
+
+
 
             }
 
-         
+
         }
 
-        public void FillMutilRowsT(ExcelAccess ea, LP_Temple lp, string str, int cellcount, string arrCellPos)
-        {
+        public void FillMutilRowsT(ExcelAccess ea, LP_Temple lp, string str, int cellcount, string arrCellPos) {
             StringHelper help = new StringHelper();
             //str = help.GetPlitString(str, cellcount);
             string[] arrRst = str.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            if (lp.ExtraWord == "横向")
-            {
-                for (int i = 0; i < arrRst.Length; i++)
-                {
-                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
+            if (lp.ExtraWord == "横向") {
+                for (int i = 0; i < arrRst.Length; i++) {
+                    if (lp.isExplorer != 1) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0], GetCellPos(arrCellPos)[1] + i);
 
                 }
-            }
-            else
-            {
-                for (int i = 0; i < arrRst.Length; i++)
-                {
-                    if (lp.isExplorer != 1)ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
+            } else {
+                for (int i = 0; i < arrRst.Length; i++) {
+                    if (lp.isExplorer != 1) ea.SetCellValue(arrRst[i], GetCellPos(arrCellPos)[0] + i, GetCellPos(arrCellPos)[1]);
 
                 }
             }
         }
 
-        public int[] GetCellPos(string cellpos)
-        {
+        public int[] GetCellPos(string cellpos) {
             cellpos = cellpos.Replace("|", "");
             Regex r1 = new Regex(@"[0-9]+");
             if (cellpos == "") return new int[] { 0, 0 };
@@ -1460,25 +1226,19 @@ namespace Ebada.SCGL.WFlow.Tool
             ix = int.Parse(str);
             r1 = new Regex(@"[A-Z]+");
             str = r1.Match(cellpos).Value;
-            if (str.Length == 2)
-            {
+            if (str.Length == 2) {
                 iy = ((int)str[0] - 64) * 26 + ((int)str[1] - 64);
-            }
-            else
-            {
+            } else {
                 iy = (int)cellpos[0] - 64;
             }
             return new int[] { ix, iy };
             //return new int[] { int.Parse(cellpos.Substring(1)), (int)cellpos[0] - 64 };
         }
 
-        public List<int> String2Int(string[] temp)
-        {
+        public List<int> String2Int(string[] temp) {
             List<int> arrRst = new List<int>();
-            for (int i = 0; i < temp.Length; i++)
-            {
-                if (string.IsNullOrEmpty(temp[i]))
-                {
+            for (int i = 0; i < temp.Length; i++) {
+                if (string.IsNullOrEmpty(temp[i])) {
                     temp[i] = "0";
                 }
                 arrRst.Add(int.Parse(temp[i]));
@@ -1486,22 +1246,17 @@ namespace Ebada.SCGL.WFlow.Tool
             return arrRst;
         }
 
-        public static string CreatWorkFolwNo(mOrg org, string parentID, string kind)
-        {
+        public static string CreatWorkFolwNo(mOrg org, string parentID, string kind) {
             string number = "";
             IList<WF_TableFieldValueView> datalist = null;
-            switch (kind)
-            {
+            switch (kind) {
                 case "编号规则一":
                     datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<WF_TableFieldValueView>(
                " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" + org.OrgCode.Substring(org.OrgCode.Length - 2) + "-%' order by Number desc");
-                    if (datalist.Count > 0)
-                    {
+                    if (datalist.Count > 0) {
                         string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
                         number = org.OrgCode.Substring(org.OrgCode.Length - 2) + string.Format("-{0:D3}", Convert.ToInt32(stri) + 1);
-                    }
-                    else
-                    {
+                    } else {
 
                         number = org.OrgCode.Substring(org.OrgCode.Length - 2) + "-001";
                     }
@@ -1512,13 +1267,10 @@ namespace Ebada.SCGL.WFlow.Tool
                         " where FieldName='编号' and UserControlId='" + parentID + "' and ControlValue like '%" +
                         DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "%' order by Number desc");
 
-                    if (datalist.Count > 0)
-                    {
+                    if (datalist.Count > 0) {
                         string stri = datalist[0].Number.Substring(datalist[0].Number.Length - 3);
                         number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + string.Format("{0:D4}", Convert.ToInt32(stri) + 1);
-                    }
-                    else
-                    {
+                    } else {
 
                         number = DateTime.Now.ToString("yyyyMMdd") + org.OrgCode + "0001";
                     }
@@ -1526,9 +1278,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             return number;
         }
-        public void InitCtrlData(Control ctrl, string sqlSentence)
-        {
-           
+        public void InitCtrlData(Control ctrl, string sqlSentence) {
+
             tempCtrlList.Add(ctrl);
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             string ctrltype = "";
@@ -1544,11 +1295,10 @@ namespace Ebada.SCGL.WFlow.Tool
              * 
              * */
             IList li = new ArrayList();
-            if (sqlSentence.IndexOf("Excel:") == 0)
-            {
+            if (sqlSentence.IndexOf("Excel:") == 0) {
                 int index1 = sqlSentence.LastIndexOf(":");
                 string tablename = sqlSentence.Substring(6, index1 - 6);
-                string cellpos = sqlSentence.Substring(index1+1);
+                string cellpos = sqlSentence.Substring(index1 + 1);
                 string[] arrCellPos = cellpos.Split('|');
                 arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
                 string strcellvalue = "";
@@ -1559,77 +1309,57 @@ namespace Ebada.SCGL.WFlow.Tool
                 Excel.Worksheet sheet;
                 sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
 
-                for (int i = 0; i < arrCellPos.Length; i++)
-                {
+                for (int i = 0; i < arrCellPos.Length; i++) {
                     Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
                     strcellvalue += range.Value2;
                 }
                 li.Add(strcellvalue);
-            }
-            else if (sqlSentence!= "")
-            {
-                if (sqlSentence.IndexOf("{recordid}") > -1)
-                {
-                    sqlSentence = sqlSentence.Replace("{recordid}",currRecord.ID);
+            } else if (sqlSentence != "") {
+                if (sqlSentence.IndexOf("{recordid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
                 }
-                if (sqlSentence.IndexOf("{orgcode}") > -1)
-                {
+                if (sqlSentence.IndexOf("{orgcode}") > -1) {
                     sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
                 }
-                if (sqlSentence.IndexOf("{userid}") > -1)
-                {
+                if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
-                while (r1.Match(sqlSentence).Value != "")
-                { 
-                    string sortid=r1.Match(sqlSentence).Value;
-                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
-                    if (listLPID.Count >0)
-                    {
-                       Control ct= FindCtrl(listLPID[0].LPID);
-                       if (ct != null)
-                       {
-                           if (ct is DateEdit)
-                           {
-                               ((DateEdit)ct).Properties.EditMask = listLPID[0].WordCount;
-                               ((DateEdit)ct).Properties.DisplayFormat.FormatString = listLPID[0].WordCount;
-                           }
-                           sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
-                       }
-                       else
-                       {
-                           string strSQL = "select ControlValue from WF_TableFieldValueView where"
-                                 + " UserControlId='" + listLPID[0].ParentID + "' "
-                                 + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
-                           li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
-                           if (li.Count > 0)
-                           {
-                               sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
-                           }
-                           else
-                           {
-                               sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
-                               break;
-                           }
-                       }
-                    }
-                    else
-                    {
-                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
-                        break;
-                    }     
-                }
-                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
-                if (r1.Match(sqlSentence).Value != "")
-                {
+                while (r1.Match(sqlSentence).Value != "") {
                     string sortid = r1.Match(sqlSentence).Value;
                     IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
-                    if (listLPID.Count > 0)
-                    {
+                    if (listLPID.Count > 0) {
                         Control ct = FindCtrl(listLPID[0].LPID);
-                        if (ct != null)
-                        {
+                        if (ct != null) {
+                            if (ct is DateEdit) {
+                                ((DateEdit)ct).Properties.EditMask = listLPID[0].WordCount;
+                                ((DateEdit)ct).Properties.DisplayFormat.FormatString = listLPID[0].WordCount;
+                            }
+                            sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
+                        } else {
+                            string strSQL = "select ControlValue from WF_TableFieldValueView where"
+                                  + " UserControlId='" + listLPID[0].ParentID + "' "
+                                  + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
+                            li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                            if (li.Count > 0) {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
+                            } else {
+                                sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                                break;
+                            }
+                        }
+                    } else {
+                        sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
+                        break;
+                    }
+                }
+                r1 = new Regex(@"(?<={编号规则一:)[0-9]+(?=})");
+                if (r1.Match(sqlSentence).Value != "") {
+                    string sortid = r1.Match(sqlSentence).Value;
+                    IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
+                    if (listLPID.Count > 0) {
+                        Control ct = FindCtrl(listLPID[0].LPID);
+                        if (ct != null) {
                             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("SelectmOrgList",
                                 "where OrgName='" + ct.Text + "'");
                             if (list.Count > 0)
@@ -1637,74 +1367,56 @@ namespace Ebada.SCGL.WFlow.Tool
                             else
                                 sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "");
 
-                        }
-                        else
-                        {
+                        } else {
                             sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
 
                         }
-                    }
-                    else
-                    {
+                    } else {
                         sqlSentence = sqlSentence.Replace("{编号规则一:" + sortid + "}", "出错，没有找到单位控件");
 
                     }
-                    
+
                 }
-                try
-                {
+                try {
                     sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
-                    if (sqlSentence.IndexOf("where 9=9") > -1)
-                    {
+                    if (sqlSentence.IndexOf("where 9=9") > -1) {
                         string strtemp = li[0].ToString();
                         li.Clear();
                         r1 = new Regex(@"[0-9]+\+[0-9]+");
-                        if (r1.Match(strtemp).Value != "")
-                        {
+                        if (r1.Match(strtemp).Value != "") {
                             int istart = 1;
                             int ilen = 10;
                             r1 = new Regex(@"[0-9]+(?=\+)");
-                            if (r1.Match(strtemp).Value != "")
-                            {
+                            if (r1.Match(strtemp).Value != "") {
                                 istart = Convert.ToInt32(r1.Match(strtemp).Value);
                             }
                             r1 = new Regex(@"(?<=\+)[0-9]+");
-                            if (r1.Match(strtemp).Value != "")
-                            {
+                            if (r1.Match(strtemp).Value != "") {
                                 ilen = Convert.ToInt32(r1.Match(strtemp).Value); ;
                             }
-                            for (int i = istart; i <= ilen; i++)
-                            {
+                            for (int i = istart; i <= ilen; i++) {
                                 li.Add(string.Format("{0}", i));
                             }
-                        }
-                        else
-                        {
+                        } else {
                             string[] strli = SelectorHelper.ToDBC(strtemp).Split(',');
-                            foreach (string ss in strli)
-                            {
+                            foreach (string ss in strli) {
                                 li.Add(ss);
                             }
 
                         }
-                       
+
                     }
-                }
-                catch(Exception ex)
-                {
-                    li.Add( "出错:" + ex.Message);
+                } catch (Exception ex) {
+                    li.Add("出错:" + ex.Message);
                 }
             }
-            switch (ctrltype)
-            {
+            switch (ctrltype) {
                 case "DevExpress.XtraEditors.TextEdit":
-                    if (li.Count > 0 && sqlSentence != "")
-                    {
+                    if (li.Count > 0 && sqlSentence != "") {
                         //((DevExpress.XtraEditors.TextEdit)ctrl).Text = li[0].ToString();
-                        Control bttip = FindCtrl("bt"+lp.LPID);
-                        if (bttip != null)
-                        {
+                        Control bttip = FindCtrl("bt" + lp.LPID);
+                        if (bttip != null) {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
                             //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
@@ -1713,12 +1425,10 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "DevExpress.XtraEditors.SpinEdit":
-                    if (li.Count > 0 && sqlSentence != "")
-                    {
+                    if (li.Count > 0 && sqlSentence != "") {
                         //((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt" + lp.LPID);
-                        if (bttip != null)
-                        {
+                        if (bttip != null) {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
                             //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
@@ -1753,34 +1463,26 @@ namespace Ebada.SCGL.WFlow.Tool
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
-                    for (int i = 0; i < comBoxItem.Length; i++)
-                    {
-                        if (comBoxItem[i] != "")
-                        {
+                    for (int i = 0; i < comBoxItem.Length; i++) {
+                        if (comBoxItem[i] != "") {
                             ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Add(comBoxItem[i]);
                         }
                     }
-                    if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0)
-                    {
+                    if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0) {
                         //if (lp.CellName != "单位")
                         //    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
                         //ContentChanged(ctrl);
-                        if (lp.CellName == "单位")
-                        {
+                        if (lp.CellName == "单位") {
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
-                            if (list.Count > 0)
-                            {
-                                switch (kind)
-                                {
+                            if (list.Count > 0) {
+                                switch (kind) {
                                     case "电力线路第一种工作票":
                                     case "yzgzp":
                                         //strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                                        if (bhht[ctrl.Text] != null)
-                                        {
+                                        if (bhht[ctrl.Text] != null) {
                                             strNumber = "07" + bhht[ctrl.Text].ToString();
 
-                                        }
-                                        else
+                                        } else
                                             strNumber = "07";
                                         break;
                                     case "电力线路第二种工作票":
@@ -1803,24 +1505,19 @@ namespace Ebada.SCGL.WFlow.Tool
                                         break;
                                 }
                                 IList listLPRecord = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select ControlValue from WF_TableFieldValue where  FieldName='编号' and UserControlId='{0}' and  ControlValue like '" + strNumber + "%' and id like '" + DateTime.Now.Year + "%' order by id desc", parentTemple.LPID));
-                                if (kind == "yzgzp")
-                                {
+                                if (kind == "yzgzp") {
                                     //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
                                     //strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
                                     if (listLPRecord.Count == 0)
                                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                                    else
-                                    {
+                                    else {
                                         decimal udw = Convert.ToDecimal(listLPRecord[0]);
                                         strNumber = "0" + (udw + 1).ToString().PadLeft(3, '0');
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     if (listLPRecord.Count == 0)
                                         strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                                    else
-                                    {
+                                    else {
                                         decimal udw = Convert.ToDecimal(listLPRecord[0].ToString().Substring(listLPRecord[0].ToString().Length - 3));
                                         strNumber = listLPRecord[0].ToString().Substring(0, listLPRecord[0].ToString().Length - 3) + (udw + 1).ToString().PadLeft(3, '0');
                                     }
@@ -1853,25 +1550,20 @@ namespace Ebada.SCGL.WFlow.Tool
                     //}
                     //((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = DateTime.Now;
 
-                    if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1)
-                    {
+                    if (lp.WordCount != "" && lp.WordCount.IndexOf("|") == -1) {
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = lp.WordCount;
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = lp.WordCount;
-                    }
-                    else
-                    {
+                    } else {
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
                         ((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "yyyy-MM-dd HH:mm";
-                        
+
                     }
                     break;
                 case "DevExpress.XtraEditors.MemoEdit":
-                    if (li.Count > 0 && sqlSentence != "")
-                    {
+                    if (li.Count > 0 && sqlSentence != "") {
                         //((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
                         Control bttip = FindCtrl("bt" + lp.LPID);
-                        if (bttip != null)
-                        {
+                        if (bttip != null) {
                             ((ComboBoxEdit)bttip).Properties.Items.Clear();
                             ((ComboBoxEdit)bttip).Properties.Items.AddRange(li);
                             //if (((ComboBoxEdit)bttip).Properties.Items.Count > 0)
@@ -1880,66 +1572,51 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "uc_gridcontrol":
-                    if (sqlSentence.IndexOf("{recordid}") > -1)
-                    {
+                    if (sqlSentence.IndexOf("{recordid}") > -1) {
                         sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
                     }
-                    if (sqlSentence.IndexOf("{orgcode}") > -1)
-                    {
+                    if (sqlSentence.IndexOf("{orgcode}") > -1) {
                         sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
                     }
-                    if (sqlSentence.IndexOf("{userid}") > -1)
-                    {
+                    if (sqlSentence.IndexOf("{userid}") > -1) {
                         sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                     }
                     Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
-                    while (r1.Match(sqlSentence).Value != "")
-                    {
+                    while (r1.Match(sqlSentence).Value != "") {
                         string sortid = r1.Match(sqlSentence).Value;
                         IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
-                        if (listLPID.Count > 0)
-                        {
+                        if (listLPID.Count > 0) {
                             Control ct = FindCtrl(listLPID[0].LPID);
-                            if (ct != null)
-                            {
+                            if (ct != null) {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
-                            }
-                            else
-                            {
+                            } else {
                                 string strSQL = "select ControlValue from WF_TableFieldValueView where"
                                       + " UserControlId='" + listLPID[0].ParentID + "' "
                                       + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
-                                 li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
-                                if (li.Count > 0)
-                                {
+                                li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+                                if (li.Count > 0) {
                                     sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
-                                }
-                                else
-                                {
+                                } else {
                                     sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                                     break;
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                             break;
                         }
                     }
-                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar),dsoFramerWordControl1,lp,currRecord);
+                    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
                     break;
             }
             if (lp.CellName == "编号") strNumber = ctrl.Text;
-            if (ctrlNumber != null && strNumber!="") ctrlNumber.Text = strNumber;
+            if (ctrlNumber != null && strNumber != "") ctrlNumber.Text = strNumber;
         }
 
-        public int CalcWidth()
-        {
+        public int CalcWidth() {
             int wordcount = 0;
 
-            foreach (LP_Temple lp in templeList)
-            {
+            foreach (LP_Temple lp in templeList) {
                 if (lp.CellName.Length > wordcount)
                     wordcount = lp.CellName.Length;
                 //Label l = new Label();
@@ -1953,8 +1630,7 @@ namespace Ebada.SCGL.WFlow.Tool
             return wordWidth * wordcount;
         }
 
-        public string[] SplitSQL(string sql)
-        {
+        public string[] SplitSQL(string sql) {
             int pos = sql.IndexOf("where");
             string temp = "";
             return new string[] { pos == -1 ? (temp=sql.Replace(" ","")) : 
@@ -1962,23 +1638,18 @@ namespace Ebada.SCGL.WFlow.Tool
         }
 
 
-        public void RelateEvent(Control ctrl)
-        {
-            try
-            {
+        public void RelateEvent(Control ctrl) {
+            try {
                 LP_Temple lp = (LP_Temple)ctrl.Tag;
-                if (lp.AffectLPID != null && lp.AffectLPID!="")
-                {
+                if (lp.AffectLPID != null && lp.AffectLPID != "") {
 
-                    string  strlpid = lp.AffectLPID;
+                    string strlpid = lp.AffectLPID;
                     string[] arrLPID = strlpid.Split(pchar);
                     arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
                     string[] arrEvent = lp.AffectEvent.Split(pchar);
-                    for (int i = 0; i < arrLPID.Length; i++)
-                    {
+                    for (int i = 0; i < arrLPID.Length; i++) {
                         IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + arrLPID[i] + "' and parentid = '" + lp.ParentID + "'");
-                        if (listLPID.Count <= 0)
-                        {
+                        if (listLPID.Count <= 0) {
                             continue;
                         }
                         Control ctrlTemp = FindCtrl((listLPID[0] as LP_Temple).LPID);
@@ -1986,74 +1657,60 @@ namespace Ebada.SCGL.WFlow.Tool
                         //{
                         //    continue;
                         //}
-                        if (ctrlTemp==null)
-                        {
+                        if (ctrlTemp == null) {
                             continue;
                         }
-                        if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i]))
-                        {
+                        if (string.IsNullOrEmpty(arrLPID[i]) || string.IsNullOrEmpty(arrEvent[i])) {
                             continue;
                         }
                         ctrl.GetType().GetEvent(arrEvent[i]).AddEventHandler(ctrl, new EventHandler(TriggerRelateEvent));
 
                     }
                 }
-               
 
-            }
-            catch (System.Exception e)
-            {
+
+            } catch (System.Exception e) {
 
             }
 
         }
 
-        public void TriggerRelateEvent(object sender, EventArgs e)
-        {
+        public void TriggerRelateEvent(object sender, EventArgs e) {
             LP_Temple lp = (LP_Temple)((Control)sender).Tag;
-          
+
             string[] arrLPID = lp.AffectLPID.Split(pchar);
-            foreach (string lpid in arrLPID)
-            {
+            foreach (string lpid in arrLPID) {
                 IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
-                if (listLPID.Count <= 0)
-                {
+                if (listLPID.Count <= 0) {
                     continue;
                 }
                 Control ctrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
                 //if (ctrl != null && ctrl.Visible)
-                
-                if (ctrl != null && ctrl.Visible)
-                {
+
+                if (ctrl != null && ctrl.Visible) {
                     UpdateRelateData(ctrl);
                 }
             }
         }
 
-        public void UpdateRelateData(Control ctrl)
-        {
+        public void UpdateRelateData(Control ctrl) {
             LP_Temple lp = (LP_Temple)ctrl.Tag;
             string[] arrLPID = lp.RelateLPID.Split(pchar);
             arrLPID = StringHelper.ReplaceEmpty(arrLPID).Split(pchar);
             string sqlSentence = lp.SqlSentence;
-            foreach (string lpid in arrLPID)
-            {
-                if (string.IsNullOrEmpty(lpid))
-                {
+            foreach (string lpid in arrLPID) {
+                if (string.IsNullOrEmpty(lpid)) {
                     continue;
                 }
                 IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + lpid + "' and parentid = '" + lp.ParentID + "'");
-                if (listLPID.Count <= 0)
-                {
+                if (listLPID.Count <= 0) {
                     continue;
                 }
                 Control relateCtrl = FindCtrl((listLPID[0] as LP_Temple).LPID);
-                if (relateCtrl != null)
-                {
-                    int pos = sqlSentence.IndexOf("{" + lpid+"}");
-                    if (pos != -1)
-                    {
-                        sqlSentence = sqlSentence.Remove(pos, ("{" + lpid+"}").Length);
+                if (relateCtrl != null) {
+                    int pos = sqlSentence.IndexOf("{" + lpid + "}");
+                    if (pos != -1) {
+                        sqlSentence = sqlSentence.Remove(pos, ("{" + lpid + "}").Length);
                         sqlSentence = sqlSentence.Insert(pos, relateCtrl.Text);
                         //((LP_Temple)ctrl.Tag).SqlSentence = sqlSentence;
                     }
@@ -2061,51 +1718,37 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             if (lp.CtrlType.IndexOf("uc_gridcontrol") == -1)
                 InitCtrlData(ctrl, sqlSentence);
-            else
-            {
-                 if (sqlSentence.IndexOf("{recordid}") > -1)
-                {
-                    sqlSentence = sqlSentence.Replace("{recordid}",currRecord.ID);
+            else {
+                if (sqlSentence.IndexOf("{recordid}") > -1) {
+                    sqlSentence = sqlSentence.Replace("{recordid}", currRecord.ID);
                 }
-                if (sqlSentence.IndexOf("{orgcode}") > -1)
-                {
+                if (sqlSentence.IndexOf("{orgcode}") > -1) {
                     sqlSentence = sqlSentence.Replace("{orgcode}", MainHelper.User.OrgCode);
                 }
-                if (sqlSentence.IndexOf("{userid}") > -1)
-                {
+                if (sqlSentence.IndexOf("{userid}") > -1) {
                     sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                 }
                 Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
-                while (r1.Match(sqlSentence).Value != "")
-                {
+                while (r1.Match(sqlSentence).Value != "") {
                     string sortid = r1.Match(sqlSentence).Value;
                     IList<LP_Temple> listLPID = ClientHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList", " where sortID = '" + sortid + "' and parentid = '" + lp.ParentID + "'");
-                    if (listLPID.Count > 0)
-                    {
+                    if (listLPID.Count > 0) {
                         Control ct = FindCtrl(listLPID[0].LPID);
-                        if (ct != null)
-                        {
+                        if (ct != null) {
                             sqlSentence = sqlSentence.Replace("{" + sortid + "}", ct.Text);
-                        }
-                        else
-                        {
+                        } else {
                             string strSQL = "select ControlValue from WF_TableFieldValueView where"
                                   + " UserControlId='" + listLPID[0].ParentID + "' "
                                   + "and FieldId='" + listLPID[0].LPID + "' and ID='" + currRecord.ID + "'";
                             IList li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
-                            if (li.Count > 0)
-                            {
+                            if (li.Count > 0) {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", li[0].ToString());
-                            }
-                            else
-                            {
+                            } else {
                                 sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                                 break;
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         sqlSentence = sqlSentence.Replace("{" + sortid + "}", "没有找到对应的值，请检查SQL语句设置");
                         break;
                     }
@@ -2114,17 +1757,14 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        public Control FindCtrl(string name)
-        {
-            foreach (Control ctrl in dockPanel1.ControlContainer.Controls)
-            {
+        public Control FindCtrl(string name) {
+            foreach (Control ctrl in dockPanel1.ControlContainer.Controls) {
                 if (ctrl.Name == name)
                     return ctrl;
             }
             return null;
         }
-        private void frmLP_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        private void frmLP_FormClosed(object sender, FormClosedEventArgs e) {
             //base.Close();
             currRecord = null;
             //rowData = null;
@@ -2135,10 +1775,9 @@ namespace Ebada.SCGL.WFlow.Tool
             dsoFramerWordControl1.Dispose();
         }
 
-        private void frmLP_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-           
+        private void frmLP_FormClosing(object sender, FormClosingEventArgs e) {
+
+
         }
     }
 }
