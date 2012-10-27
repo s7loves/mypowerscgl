@@ -409,14 +409,15 @@ namespace Ebada.Scgl.Lcgl {
             //InitEvent();
             InitData();
             */
-            //if (RecordWorkTask.HaveRunSPYJRole(kind)) {
-            //    if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
-            //    hqyjcontrol.Size = new System.Drawing.Size(400, 200);
-            //    hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
-            //    currentPosY = currentPosY + hqyjcontrol.Size.Height;
-            //    hqyjcontrol.RecordID = CurrRecord.ID;
-            //    dockPanel1.Controls.Add(hqyjcontrol);
-            //}
+            if (RecordWorkTask.HaveRunSPYJRole(kind))
+            {
+                if (hqyjcontrol == null) hqyjcontrol = new SPYJControl();
+                hqyjcontrol.Size = new System.Drawing.Size(400, 200);
+                hqyjcontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
+                currentPosY = currentPosY + hqyjcontrol.Size.Height;
+                hqyjcontrol.RecordID = CurrRecord.ID;
+                dockPanel1.Controls.Add(hqyjcontrol);
+            }
 
             if (RecordWorkTask.HaveRunFuJianRole(kind)) {
 
@@ -426,7 +427,7 @@ namespace Ebada.Scgl.Lcgl {
                 else if (status == "edit") {
                     filecontrol.FormType = "下载";
                 }
-                filecontrol.Size = new System.Drawing.Size(400, 300);
+                filecontrol.Size = new System.Drawing.Size(400, 200);
                 filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                 currentPosY = currentPosY + filecontrol.Size.Height;
                 filecontrol.UpfilePath = GetWorkFlowNmae(kind);
