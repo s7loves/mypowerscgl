@@ -32,7 +32,14 @@ namespace Ebada.Scgl.Lcgl
             }
             else
                 linename = obj.linename;
-           linename =  linename.ToLower().Replace("10kv","");
+            string[] filtchar = { "V", "v" };
+            for (int i = 0; i < filtchar.Length; i++)
+            {
+                if (linename.Contains(filtchar[i]))
+                {
+                    linename = linename.Substring(linename.LastIndexOf(filtchar[i]) + 1);
+                }
+            }
             ex.SetCellValue(linename, 10, 7);
             string fzlinename = "";
             if (obj.fzlinename.Contains("支"))
