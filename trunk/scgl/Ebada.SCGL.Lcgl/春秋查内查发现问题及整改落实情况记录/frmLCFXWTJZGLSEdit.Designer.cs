@@ -237,11 +237,11 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(267, 175);
+            this.labelControl1.Location = new System.Drawing.Point(251, 175);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(72, 14);
+            this.labelControl1.Size = new System.Drawing.Size(96, 14);
             this.labelControl1.TabIndex = 32;
-            this.labelControl1.Text = "落实整改时间";
+            this.labelControl1.Text = "实际整改完成时间";
             // 
             // labelControl4
             // 
@@ -285,15 +285,16 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(24, 201);
+            this.labelControl3.Location = new System.Drawing.Point(21, 201);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(48, 14);
+            this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 32;
-            this.labelControl3.Text = "落实情况";
+            this.labelControl3.Text = "整改完成情况";
+            this.labelControl3.Click += new System.EventHandler(this.labelControl3_Click);
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(24, 173);
+            this.labelControl9.Location = new System.Drawing.Point(22, 173);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(72, 14);
             this.labelControl9.TabIndex = 32;

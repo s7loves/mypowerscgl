@@ -62,6 +62,14 @@ namespace Ebada.Scgl.Lcgl {
         #endregion
 
         private void InitComboBoxData() {
+            if (rowData.jclx =="春查")
+            {
+                this.Text = "春查内查发现问题及整改落实情况记录";
+            }
+            else
+            {
+                this.Text = "秋查内查发现问题及整改落实情况记录";
+            }
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "落实情况"));
@@ -69,8 +77,8 @@ namespace Ebada.Scgl.Lcgl {
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else {
 
-                comboBoxEdit1.Properties.Items.Add("已落实");
-                comboBoxEdit1.Properties.Items.Add("未落实");
+                comboBoxEdit1.Properties.Items.Add("已完成");
+                comboBoxEdit1.Properties.Items.Add("未完成");
 
 
             }
@@ -183,6 +191,11 @@ namespace Ebada.Scgl.Lcgl {
 
         private void simpleButton2_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "整改措施", memoEdit2);
+        }
+
+        private void labelControl3_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
