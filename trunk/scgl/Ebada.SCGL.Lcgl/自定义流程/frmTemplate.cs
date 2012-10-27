@@ -445,7 +445,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     filecontrol.FormType = "下载";
                 }
-                filecontrol.Size = new System.Drawing.Size(400, 300);
+                filecontrol.Size = new System.Drawing.Size(400, 200);
                 filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                 currentPosY = currentPosY + filecontrol.Size.Height;
                 filecontrol.UpfilePath = GetWorkFlowNmae(kind);
