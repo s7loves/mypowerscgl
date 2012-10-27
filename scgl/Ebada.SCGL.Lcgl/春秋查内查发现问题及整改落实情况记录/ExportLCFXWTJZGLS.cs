@@ -258,8 +258,8 @@ namespace Ebada.Scgl.Lcgl {
 
                 ex.SetCellValue(datalist[j].lszgsj.ToString("MM月dd日"), row + j % rowcount, col + 4);
                 ex.SetCellValue(datalist[j].lsqk, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].dbr, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].dbr, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].lsr, row + j % rowcount, col + 7);
                 ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col +8);
 
 
