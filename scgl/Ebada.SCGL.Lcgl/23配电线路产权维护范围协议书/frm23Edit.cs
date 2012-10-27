@@ -15,17 +15,20 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frm23Edit : FormBase, IPopupFormEdit {
+    public partial class frm23Edit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_23> m_CityDic = new SortableSearchableBindingList<PJ_23>();
 
-        public frm23Edit() {
+        public frm23Edit()
+        {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cqfw");
-           // this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "LineCode");
+            // this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "LineCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cqdw");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "Remark");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "qdrq");
@@ -36,28 +39,34 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "xybh");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
-           
+
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
         private PJ_23 rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 return rowData;
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_23;
-                    
+
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_23>(value as PJ_23, rowData);
                 }
             }
@@ -68,15 +77,16 @@ namespace Ebada.Scgl.Lcgl
         /// <summary>
         /// 初始协议编号
         /// </summary>
-        
-        private void InitComboBoxData() {
+
+        private void InitComboBoxData()
+        {
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_23>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
-            list.Add(new DicType("0", "机构"));
-            list.Add(new DicType("1", "供电所"));
-            list.Add(new DicType("2", "变电所"));
-            this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
+            /*  IList<DicType> list = new List<DicType>();
+              list.Add(new DicType("0", "机构"));
+              list.Add(new DicType("1", "供电所"));
+              list.Add(new DicType("2", "变电所"));
+              this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
@@ -98,7 +108,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -155,10 +166,12 @@ namespace Ebada.Scgl.Lcgl
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
-            if (parentObj != null) {
+            if (parentObj != null)
+            {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
                 //dlg.TxtMemo = txt;
-                if (dlg.ShowDialog() == DialogResult.OK) {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
                     comboBoxEdit1.Text = dlg.ucpJ_dykSelector1.GetSelectedRow().nr4;
                 }
             }
@@ -215,7 +228,7 @@ namespace Ebada.Scgl.Lcgl
             ExcelAccess ea2 = new ExcelAccess();
             ea2.MyWorkBook = wb2;
             ea2.MyExcel = wb2.Application;
-            ea2.SetCellValue(comboBoxEdit1.Text , 11, 4);
+            ea2.SetCellValue(comboBoxEdit1.Text, 11, 4);
             dsoFramerControl2.FileSave();
             rowData.BigData = dsoFramerControl2.FileData;
             dsoFramerControl2.FileClose();
@@ -230,7 +243,7 @@ namespace Ebada.Scgl.Lcgl
             if (xl == null) return;
             comboBoxEdit7.Properties.Items.Clear();
 
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "'");
+            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xl.LineCode + "' order by gtCode");
 
             foreach (PS_gt pl in list)
             {
