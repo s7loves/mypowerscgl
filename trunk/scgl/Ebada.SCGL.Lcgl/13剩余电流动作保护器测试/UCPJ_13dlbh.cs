@@ -290,6 +290,7 @@ namespace Ebada.Scgl.Lcgl {
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
             //newobj.CreateMan = MainHelper.LoginName;
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID

@@ -307,7 +307,7 @@ namespace Ebada.Scgl.Lcgl
             //newobj.CreateDate = DateTime.Now;
             //newobj.TDtime = newobj.CreateDate;
             //newobj.SDtime = newobj.CreateDate;
-          
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID

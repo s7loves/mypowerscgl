@@ -297,7 +297,7 @@ namespace Ebada.Scgl.Lcgl
             newobj.changeDate = DateTime.Now;
             newobj.jcDate = newobj.changeDate;
             newobj.inDate = newobj.changeDate;
-          
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID

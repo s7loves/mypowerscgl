@@ -327,8 +327,8 @@ namespace Ebada.Scgl.Lcgl
             //if (parentID == null) return;
             //newobj.OrgCode = parentID;
             //newobj.OrgName = parentObj.OrgName;
-            
-           
+
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
           
         }
         /// <summary>

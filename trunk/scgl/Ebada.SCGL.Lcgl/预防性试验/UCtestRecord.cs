@@ -418,7 +418,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
-           
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
            
         }
         /// <summary>

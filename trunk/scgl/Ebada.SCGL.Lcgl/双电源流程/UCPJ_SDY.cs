@@ -252,7 +252,7 @@ namespace Ebada.Scgl.Lcgl {
         void gridViewOperation_CreatingObjectEvent(PJ_sdytz newobj) {
             //if (parentID == null) return;
 
-
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID

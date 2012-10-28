@@ -230,6 +230,7 @@ namespace Ebada.Scgl.Lcgl {
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID
