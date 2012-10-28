@@ -84,7 +84,9 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
-
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Add("上方");
+            comboBoxEdit3.Properties.Items.Add("下方");
             PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + rowData.LineID + "'");
             if (xl != null)
             {
@@ -146,10 +148,14 @@ namespace Ebada.Scgl.Lcgl
                 {
                     comboBoxEdit1.Text = obj.LineName;
                     IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + obj.LineCode + "'");
+                    comboBoxEdit2.Properties.Items.Clear();
+                    comboBoxEdit4.Properties.Items.Clear();
                     for (int i = 0; i < list.Count; i++)
                     {
                         //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
                         comboBoxEdit2.Properties.Items.Add(list[i].gtCode);
+                        comboBoxEdit4.Properties.Items.Add(list[i].gtCode.Substring(list[i].gtCode.Length - 4));
+
                     }
                 }
             }
@@ -178,6 +184,14 @@ namespace Ebada.Scgl.Lcgl
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit2.EditValue!=null)
+            {
+                comboBoxEdit4.Text = comboBoxEdit2.Text.Substring(comboBoxEdit2.Text.Length - 4);
+            }
         }
     }
 }

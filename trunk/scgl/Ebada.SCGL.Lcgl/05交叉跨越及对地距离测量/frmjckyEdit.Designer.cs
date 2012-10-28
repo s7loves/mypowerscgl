@@ -129,6 +129,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Size = new System.Drawing.Size(120, 21);
             this.comboBoxEdit2.TabIndex = 23;
+            this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit2_SelectedIndexChanged);
             // 
             // comboBoxEdit1
             // 

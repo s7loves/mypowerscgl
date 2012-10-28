@@ -237,6 +237,9 @@ namespace Ebada.Scgl.Lcgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_tqbyq newobj) {
             if (parentID == null) return;
+            newobj.byqCycle = "50HZ";
+            newobj.byqVolOne = 10;
+            newobj.byqVolTwo =(decimal) 0.4;
             // newobj.byqCode = DateTime.Now.ToString("yyyyMMddHHmmss");
             ////newobj.OrgCode = parentID;
             ////newobj.OrgName = parentObj.OrgName;

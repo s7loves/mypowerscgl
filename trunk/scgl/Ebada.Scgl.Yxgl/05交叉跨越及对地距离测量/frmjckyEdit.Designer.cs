@@ -129,6 +129,7 @@
             this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit2.TabIndex = 7;
             this.comboBoxEdit2.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_EditValueChanged_2);
+            this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit2_SelectedIndexChanged);
             // 
             // comboBoxEdit1
             // 
