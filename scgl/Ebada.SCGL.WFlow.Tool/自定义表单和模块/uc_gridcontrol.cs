@@ -159,6 +159,7 @@ namespace Ebada.SCGL.WFlow.Tool {
             }
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            gridView1.BestFitColumns();
         }
         public int[] GetCellPos(string cellpos) {
             cellpos = cellpos.Replace("|", "");

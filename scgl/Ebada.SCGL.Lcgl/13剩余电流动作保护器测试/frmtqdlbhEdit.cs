@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dzdl");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "tqID");
             this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "InstallAdress");
-           // this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "dzsj");
+             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "dzsj");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "Factory");
 
@@ -58,8 +58,8 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
-                if (dateEdit5.EditValue != null)
-                    rowData.dzsj = dateEdit5.DateTime.ToString("yyyy-MM-dd");
+                //if (dateEdit5.EditValue != null)
+                //    rowData.dzsj = dateEdit5.DateTime.ToString("yyyy-MM-dd");
                 return rowData;
             }
             set {
@@ -72,8 +72,8 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     
                     ConvertHelper.CopyTo<PS_tqdlbh>(value as PS_tqdlbh, rowData);
-                    if (!string.IsNullOrEmpty(rowData.dzsj))
-                        this.dateEdit5.EditValue = Convert.ToDateTime(rowData.dzsj);
+                    //if (!string.IsNullOrEmpty(rowData.dzsj))
+                    //    this.dateEdit5.EditValue = Convert.ToDateTime(rowData.dzsj);
                     this.InitComboBoxData();
                 }
                 if(rowData.sbCode==""){
@@ -107,6 +107,16 @@ namespace Ebada.Scgl.Lcgl
             //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select tqName from PS_tq where   left(tqID,{1})='{0}' ", OrgCode, OrgCode.Length));
 
             //comboBoxEdit11.Properties.Items.AddRange(list);
+            comboBoxEdit12.Properties.Items.Clear();
+            comboBoxEdit12.Properties.Items.Add("0.04s");
+            comboBoxEdit12.Properties.Items.Add("0.1s");
+            comboBoxEdit12.Properties.Items.Add("0.15s");
+            comboBoxEdit12.Properties.Items.Add("0.2s");
+            comboBoxEdit12.Properties.Items.Add("0.4s");
+            comboBoxEdit12.Properties.Items.Add("0.8s");
+            comboBoxEdit12.Properties.Items.Add("1.0s");
+            comboBoxEdit12.Properties.Items.Add("1.5s");
+            comboBoxEdit12.Properties.Items.Add("2.0s");
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < listXL.Count; i++)
             {

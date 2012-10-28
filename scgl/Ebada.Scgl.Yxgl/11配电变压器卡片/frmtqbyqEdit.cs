@@ -123,7 +123,9 @@ namespace Ebada.Scgl.Yxgl {
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "相别", comboBoxEdit8.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "结线组别", comboBoxEdit9.Properties);
             ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "周波", comboBoxEdit12.Properties);
-
+            //点等级
+            comboBoxEdit7.Properties.Items.Clear();
+            comboBoxEdit7.Properties.Items.Add("10");
         }
 
         /// <summary>
@@ -256,9 +258,19 @@ namespace Ebada.Scgl.Yxgl {
                     spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(288.7);
 
                     break;
+                case 250:
+                    spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(14.35);
+                    spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(360.9);
+
+                    break;
+
                 case 315:
                     spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(18.19);
                     spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(454.7);
+                    break;
+                case 630:
+                    spinEdit4.EditValue = rowData.byqCurrentOne = Convert.ToDecimal(36.37);
+                    spinEdit5.EditValue = rowData.byqCurrentTwo = Convert.ToDecimal(909.35);
 
                     break;
             }

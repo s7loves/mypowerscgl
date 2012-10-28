@@ -469,6 +469,38 @@ namespace Ebada.Scgl.Lcgl {
                 currRecord.Status = strmes;
             }
             currRecord.LastChangeTime = DateTime.Now.ToString();
+            //供电所春查消缺计划
+            IList<PJ_06sbxs> ilist = gridControl1.DataSource as IList<PJ_06sbxs>;
+             string sely = "(";
+             for (int i = 0; i < ilist.Count; i++)
+             {
+                 if (i < ilist.Count - 1)
+                 {
+                     sely += "'" + ilist[i].ID + "',";
+                 }
+                 else
+                     sely += "'" + ilist[i].ID + "')";
+             }
+            if (sely.Contains(")"))
+            {
+                IList<PJ_06sbxsmx> listmx = Client.ClientHelper.PlatformSqlMap.GetList<PJ_06sbxsmx>(" where ParentID in" + sely + "and xcr ='' order by CreateDate desc");
+              
+                for (int i = 0; i < listmx.Count;i++ )
+                {
+                  
+                    string sqlStr = " where  S1='" + listmx[i].ID + "'";
+
+                    Client.ClientHelper.PlatformSqlMap.DeleteByWhere<PJ_ccxqjh>(sqlStr);
+                    PJ_ccxqjh ccx = new PJ_ccxqjh();
+                    ccx.ID += i.ToString();
+                    ccx.OrgCode = listmx[i].OrgCode;
+                    ccx.OrgName = listmx[i].OrgName;
+                    ccx.xqlr = listmx[i].qxnr;
+                    ccx.qxlb = listmx[i].qxlb;
+                    ccx.S1 = listmx[i].ID;
+                    Client.ClientHelper.PlatformSqlMap.Create<PJ_ccxqjh>(ccx);
+                }
+            }
             if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
             if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
             MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);

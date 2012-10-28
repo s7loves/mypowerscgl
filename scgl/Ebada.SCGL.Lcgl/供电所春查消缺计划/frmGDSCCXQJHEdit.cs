@@ -92,7 +92,9 @@ namespace Ebada.Scgl.Lcgl
            //     comboBoxEdit4.Properties.Items.Add("12月");
                
            // }
-
+           IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' ) and PostName in('所长','生技班长')", rowData.OrgName));
+            comboBoxEdit2.Properties.Items.AddRange(strlist);
             ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit1.Properties);
 
 

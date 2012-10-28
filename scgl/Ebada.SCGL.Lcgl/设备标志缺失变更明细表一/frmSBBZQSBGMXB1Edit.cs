@@ -182,9 +182,15 @@ namespace Ebada.Scgl.Lcgl
         {
             comboBoxEdit3.Properties.Items.Clear();
             ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineName='{0}' ", comboBoxEdit2.EditValue.ToString()));
-            //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-            comboBoxEdit3.Properties.Items.AddRange(list);
+            PS_xl xl = null;
+            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit2.Text + "'");
+            if (xl != null)
+            {
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   lineCode='{0}' ", xl.LineCode));
+                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+                comboBoxEdit3.Properties.Items.AddRange(list);
+            }
+           
 
         }
 
