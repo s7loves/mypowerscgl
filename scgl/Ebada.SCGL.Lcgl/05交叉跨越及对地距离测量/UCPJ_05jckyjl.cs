@@ -135,6 +135,7 @@ namespace Ebada.Scgl.Lcgl {
             if (parentID == null) return;
             newobj.jckyID = parentID;
             newobj.CreateDate = DateTime.Now;
+
         }
         /// <summary>
         /// 父表ID

@@ -218,7 +218,7 @@ namespace Ebada.Scgl.Lcgl {
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
 
         }
         /// <summary>

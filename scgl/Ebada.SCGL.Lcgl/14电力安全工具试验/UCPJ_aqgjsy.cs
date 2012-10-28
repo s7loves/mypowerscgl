@@ -302,7 +302,7 @@ namespace Ebada.Scgl.Lcgl
          
             newobj.sbID = PSObj.sbID;
             newobj.rq = DateTime.Now;
-           
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
         }
         /// <summary>
         /// 父表ID

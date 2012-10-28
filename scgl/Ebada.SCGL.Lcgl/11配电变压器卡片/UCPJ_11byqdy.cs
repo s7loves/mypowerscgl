@@ -168,6 +168,7 @@ namespace Ebada.Scgl.Lcgl {
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             newobj.clrq = DateTime.Now;
+
         }
         /// <summary>
         /// 父表ID
