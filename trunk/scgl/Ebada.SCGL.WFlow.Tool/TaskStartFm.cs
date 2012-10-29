@@ -14,13 +14,11 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 
 
-namespace Ebada.SCGL.WFlow.Tool
-{
-	/// <summary>
-	/// TaskStartFm 的摘要说明。
-	/// </summary>
-	public class fmTaskStart : BaseForm_Single
-    {
+namespace Ebada.SCGL.WFlow.Tool {
+    /// <summary>
+    /// 节点属性
+    /// </summary>
+    public class fmTaskStart : BaseForm_Single {
         public string UserId = "";//操作人账号，用作权限判断。
         public string UserName = "";
         public string UserControlId = "";//关联表单id
@@ -116,8 +114,7 @@ namespace Ebada.SCGL.WFlow.Tool
         private DataTable rizdt = null;
 
 
-        public fmTaskStart(StartTask startTask, string userId, string userName)
-        {
+        public fmTaskStart(StartTask startTask, string userId, string userName) {
             //
             // Windows 窗体设计器支持所必需的
             //
@@ -130,12 +127,9 @@ namespace Ebada.SCGL.WFlow.Tool
         /// <summary>
         /// 清理所有正在使用的资源。
         /// </summary>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (components != null)
-                {
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
+                if (components != null) {
                     components.Dispose();
                 }
             }
@@ -147,8 +141,7 @@ namespace Ebada.SCGL.WFlow.Tool
         /// 设计器支持所需的方法 - 不要使用代码编辑器修改
         /// 此方法的内容。
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmTaskStart));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -1106,8 +1099,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
         }
         #endregion
-        private void InitData()
-        {
+        private void InitData() {
             tbxTaskName.Text = NowTask.TaskName;
             tbxTaskDes.Text = NowTask.Description;
             if (NowTask.OperRule == "1")
@@ -1121,8 +1113,7 @@ namespace Ebada.SCGL.WFlow.Tool
             lvCommand.Columns.Add("CommandId", 0, HorizontalAlignment.Left);
             lvCommand.Columns.Add("描述", 100, HorizontalAlignment.Left);
             DataTable taskCommand = WorkFlowTask.GetTaskCommands(NowTask.WorkFlowId, NowTask.TaskId);
-            foreach (DataRow dr in taskCommand.Rows)
-            {
+            foreach (DataRow dr in taskCommand.Rows) {
                 ListViewItem lvi1 = new ListViewItem(dr["CommandName"].ToString(), 0);
                 lvi1.SubItems.Add(dr["CommandId"].ToString());
                 lvi1.SubItems.Add(dr["Description"].ToString());
@@ -1139,8 +1130,7 @@ namespace Ebada.SCGL.WFlow.Tool
             lvOper.Columns.Add("处理者", 100, HorizontalAlignment.Left);
             lvOper.Columns.Add("operDisplay", 100, HorizontalAlignment.Left);
             DataTable OperTable = WorkFlowTask.GetTaskOperator(NowTask.WorkFlowId, NowTask.TaskId);
-            foreach (DataRow dr in OperTable.Rows)
-            {
+            foreach (DataRow dr in OperTable.Rows) {
                 ListViewItem lvi1 = new ListViewItem(dr["Description"].ToString(), 0);
                 lvi1.SubItems.Add(dr["OperatorId"].ToString());
                 if (Convert.ToBoolean(dr["InorExclude"]))
@@ -1166,8 +1156,7 @@ namespace Ebada.SCGL.WFlow.Tool
             lvVar.Columns.Add("访问类型", 100, HorizontalAlignment.Left);
             //加载系统变量
             List<SystemVarItem> sysVarItem = SystemVarData.GetSystemVarItems();
-            foreach (SystemVarItem var in sysVarItem)
-            {
+            foreach (SystemVarItem var in sysVarItem) {
                 ListViewItem lvi1 = new ListViewItem(var.VarName, 0);
                 lvi1.SubItems.Add("");
                 lvi1.SubItems.Add(var.VarType);
@@ -1181,8 +1170,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 lvVar.Items.Add(lvi1);
             }
             DataTable VarTable = WorkFlowTask.GetTaskVar(NowTask.TaskId);
-            foreach (DataRow dr in VarTable.Rows)
-            {
+            foreach (DataRow dr in VarTable.Rows) {
                 ListViewItem lvi1 = new ListViewItem(dr["VarName"].ToString(), 0);
                 lvi1.SubItems.Add(dr["TaskVarId"].ToString());
                 lvi1.SubItems.Add(dr["VarType"].ToString());
@@ -1197,8 +1185,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //*********控制权限
             DataTable powerTable = WorkFlowTask.GetTaskPower(NowTask.WorkFlowId, NowTask.TaskId);
             string powerStr = "";
-            foreach (DataRow dr in powerTable.Rows)
-            {
+            foreach (DataRow dr in powerTable.Rows) {
                 powerStr = powerStr + dr["PowerName"].ToString() + ",";
             }
             cbxRiZhi.Checked = powerStr.IndexOf(WorkConst.WorkTask_WorkRiZhi) > -1;//工作日志
@@ -1206,8 +1193,7 @@ namespace Ebada.SCGL.WFlow.Tool
             cbxTaskAllExplore.Checked = powerStr.IndexOf(WorkConst.WorkTask_WorkAllExplore) > -1;//允许所有人导出
             //模块
             DataTable modleTable = WorkFlowTask.GetTaskModle(NowTask.TaskId);
-            if (modleTable != null && modleTable.Rows.Count > 0)
-            {
+            if (modleTable != null && modleTable.Rows.Count > 0) {
                 tbxModleName.Text = modleTable.Rows[0]["ModuName"].ToString();
                 UserModleId = modleTable.Rows[0]["Modu_ID"].ToString();
                 mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(UserModleId);
@@ -1219,31 +1205,23 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             //表单
             DataTable ctrlTable = WorkFlowTask.GetTaskControls(NowTask.TaskId);
-            if (ctrlTable != null && ctrlTable.Rows.Count > 0)
-            {
+            if (ctrlTable != null && ctrlTable.Rows.Count > 0) {
                 tbxFormName.Text = ctrlTable.Rows[0]["CellName"].ToString();
                 UserControlId = ctrlTable.Rows[0]["LPID"].ToString();
             }
             //可操作字段
-            if (UserControlId != "节点审核")
-            {
+            if (UserControlId != "节点审核") {
                 IList<WF_TableUsedField> ulist = MainHelper.PlatformSqlMap.GetList<WF_TableUsedField>("SelectWF_TableUsedFieldList", "where UserControlId ='" + UserControlId + "' and WorktaskId='" + NowTask.TaskId + "' and WorkflowId='" + NowTask.WorkFlowId + "'");
-                for (int i = 0; i < ulist.Count; i++)
-                {
-                    if (tbxFiledName.Text == "")
-                    {
+                for (int i = 0; i < ulist.Count; i++) {
+                    if (tbxFiledName.Text == "") {
                         tbxFiledName.Text = ulist[i].FieldName;
-                    }
-                    else
-                    {
+                    } else {
                         tbxFiledName.Text += "," + ulist[i].FieldName;
 
                     }
 
                 }
-            }
-            else
-            {
+            } else {
                 label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                 tbxFiledName.Text = "不可用";
                 tbxFiledName.Tag = null;
@@ -1254,8 +1232,7 @@ namespace Ebada.SCGL.WFlow.Tool
             //*********日志控制
             iniRiZhiData();
         }
-        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName)
-        {
+        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName) {
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
             Type tp = assembly.GetType(moduTypes);
@@ -1265,14 +1242,11 @@ namespace Ebada.SCGL.WFlow.Tool
             fromCtrl = Activator.CreateInstance(tp);
             //else//窗体的构造函数需要参数
             //    fromCtrl = Activator.CreateInstance(tp, method);
-            if (fromCtrl is UserControl)
-            {
+            if (fromCtrl is UserControl) {
                 UserControl uc = fromCtrl as UserControl;
                 uc.Name = moduName;
 
-            }
-            else if (fromCtrl is Form)
-            {
+            } else if (fromCtrl is Form) {
                 Form fm = fromCtrl as Form;
                 fm.Name = moduName;
             }
@@ -1283,61 +1257,47 @@ namespace Ebada.SCGL.WFlow.Tool
             //}
             return fromCtrl;
         }
-        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance)
-        {
+        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance) {
             int num;
-            if (assemblyName == null)
-            {
+            if (assemblyName == null) {
                 assemblyName = string.Empty;
             }
-            if ((className == null) || (className == string.Empty))
-            {
+            if ((className == null) || (className == string.Empty)) {
                 return null;
             }
-            if (string.IsNullOrEmpty(methodName))
-            {
+            if (string.IsNullOrEmpty(methodName)) {
                 methodName = "Show";
             }
-            if (paramValues == null)
-            {
+            if (paramValues == null) {
                 paramValues = new object[0];
             }
             object obj2 = null;
             Type type = Assembly.GetExecutingAssembly().GetType(className);
-            if (null == type)
-            {
+            if (null == type) {
                 type = ((assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + @"\" + assemblyName)).GetType(className, true);
             }
             Type[] types = new Type[paramValues.Length];
-            for (num = 0; num < paramValues.Length; num++)
-            {
+            for (num = 0; num < paramValues.Length; num++) {
                 types[num] = paramValues[num].GetType();
             }
             MethodInfo method = type.GetMethod(methodName, types);
-            if (method == null)
-            {
+            if (method == null) {
                 return obj2;
             }
             ParameterInfo[] parameters = method.GetParameters();
-            if (parameters.Length != paramValues.Length)
-            {
+            if (parameters.Length != paramValues.Length) {
                 return obj2;
             }
             object[] objArray = new object[paramValues.Length];
-            for (num = 0; num < paramValues.Length; num++)
-            {
+            for (num = 0; num < paramValues.Length; num++) {
                 objArray[num] = Convert.ChangeType(paramValues[num], parameters[num].ParameterType, CultureInfo.InvariantCulture);
             }
-            if (classInstance == null)
-            {
+            if (classInstance == null) {
                 classInstance = method.IsStatic ? null : Activator.CreateInstance(type);
             }
-            if ((classInstance is Form) && (mdi != null))
-            {
+            if ((classInstance is Form) && (mdi != null)) {
                 ((Form)classInstance).MdiParent = mdi;
-            }
-            else if (classInstance is UserControl)
-            {
+            } else if (classInstance is UserControl) {
                 return classInstance;
             }
             return method.Invoke(classInstance, objArray);
@@ -1345,18 +1305,15 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
 
-        private void iniRiZhiTablelcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string taskID, string tableID, string fieldID)
-        {
+        private void iniRiZhiTablelcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string taskID, string tableID, string fieldID) {
             //string tmpStr = " where ParentID not in (select LPID from LP_Temple where 1=1) ";
 
             //IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList", tmpStr);
             //DataTable dt = ConvertHelper.ToDataTable(li);
             DataTable dt = null;
             IList li;
-            if (UserControlId != "" && UserControlId != "节点审核")
-            {
-                if (dt == null)
-                {
+            if (UserControlId != "" && UserControlId != "节点审核") {
+                if (dt == null) {
                     dt = new DataTable();
                     dt.Columns.Add("LPID", typeof(string));
                     dt.Columns.Add("CellName", typeof(string));
@@ -1366,14 +1323,11 @@ namespace Ebada.SCGL.WFlow.Tool
                 dr["LPID"] = UserControlId;
                 dr["CellName"] = tbxFormName.Text;
                 dt.Rows.Add(dr);
-            }
-            else
-            {
+            } else {
                 dt = new DataTable();
             }
             WinFormFun.LoadComboBox(cbxtable, dt, "LPID", "CellName", tableID);
-            if (tableID != "")
-            {
+            if (tableID != "") {
 
                 li = MainHelper.PlatformSqlMap.GetList("SelectWF_TableUsedFieldList", "where UserControlId ='" + tableID + "' and WorktaskId='" + taskID + "'");
                 DataTable dtrow = null;
@@ -1382,35 +1336,27 @@ namespace Ebada.SCGL.WFlow.Tool
                 else
                     dtrow = new DataTable();
                 WinFormFun.LoadComboBox(cbxtablefield, dtrow, "FieldId", "FieldName", fieldID);
-            }
-            else
-            {
+            } else {
                 DataTable dtrow = new DataTable();
                 WinFormFun.LoadComboBox(cbxtablefield, dtrow, "FieldId", "FieldName", fieldID);
             }
         }
-        private void iniRiZhiDbcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string varDbTableName, string tablename, string fieldID)
-        {
+        private void iniRiZhiDbcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string varDbTableName, string tablename, string fieldID) {
             // IList li = MainHelper.PlatformSqlMap.GetList("GetTableName", "  where type = 'U' and  1=1 ");
             DataTable dt = null;
             IList li;
-            if (varDbTableName != "")
-            {
+            if (varDbTableName != "") {
                 string[] strname = varDbTableName.Split(',');
-                if (dt == null)
-                {
+                if (dt == null) {
                     dt = new DataTable();
                     dt.Columns.Add("name", typeof(string));
                 }
-                for (int i = 0; i < strname.Length; i++)
-                {
+                for (int i = 0; i < strname.Length; i++) {
                     DataRow dr = dt.NewRow();
                     dr["name"] = strname[i];
                     dt.Rows.Add(dr);
                 }
-            }
-            else
-            {
+            } else {
                 //li = MainHelper.PlatformSqlMap.GetList("GetTableName", "  where type = 'U' and  1=1 ");
                 //dt = ConvertHelper.ToDataTable(li);
                 dt = new DataTable();
@@ -1418,8 +1364,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
             WinFormFun.LoadComboBox(cbxtable, dt, "name", "name", tablename);
-            if (tablename != "")
-            {
+            if (tablename != "") {
                 li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", tablename);
                 DataTable dtrow = null;
                 if (li.Count > 0)
@@ -1427,9 +1372,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 else
                     dtrow = new DataTable();
                 WinFormFun.LoadComboBox(cbxtablefield, dtrow, "name", "name", fieldID);
-            }
-            else
-            {
+            } else {
                 DataTable dtrow = new DataTable();
                 WinFormFun.LoadComboBox(cbxtablefield, dtrow, "name", "name", fieldID);
             }
@@ -1602,18 +1545,15 @@ namespace Ebada.SCGL.WFlow.Tool
         //        iniRiZhiDbcbxData(cbxAttendManDbTable, cbxAttendManDbTableColumns, varDbTableName, "", "");
         //    }
         //}
-        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
+        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e) {
             e.Cancel = true;
         }
-        private void iniRiZhiData()
-        {
+        private void iniRiZhiData() {
             int i = 0;
             memoEdit1.Text = "说明 SQL语句支持中的特殊代码\r\n 固定值中 数字+数字:{1+10}表示1到10用于序号 {sortid}:当前表单的序号为sortid的字段\r\n{recordid}:票LP_Record的ID\r\n{orgcode}:用户单位编号\r\n{userid}:用户编号\r\n";
             this.memoEdit1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit1_EditValueChanging);
 
-            if (rizdt == null)
-            {
+            if (rizdt == null) {
                 rizdt = new DataTable();
                 rizdt.Columns.Add("name", typeof(string));
                 rizdt.Columns.Add("sql", typeof(string));
@@ -1636,8 +1576,7 @@ namespace Ebada.SCGL.WFlow.Tool
             dt = new DataTable();
             dt.Columns.Add("name", typeof(string));
 
-            for (i = 0; i < li.Count; i++)
-            {
+            for (i = 0; i < li.Count; i++) {
                 DataRow dr2 = dt.NewRow();
                 dr2["name"] = li[i];
                 dt.Rows.Add(dr2);
@@ -1675,8 +1614,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
             WinFormFun.LoadComboBox(columnBox, rizdt, "sql", "name");
         }
-        private void SaveData()
-        {
+        private void SaveData() {
             //保存任务
             NowTask.TaskName = tbxTaskName.Text;
             NowTask.Description = tbxTaskDes.Text;
@@ -1689,20 +1627,16 @@ namespace Ebada.SCGL.WFlow.Tool
 
             //保存任务处理者
             WorkFlowTask.DeleteAllOperator(NowTask.TaskId);
-            foreach (ListViewItem lt in lvOper.Items)
-            {
+            foreach (ListViewItem lt in lvOper.Items) {
                 Operator oper = new Operator();
                 oper.OperatorId = lt.SubItems[1].Text;
                 oper.WorkFlowId = NowTask.WorkFlowId;
                 oper.WorkTaskId = NowTask.TaskId;
                 oper.Description = lt.Text;
-                if (lt.SubItems[2].Text == "包含")
-                {
+                if (lt.SubItems[2].Text == "包含") {
                     oper.InorExclude = true;
-                }
-                else
-                    if (lt.SubItems[2].Text == "排除")
-                    {
+                } else
+                    if (lt.SubItems[2].Text == "排除") {
                         oper.InorExclude = false;
                     }
 
@@ -1715,8 +1649,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
             //保存任务变量
             WorkFlowTask.DeleteAllTaskVar(NowTask.TaskId);
-            foreach (ListViewItem lt in lvVar.Items)
-            {
+            foreach (ListViewItem lt in lvVar.Items) {
                 bool isSysVar = SystemVarData.isSystemVar(lt.Text);
                 if (isSysVar) continue;//跳过系统变量
                 TaskVar tmpTaskVar = new TaskVar();
@@ -1736,8 +1669,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
             //保存任务命令
             WorkFlowTask.DeleteAllCommands(NowTask.TaskId);
-            foreach (ListViewItem lt in lvCommand.Items)
-            {
+            foreach (ListViewItem lt in lvCommand.Items) {
                 WorkTaskCommands taskCommand = new WorkTaskCommands();
                 taskCommand.WorkFlowId = NowTask.WorkFlowId;
                 taskCommand.WorkTaskId = NowTask.TaskId;
@@ -1750,17 +1682,14 @@ namespace Ebada.SCGL.WFlow.Tool
             //保存控制权限
             WorkFlowTask.DeleteAllPower(NowTask.WorkFlowId, NowTask.TaskId);
 
-            if (cbxRiZhi.Checked)
-            {
+            if (cbxRiZhi.Checked) {
                 WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkRiZhi, NowTask.WorkFlowId, NowTask.TaskId);
                 SaveRiZhiData();
             }
-            if (cbxTaskExplore.Checked)
-            {
+            if (cbxTaskExplore.Checked) {
                 WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkExplore, NowTask.WorkFlowId, NowTask.TaskId);
             }
-            if (cbxTaskAllExplore.Checked)
-            {
+            if (cbxTaskAllExplore.Checked) {
                 WorkFlowTask.SetTaskPower(WorkConst.WorkTask_WorkAllExplore, NowTask.WorkFlowId, NowTask.TaskId);
             }
             //保存关联表单
@@ -1913,18 +1842,15 @@ namespace Ebada.SCGL.WFlow.Tool
         //    tv.InsertTaskVar();
 
         //}
-        private void SaveRiZhiData()
-        {
-            foreach (DataRow dr in rizdt.Rows)
-            {
+        private void SaveRiZhiData() {
+            foreach (DataRow dr in rizdt.Rows) {
                 TaskVar tv = new TaskVar();
                 tv.WorkFlowId = NowTask.WorkFlowId;
                 tv.WorkTaskId = NowTask.TaskId;
                 tv.VarName = dr["name"].ToString();
                 tv.AccessType = WorkConst.WorkTask_WorkRiZhi;
                 tv.InitValue = dr["sql"].ToString();
-                if(tv.InitValue.IndexOf("Excel:")>-1 )
-                {
+                if (tv.InitValue.IndexOf("Excel:") > -1) {
                     String[] ss = tv.InitValue.Split(':');
                     tv.VarModule = "Excel";
                     tv.TableName = ss[1];
@@ -1934,19 +1860,16 @@ namespace Ebada.SCGL.WFlow.Tool
             }
 
         }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
+        private void tabPage1_Click(object sender, EventArgs e) {
 
         }
 
-        private void btnAddcmd_Click(object sender, EventArgs e)
-        {
+        private void btnAddcmd_Click(object sender, EventArgs e) {
             fmAddCommands tmpfmCommand = new fmAddCommands(WorkConst.STATE_ADD);
             tmpfmCommand.CommandId = Guid.NewGuid().ToString();
             tmpfmCommand.ShowDialog();
             DialogResult dlr = tmpfmCommand.DialogResult;
-            if (dlr == DialogResult.OK)
-            {
+            if (dlr == DialogResult.OK) {
 
                 ListViewItem lvi1 = new ListViewItem(tmpfmCommand.tbxCommandName.Text, 0);
                 lvi1.SubItems.Add(tmpfmCommand.CommandId);
@@ -1957,20 +1880,17 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
+        private void btnClose_Click(object sender, EventArgs e) {
             Close();
         }
 
-        private void btnAddOpr_Click(object sender, EventArgs e)
-        {
+        private void btnAddOpr_Click(object sender, EventArgs e) {
             fmOperator tmpfmOperator = new fmOperator(WorkConst.STATE_ADD);
             tmpfmOperator.OperId = Guid.NewGuid().ToString();
             tmpfmOperator.WorkflowId = NowTask.WorkFlowId;
             tmpfmOperator.ShowDialog();
             DialogResult dlr = tmpfmOperator.DialogResult;
-            if (dlr == DialogResult.OK)
-            {
+            if (dlr == DialogResult.OK) {
 
                 ListViewItem lvi1 = new ListViewItem(tmpfmOperator.Description, 0);
                 lvi1.SubItems.Add(tmpfmOperator.OperId);
@@ -1988,15 +1908,12 @@ namespace Ebada.SCGL.WFlow.Tool
 
         }
 
-        private void fmTaskStart_Load(object sender, EventArgs e)
-        {
+        private void fmTaskStart_Load(object sender, EventArgs e) {
             InitData();
         }
 
-        private void btnModifyOpr_Click(object sender, EventArgs e)
-        {
-            if (lvOper.SelectedItems.Count > 0)
-            {
+        private void btnModifyOpr_Click(object sender, EventArgs e) {
+            if (lvOper.SelectedItems.Count > 0) {
 
                 ListViewItem lvi1 = lvOper.SelectedItems[0];
                 fmOperator tmpfmOperator = new fmOperator(WorkConst.STATE_MOD);
@@ -2014,8 +1931,7 @@ namespace Ebada.SCGL.WFlow.Tool
                 tmpfmOperator.OperDisplay = lvi1.SubItems[6].Text;
                 tmpfmOperator.ShowDialog();
                 DialogResult dlr = tmpfmOperator.DialogResult;
-                if (dlr == DialogResult.OK)
-                {
+                if (dlr == DialogResult.OK) {
                     lvi1.Text = tmpfmOperator.Description;
                     lvi1.SubItems[1].Text = tmpfmOperator.OperId;
                     if (tmpfmOperator.InorExclude)
@@ -2032,10 +1948,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void btnModifycmd_Click(object sender, EventArgs e)
-        {
-            if (lvCommand.SelectedItems.Count > 0)
-            {
+        private void btnModifycmd_Click(object sender, EventArgs e) {
+            if (lvCommand.SelectedItems.Count > 0) {
                 ListViewItem lvi1 = lvCommand.SelectedItems[0];
                 fmAddCommands tmpfmCommand = new fmAddCommands(WorkConst.STATE_MOD);
                 tmpfmCommand.tbxCommandName.Text = lvi1.Text;
@@ -2044,8 +1958,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 tmpfmCommand.ShowDialog();
                 DialogResult dlr = tmpfmCommand.DialogResult;
-                if (dlr == DialogResult.OK)
-                {
+                if (dlr == DialogResult.OK) {
                     lvi1.Text = tmpfmCommand.tbxCommandName.Text;
                     lvi1.SubItems[1].Text = tmpfmCommand.CommandId;
                     lvi1.SubItems[2].Text = tmpfmCommand.tbxDes.Text;
@@ -2053,32 +1966,25 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void btnDeleteOpr_Click(object sender, EventArgs e)
-        {
-            if (lvOper.SelectedItems.Count > 0)
-            {
+        private void btnDeleteOpr_Click(object sender, EventArgs e) {
+            if (lvOper.SelectedItems.Count > 0) {
                 lvOper.Items.Remove(lvOper.SelectedItems[0]);
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
+        private void btnSave_Click(object sender, EventArgs e) {
             SaveData();
         }
-        private bool varExists(string varName)
-        {
-            if (lvVar.Items.Count > 0)
-            {
-                foreach (ListViewItem lt in lvVar.Items)
-                {
+        private bool varExists(string varName) {
+            if (lvVar.Items.Count > 0) {
+                foreach (ListViewItem lt in lvVar.Items) {
                     if (varName == lt.Text)
                         return true;
                 }
             }
             return false;
         }
-        private void btnAddVar_Click(object sender, EventArgs e)
-        {
+        private void btnAddVar_Click(object sender, EventArgs e) {
             fmTaskVar tmpfmTaskVar = new fmTaskVar(WorkConst.STATE_ADD);
             tmpfmTaskVar.TaskVarId = Guid.NewGuid().ToString();
             tmpfmTaskVar.varDataBaseName = "";
@@ -2086,14 +1992,11 @@ namespace Ebada.SCGL.WFlow.Tool
             tmpfmTaskVar.varTableColumnName = "";
             tmpfmTaskVar.ShowDialog();
             DialogResult dlr = tmpfmTaskVar.DialogResult;
-            if (dlr == DialogResult.OK)
-            {
-                if (tmpfmTaskVar.tbxVarName.Text.Trim().Length == 0)
-                {
+            if (dlr == DialogResult.OK) {
+                if (tmpfmTaskVar.tbxVarName.Text.Trim().Length == 0) {
                     return;
                 }
-                if (varExists(tmpfmTaskVar.tbxVarName.Text))
-                {
+                if (varExists(tmpfmTaskVar.tbxVarName.Text)) {
                     MsgBox.ShowWarningMessageBox("变量" + tmpfmTaskVar.tbxVarName.Text + "已存在,不能填加!");
                     return;
                 }
@@ -2110,10 +2013,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void btnModifyVar_Click(object sender, EventArgs e)
-        {
-            if (lvVar.SelectedItems.Count > 0)
-            {
+        private void btnModifyVar_Click(object sender, EventArgs e) {
+            if (lvVar.SelectedItems.Count > 0) {
 
                 ListViewItem lvi1 = lvVar.SelectedItems[0];
                 bool isSysVar = SystemVarData.isSystemVar(lvi1.Text);
@@ -2129,25 +2030,19 @@ namespace Ebada.SCGL.WFlow.Tool
                 tmpfmTaskVar.varTableColumnName = lvi1.SubItems[6].Text;
                 tmpfmTaskVar.tbxIniValue.Text = lvi1.SubItems[7].Text;
                 string accessType = lvi1.SubItems[8].Text;
-                if (accessType.Trim().Length == 0)
-                {
+                if (accessType.Trim().Length == 0) {
                     tmpfmTaskVar.cbxAccessType.SelectedIndex = 0;
-                }
-                else
-                {
+                } else {
                     if (char.IsNumber(accessType[0]))
                         tmpfmTaskVar.cbxAccessType.SelectedIndex = Convert.ToInt16(accessType);
                 }
                 tmpfmTaskVar.ShowDialog();
                 DialogResult dlr = tmpfmTaskVar.DialogResult;
-                if (dlr == DialogResult.OK)
-                {
-                    if (tmpfmTaskVar.tbxVarName.Text.Trim().Length == 0)
-                    {
+                if (dlr == DialogResult.OK) {
+                    if (tmpfmTaskVar.tbxVarName.Text.Trim().Length == 0) {
                         return;
                     }
-                    if (lvi1.Text != tmpfmTaskVar.tbxVarName.Text && varExists(tmpfmTaskVar.tbxVarName.Text))
-                    {
+                    if (lvi1.Text != tmpfmTaskVar.tbxVarName.Text && varExists(tmpfmTaskVar.tbxVarName.Text)) {
                         MsgBox.ShowWarningMessageBox("变量" + tmpfmTaskVar.tbxVarName.Text + "已存在,请使用其他名称!");
                         return;
                     }
@@ -2169,29 +2064,23 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void btnDeleteVar_Click(object sender, EventArgs e)
-        {
-            if (lvVar.SelectedItems.Count > 0)
-            {
+        private void btnDeleteVar_Click(object sender, EventArgs e) {
+            if (lvVar.SelectedItems.Count > 0) {
                 lvVar.Items.Remove(lvVar.SelectedItems[0]);
             }
         }
 
-        private void btnDeletecmd_Click(object sender, EventArgs e)
-        {
-            if (lvCommand.SelectedItems.Count > 0)
-            {
+        private void btnDeletecmd_Click(object sender, EventArgs e) {
+            if (lvCommand.SelectedItems.Count > 0) {
                 lvCommand.Items.Remove(lvCommand.SelectedItems[0]);
             }
         }
 
-        private void btnSelectCtrls_Click(object sender, EventArgs e)
-        {
+        private void btnSelectCtrls_Click(object sender, EventArgs e) {
             fmSelectMainUserCtrl tmpfmSelectCtrl = new fmSelectMainUserCtrl(tbxFormName.Text);
             tmpfmSelectCtrl.ShowDialog();
             DialogResult dlr = tmpfmSelectCtrl.DialogResult;
-            if (dlr == DialogResult.OK && tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems.Count > 0)
-            {
+            if (dlr == DialogResult.OK && tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems.Count > 0) {
                 UserControlId = tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems[0].SubItems[1].Text;
                 tbxFormName.Text = tmpfmSelectCtrl.lvMainUserCtrl.SelectedItems[0].Text;
 
@@ -2201,10 +2090,8 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void lvVar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvVar.SelectedItems.Count > 0)
-            {
+        private void lvVar_SelectedIndexChanged(object sender, EventArgs e) {
+            if (lvVar.SelectedItems.Count > 0) {
                 ListViewItem lvi1 = lvVar.SelectedItems[0];
                 bool isSysVar = SystemVarData.isSystemVar(lvi1.Text);
                 btnModifyVar.Enabled = !isSysVar;
@@ -2212,19 +2099,16 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void btnSelectModle_Click(object sender, EventArgs e)
-        {
+        private void btnSelectModle_Click(object sender, EventArgs e) {
             SelctTaskModleForm fm = new SelctTaskModleForm();
             fm.Workflowid = NowTask.WorkFlowId;
             fm.Taskid = NowTask.TaskId;
             fm.StrModleId = UserModleId;
-            if (fm.ShowDialog() == DialogResult.OK)
-            {
+            if (fm.ShowDialog() == DialogResult.OK) {
                 UserModleId = fm.StrModleId;
                 tbxModleName.Text = fm.StrModleName;
                 mModule obj = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(UserModleId);
-                if (obj != null && obj.ModuTypes.IndexOf("frmLP") == -1)
-                {
+                if (obj != null && obj.ModuTypes.IndexOf("frmLP") == -1) {
                     UserControlId = "节点审核";
                     tbxFormName.Text = "节点提交";
 
@@ -2233,11 +2117,8 @@ namespace Ebada.SCGL.WFlow.Tool
                     label2.Text = "处理(任务命令可用代码{01：提交文件模块，02：手动结束}):";
                     btnSelectCtrls.Enabled = false;
                     btnSelctField.Enabled = false;
-                }
-                else
-                {
-                    if (UserControlId == "节点审核")
-                    {
+                } else {
+                    if (UserControlId == "节点审核") {
                         UserControlId = "";
                         tbxFormName.Text = "";
 
@@ -2259,10 +2140,8 @@ namespace Ebada.SCGL.WFlow.Tool
         }
 
 
-        private void btnSelctField_Click(object sender, EventArgs e)
-        {
-            if (UserControlId == "")
-            {
+        private void btnSelctField_Click(object sender, EventArgs e) {
+            if (UserControlId == "") {
                 MsgBox.ShowWarningMessageBox("请先选择表单");
                 return;
             }
@@ -2270,24 +2149,21 @@ namespace Ebada.SCGL.WFlow.Tool
             stf.TableID = UserControlId;
             stf.Taskid = NowTask.TaskId;
             stf.Workflowid = NowTask.WorkFlowId;
-            if (stf.ShowDialog() == DialogResult.OK)
-            {
+            if (stf.ShowDialog() == DialogResult.OK) {
                 tbxFiledName.Tag = stf.StrFieldidList;
                 tbxFiledName.Text = stf.StrFieldNameList;
                 iniRiZhiData();
             }
         }
 
-        private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDataTable_SelectedIndexChanged(object sender, EventArgs e) {
             if (cbxWorkDataTable.SelectedIndex == 0) return;
 
             IList li = MainHelper.PlatformSqlMap.GetList("SelectLP_TempleList",
                 "where ParentID ='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' order by sortid");
             DataTable dt = new DataTable();
             if (li.Count > 0) dt = ConvertHelper.ToDataTable(li);
-            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++)
-            {
+            for (int i = 0; i < dt.Rows.Count && li.Count > 0; i++) {
                 dt.Rows[i]["cellname"] = dt.Rows[i]["SortID"] + " " + dt.Rows[i]["cellname"];
 
             }
@@ -2299,11 +2175,9 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
 
-        private void btnModleClear_Click(object sender, EventArgs e)
-        {
+        private void btnModleClear_Click(object sender, EventArgs e) {
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认清除关联模块?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联模块?") != DialogResult.OK) {
                 return;
             }
             //保存关联模块
@@ -2315,11 +2189,9 @@ namespace Ebada.SCGL.WFlow.Tool
             btnSelctField.Enabled = true;
         }
 
-        private void btnTableClear_Click(object sender, EventArgs e)
-        {
+        private void btnTableClear_Click(object sender, EventArgs e) {
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认清除关联表单?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联表单?") != DialogResult.OK) {
                 return;
             }
             //保存关联表单
@@ -2332,40 +2204,31 @@ namespace Ebada.SCGL.WFlow.Tool
             label2.Text = "处理";
         }
 
-        private void btnFieldClear_Click(object sender, EventArgs e)
-        {
+        private void btnFieldClear_Click(object sender, EventArgs e) {
 
             //请求确认
-            if (MsgBox.ShowAskMessageBox("是否确认清除关联字段?") != DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联字段?") != DialogResult.OK) {
                 return;
             }
             WorkFlowTask.DeleteAllTableField(NowTask.WorkFlowId, NowTask.TaskId);
             tbxFiledName.Tag = null;
             tbxFiledName.Text = "";
         }
-        private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns)
-        {
-            if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0)
-            {
+        private void SetDataBaseSQL(DevExpress.XtraEditors.TextEdit tetSQL, ComboBox cbxDbTable, ComboBox cbxDbTableColumns) {
+            if (cbxDbTable.SelectedIndex > 0 && cbxDbTableColumns.SelectedIndex > 0) {
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '" + ((ListItem)cbxDbTable.SelectedItem).ID + "'");
-                if (list.Count > 0 && 1 == 0)
-                {
+                if (list.Count > 0 && 1 == 0) {
                     tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 and " + list[0].ToString() + "='{" + list[0].ToString() + "}'";
-                }
-                else
-                {
+                } else {
                     tetSQL.Text = "select " + cbxDbTableColumns.Text + " from " + cbxDbTable.Text + " where 5=5 ";
                 }
-                if (ceBind.Checked)
-                {
+                if (ceBind.Checked) {
                     if (cbxDbTable.Text == "WF_TableFieldValueView")
                         tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
                     else
                         if (cbxDbTable.Text == "LP_Record")
                             tetSQL.Text = "" + tetSQL.Text + " and id='{recordid}'";
-                        else
-                        {
+                        else {
 
 
                             tetSQL.Text = "" + tetSQL.Text + " and " + list[0].ToString()
@@ -2379,21 +2242,16 @@ namespace Ebada.SCGL.WFlow.Tool
 
 
 
-        private void columnBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void columnBox_SelectedIndexChanged(object sender, EventArgs e) {
             string strSQLtemp = ((ListItem)columnBox.SelectedItem).ID;
             if (columnBox.SelectedIndex < 1) return;
-            if (strSQLtemp != "")
-            {
+            if (strSQLtemp != "") {
                 simpleButton3.Text = "修改";
-                if (strSQLtemp.IndexOf("9=9") > -1)
-                {
+                if (strSQLtemp.IndexOf("9=9") > -1) {
                     rbnWorkFixValue.Checked = true;
 
                     tetWorkFixValue.Text = strSQLtemp.Replace("select top 1 '", "").Replace("' from LP_Temple where 9=9", "");
-                }
-                else if (strSQLtemp.IndexOf("Excel:") > -1)
-                {
+                } else if (strSQLtemp.IndexOf("Excel:") > -1) {
                     rbnWorkExcel.Checked = true;
                     int index1 = strSQLtemp.LastIndexOf(":");
                     string tablename = strSQLtemp.Substring(6, index1 - 6);
@@ -2401,9 +2259,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                     cbxWorkExcelTable.Text = tablename;
                     tetWorkPos.Text = cellpos;
-                }
-                else if (strSQLtemp.IndexOf("10=10") > -1)
-                {
+                } else if (strSQLtemp.IndexOf("10=10") > -1) {
                     rbnWorkTable.Checked = true;
                     Regex r1 = new Regex(@"(?<=UserControlId=').*?(?=')");
                     //cbxWorkDataTable.Text = r1.Match(strSQL).Value;
@@ -2411,9 +2267,7 @@ namespace Ebada.SCGL.WFlow.Tool
                     r1 = new Regex(@"(?<=FieldId=').*?(?=')");
                     //cbxWorkTableColumns.Text = r1.Match(strSQL).Value;
                     setComoboxFocusIndex(cbxWorkTableColumns, r1.Match(strSQLtemp).Value);
-                }
-                else
-                {
+                } else {
                     rbnWorkDatabase.Checked = true;
                     int index1 = strSQLtemp.ToLower().IndexOf("select");
                     int index2 = strSQLtemp.ToLower().IndexOf("from");
@@ -2429,17 +2283,14 @@ namespace Ebada.SCGL.WFlow.Tool
                     tetWorkSQL.Text = strSQLtemp;
                 }
 
-            }
-            else
-            {
+            } else {
                 tetWorkFixValue.Text = "";
                 tetWorkSQL.Text = "";
                 simpleButton3.Text = "添加";
             }
         }
 
-        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDbTable_SelectedIndexChanged(object sender, EventArgs e) {
             if (cbxWorkDbTable.SelectedIndex < 1) return;
             IList li = MainHelper.PlatformSqlMap.GetList("GetTableColumns", ((ListItem)cbxWorkDbTable.SelectedItem).ID);
             DataTable dt = ConvertHelper.ToDataTable(li);
@@ -2448,19 +2299,15 @@ namespace Ebada.SCGL.WFlow.Tool
             SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
         }
 
-        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void cbxWorkDbTableColumns_SelectedIndexChanged(object sender, EventArgs e) {
             SetDataBaseSQL(tetWorkSQL, cbxWorkDbTable, cbxWorkDbTableColumns);
         }
-        void setComoboxFocusIndex(ComboBox cbx, string text)
-        {
+        void setComoboxFocusIndex(ComboBox cbx, string text) {
             int focusindex = -1, i = 0;
-            foreach (ListItem it in cbx.Items)
-            {
+            foreach (ListItem it in cbx.Items) {
 
                 ListItem l = it as ListItem;
-                if (l.ID == text)
-                {
+                if (l.ID == text) {
                     focusindex = i;
                     break;
                 }
@@ -2469,41 +2316,30 @@ namespace Ebada.SCGL.WFlow.Tool
             cbx.SelectedIndex = focusindex;
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
+        private void simpleButton3_Click(object sender, EventArgs e) {
             string strSQLtemp = "";
             simpleButton3.Text = "修改";
-            if (rbnWorkFixValue.Checked == true)
-            {
+            if (rbnWorkFixValue.Checked == true) {
 
                 strSQLtemp = "select top 1 '" + tetWorkFixValue.Text.Replace("\r\n", " ") + "' from LP_Temple where 9=9";
-            }
-            else if (rbnWorkTable.Checked == true)
-            {
+            } else if (rbnWorkTable.Checked == true) {
                 strSQLtemp = "select ControlValue from WF_TableFieldValue where 10=10  "
                     + "and UserControlId='" + ((ListItem)cbxWorkDataTable.SelectedItem).ID + "' "
                     + " and FieldId='" + ((ListItem)cbxWorkTableColumns.SelectedItem).ID + "' ";
-                if (ceBind.Checked)
-                {
+                if (ceBind.Checked) {
                     strSQLtemp = strSQLtemp + " and RecordId='{recordid}'";
                 }
 
-            }
-            else if (rbnWorkExcel.Checked == true)
-            {
+            } else if (rbnWorkExcel.Checked == true) {
                 strSQLtemp = "Excel:" + cbxWorkExcelTable.Text + ":" + tetWorkPos.Text;
-            }
-            else if (rbnWorkDatabase.Checked == true)
-            {
+            } else if (rbnWorkDatabase.Checked == true) {
                 strSQLtemp = tetWorkSQL.Text;
             }
 
 
             int i = 0;
-            foreach (DataRow dr in rizdt.Rows)
-            {
-                if (dr["name"].ToString() == columnBox.Text)
-                {
+            foreach (DataRow dr in rizdt.Rows) {
+                if (dr["name"].ToString() == columnBox.Text) {
                     dr["sql"] = strSQLtemp;
                     break;
                 }
@@ -2511,19 +2347,6 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             if (columnBox.Items.Count > i + 1) ((ListItem)columnBox.Items[i + 1]).ID = strSQLtemp;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

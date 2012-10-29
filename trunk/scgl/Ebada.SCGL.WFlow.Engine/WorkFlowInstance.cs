@@ -182,15 +182,15 @@ namespace Ebada.SCGL.WFlow.Engine
                          "OperatedDes,OperDateTime,taskEndTime,flowStartTime,flowEndTime,pOperatedDes,Description,OperStatus,taskInsType,TaskInsDescription";
 
         	    string  sqlstr="select top "+topsize.ToString()+" * from (";
-                 sqlstr=sqlstr+"  select "+filedstr +"  from WF_WorkTaskInstanceView  WHERE ";
+                sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE len(FlowCaption)>0 and";
                  sqlstr=sqlstr+" ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='"+userId+"') ) OR ";
                  sqlstr=sqlstr+" (OperContent = 'ALL')) and  (OperStatus='0') and ";
                  sqlstr=sqlstr+"(Status='1') "; //新任务
-                 sqlstr=sqlstr+"union  ";
+                 /*sqlstr=sqlstr+"union  ";
                  sqlstr=sqlstr+" select "+filedstr+ " from WF_WorkTaskInsAccreditView where ";
                  sqlstr=sqlstr+" AccreditToUserId='"+userId +"' and AccreditStatus='1' and status='1'  ";//--授权处理的任务
                  sqlstr=sqlstr+"union  ";
-                 sqlstr=sqlstr+ " select "+filedstr +" from WF_WorkTaskInstanceView where UserId='"+userId+"' and (status='1' or status='2')";//--已认领任务
+                 sqlstr=sqlstr+ " select "+filedstr +" from WF_WorkTaskInstanceView where UserId='"+userId+"' and (status='1' or status='2')";//--已认领任务*/
                  sqlstr=sqlstr+") a ";
                  sqlstr = sqlstr + "  order by FlowCaption, status, taskStartTime desc ";
                 Console.WriteLine (sqlstr);
