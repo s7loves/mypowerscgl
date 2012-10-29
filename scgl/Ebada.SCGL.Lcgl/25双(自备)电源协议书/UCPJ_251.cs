@@ -29,7 +29,7 @@ namespace Ebada.Scgl.Lcgl
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPJ_25 : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_251 : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_25> gridViewOperation;
 
@@ -37,7 +37,6 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-
 
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -133,7 +132,8 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value; ;
             }
         }
-        public UCPJ_25()
+
+        public UCPJ_251()
         {
             InitializeComponent();
             initImageList();
@@ -146,14 +146,6 @@ namespace Ebada.Scgl.Lcgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_25> e)
-        {
-            if (e.Value.BigData == null)
-            {
-                e.Value.BigData = new byte[0];
-            }
-
-        }
         void gridViewOperation_AfterAdd(PJ_25 newobj)
         {
             if (isWorkflowCall)
@@ -172,6 +164,14 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
             }
         }
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_25> e)
+        {
+            if (e.Value.BigData == null)
+            {
+                e.Value.BigData = new byte[0];
+            }
+
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_25> e)
         {
 
@@ -187,7 +187,6 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_25> e)
         {
             if (parentID == null)
@@ -196,6 +195,9 @@ namespace Ebada.Scgl.Lcgl
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            InitColumns();//初始列
+            InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -204,15 +206,9 @@ namespace Ebada.Scgl.Lcgl
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
-            InitColumns();//初始列
-            
+
         }
-        public void initcoment()
-        {
-            InitColumns();//初始列
-            InitData();//初始数据
-          
-        }
+
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
@@ -239,16 +235,10 @@ namespace Ebada.Scgl.Lcgl
         {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_25);
-            ucBottom.ParentObj = gridView1.GetFocusedRow() as PJ_25;
-
         }
         private void hideColumn(string colname)
         {
             gridView1.Columns[colname].Visible = false;
-            //需要隐藏列时在这写代码
-
-
-       
         }
         /// <summary>
         /// 初始化数据
@@ -260,7 +250,7 @@ namespace Ebada.Scgl.Lcgl
             //RefreshData("");
             if (MainHelper.UserOrg != null)
             {
-                string strSQL = "where ParentID='" + MainHelper.UserOrg.OrgCode + "' order by ID desc";
+                string strSQL = "where ParentID='" + MainHelper.UserOrg.OrgCode + "' ";
                 RefreshData(strSQL);
             }
         }
@@ -271,6 +261,7 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //需要隐藏列时在这写代码
+
 
             hideColumn("ParentID");
             hideColumn("gzrjID");
@@ -380,32 +371,15 @@ namespace Ebada.Scgl.Lcgl
                    {
                        DSOFramerControl ds1 = new DSOFramerControl();
                        ds1.FileData = OBJECT.BigData;
+                       ds1.FileClose();
                       // ds1.FileOpen(ds1.FileName);
+                       ExcelAccess ex = new ExcelAccess();
                      
                        string fname = ds1.FileName;
-                       ds1.FileClose(); 
-                       ExcelAccess ex = new ExcelAccess();
 
                        ex.Open(fname);
                        //此处写填充内容代码
-                       IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + OBJECT.ID + "'and Type='发电机'");
-                       IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + OBJECT.ID + "'and Type='原动机'");
-                       for (int i = 0; i < list.Count; i++)
-                       {
-                           ex.SetCellValue(list[i].xh, 26 + i, 1);
-                           ex.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 2);
-                           ex.SetCellValue(list[i].dy.ToString(), 26 + i, 3);
-                           ex.SetCellValue(list[i].azrq.ToString(), 26 + i, 4);
-                           ex.SetCellValue(list[i].sccj, 26 + i, 5);
-                       }
-                       for (int i = 0; i < list1.Count; i++)
-                       {
-                           ex.SetCellValue(list[i].xh, 26 + i, 8);
-                           ex.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
-                           ex.SetCellValue(list[i].dy.ToString(), 26 + i, 12);
-                           ex.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i, 13);
-                           ex.SetCellValue(list[i].sccj, 26 + i, 14);
-                       }
+
                        ex.ShowExcel();
                    }
                     else
@@ -426,53 +400,37 @@ namespace Ebada.Scgl.Lcgl
             if (gridView1.FocusedRowHandle > -1)
             {
                 PJ_25 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_25;
-                Export25.ExportExcel(OBJECT);
-                //if (OBJECT.BigData != null)
-                //{
-                //    if (OBJECT.BigData.Length != 0)
-                //    {
-                //        DSOFramerControl ds1 = new DSOFramerControl();
-                //        ds1.FileData = OBJECT.BigData;
-                //        // ds1.FileOpen(ds1.FileName);
-                //        ExcelAccess ex = new ExcelAccess();
+                if (OBJECT.BigData != null)
+                {
+                    if (OBJECT.BigData.Length != 0)
+                    {
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        ds1.FileData = OBJECT.BigData;
+                        string fname = ds1.FileName;
 
-                //        string fname = ds1.FileName;
+                        ds1.FileClose();
+                        // ds1.FileOpen(ds1.FileName);
+                        ExcelAccess ex = new ExcelAccess();
 
-                //        ex.Open(fname);
-                //        //此处写填充内容代码
-                //        IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + OBJECT.ID + "'and Type='发电机'");
-                //        IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + OBJECT.ID + "'and Type='原动机'");
-                //        for (int i = 0; i < list.Count; i++)
-                //        {
-                //            ex.SetCellValue(list[i].xh, 26 + i, 1);
-                //            ex.SetCellValue("'"+list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 2);
-                //            ex.SetCellValue(list[i].dy.ToString(), 26 + i, 3);
-                //            ex.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i, 4);
-                //            ex.SetCellValue(list[i].sccj, 26 + i, 5);
-                //        }
-                //        for (int i = 0; i < list1.Count; i++)
-                //        {
-                //            ex.SetCellValue(list[i].xh, 26 + i, 8);
-                //            ex.SetCellValue("'" + list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
-                //            ex.SetCellValue(list[i].dy.ToString(), 26 + i, 12);
-                //            ex.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i, 13);
-                //            ex.SetCellValue(list[i].sccj, 26 + i, 14);
-                //        }
-                //        ds1.FileClose();
-                //        ex.ShowExcel();
-                //    }
-                //    else
-                //    {
-                //        Export25.ExportExcel(OBJECT);
-                //    }
 
-                //}
-                //else
-                //{
-                //    Export25.ExportExcel(OBJECT);
-                //}
+                        ex.Open(fname);
+                        //此处写填充内容代码
+
+                        ex.ShowExcel();
+                    }
+                    else
+                    {
+                        Export25.ExportExcel(OBJECT);
+                    }
+
+                }
+                else
+                {
+                    Export25.ExportExcel(OBJECT);
+                }
             }
         }
+
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
