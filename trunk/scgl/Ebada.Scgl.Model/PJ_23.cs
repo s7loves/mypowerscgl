@@ -24,7 +24,8 @@ namespace Ebada.Scgl.Model
         private string _id=Newid(); 
         private string _parentid=String.Empty; 
         private string _cqfw=String.Empty; 
-        private string _cqdw=String.Empty; 
+        private string _cqdw=String.Empty;
+        private string _jf = String.Empty;
         private DateTime _qdrq=new DateTime(1900,1,1); 
         private string _qxydd=String.Empty; 
         private string _xybh=String.Empty; 
@@ -125,7 +126,26 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：cqdw
+        /// 属性描述：产权单位
+        /// 字段信息：[cqdw],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("甲方")]
+        public string jf
+        {
+            get { return _jf; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[产权单位]长度不能大于50!");
+                if (_jf as object == null || !_jf.Equals(value))
+                {
+                    _jf = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：qdrq
         /// 属性描述：签订日期

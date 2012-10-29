@@ -33,6 +33,7 @@ namespace Ebada.Scgl.Model
         private string _remark = "";
         private string _s1 = "";
         private string _s2 = "";
+        private bool _IsSelect = false;
         private string _s3 = "";
         private DateTime _createdate=new DateTime(1900,1,1); 
 
@@ -184,7 +185,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+       
         /// <summary>
         /// 属性名称：ASSOrgname
         /// 属性描述：配合检修单位
@@ -202,7 +203,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        
         /// <summary>
         /// 属性名称：Remark
         /// 属性描述：备注
@@ -255,6 +256,22 @@ namespace Ebada.Scgl.Model
                     _s2 = value;
                 }
             }			 
+        }
+        /// <summary>
+        /// 属性名称： IsSelect
+        /// 属性描述：
+        /// 字段信息：[IsSelect],bool
+        /// </summary>
+        [DisplayNameAttribute("选择标记")]
+        public bool IsSelect
+        {
+            get { return _IsSelect; }
+            set
+            {
+               
+                    _IsSelect = value;
+               
+            }
         }
   
         /// <summary>

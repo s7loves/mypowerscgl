@@ -17,6 +17,7 @@
         <result property="Remark" column="Remark" />
         <result property="S1" column="S1" />
         <result property="S2" column="S2" />
+         <result property="IsSelect" column="IsSelect" />
         <result property="S3" column="S3" />
         <result property="CreateDate" column="CreateDate" />
       </resultMap>
@@ -37,6 +38,7 @@
      [Remark],
      [S1],
      [S2],
+     [IsSelect],
      [S3],
      [CreateDate]
      FROM PJ_tdjh
@@ -57,6 +59,7 @@
      [Remark],
      [S1],
      [S2],
+     [IsSelect],
      [S3],
      [CreateDate]
      FROM PJ_tdjh
@@ -73,6 +76,7 @@
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="IsSelect">[IsSelect]='$IsSelect$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
      </dynamic>
@@ -91,6 +95,7 @@
      [Remark],
      [S1],
      [S2],
+     [IsSelect],
      [S3],
      [CreateDate]
      FROM PJ_tdjh
@@ -133,6 +138,7 @@
      [Remark]=#Remark#,
      [S1]=#S1#,
      [S2]=#S2#,
+     [IsSelect]=#IsSelect#,
      [S3]=#S3#,
      [CreateDate]=#CreateDate#
      WHERE
@@ -155,6 +161,7 @@
      [Remark],
      [S1],
      [S2],
+     [IsSelect],
      [S3],
      [CreateDate]
      )
@@ -172,6 +179,7 @@
      #Remark#,
      #S1#,
      #S2#,
+     #IsSelect#,
      #S3#,
      #CreateDate#
      )
@@ -194,6 +202,7 @@
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
        <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+        <isNotNull prepend="AND" property="IsSelect">[IsSelect]='$IsSelect$'</isNotNull>
        <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
      </dynamic>

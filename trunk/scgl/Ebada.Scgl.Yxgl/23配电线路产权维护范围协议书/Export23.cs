@@ -4,24 +4,26 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
-namespace Ebada.Scgl.Yxgl {
+namespace Ebada.Scgl.Yxgl
+{
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export23  {
+    public class Export23
+    {
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(PJ_23 obj) {
+        public static void ExportExcel(PJ_23 obj)
+        {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
 
             ex.Open(fname);
-            //此处写填充内容代码
-
+            ex.SetCellValue(obj.jf, 5, 4);
             ex.SetCellValue(obj.xybh, 4, 8);
             ex.SetCellValue(obj.cqdw + "：", 6, 4);
             string linename = "";
@@ -31,6 +33,14 @@ namespace Ebada.Scgl.Yxgl {
             }
             else
                 linename = obj.linename;
+            string[] filtchar = { "V", "v" };
+            for (int i = 0; i < filtchar.Length; i++)
+            {
+                if (linename.Contains(filtchar[i]))
+                {
+                    linename = linename.Substring(linename.LastIndexOf(filtchar[i]) + 1);
+                }
+            }
             ex.SetCellValue(linename, 10, 7);
             string fzlinename = "";
             if (obj.fzlinename.Contains("支"))
@@ -39,16 +49,17 @@ namespace Ebada.Scgl.Yxgl {
             }
             else
                 fzlinename = obj.fzlinename;
-            ex.SetCellValue(obj.fzlinename, 10, 10);
+            ex.SetCellValue(fzlinename, 10, 10);
             ex.SetCellValue("'" + obj.gh, 10, 16);
             ex.SetCellValue(obj.cqfw, 11, 4);
             ex.SetCellValue(obj.cqdw, 13, 4);
-            ex.SetCellValue(obj.cqdw, 17, 9);
-            ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
-            ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
-            ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
-           ex.ShowExcel();
+            ex.SetCellValue(obj.jf, 17, 4);
+            //ex.SetCellValue(obj.cqdw, 15, 8);
+            //ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
+            //ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
+            //ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
+            ex.ShowExcel();
         }
-      
+
     }
 }
