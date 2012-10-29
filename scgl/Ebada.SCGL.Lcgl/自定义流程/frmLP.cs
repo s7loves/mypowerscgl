@@ -2013,10 +2013,31 @@ namespace Ebada.Scgl.Lcgl {
             t.GetProperties();
             Dictionary<string, object> dic = ReadTaskData(workflowdata, temp, record);
             string key="";
+            Dictionary<Type, string> dictypename = new Dictionary<Type, string>();
             foreach (var p in t.GetProperties()) {
                 key=t.Name+" "+p.Name;
                 if (dic.ContainsKey(key)) {
-                    p.SetValue(des, dic[key], null);
+                    if (p.PropertyType == dic[key].GetType())
+                        p.SetValue(des, dic[key], null);
+                    else {
+                        object value = dic[key];
+                        switch (p.PropertyType.Name) {
+                            case "DateTime":
+                                value = Convert.ToDateTime(value);
+                                break;
+                            case "Int32":
+                            case "Int64":
+                                value = Convert.ToInt32(value);
+                                break;
+                            case "Decimal":
+                                value = Convert.ToDecimal(value);
+                                break;
+                            case "Double":
+                                value = Convert.ToDouble(value);
+                                break;
+                        }
+                        try { p.SetValue(des, value, null); } catch { }
+                    }
                 }
             }
         }
@@ -2141,7 +2162,7 @@ namespace Ebada.Scgl.Lcgl {
                 //}
                 try {
                     sqlSentence = sqlSentence.Replace("\r\n", " ");
-                    li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
+
                     if (sqlSentence.IndexOf("where 9=9") > -1) {
                         string strtemp = li[0].ToString();
                         li.Clear();
@@ -2165,6 +2186,12 @@ namespace Ebada.Scgl.Lcgl {
                             foreach (string ss in strli) {
                                 li.Add(ss);
                             }
+                        }
+                    } else {
+                        IList ht = Client.ClientHelper.PlatformSqlMap.GetList("Select", sqlSentence);
+                        if (ht.Count > 0) {
+                            DataTable dt =ConvertHelper.ToDataTable(ht);
+                            li.Add(dt.Rows[0][0]);
                         }
                     }
                 } catch (Exception ex) {

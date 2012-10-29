@@ -21,6 +21,7 @@
     <SccProvider>
     </SccProvider>
     <ApplicationIcon>Resources\Icon1.ico</ApplicationIcon>
+    <StartupObject>Ebada.SCGL.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

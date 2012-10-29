@@ -9,26 +9,24 @@ using Ebada.Client;
 
 
 
-namespace Ebada.SCGL.WFlow.Tool
-{
-	/// <summary>
-	/// 流程设置
-	/// </summary>
-	public class fmWorkFlowIDE : System.Windows.Forms.Form
-	{
-		private System.ComponentModel.IContainer components;
+namespace Ebada.SCGL.WFlow.Tool {
+    /// <summary>
+    /// 流程设置
+    /// </summary>
+    public class fmWorkFlowIDE : System.Windows.Forms.Form {
+        private System.ComponentModel.IContainer components;
         private System.Windows.Forms.ImageList toolBarImage;
         public WorkPlace wpClient;
-		public string WorkFlowId="";
+        public string WorkFlowId = "";
         public string UserId = "";
         private Panel panel1;
         private Panel plClient;
         private Panel plLeft;
         private TabControl tabControl1;
-        private TabPage   tabPage2;
-        private TreeView  treeWorkflow;
+        private TabPage tabPage2;
+        private TreeView treeWorkflow;
         private ImageList imglistMain;//操作人账号，用作权限判断。
-		public string     UserName="";//操作人姓名，用作显示。
+        public string UserName = "";//操作人姓名，用作显示。
         BaseTreeNode nowTreeNode;
         private ToolStripMenuItem newWftoolStripMenuItem1;
         private ToolStripMenuItem updateWftoolStripMenuItem2;
@@ -73,62 +71,55 @@ namespace Ebada.SCGL.WFlow.Tool
         private ToolStripButton tsbSynch;
         private ToolStripMenuItem ToolStripcsMenuItem;
         private ToolStripMenuItem TooRecordlStripMenuItem;//当前节点
-        string            nowTreeNodeId;//当前节点的Id
+        string nowTreeNodeId;//当前节点的Id
 
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         //[STAThread]
-        static void Main()
-        {
+        static void Main() {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new fmWorkFlowIDE());
 
         }
-        public fmWorkFlowIDE()
-        {
+        public fmWorkFlowIDE() {
             InitializeComponent();
         }
 
-		public  fmWorkFlowIDE(string workFlowId,string userId,string userName)
-		{
-			//
-			// Windows 窗体设计器支持所必需的
-			//
-			
-			InitializeComponent();
-			WorkFlowId=workFlowId;
-			UserId=userId;
-			UserName=userName;
-			//
-			// TODO: 在 InitializeComponent 调用后添加任何构造函数代码
-			//
-		}
+        public fmWorkFlowIDE(string workFlowId, string userId, string userName) {
+            //
+            // Windows 窗体设计器支持所必需的
+            //
 
-		/// <summary>
-		/// 清理所有正在使用的资源。
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+            InitializeComponent();
+            WorkFlowId = workFlowId;
+            UserId = userId;
+            UserName = userName;
+            //
+            // TODO: 在 InitializeComponent 调用后添加任何构造函数代码
+            //
+        }
 
-		#region Windows 窗体设计器生成的代码
-		/// <summary>
-		/// 设计器支持所需的方法 - 不要使用代码编辑器修改
-		/// 此方法的内容。
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
+                if (components != null) {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows 窗体设计器生成的代码
+        /// <summary>
+        /// 设计器支持所需的方法 - 不要使用代码编辑器修改
+        /// 此方法的内容。
+        /// </summary>
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmWorkFlowIDE));
             this.toolBarImage = new System.Windows.Forms.ImageList(this.components);
@@ -732,31 +723,28 @@ namespace Ebada.SCGL.WFlow.Tool
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
-		}
-		#endregion
-	
+        }
+        #endregion
 
-		private void fmWorkFlowIDE_Load(object sender, System.EventArgs e)
-		{
+
+        private void fmWorkFlowIDE_Load(object sender, System.EventArgs e) {
             //UserId = "admin";
             WorkFlowClassTreeNode.LoadWorkFlowClass("####", treeWorkflow.Nodes);
             //treeWorkflow.ExpandAll();
             treeWorkflow.Nodes[0].Expand();
-			
-		}
+
+        }
 
 
-	
-        private void menuEnable(string state)
-        {
-            if (state == WorkConst.WORKFLOW_CLASS)
-            {
-                newWftoolStripMenuItem1.Enabled=true;
-                updateWftoolStripMenuItem2.Enabled=false;
-                delWftoolStripMenuItem3.Enabled=false;
-                newclassToolStripMenuItem.Enabled=true;
-                updateclassToolStripMenuItem.Enabled=true;
-                delclassToolStripMenuItem.Enabled=true;
+
+        private void menuEnable(string state) {
+            if (state == WorkConst.WORKFLOW_CLASS) {
+                newWftoolStripMenuItem1.Enabled = true;
+                updateWftoolStripMenuItem2.Enabled = false;
+                delWftoolStripMenuItem3.Enabled = false;
+                newclassToolStripMenuItem.Enabled = true;
+                updateclassToolStripMenuItem.Enabled = true;
+                delclassToolStripMenuItem.Enabled = true;
                 wfinputToolStripMenuItem.Enabled = true;
                 wfExportToolStripMenuItem.Enabled = false;
                 UsedToolStripMenuItem.Enabled = false;
@@ -764,10 +752,8 @@ namespace Ebada.SCGL.WFlow.Tool
                 moveWfclsToolStripMenuItem.Enabled = false;
                 ToolStripcsMenuItem.Enabled = false;
                 TooRecordlStripMenuItem.Enabled = false;
-            }
-            else
-                if (state == WorkConst.WORKFLOW_FLOW)
-                {
+            } else
+                if (state == WorkConst.WORKFLOW_FLOW) {
                     newWftoolStripMenuItem1.Enabled = true;
                     updateWftoolStripMenuItem2.Enabled = true;
                     delWftoolStripMenuItem3.Enabled = true;
@@ -776,29 +762,26 @@ namespace Ebada.SCGL.WFlow.Tool
                     delclassToolStripMenuItem.Enabled = false;
                     wfinputToolStripMenuItem.Enabled = false;
                     wfExportToolStripMenuItem.Enabled = true;
-                    moveWfclsToolStripMenuItem.Enabled = true; 
+                    moveWfclsToolStripMenuItem.Enabled = true;
                     ToolStripcsMenuItem.Enabled = true;
                     TooRecordlStripMenuItem.Enabled = true;
                     UsedToolStripMenuItem.Enabled = (nowTreeNode as WorkFlowTreeNode).Status == "0";
-                    unUsedToolStripMenuItem.Enabled =(nowTreeNode as WorkFlowTreeNode).Status == "1"; ;
-   
+                    unUsedToolStripMenuItem.Enabled = (nowTreeNode as WorkFlowTreeNode).Status == "1"; ;
+
                 }
-        
+
         }
-        private void treeWorkflow_AfterSelect(object sender, TreeViewEventArgs e)
-        {
+        private void treeWorkflow_AfterSelect(object sender, TreeViewEventArgs e) {
             nowTreeNode = (BaseTreeNode)treeWorkflow.SelectedNode;
             nowTreeNodeId = nowTreeNode.NodeId;
             menuEnable(nowTreeNode.NodeType);
-            if (nowTreeNode.NodeType == WorkConst.WORKFLOW_CLASS)
-            {
+            if (nowTreeNode.NodeType == WorkConst.WORKFLOW_CLASS) {
                 nowTreeNode.Nodes.Clear();
                 WorkFlowClassTreeNode.LoadWorkFlowClassSelectNode(nowTreeNodeId, nowTreeNode.Nodes);
                 WorkFlowTreeNode.LoadWorkFlowSelectNode(nowTreeNodeId, nowTreeNode.Nodes);
             }
-            if (nowTreeNode.NodeType == WorkConst.WORKFLOW_FLOW)
-            {
-                
+            if (nowTreeNode.NodeType == WorkConst.WORKFLOW_FLOW) {
+
                 if (wpClient != null)
                     wpClient.closeFlow();
                 this.plClient.Controls.Clear();
@@ -811,109 +794,89 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
+        private void button1_Click(object sender, EventArgs e) {
+
         }
 
-        private void newClassToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void newClassToolStripMenuItem_Click(object sender, EventArgs e) {
             fmWorkFlowClass tmpWorkFlowClassFm = new fmWorkFlowClass(UserId, UserName, WorkConst.STATE_ADD, nowTreeNodeId, nowTreeNode);
             tmpWorkFlowClassFm.ShowDialog();
         }
 
-        private void newWftoolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            fmAddWorkFlow tmpWorkFlowFm = new fmAddWorkFlow(UserId,UserName,WorkConst.STATE_ADD,nowTreeNodeId,nowTreeNode);
+        private void newWftoolStripMenuItem1_Click(object sender, EventArgs e) {
+            fmAddWorkFlow tmpWorkFlowFm = new fmAddWorkFlow(UserId, UserName, WorkConst.STATE_ADD, nowTreeNodeId, nowTreeNode);
             tmpWorkFlowFm.ShowDialog();
 
         }
 
-        private void updateWftoolStripMenuItem2_Click(object sender, EventArgs e)
-        {
+        private void updateWftoolStripMenuItem2_Click(object sender, EventArgs e) {
             fmAddWorkFlow tmpWorkFlowFm = new fmAddWorkFlow(UserId, UserName, WorkConst.STATE_MOD, nowTreeNodeId, nowTreeNode);
             tmpWorkFlowFm.ShowDialog();
         }
 
-       
 
-        private void updateclassToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+
+        private void updateclassToolStripMenuItem_Click(object sender, EventArgs e) {
             fmWorkFlowClass tmpWorkFlowClassFm = new fmWorkFlowClass(UserId, UserName, WorkConst.STATE_MOD, nowTreeNodeId, nowTreeNode);
             tmpWorkFlowClassFm.ShowDialog();
         }
 
-        private void delclassToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void delclassToolStripMenuItem_Click(object sender, EventArgs e) {
             if (DesignerHelper.IsPower(UserId, (sender as ToolStripMenuItem).Tag.ToString()) == false) return;
-            if (nowTreeNode.Nodes.Count > 0)
-            {
-                MsgBox.ShowWarningMessageBox ("删除失败,流程分类下面有子分类或者流程不能删除!");
+            if (nowTreeNode.Nodes.Count > 0) {
+                MsgBox.ShowWarningMessageBox("删除失败,流程分类下面有子分类或者流程不能删除!");
                 return;
             }
-            if (MsgBox.ShowAskMessageBox("是否删除分类[" + nowTreeNode.Text + "]?删除后不能回复。") == DialogResult.OK)
-           {
-               WorkFlowClassTreeNode.DeleteSelectClassNode(nowTreeNodeId);
-               nowTreeNode.Remove();
-           }
+            if (MsgBox.ShowAskMessageBox("是否删除分类[" + nowTreeNode.Text + "]?删除后不能回复。") == DialogResult.OK) {
+                WorkFlowClassTreeNode.DeleteSelectClassNode(nowTreeNodeId);
+                nowTreeNode.Remove();
+            }
         }
 
-        private void delWftoolStripMenuItem3_Click(object sender, EventArgs e)
-        {
+        private void delWftoolStripMenuItem3_Click(object sender, EventArgs e) {
             if (DesignerHelper.IsPower(UserId, (sender as ToolStripMenuItem).Tag.ToString()) == false) return;
-            if (MsgBox.ShowAskMessageBox("是否删除流程[" + nowTreeNode.Text + "]? 删除后不能回复。") == DialogResult.OK)
-            {
+            if (MsgBox.ShowAskMessageBox("是否删除流程[" + nowTreeNode.Text + "]? 删除后不能回复。") == DialogResult.OK) {
                 WorkFlowTreeNode.DeleteSelectWorkflowNode(nowTreeNodeId);
                 nowTreeNode.Remove();
             }
         }
 
-        private void wfExportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void wfExportToolStripMenuItem_Click(object sender, EventArgs e) {
             fmWorkflowExport f = new fmWorkflowExport(nowTreeNodeId, nowTreeNode.Text);
             f.ShowDialog();
         }
 
-        private void wfinputToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void wfinputToolStripMenuItem_Click(object sender, EventArgs e) {
             //fmWorkflowInput f = new fmWorkflowInput(nowTreeNodeId, nowTreeNode.Text);
             //f.ShowDialog();
         }
 
-        private void UsedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WorkFlowTemplate.SetWorkflowStatus(nowTreeNodeId,"1");
+        private void UsedToolStripMenuItem_Click(object sender, EventArgs e) {
+            WorkFlowTemplate.SetWorkflowStatus(nowTreeNodeId, "1");
             (nowTreeNode as WorkFlowTreeNode).Status = "1";
         }
 
-        private void unUsedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void unUsedToolStripMenuItem_Click(object sender, EventArgs e) {
             WorkFlowTemplate.SetWorkflowStatus(nowTreeNodeId, "0");
             (nowTreeNode as WorkFlowTreeNode).Status = "0";
         }
 
-        private void moveWfclsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void moveWfclsToolStripMenuItem_Click(object sender, EventArgs e) {
             fmSelectClass f = new fmSelectClass();
-            DialogResult dlg= f.ShowDialog();
-            if (dlg == DialogResult.OK)
-            { 
-                WorkFlowTemplate.SetWorkflowClass(nowTreeNodeId,f.workflowClassId);
+            DialogResult dlg = f.ShowDialog();
+            if (dlg == DialogResult.OK) {
+                WorkFlowTemplate.SetWorkflowClass(nowTreeNodeId, f.workflowClassId);
                 nowTreeNode.Remove();
             }
         }
-        private void setTsbButton(bool b)
-        {
-            foreach (ToolStripItem button in toolStrip1.Items)
-            {
+        private void setTsbButton(bool b) {
+            foreach (ToolStripItem button in toolStrip1.Items) {
                 if (button is ToolStripButton)
                     (button as ToolStripButton).Checked = b;
             }
         }
-        private void setTaskState(string buttonText)
-        {
-            switch (buttonText)
-            {
+        private void setTaskState(string buttonText) {
+            switch (buttonText) {
                 case "-1":
                     wpClient.Module = -1;
                     break;
@@ -954,13 +917,13 @@ namespace Ebada.SCGL.WFlow.Tool
                     Dragger dragger2 = new Dragger(wpClient, wpClient.SelectedItems);
                     dragger2.Align(3);
                     wpClient.Module = -2;
-                
+
                     break;
                 case "top":
                     Dragger dragger3 = new Dragger(wpClient, wpClient.SelectedItems);
                     dragger3.Align(1);
                     wpClient.Module = -2;
-                               
+
                     break;
                 case "bottom":
                     Dragger dragger4 = new Dragger(wpClient, wpClient.SelectedItems);
@@ -976,21 +939,17 @@ namespace Ebada.SCGL.WFlow.Tool
                     break;
             }
         }
-        private void setIntoModle()
-        {
+        private void setIntoModle() {
             wpClient.toolModel = true;
-           
+
         }
-        private void setOutModle()
-        {
+        private void setOutModle() {
             wpClient.toolModel = false;
         }
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+
             ToolStripButton nowToolBtn;
-            if (e.ClickedItem != null)
-            {
+            if (e.ClickedItem != null) {
                 bool b = e.ClickedItem is ToolStripButton;
                 if (b == false) return;
                 nowToolBtn = (ToolStripButton)e.ClickedItem;
@@ -1005,7 +964,7 @@ namespace Ebada.SCGL.WFlow.Tool
 
                 if (nowToolBtn.Text != "-3")//不是“加锁”
                 {
-                    wpClient.LockModel = false ;
+                    wpClient.LockModel = false;
                     setTsbButton(false);
                     nowToolBtn.Checked = true;
                     setIntoModle();
@@ -1013,13 +972,11 @@ namespace Ebada.SCGL.WFlow.Tool
                     wpClient.nowButton = nowToolBtn;
                     setTaskState(nowToolBtn.Text);
                     //设置待画节点类型
-                }
-                else//加锁状态
+                } else//加锁状态
                 {
                     wpClient.LockModel = true;
                     nowToolBtn.Checked = !nowToolBtn.Checked;
-                    if (nowToolBtn.Checked == false)
-                    {
+                    if (nowToolBtn.Checked == false) {
                         setTsbButton(false);
                         setOutModle();
                         //退出设计模式
@@ -1028,54 +985,42 @@ namespace Ebada.SCGL.WFlow.Tool
             }
         }
 
-        private void tbarDrawClient_ButtonClick_1(object sender, ToolBarButtonClickEventArgs e)
-        {
+        private void tbarDrawClient_ButtonClick_1(object sender, ToolBarButtonClickEventArgs e) {
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-           
+        private void button1_Click_1(object sender, EventArgs e) {
+
         }
 
-        private void fmWorkFlowIDE_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        private void fmWorkFlowIDE_FormClosing(object sender, FormClosingEventArgs e) {
             if (nowTreeNode == null) return;
             if (wpClient != null && nowTreeNode.NodeType == WorkConst.WORKFLOW_FLOW)
                 wpClient.closeFlow();
         }
 
-        private void tsbEixt_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void tsbSave_Click(object sender, EventArgs e)
-        {
+        private void tsbEixt_Click(object sender, EventArgs e) {
 
         }
 
-        private void tsbAlter_Click(object sender, EventArgs e)
-        {
+        private void tsbSave_Click(object sender, EventArgs e) {
 
         }
 
-        private void 节点参数设置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void tsbAlter_Click(object sender, EventArgs e) {
+
+        }
+
+        private void 节点参数设置ToolStripMenuItem_Click(object sender, EventArgs e) {
             frmTaskSQLList fts = new frmTaskSQLList();
             fts.StrWorkFlowID = nowTreeNodeId;
-            fts.ShowDialog(); 
+            fts.ShowDialog();
         }
 
-        private void TooRecordlStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void TooRecordlStripMenuItem_Click(object sender, EventArgs e) {
             frmTaskRecordSQLList fts = new frmTaskRecordSQLList();
             fts.StrWorkFlowID = nowTreeNodeId;
-            fts.ShowDialog(); 
+            fts.ShowDialog();
         }
-
-       
-
-	
-	}
+    }
 }
