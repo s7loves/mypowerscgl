@@ -13,8 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
-namespace Ebada.Scgl.Lcgl
-{
+namespace Ebada.Scgl.Lcgl{
     public partial class frm23Edit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_23> m_CityDic = new SortableSearchableBindingList<PJ_23>();
@@ -37,6 +36,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "fzlinename");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "gh");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "xybh");
+             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "xybh");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
 
@@ -95,6 +95,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 comboBoxEdit6.Properties.Items.Add(pl.LineName);
             }
+            comboBoxEdit9.Properties.Items.Clear();
+            comboBoxEdit9.Properties.Items.Add("绥化市郊农电局");
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }

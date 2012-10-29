@@ -19,33 +19,33 @@ namespace Ebada.App {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             #region check and download new version program
-            bool bHasError = false;
-            EbadaAutoupdater.IAutoUpdater autoUpdater = new EbadaAutoupdater.AutoUpdater();
-            try {
-                autoUpdater.Update();
-            } catch (System.Net.WebException exp) {
-                MessageBox.Show("连接更新服务器失败！"+exp.Message);
-                bHasError = true;
-            } catch (System.Xml.XmlException exp) {
-                bHasError = true;
-                MessageBox.Show("读取版本信息失败！"+exp.Message);
-            } catch (NotSupportedException exp) {
-                bHasError = true;
-                MessageBox.Show("读取版本信息失败！"+exp.Message);
-            } catch (ArgumentException exp) {
-                bHasError = true;
-                MessageBox.Show("读取版本信息失败！"+exp.Message);
-            } catch (Exception exp) {
-                bHasError = true;
-                MessageBox.Show("自动更新程序无法运行！"+exp.Message);
-            } finally {
-                if (bHasError == true) {
-                    try {
-                        autoUpdater.RollBack();
-                    } catch (Exception) {
-                    }
-                }
-            }
+            //bool bHasError = false;
+            //EbadaAutoupdater.IAutoUpdater autoUpdater = new EbadaAutoupdater.AutoUpdater();
+            //try {
+            //    autoUpdater.Update();
+            //} catch (System.Net.WebException exp) {
+            //    MessageBox.Show("连接更新服务器失败！"+exp.Message);
+            //    bHasError = true;
+            //} catch (System.Xml.XmlException exp) {
+            //    bHasError = true;
+            //    MessageBox.Show("读取版本信息失败！"+exp.Message);
+            //} catch (NotSupportedException exp) {
+            //    bHasError = true;
+            //    MessageBox.Show("读取版本信息失败！"+exp.Message);
+            //} catch (ArgumentException exp) {
+            //    bHasError = true;
+            //    MessageBox.Show("读取版本信息失败！"+exp.Message);
+            //} catch (Exception exp) {
+            //    bHasError = true;
+            //    MessageBox.Show("自动更新程序无法运行！"+exp.Message);
+            //} finally {
+            //    if (bHasError == true) {
+            //        try {
+            //            autoUpdater.RollBack();
+            //        } catch (Exception) {
+            //        }
+            //    }
+            //}
 
             #endregion
             //if (!bHasError) {

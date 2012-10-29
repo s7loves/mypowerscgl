@@ -9,6 +9,7 @@
         <result property="ParentID" column="ParentID" />
         <result property="cqfw" column="cqfw" />
         <result property="cqdw" column="cqdw" />
+        <result property="jf" column="jf" />
         <result property="qdrq" column="qdrq" />
         <result property="qxydd" column="qxydd" />
         <result property="xybh" column="xybh" />
@@ -31,6 +32,7 @@
      [ParentID],
      [cqfw],
      [cqdw],
+     [jf],
      [qdrq],
      [qxydd],
      [xybh],
@@ -52,6 +54,7 @@
      [ParentID],
      [cqfw],
      [cqdw],
+     [jf],
      [qdrq],
      [qxydd],
      [xybh],
@@ -69,6 +72,7 @@
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="cqfw">[cqfw]='$cqfw$'</isNotNull>
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
+        <isNotNull prepend="AND" property="jf">[jf]='$jf$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
        <isNotNull prepend="AND" property="qxydd">[qxydd]='$qxydd$'</isNotNull>
        <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
@@ -88,6 +92,7 @@
      [ParentID],
      [cqfw],
      [cqdw],
+     [jf],
      [qdrq],
      [qxydd],
      [xybh],
@@ -131,6 +136,7 @@
      [ParentID]=#ParentID#,
      [cqfw]=#cqfw#,
      [cqdw]=#cqdw#,
+     [jf]=#jf#,
      [qdrq]=#qdrq#,
      [qxydd]=#qxydd#,
      [xybh]=#xybh#,
@@ -154,6 +160,7 @@
      [ParentID],
      [cqfw],
      [cqdw],
+     [jf],
      [qdrq],
      [qxydd],
      [xybh],
@@ -172,6 +179,7 @@
      #ParentID#,
      #cqfw#,
      #cqdw#,
+     #jf#,
      #qdrq#,
      #qxydd#,
      #xybh#,
@@ -195,6 +203,7 @@
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="cqfw">[cqfw]='$cqfw$'</isNotNull>
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
+        <isNotNull prepend="AND" property="jf">[jf]='$jf$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
        <isNotNull prepend="AND" property="qxydd">[qxydd]='$qxydd$'</isNotNull>
        <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
