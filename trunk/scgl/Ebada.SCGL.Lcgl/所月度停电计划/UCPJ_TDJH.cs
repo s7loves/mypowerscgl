@@ -240,9 +240,14 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
-            hideColumn("S1");
-            hideColumn("S2");
-            hideColumn("S3");
+           // hideColumn("S1");
+            //hideColumn("S2");
+           // hideColumn("S3");
+
+            gridView1.Columns["S1"].Caption = "序号";
+            gridView1.Columns["SQOrgname"].Caption = "供电所名称";
+            gridView1.Columns["S2"].Caption = "缺陷发现日期";
+            gridView1.Columns["S3"].Caption = "选择流程";
 
             gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
