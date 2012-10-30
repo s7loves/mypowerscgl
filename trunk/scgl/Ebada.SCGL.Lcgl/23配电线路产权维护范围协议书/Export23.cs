@@ -55,9 +55,9 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(obj.cqdw, 13, 4);
             ex.SetCellValue(obj.jf, 17, 4);
             //ex.SetCellValue(obj.cqdw, 15, 8);
-            //ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
-            //ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
-            //ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
+            ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
+            ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
+            ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
             ex.ShowExcel();
         }
 

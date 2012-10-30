@@ -40,11 +40,11 @@ namespace Ebada.Scgl.Yxgl {
             }
             for (int i = 0; i < list1.Count; i++)
             {
-                ex.SetCellValue(list[i].xh, 26 + i, 8);
-                ex.SetCellValue(list[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
-                ex.SetCellValue(list[i].dy.ToString(), 26 + i, 12);
-                ex.SetCellValue(list[i].azrq.ToString("yyyy-MM-dd"), 26 + i, 13);
-                ex.SetCellValue(list[i].sccj, 26 + i, 14);
+                ex.SetCellValue(list1[i].xh, 26 + i, 8);
+                ex.SetCellValue(list1[i].gl.ToString() + "/" + list[i].ts.ToString(), 26 + i, 11);
+                ex.SetCellValue(list1[i].dy.ToString(), 26 + i, 12);
+                ex.SetCellValue(list1[i].azrq.ToString("yyyy-MM-dd"), 26 + i, 13);
+                ex.SetCellValue(list1[i].sccj, 26 + i, 14);
             }
             ex.SetCellValue(obj.bszz, 30, 2);
             ex.SetCellValue(obj.fzcs, 31, 2);
