@@ -16,7 +16,8 @@ using System.Collections;
 using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmjckyEdit : FormBase, IPopupFormEdit {
+    public partial class frmjckyEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_05jcky> m_CityDic = new SortableSearchableBindingList<PJ_05jcky>();
         private string parentID = "";
 
@@ -27,10 +28,12 @@ namespace Ebada.Scgl.Lcgl
         }
 
 
-        public frmjckyEdit() {
+        public frmjckyEdit()
+        {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
             //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "LineID");
@@ -112,7 +115,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -154,7 +158,7 @@ namespace Ebada.Scgl.Lcgl
                     {
                         //comboBoxEdit2.Properties.Items.Add(list[i].LineID);
                         comboBoxEdit2.Properties.Items.Add(list[i].gtCode);
-                        comboBoxEdit4.Properties.Items.Add(list[i].gtCode.Substring(list[i].gtCode.Length - 4));
+                        //comboBoxEdit4.Properties.Items.Add(list[i].gtCode.Substring(list[i].gtCode.Length - 4));
 
                     }
                 }
@@ -188,9 +192,22 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit2.EditValue!=null)
+            if (comboBoxEdit2.EditValue != null)
             {
-                comboBoxEdit4.Text = comboBoxEdit2.Text.Substring(comboBoxEdit2.Text.Length - 4);
+                int index = comboBoxEdit2.SelectedIndex;
+                if (index == 0)
+                {
+                    comboBoxEdit4.EditValue = "0000";
+                }
+                else
+                {
+                    string one = comboBoxEdit2.Properties.Items[index - 1].ToString();
+                    one = one.Substring(one.Length - 4);
+                    string two = comboBoxEdit2.Properties.Items[index].ToString();
+                    two = two.Substring(one.Length - 4);
+
+                    comboBoxEdit4.EditValue = one + "~" + two;
+                }
             }
         }
     }
