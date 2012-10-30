@@ -134,7 +134,7 @@ namespace Ebada.Scgl.Lcgl
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].sbmc, row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].cysbmc, row + j % rowcount, col + 1);
                 ex.SetCellValue(datalist[j].cysbFactory, row + j % rowcount, col + 2);
                 //装设日期
                 ex.SetCellValue(datalist[j].inDate.Year.ToString(), row + j % rowcount, col + 5);
