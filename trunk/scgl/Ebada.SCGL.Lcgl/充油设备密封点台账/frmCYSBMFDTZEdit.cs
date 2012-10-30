@@ -15,14 +15,24 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmCYSBMFDTZEdit : FormBase, IPopupFormEdit {
+    public partial class frmCYSBMFDTZEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_cysbmfdtz> m_CityDic = new SortableSearchableBindingList<PJ_cysbmfdtz>();
 
         public frmCYSBMFDTZEdit()
         {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct cast(byqCapcity as varchar(50)) from PS_tqbyq");
+            comboBoxEdit1.Properties.Items.AddRange(list);  //容量
+
+            list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqInstallAdress from PS_tqbyq");
+            comboBoxEdit8.Properties.Items.AddRange(list);  // 地点
+
+            list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq");
+            comboBoxEdit6.Properties.Items.AddRange(list);  // 型号
 
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbmc");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "cysbmc");
@@ -36,28 +46,32 @@ namespace Ebada.Scgl.Lcgl
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "inDate");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "jcDate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-           
-
         }
         #region IPopupFormEdit Members
         private PJ_cysbmfdtz rowData = null;
 
-        public object RowData {
-            get {
-               
+        public object RowData
+        {
+            get
+            {
+
                 return rowData;
-              
+
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_cysbmfdtz;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_cysbmfdtz>(value as PJ_cysbmfdtz, rowData);
                 }
-            
+
             }
         }
 
@@ -79,10 +93,11 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void InitComboBoxData() {
-           
+        private void InitComboBoxData()
+        {
+
             //填充下拉列表数据
-           
+
             dateEdit1.DateTime = DateTime.Now;
             dateEdit2.DateTime = DateTime.Now;
             dateEdit3.DateTime = DateTime.Now;
@@ -100,62 +115,62 @@ namespace Ebada.Scgl.Lcgl
             }
 
             comboBoxEdit6.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "充油部件名称"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "充油部件名称"));
             if (strlist.Count > 0)
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
             {
-                            comboBoxEdit3.Properties.Items.Add("注油阀");
-                            comboBoxEdit3.Properties.Items.Add("油表管");
-                            comboBoxEdit3.Properties.Items.Add("油箱盖");
-                            comboBoxEdit2.Properties.Items.Add("吸湿器");
-                            comboBoxEdit3.Properties.Items.Add("a相高压套管");
-                            comboBoxEdit3.Properties.Items.Add("c相高压套管");
-                            comboBoxEdit3.Properties.Items.Add("a相低压套管");
-                            comboBoxEdit3.Properties.Items.Add("b相低压套管");
-                            comboBoxEdit3.Properties.Items.Add("c相低压套管");
-                            comboBoxEdit3.Properties.Items.Add("零线低压套管");
-                            comboBoxEdit3.Properties.Items.Add("调档位");
-                            comboBoxEdit3.Properties.Items.Add("油箱口");
-                            comboBoxEdit3.Properties.Items.Add("放油阀");
-                            comboBoxEdit3.Properties.Items.Add("防爆管");
-                            comboBoxEdit3.Properties.Items.Add("耐油橡胶垫");
+                comboBoxEdit3.Properties.Items.Add("注油阀");
+                comboBoxEdit3.Properties.Items.Add("油表管");
+                comboBoxEdit3.Properties.Items.Add("油箱盖");
+                comboBoxEdit2.Properties.Items.Add("吸湿器");
+                comboBoxEdit3.Properties.Items.Add("a相高压套管");
+                comboBoxEdit3.Properties.Items.Add("c相高压套管");
+                comboBoxEdit3.Properties.Items.Add("a相低压套管");
+                comboBoxEdit3.Properties.Items.Add("b相低压套管");
+                comboBoxEdit3.Properties.Items.Add("c相低压套管");
+                comboBoxEdit3.Properties.Items.Add("零线低压套管");
+                comboBoxEdit3.Properties.Items.Add("调档位");
+                comboBoxEdit3.Properties.Items.Add("油箱口");
+                comboBoxEdit3.Properties.Items.Add("放油阀");
+                comboBoxEdit3.Properties.Items.Add("防爆管");
+                comboBoxEdit3.Properties.Items.Add("耐油橡胶垫");
 
             }
 
             comboBoxEdit4.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "密封点状况"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "密封点状况"));
             if (strlist.Count > 0)
                 comboBoxEdit6.Properties.Items.AddRange(strlist);
             else
             {
-                        comboBoxEdit4.Properties.Items.Add("完好");	
-                        comboBoxEdit4.Properties.Items.Add("老化");	
-                        comboBoxEdit4.Properties.Items.Add("渗油");
-                        comboBoxEdit4.Properties.Items.Add("漏油");	
+                comboBoxEdit4.Properties.Items.Add("完好");
+                comboBoxEdit4.Properties.Items.Add("老化");
+                comboBoxEdit4.Properties.Items.Add("渗油");
+                comboBoxEdit4.Properties.Items.Add("漏油");
 
             }
 
             comboBoxEdit7.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "检查人"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "检查人"));
             if (strlist.Count > 0)
                 comboBoxEdit7.Properties.Items.AddRange(strlist);
             else
             {
-                
+
             }
 
             comboBoxEdit5.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
             else
             {
-                
+
             }
 
 
@@ -182,7 +197,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -204,20 +220,20 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-       
-      
+
+
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("充油设备密封点台帐", "备注", memoEdit3);
         }
 
-      
 
-       
 
-      
 
-       
+
+
+
+
     }
 }
