@@ -63,7 +63,7 @@ namespace Ebada.Scgl.Lcgl
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public  void ExportExcel(IList<PJ_bpbjjhb> datalist)
+        public void ExportExcel(IList<PJ_bpbjjhb> datalist)
         {
             //lgm
             ExcelAccess ex = new ExcelAccess();
@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             ExportExcel(ex, datalist);
             ex.ShowExcel();
-           
+
         }
         public void ExportExcelYear(string orgid)
         {
@@ -81,7 +81,7 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\备品备件计划.xls";
             IList<PJ_bpbjjhb> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_bpbjjhb>(
-                " where jhnf = '" + (DateTime.Now.Year+1) + "'"
+                " where jhnf = '" + (DateTime.Now.Year + 1) + "'"
                 + " and OrgCode='" + orgid + "'"
                 );
             ex.Open(fname);
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Lcgl
 
             filter = " where jhnf = '" + (DateTime.Now.Year + 1) + "'";
             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-               
+
             if (isWorkflowCall)
             {
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
@@ -142,16 +142,16 @@ namespace Ebada.Scgl.Lcgl
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            
+
         }
 
-        
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
+
+        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\备品备件计划.xls";
             dsoFramerWordControl1.FileOpen(fname);
-           
+
             if (parentTemple == null)
             {
                 parentTemple = new LP_Temple();
@@ -188,7 +188,7 @@ namespace Ebada.Scgl.Lcgl
             parentTemple.DocContent = dsoFramerWordControl1.FileDataGzip;
             dsoFramerWordControl1.FileClose();
         }
-        public void ExportExcel(ExcelAccess ex ,IList<PJ_bpbjjhb> datalist)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_bpbjjhb> datalist)
         {
             //此处写填充内容代码
             int row = 5;
@@ -210,6 +210,7 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
+            ex.SetCellValue(MainHelper.User.UserName, 45, 6);
             for (int j = 0; j < datalist.Count; j++)
             {
 
@@ -218,7 +219,7 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(j / rowcount + 1);
                     ex.SetCellValue(datalist[j].OrgName, 2, 2);
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 2, 6);
-                    ex.SetCellValue(datalist[0].OrgName.Trim() +  datalist[0].jhnf + "年度备品备件计划", 1, 1);
+                    ex.SetCellValue(datalist[0].OrgName.Trim() + datalist[0].jhnf + "年度备品备件计划", 1, 1);
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
@@ -234,6 +235,6 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-    
+
     }
 }
