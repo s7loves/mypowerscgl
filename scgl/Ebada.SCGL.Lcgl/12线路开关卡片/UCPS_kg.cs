@@ -126,8 +126,8 @@ namespace Ebada.Scgl.Lcgl {
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PS_kg>(gridViewOperation_AfterAdd);
             bar3.Visible = false;
-            btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
