@@ -547,6 +547,24 @@ namespace Ebada.Scgl.Lcgl {
                 }
             }
         }
+        public void InitGridData(string sql) {
+            if (sql.IndexOf("15=15") == -1) return;
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("Select", sql);
+            DataTable dt = ConvertHelper.ToDataTable(list);
+            DataView dv = gridView1.DataSource as DataView;
+            DataTable ds = dv.Table;
+            int count=0;
+            foreach (DataRow row in dt.Rows) {
+                count++;
+                DataRow newrow= ds.NewRow();
+                ds.Rows.Add(newrow);
+                foreach (DataColumn dc in ds.Columns) {
+                    if(dc.ColumnName=="序号")newrow[dc]=count.ToString();
+                    try { newrow[dc] = row[dc.ColumnName]; } catch { }
+                }
+                
+            }
+        }
         public void InitData(string sql, string[] sqlColName, string[] comBoxItem, DSOFramerControl dsoFramerWordControl1, LP_Temple lp, LP_Record currRecord) {
 
 

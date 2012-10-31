@@ -1680,7 +1680,8 @@ namespace Ebada.Scgl.Lcgl {
                         break;
                     }
                 }
-                ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
+                ((uc_gridcontrol)ctrl).InitGridData(sqlSentence);
+                //((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
                 return;
             }
             if (lp.CtrlType.IndexOf(',') == -1)
