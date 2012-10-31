@@ -23,7 +23,8 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "OrgName");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "zzdz");
@@ -35,30 +36,36 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "tqfs");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "inDate");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-           
-           
-           
+
+
+
 
         }
         #region IPopupFormEdit Members
         private PJ_bdsdldrqtz rowData = null;
 
-        public object RowData {
-            get {
-               
+        public object RowData
+        {
+            get
+            {
+
                 return rowData;
-              
+
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_bdsdldrqtz;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_bdsdldrqtz>(value as PJ_bdsdldrqtz, rowData);
                 }
-            
+
             }
         }
 
@@ -80,7 +87,8 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
             //填充下拉列表数据
             comboBoxEdit2.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -89,12 +97,12 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit2.Properties.Items.AddRange(strlist);
             else
             {
-               
+
             }
             //填充下拉列表数据
             comboBoxEdit5.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "电容器型号"));
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
             else
@@ -103,8 +111,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
             }
             comboBoxEdit10.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "容量"));
             if (strlist.Count > 0)
                 comboBoxEdit10.Properties.Items.AddRange(strlist);
             else
@@ -114,8 +122,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit10.Properties.Items.Add("150");
             }
             comboBoxEdit4.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='变电所电力电容器台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
             if (strlist.Count > 0)
                 comboBoxEdit4.Properties.Items.AddRange(strlist);
             else
@@ -124,8 +132,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit4.Properties.Items.Add("指月集团有限公司");
             }
             comboBoxEdit8.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='线路电力电容器台帐' and sx like '%{0}%' and nr!=''", "投切方式"));
             if (strlist.Count > 0)
                 comboBoxEdit8.Properties.Items.AddRange(strlist);
             else
@@ -134,7 +142,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit8.Properties.Items.Add("自动");
             }
             dateEdit1.DateTime = DateTime.Now;
-           
+
         }
 
         /// <summary>
@@ -146,7 +154,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -168,15 +177,21 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-     
 
-      
+
+
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("线路电力电容器台帐", "备注", memoEdit3);
         }
 
-       
+
+        private void comboBoxEdit2_TextChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit6.EditValue = comboBoxEdit2.Text;
+        }
+
+
     }
 }
