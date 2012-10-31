@@ -25,7 +25,8 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind()
         {
-
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectStr", "select edVol from PJ_bdsdldrqtz");
+            comboBoxEdit3.Properties.Items.AddRange(list);
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "OrgName");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "zzdz");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "edVol");
