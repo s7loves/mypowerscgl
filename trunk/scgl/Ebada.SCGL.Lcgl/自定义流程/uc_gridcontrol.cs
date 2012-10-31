@@ -199,6 +199,10 @@ namespace Ebada.Scgl.Lcgl {
                 }
 
             }
+            if (gridView1.Columns.Count > 4) {
+                gridView1.OptionsView.ColumnAutoWidth = false;
+                gridView1.BestFitColumns();
+            }
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
         }
@@ -556,14 +560,20 @@ namespace Ebada.Scgl.Lcgl {
             int count=0;
             foreach (DataRow row in dt.Rows) {
                 count++;
-                DataRow newrow= ds.NewRow();
-                ds.Rows.Add(newrow);
+                DataRow newrow = ds.NewRow();
+                if (count > ds.Rows.Count) {
+                    
+                    ds.Rows.Add(newrow);
+                } else {
+                    newrow = ds.Rows[count-1];
+                }
                 foreach (DataColumn dc in ds.Columns) {
                     if(dc.ColumnName=="序号")newrow[dc]=count.ToString();
                     try { newrow[dc] = row[dc.ColumnName]; } catch { }
                 }
                 
             }
+            gridView1.BestFitColumns();
         }
         public void InitData(string sql, string[] sqlColName, string[] comBoxItem, DSOFramerControl dsoFramerWordControl1, LP_Temple lp, LP_Record currRecord) {
 
