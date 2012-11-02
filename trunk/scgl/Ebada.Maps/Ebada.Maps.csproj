@@ -372,6 +372,9 @@
     <EmbeddedResource Include="JH_yearkst.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_gdscrk.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
