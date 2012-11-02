@@ -168,7 +168,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count < 2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = '{0}'　and linevol='{1}'", rowData.OrgCode, "10"));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
