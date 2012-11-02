@@ -1919,6 +1919,8 @@
     <None Include="00记录模板\供电所安全工器具台帐.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\供电所材料入库单.xls" />
+    <None Include="00记录模板\供电所材料出库单.xls" />
     <None Include="00记录模板\入库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
