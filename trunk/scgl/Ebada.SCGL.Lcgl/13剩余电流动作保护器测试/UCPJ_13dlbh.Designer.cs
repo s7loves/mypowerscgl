@@ -231,7 +231,7 @@
             // 
             // btView
             // 
-            this.btView.Caption = "导出";
+            this.btView.Caption = "导出台帐";
             this.btView.Id = 15;
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
