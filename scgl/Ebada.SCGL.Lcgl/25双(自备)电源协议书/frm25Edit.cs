@@ -24,10 +24,12 @@ namespace Ebada.Scgl.Lcgl
         void dataBind() {
 
 
-
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "jf");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cqdw");
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "qdrq");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "fzcs");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "bszz");
 
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -67,6 +69,10 @@ namespace Ebada.Scgl.Lcgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Add("双头刀闸");
+            comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit5.Properties.Items.Add("绥化市郊农电局");
         }
 
         /// <summary>
@@ -146,10 +152,13 @@ namespace Ebada.Scgl.Lcgl
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
+            ea.SetCellValue("甲 方："+comboBoxEdit5.Text, 4, 1);
             ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
             ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
             ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
             ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
+             ea.SetCellValue(rowData.bszz, 30, 2);
+             ea.SetCellValue(rowData.fzcs, 31, 2);
             dsoFramerControl1.FileSave();
             rowData.BigData = dsoFramerControl1.FileData;
             dsoFramerControl1.FileClose();
