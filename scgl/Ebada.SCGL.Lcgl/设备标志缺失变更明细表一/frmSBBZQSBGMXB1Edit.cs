@@ -85,6 +85,10 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                 comboBoxEdit1.Properties.Items.Add("配电线路杆塔");
+                comboBoxEdit1.Properties.Items.Add("开关");
+                comboBoxEdit1.Properties.Items.Add("相序牌");
+                comboBoxEdit1.Properties.Items.Add("电缆走向桩");
+                comboBoxEdit1.Properties.Items.Add("变台、变电亭、箱式变"); 
             }
 
             comboBoxEdit2.Properties.Items.Clear();
@@ -134,6 +138,99 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.Text != string.Empty)
+            {
+                addresschange(comboBoxEdit1.Text);
+            }
+        }
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit2.Text != string.Empty)
+            {
+                codechange(comboBoxEdit2.Text);
+            }
+        }
+
+
+        private void addresschange(string name)
+        {
+            switch (name)
+            {
+                case "配电线路杆塔":
+                case "开关":
+                    comboBoxEdit2.Properties.Items.Clear();
+                    ICollection list1 = ComboBoxHelper.GetGdsxl(rowData.OrgCode);
+                    comboBoxEdit2.Properties.Items.AddRange(list1);
+                    break;
+                case "相序牌":
+                    comboBoxEdit2.Properties.Items.Clear();
+                     list1 = ComboBoxHelper.GetGdsxl(rowData.OrgCode);
+                    comboBoxEdit2.Properties.Items.AddRange(list1);
+                    ICollection list2 = ComboBoxHelper.Getbtq(rowData.OrgCode);
+                    comboBoxEdit2.Properties.Items.AddRange(list2);
+                    break;
+                case "电缆走向桩":
+                    comboBoxEdit2.Properties.Items.Clear();
+                    list1 = ComboBoxHelper.GetGdsxl(rowData.OrgCode);
+                    comboBoxEdit2.Properties.Items.AddRange(list1);
+                    break;
+                case "变台、变电亭、箱式变":
+                    comboBoxEdit2.Properties.Items.Clear();
+                    IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select OrgName from ViewGds "));
+                    comboBoxEdit2.Properties.Items.AddRange(strlist);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void codechange(string addstr)
+        {
+            string namestr=comboBoxEdit1.Text;
+            if (namestr != string.Empty)
+            {
+                switch (namestr)
+                {
+                    case "配电线路杆塔":
+                        comboBoxEdit3.Properties.Items.Clear();
+                        string sqlwhere = "select b.gtCode from dbo.PS_gt b ,dbo.PS_xl c where   b.LineCode=c.LineCode and c.LineName='" + addstr + "'";
+                        IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlwhere);
+                        comboBoxEdit3.Properties.Items.AddRange(strlist);
+                        break;
+                    case "开关":
+                        comboBoxEdit3.Properties.Items.Clear();
+                        strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select LineName from PS_xl  where OrgCode='{0}' and  len(linecode)=6 ",rowData.OrgCode));
+                        comboBoxEdit3.Properties.Items.AddRange(strlist);
+                        break;
+                    case "相序牌":
+                        comboBoxEdit3.Properties.Items.Clear();
+                        comboBoxEdit3.Properties.Items.Add("A相*个");
+                        comboBoxEdit3.Properties.Items.Add("B相*个");
+                        comboBoxEdit3.Properties.Items.Add("C相*个");
+                        comboBoxEdit3.Properties.Items.Add("*手工录入");
+                        break;
+                    case "电缆走向桩":
+                        comboBoxEdit3.Properties.Items.Clear();
+                      
+                        break;
+                    case "变台、变电亭、箱式变":
+                        comboBoxEdit3.Properties.Items.Clear();
+                        for (int i = 1; i < 301; i++)
+                        {
+                             comboBoxEdit3.Properties.Items.Add(i+"号");
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+            
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -180,20 +277,21 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxEdit3.Properties.Items.Clear();
-            ICollection list = new ArrayList();
-            PS_xl xl = null;
-            xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit2.Text + "'");
-            if (xl != null)
-            {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   lineCode='{0}' ", xl.LineCode));
-                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-                comboBoxEdit3.Properties.Items.AddRange(list);
-            }
+            //comboBoxEdit3.Properties.Items.Clear();
+            //ICollection list = new ArrayList();
+            //PS_xl xl = null;
+            //xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='" + comboBoxEdit2.Text + "'");
+            //if (xl != null)
+            //{
+            //    list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   lineCode='{0}' ", xl.LineCode));
+            //    //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
+            //    comboBoxEdit3.Properties.Items.AddRange(list);
+            //}
            
 
         }
 
+       
       
 
        

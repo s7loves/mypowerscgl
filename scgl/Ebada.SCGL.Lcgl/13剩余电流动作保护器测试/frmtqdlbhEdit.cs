@@ -206,5 +206,7 @@ namespace Ebada.Scgl.Lcgl
             this.DialogResult = DialogResult.OK;
             //this.Close();
         }
+
+       
     }
 }

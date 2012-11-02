@@ -144,7 +144,14 @@ namespace Ebada.Scgl.Lcgl {
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_13dlbhjl> e) {
             if (parentID == null)
+            {
                 e.Cancel = true;
+            }
+            else
+            {
+                e.Value.dzdl = parentObj.dzdl;
+                e.Value.dzsj = parentObj.dzsj;
+            }
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
