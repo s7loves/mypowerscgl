@@ -15,13 +15,16 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmaqhdEdit : FormBase, IPopupFormEdit {
+    public partial class frmaqhdEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_02aqhd> m_CityDic = new SortableSearchableBindingList<PJ_02aqhd>();
 
-        public frmaqhdEdit() {
+        public frmaqhdEdit()
+        {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "zcr");
@@ -40,24 +43,43 @@ namespace Ebada.Scgl.Lcgl
         #region IPopupFormEdit Members
         private PJ_02aqhd rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 getqqry();
                 getcqry();
                 return rowData;
-              
+
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_02aqhd;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_02aqhd>(value as PJ_02aqhd, rowData);
                 }
                 setqqry();
                 setcqry();
+
+                if (MainHelper.UserOrg.OrgType == "1")
+                {
+                    memoEdit4.Properties.ReadOnly = true;
+                    dateEdit4.Properties.ReadOnly = true;
+                    comboBoxEdit6.Properties.ReadOnly = true;
+                }
+                else if (MainHelper.UserOrg.OrgType == "0")
+                {
+                    memoEdit4.Properties.ReadOnly = false;
+                    dateEdit4.Properties.ReadOnly = false;
+                    comboBoxEdit6.Properties.ReadOnly = false;
+                }
             }
         }
 
@@ -69,25 +91,25 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 28; i <= 32; i++)
             {
                 ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + i]).EditValue = "";
-               
+
             }
             for (int i = 0; i < mans.Length; i++)
             {
-               
-                ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i+28)]).EditValue = mans[i];
-               
+
+                ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 28)]).EditValue = mans[i];
+
             }
         }
         void getqqry()
         {
             string str = "";
             string yy = "";
-            for (int i = 28; i <=32; i++)
+            for (int i = 28; i <= 32; i++)
             {
-               
+
                 yy = ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + i]).EditValue.ToString();
                 if (!string.IsNullOrEmpty(yy.Trim()))
-                    str +=  yy + ";";
+                    str += yy + ";";
             }
             rowData.qxry = str;
         }
@@ -101,13 +123,13 @@ namespace Ebada.Scgl.Lcgl
                 {
                     ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = "";
                 }
-              
+
 
             }
-            int m=0;
+            int m = 0;
             for (int i = 0; i < mans.Length; i++)
             {
-                if (i>=4)
+                if (i >= 4)
                 {
                     m = i + 2;
                 }
@@ -115,7 +137,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     m = i + 1;
                 }
-                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (m+1)]).EditValue = mans[i];
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (m + 1)]).EditValue = mans[i];
 
             }
         }
@@ -125,37 +147,38 @@ namespace Ebada.Scgl.Lcgl
             string yy = "";
             for (int i = 2; i <= 27; i++)
             {
-                if (i!=6)
+                if (i != 6)
                 {
                     yy = ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue.ToString();
                     if (!string.IsNullOrEmpty(yy.Trim()))
                         str += yy + ";";
                 }
-             
+
             }
             rowData.cjry = str;
         }
 
 
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
-            
+
             for (int i = 1; i < 27; i++)
             {
-                if (i!=5)
+                if (i != 5)
                 {
                     ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
 
                 }
-  
+
             }
-            for (int i = 27; i <32; i++)
+            for (int i = 27; i < 32; i++)
             {
-              
+
                 ((ComboBoxEdit)groupBox6.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
 
             }
-            ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" +  1]).Properties.Items.AddRange(ryList);
+            ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + 1]).Properties.Items.AddRange(ryList);
             //string zhi = "领导";
             // ICollection   list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where Type like'%" + zhi + "%'");
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(list);
@@ -173,7 +196,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -201,7 +225,7 @@ namespace Ebada.Scgl.Lcgl
             PJ_dyk dyk = SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
             if (dyk != null)
             {
-                rowData.hdnr = dyk.nr2+dyk.nr;
+                rowData.hdnr = dyk.nr2 + dyk.nr;
                 rowData.hdxj = dyk.nr3;
                 rowData.fyjyjl = dyk.nr4;
             }
@@ -210,7 +234,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmaqhdEdit_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -226,7 +250,7 @@ namespace Ebada.Scgl.Lcgl
 
                     //string str = rowData.cjry;
                     //string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-                    if (dt.Rows.Count>=25)
+                    if (dt.Rows.Count >= 25)
                     {
                         for (int i = 2; i <= 27; i++)
                         {
@@ -237,32 +261,32 @@ namespace Ebada.Scgl.Lcgl
 
                             }
 
-                            else if (i>6)
+                            else if (i > 6)
                             {
                                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = dt.Rows[i - 3][0].ToString();
                             }
-                               
+
                         }
-                       
+
                     }
                     else
                     {
-                        
-                        for (int i = 0; i < dt.Rows.Count;i++ )
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                          
-                            if (i+2<6)
+
+                            if (i + 2 < 6)
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +(i+2)]).EditValue = dt.Rows[i][0].ToString();
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 2)]).EditValue = dt.Rows[i][0].ToString();
                             }
-                            else 
+                            else
                             {
-                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" +(i+3)]).EditValue = dt.Rows[i][0].ToString();
+                                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 3)]).EditValue = dt.Rows[i][0].ToString();
                             }
                         }
                     }
-                    
-                    
+
+
                 }
             }
         }
