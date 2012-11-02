@@ -3632,6 +3632,7 @@
     <EmbeddedResource Include="25双%28自备%29电源协议书\UCPJ_25zbdymx .resx">
       <DependentUpon>UCPJ_25zbdymx .cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
