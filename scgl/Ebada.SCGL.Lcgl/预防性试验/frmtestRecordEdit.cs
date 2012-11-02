@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Lcgl
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
             spinEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
 
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
+            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
@@ -168,7 +168,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count < 2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from PS_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
@@ -194,7 +194,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count < 2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = ('{0}')", rowData.OrgCode));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from PS_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
@@ -224,7 +224,7 @@ namespace Ebada.Scgl.Lcgl
 
                     if (comboBoxEdit5.Properties.Items.Count < 2)
                     {
-                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from ps_xl where OrgCode = ('{0}')", rowData.OrgCode));
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from PS_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
                         comboBoxEdit5.Properties.Items.AddRange(li);
                     }
                     if (comboBoxEdit1.Properties.Items.Count == 0)
