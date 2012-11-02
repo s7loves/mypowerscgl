@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xh");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "dy");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gl");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "ts");
+            this.spinEdit2.DataBindings.Add("EditValue", rowData, "ts");
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "sccj");
 
             //
@@ -45,9 +45,9 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
-                rowData.dy = Convert.ToInt32(comboBoxEdit4.EditValue);
+               // rowData.dy = Convert.ToInt32(comboBoxEdit4.EditValue);
                 rowData.gl = Convert.ToDouble(comboBoxEdit5.EditValue);
-                rowData.ts = Convert.ToInt32(comboBoxEdit6.EditValue);
+                //rowData.ts = Convert.ToInt32(comboBoxEdit6.EditValue);
                 return rowData;
             }
             set {
@@ -67,8 +67,19 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
 
             //ComboBoxHelper.FillCBoxByDyk("11配电变压器卡片", "一次电压", comboBoxEdit4.Properties);
-
-            comboBoxEdit4.Text = rowData.dy.ToString();
+           
+           // comboBoxEdit4.Text = rowData.dy.ToString();
+            comboBoxEdit7.Properties.Items.Clear();
+            comboBoxEdit7.Properties.Items.Add("哈尔滨电机厂");
+            comboBoxEdit7.Properties.Items.Add("贵阳电机厂");
+            comboBoxEdit7.Properties.Items.Add("绥化电机厂");
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.Properties.Items.Add("T23");
+            comboBoxEdit3.Properties.Items.Add("6135N");
+            comboBoxEdit5.Properties.Items.Clear();
+            comboBoxEdit5.Properties.Items.Add("22");
+            comboBoxEdit5.Properties.Items.Add("40");
+            comboBoxEdit5.Properties.Items.Add("88");
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_25>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();
@@ -155,6 +166,30 @@ namespace Ebada.Scgl.Lcgl
         private void labelControl5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxEdit1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit1.SelectedText == "发电机")
+            {
+                comboBoxEdit3.Properties.Items.Clear();
+                comboBoxEdit3.Properties.Items.Add("T23");
+                comboBoxEdit3.Properties.Items.Add("6135N");
+                comboBoxEdit5.Properties.Items.Clear();
+                comboBoxEdit5.Properties.Items.Add("22");
+                comboBoxEdit5.Properties.Items.Add("40");
+                comboBoxEdit5.Properties.Items.Add("88");
+            }
+            else if (comboBoxEdit1.SelectedText == "原动机")
+            {
+                comboBoxEdit3.Properties.Items.Clear();
+                comboBoxEdit3.Properties.Items.Add("4115-T1");
+                comboBoxEdit3.Properties.Items.Add("GF");
+                comboBoxEdit5.Properties.Items.Clear();
+                comboBoxEdit5.Properties.Items.Add("50");
+                comboBoxEdit5.Properties.Items.Add("75");
+              
+            }
         }
 
       
