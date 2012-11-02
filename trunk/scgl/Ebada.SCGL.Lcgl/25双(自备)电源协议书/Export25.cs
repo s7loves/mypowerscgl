@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_25zbdymx> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + obj.ID + "'and Type='发电机'");
             IList<PJ_25zbdymx> list1 = Client.ClientHelper.PlatformSqlMap.GetList<PJ_25zbdymx>("where ParentID='" + obj.ID + "'and Type='原动机'");
 
-
+            ex.SetCellValue("甲 方："+obj.jf, 4, 1);
             ex.SetCellValue("乙 方：" + obj.cqdw, 5, 1);
             ex.SetCellValue(obj.qdrq.Year.ToString(), 42, 6);
             ex.SetCellValue(obj.qdrq.Month.ToString(), 42, 8);

@@ -138,32 +138,33 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            rowData.CreateDate = rowData.qdrq;
-            DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
-            Microsoft.Office.Interop.Excel.Workbook wb;
-            if (rowData.BigData==null||rowData.BigData.Length == 0)
-            {
-                string fname = Application.StartupPath + "\\00记录模板\\25双自备电源协议书.xls";
-                dsoFramerControl1.FileOpen(fname);
-            }
-            else
-                dsoFramerControl1.FileData = rowData.BigData;
-            wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
-            ea.MyWorkBook = wb;
-            ea.MyExcel = wb.Application;
-            ea.SetCellValue("甲 方："+comboBoxEdit5.Text, 4, 1);
-            ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
-            ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
-            ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
-            ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
-             ea.SetCellValue(rowData.bszz, 30, 2);
-             ea.SetCellValue(rowData.fzcs, 31, 2);
-            dsoFramerControl1.FileSave();
-            rowData.BigData = dsoFramerControl1.FileData;
-            dsoFramerControl1.FileClose();
-            dsoFramerControl1.Dispose();
-            dsoFramerControl1 = null;
+            this.DialogResult = DialogResult.OK;
+            //rowData.CreateDate = rowData.qdrq;
+            //DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
+            //Microsoft.Office.Interop.Excel.Workbook wb;
+            //if (rowData.BigData==null||rowData.BigData.Length == 0)
+            //{
+            //    string fname = Application.StartupPath + "\\00记录模板\\25双自备电源协议书.xls";
+            //    dsoFramerControl1.FileOpen(fname);
+            //}
+            //else
+            //    dsoFramerControl1.FileData = rowData.BigData;
+            //wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            //ExcelAccess ea = new ExcelAccess();
+            //ea.MyWorkBook = wb;
+            //ea.MyExcel = wb.Application;
+            //ea.SetCellValue("甲 方："+comboBoxEdit5.Text, 4, 1);
+            //ea.SetCellValue("乙 方："+comboBoxEdit1.Text, 5, 1);
+            //ea.SetCellValue(rowData.qdrq.Year.ToString(), 42, 6);
+            //ea.SetCellValue(rowData.qdrq.Month.ToString(), 42, 8);
+            //ea.SetCellValue(rowData.qdrq.Day.ToString(), 42, 10);
+            // ea.SetCellValue(rowData.bszz, 30, 2);
+            // ea.SetCellValue(rowData.fzcs, 31, 2);
+            //dsoFramerControl1.FileSave();
+            //rowData.BigData = dsoFramerControl1.FileData;
+            //dsoFramerControl1.FileClose();
+            //dsoFramerControl1.Dispose();
+            //dsoFramerControl1 = null;
         }
 
       
