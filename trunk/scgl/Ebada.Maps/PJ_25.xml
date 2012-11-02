@@ -10,6 +10,7 @@
         <result property="cqdw" column="cqdw" />
         <result property="qdrq" column="qdrq" />
         <result property="Remark" column="Remark" />
+         <result property="jf" column="jf" />
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
@@ -26,6 +27,7 @@
      [ParentID],
      [cqdw],
      [qdrq],
+     [jf],
      [Remark],
      [gzrjID],
      [CreateMan],
@@ -43,6 +45,7 @@
      [ParentID],
      [cqdw],
      [qdrq],
+     [jf],
      [Remark],
      [gzrjID],
      [CreateMan],
@@ -57,6 +60,7 @@
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="jf">[jf]='$jf$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
@@ -71,6 +75,7 @@
      [ParentID],
      [cqdw],
      [qdrq],
+     [jf],
      [Remark],
      [gzrjID],
      [CreateMan],
@@ -110,6 +115,7 @@
      [ParentID]=#ParentID#,
      [cqdw]=#cqdw#,
      [qdrq]=#qdrq#,
+     [jf]=#jf#,
      [Remark]=#Remark#,
      [gzrjID]=#gzrjID#,
      [CreateMan]=#CreateMan#,
@@ -129,6 +135,7 @@
      [ParentID],
      [cqdw],
      [qdrq],
+      [jf],
      [Remark],
      [gzrjID],
      [CreateMan],
@@ -143,6 +150,7 @@
      #ParentID#,
      #cqdw#,
      #qdrq#,
+     #jf#,
      #Remark#,
      #gzrjID#,
      #CreateMan#,
@@ -162,6 +170,7 @@
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
        <isNotNull prepend="AND" property="cqdw">[cqdw]='$cqdw$'</isNotNull>
        <isNotNull prepend="AND" property="qdrq">[qdrq]='$qdrq$'</isNotNull>
+        <isNotNull prepend="AND" property="jf">[jf]='$jf$'</isNotNull>
        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
