@@ -70,15 +70,21 @@ namespace Ebada.Scgl.Lcgl
 
                 if (MainHelper.UserOrg.OrgType == "1")
                 {
-                    memoEdit4.Properties.ReadOnly = true;
-                    dateEdit4.Properties.ReadOnly = true;
-                    comboBoxEdit6.Properties.ReadOnly = true;
+                    groupBox2.Enabled = true;
+                    groupBox1.Enabled = true;
+                    groupBox6.Enabled = true;
+                    groupBox3.Enabled = true;
+
+                    groupBox7.Enabled = false;
                 }
                 else if (MainHelper.UserOrg.OrgType == "0")
                 {
-                    memoEdit4.Properties.ReadOnly = false;
-                    dateEdit4.Properties.ReadOnly = false;
-                    comboBoxEdit6.Properties.ReadOnly = false;
+                    groupBox2.Enabled = false;
+                    groupBox1.Enabled = false;
+                    groupBox6.Enabled = false;
+                    groupBox3.Enabled = false;
+
+                    groupBox7.Enabled = true;
                 }
             }
         }
