@@ -25,7 +25,8 @@ namespace Ebada.Scgl.Model
         private string _parentid=String.Empty; 
         private string _cqdw=String.Empty; 
         private DateTime _qdrq=new DateTime(1900,1,1); 
-        private string _remark=String.Empty; 
+        private string _remark=String.Empty;
+        private string _jf = String.Empty;
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty;
         private string _bszz = String.Empty;
@@ -139,7 +140,26 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：jf
+        /// 属性描述：甲方
+        /// 字段信息：[Remark],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("甲方")]
+        public string jf
+        {
+            get { return _jf; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[备注]长度不能大于50!");
+                if (_jf as object == null || !_jf.Equals(value))
+                {
+                    _jf = value;
+                }
+            }
+        }
         /// <summary>
         /// 属性名称：gzrjID
         /// 属性描述：gzrjID
