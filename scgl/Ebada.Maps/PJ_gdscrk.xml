@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PJ_gdscrk" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PJ_gdscrk"  type="Ebada.Scgl.Model.PJ_gdscrk,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PJ_gdscrk_AllColumns" class="PJ_gdscrk">
+      <result property="ID" column="ID" />
+      <result property="num" column="num" />
+      <result property="OrgCode" column="OrgCode" />
+      <result property="wpmc" column="wpmc" />
+      <result property="wpgg" column="wpgg" />
+      <result property="wpdw" column="wpdw" />
+      <result property="wpsl" column="wpsl" />
+      <result property="wpdj" column="wpdj" />
+      <result property="wpcj" column="wpcj" />
+      <result property="indate" column="indate" />
+      <result property="ly" column="ly" />
+      <result property="ckdate" column="ckdate" />
+      <result property="cksl" column="cksl" />
+      <result property="yt" column="yt" />
+      <result property="Remark" column="Remark" />
+      <result property="type" column="type" />
+      <result property="lasttime" column="lasttime" />
+      <result property="kcsl" column="kcsl" />
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="SelectPJ_gdscrkList" resultMap="PJ_gdscrk_AllColumns" parameterClass="string">
+      SELECT
+      [ID],
+      [num],
+      [OrgCode],
+      [wpmc],
+      [wpgg],
+      [wpdw],
+      [wpsl],
+      [wpdj],
+      [wpcj],
+      [indate],
+      [ly],
+      [ckdate],
+      [cksl],
+      [yt],
+      [Remark],
+      [type],
+      [lasttime],
+      [kcsl]
+      FROM PJ_gdscrk
+      $value$
+    </select>
+
+    <select id="SelectPJ_gdscrkByHash" parameterClass="Hashtable">
+      SELECT
+      [ID],
+      [num],
+      [OrgCode],
+      [wpmc],
+      [wpgg],
+      [wpdw],
+      [wpsl],
+      [wpdj],
+      [wpcj],
+      [indate],
+      [ly],
+      [ckdate],
+      [cksl],
+      [yt],
+      [Remark],
+      [type],
+      [lasttime],
+      [kcsl]
+      FROM PJ_gdscrk
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+        <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+        <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+        <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+        <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+        <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+        <isNotNull prepend="AND" property="ly">[ly]='$ly$'</isNotNull>
+        <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+        <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+        <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+      </dynamic>
+    </select>
+    <select id="SelectPJ_gdscrkByKey" resultMap="PJ_gdscrk_AllColumns" parameterClass="PJ_gdscrk">
+      SELECT
+      [ID],
+      [num],
+      [OrgCode],
+      [wpmc],
+      [wpgg],
+      [wpdw],
+      [wpsl],
+      [wpdj],
+      [wpcj],
+      [indate],
+      [ly],
+      [ckdate],
+      [cksl],
+      [yt],
+      [Remark],
+      [type],
+      [lasttime],
+      [kcsl]
+      FROM PJ_gdscrk
+      WHERE
+      ID = #ID#
+
+    </select>
+
+    <delete id="DeletePJ_gdscrk" parameterClass="PJ_gdscrk">
+      DELETE FROM
+      PJ_gdscrk
+      WHERE
+      ID = #ID#
+
+    </delete>
+
+    <delete id="DeletePJ_gdscrkByWhere" parameterClass="string">
+      delete from PJ_gdscrk $value$
+    </delete>
+
+    <delete id="DeletePJ_gdscrkByKey" parameterClass="string">
+      DELETE FROM
+      PJ_gdscrk
+      WHERE
+      ID = #ID#
+
+    </delete>
+
+    <update id="UpdatePJ_gdscrk" parameterClass="PJ_gdscrk" resultClass="int">
+      UPDATE PJ_gdscrk
+      SET
+      [num]=#num#,
+      [OrgCode]=#OrgCode#,
+      [wpmc]=#wpmc#,
+      [wpgg]=#wpgg#,
+      [wpdw]=#wpdw#,
+      [wpsl]=#wpsl#,
+      [wpdj]=#wpdj#,
+      [wpcj]=#wpcj#,
+      [indate]=#indate#,
+      [ly]=#ly#,
+      [ckdate]=#ckdate#,
+      [cksl]=#cksl#,
+      [yt]=#yt#,
+      [Remark]=#Remark#,
+      [type]=#type#,
+      [lasttime]=#lasttime#,
+      [kcsl]=#kcsl#
+      WHERE
+      ID = #ID#
+
+    </update>
+
+    <insert id="InsertPJ_gdscrk" parameterClass="PJ_gdscrk">
+      INSERT INTO PJ_gdscrk
+      (
+      [ID],
+      [num],
+      [OrgCode],
+      [wpmc],
+      [wpgg],
+      [wpdw],
+      [wpsl],
+      [wpdj],
+      [wpcj],
+      [indate],
+      [ly],
+      [ckdate],
+      [cksl],
+      [yt],
+      [Remark],
+      [type],
+      [lasttime],
+      [kcsl]
+      )
+      VALUES
+      (
+      #ID#,
+      #num#,
+      #OrgCode#,
+      #wpmc#,
+      #wpgg#,
+      #wpdw#,
+      #wpsl#,
+      #wpdj#,
+      #wpcj#,
+      #indate#,
+      #ly#,
+      #ckdate#,
+      #cksl#,
+      #yt#,
+      #Remark#,
+      #type#,
+      #lasttime#,
+      #kcsl#
+      )
+
+    </insert>
+
+    <select id="GetPJ_gdscrkRowCountByHash" parameterClass="Hashtable">
+      SELECT Count(*)
+      FROM PJ_gdscrk
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+        <isNotNull prepend="AND" property="num">[num]='$num$'</isNotNull>
+        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+        <isNotNull prepend="AND" property="wpmc">[wpmc]='$wpmc$'</isNotNull>
+        <isNotNull prepend="AND" property="wpgg">[wpgg]='$wpgg$'</isNotNull>
+        <isNotNull prepend="AND" property="wpdw">[wpdw]='$wpdw$'</isNotNull>
+        <isNotNull prepend="AND" property="wpsl">[wpsl]='$wpsl$'</isNotNull>
+        <isNotNull prepend="AND" property="wpdj">[wpdj]='$wpdj$'</isNotNull>
+        <isNotNull prepend="AND" property="wpcj">[wpcj]='$wpcj$'</isNotNull>
+        <isNotNull prepend="AND" property="ckdate">[ckdate]='$ckdate$'</isNotNull>
+        <isNotNull prepend="AND" property="yt">[yt]='$yt$'</isNotNull>
+        <isNotNull prepend="AND" property="cksl">[cksl]='$cksl$'</isNotNull>
+        <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+        <isNotNull prepend="AND" property="indate">[indate]='$indate$'</isNotNull>
+        <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+        <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
+        <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
+        <isNotNull prepend="AND" property="ly">[ly]='$ly$'</isNotNull>
+      </dynamic>
+
+    </select>
+
+    <select id="GetPJ_gdscrkRowCount" parameterClass="string">
+      select count(*) from PJ_gdscrk $value$
+    </select>
+  </statements>
+</sqlMap>
