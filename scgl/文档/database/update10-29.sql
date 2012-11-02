@@ -7,3 +7,6 @@ alter table PJ_tdjh add
 go
 alter table PJ_23 add
    jf [nvarchar](50) null default ''
+go
+alter table PJ_25 add
+   jf [nvarchar](50) null default ''
