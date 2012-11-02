@@ -40,10 +40,10 @@ namespace Ebada.Scgl.Lcgl
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "sl");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbCapacity");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
-            textEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
+            spinEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
 
             //this.comboBoxEdit7.DataBindings.Add("EditValue", rowData2, "syPeriod");
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "syProject");
+            this.checkedComboBoxEdit1.DataBindings.Add("EditValue", rowData, "syProject");
             //this.memoEdit3.DataBindings.Add("EditValue", rowData2, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             //this.dateEdit4.DataBindings.Add("EditValue", rowData2, "preExpTime");
@@ -62,9 +62,9 @@ namespace Ebada.Scgl.Lcgl
                 case "断路器":
                 case "电容器":
                     labelControl8.Visible = true;
-                    //comboBoxEdit2.Visible = true;
+                    spinEdit2.Visible = true;
                     labelControl8.Visible = true;
-                    //comboBoxEdit2.Visible = true;
+                    //spinEdit2.Visible = true;
                     break;
 
 
@@ -123,10 +123,10 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
                 //comboBoxEdit7.Text=rowData2.syPeriod;
-                textEdit2.Text = rowData2.syPeriod;
-                memoEdit3.Text=rowData2.syProject;
+                checkedComboBoxEdit2.Text = rowData2.syPeriod;
+                //memoEdit3.Text=rowData2.syProject;
                 comboBoxEdit9.Text=rowData2.charMan;
-
+                spinEdit1.Value = Convert.ToDecimal(rowData2.sl);
                 //dateEdit1.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
                 //dateEdit4.Properties.EditMask = "yyyy-MM-dd";
                 //dateEdit4.Text = rowData2.preExpTime.ToString("yyyy-MM-dd");
@@ -141,30 +141,42 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData()
         {
             comboBoxEdit5.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
+           IList li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select linename from PS_xl where OrgCode = '{0}' and linevol='{1}'", rowData.OrgCode, "10"));
+            comboBoxEdit5.Properties.Items.AddRange(li);
+
             comboBoxEdit1.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
+            if (comboBoxEdit1.Properties.Items.Count == 0)
+            {
+
+                comboBoxEdit1.Properties.Items.Add("100Kvar");
+                comboBoxEdit1.Properties.Items.Add("120Kvar");
+                comboBoxEdit1.Properties.Items.Add("150Kvar");
+            }
+            checkedComboBoxEdit1.Properties.Items.Clear();
+            checkedComboBoxEdit1.Properties.Items.Add("极对壳绝缘电阻");
+            checkedComboBoxEdit1.Properties.Items.Add("电容值");
+            checkedComboBoxEdit1.Properties.Items.Add("并联电阻值测量");
+            checkedComboBoxEdit2.Properties.Items.Clear();
+            checkedComboBoxEdit2.Properties.Items.Add("极对壳绝缘电阻");
+            checkedComboBoxEdit2.Properties.Items.Add("电容值");
+            checkedComboBoxEdit2.Properties.Items.Add("并联电阻值测量");
+            //记录人
+            comboBoxEdit6.Properties.Items.Clear();
+            comboBoxEdit9.Properties.Items.Clear();
+            li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
+            comboBoxEdit6.Properties.Items.AddRange(li);
+           comboBoxEdit9.Properties.Items.AddRange(li);
+
             comboBoxEdit3.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
             comboBoxEdit7.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit7);
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
-            comboBoxEdit6.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
-            comboBoxEdit9.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
-            IList li;
-            if (comboBoxEdit6.Properties.Items.Count == 0)
-            {
-                li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
-                comboBoxEdit6.Properties.Items.AddRange(li);
-            }
-            if (comboBoxEdit9.Properties.Items.Count == 0)
-            {
-                li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
-                comboBoxEdit9.Properties.Items.AddRange(li);
-            }
+            //comboBoxEdit6.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
+            //comboBoxEdit9.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
         }
 
         /// <summary>
@@ -194,19 +206,13 @@ namespace Ebada.Scgl.Lcgl
             InitComboBoxData();
         }
 
+       
 
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
-            rowData.syProject = memoEdit2.EditValue.ToString();
-        }
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("预防性试验", "试验周期", textEdit1);
-            rowData.syPeriod = textEdit1.EditValue.ToString();
-        }
+        //private void simpleButton1_Click(object sender, EventArgs e)
+        //{
+        //    SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
+        //    rowData.syProject = memoEdit2.EditValue.ToString();  
+        //}
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -215,8 +221,8 @@ namespace Ebada.Scgl.Lcgl
             rowData2.sbModle = rowData.sbModle;
             rowData2.Remark = rowData.Remark;
            // rowData2.syPeriod = comboBoxEdit7.Text ;
-            rowData2.syPeriod = textEdit2.Text;
-            rowData2.syProject = memoEdit3.Text;
+            rowData2.syPeriod = spinEdit1.Value.ToString();
+            rowData2.syProject =  checkedComboBoxEdit2.Text;
             rowData2.preExpTime = Convert.ToDateTime(dateEdit4.Text);
             rowData2.planExpTime = Convert.ToDateTime(dateEdit1.Text);
             rowData2.charMan = comboBoxEdit9.Text;
@@ -249,21 +255,11 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit3);
-            rowData2.syProject = memoEdit3.EditValue.ToString();  
-        }
-
-        private void dateEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-            dateEdit2.EditValue = dateEdit3.EditValue;
-        }
-
-        private void dateEdit4_EditValueChanged(object sender, EventArgs e)
-        {
-            dateEdit1.EditValue = dateEdit4.EditValue;
-        }
+        //private void simpleButton2_Click(object sender, EventArgs e)
+        //{
+        //    SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit3);
+        //    rowData2.syProject = memoEdit3.EditValue.ToString();  
+        //}
 
        
      
