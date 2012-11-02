@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Model
         private string _xh=String.Empty; 
         private double _gl=0; 
         private int _ts=0; 
-        private int _dy=0; 
+        private double _dy=0; 
         private DateTime _azrq=new DateTime(1900,1,1); 
         private string _sccj=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1);   
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[dy],int
         /// </summary>
         [DisplayNameAttribute("电压")]
-        public int dy
+        public double dy
         {
             get { return _dy; }
             set
