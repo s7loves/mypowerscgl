@@ -57,8 +57,8 @@ namespace Ebada.Scgl.Lcgl
                 case "避雷器":
                 case "断路器":
                 case "电容器":
-                    labelControl8.Visible = true;
-                    labelControl8.Visible = true;
+                    //labelControl8.Visible = true;
+                    //labelControl8.Visible = true;
                     spinEdit2.Visible = true;
                     break;
 
@@ -99,7 +99,7 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
             comboBoxEdit1.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
-            comboBoxEdit3.Properties.Items.Clear();
+            //comboBoxEdit3.Properties.Items.Clear();
             //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
@@ -144,13 +144,13 @@ namespace Ebada.Scgl.Lcgl
                         comboBoxEdit4.Properties.Items.Add("1000");
                         comboBoxEdit4.Properties.Items.Add("2000");
                     }
-                    if (comboBoxEdit3.Properties.Items.Count == 0)
-                    {
+                    //if (comboBoxEdit3.Properties.Items.Count == 0)
+                    //{
 
-                        comboBoxEdit3.Properties.Items.Add("SJ");
-                        comboBoxEdit3.Properties.Items.Add("S7");
-                        comboBoxEdit3.Properties.Items.Add("S9");
-                    }
+                    //    comboBoxEdit3.Properties.Items.Add("SJ");
+                    //    comboBoxEdit3.Properties.Items.Add("S7");
+                    //    comboBoxEdit3.Properties.Items.Add("S9");
+                    //}
                     if (comboBoxEdit6.Properties.Items.Count == 0)
                     {
                         li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
@@ -325,24 +325,24 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
-            rowData.syProject = memoEdit2.EditValue.ToString();  
-        }
+        //private void simpleButton1_Click(object sender, EventArgs e)
+        //{
+        //    //SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
+        //    //rowData.syProject = memoEdit2.EditValue.ToString();  
+        //}
 
         private void comboBoxEdit7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (memoEdit2.Text.IndexOf(comboBoxEdit7.Text) == -1)
-            {
-                //if (memoEdit2.Text == "")
-                    memoEdit2.Text = comboBoxEdit7.Text;
-                //else
-                //{
-                //    memoEdit2.Text +="," +comboBoxEdit7.Text;
-                //}
-                rowData.syProject = memoEdit2.Text;
-            }
+            //if (memoEdit2.Text.IndexOf(comboBoxEdit7.Text) == -1)
+            //{
+            //    //if (memoEdit2.Text == "")
+            //        memoEdit2.Text = comboBoxEdit7.Text;
+            //    //else
+            //    //{
+            //    //    memoEdit2.Text +="," +comboBoxEdit7.Text;
+            //    //}
+            //    rowData.syProject = memoEdit2.Text;
+            //}
            
         }
 

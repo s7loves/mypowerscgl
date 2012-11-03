@@ -327,7 +327,7 @@
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(72, 14);
             this.labelControl9.TabIndex = 1;
-            this.labelControl9.Text = "下次更换日期";
+            this.labelControl9.Text = "上次更换日期";
             // 
             // labelControl7
             // 

@@ -210,5 +210,39 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+
+        /// <summary>
+        /// 自动生成夸跃杆号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBoxEdit2.EditValue.ToString().Length > 4))
+            {
+                try
+                {
+                    int GanWei = int.Parse(comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 4,3));
+
+                    if (GanWei > 0)
+                    {
+                        GanWei--;
+
+                        string Ganhao = string.Format("{0:#0##}", GanWei)+comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 1);
+
+                        comboBoxEdit4.Properties.Items.Clear();
+                        comboBoxEdit4.Properties.Items.Add(Ganhao);
+                        comboBoxEdit4.EditValue = Ganhao;
+                    }
+
+                }
+                catch (Exception er)
+                {
+
+                }
+            }
+
+
+        }
     }
 }

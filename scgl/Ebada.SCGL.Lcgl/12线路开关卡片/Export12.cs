@@ -65,11 +65,16 @@ namespace Ebada.Scgl.Lcgl {
                     ex.SetCellValue(tempobj.azdd, 12 + 2 * i, 7);
                     ex.SetCellValue(tempobj.gtbh, 12 + 2 * i, 9);
                     ex.SetCellValue("'"+tempobj.kgCode, 12 + 2 * i,10);
+                    ex.SetFontNameSize(12 + 2 * i, 10, 12 + 2 * i, 10, "", 9);
+                    //如果日期未写不不输出 {1900-1-1 0:00:00}
+                    DateTime dtCCRQ =DateTime.Parse("1900-1-1 0:00:00");
+                    if (tempobj.ccrq != dtCCRQ)
+                    {
 
-                    ex.SetCellValue(tempobj.ccrq.Year.ToString(), 12 + 2 * i, 11);
-                    ex.SetCellValue(tempobj.ccrq.Month.ToString(), 12 + 2 * i, 13);
-                    ex.SetCellValue(tempobj.ccrq.Day.ToString(), 12 + 2 * i, 15);
-
+                        ex.SetCellValue(tempobj.ccrq.Year.ToString(), 12 + 2 * i, 11);
+                        ex.SetCellValue(tempobj.ccrq.Month.ToString(), 12 + 2 * i, 13);
+                        ex.SetCellValue(tempobj.ccrq.Day.ToString(), 12 + 2 * i, 15);
+                    }
                     ex.SetCellValue(tempobj.ccyy, 12 + 2 * i, 17);
                     ex.SetCellValue(tempobj.Remark, 12 + 2 * i, 19);
                 }
