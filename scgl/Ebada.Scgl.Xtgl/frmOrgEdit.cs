@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Xtgl
         {
             InitializeComponent();
             textEdit1.KeyPress += new KeyPressEventHandler(textEdit1_KeyPress);
+            checkEdit2.Hide();
         }
 
         void textEdit1_KeyPress(object sender, KeyPressEventArgs e)

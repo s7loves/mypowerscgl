@@ -93,6 +93,7 @@ namespace Ebada.Scgl.Xtgl {
         void gridViewOperation_CreatingObjectEvent(mOrg newobj) {
             newobj.OrgType = "1";
             newobj.ParentID = "200";
+            newobj.C1 = "是";
         }
         /// <summary>
         /// 父表ID
