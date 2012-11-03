@@ -187,7 +187,12 @@ namespace Ebada.Scgl.Lcgl {
         private void loadbasedata()
         {
             linkdic.Clear();
-            openflie f1 = new openflie(1, "安全生产计划总结");
+
+            openflie f1 = new openflie(2, "20110510173256448250");
+             linkdic.Add("配电设备完好率汇总表", f1);
+
+
+            
 
             //26种簿册
             openflie f01 = new openflie(2, "20110510172600588875");
@@ -251,8 +256,18 @@ namespace Ebada.Scgl.Lcgl {
         }
         void sheet_SelectionChange(Microsoft.Office.Interop.Excel.Range Target)
         {
-            string str = Target.Text.ToString();
-            OpenFile(str.Trim());
+            if ((bool)Target.MergeCells)
+            {
+                Microsoft.Office.Interop.Excel.Range temp = (Microsoft.Office.Interop.Excel.Range)Target.Cells[1, 1];
+                string str = temp.Text.ToString();
+                OpenFile(str.Trim());
+            }
+            else
+            {
+                string str = Target.Text.ToString();
+                OpenFile(str.Trim());
+            }
+           
            
         }
         private string GetFileName(string file)

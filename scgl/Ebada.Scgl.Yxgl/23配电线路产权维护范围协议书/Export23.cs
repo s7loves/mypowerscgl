@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Yxgl
             string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
 
             ex.Open(fname);
-            ex.SetCellValue(obj.jf, 5, 4);
+            ex.SetCellValue(obj.jf+":", 5, 4);
             ex.SetCellValue(obj.xybh, 4, 8);
             ex.SetCellValue(obj.cqdw + "：", 6, 4);
             string linename = "";
@@ -52,7 +52,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(fzlinename, 10, 10);
             ex.SetCellValue("'" + obj.gh, 10, 16);
             ex.SetCellValue(obj.cqfw, 11, 4);
-            ex.SetCellValue(obj.cqdw, 13, 4);
+            ex.SetCellValue(obj.cqdw+"。", 13, 4);
             ex.SetCellValue(obj.jf, 17, 4);
             //ex.SetCellValue(obj.cqdw, 15, 8);
             ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
