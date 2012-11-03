@@ -80,18 +80,18 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(369, 303);
+            this.btnCancel.Location = new System.Drawing.Point(430, 326);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(60, 21);
+            this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "关闭";
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(296, 303);
+            this.btnOK.Location = new System.Drawing.Point(345, 326);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(60, 21);
+            this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -127,7 +127,7 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(450, 329);
+            this.groupControlOrg.Size = new System.Drawing.Size(525, 354);
             this.groupControlOrg.TabIndex = 9;
             // 
             // spKcsl
@@ -138,32 +138,32 @@
             0,
             0});
             this.spKcsl.Enabled = false;
-            this.spKcsl.Location = new System.Drawing.Point(283, 143);
+            this.spKcsl.Location = new System.Drawing.Point(330, 154);
             this.spKcsl.Name = "spKcsl";
             this.spKcsl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spKcsl.Properties.DisplayFormat.FormatString = "###########0.########";
             this.spKcsl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spKcsl.Properties.Mask.EditMask = "###########0.########";
-            this.spKcsl.Size = new System.Drawing.Size(150, 20);
+            this.spKcsl.Size = new System.Drawing.Size(175, 21);
             this.spKcsl.TabIndex = 33;
             // 
             // labelControl16
             // 
             this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl16.Appearance.Options.UseForeColor = true;
-            this.labelControl16.Location = new System.Drawing.Point(79, 29);
+            this.labelControl16.Location = new System.Drawing.Point(92, 31);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(96, 13);
+            this.labelControl16.Size = new System.Drawing.Size(96, 14);
             this.labelControl16.TabIndex = 32;
             this.labelControl16.Text = "编号是批次的编号";
             // 
             // simpleButton4
             // 
             this.simpleButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton4.Location = new System.Drawing.Point(210, 303);
+            this.simpleButton4.Location = new System.Drawing.Point(245, 326);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(72, 21);
+            this.simpleButton4.Size = new System.Drawing.Size(84, 23);
             this.simpleButton4.TabIndex = 31;
             this.simpleButton4.Text = "添加并继续";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
@@ -175,14 +175,15 @@
             0,
             0,
             0});
-            this.spWpsl.Location = new System.Drawing.Point(283, 94);
+            this.spWpsl.Enabled = false;
+            this.spWpsl.Location = new System.Drawing.Point(330, 101);
             this.spWpsl.Name = "spWpsl";
             this.spWpsl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spWpsl.Properties.DisplayFormat.FormatString = "###########0.########";
             this.spWpsl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spWpsl.Properties.Mask.EditMask = "###########0.########";
-            this.spWpsl.Size = new System.Drawing.Size(150, 20);
+            this.spWpsl.Size = new System.Drawing.Size(175, 21);
             this.spWpsl.TabIndex = 29;
             // 
             // spWpdj
@@ -192,51 +193,53 @@
             0,
             0,
             0});
-            this.spWpdj.Location = new System.Drawing.Point(77, 117);
+            this.spWpdj.Location = new System.Drawing.Point(90, 126);
             this.spWpdj.Name = "spWpdj";
             this.spWpdj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spWpdj.Properties.DisplayFormat.FormatString = "#####0.00########";
             this.spWpdj.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spWpdj.Properties.Mask.EditMask = "#####0.00########";
-            this.spWpdj.Size = new System.Drawing.Size(141, 20);
+            this.spWpdj.Size = new System.Drawing.Size(164, 21);
             this.spWpdj.TabIndex = 29;
             // 
             // dateindate
             // 
             this.dateindate.EditValue = null;
-            this.dateindate.Location = new System.Drawing.Point(77, 142);
+            this.dateindate.Location = new System.Drawing.Point(90, 153);
             this.dateindate.Name = "dateindate";
             this.dateindate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateindate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateindate.Size = new System.Drawing.Size(141, 20);
+            this.dateindate.Size = new System.Drawing.Size(164, 21);
             this.dateindate.TabIndex = 7;
             // 
             // comWpgg
             // 
-            this.comWpgg.Location = new System.Drawing.Point(283, 69);
+            this.comWpgg.Location = new System.Drawing.Point(330, 74);
             this.comWpgg.Name = "comWpgg";
             this.comWpgg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpgg.Size = new System.Drawing.Size(150, 20);
+            this.comWpgg.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comWpgg.Size = new System.Drawing.Size(175, 21);
             this.comWpgg.TabIndex = 2;
             this.comWpgg.EditValueChanged += new System.EventHandler(this.comWpgg_EditValueChanged);
             // 
             // comWpmc
             // 
-            this.comWpmc.Location = new System.Drawing.Point(77, 69);
+            this.comWpmc.Location = new System.Drawing.Point(90, 74);
             this.comWpmc.Name = "comWpmc";
             this.comWpmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpmc.Size = new System.Drawing.Size(141, 20);
+            this.comWpmc.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comWpmc.Size = new System.Drawing.Size(164, 21);
             this.comWpmc.TabIndex = 1;
             this.comWpmc.EditValueChanged += new System.EventHandler(this.comWpmc_EditValueChanged);
             // 
             // comCaiLiaoLY
             // 
-            this.comCaiLiaoLY.Location = new System.Drawing.Point(283, 45);
+            this.comCaiLiaoLY.Location = new System.Drawing.Point(330, 48);
             this.comCaiLiaoLY.Name = "comCaiLiaoLY";
             this.comCaiLiaoLY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -247,59 +250,60 @@
             "来源四",
             "自购"});
             this.comCaiLiaoLY.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comCaiLiaoLY.Size = new System.Drawing.Size(150, 20);
+            this.comCaiLiaoLY.Size = new System.Drawing.Size(175, 21);
             this.comCaiLiaoLY.TabIndex = 10;
             // 
             // comNum
             // 
-            this.comNum.Location = new System.Drawing.Point(77, 45);
+            this.comNum.Location = new System.Drawing.Point(90, 48);
             this.comNum.Name = "comNum";
             this.comNum.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comNum.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comNum.Size = new System.Drawing.Size(141, 20);
+            this.comNum.Size = new System.Drawing.Size(164, 21);
             this.comNum.TabIndex = 10;
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(234, 47);
+            this.labelControl15.Location = new System.Drawing.Point(273, 51);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(48, 13);
+            this.labelControl15.Size = new System.Drawing.Size(48, 14);
             this.labelControl15.TabIndex = 1;
             this.labelControl15.Text = "材料来源";
             // 
             // comWpcj
             // 
-            this.comWpcj.Location = new System.Drawing.Point(283, 117);
+            this.comWpcj.Location = new System.Drawing.Point(330, 126);
             this.comWpcj.Name = "comWpcj";
             this.comWpcj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpcj.Size = new System.Drawing.Size(150, 20);
+            this.comWpcj.Size = new System.Drawing.Size(175, 21);
             this.comWpcj.TabIndex = 6;
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(17, 47);
+            this.labelControl10.Location = new System.Drawing.Point(20, 51);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(24, 13);
+            this.labelControl10.Size = new System.Drawing.Size(24, 14);
             this.labelControl10.TabIndex = 1;
             this.labelControl10.Text = "编号";
             // 
             // comWpdw
             // 
-            this.comWpdw.Location = new System.Drawing.Point(77, 94);
+            this.comWpdw.Location = new System.Drawing.Point(90, 101);
             this.comWpdw.Name = "comWpdw";
             this.comWpdw.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpdw.Size = new System.Drawing.Size(141, 20);
+            this.comWpdw.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comWpdw.Size = new System.Drawing.Size(164, 21);
             this.comWpdw.TabIndex = 3;
             this.comWpdw.EditValueChanged += new System.EventHandler(this.comWpdw_EditValueChanged);
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(234, 120);
+            this.labelControl4.Location = new System.Drawing.Point(273, 129);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(24, 13);
+            this.labelControl4.Size = new System.Drawing.Size(24, 14);
             this.labelControl4.TabIndex = 1;
             this.labelControl4.Text = "厂家";
             // 
@@ -307,10 +311,10 @@
             // 
             this.groupBox3.Controls.Add(this.simpleButton3);
             this.groupBox3.Controls.Add(this.meRemark);
-            this.groupBox3.Location = new System.Drawing.Point(17, 174);
+            this.groupBox3.Location = new System.Drawing.Point(20, 187);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox3.Size = new System.Drawing.Size(416, 123);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.groupBox3.Size = new System.Drawing.Size(485, 132);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
@@ -319,9 +323,9 @@
             // 
             this.simpleButton3.Appearance.Font = new System.Drawing.Font("宋体", 9F);
             this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(33, 0);
+            this.simpleButton3.Location = new System.Drawing.Point(38, 0);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(30, 16);
+            this.simpleButton3.Size = new System.Drawing.Size(35, 17);
             this.simpleButton3.TabIndex = 27;
             this.simpleButton3.Text = "…";
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
@@ -329,74 +333,74 @@
             // meRemark
             // 
             this.meRemark.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.meRemark.Location = new System.Drawing.Point(10, 25);
+            this.meRemark.Location = new System.Drawing.Point(12, 27);
             this.meRemark.Name = "meRemark";
             this.meRemark.Properties.LookAndFeel.SkinName = "Office 2007 Green";
-            this.meRemark.Size = new System.Drawing.Size(396, 87);
+            this.meRemark.Size = new System.Drawing.Size(461, 93);
             this.meRemark.TabIndex = 12;
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(234, 146);
+            this.labelControl12.Location = new System.Drawing.Point(273, 157);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(48, 13);
+            this.labelControl12.Size = new System.Drawing.Size(48, 14);
             this.labelControl12.TabIndex = 1;
             this.labelControl12.Text = "库存数量";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(17, 120);
+            this.labelControl1.Location = new System.Drawing.Point(20, 129);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(60, 13);
+            this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "单价（元）";
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(27, 244);
+            this.labelControl11.Location = new System.Drawing.Point(31, 263);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(48, 13);
+            this.labelControl11.Size = new System.Drawing.Size(48, 14);
             this.labelControl11.TabIndex = 1;
             this.labelControl11.Text = "出库数量";
             this.labelControl11.Visible = false;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(234, 97);
+            this.labelControl6.Location = new System.Drawing.Point(273, 104);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(24, 13);
+            this.labelControl6.Size = new System.Drawing.Size(24, 14);
             this.labelControl6.TabIndex = 1;
             this.labelControl6.Text = "数量";
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(17, 145);
+            this.labelControl9.Location = new System.Drawing.Point(20, 156);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(48, 13);
+            this.labelControl9.Size = new System.Drawing.Size(48, 14);
             this.labelControl9.TabIndex = 1;
             this.labelControl9.Text = "入库时间";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(17, 97);
+            this.labelControl5.Location = new System.Drawing.Point(20, 104);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(24, 13);
+            this.labelControl5.Size = new System.Drawing.Size(24, 14);
             this.labelControl5.TabIndex = 1;
             this.labelControl5.Text = "单位";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(17, 71);
+            this.labelControl2.Location = new System.Drawing.Point(20, 76);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(48, 13);
+            this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "物品名称";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(234, 71);
+            this.labelControl3.Location = new System.Drawing.Point(273, 76);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(48, 13);
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
             this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "物品规格";
             // 
@@ -418,9 +422,9 @@
             // 
             // frmGDSRKEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 329);
+            this.ClientSize = new System.Drawing.Size(525, 354);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

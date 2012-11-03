@@ -261,7 +261,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    //RefreshData();
+                    RefreshData();
                 }
             }
         }
@@ -293,11 +293,6 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_gdscrk newobj)
         {
-            if (barGDS.EditValue == null || barGDS.EditValue.ToString().Trim() == "")
-            {
-                return;
-            }
-            newobj.OrgCode = barGDS.EditValue.ToString();
         }
 
         #region 提交审核
@@ -395,7 +390,7 @@ namespace Ebada.Scgl.Lcgl
             frmGDSSelect fys = new frmGDSSelect();
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                ExportGDSCKEdit etdjh = new ExportGDSCKEdit();
                 etdjh.ExportGDSRKDExcel(fys.OrgCode,fys.JingBanRen);
             }
         }
@@ -499,10 +494,6 @@ namespace Ebada.Scgl.Lcgl
             {
                 comWpmc.Items.AddRange(listgds);
             }
-            if (barGDS.EditValue != null)
-            {
-                RefreshData();
-            }
         }
         #endregion
 
@@ -602,7 +593,7 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                sql += " and type='入库' or type='原始入库材料'";
+                sql += " and (type='设置库存' or type='原始入库材料')";
             }
             sql += " order by ID desc";
             gridViewOperation.RefreshData(sql);

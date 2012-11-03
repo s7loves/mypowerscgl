@@ -37,7 +37,12 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                this.lkeGDS.Properties.DataSource = DicTypeHelper.GdsDic;
+                lkeGDS.Properties.DisplayMember = "OrgName";
+                lkeGDS.Properties.ValueMember = "OrgCode";
+                IList<mOrg> list = ClientHelper.PlatformSqlMap.GetList<mOrg>(" where OrgType='1'");
+                lkeGDS.Properties.DataSource = list;
+                lkeGDS.Properties.NullText = "";
+                lkeGDS.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OrgName",100,"请选择供电所"));
             }
         }
 
@@ -54,13 +59,15 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                 OrgCode = lkeGDS.EditValue.ToString();
-                JingBanRen = lkeGDS.EditValue.ToString();
+                JingBanRen = comjingbanren.EditValue.ToString();
                 this.DialogResult = DialogResult.OK;
             }
         }
 
         private void lkeGDS_EditValueChanged(object sender, EventArgs e)
         {
+            comjingbanren.EditValue = null;
+            comjingbanren.Properties.Items.Clear();
             if (lkeGDS.EditValue != null)
             {
                 comjingbanren.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(lkeGDS.EditValue.ToString()));

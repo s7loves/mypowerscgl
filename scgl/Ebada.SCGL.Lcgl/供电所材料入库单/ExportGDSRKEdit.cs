@@ -101,17 +101,13 @@ namespace Ebada.Scgl.Lcgl
             {
                 pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
             }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                ex.CopySheet(1, j);
-                if (j == 1)
-                {
-                    ex.ReNameWorkSheet(j + 1, tablename);
-                }
-                else
-                    ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
-            }
 
+            for (int j = 1; j < pageindex; j++)
+            {
+
+                ex.CopySheet(1, j);
+                ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
+            }
             for (int j = 0; j < datalist.Count; j++)
             {
                 if (j % rowcount == 0)
@@ -130,7 +126,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].Remark, row + j, col + 7);
             }
             #endregion
-            ex.DeleteSheet(1);
+            //ex.DeleteSheet(1);
             ex.ShowExcel();
         }
 
