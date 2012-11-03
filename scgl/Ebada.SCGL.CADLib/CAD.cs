@@ -14,6 +14,7 @@ using System.Drawing.Drawing2D;
 using System.Xml;
 using System.Configuration;
 using Ebada.Scgl.Model;
+using System.Text.RegularExpressions;
 
 
 namespace Ebada.SCGL.CADLib
@@ -51,9 +52,12 @@ namespace Ebada.SCGL.CADLib
                         f.SetText("正在处理线路" + nlist[n].ToString());
                         IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + nlist[n].ToString()+ "' order by gtcode");
                         IList<PS_gt> newlist = ReLoadList(list);
+                        //PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where LineCode='" + nlist[n].ToString() + "'");
+                        IList<PJ_05jcky> kylist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_05jcky>("where LineID='" + nlist[n].ToString() + "' order by jckyID");
+                        IList<PJ_05jcky> newkylist = ReLoadKYList(kylist);
                         if (newlist.Count > 1)
                         {
-                            CallCAD(cad, newlist);
+                            CallCAD(cad, newlist,newkylist);
                         }
                     }
                     cad.Visible = true;
@@ -76,7 +80,7 @@ namespace Ebada.SCGL.CADLib
         /// 导出线路到CAD
         /// </summary>
         /// <param name="linecode">线路编号</param>
-        public void ToDwg(string linecode)
+       /* public void ToDwg(string linecode)
         {
             try
             {
@@ -111,7 +115,7 @@ namespace Ebada.SCGL.CADLib
                 MessageBox.Show("请安装AutoCAD2009或以上版本。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-        }
+        }*/
         public AcadApplication AutoCADConnector()
         {
             AcadApplication cad;
@@ -136,6 +140,11 @@ namespace Ebada.SCGL.CADLib
             }
             return cad;
         }
+        public bool IsNumeric(string value)
+        {
+            return Regex.IsMatch(value, @"^[0-9]*$");
+        }
+
         public IList<PS_gt> ReLoadList(IList<PS_gt> list)
         {
             IList<PS_gt> newlist = new List<PS_gt>();
@@ -146,6 +155,40 @@ namespace Ebada.SCGL.CADLib
                     gt.gtLat = gt.gtLat * zoom;
                     gt.gtLon = gt.gtLon * zoom;
                     newlist.Add(gt);
+                }
+            }
+            return newlist;
+        }
+        public IList<PJ_05jcky> ReLoadKYList(IList<PJ_05jcky> list)
+        {
+            IList<PJ_05jcky> newlist = new List<PJ_05jcky>();
+            foreach (PJ_05jcky ky in list)
+            {
+                if (ky.kygh!="")
+                {
+                    string str = ky.kygh;
+                    str = str.Replace("#", "");
+                    str = str.Replace("-", "~");
+                    str = str.Replace("号", "");
+                    str = str.Replace("*", "");
+                    string[] gh=str.Split("~".ToCharArray());
+                    if (gh.Length > 1)
+                    {
+                        if (IsNumeric(gh[0]))
+                        {
+                            ky.kygh = Convert.ToDecimal(gh[0]).ToString();
+                            newlist.Add(ky);
+                        }
+                    }
+                    else
+                    {
+                        if (IsNumeric(str))
+                        {
+                            ky.kygh = Convert.ToDecimal(str).ToString();
+                            newlist.Add(ky);
+                        }
+                    }
+                    
                 }
             }
             return newlist;
@@ -173,8 +216,8 @@ namespace Ebada.SCGL.CADLib
             }
             return r;
         }
-        int bl = 1000;
-        public void CallCAD(AcadApplication cad, IList<PS_gt> list)
+ 
+        public void CallCAD(AcadApplication cad, IList<PS_gt> list,IList<PJ_05jcky> kylist)
         {
             try
             {
@@ -203,14 +246,42 @@ namespace Ebada.SCGL.CADLib
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
                     
-                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*bl);
+                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*zoom);
                     cirz.Layer = "gt";
                     cirz.TrueColor = color;
                     if (list[i].gtJg == "是") continue;
                     gtnum++;
-                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gtnum.ToString());
-                    ntext.Height = 0.0001*bl;
+
+                    string gg = list[i].gtHeight.ToString("##");
+                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gg+"/"+gtnum.ToString());
+                    ntext.Height = 0.0001*zoom;
                     ntext.Layer = "gth";
+                    for (int j = 0; j < kylist.Count;j++ )
+                    {
+                        if (kylist[j].kygh == gtnum.ToString())
+                        {
+                            PointF p1 = new PointF((float)pnt[0],(float) pnt[1]);
+                            PointF p2 = new PointF((float)list[i + 1].gtLon, (float)list[i+1].gtLat);
+                            double x = pnt[0] > (double)list[i + 1].gtLon ? pnt[0] : (double)list[i + 1].gtLon;
+                            double y = pnt[1] < (double)list[i + 1].gtLat ? pnt[1] : (double)list[i + 1].gtLat;
+                            PointF p0 = new PointF((float)x,(float)y);
+                            double[] ins = new double[3];
+                            ins[0] = (p1.X + p2.X) / 2;
+                            ins[1] = (p1.Y + p2.Y) / 2;
+                            ins[2] = 0;
+                            double ss = 0;
+                            if (p1.Y < p2.Y)
+                            {
+                                ss = getAngle(p1, p2, p0);
+                            }
+                            else
+                            {
+                                ss = getAngle(p2, p1, p0);
+                            }
+                            string block = getBlock(kylist[j].kymc);
+                            cad.ActiveDocument.ModelSpace.InsertBlock(ins, Application.StartupPath+"\\"+block, 1, 1, 1, (ss + 90) * Math.PI / 180, 0);
+                        }
+                    }
                 }
                 TX_Point tp =null;
                 tp=Client.ClientHelper.PlatformSqlMap.GetOneByKey<TX_Point>(list[0].LineCode);
@@ -220,7 +291,7 @@ namespace Ebada.SCGL.CADLib
                     ins[1] = Math.Round(Convert.ToDouble(tp.y), 8) * zoom;
                     ins[2] = 0;
                     AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, tp.Text);
-                    text.Height = 0.0002 * bl;
+                    text.Height = 0.0002 * zoom;
                     text.Layer = "text";
                 }else{
                 
@@ -230,12 +301,71 @@ namespace Ebada.SCGL.CADLib
                     ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
                     ins[2] = 0;
                     AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                    text.Height = 0.0002 * bl;
+                    text.Height = 0.0002 * zoom;
                     text.Layer = "text";
                 }
                 cad.Application.Update();
             }
             catch (Exception e) { MessageBox.Show(e.Message); };
+        }
+
+        public double getLineLength(PointF p1, PointF p2)
+        {
+            return Math.Sqrt(Math.Pow((p1.X - p2.X), 2) + Math.Pow((p1.Y - p2.Y), 2));
+        }
+        public double getAngle(PointF p1, PointF p2, PointF p3)
+        {
+            double ab = getLineLength(p1, p2);
+            double bc = getLineLength(p2, p3);
+            double ac = getLineLength(p1, p3);
+            double bac = (ab * ab + ac * ac - bc * bc) / (2 * ab * ac);
+            double AngBAC = Math.Acos(bac);
+            return AngBAC * 180 / Math.PI;
+        }
+        public string getBlock(string str)
+        {
+            if (str.Contains("铁路"))
+            {
+                return "tl.dwg";
+            }
+            if (str.Contains("公路") || str.Contains("道路") || str.Contains("村路") || str.Contains("绥巴路") ||
+                str.Contains("绥望路") || str.Contains("绥八路") || str.Contains("哈里路") || str.Contains("街道")
+                || str.Contains("秦三路") || str.Contains("乡道") || str.Contains("绥北路"))
+            {
+                return "gl.dwg";
+            }
+            if (str.Contains("河"))
+            {
+                return "hl.dwg";
+            }
+            if (str.Contains("房屋") || str.Contains("建筑物"))
+            {
+                return "fw.dwg";
+            }
+            if (str.Contains("弱电"))
+            {
+                return "rd.dwg";
+            }
+            if (str.Contains("树木"))
+            {
+                return "s.dwg";
+            }
+            if (str.Contains("桥"))
+            {
+                return "xq.dwg";
+            }
+            if (str.Contains("500") || str.Contains("220") || str.Contains("110") || str.Contains("66") || str.Contains("35"))
+            {
+                return "xl2.dwg";
+            }
+            if (str.Contains("通信") || str.Contains("通讯") || str.Contains("广播") || str.Contains("低压") || str.Contains("有线") || str.Contains("电力线路"))
+            {
+                return "xl1.dwg";
+            }
+            else
+            {
+                return "err.dwg";
+            }
         }
         /// <summary>
         /// 画线
