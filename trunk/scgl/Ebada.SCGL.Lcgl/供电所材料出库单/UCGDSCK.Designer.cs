@@ -36,7 +36,10 @@
             this.comWpgg = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.barWpdw = new DevExpress.XtraBars.BarEditItem();
             this.comWpdw = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.ckYscl = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.barStarTime = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.barEndTime = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
@@ -59,7 +62,9 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.ckYscl = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -67,8 +72,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpgg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpdw)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckYscl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckYscl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.SuspendLayout();
@@ -104,15 +113,20 @@
             this.btAddKuCun,
             this.barWpmc,
             this.barWpgg,
-            this.barWpdw});
-            this.barManager1.MaxItemId = 32;
+            this.barWpdw,
+            this.barStarTime,
+            this.barButtonItem1,
+            this.barEndTime});
+            this.barManager1.MaxItemId = 35;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.comWpmc,
             this.comWpgg,
             this.comWpdw,
             this.repositoryItemComboBox4,
-            this.ckYscl});
+            this.ckYscl,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemDateEdit2});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -127,6 +141,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpmc, "", true, true, true, 70),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpgg, "", false, true, true, 75),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpdw, "", false, true, true, 84),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barStarTime, "", false, true, true, 98),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 97),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddKuCun),
@@ -203,10 +219,41 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comWpdw.Name = "comWpdw";
             // 
-            // ckYscl
+            // barStarTime
             // 
-            this.ckYscl.AutoHeight = false;
-            this.ckYscl.Name = "ckYscl";
+            this.barStarTime.Caption = "入库日期时间";
+            this.barStarTime.Edit = this.repositoryItemDateEdit1;
+            this.barStarTime.Id = 32;
+            this.barStarTime.Name = "barStarTime";
+            this.barStarTime.EditValueChanged += new System.EventHandler(this.barStarDate_EditValueChanged);
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            this.repositoryItemDateEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            // 
+            // barEndTime
+            // 
+            this.barEndTime.Caption = "截止入库日期";
+            this.barEndTime.Edit = this.repositoryItemDateEdit2;
+            this.barEndTime.Id = 34;
+            this.barEndTime.Name = "barEndTime";
+            this.barEndTime.EditValueChanged += new System.EventHandler(this.barEndTime_EditValueChanged);
+            // 
+            // repositoryItemDateEdit2
+            // 
+            this.repositoryItemDateEdit2.AutoHeight = false;
+            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
+            this.repositoryItemDateEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.repositoryItemDateEdit2.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
             // liuchbarSubItem
             // 
@@ -391,12 +438,23 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1224, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 407);
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 33;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
             // repositoryItemComboBox4
             // 
             this.repositoryItemComboBox4.AutoHeight = false;
             this.repositoryItemComboBox4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox4.Name = "repositoryItemComboBox4";
+            // 
+            // ckYscl
+            // 
+            this.ckYscl.AutoHeight = false;
+            this.ckYscl.Name = "ckYscl";
             // 
             // gridView1
             // 
@@ -445,8 +503,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpgg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpdw)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckYscl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckYscl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.ResumeLayout(false);
@@ -491,5 +553,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit ckYscl;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraBars.BarEditItem barStarTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraBars.BarEditItem barEndTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

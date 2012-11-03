@@ -107,12 +107,12 @@ namespace Ebada.Scgl.Lcgl
             this.comWpmc.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comWpgg.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comWpdw.DataBindings.Add("EditValue", rowData, "wpdw");
-            this.comCaiLiaoYT.DataBindings.Add("EditValue", rowData, "ly");
+            this.comCaiLiaoYT.DataBindings.Add("EditValue", rowData, "ty");
             this.comNum.DataBindings.Add("EditValue", rowData, "num");
-            this.spCksl.DataBindings.Add("EditValue", rowData, "wpsl");
+            this.spCksl.DataBindings.Add("EditValue", rowData, "cksl");
             this.spWpdj.DataBindings.Add("EditValue", rowData, "wpdj");
             this.comWpcj.DataBindings.Add("EditValue", rowData, "wpcj");
-            this.dateindate.DataBindings.Add("EditValue", rowData, "indate");
+            this.dateindate.DataBindings.Add("EditValue", rowData, "ckdate");
             this.meRemark.DataBindings.Add("EditValue", rowData, "Remark");
             this.spKcsl.DataBindings.Add("EditValue", rowData, "kcsl");
         }
@@ -148,6 +148,12 @@ namespace Ebada.Scgl.Lcgl
         #region 窗体加载事件、判断是设置库存还是添加物品
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
+            if (rowData.wpmc == "")
+            {
+                comWpmc.EditValue = null;
+                comWpgg.EditValue = null;
+                comWpdw.EditValue = null;
+            }
             if (SetKC)
             {
                 btnOK.Visible = false;
@@ -259,6 +265,16 @@ namespace Ebada.Scgl.Lcgl
                     spKcsl.EditValue = list[0].ToString();
                     rowData.kcsl = list[0].ToString();
                     cksl = Convert.ToInt32(list[0]);
+                    if (list[0].ToString() == "0")
+                    {
+                        spCksl.Enabled = false;
+                        simpleButton4.Enabled = false;
+                    }
+                    else
+                    {
+                        spCksl.Enabled = true;
+                        simpleButton4.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -291,9 +307,17 @@ namespace Ebada.Scgl.Lcgl
         #region 出库数量更改
         private void spCksl_EditValueChanged(object sender, EventArgs e)
         {
+            if (comWpmc.EditValue == null || comWpgg.EditValue == null || comWpdw.EditValue == null || Convert.ToInt32(spCksl.EditValue.ToString()) <= 0)
+            {
+                rowData.cksl = "0";
+                spCksl.EditValue = "0";
+                return;
+            }
             if (spCksl.EditValue != null)
             {
-                spKcsl.EditValue = cksl - Convert.ToInt32(spCksl.EditValue.ToString());
+                int sl = cksl - Convert.ToInt32(spCksl.EditValue.ToString());
+                rowData.kcsl = sl.ToString();
+                spKcsl.EditValue = sl;
             }
         }
         #endregion

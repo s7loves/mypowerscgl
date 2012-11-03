@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Lcgl
     [ToolboxItem(true)]
     public partial class UCGDSCK : DevExpress.XtraEditors.XtraUserControl
     {
-        #region 
+        #region
         private GridViewOperation<PJ_gdscrk> gridViewOperation;
         frmGDSRKEdit frm = new frmGDSRKEdit();
 
@@ -396,7 +396,7 @@ namespace Ebada.Scgl.Lcgl
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
-                etdjh.ExportGDSRKDExcel(fys.OrgCode,fys.JingBanRen);
+                etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen);
             }
         }
         #endregion
@@ -508,13 +508,17 @@ namespace Ebada.Scgl.Lcgl
             comWpgg.Items.Clear();
             barWpgg.EditValue = null;
 
+            if (barGDS.EditValue != null)
+            {
+                RefreshData();
+            }
+
             if (barWpmc.EditValue == null) return;
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where OrgCode='" + barGDS.EditValue + "' and wpmc='" + barWpmc.EditValue + "' ");
             if (list != null && list.Count > 0)
             {
                 comWpgg.Items.AddRange(list);
             }
-            RefreshData();
         }
         #endregion
 
@@ -524,20 +528,24 @@ namespace Ebada.Scgl.Lcgl
             comWpdw.Items.Clear();
             barWpdw.EditValue = null;
 
-            if (barWpdw.EditValue == null) return;
+            if (barWpgg.EditValue != null)
+            {
+                RefreshData();
+            }
+
+            if (barWpgg.EditValue == null) return;
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where OrgCode='" + barGDS.EditValue + "' and wpmc='" + barWpmc.EditValue + "' and wpgg='" + barWpgg.EditValue + "' ");
             if (list != null && list.Count > 0)
             {
                 comWpdw.Items.AddRange(list);
             }
-            RefreshData();
         }
         #endregion
 
         #region 物品单位更改、重新绑定数据
         private void barWpdw_EditValueChanged(object sender, EventArgs e)
         {
-            if (barWpgg.EditValue != null)
+            if (barWpdw.EditValue != null)
             {
                 RefreshData();
             }
@@ -549,9 +557,9 @@ namespace Ebada.Scgl.Lcgl
         {
             base.OnLoad(e);
 
-            InitColumns();
-            if (this.Site != null) return;
 
+            if (this.Site != null) return;
+            InitColumns();
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
                 barGDS.EditValue = MainHelper.UserOrg.OrgCode;
@@ -585,6 +593,36 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
             }
+
+            string _sql = "";
+            try
+            {
+                if (barStarTime.EditValue != null && barEndTime.EditValue != null)
+                {
+                    if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
+                    {
+                        _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
+                    }
+                    else
+                    {
+                        _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
+                    }
+                }
+                else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
+                {
+                    _sql += " and ckdate >= '" + barStarTime.EditValue + "'";
+                }
+                else if ((barStarTime.EditValue == null || barStarTime.EditValue.ToString().Trim() == "") && (barEndTime.EditValue != null && barEndTime.EditValue.ToString().Trim() != ""))
+                {
+                    _sql += "and ckdate <= '" + barEndTime.EditValue + "'";
+                }
+            }
+            catch
+            {
+                _sql = "";
+            }
+            sql += " " + _sql;
+
             sql += " order by ID desc";
             gridViewOperation.RefreshData(sql);
         }
@@ -621,6 +659,20 @@ namespace Ebada.Scgl.Lcgl
                 edit.RowData = pj;
             }
             edit.ShowDialog();
+        }
+        #endregion
+
+        #region 入库起始日期改变
+        private void barStarDate_EditValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+        #endregion
+
+        #region 入库截止日期改变
+        private void barEndTime_EditValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿namespace Ebada.Scgl.Lcgl.供电所材料出库单
+﻿namespace Ebada.Scgl.Lcgl
 {
     partial class frmGDSCk
     {
@@ -41,11 +41,10 @@
             this.comWpmc = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.barFJLY = new DevExpress.XtraEditors.SimpleButton();
-            this.TaskOverButton = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.ucgdsck1 = new Ebada.Scgl.Lcgl.UCGDSCK();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -57,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comWpdw.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpgg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc.Properties)).BeginInit();
+            this.xtraTabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -119,8 +119,6 @@
             this.groupControl1.Controls.Add(this.comWpmc);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.barFJLY);
-            this.groupControl1.Controls.Add(this.TaskOverButton);
             this.groupControl1.Controls.Add(this.simpleButton2);
             this.groupControl1.Controls.Add(this.simpleButton1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -138,6 +136,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lkeGDS.Size = new System.Drawing.Size(100, 21);
             this.lkeGDS.TabIndex = 55;
+            this.lkeGDS.EditValueChanged += new System.EventHandler(this.lkeGDS_EditValueChanged);
             // 
             // comWpdw
             // 
@@ -170,6 +169,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comWpgg.Size = new System.Drawing.Size(100, 21);
             this.comWpgg.TabIndex = 53;
+            this.comWpgg.EditValueChanged += new System.EventHandler(this.comWpgg_EditValueChanged);
             // 
             // labelControl4
             // 
@@ -187,6 +187,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comWpmc.Size = new System.Drawing.Size(100, 21);
             this.comWpmc.TabIndex = 52;
+            this.comWpmc.EditValueChanged += new System.EventHandler(this.comWpmc_EditValueChanged);
             // 
             // labelControl2
             // 
@@ -204,27 +205,6 @@
             this.labelControl3.TabIndex = 47;
             this.labelControl3.Text = "物品名称";
             // 
-            // barFJLY
-            // 
-            this.barFJLY.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.barFJLY.Location = new System.Drawing.Point(630, 36);
-            this.barFJLY.Name = "barFJLY";
-            this.barFJLY.Size = new System.Drawing.Size(74, 23);
-            this.barFJLY.TabIndex = 46;
-            this.barFJLY.Text = "附件留言";
-            this.barFJLY.Visible = false;
-            this.barFJLY.Click += new System.EventHandler(this.barFJLY_Click);
-            // 
-            // TaskOverButton
-            // 
-            this.TaskOverButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TaskOverButton.Location = new System.Drawing.Point(517, 73);
-            this.TaskOverButton.Name = "TaskOverButton";
-            this.TaskOverButton.Size = new System.Drawing.Size(75, 23);
-            this.TaskOverButton.TabIndex = 45;
-            this.TaskOverButton.Text = "结束";
-            this.TaskOverButton.Visible = false;
-            // 
             // simpleButton2
             // 
             this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -238,7 +218,7 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.simpleButton1.Location = new System.Drawing.Point(629, 73);
+            this.simpleButton1.Location = new System.Drawing.Point(517, 74);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 44;
@@ -247,9 +227,22 @@
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.ucgdsck1);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(768, 466);
             this.xtraTabPage2.Text = "出库记录";
+            // 
+            // ucgdsck1
+            // 
+            this.ucgdsck1.CurrRecord = null;
+            this.ucgdsck1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucgdsck1.Location = new System.Drawing.Point(0, 0);
+            this.ucgdsck1.Name = "ucgdsck1";
+            this.ucgdsck1.ParentTemple = null;
+            this.ucgdsck1.RecordWorkFlowData = null;
+            this.ucgdsck1.Size = new System.Drawing.Size(768, 466);
+            this.ucgdsck1.TabIndex = 0;
+            this.ucgdsck1.VarDbTableName = "PJ_gdscrk,LP_Record";
             // 
             // frmGDSCk
             // 
@@ -271,6 +264,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.comWpdw.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpgg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc.Properties)).EndInit();
+            this.xtraTabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,8 +277,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton barFJLY;
-        private DevExpress.XtraEditors.SimpleButton TaskOverButton;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LookUpEdit lkeGDS;
@@ -295,5 +287,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit comWpmc;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private UCGDSCK ucgdsck1;
     }
 }
