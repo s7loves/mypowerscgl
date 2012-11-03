@@ -488,6 +488,17 @@ namespace Ebada.SCGL.WFlow.Engine
             if (string.IsNullOrEmpty(resultValue)) resultValue = "'" + resultValue + "'";//默认返回带引号的空字符串
             return resultValue;
         }       
+        /// <summary>
+        /// 取流程变量
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="workFlowId"></param>
+        /// <param name="workTaskId"></param>
+        /// <param name="workFlowInstanceId"></param>
+        /// <param name="WorkTaskInstanceId"></param>
+        /// <param name="varName"></param>
+        /// <param name="filterExpressText"></param>
+        /// <returns></returns>
         private static string getWorkTaskVarValue2(string userId, string workFlowId, string workTaskId, string workFlowInstanceId, string WorkTaskInstanceId, string varName, string filterExpressText)
         {
             string varDataBase = "";
@@ -521,8 +532,8 @@ namespace Ebada.SCGL.WFlow.Engine
                
                      //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
                 IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where   TABLE_NAME   =   '"
-                    + varTableName + "'");
+                    "select   COLUMN_NAME   from   INFORMATION_SCHEMA.KEY_COLUMN_USAGE  where left(CONSTRAINT_NAME,2)<>'FK' and   TABLE_NAME   =   '"
+                    + varTableName + "'");//取主键
                 if (list.Count > 0) {
                     if (varTableName == "LP_Record") {
                         //wfi = MainHelper.PlatformSqlMap.GetOne<WF_WorkFlowInstance>(" where WorkFlowInsId='" + workFlowInstanceId + "'");
