@@ -24,6 +24,8 @@ using System.Net;
 using System.Threading;
 using Ebada.Scgl.Core;
 using Ebada.SCGL.WFlow.Tool;
+using System.IO;
+using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl {
     public partial class frmLP : Form, IPopupFormEdit {
@@ -140,6 +142,7 @@ namespace Ebada.Scgl.Lcgl {
             //Excel.Worksheet sheet = wb.ActiveSheet as Excel.Worksheet;
             //activeSheetName = sheet.Name;
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+           
             Excel.Worksheet sheet = wb.Application.Sheets[activeSheetIndex] as Excel.Worksheet;
             if (activeSheetName != sheet.Name) {
                 sheet.Name = activeSheetName;
@@ -154,6 +157,8 @@ namespace Ebada.Scgl.Lcgl {
             ea.MyExcel = wb.Application;
             Excel.Worksheet sheet;
             sheet = wb.ActiveSheet as Excel.Worksheet;
+            sheet.SelectionChange += new Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler(sheet_SelectionChange);
+           
             if (activeSheetName != sheet.Name) {
                 sheet.Name = activeSheetName;
             }
@@ -166,6 +171,192 @@ namespace Ebada.Scgl.Lcgl {
                 ea.ActiveSheet(activeSheetName);
             } catch { }
 
+        }
+        Dictionary<string, openflie> linkdic = new Dictionary<string, openflie>();
+    
+        class openflie
+        {
+          public openflie(int type, string path)
+            {
+                Type = type;
+                Path = path;
+            }
+           public  int Type;
+           public  string Path;
+        }
+        private void loadbasedata()
+        {
+            linkdic.Clear();
+            openflie f1 = new openflie(1, "安全生产计划总结");
+
+            //26种簿册
+            openflie f01 = new openflie(2, "20110510172600588875");
+            linkdic.Add("工作日志", f01);
+            openflie f02 = new openflie(2, "20110510172218010750");
+            linkdic.Add("安全活动记录", f02);
+            openflie f03 = new openflie(2, "20110727093630264875");
+            linkdic.Add("运行分析记录", f03);
+
+            openflie f04 = new openflie(2, "20110510172241276375");
+            linkdic.Add("事故、障碍、异常运行记录", f04);
+            openflie f05 = new openflie(2, "20110510172241729500");
+            linkdic.Add("交叉跨越及对地距离测量记录", f05);
+            openflie f06 = new openflie(2, "20110510172242073250");
+            linkdic.Add("设备巡视及缺陷消除记录", f06);
+            openflie f07 = new openflie(2, "20110510172242745125");
+            linkdic.Add("接地装置检测记录", f07);
+            openflie f08 = new openflie(2, "20110510172242417000");
+            linkdic.Add("设备停电检修记录", f08);
+            openflie f09 = new openflie(2, "20110510172243057625");
+            linkdic.Add("培训记录", f09);
+            openflie f010 = new openflie(2, "20110510172023792000");
+            linkdic.Add("配电变压器汇总表", f010);
+
+            openflie f011 = new openflie(2, "20110510173027854500");
+            linkdic.Add("配电变压器卡片", f011);
+            openflie f012 = new openflie(2, "20110510172955135750");
+            linkdic.Add("线路开关卡片", f012);
+            openflie f013 = new openflie(2, "20110510172243870125");
+            linkdic.Add("剩余电流动作保护器测试记录", f013);
+            openflie f014 = new openflie(2, "20110510172559526375");
+            linkdic.Add("电力工器具测试记录", f014);
+            openflie f015 = new openflie(2, "20110510173019088875");
+            linkdic.Add("工具、仪表台张", f015);
+            openflie f016 = new openflie(2, "20110510173028135750");
+            linkdic.Add("高压配电线路条图", f016);
+            openflie f017 = new openflie(2, "20110510173028401375");
+            linkdic.Add("高压配电线路条图汇总表", f017);
+            openflie f018 = new openflie(2, "20110510173200917000");
+            linkdic.Add("高压配电设备评级表", f018);
+            openflie f019 = new openflie(2, "20110510173256448250");
+            linkdic.Add("高压配电设备完好率汇总表", f019);
+            openflie f020 = new openflie(2, "20110510173027557625");
+            linkdic.Add("低压线路完好率及台区网络图", f020);
+
+
+
+            openflie f021 = new openflie(2, "20110510172559932625");
+            linkdic.Add("电力故障报修电话接听记录", f021);
+            openflie f022 = new openflie(2, "20120319141849123000");
+            linkdic.Add("报修服务修理票", f022);
+            openflie f023 = new openflie(2, "20110510173404948250");
+            linkdic.Add("配电设备产权产权及维护范围协议书", f023);
+            openflie f024 = new openflie(2, "20110510173324542000");
+            linkdic.Add("设备变更通知书", f024);
+            openflie f025 = new openflie(2, "20110510173331370125");
+            linkdic.Add("双电源协议书", f025);
+            openflie f026 = new openflie(2, "20110510173332292000");
+            linkdic.Add("电力线路防护通知书", f026);
+
+        }
+        void sheet_SelectionChange(Microsoft.Office.Interop.Excel.Range Target)
+        {
+            string str = Target.Text.ToString();
+            OpenFile(str.Trim());
+           
+        }
+        private string GetFileName(string file)
+        {
+           string result= System.Windows.Forms.Application.StartupPath + "\\文档资料\\" + file;
+           if (!Directory.Exists(result))
+           {
+               Directory.CreateDirectory(result);
+           }
+           return result;
+
+        }
+
+        void OpenFile(string keystr)
+        {
+            //lgm20121103
+            if (linkdic.ContainsKey(keystr))
+            {
+                openflie f1 = linkdic[keystr];
+                if (f1.Type==2)
+                {
+                    //打开24个工作簿
+                    try
+                    {
+                        mModule mdtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(f1.Path);
+                        OpenModule(mdtemp);
+                    }
+                    catch (Exception)
+                    {
+                        
+                        
+                    }
+                   
+                }
+                else 
+                {
+                    //打开文件夹
+                    System.Diagnostics.Process.Start(GetFileName(f1.Path));
+
+                }
+            }
+        }
+        public void OpenModule(mModule obj)
+        {
+           
+            object instance = null;//模块接口
+      
+            try
+            {
+                object result = null;
+                if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
+                else
+                {
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), this, ref instance);
+                }
+                if (result is UserControl)
+                {
+                    instance = showControl(result as UserControl, obj.Modu_ID,obj.ModuName);
+                }
+                if (instance is Form)
+                {
+                    Form fb = instance as Form;
+                   
+                    fb.Text = obj.ModuName;
+                    
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+                    dic.Add("Modu_ID", obj.Modu_ID);
+                    fb.Tag = dic;
+                }
+                this.Cursor = Cursors.Default;
+
+            }
+            catch (Exception err)
+            {
+                this.Cursor = Cursors.Default;
+                MsgBox.ShowException(err);
+            }
+            finally
+            {
+                
+            }
+        }
+        /// <summary>
+        /// 显示用户控件方法
+        /// </summary>
+        /// <param name="uc"></param>
+        /// <returns></returns>
+        private FormBase showControl(UserControl uc, string moduID,string text)
+        {
+            FormBase dlg = new FormBase();
+            dlg.Text = text;
+            dlg.Size = new Size(600, 400);
+            dlg.StartPosition=FormStartPosition.CenterScreen;
+            if (!string.IsNullOrEmpty(moduID))
+            {
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+                dic.Add("Modu_ID", moduID);
+                dlg.Tag = dic;
+            }
+            dlg.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            dlg.ShowDialog();
+            return dlg;
         }
         protected void Workbook_SheetDeactivate(object Sh) {
             Workbook_SheetActivate(Sh);
@@ -189,6 +380,7 @@ namespace Ebada.Scgl.Lcgl {
             } catch { }
         }
         private void LPFrm_Load(object sender, EventArgs e) {
+            loadbasedata();
             if (tempCtrlList == null) {
                 tempCtrlList = new List<Control>();
             }
@@ -311,7 +503,9 @@ namespace Ebada.Scgl.Lcgl {
                 //activeSheetIndex = sheet.Index;
                 try {
                     for (int i = 1; i <= wb.Application.Sheets.Count; i++) {
+                        
                         sheet = wb.Application.Sheets[i] as Excel.Worksheet;
+                        Workbook_SheetDeactivate(sheet);
                         //保护工作表
                         LockExcel(wb, sheet);
                         //if (i != activeSheetIndex)
@@ -1186,6 +1380,7 @@ namespace Ebada.Scgl.Lcgl {
 
                         }
                         xx = wb.Application.Sheets[tfvli[i].ExcelSheetName] as Excel.Worksheet;
+                        Workbook_SheetDeactivate(xx);
                         unLockExcel(wb, xx);
                         activeSheetName = tfvli[i].ExcelSheetName;
                         activeSheetIndex = xx.Index;
@@ -4223,6 +4418,20 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
             }
+        }
+
+        private void dsoFramerWordControl1_Click(object sender, EventArgs e)
+        {
+            if (dsoFramerWordControl1.MyExcel == null)
+            {
+                return;
+            }
+
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Worksheet sheet;
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
         }
     }
 }

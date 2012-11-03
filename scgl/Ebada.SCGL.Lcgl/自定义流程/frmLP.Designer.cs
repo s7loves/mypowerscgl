@@ -76,6 +76,7 @@
             this.dsoFramerWordControl1.Name = "dsoFramerWordControl1";
             this.dsoFramerWordControl1.Size = new System.Drawing.Size(253, 487);
             this.dsoFramerWordControl1.TabIndex = 1;
+            this.dsoFramerWordControl1.Click += new System.EventHandler(this.dsoFramerWordControl1_Click);
             // 
             // frmLP
             // 
