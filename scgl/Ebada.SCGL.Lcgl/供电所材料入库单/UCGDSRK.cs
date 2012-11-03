@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Lcgl
     [ToolboxItem(false)]
     public partial class UCGDSRK : DevExpress.XtraEditors.XtraUserControl
     {
-        #region 
+        #region
         private GridViewOperation<PJ_gdscrk> gridViewOperation;
         frmGDSRKEdit frm = new frmGDSRKEdit();
 
@@ -232,10 +232,10 @@ namespace Ebada.Scgl.Lcgl
         {
             hideColumn("type");
             hideColumn("yt");
-            hideColumn("kcsl");
             hideColumn("ckdate");
+            hideColumn("OrgCode");
+            hideColumn("cksl");
             gridView1.Columns["num"].Width = 150;
-            gridView1.Columns["OrgCode"].ColumnEdit = DicTypeHelper.GdsDic;
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -391,7 +391,7 @@ namespace Ebada.Scgl.Lcgl
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportGDSCKEdit etdjh = new ExportGDSCKEdit();
-                etdjh.ExportGDSRKDExcel(fys.OrgCode,fys.JingBanRen);
+                etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen);
             }
         }
         #endregion
@@ -503,13 +503,17 @@ namespace Ebada.Scgl.Lcgl
             comWpgg.Items.Clear();
             barWpgg.EditValue = null;
 
+            if (barGDS.EditValue != null)
+            {
+                RefreshData();
+            }
+
             if (barWpmc.EditValue == null) return;
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where OrgCode='" + barGDS.EditValue + "' and wpmc='" + barWpmc.EditValue + "' ");
             if (list != null && list.Count > 0)
             {
                 comWpgg.Items.AddRange(list);
             }
-            RefreshData();
         }
         #endregion
 
@@ -519,7 +523,7 @@ namespace Ebada.Scgl.Lcgl
             comWpdw.Items.Clear();
             barWpdw.EditValue = null;
 
-            if (barWpdw.EditValue == null) return;
+            if (barWpgg.EditValue == null) return;
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where OrgCode='" + barGDS.EditValue + "' and wpmc='" + barWpmc.EditValue + "' and wpgg='" + barWpgg.EditValue + "' ");
             if (list != null && list.Count > 0)
             {
@@ -532,7 +536,7 @@ namespace Ebada.Scgl.Lcgl
         #region 物品单位更改、重新绑定数据
         private void barWpdw_EditValueChanged(object sender, EventArgs e)
         {
-            if (barWpgg.EditValue != null)
+            if (barWpdw.EditValue != null)
             {
                 RefreshData();
             }
@@ -593,8 +597,38 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                sql += " and (type='设置库存' or type='原始入库材料')";
+                sql += " and type='设置库存'";
             }
+
+            string _sql = "";
+            try
+            {
+                if (barStarTime.EditValue != null && barEndTime.EditValue != null)
+                {
+                    if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
+                    {
+                        _sql += " and indate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
+                    }
+                    else
+                    {
+                        _sql += " and indate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
+                    }
+                }
+                else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
+                {
+                    _sql += " and indate >= '" + barStarTime.EditValue + "'";
+                }
+                else if ((barStarTime.EditValue == null || barStarTime.EditValue.ToString().Trim() == "") && (barEndTime.EditValue != null && barEndTime.EditValue.ToString().Trim() != ""))
+                {
+                    _sql += "and indate <= '" + barEndTime.EditValue + "'";
+                }
+            }
+            catch
+            {
+                _sql = "";
+            }
+            sql += " " + _sql;
+
             sql += " order by ID desc";
             gridViewOperation.RefreshData(sql);
         }
@@ -631,6 +665,20 @@ namespace Ebada.Scgl.Lcgl
                 edit.RowData = pj;
             }
             edit.ShowDialog();
+        }
+        #endregion
+
+        #region 入库起始日期改变
+        private void barStarTime_EditValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+        #endregion
+
+        #region 入库截止日期改变
+        private void barEndTime_EditValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
         #endregion
     }

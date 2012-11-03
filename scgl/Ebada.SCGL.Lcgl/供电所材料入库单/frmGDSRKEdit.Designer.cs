@@ -185,6 +185,7 @@
             this.spWpsl.Properties.Mask.EditMask = "###########0.########";
             this.spWpsl.Size = new System.Drawing.Size(175, 21);
             this.spWpsl.TabIndex = 29;
+            this.spWpsl.EditValueChanged += new System.EventHandler(this.spWpsl_EditValueChanged);
             // 
             // spWpdj
             // 
@@ -313,7 +314,7 @@
             this.groupBox3.Controls.Add(this.meRemark);
             this.groupBox3.Location = new System.Drawing.Point(20, 187);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(12);
             this.groupBox3.Size = new System.Drawing.Size(485, 132);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;

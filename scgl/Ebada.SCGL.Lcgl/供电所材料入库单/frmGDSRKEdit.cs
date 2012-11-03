@@ -249,6 +249,7 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         #region 物品单位更改
+        int cksl = 0;   // 库存数量
         private void comWpdw_EditValueChanged(object sender, EventArgs e)
         {
             comWpcj.EditValue = null;
@@ -263,6 +264,15 @@ namespace Ebada.Scgl.Lcgl
                     spKcsl.EditValue = list[0].ToString();
                     rowData.kcsl = list[0].ToString();
                     spWpsl.Enabled = true;
+                    cksl = Convert.ToInt32(list[0]);
+                    if (list[0].ToString() == "0")
+                    {
+                        spWpsl.Enabled = false;
+                    }
+                    else
+                    {
+                        spWpsl.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -289,6 +299,24 @@ namespace Ebada.Scgl.Lcgl
             YZ();
             rowData.indate = DateTime.Now;
             this.DialogResult = DialogResult.OK;
+        }
+        #endregion
+
+        #region 库存数量改变
+        private void spWpsl_EditValueChanged(object sender, EventArgs e)
+        {
+            if (comWpmc.EditValue == null || comWpgg.EditValue == null || comWpdw.EditValue == null || Convert.ToInt32(spWpsl.EditValue.ToString()) <= 0)
+            {
+                rowData.cksl = "0";
+                spWpsl.EditValue = "0";
+                return;
+            }
+            if (spWpsl.EditValue != null)
+            {
+                int sl = cksl + Convert.ToInt32(spWpsl.EditValue.ToString());
+                rowData.kcsl = sl.ToString();
+                spKcsl.EditValue = sl;
+            }
         }
         #endregion
     }
