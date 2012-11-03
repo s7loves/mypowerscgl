@@ -25,14 +25,14 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind()
         {
-            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct cast(byqCapcity as varchar(50)) from PS_tqbyq");
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "SELECT DISTINCT cast(byqCapcity as nvarchar(50)) AS Capcity FROM PS_tqbyq ORDER BY cast(byqCapcity as nvarchar(50))");
             comboBoxEdit1.Properties.Items.AddRange(list);  //容量
 
             list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqInstallAdress from PS_tqbyq");
-            comboBoxEdit8.Properties.Items.AddRange(list);  // 地点
+            comboBoxEdit6.Properties.Items.AddRange(list);  // 地点
 
             list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq");
-            comboBoxEdit6.Properties.Items.AddRange(list);  // 型号
+            comboBoxEdit8.Properties.Items.AddRange(list);  // 型号
 
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbmc");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "cysbmc");

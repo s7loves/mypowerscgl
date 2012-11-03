@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind()
         {
-            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select Capcity from PJ_bdsdldrqtz");
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "SELECT DISTINCT cast(byqCapcity as nvarchar(50)) AS Capcity FROM PS_tqbyq ORDER BY cast(byqCapcity as nvarchar(50))");
             comboBoxEdit3.Properties.Items.AddRange(list);
 
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "zhm");

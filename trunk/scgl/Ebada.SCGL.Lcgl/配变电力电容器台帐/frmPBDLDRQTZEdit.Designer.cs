@@ -264,17 +264,17 @@
             // 
             this.labelControl9.Location = new System.Drawing.Point(17, 111);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(24, 14);
+            this.labelControl9.Size = new System.Drawing.Size(60, 14);
             this.labelControl9.TabIndex = 54;
-            this.labelControl9.Text = "容量";
+            this.labelControl9.Text = "电容器容量";
             // 
             // labelControl7
             // 
             this.labelControl7.Location = new System.Drawing.Point(17, 86);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(36, 14);
+            this.labelControl7.Size = new System.Drawing.Size(72, 14);
             this.labelControl7.TabIndex = 55;
-            this.labelControl7.Text = "制造厂";
+            this.labelControl7.Text = "电容器制造厂";
             // 
             // labelControl4
             // 
@@ -288,9 +288,9 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(17, 61);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(48, 14);
+            this.labelControl5.Size = new System.Drawing.Size(84, 14);
             this.labelControl5.TabIndex = 61;
-            this.labelControl5.Text = "额定电压";
+            this.labelControl5.Text = "电容器额定电压";
             // 
             // labelControl2
             // 
