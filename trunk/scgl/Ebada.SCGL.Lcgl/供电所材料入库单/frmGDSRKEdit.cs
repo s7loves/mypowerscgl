@@ -204,9 +204,10 @@ namespace Ebada.Scgl.Lcgl
         {
             comWpgg.Properties.Items.Clear();
             comWpgg.EditValue = null;
-            if (rowData.wpmc.Trim() != "")
+            string womc = comWpmc.EditValue.ToString();
+            if (womc != null && womc.Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + rowData.wpmc + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + womc + "' and type='原始入库材料'");
                 if (list != null && list.Count > 0)
                 {
                     comWpgg.Properties.Items.AddRange(list);
@@ -220,9 +221,10 @@ namespace Ebada.Scgl.Lcgl
         {
             comWpdw.Properties.Items.Clear();
             comWpdw.EditValue = null;
-            if (rowData.wpgg.Trim() != "")
+            string wpgg = comWpgg.EditValue.ToString();
+            if (wpgg != null && wpgg.Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + rowData.wpmc + "' and wpgg='" + rowData.wpgg + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始入库材料'");
                 if (list != null && list.Count > 0)
                 {
                     comWpdw.Properties.Items.AddRange(list);
@@ -236,13 +238,13 @@ namespace Ebada.Scgl.Lcgl
         {
             comWpcj.Properties.Items.Clear();
             comWpcj.EditValue = null;
-            if (rowData.wpgg.Trim() != "" && rowData.wpdw.Trim() != "")
+            if (comWpgg.EditValue != null && comWpgg.EditValue.ToString() != "" && comWpgg.EditValue != null && comWpgg.EditValue.ToString() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select count(*) from PJ_gdscrk where wpmc='" + rowData.wpmc + "' and wpgg='" + rowData.wpgg + "' and wpdw='" + rowData.wpdw + "' and OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select count(*) from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
                 if (list != null && list.Count > 0)
                 {
                     rowData.type = "设置库存";
-                    list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrkwhere wpmc='" + rowData.wpmc + "' and wpgg='" + rowData.wpgg + "' and wpdw='" + rowData.wpdw + "' and OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
+                    list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrkwhere wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
                     if (list != null)
                     {
                         spKcsl.EditValue = list[0];
@@ -251,7 +253,7 @@ namespace Ebada.Scgl.Lcgl
                 }
 
                 // 查厂家
-                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + rowData.wpmc + "' and type='原始入库材料'");
+                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "'");
                 if (list != null && list.Count > 0)
                 {
                     comWpcj.Properties.Items.AddRange(list);
