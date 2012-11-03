@@ -261,7 +261,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData();
+                    //RefreshData();
                 }
             }
         }
@@ -596,7 +596,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
             }
-            if (ckYanShiCaiLiao.EditValue.ToString() == "True")
+            if (ckYanShiCaiLiao.EditValue != null && ckYanShiCaiLiao.EditValue.ToString() == "True")
             {
                 sql += " and type='原始入库材料'";
             }
@@ -612,6 +612,10 @@ namespace Ebada.Scgl.Lcgl
         #region 添加之前、初始化数据
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_gdscrk> e)
         {
+            if (barGDS.EditValue == null)
+            {
+                return;
+            }
             e.Value.type = "原始入库材料";
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
                    <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' or type='设置库存' order by id desc ");
