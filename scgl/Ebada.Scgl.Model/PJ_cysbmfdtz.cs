@@ -254,10 +254,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：changeDate
-        /// 属性描述：下次更换日期
+        /// 属性描述：上次更换日期
         /// 字段信息：[changeDate],datetime
         /// </summary>
-        [DisplayNameAttribute("下次更换日期")]
+        [DisplayNameAttribute("上次更换日期")]
         public DateTime changeDate
         {
             get { return _changedate; }
