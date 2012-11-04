@@ -76,7 +76,11 @@ namespace Ebada.Scgl.Xtgl {
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-            
+            treeViewOperator.BeforeInsert += new ObjectOperationEventHandler<mOrg>(treeViewOperator_BeforeInsert);
+        }
+
+        void treeViewOperator_BeforeInsert(object render, ObjectOperationEventArgs<mOrg> e) {
+            e.Value.OrgID = e.Value.OrgCode;
         }
 
         void treeViewOperator_AfterDelete(mOrg newobj) {
