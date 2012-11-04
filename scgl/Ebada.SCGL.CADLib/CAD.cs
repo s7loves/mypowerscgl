@@ -264,7 +264,7 @@ namespace Ebada.SCGL.CADLib
                         n1[1] = Convert.ToDouble(list[i].gtLat);
                         double[] n2 = new double[2];
                         n2[0] = Convert.ToDouble(list[i + 1].gtLon);
-                        n2[1] = Convert.ToDouble(list[i + 1].gtLat);                        
+                        n2[1] = Convert.ToDouble(list[i + 1].gtLat);
                         double[] n = new double[3];
                         n[0]=(n1[0] + n2[0]) / 2;
                         n[1]=(n2[1] + n2[1]) / 2;
