@@ -23,6 +23,9 @@
       <result property="type" column="type" />
       <result property="lasttime" column="lasttime" />
       <result property="kcsl" column="kcsl" />
+      <result property="rkslcount" column="rkslcount" />
+      <result property="ckslcount" column="ckslcount" />
+      <result property="kcslcount" column="kcslcount" />
     </resultMap>
   </resultMaps>
 
@@ -46,7 +49,10 @@
       [Remark],
       [type],
       [lasttime],
-      [kcsl]
+      [kcsl],
+      [rkslcount],
+      [ckslcount],
+      [kcslcount]
       FROM PJ_gdscrk
       $value$
     </select>
@@ -70,7 +76,10 @@
       [Remark],
       [type],
       [lasttime],
-      [kcsl]
+      [kcsl],
+      [rkslcount],
+      [ckslcount],
+      [kcslcount]
       FROM PJ_gdscrk
       <dynamic prepend="WHERE">
         <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -91,6 +100,9 @@
         <isNotNull prepend="AND" property="type">[type]='$type$'</isNotNull>
         <isNotNull prepend="AND" property="lasttime">[lasttime]='$lasttime$'</isNotNull>
         <isNotNull prepend="AND" property="kcsl">[kcsl]='$kcsl$'</isNotNull>
+        <isNotNull prepend="AND" property="rkslcount">[rkslcount]='$rkslcount$'</isNotNull>
+        <isNotNull prepend="AND" property="ckslcount">[ckslcount]='$ckslcount$'</isNotNull>
+        <isNotNull prepend="AND" property="kcslcount">[kcslcount]='$kcslcount$'</isNotNull>
       </dynamic>
     </select>
     <select id="SelectPJ_gdscrkByKey" resultMap="PJ_gdscrk_AllColumns" parameterClass="PJ_gdscrk">
@@ -112,7 +124,10 @@
       [Remark],
       [type],
       [lasttime],
-      [kcsl]
+      [kcsl],
+      [rkslcount],
+      [ckslcount],
+      [kcslcount]
       FROM PJ_gdscrk
       WHERE
       ID = #ID#
