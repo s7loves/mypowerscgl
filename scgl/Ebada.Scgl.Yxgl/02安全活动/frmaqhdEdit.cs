@@ -58,6 +58,24 @@ namespace Ebada.Scgl.Yxgl
                 }
                 setqqry();
                 setcqry();
+                if (MainHelper.UserOrg.OrgType == "1")
+                {
+                    groupBox2.Enabled = true;
+                    groupBox1.Enabled = true;
+                    groupBox6.Enabled = true;
+                    groupBox3.Enabled = true;
+
+                    groupBox7.Enabled = false;
+                }
+                else if (MainHelper.UserOrg.OrgType == "0")
+                {
+                    groupBox2.Enabled = false;
+                    groupBox1.Enabled = false;
+                    groupBox6.Enabled = false;
+                    groupBox3.Enabled = false;
+
+                    groupBox7.Enabled = true;
+                }
             }
         }
 
