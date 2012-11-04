@@ -185,6 +185,10 @@
             this.comboBoxEdit9.Name = "comboBoxEdit9";
             this.comboBoxEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit9.Properties.Items.AddRange(new object[] {
+            "22",
+            "44",
+            "88"});
             this.comboBoxEdit9.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_Properties_EditValueChanged);
             this.comboBoxEdit9.Size = new System.Drawing.Size(145, 21);
             this.comboBoxEdit9.TabIndex = 30;
@@ -218,6 +222,8 @@
             this.comboBoxEdit7.Name = "comboBoxEdit7";
             this.comboBoxEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit7.Properties.Items.AddRange(new object[] {
+            "发电机组"});
             this.comboBoxEdit7.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_Properties_EditValueChanged);
             this.comboBoxEdit7.Size = new System.Drawing.Size(145, 21);
             this.comboBoxEdit7.TabIndex = 30;

@@ -62,6 +62,7 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_03yxfx>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
         }
        
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_03yxfx> e)

@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Lcgl
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sssbmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sssswz");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sssbbh");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sssbbh");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "statuts");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -76,6 +76,8 @@ namespace Ebada.Scgl.Lcgl
            
             //填充下拉列表数据
        
+            comboBoxEdit1.Properties.Items.Clear();
+            comboBoxEdit1.Properties.Items.Add("杆号牌");
 
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",

@@ -227,9 +227,9 @@ namespace Ebada.Scgl.Lcgl {
             linkdic.Add("电力工器具测试记录", f014);
             openflie f015 = new openflie(2, "20110510173019088875");
             linkdic.Add("工具、仪表台张", f015);
-            openflie f016 = new openflie(2, "20110510173028135750");
+            openflie f016 = new openflie(2, "20110510173028401375");
             linkdic.Add("高压配电线路条图", f016);
-            openflie f017 = new openflie(2, "20110510173028401375");
+            openflie f017 = new openflie(2, "20110510173028135750");
             linkdic.Add("高压配电线路条图汇总表", f017);
             openflie f018 = new openflie(2, "20110510173200917000");
             linkdic.Add("高压配电设备评级表", f018);
@@ -322,7 +322,7 @@ namespace Ebada.Scgl.Lcgl {
                     result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
                 else
                 {
-                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), this, ref instance);
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), null, ref instance);
                 }
                 if (result is UserControl)
                 {
@@ -331,12 +331,11 @@ namespace Ebada.Scgl.Lcgl {
                 if (instance is Form)
                 {
                     Form fb = instance as Form;
-                   
+                    fb.Visible = false;
                     fb.Text = obj.ModuName;
-                    
-                    Dictionary<string, object> dic = new Dictionary<string, object>();
-                    dic.Add("Modu_ID", obj.Modu_ID);
-                    fb.Tag = dic;
+                    fb.Size = new Size(600, 400);
+                    fb.StartPosition = FormStartPosition.CenterScreen;
+                    fb.ShowDialog();
                 }
                 this.Cursor = Cursors.Default;
 
@@ -396,6 +395,7 @@ namespace Ebada.Scgl.Lcgl {
         }
         private void LPFrm_Load(object sender, EventArgs e) {
             loadbasedata();
+            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
             if (tempCtrlList == null) {
                 tempCtrlList = new List<Control>();
             }

@@ -42,6 +42,7 @@ namespace Ebada.Scgl.Yxgl
         private GridColumn picview;
         public UCPJ_20()
         {
+            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<PJ_20>(gridControl1, gridView1, barManager1, new frm20Template());
