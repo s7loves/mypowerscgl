@@ -1920,7 +1920,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\供电所材料入库单.xls" />
-    <None Include="00记录模板\供电所材料出库单.xls" />
+    <None Include="00记录模板\供电所材料季度明细账.xls" />
     <None Include="00记录模板\入库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1930,6 +1930,7 @@
     <None Include="00记录模板\出库材料单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\供电所材料出库单.xls" />
     <None Include="00记录模板\反事故措施计划表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
