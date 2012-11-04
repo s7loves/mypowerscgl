@@ -65,9 +65,12 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit1.Properties.Items.Clear();
             ICollection ryList = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit1.Properties.Items.AddRange(ryList);
+            
+
+
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_12kgbd>(" WHERE Citylevel = '2'"));
-          /*  IList<DicType> list = new List<DicType>();
+            /*  IList<DicType> list = new List<DicType>();
             list.Add(new DicType("0", "机构"));
             list.Add(new DicType("1", "供电所"));
             list.Add(new DicType("2", "变电所"));
@@ -141,6 +144,17 @@ namespace Ebada.Scgl.Lcgl
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            //取出线路ID
+            Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit1.EditValue + "'");
+            string lineCode = xl.LineCode;
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = string.Empty;
+            IList GanTaHaoList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "SELECT gtCode FROM ps_gt WHERE lineCode='" + lineCode + "'");
+            comboBoxEdit2.Properties.Items.AddRange(GanTaHaoList);
         }
     }
 }

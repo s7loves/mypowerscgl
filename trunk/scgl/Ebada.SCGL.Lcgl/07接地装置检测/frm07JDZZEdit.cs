@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Lcgl
         public frm07JDZZEdit()
         {
             InitializeComponent();
-            lookUpEdit1.Properties.AutoSearchColumnIndex = 2;
+            //lookUpEdit1.Properties.AutoSearchColumnIndex = 2;
         }
         void dataBind()
         {
@@ -95,7 +95,7 @@ namespace Ebada.Scgl.Lcgl
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
             comboBoxEdit1.Properties.DataSource = xlList;
-            lookUpEdit1.Properties.DataSource = xlList;
+            //lookUpEdit1.Properties.DataSource = xlList;
             comboBoxEdit10.Properties.Items.Clear();
             for (int i = 0; i < xlList.Count; i++)
             {
@@ -142,25 +142,6 @@ namespace Ebada.Scgl.Lcgl
 
         private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(comboBoxEdit1.Text))
-            {
-                comboBoxEdit2.Properties.Items.Clear();
-                comboBoxEdit3.Properties.Items.Clear();
-                ICollection list = new ArrayList();
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select gth from PS_gt where   LineCode='{0}' ", comboBoxEdit1.EditValue.ToString()));
-                //ICollection list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + comboBoxEdit1.EditValue.ToString() + "'");
-                comboBoxEdit2.Properties.Items.AddRange(list);
-                IList<PS_xl> listXL = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where ParentID='" + comboBoxEdit1.EditValue.ToString() + "'and LineType IN ('1','2')");
-                lookUpEdit1.Properties.DataSource = listXL;
-
-                IList list1 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select Adress from PS_tq where   left(tqCode,{1})='{0}' ", comboBoxEdit1.EditValue.ToString(), comboBoxEdit1.EditValue.ToString().Length));
-                comboBoxEdit3.Properties.Items.AddRange(list1);
-                //for (int i = 0; i < list.Count; i++)
-                //{
-                //    comboBoxEdit3.Properties.Items.Add(list[i].Adress);
-                //}
-            }
-
 
         }
 
@@ -301,6 +282,95 @@ namespace Ebada.Scgl.Lcgl
             { 
             
             }
+        }
+
+        /// <summary>
+        /// 改变线路名后刷新支线路名称和杆塔号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxEdit10_EditValueChanged(object sender, EventArgs e)
+        {
+            //取得线路code
+            Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit10.EditValue + "'");
+
+            //取线路ID
+            if (xl == null) return;
+            string lineID = xl.LineID;
+
+            //取得下一级线路列表
+            IList zxl = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT lineName FROM PS_XL WHERE parentID='{0}'", lineID));
+
+            comboBoxEdit11.Properties.Items.Clear();
+            comboBoxEdit11.EditValue = string.Empty;
+            comboBoxEdit11.Properties.Items.AddRange(zxl);
+            if( comboBoxEdit11.Properties.Items.Count>0)
+                comboBoxEdit11.SelectedIndex = 0;
+            //刷新杆塔号
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = string.Empty;
+            comboBoxEdit2.Properties.Items.AddRange(gt);
+            if (comboBoxEdit2.Properties.Items.Count > 0)
+                comboBoxEdit2.SelectedIndex = 0;
+            
+        }
+
+
+        /// <summary>
+        /// 改变支线路名后刷新分线路名称和杆塔号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxEdit11_EditValueChanged(object sender, EventArgs e)
+        {
+            //comboBoxEdit11
+            //取得线路code
+            Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit11.EditValue + "'");
+            //取线路ID
+            if (xl == null) return;
+            string lineID = xl.LineID;
+            //取得下一级线路列表
+            IList fxl = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT lineName FROM PS_XL WHERE parentID LIKE '{0}%'", lineID));
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.EditValue = string.Empty;
+            comboBoxEdit3.Properties.Items.AddRange(fxl);
+            if (comboBoxEdit3.Properties.Items.Count > 0)
+                comboBoxEdit3.SelectedIndex = 0;
+            //刷新杆塔号
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = string.Empty;
+            comboBoxEdit2.Properties.Items.AddRange(gt);
+            if (comboBoxEdit2.Properties.Items.Count > 0)
+                comboBoxEdit2.SelectedIndex = 0;
+
+
+
+        }
+        /// <summary>
+        /// 分线路名称
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            //comboBoxEdit11
+            //取得线路code
+            Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit3.EditValue + "'");
+            //取线路ID
+            if (xl == null) return;
+            string lineID = xl.LineID;
+            //刷新杆塔号
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = string.Empty;
+            comboBoxEdit2.Properties.Items.AddRange(gt);
+            if (comboBoxEdit2.Properties.Items.Count > 0)
+                comboBoxEdit2.SelectedIndex = 0;
         }
 
        
