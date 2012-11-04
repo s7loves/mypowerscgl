@@ -60,6 +60,9 @@ namespace Ebada.Scgl.Lcgl
             gridView1.Columns["OrgCode"].Visible = false;
             gridView1.Columns["type"].Visible = false;
             gridView1.Columns["yt"].Visible = false;
+            gridView1.Columns["rkslcount"].Visible = false;
+            gridView1.Columns["ckslcount"].Visible = false;
+            gridView1.Columns["kcslcount"].Visible = false;
         }
         #endregion
 
@@ -85,7 +88,7 @@ namespace Ebada.Scgl.Lcgl
                 wp = new PJ_gdscrk();
             }
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-            <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and (type='原始入库材料' or type='设置库存') order by id desc ");
+            <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='原始入库材料' or type='设置库存' or type='出库' order by wpmc desc ");
             if (pnumli.Count == 0)
                 wp.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else

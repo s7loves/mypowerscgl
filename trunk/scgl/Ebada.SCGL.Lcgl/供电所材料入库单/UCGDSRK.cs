@@ -293,6 +293,9 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_gdscrk newobj)
         {
+            if (barGDS.EditValue == null) return;
+            newobj.type = "原始入库材料";
+            newobj.OrgCode = barGDS.EditValue.ToString();
         }
 
         #region 提交审核
@@ -629,7 +632,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by ID desc";
+            sql += " order by wpmc desc";
             gridViewOperation.RefreshData(sql);
         }
         #endregion
@@ -643,14 +646,13 @@ namespace Ebada.Scgl.Lcgl
             }
             e.Value.type = "原始入库材料";
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' or type='设置库存' order by id desc ");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' or type='设置库存' or type='出库' order by id desc ");
             if (pnumli.Count == 0)
                 e.Value.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
             {
                 e.Value.num = "GDSCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("GDSCRK", "")) + 1);
             }
-            e.Value.lasttime = DateTime.Now;
         }
         #endregion
 
