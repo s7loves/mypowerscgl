@@ -82,6 +82,26 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
            
             //填充下拉列表数据
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit7.Properties.Items.Clear();
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            string.Format("select OrgName from mOrg where Orgtype='2' order by orgcode"));
+            comboBoxEdit3.Properties.Items.AddRange(strlist);
+            comboBoxEdit7.Properties.Items.AddRange(strlist);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxByDyk("12线路开关卡片", "型号", comboBoxEdit9.Properties);
+            FillComb(comboBoxEdit4);
+            FillComb(comboBoxEdit8);
+        }
+        
+        private void FillComb(ComboBoxEdit cob)
+        {
+            string sqlwhere = "select LineName from PS_xl where  len(linecode)=6 and   OrgCode='" + MainHelper.UserOrg.OrgCode + "'";
+            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlwhere);
+            cob.Properties.Items.Clear();
+            cob.Properties.Items.AddRange(strlist);
+
+          
         }
 
         /// <summary>
@@ -129,6 +149,8 @@ namespace Ebada.Scgl.Lcgl
         {
 
         }
+
+       
 
        
     }

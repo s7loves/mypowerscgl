@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Lcgl
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
             comboBoxEdit3.Properties.Items.Clear();
-            comboBoxEdit3.Properties.Items.Add("双头刀闸");
+            comboBoxEdit3.Properties.Items.Add("双投刀闸");
             comboBoxEdit5.Properties.Items.Clear();
             comboBoxEdit5.Properties.Items.Add("绥化市郊农电局");
         }
