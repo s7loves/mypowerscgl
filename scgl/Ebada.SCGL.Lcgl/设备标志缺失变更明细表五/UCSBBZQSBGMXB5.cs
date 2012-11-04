@@ -35,9 +35,9 @@ namespace Ebada.Scgl.Lcgl
     [ToolboxItem(false)]
     public partial class UCSBBZQSBGMXB5 : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<PJ_sbbzqsbgmxb4> gridViewOperation;
+        private GridViewOperation<PJ_sbbzqsbgmxb5> gridViewOperation;
 
-        public event SendDataEventHandler<PJ_sbbzqsbgmxb4> FocusedRowChanged;
+        public event SendDataEventHandler<PJ_sbbzqsbgmxb5> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Lcgl
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        private string varDbTableName = "PJ_sbbzqsbgmxb4,LP_Record";
+        private string varDbTableName = "PJ_sbbzqsbgmxb5,LP_Record";
         private bool readOnly = false;
         public bool ReadOnly
         {
@@ -139,19 +139,19 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_sbbzqsbgmxb4>(gridControl1, gridView1, barManager1, new frmSBBZQSBGMXB4Edit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sbbzqsbgmxb4>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<PJ_sbbzqsbgmxb5>(gridControl1, gridView1, barManager1, new frmSBBZQSBGMXB5Edit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_sbbzqsbgmxb5>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_sbbzqsbgmxb4>(gridViewOperation_AfterAdd);
-            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_sbbzqsbgmxb4>(gridViewOperation_AfterDelete);
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbbzqsbgmxb4>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_sbbzqsbgmxb5>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_sbbzqsbgmxb5>(gridViewOperation_AfterDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_sbbzqsbgmxb5>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             if (isWorkflowCall && fjly==null)
             {
                 fjly = new frmModleFjly();
             }
         }
-        void gridViewOperation_AfterDelete(PJ_sbbzqsbgmxb4 obj)
+        void gridViewOperation_AfterDelete(PJ_sbbzqsbgmxb5 obj)
         {
 
             if (isWorkflowCall)
@@ -166,7 +166,7 @@ namespace Ebada.Scgl.Lcgl
 
             RefreshData(" where OrgCode='" + parentID + "' ");
         }
-        void gridViewOperation_AfterAdd(PJ_sbbzqsbgmxb4 newobj)
+        void gridViewOperation_AfterAdd(PJ_sbbzqsbgmxb5 newobj)
         {
             //if (isWorkflowCall)
             //{
@@ -182,12 +182,12 @@ namespace Ebada.Scgl.Lcgl
             //    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             //}
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb4> e)
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb5> e)
         {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb4> e)
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_sbbzqsbgmxb5> e)
         {
             if (parentID == null)
                 e.Cancel = true;
@@ -234,7 +234,7 @@ namespace Ebada.Scgl.Lcgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sbbzqsbgmxb4);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_sbbzqsbgmxb5);
         }
         private void hideColumn(string colname)
         {
@@ -286,7 +286,7 @@ namespace Ebada.Scgl.Lcgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_sbbzqsbgmxb4> GridViewOperation
+        public GridViewOperation<PJ_sbbzqsbgmxb5> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -295,7 +295,7 @@ namespace Ebada.Scgl.Lcgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_sbbzqsbgmxb4 newobj)
+        void gridViewOperation_CreatingObjectEvent(PJ_sbbzqsbgmxb5 newobj)
         {
             if (parentID == null) return;
             newobj.OrgCode = parentID;
@@ -342,9 +342,9 @@ namespace Ebada.Scgl.Lcgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            //IList<PJ_sbbzqsbgmxb4> datalist = gridView1.DataSource as IList<PJ_sbbzqsbgmxb4>;
+            //IList<PJ_sbbzqsbgmxb5> datalist = gridView1.DataSource as IList<PJ_sbbzqsbgmxb5>;
             //frmYearSelect fys = new frmYearSelect();
-            //fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sbbzqsbgmxb4";
+            //fys.StrSQL = "select distinct left(CONVERT(varchar(50) , indate, 112 ),4 )  from PJ_sbbzqsbgmxb5";
             //if (fys.ShowDialog() == DialogResult.OK)
             {
 
@@ -418,9 +418,9 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    return;
             //}
-            //IList<PJ_sbbzqsbgmxb4> bjlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbbzqsbgmxb4>("where orgcode='" + btGdsList.EditValue + "' AND jhnf='"+DateTime.Now.Year+"'");
-            //List<PJ_sbbzqsbgmxb4> list = new List<PJ_sbbzqsbgmxb4>();
-            //foreach (PJ_sbbzqsbgmxb4 bj in bjlist)
+            //IList<PJ_sbbzqsbgmxb5> bjlist = Client.ClientHelper.PlatformSqlMap.GetList<PJ_sbbzqsbgmxb5>("where orgcode='" + btGdsList.EditValue + "' AND jhnf='"+DateTime.Now.Year+"'");
+            //List<PJ_sbbzqsbgmxb5> list = new List<PJ_sbbzqsbgmxb5>();
+            //foreach (PJ_sbbzqsbgmxb5 bj in bjlist)
             //{
             //    bj.ID = bj.CreateID();
             //    bj.jhnf = (DateTime.Now.Year+1).ToString();

@@ -343,7 +343,7 @@ namespace Ebada.Scgl.Lcgl
             //此处写填充内容代码
             int row = 6;
             int col = 1;
-            int rowcount = 2;
+            int rowcount = 15;
             int i = 0, sheetindex = 0;
             //
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;

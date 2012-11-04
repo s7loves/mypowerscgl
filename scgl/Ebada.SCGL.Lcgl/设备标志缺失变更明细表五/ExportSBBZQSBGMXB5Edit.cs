@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
             string filter= "where 1=1 ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                IList<PJ_sbbzqsbgmxb5> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
                  filter
                  
                    );
@@ -104,7 +104,7 @@ namespace Ebada.Scgl.Lcgl
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
                 }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                IList<PJ_sbbzqsbgmxb5> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
                  filter
                    );
                 ExportExcel(ex, datalist,orgid);
@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Lcgl
                             + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                         + "    RecordID='" + currRecord.ID + "') ";
                 }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                IList<PJ_sbbzqsbgmxb5> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
                  filter
                    );
                 if (isWorkflowCall)
@@ -204,7 +204,7 @@ namespace Ebada.Scgl.Lcgl
                         + "    RecordID='" + currRecord.ID + "') "
                         ;
                 }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+                IList<PJ_sbbzqsbgmxb5> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb5>(
                  filter
                    );
                 ExportExcel(ex, datalist, orgid);
@@ -237,7 +237,7 @@ namespace Ebada.Scgl.Lcgl
             dsoFramerWordControl1.FileClose();
         }
 
-        public void ExportExcel(ExcelAccess ex, IList<PJ_sbbzqsbgmxb4> datalist, string orgid)
+        public void ExportExcel(ExcelAccess ex, IList<PJ_sbbzqsbgmxb5> datalist, string orgid)
         {
             //此处写填充内容代码
             int row = 6;
@@ -276,10 +276,9 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].sssswz, row + j % rowcount, col + 2);
 
                 ex.SetCellValue(datalist[j].sssbbh, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].xw, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].xw, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].hj.Replace(datalist[j].xw, ""), row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 5);
+               
 
 
             }

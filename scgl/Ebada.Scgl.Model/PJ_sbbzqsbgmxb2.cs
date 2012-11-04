@@ -103,10 +103,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：sssbmc
-        /// 属性描述：所属设备名称
+        /// 属性描述：标志类型
         /// 字段信息：[sssbmc],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所属设备名称")]
+        [DisplayNameAttribute("标志类型")]
         public string sssbmc
         {
             get { return _sssbmc; }
@@ -114,7 +114,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
-                throw new Exception("[所属设备名称]长度不能大于500!");
+                    throw new Exception("[标志类型长度不能大于500!");
                 if (_sssbmc as object == null || !_sssbmc.Equals(value))
                 {
                     _sssbmc = value;
@@ -124,10 +124,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：sssswz
-        /// 属性描述：所属设备位置
+        /// 属性描述：标志名称
         /// 字段信息：[sssswz],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所属设备位置")]
+        [DisplayNameAttribute("标志名称")]
         public string sssswz
         {
             get { return _sssswz; }
@@ -135,7 +135,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
-                throw new Exception("[所属设备位置]长度不能大于500!");
+                    throw new Exception("[标志名称]长度不能大于500!");
                 if (_sssswz as object == null || !_sssswz.Equals(value))
                 {
                     _sssswz = value;
@@ -145,10 +145,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：sssbbh
-        /// 属性描述：所属设备编号
+        /// 属性描述：标志数量
         /// 字段信息：[sssbbh],nvarchar
         /// </summary>
-        [DisplayNameAttribute("所属设备编号")]
+        [DisplayNameAttribute("标志数量")]
         public string sssbbh
         {
             get { return _sssbbh; }
@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[所属设备编号]长度不能大于50!");
+                    throw new Exception("[标志数量]长度不能大于50!");
                 if (_sssbbh as object == null || !_sssbbh.Equals(value))
                 {
                     _sssbbh = value;

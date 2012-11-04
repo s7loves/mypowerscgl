@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Lcgl
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sssbmc");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sssswz");
-            this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sssbbh");
+            //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sssbbh");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "statuts");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
            
@@ -37,7 +37,8 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
-               
+
+                rowData.sssbbh = spinEdit1.Text;
                 return rowData;
               
             }
@@ -50,7 +51,9 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_sbbzqsbgmxb2>(value as PJ_sbbzqsbgmxb2, rowData);
                 }
-            
+                int m = 1;
+                int.TryParse(rowData.sssbbh, out m);
+                spinEdit1.EditValue = m;
             }
         }
 
@@ -75,77 +78,96 @@ namespace Ebada.Scgl.Lcgl
         private void InitComboBoxData() {
            
             //填充下拉列表数据
-           
 
             comboBoxEdit1.Properties.Items.Clear();
-            IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备名称"));
-            if (strlist.Count > 0)
-                comboBoxEdit1.Properties.Items.AddRange(strlist);
-            else
-            {
-             //   comboBoxEdit1.Properties.Items.Add("变台");
-             //   comboBoxEdit1.Properties.Items.Add("变电亭");
-              //  comboBoxEdit1.Properties.Items.Add("箱式配电站");
-                comboBoxEdit1.Properties.Items.Add("开关");
-            }
-            IList list=null;
-            comboBoxEdit2.Properties.Items.Clear();
-             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备位置"));
-            if (strlist.Count > 0)
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
-           else
-            {
-               // comboBoxEdit2.Properties.Items.Add("10KV双西线");
+            comboBoxEdit1.Properties.Items.Add("开关编号牌");
 
-                comboBoxEdit2.Properties.Items.Clear();  //zjm
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");  //zjm
-                comboBoxEdit2.Properties.Items.AddRange(list);  //zjm
+            comboBoxEdit2.Properties.Items.Clear();
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from PS_xl where len(Linecode)=6 and  OrgCode ='" + rowData.OrgCode + "' and linevol='10'");
+            IList<string> templist = new List<string>();
+            foreach (var item in list)
+            {
+                templist.Add(item.ToString() + "*开关");
+                
+            }
+            comboBoxEdit2.Properties.Items.AddRange((IList)templist);
+
+            comboBoxEdit4.Properties.Items.Clear();
+            comboBoxEdit4.Properties.Items.Add("缺失");
+            comboBoxEdit4.Properties.Items.Add("变更");
+            comboBoxEdit4.Properties.Items.Add("新增");
+
+
+
+         //   comboBoxEdit1.Properties.Items.Clear();
+         //   IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+         //   string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备名称"));
+         //   if (strlist.Count > 0)
+         //       comboBoxEdit1.Properties.Items.AddRange(strlist);
+         //   else
+         //   {
+         //    //   comboBoxEdit1.Properties.Items.Add("变台");
+         //    //   comboBoxEdit1.Properties.Items.Add("变电亭");
+         //     //  comboBoxEdit1.Properties.Items.Add("箱式配电站");
+         //       comboBoxEdit1.Properties.Items.Add("开关");
+         //   }
+         //   IList list=null;
+         //   comboBoxEdit2.Properties.Items.Clear();
+         //    strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+         //   string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备位置"));
+         //   if (strlist.Count > 0)
+         //       comboBoxEdit2.Properties.Items.AddRange(strlist);
+         //  else
+         //   {
+         //      // comboBoxEdit2.Properties.Items.Add("10KV双西线");
+
+         //       comboBoxEdit2.Properties.Items.Clear();  //zjm
+         //       list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");  //zjm
+         //       comboBoxEdit2.Properties.Items.AddRange(list);  //zjm
  
 
-           }
+         //  }
 
-            comboBoxEdit3.Properties.Items.Clear();
-            // strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            //string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备编号"));
-            //if (strlist.Count > 0)
-            //    comboBoxEdit3.Properties.Items.AddRange(strlist);
-            //else
-            //{
-            //    comboBoxEdit3.Properties.Items.Add("1#");
-            //    comboBoxEdit3.Properties.Items.Add("2#");
-            //    comboBoxEdit3.Properties.Items.Add("3#");
-            //    comboBoxEdit3.Properties.Items.Add("8#");
-            //    comboBoxEdit3.Properties.Items.Add("9#");
-            //    comboBoxEdit3.Properties.Items.Add("13#");
-            //    comboBoxEdit3.Properties.Items.Add("15#");
-            //    comboBoxEdit3.Properties.Items.Add("20#");
+         //   comboBoxEdit3.Properties.Items.Clear();
+         //   // strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+         //   //string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "所属设备编号"));
+         //   //if (strlist.Count > 0)
+         //   //    comboBoxEdit3.Properties.Items.AddRange(strlist);
+         //   //else
+         //   //{
+         //   //    comboBoxEdit3.Properties.Items.Add("1#");
+         //   //    comboBoxEdit3.Properties.Items.Add("2#");
+         //   //    comboBoxEdit3.Properties.Items.Add("3#");
+         //   //    comboBoxEdit3.Properties.Items.Add("8#");
+         //   //    comboBoxEdit3.Properties.Items.Add("9#");
+         //   //    comboBoxEdit3.Properties.Items.Add("13#");
+         //   //    comboBoxEdit3.Properties.Items.Add("15#");
+         //   //    comboBoxEdit3.Properties.Items.Add("20#");
 
-            //}
-         //   for (int i = 0; i < 50; i++)
-         //   {
-          //      comboBoxEdit3.Properties.Items.Add(i + "#");
-          //  }
+         //   //}
+         ////   for (int i = 0; i < 50; i++)
+         ////   {
+         // //      comboBoxEdit3.Properties.Items.Add(i + "#");
+         // //  }
 
-             //   comboBoxEdit2.Properties.Items.Clear();
-             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "'and LineType='1' and linevol='10'");  //zjm
-                comboBoxEdit3.Properties.Items.AddRange(list);//zjm
+         //    //   comboBoxEdit2.Properties.Items.Clear();
+         //    list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "'and LineType='1' and linevol='10'");  //zjm
+         //       comboBoxEdit3.Properties.Items.AddRange(list);//zjm
  
           
            
 
-            comboBoxEdit4.Properties.Items.Clear();
-            string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "状态");
-            if (strlist.Count > 0)
-                comboBoxEdit4.Properties.Items.AddRange(strlist);
-            else
-            {
-                comboBoxEdit4.Properties.Items.Add("缺失");
-                comboBoxEdit4.Properties.Items.Add("变更");
-                comboBoxEdit4.Properties.Items.Add("新增");
+         //   comboBoxEdit4.Properties.Items.Clear();
+         //   string.Format("select nr from pj_dyk where  dx='设备标志缺失变更明细表二' and sx like '%{0}%' and nr!=''", "状态");
+         //   if (strlist.Count > 0)
+         //       comboBoxEdit4.Properties.Items.AddRange(strlist);
+         //   else
+         //   {
+         //       comboBoxEdit4.Properties.Items.Add("缺失");
+         //       comboBoxEdit4.Properties.Items.Add("变更");
+         //       comboBoxEdit4.Properties.Items.Add("新增");
 
-            }
+         //   }
         }
 
         /// <summary>
