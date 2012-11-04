@@ -413,6 +413,16 @@ namespace Ebada.Scgl.Model
                 }
             }
         }
+
+        [DisplayNameAttribute("总入库量")]
+        public string rkslcount { get; set; }
+
+        [DisplayNameAttribute("总出库量")]
+        public string ckslcount { get; set; }
+
+        [DisplayNameAttribute("剩余库存")]
+        public string kcslcount { get; set; }
+
         #endregion
 
         #region 方法
