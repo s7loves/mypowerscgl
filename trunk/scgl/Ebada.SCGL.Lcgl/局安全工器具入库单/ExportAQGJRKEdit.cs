@@ -11,35 +11,44 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Ebada.Client.Platform;
 using Ebada.Components;
 using System.Threading;
-namespace Ebada.Scgl.Lcgl {
+namespace Ebada.Scgl.Lcgl
+{
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class ExportAQGJRKEdit {
+    public class ExportAQGJRKEdit
+    {
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
-        public LP_Temple ParentTemple {
+        public LP_Temple ParentTemple
+        {
             get { return parentTemple; }
             set { parentTemple = value; }
         }
-        public bool IsWorkflowCall {
-            set {
+        public bool IsWorkflowCall
+        {
+            set
+            {
                 isWorkflowCall = value;
             }
         }
-        public LP_Record CurrRecord {
+        public LP_Record CurrRecord
+        {
             get { return currRecord; }
             set { currRecord = value; }
         }
 
-        public DataTable RecordWorkFlowData {
-            get {
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
                 return WorkFlowData;
             }
-            set {
+            set
+            {
                 WorkFlowData = value;
             }
         }
@@ -47,7 +56,8 @@ namespace Ebada.Scgl.Lcgl {
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public void ExportExcel(string orgid, string year) {
+        public void ExportExcel(string orgid, string year)
+        {
             ////lgm
             //ExcelAccess ex = new ExcelAccess();
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -74,7 +84,8 @@ namespace Ebada.Scgl.Lcgl {
             //ex.ShowExcel();
 
         }
-        public void ExportExcelProjectCKD(string orgid, string strnum) {
+        public void ExportExcelProjectCKD(string orgid, string strnum)
+        {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -85,7 +96,8 @@ namespace Ebada.Scgl.Lcgl {
                 filter = "  where 1=1 and num='" + strnum + "'  and type = '局安全工器具入库单' ";
             else
                 filter = "  where 1=1  and type = '局安全工器具入库单' ";
-            if (isWorkflowCall) {
+            if (isWorkflowCall)
+            {
 
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
                     + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
@@ -101,7 +113,8 @@ namespace Ebada.Scgl.Lcgl {
             ex.DeleteSheet(1);
             ex.ShowExcel();
         }
-        public void ExportExcelYear(string orgid, string year) {
+        public void ExportExcelYear(string orgid, string year)
+        {
             //////lgm
             //ExcelAccess ex = new ExcelAccess();
             //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -158,7 +171,8 @@ namespace Ebada.Scgl.Lcgl {
 
             //ex.ShowExcel();
         }
-        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strnum) {
+        public void ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(string orgid, string strnum)
+        {
 
             string filter = "";
             int i = 0;
@@ -169,7 +183,8 @@ namespace Ebada.Scgl.Lcgl {
             else
                 filter = "  where 1=1  and type = '局安全工器具入库单' ";
 
-            if (isWorkflowCall) {
+            if (isWorkflowCall)
+            {
 
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
                     + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
@@ -181,8 +196,10 @@ namespace Ebada.Scgl.Lcgl {
             IList<PJ_anqgjcrkd> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_anqgjcrkd>(
              filter
                );
-            if (isWorkflowCall) {
-                for (i = 0; i < datalist.Count; i++) {
+            if (isWorkflowCall)
+            {
+                for (i = 0; i < datalist.Count; i++)
+                {
                     WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                     mrwt.ID = mrwt.CreateID();
                     mrwt.ModleRecordID = datalist[i].ID;
@@ -199,7 +216,8 @@ namespace Ebada.Scgl.Lcgl {
             }
 
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-            if (mrwtlist.Count > 0) {
+            if (mrwtlist.Count > 0)
+            {
                 SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Insert, mrwtlist.ToArray());
                 list3.Add(obj3);
             }
@@ -208,12 +226,14 @@ namespace Ebada.Scgl.Lcgl {
         }
 
 
-        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, string strnum, bool isShow) {
+        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, string strnum, bool isShow)
+        {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\局安全工器具入库单.xls";
             dsoFramerWordControl1.FileOpen(fname);
 
-            if (parentTemple == null) {
+            if (parentTemple == null)
+            {
                 parentTemple = new LP_Temple();
                 parentTemple.Status = "文档生成";
             }
@@ -234,7 +254,8 @@ namespace Ebada.Scgl.Lcgl {
             else
                 filter = "  where 1=1  and type = '局安全工器具入库单' ";
 
-            if (isWorkflowCall) {
+            if (isWorkflowCall)
+            {
 
                 filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
                     + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
@@ -250,7 +271,8 @@ namespace Ebada.Scgl.Lcgl {
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
             Excel.Worksheet sheet;
-            for (int i = 1; i <= wb.Application.Sheets.Count; i++) {
+            for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+            {
                 sheet = wb.Application.Sheets[i] as Excel.Worksheet;
                 sheet.Cells.Clear();
                 sheet.Cells.ClearContents();
@@ -260,7 +282,8 @@ namespace Ebada.Scgl.Lcgl {
 
                 break;
             }
-            if (parentTemple == null) {
+            if (parentTemple == null)
+            {
                 parentTemple = new LP_Temple();
                 parentTemple.Status = "文档生成";
             }
@@ -270,30 +293,37 @@ namespace Ebada.Scgl.Lcgl {
             dsoFramerWordControl1.FileClose();
         }
 
-        public void ExportExcel(ExcelAccess ex, IList<PJ_anqgjcrkd> datalist) {
+        public void ExportExcel(ExcelAccess ex, IList<PJ_anqgjcrkd> datalist)
+        {
             //此处写填充内容代码
             int row = 4;
             int col = 1;
             int rowcount = 12;
-            ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"),2,1);
+            //ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"),2,1);
             //
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount)) {
+            if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
+            {
                 pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
             }
-            for (int j = 1; j <= pageindex; j++) {
+            for (int j = 1; j <= pageindex; j++)
+            {
 
                 ex.CopySheet(1, j);
-                if (j == 1) {
+                if (j == 1)
+                {
 
                     ex.ReNameWorkSheet(j + 1, datalist[0].num);
-                } else
+                }
+                else
                     ex.ReNameWorkSheet(j + 1, datalist[0].num + "(" + (j) + ")");
             }
-            for (int j = 0; j < datalist.Count; j++) {
+            for (int j = 0; j < datalist.Count; j++)
+            {
 
-                if (j % rowcount == 0) {
+                if (j % rowcount == 0)
+                {
                     if (j == 0) ex.ActiveSheet(datalist[0].num);
                     else ex.ActiveSheet(datalist[0].num + "(" + (j / rowcount + 1) + ")");
 
@@ -304,16 +334,13 @@ namespace Ebada.Scgl.Lcgl {
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 1);
                 ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 2);
                 ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].indate.ToString(), row + j % rowcount, col + 4);
 
-                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 6);
                 if (!string.IsNullOrEmpty(datalist[j].wpdj))
                     ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl) * Convert.ToDouble(datalist[j].wpdj)).ToString()
                         , row + j % rowcount, col + 7);
-
-                //ex.SetCellValue(datalist[j].zrr, row + j % rowcount, col + 7);
-
-
             }
         }
 
