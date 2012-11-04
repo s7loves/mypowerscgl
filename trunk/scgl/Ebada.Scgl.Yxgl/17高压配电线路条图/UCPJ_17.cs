@@ -238,14 +238,14 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         public static int ExportToExcel(string title, string dw, PJ_17 pj17) {
-            string fname = Application.StartupPath + "\\00记录模板\\17线路条图.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\17线路条图(1).xls";
             float fxstart = 0, fystart = 0, fwidth = 0, fheight = 0;
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string outfname = Path.GetTempFileName() + ".xls";
             File.Copy(fname, outfname);
             dsoFramerWordControl1.FileOpen(outfname);
             Microsoft.Office.Interop.Excel.Worksheet xx;
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;        
             ExcelAccess ex = new ExcelAccess();
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
@@ -322,7 +322,7 @@ namespace Ebada.Scgl.Yxgl {
                         jlie = 3;
                         ihang = 8;
                         hdRowCount = 1;
-                        jyzRowCount = 1;
+                        jyzRowCount = 2;
                         dxRowCount = 1;
                         btRowCount = 1;
                         blqRowCount = 1;
@@ -810,7 +810,7 @@ namespace Ebada.Scgl.Yxgl {
                         for (j = 0; j < lxlist.Count; j++) {
                             int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                             //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(lxlist[j].ToString() + "/" + icount, ihang + j, jlie);
+                            ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
 
                         }
                     }
@@ -820,7 +820,7 @@ namespace Ebada.Scgl.Yxgl {
                     if (jyuzlist != null) {
 
                         if (jyuzlist.Count > jyzRowCount) {
-                            for (j = jyzRowCount; j < jyuzlist.Count; j++) {
+                            for (j = jyzRowCount; j < jyuzlist.Count; j = j+2) {
 
                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jyzRowCount, "A"], xx.Cells[ihang + jyzRowCount, "A"]);
                                 range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
@@ -828,12 +828,12 @@ namespace Ebada.Scgl.Yxgl {
                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
                                 range.Merge(Type.Missing);
                             }
-                            for (int jtem = 0; jtem < jyuzlist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
+                            //for (int jtem = 0; jtem < jyuzlist.Count; jtem++) {
+                            //    for (int item = 0; item < 29; item += 2) {
+                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                            //        range.Merge(Type.Missing);
+                            //    }
+                            //}
                             jyzRowCount = jyuzlist.Count;
                             range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + jyzRowCount - 1, 1]);
                             range.Merge(Type.Missing);
@@ -841,11 +841,12 @@ namespace Ebada.Scgl.Yxgl {
                         for (j = 0; j < jyuzlist.Count; j++) {
                             int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                             //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(jyuzlist[j].ToString() + "/" + icount, ihang + j, jlie);
+                            ex.SetCellValue(jyuzlist[j].ToString() /*+ "/" + icount*/, ihang + j/2, jlie + j%2);
+                            ex.SetCellValue(icount.ToString(), ihang + j / 2 + 1, jlie + j % 2);
 
                         }
                     }
-                    ihang += jyzRowCount;
+                    ihang += jyzRowCount ;
                     //变台型式
                     if (btlist != null) {
                         if (btlist.Count > 0) {
@@ -862,7 +863,7 @@ namespace Ebada.Scgl.Yxgl {
                                 }
                                 for (int jtem = 1; jtem < ilisttemp.Count; jtem++) {
                                     for (int item = 0; item < 29; item += 2) {
-                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 1, jstart + item], xx.Cells[ihang + jtem + 1, jstart + item + 1]);
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 3, jstart + item], xx.Cells[ihang + jtem + 3, jstart + item + 1]);
                                         range.Merge(Type.Missing);
                                     }
                                 }
@@ -890,16 +891,20 @@ namespace Ebada.Scgl.Yxgl {
                                     //ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
                                     //}
                                     if (gtsbtemp.byqModle.IndexOf("-") < 0) {
-                                        ex.SetCellValue(gtsbtemp.byqModle + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqModle /*+ "/" + icount.ToString()*/, ihang + j + 1, jlie);
+                                        ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang + j + 2, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang + j + 3, jlie);
                                     } else {
-                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-")) + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-")) + "/" /*+ icount.ToString()*/, ihang + j + 1, jlie);
+                                        ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang + j + 2, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang + j + 1, jlie);
                                     }
                                 }
                             }
                         }
 
                     }
-                    ihang += btRowCount + 1;
+                    ihang += btRowCount + 3;
 
                     //避雷器型号/数量
                     if (blqlist != null && blqlist.Count > 0) {
@@ -928,13 +933,14 @@ namespace Ebada.Scgl.Yxgl {
                         for (j = 0; j < blqlist.Count; j++) {
                             int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                             // int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(blqlist[j].ToString() + "/" + icount, ihang + j, jlie);
+                            ex.SetCellValue(blqlist[j].ToString() , ihang + j, jlie);
+                            ex.SetCellValue( icount.ToString(), ihang + j +1, jlie);
 
                         }
 
 
                     }
-                    ihang += blqRowCount;
+                    ihang += blqRowCount +1;
 
                     //开关型号/数量
                     if (kglist != null && kglist.Count > 0) {
@@ -965,11 +971,12 @@ namespace Ebada.Scgl.Yxgl {
                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                 ex.SetCellValue(kglist[j].ToString() + "/" + icount, ihang + j, jlie);
+                                ex.SetCellValue( icount.ToString(), ihang + j +2, jlie);
                             } catch { }
 
                         }
                     }
-                    ihang += kgRowCount;
+                    ihang += kgRowCount + 2;
 
                     jlie += 2;
                 }
