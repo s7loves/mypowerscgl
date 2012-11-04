@@ -38,7 +38,7 @@ namespace Ebada.Scgl.Lcgl
     {
         #region
         private GridViewOperation<PJ_gdscrk> gridViewOperation;
-        frmGDSRKEdit frm = new frmGDSRKEdit();
+        frmGDSCKEdit frm = new frmGDSCKEdit();
 
         public event SendDataEventHandler<PJ_gdscrk> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
@@ -231,11 +231,11 @@ namespace Ebada.Scgl.Lcgl
         public void InitColumns()
         {
             hideColumn("type");
-            hideColumn("yt");
-            hideColumn("kcsl");
-            hideColumn("ckdate");
+            hideColumn("ly");
+            hideColumn("wpsl");
+            hideColumn("OrgCode");
+            hideColumn("indate");
             gridView1.Columns["num"].Width = 150;
-            gridView1.Columns["OrgCode"].ColumnEdit = DicTypeHelper.GdsDic;
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -635,9 +635,9 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
-            e.Value.type = "原始入库材料";
+            e.Value.type = "出库";
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' or type='设置库存' order by id desc ");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='" + e.Value.type + "' or type='设置库存' or type='原始材料入库' order by id desc ");
             if (pnumli.Count == 0)
                 e.Value.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
@@ -652,7 +652,7 @@ namespace Ebada.Scgl.Lcgl
         private void btAddKuCun_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PJ_gdscrk pj = gridView1.GetFocusedRow() as PJ_gdscrk;
-            frmGDSRKEdit edit = new frmGDSRKEdit();
+            frmGDSCKEdit edit = new frmGDSCKEdit();
             edit.SetKC = true;
             if (pj != null)
             {

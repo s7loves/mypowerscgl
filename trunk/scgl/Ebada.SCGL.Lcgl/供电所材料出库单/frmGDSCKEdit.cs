@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Lcgl
             this.comWpmc.DataBindings.Add("EditValue", rowData, "wpmc");
             this.comWpgg.DataBindings.Add("EditValue", rowData, "wpgg");
             this.comWpdw.DataBindings.Add("EditValue", rowData, "wpdw");
-            this.comCaiLiaoYT.DataBindings.Add("EditValue", rowData, "ty");
+            this.comCaiLiaoYT.DataBindings.Add("EditValue", rowData, "yt");
             this.comNum.DataBindings.Add("EditValue", rowData, "num");
             this.spCksl.DataBindings.Add("EditValue", rowData, "cksl");
             this.spWpdj.DataBindings.Add("EditValue", rowData, "wpdj");
@@ -148,26 +148,18 @@ namespace Ebada.Scgl.Lcgl
         #region 窗体加载事件、判断是设置库存还是添加物品
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
+            btnOK.Visible = false;
+            simpleButton4.Visible = true;
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from PJ_gdscrk where OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
+            if (list != null && list.Count > 0)
+            {
+                comWpmc.Properties.Items.AddRange(list);
+            }
             if (rowData.wpmc == "")
             {
                 comWpmc.EditValue = null;
                 comWpgg.EditValue = null;
                 comWpdw.EditValue = null;
-            }
-            if (SetKC)
-            {
-                btnOK.Visible = false;
-                simpleButton4.Visible = true;
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from PJ_gdscrk where OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
-                if (list != null && list.Count > 0)
-                {
-                    comWpmc.Properties.Items.AddRange(list);
-                }
-            }
-            else
-            {
-                btnOK.Visible = true;
-                simpleButton4.Visible = false;
             }
         }
         #endregion
@@ -279,7 +271,6 @@ namespace Ebada.Scgl.Lcgl
                 else
                 {
                     cksl = 0;
-                    MsgBox.ShowWarningMessageBox("不存在该物品！");
                     spKcsl.EditValue = "0";
                     rowData.kcsl = "0";
                     spCksl.Enabled = false;
