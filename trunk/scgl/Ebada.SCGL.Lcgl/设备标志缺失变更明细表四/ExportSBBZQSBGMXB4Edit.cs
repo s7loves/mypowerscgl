@@ -240,7 +240,7 @@ namespace Ebada.Scgl.Lcgl
         public void ExportExcel(ExcelAccess ex, IList<PJ_sbbzqsbgmxb4> datalist, string orgid)
         {
             //此处写填充内容代码
-            int row = 6;
+            int row = 7;
             int col = 1;
             int rowcount = 15;
 
@@ -274,13 +274,20 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
                 ex.SetCellValue(datalist[j].sssbmc, row + j % rowcount, col + 1);
                 ex.SetCellValue(datalist[j].sssswz, row + j % rowcount, col + 2);
+                string[] tempstr = datalist[j].sssbbh.Split(',');
+                try
+                {
+                    ex.SetCellValue(tempstr[0], row + j % rowcount, col + 3);
+                    ex.SetCellValue(tempstr[1], row + j % rowcount, col + 4);
+                    ex.SetCellValue(tempstr[2], row + j % rowcount, col + 5);
+                }
+                catch 
+                {
+                }
 
-                ex.SetCellValue(datalist[j].sssbbh, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].xw, row + j % rowcount, col + 4);
-                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 5);
-                ex.SetCellValue(datalist[j].xw, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].hj.Replace(datalist[j].xw,""), row + j % rowcount, col + 7);
-
+                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 7);
+               
 
             }
         }
