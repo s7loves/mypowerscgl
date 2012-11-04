@@ -175,6 +175,7 @@ namespace Ebada.Scgl.Lcgl
         void repositoryItemLookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
             //this.ParentID = barEditItem2.EditValue.ToString();
+
         }
 
         void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e) {
@@ -232,7 +233,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (org != null) {
                 ParentObj = org;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "' and lineVol='10'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
