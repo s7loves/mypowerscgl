@@ -221,7 +221,7 @@ namespace Ebada.Scgl.Lcgl
                 rowData.byqCode = pt.tqCode + list.Count.ToString();
                 comboBoxEdit1.Text = rowData.byqCode;
                 comboBoxEdit2.Properties.Items.AddRange(list);
-                comboBoxEdit14.EditValue = pt.Adress;
+                comboBoxEdit14.EditValue = comboBoxEdit4.EditValue;// pt.Adress;
             }
         }
         private void spinEdit1_Properties_EditValueChanged(object sender, EventArgs e) {

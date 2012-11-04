@@ -278,6 +278,8 @@ namespace Ebada.Scgl.Lcgl {
             newobj.kgCode = PSObj.kgCode;
             newobj.azrq = DateTime.Now;
 
+
+
         }
         /// <summary>
         /// 父表ID

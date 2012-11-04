@@ -31,6 +31,9 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gtbh");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "kgCode");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "ccyy");
+
+
+
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           

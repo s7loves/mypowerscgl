@@ -167,6 +167,8 @@ namespace Ebada.Scgl.Lcgl {
             newobj.CreateMan = m_UserBase.RealName;
             newobj.azrq = DateTime.Now;
 
+            newobj.azdd = PSObj.byqInstallAdress;
+
         }
         /// <summary>
         /// 父表ID
