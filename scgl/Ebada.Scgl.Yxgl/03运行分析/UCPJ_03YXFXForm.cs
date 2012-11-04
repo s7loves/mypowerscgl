@@ -14,6 +14,7 @@ namespace Ebada.Scgl.Yxgl
         public UCPJ_03YXFXForm()
         {
             InitializeComponent();
+            
         }
         public void UCPJ_03YXFXForm_DQFX()
         {
