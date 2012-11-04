@@ -300,13 +300,13 @@ namespace Ebada.Scgl.Lcgl {
                     //ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), 3, 2);
                     //ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), 3, 6);
                 }
-                //ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col);
-                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 1);
-                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 2);
+                ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
+                ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].wpgg, row + j % rowcount, col + 2);
+                ex.SetCellValue(datalist[j].wpdw, row + j % rowcount, col + 3);
 
-                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 3);
-                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].wpdj, row + j % rowcount, col + 5);
                 if (!string.IsNullOrEmpty(datalist[j].wpdj))
                     ex.SetCellValue((Convert.ToDouble(datalist[j].wpsl) * Convert.ToDouble(datalist[j].wpdj)).ToString()
                         , row + j % rowcount, col + 7);
