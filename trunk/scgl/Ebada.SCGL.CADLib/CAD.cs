@@ -254,8 +254,25 @@ namespace Ebada.SCGL.CADLib
 
                     string gg = list[i].gtHeight.ToString("##");
                     AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gg+"/"+gtnum.ToString());
-                    ntext.Height = 0.0001*zoom;
+                    ntext.Height = 0.00005*zoom;
                     ntext.Layer = "gth";
+
+                    if (i < list.Count-1)
+                    {
+                        double[] n1 = new double[2];
+                        n1[0] = Convert.ToDouble(list[i].gtLon);
+                        n1[1] = Convert.ToDouble(list[i].gtLat);
+                        double[] n2 = new double[2];
+                        n2[0] = Convert.ToDouble(list[i + 1].gtLon);
+                        n2[1] = Convert.ToDouble(list[i + 1].gtLat);                        
+                        double[] n = new double[3];
+                        n[0]=(n1[0] + n2[0]) / 2;
+                        n[1]=(n2[1] + n2[1]) / 2;
+                        n[2]=0;
+                        AcadMText mtext = cad.ActiveDocument.ModelSpace.AddMText(n, 1, list[i].gtSpan.ToString("#.#")+"M");
+                        mtext.Height = 0.0001 * zoom;
+                        mtext.Layer = "text";
+                    }
                     for (int j = 0; j < kylist.Count;j++ )
                     {
                         if (kylist[j].kygh == gtnum.ToString())
