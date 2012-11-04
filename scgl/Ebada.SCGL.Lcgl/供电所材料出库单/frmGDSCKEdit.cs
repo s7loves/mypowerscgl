@@ -120,28 +120,34 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         #region 是否通过验证
-        private void YZ()
+        private bool YZ()
         {
             if (rowData.yt.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("输入材料用途！");
+                return false;
             }
             else if (rowData.wpmc.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请选择出库物品！");
+                return false;
             }
             else if (rowData.wpgg.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请选择出库物品规格！");
+                return false;
             }
             else if (rowData.wpdw.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请选择出库物品单位！");
+                return false;
             }
             else if (Convert.ToInt32(rowData.cksl) <= 0)
             {
                 MsgBox.ShowAskMessageBox("请输入出库数量！");
+                return false;
             }
+            return true;
         }
         #endregion
 
@@ -167,14 +173,14 @@ namespace Ebada.Scgl.Lcgl
         #region 添加并继续按钮
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            YZ();
+            if (!YZ()) return;
 
             rowData.ID = rowData.CreateID();
             Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
             MsgBox.ShowTipMessageBox("出库成功！");
 
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and (type='原始入库材料' or type='设置库存' or type='出库') order by id desc ");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='原始入库材料' or type='设置库存' or type='出库' order by id desc ");
             if (pnumli.Count == 0)
                 rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
@@ -289,7 +295,7 @@ namespace Ebada.Scgl.Lcgl
         #region 确定按钮
         private void btnOK_Click(object sender, EventArgs e)
         {
-            YZ();
+            if (!YZ()) return;
             rowData.ckdate = DateTime.Now;
             this.DialogResult = DialogResult.OK;
         }

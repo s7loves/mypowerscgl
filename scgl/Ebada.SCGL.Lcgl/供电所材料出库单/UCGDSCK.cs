@@ -235,6 +235,10 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("wpsl");
             hideColumn("OrgCode");
             hideColumn("indate");
+            hideColumn("rkslcount");
+            hideColumn("ckslcount");
+            hideColumn("kcslcount");
+            hideColumn("kcsl");
             gridView1.Columns["num"].Width = 150;
         }
         /// <summary>
@@ -623,7 +627,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by ID desc";
+            sql += " order by wpmc desc";
             gridViewOperation.RefreshData(sql);
         }
         #endregion

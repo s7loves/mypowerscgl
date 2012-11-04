@@ -351,6 +351,13 @@
     <Compile Include="供电所材料入库单\UCGDSRK.Designer.cs">
       <DependentUpon>UCGDSRK.cs</DependentUpon>
     </Compile>
+    <Compile Include="供电所材料明细账\ExportGDSCRKDetial.cs" />
+    <Compile Include="供电所材料明细账\UCGDSCLDetial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="供电所材料明细账\UCGDSCLDetial.Designer.cs">
+      <DependentUpon>UCGDSCLDetial.cs</DependentUpon>
+    </Compile>
     <Compile Include="图片资料\Exportptzl.cs" />
     <Compile Include="图片资料\frmtpzlEdit.cs">
       <SubType>Form</SubType>
@@ -3716,6 +3723,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="供电所材料入库单\UCGDSRK.resx">
       <DependentUpon>UCGDSRK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所材料明细账\UCGDSCLDetial.resx">
+      <DependentUpon>UCGDSCLDetial.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="图片资料\frmtpzlEdit.resx">

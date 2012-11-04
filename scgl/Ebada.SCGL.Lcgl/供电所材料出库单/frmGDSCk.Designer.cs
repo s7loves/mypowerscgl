@@ -150,7 +150,6 @@
             "非生产物资入库单"});
             this.comWpdw.Size = new System.Drawing.Size(100, 21);
             this.comWpdw.TabIndex = 54;
-            this.comWpdw.Visible = false;
             // 
             // labelControl5
             // 
@@ -159,7 +158,6 @@
             this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 50;
             this.labelControl5.Text = "物品单位";
-            this.labelControl5.Visible = false;
             // 
             // comWpgg
             // 

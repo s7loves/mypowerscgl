@@ -67,8 +67,8 @@ namespace Ebada.Scgl.Lcgl
             ex.Open(fname);
 
             string orgname = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 OrgName from mOrg where OrgCode='" + orgCode + "'");
-            string suozhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + orgCode + "' and type='所长'");
-            string shengjibanzhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + orgCode + "' and type='生计班长'");
+            string suozhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + orgCode + "' and PostName='所长'");
+            string shengjibanzhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + orgCode + "' and PostName='生技班长'");
 
             ex.SetCellValue(orgname, 3, 3);
             ex.SetCellValue(suozhang, 47, 4);

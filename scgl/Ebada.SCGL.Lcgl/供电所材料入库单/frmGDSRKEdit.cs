@@ -120,24 +120,29 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         #region 是否通过验证
-        private void YZ()
+        private bool YZ()
         {
             if (rowData.ly.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请选择材料来源！");
+                return false;
             }
             else if (rowData.wpmc.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请输入物品名称！");
+                return false;
             }
             else if (rowData.wpgg.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请输入物品规格！");
+                return false;
             }
             else if (rowData.wpdw.Trim() == "")
             {
                 MsgBox.ShowTipMessageBox("请输入物品单位！");
+                return false;
             }
+            return true;
         }
         #endregion
 
@@ -171,14 +176,16 @@ namespace Ebada.Scgl.Lcgl
         #region 添加并继续按钮
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            YZ();
-            rowData.indate = DateTime.Now;
+            if (!YZ()) return;
+            DateTime now = DateTime.Now;
+            rowData.lasttime = now;
+            rowData.indate = now;
             rowData.ID = rowData.CreateID();
             Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
             MsgBox.ShowTipMessageBox("添加成功!");
 
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and (type='原始入库材料' or type='设置库存') order by id desc ");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='原始入库材料' or type='设置库存' or type='出库' order by id desc ");
             if (pnumli.Count == 0)
                 rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
@@ -265,14 +272,7 @@ namespace Ebada.Scgl.Lcgl
                     rowData.kcsl = list[0].ToString();
                     spWpsl.Enabled = true;
                     cksl = Convert.ToInt32(list[0]);
-                    if (list[0].ToString() == "0")
-                    {
-                        spWpsl.Enabled = false;
-                    }
-                    else
-                    {
-                        spWpsl.Enabled = true;
-                    }
+                    spWpsl.Enabled = true;
                 }
                 else
                 {
@@ -296,8 +296,10 @@ namespace Ebada.Scgl.Lcgl
         #region 确定按钮
         private void btnOK_Click(object sender, EventArgs e)
         {
-            YZ();
-            rowData.indate = DateTime.Now;
+            if (!YZ()) return;
+            DateTime now = DateTime.Now;
+            rowData.lasttime = now;
+            rowData.indate = now;
             this.DialogResult = DialogResult.OK;
         }
         #endregion
