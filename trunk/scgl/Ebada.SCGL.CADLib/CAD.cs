@@ -270,7 +270,7 @@ namespace Ebada.SCGL.CADLib
                         n[1]=(n2[1] + n2[1]) / 2;
                         n[2]=0;
                         AcadMText mtext = cad.ActiveDocument.ModelSpace.AddMText(n, 1, list[i].gtSpan.ToString("#.#")+"M");
-                        mtext.Height = 0.0001 * zoom;
+                        mtext.Height = 0.00007 * zoom;
                         mtext.Layer = "text";
                     }
                     for (int j = 0; j < kylist.Count;j++ )
