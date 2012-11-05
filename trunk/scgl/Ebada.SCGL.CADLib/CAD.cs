@@ -50,6 +50,7 @@ namespace Ebada.SCGL.CADLib
                     for (int n = 0; n < nlist.Count; n++)
                     {
                         f.SetText("正在处理线路" + nlist[n].ToString());
+
                         IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + nlist[n].ToString()+ "' order by gtcode");
                         IList<PS_gt> newlist = ReLoadList(list);
                         //PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where LineCode='" + nlist[n].ToString() + "'");
@@ -140,6 +141,7 @@ namespace Ebada.SCGL.CADLib
             }
             return cad;
         }
+
         public bool IsNumeric(string value)
         {
             return Regex.IsMatch(value, @"^[0-9]*$");
@@ -206,12 +208,12 @@ namespace Ebada.SCGL.CADLib
                     if (xl != null)
                         vol = " and linevol='" + xl.LineVol + "' ";
                 } else {
-                    vol = " and linevol='0.4' ";
+                    vol = " and (linevol='0.4'or linevol='10')";
                 }
                 IList<PS_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>("where LineCode like '" + code[i] + "%'"+vol+" order by LineCode");
                 for (int j = 0; j < list.Count; j++)
                 {
-                    r.Add(list[j].LineID);
+                    r.Add(list[j].LineCode);
                 }
             }
             return r;
@@ -267,10 +269,10 @@ namespace Ebada.SCGL.CADLib
                         n2[1] = Convert.ToDouble(list[i + 1].gtLat);
                         double[] n = new double[3];
                         n[0]=(n1[0] + n2[0]) / 2;
-                        n[1]=(n2[1] + n2[1]) / 2;
+                        n[1]=(n1[1] + n2[1]) / 2;
                         n[2]=0;
                         AcadMText mtext = cad.ActiveDocument.ModelSpace.AddMText(n, 1, list[i].gtSpan.ToString("#.#")+"M");
-                        mtext.Height = 0.00007 * zoom;
+                        mtext.Height = 0.00005 * zoom;
                         mtext.Layer = "text";
                     }
                     for (int j = 0; j < kylist.Count;j++ )
@@ -297,6 +299,10 @@ namespace Ebada.SCGL.CADLib
                             }
                             string block = getBlock(kylist[j].kymc);
                             cad.ActiveDocument.ModelSpace.InsertBlock(ins, Application.StartupPath+"\\"+block, 1, 1, 1, (ss + 90) * Math.PI / 180, 0);
+                            ins[1] = ins[1] + 0.1;
+                            AcadMText kytext = cad.ActiveDocument.ModelSpace.AddMText(ins, 1, kylist[j].kymc);
+                            kytext.Height = 0.00005 * zoom;
+                            kytext.Layer = "text";
                         }
                     }
                 }
@@ -312,7 +318,7 @@ namespace Ebada.SCGL.CADLib
                     text.Layer = "text";
                 }else{
                 
-                    PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + list[0].LineCode + "'");
+                    PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + list[0].LineCode + "'");
                     double[] ins = new double[3];
                     ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
                     ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
@@ -320,6 +326,10 @@ namespace Ebada.SCGL.CADLib
                     AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
                     text.Height = 0.0002 * zoom;
                     text.Layer = "text";
+                    ins[1] = ins[1] + 0.3;
+                    AcadMText text2 = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.WireType);
+                    text2.Height = 0.0002 * zoom;
+                    text2.Layer = "text";
                 }
                 cad.Application.Update();
             }
