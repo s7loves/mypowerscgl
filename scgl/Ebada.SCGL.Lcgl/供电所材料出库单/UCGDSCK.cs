@@ -44,7 +44,7 @@ namespace Ebada.Scgl.Lcgl
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-
+        
         private bool isWorkflowCall = false;
         private frmModleFjly fjly = null;
         private LP_Record currRecord = null;

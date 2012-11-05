@@ -301,7 +301,7 @@
             // 
             // btAdd
             // 
-            this.btAdd.Caption = "增加";
+            this.btAdd.Caption = "出库";
             this.btAdd.Id = 0;
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
@@ -314,6 +314,7 @@
             this.btAddKuCun.ImageIndex = 6;
             this.btAddKuCun.Name = "btAddKuCun";
             this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btAddKuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
             // 
             // btEdit
@@ -536,12 +537,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
         private DevExpress.XtraBars.BarButtonItem barExplorYear;
-        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
-        private DevExpress.XtraBars.BarButtonItem SubmitButton;
-        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
-        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
         private DevExpress.XtraBars.BarButtonItem barCopy;
-        private DevExpress.XtraBars.BarButtonItem barFJLY;
         private DevExpress.XtraBars.BarButtonItem btAddKuCun;
         private DevExpress.XtraBars.BarEditItem barWpmc;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox comWpmc;
@@ -558,5 +554,10 @@
         private DevExpress.XtraBars.BarEditItem barEndTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        public DevExpress.XtraBars.BarSubItem liuchbarSubItem;
+        public DevExpress.XtraBars.BarButtonItem SubmitButton;
+        public DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        public DevExpress.XtraBars.BarButtonItem liuchenBarClear;
+        public DevExpress.XtraBars.BarButtonItem barFJLY;
     }
 }
