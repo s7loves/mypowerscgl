@@ -238,7 +238,7 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         public static int ExportToExcel(string title, string dw, PJ_17 pj17) {
-            string fname = Application.StartupPath + "\\00记录模板\\17线路条图(1).xls";
+            string fname = Application.StartupPath + "\\00记录模板\\17线路条图2.xls";
             float fxstart = 0, fystart = 0, fwidth = 0, fheight = 0;
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string outfname = Path.GetTempFileName() + ".xls";
@@ -276,8 +276,8 @@ namespace Ebada.Scgl.Yxgl {
                 strname[2] = "";
 
                 if (xl.LineType == "1") {
-                    strname[0] = xl.LineName.Split('线')[0];
-                    strname[1] = xl.LineName.Replace(strname[0] + "线", "");
+                    strname[0] = xl.LineName.Split('线')[0]+"线";
+                    strname[1] = xl.LineName.Replace(strname[0], "");
 
 
                 } else
@@ -285,14 +285,17 @@ namespace Ebada.Scgl.Yxgl {
                         PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
                         if (xltemp != null)
                             strname[0] = xltemp.LineName;
-                        strname[1] = xl.LineName;
+                        strname[1] = xl.LineName.Replace(xltemp.LineName,"");
                     } else if (xl.LineType == "3") {
+                        strname[2] = xl.LineName;
                         PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
                         if (xltemp != null) {
                             strname[1] = xltemp.LineName;
                             xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xltemp.ParentID + "'");
                             if (xltemp != null) strname[0] = xltemp.LineName;
                         }
+                        strname[2].Replace(strname[1], "");
+                        strname[1].Replace(strname[0], "");
                     }
                 //填写公共项
                 for (m = 1; m <= pagecount; m++) {
@@ -589,6 +592,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(sum.ToString(), ihang, jstart);
 
                         float gwidth = 13.50F, gheifht = 13.50F;
+                        //float gwidth = 10F, gheifht = 10F;
                         Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null, kywShape = null;
                         int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
                         range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
@@ -653,7 +657,7 @@ namespace Ebada.Scgl.Yxgl {
                                             }
 
                                         } else {
-                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, width / 2, bt.Height);
+                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2,bt.Width, bt.Height);
                                             if (strfx == "左转") {
                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
                                                     activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
@@ -684,7 +688,7 @@ namespace Ebada.Scgl.Yxgl {
                                     if (bt.Width < width / 2) {
                                         activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
                                     } else {
-                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, width / 2, bt.Height);
+                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
                                     }
 
                                 } else {
@@ -729,7 +733,7 @@ namespace Ebada.Scgl.Yxgl {
                                           kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
                                           activShape.Left - (kywShape.Left + kywShape.Width - 2), 0);
                                         } else {
-                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, width / 2, bt.Height);
+                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, bt.Width, bt.Height);
                                             xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
                                            oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
                                            kywShape.Left - (oldShape.Left + oldShape.Width), 0);
@@ -1007,8 +1011,8 @@ namespace Ebada.Scgl.Yxgl {
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight].Weight = Excel.XlBorderWeight.xlThick;
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].Weight = Excel.XlBorderWeight.xlThick;
-
-
+                ex.ActiveSheet(1);
+                
 
             } catch (Exception exmess) {
                 MsgBox.ShowTipMessageBox(exmess.Message.ToString());
