@@ -323,5 +323,95 @@ namespace Ebada.Scgl.Lcgl
             RefreshData();
         }
         #endregion
+
+        #region 提交审核
+        private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region 任务结束
+        private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string strmes = "";
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+
+            }
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            fjly.btn_Submit_Click(sender, e);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
+        }
+        #endregion
+
+        #region 清除相关信息
+        private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string strmess = "";
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联信息?") != DialogResult.OK)
+            {
+                return;
+            }
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
+            {
+                MsgBox.ShowTipMessageBox("清除成功");
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("清除失败: " + strmess);
+            }
+        }
+        #endregion
+
+        #region 附件留言
+        private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fjly == null) fjly = new frmModleFjly();
+            fjly.CurrRecord = currRecord;
+            fjly.RecordWorkFlowData = WorkFlowData;
+            fjly.Kind = currRecord.Kind;
+            fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
+            fjly.ShowDialog();
+        }
+        #endregion
     }
 }
