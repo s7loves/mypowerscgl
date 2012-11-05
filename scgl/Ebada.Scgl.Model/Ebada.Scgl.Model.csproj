@@ -78,6 +78,8 @@
     <Compile Include="PJ_18gysbpjmx.cs" />
     <Compile Include="PJ_19.cs" />
     <Compile Include="PJ_20.cs" />
+    <Compile Include="PJ_21dyjcdcbk.cs" />
+    <Compile Include="PJ_21dyjcdcbkchild.cs" />
     <Compile Include="PJ_21gzbxdh.cs" />
     <Compile Include="PJ_22.cs" />
     <Compile Include="PJ_23.cs" />

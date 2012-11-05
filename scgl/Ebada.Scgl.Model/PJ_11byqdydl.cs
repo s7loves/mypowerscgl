@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:53:59
+生成时间:2012-11-5 8:47:02
 ***********************************************/
 
 using System;
@@ -38,7 +38,14 @@ namespace Ebada.Scgl.Model
         private decimal _co2=0; 
         private string _gznrid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1);   
+        private DateTime _createdate=new DateTime(1900,1,1); 
+        private double _bphd=0; 
+        private string _tq=String.Empty; 
+        private string _xh=String.Empty; 
+        private string _zjr=String.Empty; 
+        private string _by1=String.Empty; 
+        private string _by2=String.Empty; 
+        private string _by3=String.Empty;   
         #endregion
   
   
@@ -378,7 +385,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：填写日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("填写日期")]
         public DateTime CreateDate
         {
@@ -388,6 +394,150 @@ namespace Ebada.Scgl.Model
                 if (_createdate as object == null || !_createdate.Equals(value))
                 {
                     _createdate = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：bphd
+        /// 属性描述：不平衡度
+        /// 字段信息：[bphd],float
+        /// </summary>
+        [DisplayNameAttribute("不平衡度")]
+        public double bphd
+        {
+            get { return _bphd; }
+            set
+            {			
+                if (_bphd as object == null || !_bphd.Equals(value))
+                {
+                    _bphd = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tq
+        /// 属性描述：台区
+        /// 字段信息：[tq],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("台区")]
+        public string tq
+        {
+            get { return _tq; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[台区]长度不能大于50!");
+                if (_tq as object == null || !_tq.Equals(value))
+                {
+                    _tq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xh
+        /// 属性描述：型号
+        /// 字段信息：[xh],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("型号")]
+        public string xh
+        {
+            get { return _xh; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[型号]长度不能大于50!");
+                if (_xh as object == null || !_xh.Equals(value))
+                {
+                    _xh = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：zjr
+        /// 属性描述：增减容建议
+        /// 字段信息：[zjr],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("增减容建议")]
+        public string zjr
+        {
+            get { return _zjr; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[增减容建议]长度不能大于50!");
+                if (_zjr as object == null || !_zjr.Equals(value))
+                {
+                    _zjr = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：by1
+        /// 属性描述：备用1
+        /// 字段信息：[by1],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("备用1")]
+        public string by1
+        {
+            get { return _by1; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备用1]长度不能大于50!");
+                if (_by1 as object == null || !_by1.Equals(value))
+                {
+                    _by1 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：by2
+        /// 属性描述：备用2
+        /// 字段信息：[by2],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("备用2")]
+        public string by2
+        {
+            get { return _by2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备用2]长度不能大于50!");
+                if (_by2 as object == null || !_by2.Equals(value))
+                {
+                    _by2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：by3
+        /// 属性描述：备用3
+        /// 字段信息：[by3],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("备用3")]
+        public string by3
+        {
+            get { return _by3; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备用3]长度不能大于50!");
+                if (_by3 as object == null || !_by3.Equals(value))
+                {
+                    _by3 = value;
                 }
             }			 
         }

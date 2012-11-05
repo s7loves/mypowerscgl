@@ -411,7 +411,7 @@ namespace Ebada.Scgl.Lcgl
                     }
 
                     else
-                        ex.SetCellValue("全局", 4, 2);
+                        ex.SetCellValue("绥化市效农电局", 4, 2);
                   
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4,5);
 
