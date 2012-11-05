@@ -1,6 +1,5 @@
-﻿namespace Ebada.Scgl.Lcgl
-{
-    partial class UCSBBZQSBGMXB2
+﻿namespace Ebada.Scgl.Lcgl {
+    partial class UCPJ_21dyjcdcbkchild
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,20 +29,14 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
-            this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
-            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
-            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
-            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.barCopy = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.barExplorAll = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport11 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -77,17 +70,11 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport0,
+            this.btExport11,
             this.btGdsList,
             this.btView,
-            this.barExplorAll,
-            this.liuchbarSubItem,
-            this.SubmitButton,
-            this.TaskOverButton,
-            this.liuchenBarClear,
-            this.barCopy,
-            this.barFJLY});
-            this.barManager1.MaxItemId = 23;
+            this.barButtonItem1});
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
             this.barManager1.StatusBar = this.bar3;
@@ -99,16 +86,16 @@
             this.bar1.DockCol = 0;
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.FloatLocation = new System.Drawing.Point(556, 208);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
-            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barCopy, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport11),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -122,7 +109,7 @@
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
-            this.btGdsList.EditValueChanged += new System.EventHandler(this.btGdsList_EditValueChanged);
+            this.btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -130,50 +117,6 @@
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            // 
-            // liuchbarSubItem
-            // 
-            this.liuchbarSubItem.Caption = "流程命令";
-            this.liuchbarSubItem.Id = 17;
-            this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
-            new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barFJLY),
-            new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
-            this.liuchbarSubItem.Name = "liuchbarSubItem";
-            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // SubmitButton
-            // 
-            this.SubmitButton.Caption = "提交审核";
-            this.SubmitButton.Id = 18;
-            this.SubmitButton.Name = "SubmitButton";
-            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
-            // 
-            // TaskOverButton
-            // 
-            this.TaskOverButton.Caption = "任务结束";
-            this.TaskOverButton.Id = 19;
-            this.TaskOverButton.Name = "TaskOverButton";
-            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
-            // 
-            // barFJLY
-            // 
-            this.barFJLY.Caption = "附件留言";
-            this.barFJLY.Id = 22;
-            this.barFJLY.Name = "barFJLY";
-            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
-            // 
-            // liuchenBarClear
-            // 
-            this.liuchenBarClear.Caption = "清除关联信息";
-            this.liuchenBarClear.Id = 20;
-            this.liuchenBarClear.Name = "liuchenBarClear";
-            this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
             // btAdd
             // 
@@ -215,41 +158,32 @@
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // barCopy
-            // 
-            this.barCopy.Caption = "拷贝计划";
-            this.barCopy.Id = 21;
-            this.barCopy.Name = "barCopy";
-            this.barCopy.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barCopy_ItemClick);
-            // 
-            // btExport0
-            // 
-            this.btExport0.Caption = "导出";
-            this.btExport0.Id = 8;
-            this.btExport0.ImageIndex = 7;
-            this.btExport0.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btView),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorAll)});
-            this.btExport0.Name = "btExport0";
-            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // btView
             // 
-            this.btView.Caption = "导出供电所";
+            this.btView.Caption = "导出";
             this.btView.Id = 15;
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // barExplorAll
+            // btExport11
             // 
-            this.barExplorAll.Caption = "导出全局";
-            this.barExplorAll.Id = 16;
-            this.barExplorAll.Name = "barExplorAll";
-            this.barExplorAll.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barExplorAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorYear_ItemClick);
+            this.btExport11.Caption = "导出";
+            this.btExport11.Id = 8;
+            this.btExport11.ImageIndex = 7;
+            this.btExport11.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            this.btExport11.Name = "btExport11";
+            this.btExport11.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "导出数据";
+            this.barButtonItem1.Id = 16;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // btClose
             // 
@@ -272,6 +206,7 @@
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
+            this.bar3.Visible = false;
             // 
             // bsItem1
             // 
@@ -283,25 +218,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(606, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(536, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 303);
-            this.barDockControlBottom.Size = new System.Drawing.Size(606, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 305);
+            this.barDockControlBottom.Size = new System.Drawing.Size(536, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 280);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(606, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 278);
+            this.barDockControlRight.Location = new System.Drawing.Point(536, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 280);
             // 
             // gridControl1
             // 
@@ -315,7 +250,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(606, 278);
+            this.gridControl1.Size = new System.Drawing.Size(536, 280);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -334,7 +269,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCSBBZQSBGMXB2
+            // UCPJ_21dyjcdcbkchild
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -343,8 +278,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCSBBZQSBGMXB2";
-            this.Size = new System.Drawing.Size(606, 328);
+            this.Name = "UCPJ_21dyjcdcbkchild";
+            this.Size = new System.Drawing.Size(536, 330);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -371,16 +306,10 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport0;
+        private DevExpress.XtraBars.BarSubItem btExport11;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
-        private DevExpress.XtraBars.BarButtonItem barExplorAll;
-        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
-        private DevExpress.XtraBars.BarButtonItem SubmitButton;
-        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
-        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
-        private DevExpress.XtraBars.BarButtonItem barCopy;
-        private DevExpress.XtraBars.BarButtonItem barFJLY;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

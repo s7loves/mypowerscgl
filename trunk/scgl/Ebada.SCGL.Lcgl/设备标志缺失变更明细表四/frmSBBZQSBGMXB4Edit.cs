@@ -70,9 +70,13 @@ namespace Ebada.Scgl.Lcgl
                     }
                     catch 
                     {
- 
+                        spinEdit1.EditValue = spinEdit2.EditValue = spinEdit3.EditValue = 0;
                     }
                    
+                }
+                else
+                {
+                    spinEdit1.EditValue = spinEdit2.EditValue = spinEdit3.EditValue = 0;
                 }
             }
         }
@@ -102,8 +106,8 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit1.Properties.Items.Add("相序牌");
 
             comboBoxEdit2.Properties.Items.Clear();
-
-            comboBoxEdit2.Properties.Items.Add(MainHelper.UserOrg.OrgName + "*变台");
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName from PS_xl where OrgCode ='" + rowData.OrgCode + "' and linevol='10'");
+            comboBoxEdit2.Properties.Items.AddRange(list);
 
             comboBoxEdit4.Properties.Items.Clear();
             comboBoxEdit4.Properties.Items.Add("缺失");

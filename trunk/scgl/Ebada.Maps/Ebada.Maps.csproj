@@ -375,6 +375,10 @@
     <EmbeddedResource Include="PJ_gdscrk.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PJ_21dyjcdcbk.xml" />
+    <EmbeddedResource Include="PJ_21dyjcdcbkchild.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
