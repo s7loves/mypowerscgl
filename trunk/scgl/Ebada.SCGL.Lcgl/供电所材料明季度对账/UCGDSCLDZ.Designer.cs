@@ -46,21 +46,22 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.barExplorYear = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
+            this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
+            this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
+            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
-            this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
-            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
-            this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ckYscl = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc)).BeginInit();
@@ -94,15 +95,16 @@
             this.btExport0,
             this.barGDS,
             this.barExplorYear,
-            this.SubmitButton,
-            this.TaskOverButton,
-            this.liuchenBarClear,
-            this.barFJLY,
             this.barWpmc,
             this.barWpgg,
             this.barWpdw,
-            this.barEndTime});
-            this.barManager1.MaxItemId = 40;
+            this.barEndTime,
+            this.liuchbarSubItem,
+            this.SubmitButton,
+            this.TaskOverButton,
+            this.barFJLY,
+            this.liuchenBarClear});
+            this.barManager1.MaxItemId = 46;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.comWpmc,
@@ -127,6 +129,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpgg, "", false, true, true, 75),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpdw, "", true, true, true, 63),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 95),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
@@ -256,6 +259,42 @@
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // liuchbarSubItem
+            // 
+            this.liuchbarSubItem.Caption = "流程命令";
+            this.liuchbarSubItem.Id = 41;
+            this.liuchbarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.SubmitButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barFJLY),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
+            this.liuchbarSubItem.Name = "liuchbarSubItem";
+            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // SubmitButton
+            // 
+            this.SubmitButton.Caption = "提交审核";
+            this.SubmitButton.Id = 42;
+            this.SubmitButton.Name = "SubmitButton";
+            this.SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.SubmitButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SubmitButton_ItemClick);
+            // 
+            // TaskOverButton
+            // 
+            this.TaskOverButton.Caption = "任务结束";
+            this.TaskOverButton.Id = 43;
+            this.TaskOverButton.Name = "TaskOverButton";
+            this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // barFJLY
+            // 
+            this.barFJLY.Caption = "附件留言";
+            this.barFJLY.Id = 44;
+            this.barFJLY.Name = "barFJLY";
+            this.barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barFJLY.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barFJLY_ItemClick);
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -299,26 +338,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1224, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 407);
-            // 
-            // SubmitButton
-            // 
-            this.SubmitButton.Id = 36;
-            this.SubmitButton.Name = "SubmitButton";
-            // 
-            // TaskOverButton
-            // 
-            this.TaskOverButton.Id = 37;
-            this.TaskOverButton.Name = "TaskOverButton";
-            // 
-            // liuchenBarClear
-            // 
-            this.liuchenBarClear.Id = 38;
-            this.liuchenBarClear.Name = "liuchenBarClear";
-            // 
-            // barFJLY
-            // 
-            this.barFJLY.Id = 39;
-            this.barFJLY.Name = "barFJLY";
             // 
             // repositoryItemComboBox4
             // 
@@ -373,7 +392,14 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
-            // UCGDSCLDetial
+            // liuchenBarClear
+            // 
+            this.liuchenBarClear.Caption = "清除关联信息";
+            this.liuchenBarClear.Id = 45;
+            this.liuchenBarClear.Name = "liuchenBarClear";
+            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
+            // 
+            // UCGDSCLDZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -382,7 +408,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCGDSCLDetial";
+            this.Name = "UCGDSCLDZ";
             this.Size = new System.Drawing.Size(1224, 458);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -418,10 +444,6 @@
         private DevExpress.XtraBars.BarEditItem barGDS;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem barExplorYear;
-        private DevExpress.XtraBars.BarButtonItem SubmitButton;
-        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
-        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
-        private DevExpress.XtraBars.BarButtonItem barFJLY;
         private DevExpress.XtraBars.BarEditItem barWpmc;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox comWpmc;
         private DevExpress.XtraBars.BarEditItem barWpgg;
@@ -435,5 +457,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraBars.BarEditItem barEndTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
+        private DevExpress.XtraBars.BarSubItem liuchbarSubItem;
+        private DevExpress.XtraBars.BarButtonItem SubmitButton;
+        private DevExpress.XtraBars.BarButtonItem TaskOverButton;
+        private DevExpress.XtraBars.BarButtonItem barFJLY;
+        private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
     }
 }
