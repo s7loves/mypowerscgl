@@ -2435,7 +2435,10 @@ namespace Ebada.Scgl.Lcgl {
 
             if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
-                sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
+                
                 activeSheetIndex = sheet.Index;
             } else {
 
@@ -2583,11 +2586,14 @@ namespace Ebada.Scgl.Lcgl {
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+            Excel.Worksheet xx=null;
 
             if (lp.KindTable != "") {
                 activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch {  }
+                if (xx == null) return;
                 activeSheetIndex = xx.Index;
             } else {
 
@@ -2641,7 +2647,7 @@ namespace Ebada.Scgl.Lcgl {
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+            Excel.Worksheet xx=null;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
@@ -2649,7 +2655,10 @@ namespace Ebada.Scgl.Lcgl {
                 if (lp.KindTable != "") {
                     activeSheetName = lp.KindTable;
 
-                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    try {
+                        xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    } catch {  }
+                    if (xx == null) return;
                     activeSheetIndex = xx.Index;
 
                 } else {
@@ -2742,15 +2751,16 @@ namespace Ebada.Scgl.Lcgl {
                 if (lp.KindTable != activeSheetName) {
                     if (lp.KindTable != "") {
                         activeSheetName = lp.KindTable;
-                        sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                        try {
+                            sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                        } catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
+                
                         activeSheetIndex = sheet.Index;
+                    } else {
+                        sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+                        activeSheetIndex = sheet.Index;
+                        activeSheetName = sheet.Name;
                     }
-                    //else
-                    //{
-                    //    xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                    //    activeSheetIndex = xx.Index;
-                    //    activeSheetName = xx.Name;
-                    //}
                 }
                 if (lp.KindTable != "") {
                     //try {
