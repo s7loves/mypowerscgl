@@ -42,13 +42,13 @@
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.barEndTime = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
             this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
+            this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.barCopy = new DevExpress.XtraBars.BarButtonItem();
@@ -140,9 +140,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.ckYanShiCaiLiao),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barStarTime, "", false, true, true, 103),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 95),
+            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barCopy, true),
@@ -264,20 +264,6 @@
             this.repositoryItemDateEdit2.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
-            // btAdd
-            // 
-            this.btAdd.Caption = "增加";
-            this.btAdd.Id = 32;
-            this.btAdd.Name = "btAdd";
-            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "设置库存";
-            this.barButtonItem1.Id = 33;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
-            // 
             // liuchbarSubItem
             // 
             this.liuchbarSubItem.Caption = "流程命令";
@@ -321,6 +307,20 @@
             this.liuchenBarClear.Name = "liuchenBarClear";
             this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
+            // 
+            // btAdd
+            // 
+            this.btAdd.Caption = "增加";
+            this.btAdd.Id = 32;
+            this.btAdd.Name = "btAdd";
+            this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "设置库存";
+            this.barButtonItem1.Id = 33;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
             // 
             // btRefresh
             // 
