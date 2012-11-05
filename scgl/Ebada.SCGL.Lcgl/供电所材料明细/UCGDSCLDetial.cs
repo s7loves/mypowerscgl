@@ -400,7 +400,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (barGDS.EditValue != null)
             {
-                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                ExportGDSCRKDetial etdjh = new ExportGDSCRKDetial();
                 etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), exportsql);
             }
         }
@@ -412,7 +412,7 @@ namespace Ebada.Scgl.Lcgl
         {
             if (barGDS.EditValue != null)
             {
-                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                ExportGDSCRKDetial etdjh = new ExportGDSCRKDetial();
                 etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), exportsql);
             }
         }
