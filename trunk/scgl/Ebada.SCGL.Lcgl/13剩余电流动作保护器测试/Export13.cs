@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Lcgl {
                             //ex.SetCellValue(obj.dzsj.ToString(), row + 11 + i, col + 4);
                             //ex.SetCellValue(obj.yxqk, row + 11 + i, col + 5);
                             //ex.SetCellValue(obj.csr, row + 11 + i, col + 6);
-                            ex.SetCellValue(jl.InstallAdress, row + 5 + i, col + 2);
+                            ex.SetCellValue(jl.tqName, row + 5 + i, col + 2);
                             ex.SetCellValue(jl.sbModle, row + 5 + i, col + 3);
                             ex.SetCellValue(jl.Factory, row + 5 + i, col + 4);
                             ex.SetCellValue(jl.dzdl, row + 5 + i, col + 5);
@@ -144,7 +144,7 @@ namespace Ebada.Scgl.Lcgl {
                             //ex.SetCellValue(obj.dzsj.ToString(), row + 11 + i, col + 4);
                             //ex.SetCellValue(obj.yxqk, row + 11 + i, col + 5);
                             //ex.SetCellValue(obj.csr, row + 11 + i, col + 6);
-                            ex.SetCellValue(jl.InstallAdress, row + 5 + i, col + 2);
+                            ex.SetCellValue(jl.tqName, row + 5 + i, col + 2);
                             ex.SetCellValue(jl.sbModle, row + 5 + i, col + 3);
                             ex.SetCellValue(jl.Factory, row + 5 + i, col + 4);
                             ex.SetCellValue(jl.dzdl, row + 5 + i, col + 5);
