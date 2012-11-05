@@ -201,6 +201,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (isWorkflowCall)
             {
+                isWorkflowCall = false;
                 WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
                 mrwt.ModleRecordID = rowData.ID;
                 mrwt.RecordID = currRecord.ID;
