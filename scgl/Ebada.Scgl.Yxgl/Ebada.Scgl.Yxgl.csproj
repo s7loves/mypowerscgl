@@ -1898,6 +1898,9 @@
     <Content Include="00记录模板\黑龙江省电压质量与无功电力管理办法.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="00记录模板\17线路条图2.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\26种记录卡片.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
