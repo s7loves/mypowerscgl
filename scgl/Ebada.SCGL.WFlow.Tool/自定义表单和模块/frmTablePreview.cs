@@ -480,12 +480,15 @@ namespace Ebada.SCGL.WFlow.Tool
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+            Excel.Worksheet xx=null;
 
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch {  }
+                if (xx == null) return;
                 activeSheetIndex = xx.Index;
             }
             else
@@ -653,7 +656,10 @@ namespace Ebada.SCGL.WFlow.Tool
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
+                
                 activeSheetIndex = sheet.Index;
             }
             else
@@ -769,11 +775,14 @@ namespace Ebada.SCGL.WFlow.Tool
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+            Excel.Worksheet xx=null;
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch {  }
+                if (xx == null) return;
                 activeSheetIndex = xx.Index;
             }
             else
@@ -788,7 +797,7 @@ namespace Ebada.SCGL.WFlow.Tool
             ea.MyExcel = wb.Application;
             if (lp.KindTable != "")
             {
-                ea.ActiveSheet(lp.KindTable);
+                try { ea.ActiveSheet(lp.KindTable); } catch { return; }
             }
             else
             {
@@ -926,23 +935,19 @@ namespace Ebada.SCGL.WFlow.Tool
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                try {
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                } catch { }
+                if (xx == null) return;
                 activeSheetIndex = xx.Index;
             }
             else
             {
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                xx = wb.ActiveSheet as Excel.Worksheet;
                 activeSheetIndex = xx.Index;
                 activeSheetName = xx.Name;
             }
-            if (lp.KindTable != "")
-            {
-                ea.ActiveSheet(lp.KindTable);
-            }
-            else
-            {
-                ea.ActiveSheet(1);
-            }
+
             unLockExcel(wb, xx);
             if (lp.CtrlType.Contains("uc_gridcontrol"))
             {
