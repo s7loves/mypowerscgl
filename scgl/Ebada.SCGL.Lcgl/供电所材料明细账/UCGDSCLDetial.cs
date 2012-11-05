@@ -37,6 +37,91 @@ namespace Ebada.Scgl.Lcgl
     public partial class UCGDSCLDetial : DevExpress.XtraEditors.XtraUserControl
     {
         #region
+
+
+        private bool isWorkflowCall = false;
+        private frmModleFjly fjly = null;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_gdscrk,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set
+            {
+                parentTemple = value;
+                //  frm.ParentTemple = value;
+            }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
+                isWorkflowCall = value;
+                //  frm.IsWorkflowCall = value;
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set
+            {
+                currRecord = value;
+                //frm.CurrRecord = value;
+            }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+                // frm.RecordWorkFlowData = value;
+
+                if (isWorkflowCall)
+                {
+                    if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
+                    {
+                        barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                        if (fjly == null) fjly = new frmModleFjly();
+                    }
+                    // liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                    foreach (WF_WorkTaskCommands wt in wtlist)
+                    {
+                        if (wt.CommandName == "01")
+                        {
+                            SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            if (wt.Description != "") SubmitButton.Caption = wt.Description;
+                            barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
+                        else
+                            if (wt.CommandName == "02")
+                            {
+                                TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                if (wt.Description != "") TaskOverButton.Caption = wt.Description;
+                            }
+                    }
+                }
+            }
+        }
+
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value;
+                //frm.VarDbTableName = value;
+            }
+        }
+
         private GridViewOperation<PJ_gdscrk> gridViewOperation;
 
         public UCGDSCLDetial()
