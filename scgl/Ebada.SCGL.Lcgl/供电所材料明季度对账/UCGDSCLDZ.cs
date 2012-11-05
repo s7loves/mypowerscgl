@@ -45,13 +45,29 @@ namespace Ebada.Scgl.Lcgl
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_gdscrk,LP_Record";
+
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                //btnOK.Visible = 
+                //btAdd.Enabled = !value;
+                //btEdit.Enabled = !value;
+                //btDelete.Enabled = !value;
+                //btAddKuCun.Enabled = !value;
+            }
+        }
+
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
             set
             {
                 parentTemple = value;
-                //  frm.ParentTemple = value;
+                this.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -59,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 isWorkflowCall = value;
-                //  frm.IsWorkflowCall = value;
+                this.IsWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -68,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 currRecord = value;
-                //frm.CurrRecord = value;
+                this.CurrRecord = value;
             }
         }
 
@@ -81,7 +97,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 WorkFlowData = value;
-                // frm.RecordWorkFlowData = value;
+                this.RecordWorkFlowData = value;
 
                 if (isWorkflowCall)
                 {
@@ -90,7 +106,7 @@ namespace Ebada.Scgl.Lcgl
                         barFJLY.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                         if (fjly == null) fjly = new frmModleFjly();
                     }
-                    // liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                    liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                     IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     foreach (WF_WorkTaskCommands wt in wtlist)
