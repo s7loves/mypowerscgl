@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Lcgl
             if (ss.Length != 3) return;
             comboBoxEdit3.Text = ss[0];
             spinEdit1.Text = ss[2];
+            rowData.byqCapcity = int.Parse(spinEdit1.Text);
             //comboBoxEdit7.Text = ss[1].Split('/')[0];
         }
 
@@ -222,6 +223,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit1.Text = rowData.byqCode;
                 comboBoxEdit2.Properties.Items.AddRange(list);
                 comboBoxEdit14.EditValue = comboBoxEdit4.EditValue;// pt.Adress;
+                rowData.byqInstallAdress = comboBoxEdit14.EditValue.ToString();
             }
         }
         private void spinEdit1_Properties_EditValueChanged(object sender, EventArgs e) {
