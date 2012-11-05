@@ -558,6 +558,7 @@ namespace Ebada.Scgl.Lcgl {
             DataView dv = gridView1.DataSource as DataView;
             DataTable ds = dv.Table;
             int count=0;
+            
             foreach (DataRow row in dt.Rows) {
                 count++;
                 DataRow newrow = ds.NewRow();
@@ -574,6 +575,7 @@ namespace Ebada.Scgl.Lcgl {
                 
             }
             gridView1.BestFitColumns();
+            gridControl1.Update();
         }
         public void InitData(string sql, string[] sqlColName, string[] comBoxItem, DSOFramerControl dsoFramerWordControl1, LP_Temple lp, LP_Record currRecord) {
 

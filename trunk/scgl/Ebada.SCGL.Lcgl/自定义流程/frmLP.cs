@@ -2235,6 +2235,7 @@ namespace Ebada.Scgl.Lcgl
                     }
                 }
                 ((uc_gridcontrol)ctrl).InitGridData(sqlSentence);
+                gridView1_CellValueChanged(ctrl, null);
                 //((uc_gridcontrol)ctrl).InitData(lp.SqlSentence, lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
                 return;
             }
