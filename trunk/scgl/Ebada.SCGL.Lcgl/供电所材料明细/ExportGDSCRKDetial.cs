@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 str = datalist[0].num;
             }
-            string tablename = "供电所材料季度明细账";
+            string tablename = "供电所材料入出入库明细";
             if (tablename.Length > 30)
             {
                 tablename = tablename.Substring(tablename.Length - 31);
@@ -84,12 +84,12 @@ namespace Ebada.Scgl.Lcgl
 
                 if (datalist[j].type == "出库")
                 {
-                    ex.SetCellValue(datalist[j].ckdate.ToString(), row + j % rowcount, col + 1);
+                    ex.SetCellValue(datalist[j].ckdate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 1);
                     ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 6);
                 }
                 else if (datalist[j].type == "设置库存")
                 {
-                    ex.SetCellValue(datalist[j].indate.ToString(), row + j % rowcount, col + 1);
+                    ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 1);
                     ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 5);
                 }
                 ex.SetCellValue(datalist[j].wpmc, row + j % rowcount, col + 2);
