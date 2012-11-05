@@ -197,7 +197,8 @@
             this.groupBox2.Size = new System.Drawing.Size(607, 233);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "线路开关";
+            this.groupBox2.Text = " kwf";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // comboBoxEdit14
             // 
@@ -549,7 +550,7 @@
             this.MinimizeBox = false;
             this.Name = "frmkgEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "线路开关";
+            this.Text = " kwfk";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);

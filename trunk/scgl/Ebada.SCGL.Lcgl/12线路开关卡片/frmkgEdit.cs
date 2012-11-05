@@ -257,6 +257,7 @@ namespace Ebada.Scgl.Lcgl
                 if (listxl.Count > 0)
                 {
                     comboBoxEdit11.Text = listxl[0].LineName;
+                    rowData.kgInstallAdress = comboBoxEdit11.Text;
                 }
 
 
@@ -270,6 +271,11 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit13.EditValue = pg.gtCode + bh + Ecommon.GenBH(kglist.Count + 1);
                 rowData.kgCode = comboBoxEdit13.EditValue.ToString();
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
 
 

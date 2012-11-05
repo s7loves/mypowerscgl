@@ -232,7 +232,8 @@ namespace Ebada.Scgl.Lcgl
 
                         comboBoxEdit4.Properties.Items.Clear();
                         comboBoxEdit4.Properties.Items.Add(Ganhao);
-                        comboBoxEdit4.EditValue = Ganhao;
+                        comboBoxEdit4.SelectedIndex = 0;
+                        rowData.kygh = Ganhao;
                     }
 
                 }
