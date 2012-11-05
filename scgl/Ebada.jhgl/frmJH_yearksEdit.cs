@@ -41,7 +41,7 @@ namespace Ebada.jhgl
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "预计时间2");
 
             this.comboBoxEdit1.Properties.Items.Add("常规计划");
-            this.comboBoxEdit1.Properties.Items.Add("一次性计划");
+            this.comboBoxEdit1.Properties.Items.Add("临时计划");
             this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
         }
         #region IPopupFormEdit Members
