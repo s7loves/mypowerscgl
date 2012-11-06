@@ -248,7 +248,7 @@ namespace Ebada.SCGL.CADLib
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
                     
-                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*zoom);
+                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*zoom);//杆塔
                     cirz.Layer = "gt";
                     cirz.TrueColor = color;
                     if (list[i].gtJg == "是") continue;
@@ -313,7 +313,7 @@ namespace Ebada.SCGL.CADLib
                     ins[0] = Math.Round(Convert.ToDouble(tp.x), 8) * zoom;
                     ins[1] = Math.Round(Convert.ToDouble(tp.y), 8) * zoom;
                     ins[2] = 0;
-                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 3, tp.Text);
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 2, tp.Text);
                     text.Height = 0.0001 * zoom;
                     text.Layer = "text";
                 }else{
@@ -323,7 +323,7 @@ namespace Ebada.SCGL.CADLib
                     ins[0] = Convert.ToDouble(list[list.Count-1].gtLon.ToString("0.########"));
                     ins[1] = Convert.ToDouble(list[list.Count - 1].gtLat.ToString("0.########"));
                     ins[2] = 0;
-                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 3, xl.LineName);
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 2, xl.LineName);
                     text.Height = 0.0001 * zoom;
                     text.Layer = "text";
                     ins[1] = ins[1] + 0.3;
