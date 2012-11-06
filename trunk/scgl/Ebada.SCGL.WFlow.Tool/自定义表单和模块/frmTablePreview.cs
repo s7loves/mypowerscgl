@@ -1909,6 +1909,12 @@ namespace Ebada.SCGL.WFlow.Tool
                     {
                         sqlSentence = sqlSentence.Replace("{userid}", MainHelper.User.UserID);
                     }
+                    if (sqlSentence.IndexOf("{orgname}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{orgname}", MainHelper.User.OrgName);
+                    }
+                    if (sqlSentence.IndexOf("{username}") > -1) {
+                        sqlSentence = sqlSentence.Replace("{username}", MainHelper.User.UserName);
+                    }
                     Regex r1 = new Regex(@"(?<={)[0-9]+(?=})");
                     while (r1.Match(sqlSentence).Value != "")
                     {
