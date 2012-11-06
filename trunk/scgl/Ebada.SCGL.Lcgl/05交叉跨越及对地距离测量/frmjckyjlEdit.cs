@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Lcgl
 
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "clrq");
-            this.spinEdit1.DataBindings.Add("EditValue", rowData, "scz");
+            this.spinEdit1.DataBindings.Add("EditValue", rowData, "scz",false, DataSourceUpdateMode.OnValidation);
             this.textEdit1.DataBindings.Add("EditValue", rowData, "qw");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "clrqz");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "jr");
