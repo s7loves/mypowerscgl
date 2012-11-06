@@ -325,7 +325,7 @@ namespace Ebada.Scgl.Yxgl {
                         jlie = 3;
                         ihang = 8;
                         hdRowCount = 1;
-                        jyzRowCount = 2;
+                        jyzRowCount = 1;
                         dxRowCount = 1;
                         btRowCount = 1;
                         blqRowCount = 1;
@@ -705,7 +705,7 @@ namespace Ebada.Scgl.Yxgl {
                                     //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
                                     xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
                                         oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                        activShape.Left - (oldShape.Left + oldShape.Width), 0);
+                                        activShape.Left , oldShape.Top + oldShape.Height / 2);
                                     //xx.Shapes.AddLine(
                                     //      oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
                                     //      activShape.Left, activShape.Top + activShape.Height / 2);
@@ -824,7 +824,7 @@ namespace Ebada.Scgl.Yxgl {
                     if (jyuzlist != null) {
 
                         if (jyuzlist.Count > jyzRowCount) {
-                            for (j = jyzRowCount; j < jyuzlist.Count; j = j+2) {
+                            for (j = jyzRowCount + 1; j < jyuzlist.Count; j = j+2) {
 
                                 range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jyzRowCount, "A"], xx.Cells[ihang + jyzRowCount, "A"]);
                                 range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
@@ -838,7 +838,7 @@ namespace Ebada.Scgl.Yxgl {
                             //        range.Merge(Type.Missing);
                             //    }
                             //}
-                            jyzRowCount = jyuzlist.Count;
+                            jyzRowCount = jyuzlist.Count/2 + jyuzlist.Count%2 == 0?0:1;
                             range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + jyzRowCount - 1, 1]);
                             range.Merge(Type.Missing);
                         }
@@ -850,7 +850,7 @@ namespace Ebada.Scgl.Yxgl {
 
                         }
                     }
-                    ihang += jyzRowCount ;
+                    ihang += jyzRowCount*2 ;
                     //变台型式
                     if (btlist != null) {
                         if (btlist.Count > 0) {
