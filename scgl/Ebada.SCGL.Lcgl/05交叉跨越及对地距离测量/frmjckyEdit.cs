@@ -204,7 +204,7 @@ namespace Ebada.Scgl.Lcgl
                     string one = comboBoxEdit2.Properties.Items[index - 1].ToString();
                     one = one.Substring(one.Length - 4);
                     string two = comboBoxEdit2.Properties.Items[index].ToString();
-                    two = two.Substring(one.Length - 4);
+                    two = two.Substring(two.Length - 4);
 
                     comboBoxEdit4.EditValue = one + "~" + two;
                 }
@@ -218,30 +218,30 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="e"></param>
         private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
         {
-            if ((comboBoxEdit2.EditValue.ToString().Length > 4))
-            {
-                try
-                {
-                    int GanWei = int.Parse(comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 4,3));
+            //if ((comboBoxEdit2.EditValue.ToString().Length > 4))
+            //{
+            //    try
+            //    {
+            //        int GanWei = int.Parse(comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 4,3));
 
-                    if (GanWei > 0)
-                    {
-                        GanWei--;
+            //        if (GanWei > 0)
+            //        {
+            //            GanWei--;
 
-                        string Ganhao = string.Format("{0:#0##}", GanWei)+comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 1);
+            //            string Ganhao = string.Format("{0:#0##}", GanWei)+comboBoxEdit2.EditValue.ToString().Substring(comboBoxEdit2.EditValue.ToString().Length - 1);
 
-                        comboBoxEdit4.Properties.Items.Clear();
-                        comboBoxEdit4.Properties.Items.Add(Ganhao);
-                        comboBoxEdit4.SelectedIndex = 0;
-                        rowData.kygh = Ganhao;
-                    }
+            //            comboBoxEdit4.Properties.Items.Clear();
+            //            comboBoxEdit4.Properties.Items.Add(Ganhao);
+            //            comboBoxEdit4.SelectedIndex = 0;
+            //            rowData.kygh = Ganhao;
+            //        }
 
-                }
-                catch (Exception er)
-                {
+            //    }
+            //    catch (Exception er)
+            //    {
 
-                }
-            }
+            //    }
+            //}
 
 
         }
