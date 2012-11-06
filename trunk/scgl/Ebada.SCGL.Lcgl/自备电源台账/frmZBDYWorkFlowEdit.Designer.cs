@@ -31,6 +31,10 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
+            this.comboBoxEdit11 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
@@ -56,6 +60,8 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
@@ -87,6 +93,10 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.comboBoxEdit11);
+            this.groupControlOrg.Controls.Add(this.comboBoxEdit10);
+            this.groupControlOrg.Controls.Add(this.labelControl11);
+            this.groupControlOrg.Controls.Add(this.labelControl10);
             this.groupControlOrg.Controls.Add(this.groupBox2);
             this.groupControlOrg.Controls.Add(this.comboBoxEdit1);
             this.groupControlOrg.Controls.Add(this.comboBoxEdit4);
@@ -111,8 +121,48 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(524, 367);
+            this.groupControlOrg.Size = new System.Drawing.Size(524, 375);
             this.groupControlOrg.TabIndex = 10;
+            // 
+            // comboBoxEdit11
+            // 
+            this.comboBoxEdit11.Location = new System.Drawing.Point(374, 168);
+            this.comboBoxEdit11.Name = "comboBoxEdit11";
+            this.comboBoxEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit11.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_Properties_EditValueChanged);
+            this.comboBoxEdit11.Size = new System.Drawing.Size(138, 21);
+            this.comboBoxEdit11.TabIndex = 34;
+            this.comboBoxEdit11.Visible = false;
+            // 
+            // comboBoxEdit10
+            // 
+            this.comboBoxEdit10.Location = new System.Drawing.Point(122, 168);
+            this.comboBoxEdit10.Name = "comboBoxEdit10";
+            this.comboBoxEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit10.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit2_Properties_EditValueChanged);
+            this.comboBoxEdit10.Size = new System.Drawing.Size(138, 21);
+            this.comboBoxEdit10.TabIndex = 35;
+            this.comboBoxEdit10.Visible = false;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Location = new System.Drawing.Point(273, 171);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(36, 14);
+            this.labelControl11.TabIndex = 32;
+            this.labelControl11.Text = "审核人";
+            this.labelControl11.Visible = false;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(20, 171);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(36, 14);
+            this.labelControl10.TabIndex = 33;
+            this.labelControl10.Text = "填表人";
+            this.labelControl10.Visible = false;
             // 
             // groupBox2
             // 
@@ -310,7 +360,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(436, 339);
+            this.btnCancel.Location = new System.Drawing.Point(436, 347);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
@@ -320,7 +370,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(360, 339);
+            this.btnOK.Location = new System.Drawing.Point(360, 347);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
@@ -330,7 +380,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 367);
+            this.ClientSize = new System.Drawing.Size(524, 375);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -340,6 +390,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);
             this.groupControlOrg.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
@@ -383,6 +435,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnOK;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit11;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit10;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
 
     }
 }

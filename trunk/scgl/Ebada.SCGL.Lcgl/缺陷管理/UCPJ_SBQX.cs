@@ -247,6 +247,7 @@ namespace Ebada.Scgl.Lcgl {
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             newobj.xssj = DateTime.Now;
+
             //if (isWorkflowCall)
             //{
             //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();

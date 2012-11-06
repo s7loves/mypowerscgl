@@ -17,6 +17,27 @@ using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl {
     public partial class frmZBDYWorkFlowEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_sdytz> m_CityDic = new SortableSearchableBindingList<PJ_sdytz>();
+
+        //供电所ID
+        public string gdsID
+        {
+            get { return null; }
+            set
+            {
+                ICollection list = ComboBoxHelper.getRy("OrgCode", value);
+                comboBoxEdit10.Properties.Items.Clear();
+                comboBoxEdit10.Properties.Items.AddRange(list);
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where orgcode='" + value + "'and PostName ='所长'");
+                if (list != null && list.Count > 0)
+                {
+                    comboBoxEdit11.Properties.Items.Clear();
+                    comboBoxEdit11.Properties.Items.AddRange(list);
+                    comboBoxEdit11.EditValue = list;
+                    rowData.chargeman = comboBoxEdit11.EditValue.ToString();
+                }
+
+            }
+        }
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
@@ -69,10 +90,11 @@ namespace Ebada.Scgl.Lcgl {
             this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "fdyOrgName");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "fdyLineName");
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "fdykgModle");
-
+            this.comboBoxEdit10.DataBindings.Add("EditValue", rowData, "zbr");
+            this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "chargeman");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
 
-
+            gdsID = MainHelper.UserOrg.OrgCode;
         }
         #region IPopupFormEdit Members
         private PJ_sdytz rowData = null;
