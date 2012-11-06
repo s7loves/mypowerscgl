@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Lcgl
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPJ_22 : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPJ_22jtdh : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_22> gridViewOperation;
 
@@ -133,21 +133,15 @@ namespace Ebada.Scgl.Lcgl
                 varDbTableName = value;
             }
         }
-        public UCPJ_22()
+        public UCPJ_22jtdh()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_22>(gridControl1, gridView1, barManager1, new frm22Edit1());
+            gridViewOperation = new GridViewOperation<PJ_22>(gridControl1, gridView1, barManager1, new frm22jtdhEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeAdd);
-            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeEdit);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_22>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-        }
-
-        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_22> e)
-        {
-           frm22Edit1.IsEdit = true;
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_22> e)
@@ -159,28 +153,24 @@ namespace Ebada.Scgl.Lcgl
         {
             if (parentID == null)
                 e.Cancel = true;
-            frm22Edit1.IsEdit = false;
             e.Value.bxsj = DateTime.Now;
-            e.Value.dsj = DateTime.Now;
-            e.Value.wsj = DateTime.Now;
-            e.Value.tdsj = DateTime.Now;
-            e.Value.sdsj = DateTime.Now;  
+           
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            InitColumns();//初始列
+            DealColumn();//初始列
             InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
-            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
+            if (MainHelper.UserOrg != null && false)
             {//如果是供电所人员，则锁定
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
-
+            btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
@@ -209,6 +199,28 @@ namespace Ebada.Scgl.Lcgl
         {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_22);
+        }
+        private void DealColumn()
+        {
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                gridView1.Columns[i].Visible = false;
+
+            }
+
+            ShowColumn("OrgName");
+            ShowColumn("bxsj");
+            ShowColumn("bxdd");
+            ShowColumn("zbslr");
+            ShowColumn("bggzqc");
+            ShowColumn("bgfs");
+            ShowColumn("bxrxm");
+            ShowColumn("lxdh");
+           
+        }
+        private void ShowColumn(string colname)
+        {
+            gridView1.Columns[colname].Visible = true;
         }
         private void hideColumn(string colname)
         {
@@ -266,8 +278,7 @@ namespace Ebada.Scgl.Lcgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
+            newobj.CreateMan = MainHelper.User.UserName;
             newobj.ph = "18" + DateTime.Now.Year.ToString() + sws(gridView1.RowCount+1);
         }
         /// <summary>
@@ -326,14 +337,13 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gridView1.FocusedRowHandle >= 0)
+            IList<PJ_22> pjlist = new List<PJ_22>();
+            for (int i = 0; i < gridView1.RowCount; i++)
             {
-                Export22.ExportExcel(gridView1.GetFocusedRow() as PJ_22);
+                pjlist.Add(gridView1.GetRow(i) as PJ_22);
             }
-            else
-            {
-                return;
-            }
+            Export22.ExportExcelJTJL(pjlist);
+            
         }
         private void barFJLY_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
