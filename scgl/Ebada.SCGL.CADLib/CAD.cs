@@ -240,6 +240,8 @@ namespace Ebada.SCGL.CADLib
                 color.SetRGB(c1.R, c1.G, c1.B);
                 ple.TrueColor = color;
                 cad.Application.Update();
+
+
                 int gtnum = 0;
                 for (int i = 0; i < list.Count; i++)
                 {
@@ -258,6 +260,16 @@ namespace Ebada.SCGL.CADLib
                     AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gg+"/"+gtnum.ToString());
                     ntext.Height = 0.00005*zoom;
                     ntext.Layer = "gth";
+
+                    PS_tq tq= Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where gtID='" + list[i].gtID + "'");
+                    if (tq != null)
+                    {
+                        PS_tqbyq byq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" where tqID='" + tq.tqID + "'");
+                        if (byq != null)
+                        {
+                            cad.ActiveDocument.ModelSpace.InsertBlock(pnt, Application.StartupPath + "\\byq.dwg", 1, 1, 1, 0, 0);
+                        }
+                    }
 
                     if (i < list.Count-1)
                     {
