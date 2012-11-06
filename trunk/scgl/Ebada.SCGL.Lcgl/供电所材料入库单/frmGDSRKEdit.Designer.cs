@@ -245,10 +245,11 @@
             this.comCaiLiaoLY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comCaiLiaoLY.Properties.Items.AddRange(new object[] {
-            "来源一",
-            "来源二",
-            "来源三",
-            "来源四",
+            "材料库",
+            "局商店",
+            "局计量所",
+            "生产部",
+            "营销部",
             "自购"});
             this.comCaiLiaoLY.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comCaiLiaoLY.Size = new System.Drawing.Size(175, 21);
