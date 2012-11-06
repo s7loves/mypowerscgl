@@ -164,8 +164,7 @@ namespace Ebada.Scgl.Lcgl
             }
 
             comboBoxEdit5.Properties.Items.Clear();
-            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='充油设备密封点台帐' and sx like '%{0}%' and nr!=''", "制造厂"));
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select DISTINCT byqFactory from PS_tqbyq");
             if (strlist.Count > 0)
                 comboBoxEdit5.Properties.Items.AddRange(strlist);
             else

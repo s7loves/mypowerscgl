@@ -108,7 +108,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Location = new System.Drawing.Point(69, 0);
             this.simpleButton1.Name = "simpleButton1";
@@ -151,13 +151,11 @@
             this.dateEdit3.Name = "dateEdit3";
             this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit3.Properties.DisplayFormat.FormatString = "G";
             this.dateEdit3.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit3.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit3.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit3.Properties.ShowWeekNumbers = true;
             this.dateEdit3.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
@@ -178,7 +176,6 @@
             this.dateEdit1.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit1.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit1.Properties.ShowWeekNumbers = true;
             this.dateEdit1.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit1.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
