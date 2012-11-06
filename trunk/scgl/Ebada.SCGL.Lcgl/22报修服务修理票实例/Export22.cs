@@ -32,10 +32,10 @@ namespace Ebada.Scgl.Lcgl {
             ex.SetCellValue(obj.bxsj.Month.ToString(), 13, 12);
             ex.SetCellValue(obj.bxsj.Day.ToString(), 13, 14);
             //编号
-            ex.SetCellValue(obj.ph.Substring(0, 2), 3, 20);
+            ex.SetCellValue(obj.ph, 3, 20);
             ex.SetCellValue(obj.ph.Substring(2, 4), 3, 21);
             ex.SetCellValue(obj.ph.Substring(6, 3), 3, 24);
-            ex.SetCellValue(obj.ph.Substring(0, 2), 13, 20);
+            ex.SetCellValue(obj.ph, 13, 20);
             ex.SetCellValue(obj.ph.Substring(2, 4), 13, 21);
             ex.SetCellValue(obj.ph.Substring(6, 3), 13, 24);
             //保修时间，保修地点
@@ -76,6 +76,7 @@ namespace Ebada.Scgl.Lcgl {
             //实际故障情况 所有材料
             ex.SetCellValue(obj.sjgzqc, 18, 3);
             ex.SetCellValue(obj.sycl, 19, 3);
+            
             ////停电操作时间和送电操作时间
             //ex.SetCellValue(obj.tdsj.Month.ToString(), 24, 3);
             //ex.SetCellValue(obj.tdsj.Day.ToString(), 24, 5);
@@ -90,40 +91,44 @@ namespace Ebada.Scgl.Lcgl {
             //停电操作在变压器高压套管端子处挂地   #线一组
             if (obj.tdczjxname1 != "")
             {
-                ex.SetCellValue("停电操作在变压器高压套管端子处挂地 " + obj.tdczjxname1 + " #线一组", 33, 2);
+                ex.SetCellValue("停电操作在变压器高压套管端子处挂# " + obj.tdczjxname1 + " 线一组", 33, 2);
             
             }
             //停电操作在低压侧挂  #地线一组
             if (obj.tdczjxname2 != "")
             {
-                ex.SetCellValue("在低压侧挂 " + obj.tdczjxname2 + " #地线一组", 35, 2);
+                ex.SetCellValue("在低压侧挂# " + obj.tdczjxname2 + " 地线一组", 35, 2);
 
             }
             //停电操作在工作地点挂  #小地线
             if (obj.tdczjxname3 != "")
             {
-                ex.SetCellValue("在工作地点挂 " + obj.tdczjxname3 + " #小地线", 36, 2);
+                ex.SetCellValue("在工作地点挂# " + obj.tdczjxname3 + " 小地线", 36, 2);
 
             }
 
             //送电操作拆出低压侧  #地线一组
             if (obj.sdczjxname1 != "")
             {
-                ex.SetCellValue("拆出低压侧  " + obj.sdczjxname1 + " #地线一组", 31, 15);
+                ex.SetCellValue("拆出低压侧#  " + obj.sdczjxname1 + " 地线一组", 31, 15);
 
             }
 
             //送电操作拆除变压器高压套管端子处  #地线一组
             if (obj.sdczjxname2 != "")
             {
-                ex.SetCellValue("拆除变压器高压套管端子处  " + obj.sdczjxname2 + " #地线一组", 32,15);
+                ex.SetCellValue("拆除变压器高压套管端子处#  " + obj.sdczjxname2 + " 地线一组", 32, 15);
 
             }
+            
+           
             if (obj.sjgzqc == obj.bggzqc)
             {
                 //停电线路名称及杆号
-                ex.SetCellValue(obj.tdxl, 25, 5);
-                ex.SetCellValue(obj.tdxlgt, 25, 9);
+                string temp = string.Format("{0 }线      支(分){1}号(台)", obj.tdxl, obj.tdxlgt);
+                ex.SetCellValue(temp, 25, 10);
+                //ex.SetCellValue(obj.tdxl, 25, 5);
+                //ex.SetCellValue(obj.tdxlgt, 25, 9);
                 //保留带点设备
                 ex.SetCellValue("临近保留带电线路或带电设备：" + obj.ddsb, 37, 1);
                 //危险及安全措施
@@ -132,8 +137,9 @@ namespace Ebada.Scgl.Lcgl {
             else
             {
                 //停电线路名称及杆号
-                ex.SetCellValue("", 25, 5);
-                ex.SetCellValue("", 25, 9);
+                string temp = string.Format("    线      支(分)     号(台)");
+                ex.SetCellValue(temp, 25, 10);
+               
                 //保留带点设备
                 ex.SetCellValue("临近保留带电线路或带电设备：", 37, 1);
                 //危险及安全措施
@@ -144,6 +150,64 @@ namespace Ebada.Scgl.Lcgl {
                 //ex.SetCellValue("故障处理经过和结果：" + obj.cljg, 39, 1);
             
            ex.ShowExcel();
+        }
+
+
+        public static void ExportExcelJTJL(IList<PJ_22> datalist)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\电力故障电话接听记录.xls";
+
+            ex.Open(fname);
+            //此处写填充内容代码
+            //供电所
+          
+            int row = 7;
+            int col = 0;
+            int rowcount = 15;
+
+            //
+
+            //加页
+            int pageindex = 1;
+            if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
+            {
+                pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
+            }
+            for (int j = 1; j <pageindex; j++)
+            {
+
+                ex.CopySheet(1, j);
+               
+            }
+            for (int j = 0; j < datalist.Count; j++)
+            {
+
+                if (j % rowcount == 0)
+                {
+                    if(j==0)ex.ActiveSheet(1);
+                    else ex.ActiveSheet((j / rowcount+1) );
+                    ex.SetCellValue("绥化市效农电局", 4, 1);
+                    ex.SetCellValue(datalist[j].OrgName, 4,5);
+                    //ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4,5);
+
+                }
+                
+                ex.SetCellValue(datalist[j].bxsj.Month.ToString(), row + j % rowcount, col + 1);
+                ex.SetCellValue(datalist[j].bxsj.Day.ToString(), row + j % rowcount, col + 2);
+                ex.SetCellValue(datalist[j].bxsj.Hour.ToString(), row + j % rowcount, col + 3);
+                ex.SetCellValue(datalist[j].bxsj.Minute.ToString(), row + j % rowcount, col + 4);
+                ex.SetCellValue(datalist[j].lxdh, row + j % rowcount, col + 5);
+                ex.SetCellValue(datalist[j].bxdd, row + j % rowcount, col + 6);
+                ex.SetCellValue(datalist[j].bggzqc, row + j % rowcount, col + 9);
+
+                ex.SetCellValue(datalist[j].bxrxm, row + j % rowcount, col + 12);
+                ex.SetCellValue(datalist[j].zbslr, row + j % rowcount, col + 13);
+  
+            }
+
+            ex.ShowExcel();
         }
       
     }

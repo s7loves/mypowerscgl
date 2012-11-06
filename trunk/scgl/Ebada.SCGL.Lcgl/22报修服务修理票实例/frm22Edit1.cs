@@ -17,7 +17,7 @@ namespace Ebada.SCGL.Lcgl
 {
     public partial class frm22Edit1 : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_22> m_CityDic = new SortableSearchableBindingList<PJ_22>();
-
+        public static bool IsEdit;
         public frm22Edit1() {
             InitializeComponent();
         }
@@ -106,9 +106,21 @@ namespace Ebada.SCGL.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_22>(value as PJ_22, rowData);
                 }
+                LockContorl(IsEdit);
             }
         }
-
+        private void LockContorl(bool canuser)
+        {
+            comboBoxEdit5.Properties.ReadOnly = canuser;
+            comboBoxEdit6.Properties.ReadOnly = canuser;
+            comboBoxEdit7.Properties.ReadOnly = canuser;
+            comboBoxEdit14.Properties.ReadOnly = canuser;
+            comboBoxEdit15.Properties.ReadOnly = canuser;
+            comboBoxEdit16.Properties.ReadOnly = canuser;
+            comboBoxEdit13.Properties.ReadOnly = canuser;
+            dateEdit1.Properties.ReadOnly = canuser;
+           
+        }
         #endregion
 
         private void InitComboBoxData() {
