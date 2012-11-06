@@ -313,22 +313,22 @@ namespace Ebada.SCGL.CADLib
                     ins[0] = Math.Round(Convert.ToDouble(tp.x), 8) * zoom;
                     ins[1] = Math.Round(Convert.ToDouble(tp.y), 8) * zoom;
                     ins[2] = 0;
-                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, tp.Text);
-                    text.Height = 0.0002 * zoom;
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 3, tp.Text);
+                    text.Height = 0.0001 * zoom;
                     text.Layer = "text";
                 }else{
-                
+                //线路名称放置最后一杆塔上
                     PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + list[0].LineCode + "'");
                     double[] ins = new double[3];
-                    ins[0] = Convert.ToDouble(list[0].gtLon.ToString("0.########"));
-                    ins[1] = Convert.ToDouble(list[0].gtLat.ToString("0.########"));
+                    ins[0] = Convert.ToDouble(list[list.Count-1].gtLon.ToString("0.########"));
+                    ins[1] = Convert.ToDouble(list[list.Count - 1].gtLat.ToString("0.########"));
                     ins[2] = 0;
-                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.LineName);
-                    text.Height = 0.0002 * zoom;
+                    AcadMText text = cad.ActiveDocument.ModelSpace.AddMText(ins, 3, xl.LineName);
+                    text.Height = 0.0001 * zoom;
                     text.Layer = "text";
                     ins[1] = ins[1] + 0.3;
                     AcadMText text2 = cad.ActiveDocument.ModelSpace.AddMText(ins, 5, xl.WireType);
-                    text2.Height = 0.0002 * zoom;
+                    text2.Height = 0.0001 * zoom;
                     text2.Layer = "text";
                 }
                 cad.Application.Update();
