@@ -94,7 +94,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="byq.dwg" />
+    <None Include="byq.dwg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="err.dwg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
