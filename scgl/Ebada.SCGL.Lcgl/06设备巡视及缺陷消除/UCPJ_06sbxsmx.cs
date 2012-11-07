@@ -102,6 +102,18 @@ namespace Ebada.Scgl.Lcgl {
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_06sbxsmx>(gridViewOperation_BeforeEdit);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_06sbxsmx>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_06sbxsmx>(gridViewOperation_AfterEdit);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_06sbxsmx>(gridViewOperation_AfterDelete);
+        }
+
+        void gridViewOperation_AfterDelete(PJ_06sbxsmx obj)
+        {
+            Delqxmx(obj.ID);
+        }
+
+        void gridViewOperation_AfterEdit(PJ_06sbxsmx obj)
+        {
+            Addqxmx(obj);
         }
         void gridViewOperation_AfterAdd(PJ_06sbxsmx newobj) {
             if (isWorkflowCall) {
@@ -121,8 +133,53 @@ namespace Ebada.Scgl.Lcgl {
 
             }
             wfgzrz.CreatRiZhi(newobj);
+            Addqxmx(newobj);
         }
 
+        //处理缺陷明细  lgmqx
+        private void Addqxmx(PJ_06sbxsmx obj)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(obj.ID);
+            if (obj.xcr == string.Empty)
+            {
+                if (tempobj == null || tempobj.xcr == string.Empty)
+                {
+                    MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                    PJ_qxfl mx = new PJ_qxfl();
+                    mx.ID = obj.ID;
+                    mx.OrgCode = obj.OrgCode;
+                    mx.OrgName = obj.OrgName;
+                    mx.LineID = "07";
+                    mx.LineName = obj.LineName;
+                    mx.xlqd = obj.xlqd;
+                    mx.xssj = obj.xssj;
+                    mx.xsr = obj.xsr;
+                    mx.qxly = "设备巡视及缺陷消除记录";
+                    mx.qxnr = obj.qxnr;
+                    mx.qxlb = obj.qxlb;
+                   
+                    MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                }
+
+            }
+            else
+            {
+                if (tempobj != null && tempobj.xcr == string.Empty)
+                {
+                    MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                }
+
+            }
+
+        }
+        private void Delqxmx(string id)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(id);
+            if (tempobj != null && tempobj.xcr == string.Empty)
+            {
+                MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(id);
+            }
+        }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_06sbxsmx> e) {
 
         }

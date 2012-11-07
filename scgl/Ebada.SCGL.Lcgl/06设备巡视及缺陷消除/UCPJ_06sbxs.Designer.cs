@@ -35,6 +35,32 @@
             this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // ucTop
+            // 
+            this.ucTop.CurrRecord = null;
+            this.ucTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTop.Location = new System.Drawing.Point(0, 0);
+            this.ucTop.Name = "ucTop";
+            this.ucTop.ParentTemple = null;
+            this.ucTop.ReadOnly = false;
+            this.ucTop.RecordWorkFlowData = null;
+            this.ucTop.Size = new System.Drawing.Size(646, 157);
+            this.ucTop.TabIndex = 0;
+            this.ucTop.VarDbTableName = "PJ_06sbxs,PJ_06sbxsmx,LP_Record";
+            // 
+            // ucBottom
+            // 
+            this.ucBottom.CurrRecord = null;
+            this.ucBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBottom.Location = new System.Drawing.Point(0, 0);
+            this.ucBottom.Name = "ucBottom";
+            this.ucBottom.ParentTemple = null;
+            this.ucBottom.ReadOnly = false;
+            this.ucBottom.RecordWorkFlowData = null;
+            this.ucBottom.Size = new System.Drawing.Size(646, 212);
+            this.ucBottom.TabIndex = 0;
+            this.ucBottom.VarDbTableName = "PJ_06sbxs,PJ_06sbxsmx,LP_Record";
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -50,36 +76,18 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.ucBottom);
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "设备巡视及缺陷消除子表";
-            this.splitContainerControl1.Size = new System.Drawing.Size(650, 345);
-            this.splitContainerControl1.SplitterPosition = 500;
+            this.splitContainerControl1.Size = new System.Drawing.Size(650, 425);
+            this.splitContainerControl1.SplitterPosition = 182;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // ucTop
-            // 
-            
-            this.ucTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTop.Location = new System.Drawing.Point(0, 0);
-            this.ucTop.Name = "ucTop";
-            this.ucTop.Size = new System.Drawing.Size(551, 240);
-            this.ucTop.TabIndex = 0;
-            // 
-            // ucBottom
-            // 
-           
-            this.ucBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBottom.Location = new System.Drawing.Point(0, 0);
-            this.ucBottom.Name = "ucBottom";
-            this.ucBottom.Size = new System.Drawing.Size(551, 164);
-            this.ucBottom.TabIndex = 0;
-            // 
-            // UCPJ_252
+            // UCPJ_06sbxs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "UCPJ_06sbxs";
-            this.Size = new System.Drawing.Size(650, 345);
+            this.Size = new System.Drawing.Size(650, 425);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);

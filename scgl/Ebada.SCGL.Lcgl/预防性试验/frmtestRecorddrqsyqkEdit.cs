@@ -132,8 +132,8 @@ namespace Ebada.Scgl.Lcgl
                 dateEdit4.EditValue = rowData2.planExpTime;
 
                 //comboBoxEdit14.Text = rowData2.iswc;
-                comboBoxEdit13.Text = rowData2.syjg; 
-
+                comboBoxEdit13.Text = rowData2.syjg;
+               
             }
         }
 
@@ -163,6 +163,9 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit12);
             comboBoxEdit13.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit13);
+            comboBoxEdit13.Properties.Items.Clear();
+            comboBoxEdit13.Properties.Items.Add("合格");
+            comboBoxEdit13.Properties.Items.Add("不合格");
             comboBoxEdit11.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit11);
             comboBoxEdit14.Properties.Items.Clear();

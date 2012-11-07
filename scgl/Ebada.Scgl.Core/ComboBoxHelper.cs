@@ -33,6 +33,25 @@ namespace Ebada.Scgl.Core {
        public static void ClearCache() {
            mCache.Clear();
        }
+       /// <summary>
+       /// 获取缺陷表记录ID方法
+       /// </summary>
+       /// <param name="str">
+       /// 缺陷记录表类型:
+       /// "01"[变压器预防性试验实施情况记录]
+       /// "02"[断路器预防性试验实施情况记录]
+       /// "03"[避雷器预防性试验实施情况记录]
+       /// "04"[电容器预防性试验实施情况记录]
+       /// "05"[接地装置检测记录]
+       /// "06"[交叉跨越及对地距离测量记录]
+       /// "07"[设备巡视及缺陷消除记录]
+       /// </param>
+       /// <param name="orgcode">供电所代码</param>
+       /// <returns></returns>
+       public static string GetQXID(string str,string orgcode)
+       {
+           return str +str+ DateTime.Now.Year + orgcode;
+       }
         static bool mUseCache = false;
         public bool UseCache {
             get { return mUseCache; }

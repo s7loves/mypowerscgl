@@ -187,10 +187,12 @@ namespace Ebada.Scgl.Lcgl {
 
         private void simpleButton1_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "查出的问题", memoEdit1);
+            rowData.ccwt = memoEdit1.Text;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("春秋查内查发现问题及整改落实情况记录", "整改措施", memoEdit2);
+            rowData.zgcs = memoEdit2.Text;
         }
 
         private void labelControl3_Click(object sender, EventArgs e)

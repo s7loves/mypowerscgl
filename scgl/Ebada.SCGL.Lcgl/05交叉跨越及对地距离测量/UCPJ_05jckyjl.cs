@@ -56,7 +56,78 @@ namespace Ebada.Scgl.Lcgl {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_05jckyjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_05jckyjl>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterEdit);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterDelete);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+
+        }
+
+        void gridViewOperation_AfterDelete(PJ_05jckyjl obj)
+        {
+            Delqxmx(obj.ID);
+        }
+
+        void gridViewOperation_AfterEdit(PJ_05jckyjl obj)
+        {
+            Addqxmx(obj);
+        }
+
+        void gridViewOperation_AfterAdd(PJ_05jckyjl obj)
+        {
+            Addqxmx(obj);
+        }
+        //处理缺陷明细  lgmqx
+        private void Addqxmx(PJ_05jckyjl obj)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(obj.ID);
+            if (obj.jr != "合格")
+            {
+                if (tempobj == null || tempobj.xcr == string.Empty)
+                {
+                    MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                    PJ_qxfl mx = new PJ_qxfl();
+                    mx.ID = obj.ID;
+                    mx.OrgCode = parentObj.OrgCode;
+                    mx.OrgName = parentObj.OrgName;
+                    mx.LineID = "06";
+                    mx.LineName = parentObj.LineID;
+                    mx.xlqd = parentObj.gtID;
+                    mx.xssj = obj.clrq;
+                    mx.xsr = obj.clrqz;
+                    mx.qxly = "交叉跨越及对地距离测量记录";
+                    mx.qxnr = "交叉跨越及对地距离测量不合格";
+                    if (obj.scz<parentObj.gdjl*0.5M)
+                    {
+                        mx.qxlb = "重大缺陷";
+                    }
+                    else
+	                {
+                        mx.qxlb = "一般缺陷";
+	                }
+                    
+
+                    MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                }
+
+            }
+            else
+            {
+                if (tempobj != null && tempobj.xcr == string.Empty)
+                {
+                    MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                }
+
+            }
+
+        }
+        private void Delqxmx(string id)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(id);
+            if (tempobj != null && tempobj.xcr == string.Empty)
+            {
+                MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(id);
+            }
         }
         private IViewOperation<PJ_05jckyjl> childView;
         /// <summary>

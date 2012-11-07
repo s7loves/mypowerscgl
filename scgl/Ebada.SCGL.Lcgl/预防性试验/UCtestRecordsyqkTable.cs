@@ -116,6 +116,7 @@ namespace Ebada.Scgl.Lcgl
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
+            
         }
 
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
@@ -150,6 +151,7 @@ namespace Ebada.Scgl.Lcgl
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
             RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'  and planExpTime like '%" + DateTime.Now.Year + "%'   ");
+            Delqxmx(obj.ID);
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -480,6 +482,159 @@ namespace Ebada.Scgl.Lcgl
 
                     }
                     break;
+            }
+            Addqxmx(ob);
+        }
+        //处理缺陷明细  lgmqx
+        private void Addqxmx(PJ_yfsyjl obj)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(obj.ID);
+            switch (_type)
+            {
+                case "变压器":
+                    if (obj.syjg != "合格")
+                    {
+                        if (tempobj==null||tempobj.xcr==string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                            PJ_qxfl mx = new PJ_qxfl();
+                            mx.ID = obj.ID;
+                            mx.OrgCode = obj.OrgCode;
+                            mx.OrgName = obj.OrgName;
+                            mx.LineID = "01";
+                            mx.LineName = obj.sbInstallAdress;
+                            mx.xlqd = obj.sbModle;
+                            mx.xssj = obj.sjExpTime;
+                            mx.xsr = obj.syMan;
+                            mx.qxly = "变压器预防性试验实施情况记录";
+                            mx.qxnr = "预防性试验不合格";
+                            mx.qxlb = "重大缺陷";
+                          
+                            MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                        }
+                       
+                    }
+                    else
+                    {
+                        if (tempobj!= null && tempobj.xcr ==string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                        }
+                       
+                    }
+                    break;
+                case "断路器":
+                    if (obj.syjg != "合格")
+                    {
+                        if (tempobj == null || tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                            PJ_qxfl mx = new PJ_qxfl();
+                            mx.ID = obj.ID;
+                            mx.OrgCode = obj.OrgCode;
+                            mx.OrgName = obj.OrgName;
+                            mx.LineID = "02";
+                            mx.LineName = obj.sbInstallAdress;
+                            mx.xlqd = obj.sbModle;
+                            mx.xssj = obj.sjExpTime;
+                            mx.xsr = obj.syMan;
+                            mx.qxly = "断路器预防性试验实施情况记录";
+                            mx.qxnr = "预防性试验不合格";
+                            mx.qxlb = "重大缺陷";
+                           
+                            MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                        }
+                    }
+                    else
+                    {
+                        if (tempobj != null && tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                        }
+                       
+                    }
+                    break;
+
+                case "避雷器":
+
+                    if (obj.syjg != "合格")
+                    {
+                        if (tempobj == null || tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                            PJ_qxfl mx = new PJ_qxfl();
+                            mx.ID = obj.ID;
+                            mx.OrgCode = obj.OrgCode;
+                            mx.OrgName = obj.OrgName;
+                            mx.LineID = "03";
+                            mx.LineName = obj.sbInstallAdress;
+                            mx.xlqd = obj.sbModle;
+                            mx.xssj = obj.sjExpTime;
+                            mx.xsr = obj.syMan;
+                            mx.qxly = "避雷器预防性试验实施情况记录";
+                            mx.qxnr = "预防性试验不合格";
+                            if (obj.syjg == "绝缘阻值低于2000兆欧")
+                            {
+                                mx.qxnr = "预防性试验不合格";
+                                mx.qxlb = "一般缺陷";
+                            }
+                            else if (obj.syjg == "绝缘阻值低于1000兆欧")
+                            {
+                                mx.qxnr = "预防性试验不合格";
+                                mx.qxlb = "重大缺陷";
+                            }
+                            
+                            MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                        }
+                    }
+                    else
+                    {
+                        if (tempobj != null && tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                        }
+                       
+                    }
+                    break;
+                case "电容器":
+                    if (obj.syjg != "合格")
+                    {
+                        if (tempobj == null || tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                            PJ_qxfl mx = new PJ_qxfl();
+                            mx.ID = obj.ID;
+                            mx.OrgCode = obj.OrgCode;
+                            mx.OrgName = obj.OrgName;
+                            mx.LineID = "04";
+                            mx.LineName = obj.sbInstallAdress;
+                            mx.xlqd = obj.sbModle;
+                            mx.xssj = obj.sjExpTime;
+                            mx.xsr = obj.syMan;
+                            mx.qxly = "电容器预防性试验实施情况记录";
+                            mx.qxnr = "预防性试验不合格";
+                            mx.qxlb = "重大缺陷";
+                           
+                            MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
+                        }
+                    }
+                    else
+                    {
+                        if (tempobj != null && tempobj.xcr == string.Empty)
+                        {
+                            MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(obj.ID);
+                        }
+                       
+                    }
+                    break;
+            }
+        }
+        private void Delqxmx(string id)
+        {
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(id);
+            if (tempobj != null && tempobj.xcr == string.Empty)
+            {
+                MainHelper.PlatformSqlMap.DeleteByKey<PJ_qxfl>(id);
             }
         }
     }
