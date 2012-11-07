@@ -67,7 +67,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentTemple = value;
-                this.ParentTemple = value;
+                //this.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 isWorkflowCall = value;
-                this.IsWorkflowCall = value;
+                //this.IsWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 currRecord = value;
-                this.CurrRecord = value;
+                //this.CurrRecord = value;
             }
         }
 
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 WorkFlowData = value;
-                this.RecordWorkFlowData = value;
+                //this.RecordWorkFlowData = value;
 
                 if (isWorkflowCall)
                 {
@@ -181,7 +181,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("cksl");
             hideColumn("indate");
             hideColumn("kcsl");
-            gridView1.Columns["num"].Width = 150;
+            hideColumn("num");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -198,10 +198,19 @@ namespace Ebada.Scgl.Lcgl
         #region 导出数据2
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (barGDS.EditValue != null && barEndTime.EditValue != null)
+            if (barGDS.EditValue != null )
             {
-                ExportGDSCRKDZ etdjh = new ExportGDSCRKDZ();
-                etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), barEndTime.EditValue.ToString());
+                if (barEndTime.EditValue == null)
+                {
+                    MsgBox.ShowTipMessageBox("请选择季度");
+                }
+                else
+                {
+                    DateTime now = DateTime.Now;
+                    string time = " " + now.ToLongTimeString();
+                    ExportGDSCRKDZ etdjh = new ExportGDSCRKDZ();
+                    etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), barEndTime.EditValue.ToString().Substring(0, 9) + time);
+                }
             }
         }
         #endregion
@@ -281,6 +290,7 @@ namespace Ebada.Scgl.Lcgl
 
             InitColumns();
             if (this.Site != null) return;
+            barGDS.Edit = DicTypeHelper.GdsDic;
 
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
@@ -289,7 +299,7 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                barGDS.Edit = DicTypeHelper.GdsDic;
+                barGDS.Edit.ReadOnly = false;
             }
         }
         #endregion
@@ -304,7 +314,7 @@ namespace Ebada.Scgl.Lcgl
             DateTime now = DateTime.Now;
             string time = " " + now.ToLongTimeString();
             if (barGDS.EditValue == null) return;
-            string sql = " where OrgCode='" + barGDS.EditValue + "'";
+            string sql = " where OrgCode='" + barGDS.EditValue + "' and type='原始材料'";
             if (barWpmc.EditValue != null)
             {
                 sql += " and wpmc='" + barWpmc.EditValue + "'";
@@ -323,7 +333,7 @@ namespace Ebada.Scgl.Lcgl
                 sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "')";
             }
 
-            sql += " order by wpmc desc";
+            sql += " order by ID desc,wpmc";
             gridViewOperation.RefreshData(sql);
         }
         #endregion

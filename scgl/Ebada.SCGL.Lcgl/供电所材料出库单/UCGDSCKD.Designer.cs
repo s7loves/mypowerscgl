@@ -266,6 +266,7 @@
             this.ucgdsck1.Location = new System.Drawing.Point(0, 0);
             this.ucgdsck1.Name = "ucgdsck1";
             this.ucgdsck1.ParentTemple = null;
+            this.ucgdsck1.ReadOnly = false;
             this.ucgdsck1.RecordWorkFlowData = null;
             this.ucgdsck1.Size = new System.Drawing.Size(893, 481);
             this.ucgdsck1.TabIndex = 0;
@@ -278,6 +279,7 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "UCGDSCKD";
             this.Size = new System.Drawing.Size(900, 511);
+            this.Load += new System.EventHandler(this.UCGDSCKD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);

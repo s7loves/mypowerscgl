@@ -163,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
             comWpgg.EditValue = null;
             if (comWpmc.EditValue != null && comWpmc.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and OrgCode='"+rowData.OrgCode+"'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and OrgCode='" + rowData.OrgCode + "'");
                 if (list != null && list.Count > 0)
                 {
                     comWpgg.Properties.Items.AddRange(list);
@@ -171,7 +171,7 @@ namespace Ebada.Scgl.Lcgl
 
                 // 查厂家
                 comWpcj.Properties.Items.Clear();
-                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "'and OrgCode='"+rowData.OrgCode+"'");
+                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "'and OrgCode='" + rowData.OrgCode + "'");
                 if (list != null && list.Count > 0)
                 {
                     comWpcj.Properties.Items.AddRange(list);
@@ -187,7 +187,7 @@ namespace Ebada.Scgl.Lcgl
             comWpdw.EditValue = null;
             if (comWpgg.EditValue != null && comWpgg.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始材料'and OrgCode='"+rowData.OrgCode+"'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始材料'and OrgCode='" + rowData.OrgCode + "'");
                 if (list != null && list.Count > 0)
                 {
                     comWpdw.Properties.Items.AddRange(list);
@@ -288,7 +288,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.kcsl = "0";
 
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%'");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' order by id desc");
             if (pnumli.Count == 0)
                 rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
@@ -309,18 +309,23 @@ namespace Ebada.Scgl.Lcgl
         #region 出库数量更改
         private void spCksl_EditValueChanged(object sender, EventArgs e)
         {
-            if (comWpmc.EditValue == null || comWpgg.EditValue == null || comWpdw.EditValue == null || Convert.ToInt32(spCksl.EditValue.ToString()) <= 0)
+            if (Convert.ToInt32(spCksl.EditValue.ToString() ) < 0)
             {
-                rowData.cksl = "0";
                 spCksl.EditValue = "0";
+                rowData.cksl = "0";
                 return;
             }
-            if (spCksl.EditValue != null)
+            comWpdw_EditValueChanged(sender, e);
+            int sl = cksl - Convert.ToInt32(spCksl.EditValue.ToString());
+            if (sl <= 0)
             {
-                int sl = cksl - Convert.ToInt32(spCksl.EditValue.ToString());
-                rowData.kcsl = sl.ToString();
-                spKcsl.EditValue = sl;
+                sl = 0;
+                spCksl.EditValue = cksl;
+                rowData.cksl = cksl.ToString();
             }
+
+            rowData.kcsl = sl.ToString();
+            spKcsl.EditValue = sl;
         }
         #endregion
     }

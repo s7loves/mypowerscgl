@@ -645,7 +645,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by wpmc desc";
+            sql += " order by ID desc, wpmc";
             IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(sql);
             foreach (PJ_gdscrk item in list)
             {
@@ -655,7 +655,7 @@ namespace Ebada.Scgl.Lcgl
                     item.wpsl = "";
                     item.ly = item.yt;
                 }
-                else if (item.type == "设置库存")
+                else
                 {
                     item.type = "入库";
                     item.cksl = "";
