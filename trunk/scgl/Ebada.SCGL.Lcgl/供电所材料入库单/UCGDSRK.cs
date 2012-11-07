@@ -195,16 +195,33 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
-            gridView1.RefreshData();
+            GetWpmc();
+
+            //RefreshData();
+            //gridControl1.RefreshDataSource();
+            //gridView1.RefreshData();
         }
         #endregion
 
         #region 删除之前
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_gdscrk> e)
         {
-            if (gridView1.GetFocusedRow() == null)
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
             {
-                return;
+                IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>("where id='"+crk.ID+"'");
+                if (list != null)
+                {
+                    if (list[0].type == "原始材料")
+                    {
+                        IList ilist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select id from PJ_gdscrk where wpmc='" + crk.wpmc + "'and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "' and type!='原始材料' ");
+                        if (ilist != null)
+                        {
+                            MsgBox.ShowWarningMessageBox("该条记录不是最后一条，无法执行删除！");
+                            e.Cancel = true; ;
+                        }
+                    }
+                }
             }
         }
         #endregion
@@ -428,6 +445,11 @@ namespace Ebada.Scgl.Lcgl
                     SelectGdsChanged(this, org);
             }
 
+            GetWpmc();
+        }
+
+        private void GetWpmc()
+        {
             comWpmc.Items.Clear();
             barWpmc.EditValue = null;
             if (barGDS.EditValue == null) return;
@@ -560,7 +582,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by wpmc desc";
+            sql += " order by ID desc,wpmc";
             gridViewOperation.RefreshData(sql);
             expotSQL = sql;
         }
@@ -574,7 +596,7 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' order by id desc ");
+                   <PJ_gdscrk>(" where ID like '" + DateTime.Now.ToString("yyyyMMdd") + "%' order by id desc ");
             if (pnumli.Count == 0)
                 e.Value.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else
@@ -616,5 +638,30 @@ namespace Ebada.Scgl.Lcgl
             }
         }
         #endregion
+
+        # region 导出选中出库单
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
+            {
+                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                etdjh.ExportOne(crk);
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("请先选中要导出的数据！");
+            }
+        }
+        #endregion
+
+        #region 查询重置
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            barWpmc.EditValue = null;
+            GetWpmc();
+        }
+        #endregion
+
     }
 }

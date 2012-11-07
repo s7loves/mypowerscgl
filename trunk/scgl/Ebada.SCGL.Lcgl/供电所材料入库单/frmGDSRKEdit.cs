@@ -231,9 +231,13 @@ namespace Ebada.Scgl.Lcgl
             //}
 
             comWpgg.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh from PS_sbcs where mc='" + comWpmc.Text + "' and len(xh)>0;");
-            if (mclist.Count > 0) comWpgg.Properties.Items.AddRange(mclist);
-            
+            IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct bh from PS_sbcs where mc='" + comWpmc.Text + "'");
+            if (mclist != null && mclist.Count > 0)
+            {
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh from PS_sbcs where ParentID='" + mclist[0] + "' and len(xh)>0;");
+                if (mclist.Count > 0) comWpgg.Properties.Items.AddRange(mclist);
+            }
+
             GetKcsl();
         }
         #endregion
@@ -360,7 +364,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.wpdj = "";
 
             IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%'");
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' order by ID desc");
             if (pnumli.Count == 0)
                 rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
             else

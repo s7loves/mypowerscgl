@@ -213,7 +213,23 @@ namespace Ebada.Scgl.Lcgl
         #region 删除之前
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_gdscrk> e)
         {
-
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
+            {
+                IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>("where id='" + crk.ID + "'");
+                if (list != null)
+                {
+                    if (list[0].type == "原始材料")
+                    {
+                        IList ilist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select id from PJ_gdscrk where wpmc='" + crk.wpmc + "'and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "' and type!='原始材料' ");
+                        if (ilist != null)
+                        {
+                            MsgBox.ShowWarningMessageBox("该条记录不是最后一条，无法执行删除！");
+                            e.Cancel = true; ;
+                        }
+                    }
+                }
+            }
         }
         #endregion
 
@@ -762,6 +778,22 @@ namespace Ebada.Scgl.Lcgl
         {
             ExportGDSCKEdit export = new ExportGDSCKEdit();
             export.ExportExcelForSQL(barGDS.EditValue.ToString(), "", expotSQL);
+        }
+        #endregion
+
+        #region 导出选中出库单
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
+            {
+                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                etdjh.ExportOne(crk);
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("请先选中要导出的数据！");
+            }
         }
         #endregion
     }

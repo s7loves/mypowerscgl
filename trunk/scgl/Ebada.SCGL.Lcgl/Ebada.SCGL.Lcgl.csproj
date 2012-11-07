@@ -351,12 +351,6 @@
       <DependentUpon>UCGDSCK.cs</DependentUpon>
     </Compile>
     <Compile Include="供电所材料出库单\ExportGDSCKEdit.cs" />
-    <Compile Include="供电所材料出库单\frmGDSCk.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="供电所材料出库单\frmGDSCk.Designer.cs">
-      <DependentUpon>frmGDSCk.cs</DependentUpon>
-    </Compile>
     <Compile Include="供电所材料入库单\UCGDSRK.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3781,10 +3775,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="供电所材料出库单\UCGDSCK.resx">
       <DependentUpon>UCGDSCK.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="供电所材料出库单\frmGDSCk.resx">
-      <DependentUpon>frmGDSCk.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="供电所材料入库单\UCGDSRK.resx">
