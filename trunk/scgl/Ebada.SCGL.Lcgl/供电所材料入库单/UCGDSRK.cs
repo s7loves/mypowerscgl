@@ -215,7 +215,7 @@ namespace Ebada.Scgl.Lcgl
                     if (list[0].type == "原始材料")
                     {
                         IList ilist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select id from PJ_gdscrk where wpmc='" + crk.wpmc + "'and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "' and type!='原始材料' ");
-                        if (ilist != null)
+                        if (ilist != null && ilist.Count > 0)
                         {
                             MsgBox.ShowWarningMessageBox("该条记录不是最后一条，无法执行删除！");
                             e.Cancel = true; ;
