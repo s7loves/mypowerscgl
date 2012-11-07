@@ -251,7 +251,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 comWpmc.Properties.Items.Remove(rowData.wpmc);
             }
-            Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
+           Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
             this.DialogResult = DialogResult.OK;
             etdjh.ExportOne(rowData);
         }
