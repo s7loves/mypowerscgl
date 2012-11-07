@@ -69,10 +69,10 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else if (MainHelper.UserOrg.OrgType == "0")
                 {
-                    groupBox2.Enabled = false;
-                    groupBox1.Enabled = false;
-                    groupBox6.Enabled = false;
-                    groupBox3.Enabled = false;
+                    //groupBox2.Enabled = false;
+                    //groupBox1.Enabled = false;
+                    //groupBox6.Enabled = false;
+                    //groupBox3.Enabled = false;
 
                     groupBox7.Enabled = true;
                 }
