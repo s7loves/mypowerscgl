@@ -176,7 +176,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：数量
         /// 字段信息：[wpsl],nvarchar
         /// </summary>
-        [DisplayNameAttribute("数量")]
+        [DisplayNameAttribute("入库数量")]
         public string wpsl
         {
             get { return _wpsl; }
@@ -184,7 +184,7 @@ namespace Ebada.Scgl.Model
             {
                 if (value == null) return;
                 if (value.ToString().Length > 50)
-                    throw new Exception("[数量]长度不能大于50!");
+                    throw new Exception("[入库数量]长度不能大于50!");
                 if (_wpsl as object == null || !_wpsl.Equals(value))
                 {
                     _wpsl = value;
@@ -299,7 +299,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：该物品库存数量
         /// 字段信息：[kcsl],nvarchar
         /// </summary>
-        [DisplayNameAttribute("该物品库存数量")]
+        [DisplayNameAttribute("库存数量")]
         public string kcsl
         {
             get { return _kcsl; }
