@@ -66,19 +66,19 @@ namespace Ebada.jhgl
         #endregion
 
         private void InitComboBoxData() {
-            ICollection list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRyfzr(MainHelper.User.OrgCode);
-            if(list.Count==0)
-                list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
-             comboBoxEdit2.Properties.Items.AddRange( list);
-             ICollection ic= Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
-             foreach (string sr in ic) {
-                 comboBoxEdit3.Properties.Items.Add(sr, CheckState.Unchecked, true);
-             }
-            IList<mOrg> list2 =Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
-
-            foreach (mOrg org in list2) {
-                comboBoxEdit4.Properties.Items.Add(org.OrgName, CheckState.Unchecked, true);
-            }
+//             ICollection list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRyfzr(MainHelper.User.OrgCode);
+//             if(list.Count==0)
+//                 list = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
+//              comboBoxEdit2.Properties.Items.AddRange( list);
+//              ICollection ic= Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
+//              foreach (string sr in ic) {
+//                  comboBoxEdit3.Properties.Items.Add(sr, CheckState.Unchecked, true);
+//              }
+//             IList<mOrg> list2 =Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
+// 
+//             foreach (mOrg org in list2) {
+//                 comboBoxEdit4.Properties.Items.Add(org.OrgName, CheckState.Unchecked, true);
+//             }
         }
 
         

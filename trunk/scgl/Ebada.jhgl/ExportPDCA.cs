@@ -4,7 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
-using Ebada.Scgl.Core;
+//using Ebada.Scgl.Core;
 
 namespace Ebada.jhgl
 {
