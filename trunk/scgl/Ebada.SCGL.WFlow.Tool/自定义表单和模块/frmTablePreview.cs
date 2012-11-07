@@ -292,8 +292,8 @@ namespace Ebada.SCGL.WFlow.Tool
             {
                 foreach (LP_Temple lp in templeList)
                 {
-                    bool flag = (lp.Status == CurrRecord.Status);
-                    flag = true;
+                    bool flag ;//= (lp.Status == CurrRecord.Status);
+                    flag = lp.IsVisible==0;
                     Label label = new Label();
                     label.Text = lp.CellName;
                     ComboBoxEdit btTip = null;
