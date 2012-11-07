@@ -93,6 +93,9 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
                 }
+                comboBoxEdit9.Properties.Items.Clear();
+                comboBoxEdit9.Properties.Items.Add("合格");
+                comboBoxEdit9.Properties.Items.Add("不合格");
             }
         }
 

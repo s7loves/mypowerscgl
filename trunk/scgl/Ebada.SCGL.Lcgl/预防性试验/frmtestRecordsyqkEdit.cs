@@ -88,6 +88,26 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
                 }
+                switch (rowData.type)
+                {
+                    case "避雷器":
+                        comboBoxEdit9.Properties.Items.Clear();
+                        comboBoxEdit9.Properties.Items.Add("合格");
+                        comboBoxEdit9.Properties.Items.Add("绝缘阻值低于2000兆欧");
+                        comboBoxEdit9.Properties.Items.Add("绝缘阻值低于1000兆欧");
+                        break;
+                    case "变压器":
+                    case "断路器":
+                    case "电容器":
+                        comboBoxEdit9.Properties.Items.Clear();
+                        comboBoxEdit9.Properties.Items.Add("合格");
+                        comboBoxEdit9.Properties.Items.Add("不合格");
+                        break;
+                        break;
+
+
+
+                }
             }
         }
 

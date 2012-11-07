@@ -161,6 +161,9 @@
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit6.Properties.Items.AddRange(new object[] {
+            "合格",
+            "不合格"});
             this.comboBoxEdit6.Size = new System.Drawing.Size(90, 21);
             this.comboBoxEdit6.TabIndex = 15;
             // 

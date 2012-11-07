@@ -48,6 +48,7 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
+                DealPH(rowData);
                 return rowData;
             }
             set {
@@ -61,7 +62,38 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+        //处理不平衡度问题
+        private void DealPH(PJ_11byqdydl rowData)
+        {
+            //负荷不平衡率大于15%走负荷调整子流程，（配变负荷调整记录表每一行走一遍负荷调整子流程）
 
+           
+
+            decimal max = (rowData.a > rowData.b ? rowData.a : rowData.b) > rowData.c ? (rowData.a > rowData.b ? rowData.a : rowData.b) : rowData.c;
+            decimal min = (rowData.a < rowData.b ? rowData.a : rowData.b) < rowData.c ? (rowData.a < rowData.b ? rowData.a : rowData.b) : rowData.c;
+            decimal per = 0;
+            if (max > 0)
+            {
+                per = (max - min) * 100 / max;
+            }
+            rowData.bphd = (double)Math.Round(per, 1);
+
+            PS_tqbyq byq = MainHelper.PlatformSqlMap.GetOneByKey<PS_tqbyq>(rowData.byqID);
+            
+            decimal dl = (rowData.a + rowData.b + rowData.c) / 3;
+
+            // 最大负荷电流低于配变二次额定电流60%或最大负荷电流超过配变额定电流10%
+            if (dl < byq.byqCurrentTwo * 0.6M || dl > byq.byqCurrentTwo*0.1M)
+            {
+                rowData.by1 = "1";
+            }
+            else
+            {
+                rowData.by1 = "0";
+            }
+
+            
+        }
         #endregion
 
         private void InitComboBoxData() {
