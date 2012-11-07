@@ -227,6 +227,11 @@ namespace Ebada.Scgl.Gis {
                 }
                 p0 = Point.Empty;
             }
+            Hashtable ht_linenum = new Hashtable();
+            ht_linenum.Add("一线", "1");
+            ht_linenum.Add("二线", "2");
+            ht_linenum.Add("三线", "3");
+            ht_linenum.Add("四线", "4");
             foreach (PS_xl xl in gts.Keys) {
                 plist.Clear();
                 foreach (PS_gt gt in gts[xl]) {
@@ -247,7 +252,9 @@ namespace Ebada.Scgl.Gis {
                     }
                     curgt = pts[i];
                 }
-                drawLineModel(g, xl.WireType, pts[pts.Length - 2].X, pts[pts.Length -2].Y, pts[pts.Length - 1].X, pts[pts.Length - 1].Y);
+                object obj = ht_linenum[xl.lineNum] ?? "2";
+                string linenum = "X" + obj.ToString();
+                drawLineModel(g, xl.WireType+linenum, pts[pts.Length - 2].X, pts[pts.Length -2].Y, pts[pts.Length - 1].X, pts[pts.Length - 1].Y);
             }
 
             //绘制10线路方向
