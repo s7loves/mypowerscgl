@@ -1937,7 +1937,9 @@
     <None Include="00记录模板\出库材料单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\供电所材料出库单.xls" />
+    <None Include="00记录模板\供电所材料出库单.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\供电所材料入出入库明细.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
