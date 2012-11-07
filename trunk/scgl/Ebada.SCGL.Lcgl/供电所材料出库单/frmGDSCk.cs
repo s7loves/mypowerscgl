@@ -199,7 +199,6 @@ namespace Ebada.Scgl.Lcgl
             wp.type = "出库";
             wp.OrgCode = lkeGDS.EditValue.ToString();
             frm.RowData = wp;
-            frm.SetKC = true;
             frm.ShowDialog();
         }
         #endregion

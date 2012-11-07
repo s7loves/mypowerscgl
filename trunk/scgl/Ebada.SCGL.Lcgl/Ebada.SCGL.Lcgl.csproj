@@ -363,11 +363,17 @@
     <Compile Include="供电所材料入库单\UCGDSRK.Designer.cs">
       <DependentUpon>UCGDSRK.cs</DependentUpon>
     </Compile>
-    <Compile Include="供电所材料明季度对账\ExportGDSCRKDZ.cs" />
-    <Compile Include="供电所材料明季度对账\UCGDSCLDZ.cs">
+    <Compile Include="供电所材料出库单\UCGDSCKD.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="供电所材料明季度对账\UCGDSCLDZ.Designer.cs">
+    <Compile Include="供电所材料出库单\UCGDSCKD.Designer.cs">
+      <DependentUpon>UCGDSCKD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="供电所材料季度对账\ExportGDSCRKDZ.cs" />
+    <Compile Include="供电所材料季度对账\UCGDSCLDZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="供电所材料季度对账\UCGDSCLDZ.Designer.cs">
       <DependentUpon>UCGDSCLDZ.cs</DependentUpon>
     </Compile>
     <Compile Include="供电所材料明细\ExportGDSCRKDetial.cs" />
@@ -3785,7 +3791,10 @@
       <DependentUpon>UCGDSRK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="供电所材料明季度对账\UCGDSCLDZ.resx">
+    <EmbeddedResource Include="供电所材料出库单\UCGDSCKD.resx">
+      <DependentUpon>UCGDSCKD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="供电所材料季度对账\UCGDSCLDZ.resx">
       <DependentUpon>UCGDSCLDZ.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

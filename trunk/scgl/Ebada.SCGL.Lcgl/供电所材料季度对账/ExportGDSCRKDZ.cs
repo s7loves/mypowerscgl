@@ -37,7 +37,7 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(orgname, 3, 2);
             ex.SetCellValue(endTime, 3, 5);
 
-            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where OrgCode='" + orgCode + "' and type!='原始入库材料'  and (indate <= '" + endTime + "' or ckdate<='" + endTime + "') order by wpmc ");
+            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where OrgCode='" + orgCode + "' and (indate <= '" + endTime + "' or ckdate<='" + endTime + "') order by wpmc ");
 
             if (datalist.Count <= 0)
             {

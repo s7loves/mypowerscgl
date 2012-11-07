@@ -65,7 +65,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(775, 496);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1008, 496);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -76,7 +76,7 @@
             this.xtraTabPage1.Controls.Add(this.gridControl1);
             this.xtraTabPage1.Controls.Add(this.groupControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(768, 466);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1001, 466);
             this.xtraTabPage1.Text = "选择出库";
             // 
             // gridControl1
@@ -90,7 +90,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 115);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(768, 351);
+            this.gridControl1.Size = new System.Drawing.Size(1001, 351);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -124,7 +124,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(768, 115);
+            this.groupControl1.Size = new System.Drawing.Size(1001, 115);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "搜索物品条件";
             // 
@@ -206,7 +206,7 @@
             // simpleButton2
             // 
             this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.simpleButton2.Location = new System.Drawing.Point(517, 37);
+            this.simpleButton2.Location = new System.Drawing.Point(633, 37);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 43;
@@ -216,7 +216,7 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.simpleButton1.Location = new System.Drawing.Point(517, 74);
+            this.simpleButton1.Location = new System.Drawing.Point(633, 74);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 44;
@@ -227,7 +227,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.ucgdsck1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(768, 466);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1001, 466);
             this.xtraTabPage2.Text = "出库记录";
             // 
             // ucgdsck1
@@ -238,7 +238,7 @@
             this.ucgdsck1.Name = "ucgdsck1";
             this.ucgdsck1.ParentTemple = null;
             this.ucgdsck1.RecordWorkFlowData = null;
-            this.ucgdsck1.Size = new System.Drawing.Size(768, 466);
+            this.ucgdsck1.Size = new System.Drawing.Size(1001, 466);
             this.ucgdsck1.TabIndex = 0;
             this.ucgdsck1.VarDbTableName = "PJ_gdscrk,LP_Record";
             // 
@@ -246,9 +246,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 496);
+            this.ClientSize = new System.Drawing.Size(1008, 496);
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "frmGDSCk";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "供电所材料出库";
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);

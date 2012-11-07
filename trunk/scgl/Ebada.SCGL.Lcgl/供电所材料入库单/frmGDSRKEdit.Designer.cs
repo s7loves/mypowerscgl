@@ -175,7 +175,6 @@
             0,
             0,
             0});
-            this.spWpsl.Enabled = false;
             this.spWpsl.Location = new System.Drawing.Point(330, 101);
             this.spWpsl.Name = "spWpsl";
             this.spWpsl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -185,7 +184,6 @@
             this.spWpsl.Properties.Mask.EditMask = "###########0.########";
             this.spWpsl.Size = new System.Drawing.Size(175, 21);
             this.spWpsl.TabIndex = 29;
-            this.spWpsl.EditValueChanged += new System.EventHandler(this.spWpsl_EditValueChanged);
             // 
             // spWpdj
             // 
@@ -222,7 +220,6 @@
             this.comWpgg.Name = "comWpgg";
             this.comWpgg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpgg.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comWpgg.Size = new System.Drawing.Size(175, 21);
             this.comWpgg.TabIndex = 2;
             this.comWpgg.EditValueChanged += new System.EventHandler(this.comWpgg_EditValueChanged);
@@ -233,7 +230,6 @@
             this.comWpmc.Name = "comWpmc";
             this.comWpmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpmc.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comWpmc.Size = new System.Drawing.Size(164, 21);
             this.comWpmc.TabIndex = 1;
             this.comWpmc.EditValueChanged += new System.EventHandler(this.comWpmc_EditValueChanged);
@@ -296,7 +292,6 @@
             this.comWpdw.Name = "comWpdw";
             this.comWpdw.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comWpdw.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comWpdw.Size = new System.Drawing.Size(164, 21);
             this.comWpdw.TabIndex = 3;
             this.comWpdw.EditValueChanged += new System.EventHandler(this.comWpdw_EditValueChanged);
@@ -432,7 +427,7 @@
             this.MinimizeBox = false;
             this.Name = "frmGDSRKEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工程材料入库单";
+            this.Text = "供电所材料入库单";
             this.Load += new System.EventHandler(this.frmCLRKEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
             this.groupControlOrg.ResumeLayout(false);

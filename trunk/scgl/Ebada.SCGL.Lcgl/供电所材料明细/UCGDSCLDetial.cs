@@ -581,6 +581,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (this.Site != null) return;
             InitColumns();
+            barGDS.Edit = DicTypeHelper.GdsDic;
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
                 barGDS.EditValue = MainHelper.UserOrg.OrgCode;
@@ -588,7 +589,7 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                barGDS.Edit = DicTypeHelper.GdsDic;
+                barGDS.Edit.ReadOnly = false;
             }
         }
         #endregion
@@ -690,7 +691,6 @@ namespace Ebada.Scgl.Lcgl
         {
             PJ_gdscrk pj = gridView1.GetFocusedRow() as PJ_gdscrk;
             frmGDSCKEdit edit = new frmGDSCKEdit();
-            edit.SetKC = true;
             if (pj != null)
             {
                 edit.RowData = pj;
