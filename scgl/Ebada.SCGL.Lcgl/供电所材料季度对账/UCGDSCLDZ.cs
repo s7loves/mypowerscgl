@@ -301,8 +301,10 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData()
         {
+            DateTime now = DateTime.Now;
+            string time = " " + now.ToLongTimeString();
             if (barGDS.EditValue == null) return;
-            string sql = " where OrgCode='" + barGDS.EditValue + "' and type!='原始入库材料'";
+            string sql = " where OrgCode='" + barGDS.EditValue + "'";
             if (barWpmc.EditValue != null)
             {
                 sql += " and wpmc='" + barWpmc.EditValue + "'";
@@ -318,7 +320,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (barEndTime.EditValue != null)
             {
-                sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue + "')";
+                sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "')";
             }
 
             sql += " order by wpmc desc";

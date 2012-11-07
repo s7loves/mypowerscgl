@@ -39,18 +39,34 @@ namespace Ebada.Scgl.Lcgl
         #region
         private GridViewOperation<PJ_gdscrk> gridViewOperation;
         frmGDSCKEdit frm = new frmGDSCKEdit();
+        private DateTime enterTime;
 
         public event SendDataEventHandler<PJ_gdscrk> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         private string parentID = null;
         private mOrg parentObj;
-        
+
         private bool isWorkflowCall = false;
         private frmModleFjly fjly = null;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
         private LP_Temple parentTemple = null;
         private string varDbTableName = "PJ_gdscrk,LP_Record";
+
+        private bool readOnly = false;
+        public bool ReadOnly
+        {
+            get { return readOnly; }
+            set
+            {
+                readOnly = value;
+                // btnOK.Visible = 
+                liuchbarSubItem.Enabled = !value;
+                btAdd.Enabled = !value;
+                btDelete.Enabled = !value;
+            }
+        }
+
         public LP_Temple ParentTemple
         {
             get { return parentTemple; }
@@ -307,39 +323,39 @@ namespace Ebada.Scgl.Lcgl
         #region 提交审核
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmModleSubmit fm = new frmModleSubmit();
-            fm.RecordWorkFlowData = WorkFlowData;
-            fm.CurrRecord = currRecord;
-            if (currRecord.Status == "申报")
-                fm.Status = "add";
-            else
-                fm.Status = "edit";
-            fm.Kind = currRecord.Kind;
-            frmProjectSelect fys = new frmProjectSelect();
-            fys.strType = " and (type = '设置库存' or type = '原始入库材料') ";
-            fys.StrSQL = "select distinct ssgc  from PJ_gdscrk where  (type = '设置库存' or type = '原始入库材料') ";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-                //ExportGDSRKEdit export = new ExportGDSRKEdit();
-                //export.CurrRecord = currRecord;
-                //export.IsWorkflowCall = isWorkflowCall;
-                //export.ParentTemple = parentTemple;
-                //export.RecordWorkFlowData = WorkFlowData;
+            //    frmModleSubmit fm = new frmModleSubmit();
+            //    fm.RecordWorkFlowData = WorkFlowData;
+            //    fm.CurrRecord = currRecord;
+            //    if (currRecord.Status == "申报")
+            //        fm.Status = "add";
+            //    else
+            //        fm.Status = "edit";
+            //    fm.Kind = currRecord.Kind;
+            //    frmProjectSelect fys = new frmProjectSelect();
+            //    fys.strType = " and (type = '设置库存' or type = '原始入库材料') ";
+            //    fys.StrSQL = "select distinct ssgc  from PJ_gdscrk where  (type = '设置库存' or type = '原始入库材料') ";
+            //    if (fys.ShowDialog() == DialogResult.OK)
+            //    {
+            //        //ExportGDSRKEdit export = new ExportGDSRKEdit();
+            //        //export.CurrRecord = currRecord;
+            //        //export.IsWorkflowCall = isWorkflowCall;
+            //        //export.ParentTemple = parentTemple;
+            //        //export.RecordWorkFlowData = WorkFlowData;
 
-                //export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
+            //        //export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
 
-                //fm.ParentTemple = parentTemple;
-                //if (fm.ShowDialog() == DialogResult.OK)
-                //{
-                //    if (fjly == null) fjly = new frmModleFjly();
-                //    fjly.btn_Submit_Click(sender, e);
-                //    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
-                //    else
-                //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
-                //    gridControl1.FindForm().Close();
-                //}
-            }
+            //        //fm.ParentTemple = parentTemple;
+            //        //if (fm.ShowDialog() == DialogResult.OK)
+            //        //{
+            //        //    if (fjly == null) fjly = new frmModleFjly();
+            //        //    fjly.btn_Submit_Click(sender, e);
+            //        //    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+            //        //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+            //        //    else
+            //        //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+            //        //    gridControl1.FindForm().Close();
+            //        //}
+            //    }
         }
         #endregion
 
@@ -396,12 +412,12 @@ namespace Ebada.Scgl.Lcgl
         #region 导出数据 1
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmGDSSelect fys = new frmGDSSelect();
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
-                etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen);
-            }
+            //frmGDSSelect fys = new frmGDSSelect();
+            //if (fys.ShowDialog() == DialogResult.OK)
+            //{
+            //    ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+            //    etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen,);
+            //}
         }
         #endregion
 
@@ -412,7 +428,7 @@ namespace Ebada.Scgl.Lcgl
             if (fys.ShowDialog() == DialogResult.OK)
             {
                 ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
-                etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen);
+                etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen, enterTime);
             }
         }
         #endregion
@@ -561,9 +577,11 @@ namespace Ebada.Scgl.Lcgl
         {
             base.OnLoad(e);
 
+            enterTime = DateTime.Now;
 
             if (this.Site != null) return;
             InitColumns();
+            barGDS.Edit = DicTypeHelper.GdsDic;
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
                 barGDS.EditValue = MainHelper.UserOrg.OrgCode;
@@ -571,9 +589,65 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                barGDS.Edit = DicTypeHelper.GdsDic;
+                barGDS.Edit.ReadOnly = false;
             }
         }
+        #endregion
+
+        #region 刷新数据
+        ///// <summary>
+        ///// 刷新数据
+        ///// </summary>
+        ///// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
+        //public void RefreshData()
+        //{
+        //    if (barGDS.EditValue == null) return;
+        //    string sql = " where OrgCode='" + barGDS.EditValue + "' and type='出库'";
+        //    if (barWpmc.EditValue != null)
+        //    {
+        //        sql += " and wpmc='" + barWpmc.EditValue + "'";
+        //        if (barWpgg.EditValue != null)
+        //        {
+        //            sql += " and wpgg='" + barWpgg.EditValue + "'";
+        //            if (barWpdw.EditValue != null)
+        //            {
+        //                sql += "and wpdw='" + barWpdw.EditValue + "'";
+        //            }
+        //        }
+        //    }
+
+        //    string _sql = "";
+        //    try
+        //    {
+        //        if (barStarTime.EditValue != null && barEndTime.EditValue != null)
+        //        {
+        //            if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
+        //            {
+        //                _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
+        //            }
+        //            else
+        //            {
+        //                _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
+        //            }
+        //        }
+        //        else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
+        //        {
+        //            _sql += " and ckdate >= '" + barStarTime.EditValue + "'";
+        //        }
+        //        else if ((barStarTime.EditValue == null || barStarTime.EditValue.ToString().Trim() == "") && (barEndTime.EditValue != null && barEndTime.EditValue.ToString().Trim() != ""))
+        //        {
+        //            _sql += "and ckdate <= '" + barEndTime.EditValue + "'";
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        _sql = "";
+        //    }
+        //    sql += " " + _sql;
+
+        //    sql += " order by wpmc desc";
+        //    gridViewOperation.RefreshData(sql);
+        //}
         #endregion
 
         #region 刷新数据
@@ -581,6 +655,7 @@ namespace Ebada.Scgl.Lcgl
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
+        string expotSQL = "";
         public void RefreshData()
         {
             if (barGDS.EditValue == null) return;
@@ -601,24 +676,26 @@ namespace Ebada.Scgl.Lcgl
             string _sql = "";
             try
             {
+                DateTime now = DateTime.Now;
+                string time = " " + now.ToLongTimeString();
                 if (barStarTime.EditValue != null && barEndTime.EditValue != null)
                 {
                     if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
                     {
-                        _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
+                        _sql += " and indate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "'";
                     }
                     else
                     {
-                        _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
+                        _sql += " and indate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 9) + time + "'";
                     }
                 }
-                else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
+                else if (barStarTime.EditValue != null && barEndTime.EditValue == null)
                 {
-                    _sql += " and ckdate >= '" + barStarTime.EditValue + "'";
+                    _sql += " and indate >= '" + barStarTime.EditValue + "'";
                 }
-                else if ((barStarTime.EditValue == null || barStarTime.EditValue.ToString().Trim() == "") && (barEndTime.EditValue != null && barEndTime.EditValue.ToString().Trim() != ""))
+                else if (barStarTime.EditValue == null && barEndTime.EditValue != null)
                 {
-                    _sql += "and ckdate <= '" + barEndTime.EditValue + "'";
+                    _sql += "and indate <= '" + barEndTime.EditValue + "'";
                 }
             }
             catch
@@ -629,6 +706,7 @@ namespace Ebada.Scgl.Lcgl
 
             sql += " order by wpmc desc";
             gridViewOperation.RefreshData(sql);
+            expotSQL = sql;
         }
         #endregion
 
@@ -657,7 +735,6 @@ namespace Ebada.Scgl.Lcgl
         {
             PJ_gdscrk pj = gridView1.GetFocusedRow() as PJ_gdscrk;
             frmGDSCKEdit edit = new frmGDSCKEdit();
-            edit.SetKC = true;
             if (pj != null)
             {
                 edit.RowData = pj;
@@ -677,6 +754,14 @@ namespace Ebada.Scgl.Lcgl
         private void barEndTime_EditValueChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+        #endregion
+
+        #region 根据条件导出
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExportGDSCKEdit export = new ExportGDSCKEdit();
+            export.ExportExcelForSQL(barGDS.EditValue.ToString(), "", expotSQL);
         }
         #endregion
     }

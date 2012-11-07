@@ -18,12 +18,7 @@ namespace Ebada.Scgl.Lcgl
 {
     public partial class frmGDSCKEdit : FormBase, IPopupFormEdit
     {
-
-        /// <summary>
-        /// 设置库存
-        /// </summary>
-        public bool SetKC { get; set; }
-
+        ExportGDSCKEdit etdjh = new ExportGDSCKEdit();
         #region
         SortableSearchableBindingList<PJ_gdscrk> m_CityDic = new SortableSearchableBindingList<PJ_gdscrk>();
         private bool isWorkflowCall = false;
@@ -154,62 +149,12 @@ namespace Ebada.Scgl.Lcgl
         #region 窗体加载事件、判断是设置库存还是添加物品
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
-            btnOK.Visible = false;
-            simpleButton4.Visible = true;
-            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from PJ_gdscrk where OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
-            if (list != null && list.Count > 0)
-            {
-                comWpmc.Properties.Items.AddRange(list);
-            }
-            if (rowData.wpmc == "")
-            {
-                comWpmc.EditValue = null;
-                comWpgg.EditValue = null;
-                comWpdw.EditValue = null;
-            }
+            comWpmc.Properties.Items.Clear();
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from PJ_gdscrk where OrgCode='" + rowData.OrgCode + "' and type='原始材料' and kcsl !='0'");
+            comWpmc.Properties.Items.AddRange(list);
         }
         #endregion
 
-        #region 添加并继续按钮
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            if (!YZ()) return;
-
-            rowData.ID = rowData.CreateID();
-            Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
-            MsgBox.ShowTipMessageBox("出库成功！");
-
-            IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
-                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%' and type='原始入库材料' or type='设置库存' or type='出库' order by id desc ");
-            if (pnumli.Count == 0)
-                rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
-            else
-            {
-                rowData.num = "GDSCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("GDSCRK", "")) + 1);
-            }
-
-            rowData.ID = rowData.CreateID();
-            rowData.type = "出库";
-            comNum.EditValue = rowData.num;
-            comWpmc.EditValue = null;
-            spCksl.EditValue = "0";
-
-            if (isWorkflowCall)
-            {
-                isWorkflowCall = false;
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = rowData.ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = rowData.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-            }
-        }
-        #endregion
 
         #region 物品名称更改
         private void comWpmc_EditValueChanged(object sender, EventArgs e)
@@ -218,7 +163,7 @@ namespace Ebada.Scgl.Lcgl
             comWpgg.EditValue = null;
             if (comWpmc.EditValue != null && comWpmc.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpgg from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and OrgCode='"+rowData.OrgCode+"'");
                 if (list != null && list.Count > 0)
                 {
                     comWpgg.Properties.Items.AddRange(list);
@@ -226,7 +171,7 @@ namespace Ebada.Scgl.Lcgl
 
                 // 查厂家
                 comWpcj.Properties.Items.Clear();
-                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "'");
+                list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpcj from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "'and OrgCode='"+rowData.OrgCode+"'");
                 if (list != null && list.Count > 0)
                 {
                     comWpcj.Properties.Items.AddRange(list);
@@ -242,7 +187,7 @@ namespace Ebada.Scgl.Lcgl
             comWpdw.EditValue = null;
             if (comWpgg.EditValue != null && comWpgg.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始材料'and OrgCode='"+rowData.OrgCode+"'");
                 if (list != null && list.Count > 0)
                 {
                     comWpdw.Properties.Items.AddRange(list);
@@ -258,7 +203,7 @@ namespace Ebada.Scgl.Lcgl
             comWpcj.EditValue = null;
             if (comWpgg.EditValue != null && comWpgg.EditValue.ToString() != "" && comWpdw.EditValue != null && comWpdw.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始入库材料'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始材料'");
                 if (list != null && list.Count > 0)
                 {
                     spKcsl.EditValue = list[0].ToString();
@@ -297,8 +242,67 @@ namespace Ebada.Scgl.Lcgl
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (!YZ()) return;
-            rowData.ckdate = DateTime.Now;
+            rowData.ID = rowData.CreateID();
+            DateTime now = DateTime.Now;
+            rowData.lasttime = now;
+            rowData.ckdate = now;
+            rowData.type = "出库";
+            if (rowData.kcsl == "0")
+            {
+                comWpmc.Properties.Items.Remove(rowData.wpmc);
+            }
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
             this.DialogResult = DialogResult.OK;
+            etdjh.ExportOne(rowData);
+        }
+        #endregion
+
+        #region 添加并继续按钮
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            if (!YZ()) return;
+
+            DateTime now = DateTime.Now;
+            rowData.lasttime = now;
+            rowData.ckdate = now;
+            rowData.ID = rowData.CreateID();
+            rowData.type = "出库";
+            Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
+            MsgBox.ShowTipMessageBox("出库成功！");
+
+            /// 导出
+            etdjh.ExportOne(rowData);
+
+            if (!comWpmc.Properties.Items.Contains(rowData.wpmc))
+            {
+                comWpmc.Properties.Items.Add(rowData.wpmc);
+            }
+
+            // 重新初始化数据
+            rowData.wpmc = "";
+            rowData.wpgg = "";
+            rowData.cksl = "";
+            rowData.wpcj = "";
+            rowData.wpdj = "";
+            rowData.cksl = "0";
+            rowData.kcsl = "0";
+
+            IList<PJ_gdscrk> pnumli = Client.ClientHelper.PlatformSqlMap.GetListByWhere
+                   <PJ_gdscrk>(" where id like '" + DateTime.Now.ToString("yyyyMMdd") + "%'");
+            if (pnumli.Count == 0)
+                rowData.num = "GDSCRK" + DateTime.Now.ToString("yyyyMMdd") + string.Format("{0:D4}", 1);
+            else
+            {
+                rowData.num = "GDSCRK" + (Convert.ToDecimal(pnumli[0].num.Replace("GDSCRK", "")) + 1);
+            }
+            comNum.EditValue = rowData.num;
+            comWpmc.EditValue = null;
+            comWpgg.EditValue = null;
+            comWpdw.EditValue = null;
+            comWpcj.EditValue = null;
+            meRemark.EditValue = null;
+            spCksl.EditValue = "0";
+            spKcsl.EditValue = "0";
         }
         #endregion
 

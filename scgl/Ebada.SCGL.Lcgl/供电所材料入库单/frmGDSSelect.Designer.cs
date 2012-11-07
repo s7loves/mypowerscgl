@@ -32,35 +32,35 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comjingbanren = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lkeGDS = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.comjingbanren = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lkeGDS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comjingbanren.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkeGDS.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(232, 157);
+            this.btnCancel.Location = new System.Drawing.Point(271, 169);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(60, 21);
+            this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(167, 157);
+            this.btnOK.Location = new System.Drawing.Point(195, 169);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(60, 21);
+            this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -73,7 +73,7 @@
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(302, 186);
+            this.groupControlOrg.Size = new System.Drawing.Size(352, 200);
             this.groupControlOrg.TabIndex = 9;
             // 
             // groupBox1
@@ -82,28 +82,45 @@
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.lkeGDS);
             this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Location = new System.Drawing.Point(10, 28);
+            this.groupBox1.Location = new System.Drawing.Point(12, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 113);
+            this.groupBox1.Size = new System.Drawing.Size(324, 122);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "供电所选择";
             // 
+            // comjingbanren
+            // 
+            this.comjingbanren.Location = new System.Drawing.Point(110, 79);
+            this.comjingbanren.Name = "comjingbanren";
+            this.comjingbanren.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comjingbanren.Size = new System.Drawing.Size(184, 21);
+            this.comjingbanren.TabIndex = 15;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(40, 83);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(36, 14);
+            this.labelControl1.TabIndex = 14;
+            this.labelControl1.Text = "经办人";
+            // 
             // lkeGDS
             // 
-            this.lkeGDS.Location = new System.Drawing.Point(94, 32);
+            this.lkeGDS.Location = new System.Drawing.Point(110, 34);
             this.lkeGDS.Name = "lkeGDS";
             this.lkeGDS.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkeGDS.Size = new System.Drawing.Size(158, 20);
+            this.lkeGDS.Size = new System.Drawing.Size(184, 21);
             this.lkeGDS.TabIndex = 13;
             this.lkeGDS.EditValueChanged += new System.EventHandler(this.lkeGDS_EditValueChanged);
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(27, 36);
+            this.labelControl4.Location = new System.Drawing.Point(31, 39);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(60, 13);
+            this.labelControl4.Size = new System.Drawing.Size(60, 14);
             this.labelControl4.TabIndex = 12;
             this.labelControl4.Text = "选择供电所";
             // 
@@ -123,28 +140,11 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(34, 77);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(36, 13);
-            this.labelControl1.TabIndex = 14;
-            this.labelControl1.Text = "经办人";
-            // 
-            // comjingbanren
-            // 
-            this.comjingbanren.Location = new System.Drawing.Point(94, 73);
-            this.comjingbanren.Name = "comjingbanren";
-            this.comjingbanren.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comjingbanren.Size = new System.Drawing.Size(158, 20);
-            this.comjingbanren.TabIndex = 15;
-            // 
             // frmGDSSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 186);
+            this.ClientSize = new System.Drawing.Size(352, 200);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -155,8 +155,8 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lkeGDS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comjingbanren.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkeGDS.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

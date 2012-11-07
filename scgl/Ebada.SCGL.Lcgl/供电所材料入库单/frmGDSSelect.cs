@@ -30,19 +30,22 @@ namespace Ebada.Scgl.Lcgl
         public frmGDSSelect()
         {
             InitializeComponent();
+
+            lkeGDS.Properties.DisplayMember = "OrgName";
+            lkeGDS.Properties.ValueMember = "OrgCode";
+            IList<mOrg> list = ClientHelper.PlatformSqlMap.GetList<mOrg>(" where OrgType='1'");
+            lkeGDS.Properties.DataSource = list;
+            lkeGDS.Properties.NullText = "";
+            lkeGDS.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OrgName", 100, "请选择供电所"));
+
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {
-                this.lkeGDS.Text = MainHelper.UserOrg.OrgName;
                 this.lkeGDS.EditValue = MainHelper.UserOrg.OrgCode;
+                this.lkeGDS.Properties.ReadOnly = true;
             }
             else
             {
-                lkeGDS.Properties.DisplayMember = "OrgName";
-                lkeGDS.Properties.ValueMember = "OrgCode";
-                IList<mOrg> list = ClientHelper.PlatformSqlMap.GetList<mOrg>(" where OrgType='1'");
-                lkeGDS.Properties.DataSource = list;
-                lkeGDS.Properties.NullText = "";
-                lkeGDS.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OrgName",100,"请选择供电所"));
+                this.lkeGDS.Properties.ReadOnly = false;
             }
         }
 

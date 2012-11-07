@@ -46,8 +46,6 @@
             this.barFJLY = new DevExpress.XtraBars.BarButtonItem();
             this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
-            this.btAddKuCun = new DevExpress.XtraBars.BarButtonItem();
-            this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -67,6 +65,7 @@
             this.ckYscl = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc)).BeginInit();
@@ -94,7 +93,6 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btAdd,
-            this.btEdit,
             this.btDelete,
             this.btFind,
             this.btRefresh,
@@ -110,14 +108,14 @@
             this.liuchenBarClear,
             this.barCopy,
             this.barFJLY,
-            this.btAddKuCun,
             this.barWpmc,
             this.barWpgg,
             this.barWpdw,
             this.barStarTime,
             this.barButtonItem1,
-            this.barEndTime});
-            this.barManager1.MaxItemId = 35;
+            this.barEndTime,
+            this.barButtonItem2});
+            this.barManager1.MaxItemId = 37;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.comWpmc,
@@ -145,8 +143,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 97),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddKuCun),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -307,25 +303,6 @@
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btAddKuCun
-            // 
-            this.btAddKuCun.Caption = "设置库存";
-            this.btAddKuCun.Id = 23;
-            this.btAddKuCun.ImageIndex = 6;
-            this.btAddKuCun.Name = "btAddKuCun";
-            this.btAddKuCun.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btAddKuCun.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.btAddKuCun.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddKuCun_ItemClick);
-            // 
-            // btEdit
-            // 
-            this.btEdit.Caption = "修改";
-            this.btEdit.Id = 1;
-            this.btEdit.ImageIndex = 1;
-            this.btEdit.Name = "btEdit";
-            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
             // btDelete
             // 
             this.btDelete.Caption = "删除";
@@ -366,7 +343,8 @@
             this.btExport0.ImageIndex = 7;
             this.btExport0.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btView),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorYear)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barExplorYear),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
             this.btExport0.Name = "btExport0";
             this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
@@ -382,7 +360,7 @@
             // 
             // barExplorYear
             // 
-            this.barExplorYear.Caption = "导出数据";
+            this.barExplorYear.Caption = "导出本次入库单";
             this.barExplorYear.Id = 16;
             this.barExplorYear.Name = "barExplorYear";
             this.barExplorYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorYear_ItemClick);
@@ -488,6 +466,13 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "根据条件导出";
+            this.barButtonItem2.Id = 36;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
             // UCGDSCK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -526,7 +511,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btAdd;
-        private DevExpress.XtraBars.BarButtonItem btEdit;
         private DevExpress.XtraBars.BarButtonItem btDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
@@ -538,7 +522,6 @@
         private DevExpress.XtraBars.BarButtonItem btView;
         private DevExpress.XtraBars.BarButtonItem barExplorYear;
         private DevExpress.XtraBars.BarButtonItem barCopy;
-        private DevExpress.XtraBars.BarButtonItem btAddKuCun;
         private DevExpress.XtraBars.BarEditItem barWpmc;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox comWpmc;
         private DevExpress.XtraBars.BarEditItem barWpgg;
@@ -559,5 +542,6 @@
         public DevExpress.XtraBars.BarButtonItem TaskOverButton;
         public DevExpress.XtraBars.BarButtonItem liuchenBarClear;
         public DevExpress.XtraBars.BarButtonItem barFJLY;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }

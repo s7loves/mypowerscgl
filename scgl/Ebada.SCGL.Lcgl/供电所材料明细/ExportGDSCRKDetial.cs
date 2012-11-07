@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Lcgl
                     ex.SetCellValue(datalist[j].ckdate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 1);
                     ex.SetCellValue(datalist[j].cksl, row + j % rowcount, col + 6);
                 }
-                else if (datalist[j].type == "设置库存")
+                else
                 {
                     ex.SetCellValue(datalist[j].indate.ToString("yyyy年MM月dd日"), row + j % rowcount, col + 1);
                     ex.SetCellValue(datalist[j].wpsl, row + j % rowcount, col + 5);
