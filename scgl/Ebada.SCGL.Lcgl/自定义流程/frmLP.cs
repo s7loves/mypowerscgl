@@ -1430,7 +1430,7 @@ namespace Ebada.Scgl.Lcgl
                     //currRecord.SignImg = bt;
                     currRecord.Content = GetContent();
                     dsoFramerWordControl1.FileSave();
-                    dsoFramerWordControl1.FileClose();
+                    //dsoFramerWordControl1.FileClose();
                     wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
                     if (wt != null)
                     {
@@ -2148,7 +2148,7 @@ namespace Ebada.Scgl.Lcgl
         }
         public void InitTaskData()
         {
-            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '下拉%'");
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and  tlcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '下拉%'");
             foreach (WF_WorkTastTrans wtt in wttli)
             {
                 Control ctrl = FindCtrl(wtt.tlcjdzdid);
@@ -2452,12 +2452,12 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.ComboBoxEdit":
-                    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
 
-
-                    if (li.Count > 0 && sqlSentence != "")
+                    if (li.Count > 0 && sqlSentence != "") {
+                        ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
+                    }
                     string[] comBoxItem = lp.ComBoxItem.Split(pcomboxchar);
                     comBoxItem = StringHelper.ReplaceEmpty(comBoxItem).Split(pchar);
                     for (int i = 0; i < comBoxItem.Length; i++)
