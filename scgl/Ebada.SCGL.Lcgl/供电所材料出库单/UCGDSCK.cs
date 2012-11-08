@@ -214,20 +214,17 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_gdscrk> e)
         {
             PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
-            if (crk != null)
+            if (crk == null)
             {
-                IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>("where id='" + crk.ID + "'");
-                if (list != null)
+                MsgBox.ShowTipMessageBox("请先选中要删除的一条记录！");
+            }
+            else
+            {
+                var rkcount = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select cast(count(*) as varchar(50)) from pj_gdscrk where ID >" + crk.ID + " and wpmc='" + crk.wpmc + "' and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "'");
+                if (rkcount != null && Convert.ToInt32(rkcount) > 0)
                 {
-                    if (list[0].type == "原始材料")
-                    {
-                        IList ilist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select id from PJ_gdscrk where wpmc='" + crk.wpmc + "'and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "' and type!='原始材料' ");
-                        if (ilist != null)
-                        {
-                            MsgBox.ShowWarningMessageBox("该条记录不是最后一条，无法执行删除！");
-                            e.Cancel = true; ;
-                        }
-                    }
+                    MsgBox.ShowWarningMessageBox("该记录不是最后一条,无法删除！");
+                    e.Cancel = true;
                 }
             }
         }
@@ -611,62 +608,6 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         #region 刷新数据
-        ///// <summary>
-        ///// 刷新数据
-        ///// </summary>
-        ///// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
-        //public void RefreshData()
-        //{
-        //    if (barGDS.EditValue == null) return;
-        //    string sql = " where OrgCode='" + barGDS.EditValue + "' and type='出库'";
-        //    if (barWpmc.EditValue != null)
-        //    {
-        //        sql += " and wpmc='" + barWpmc.EditValue + "'";
-        //        if (barWpgg.EditValue != null)
-        //        {
-        //            sql += " and wpgg='" + barWpgg.EditValue + "'";
-        //            if (barWpdw.EditValue != null)
-        //            {
-        //                sql += "and wpdw='" + barWpdw.EditValue + "'";
-        //            }
-        //        }
-        //    }
-
-        //    string _sql = "";
-        //    try
-        //    {
-        //        if (barStarTime.EditValue != null && barEndTime.EditValue != null)
-        //        {
-        //            if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
-        //            {
-        //                _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
-        //            }
-        //            else
-        //            {
-        //                _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
-        //            }
-        //        }
-        //        else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
-        //        {
-        //            _sql += " and ckdate >= '" + barStarTime.EditValue + "'";
-        //        }
-        //        else if ((barStarTime.EditValue == null || barStarTime.EditValue.ToString().Trim() == "") && (barEndTime.EditValue != null && barEndTime.EditValue.ToString().Trim() != ""))
-        //        {
-        //            _sql += "and ckdate <= '" + barEndTime.EditValue + "'";
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        _sql = "";
-        //    }
-        //    sql += " " + _sql;
-
-        //    sql += " order by wpmc desc";
-        //    gridViewOperation.RefreshData(sql);
-        //}
-        #endregion
-
-        #region 刷新数据
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -720,7 +661,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by wpmc desc";
+            sql += " order by ID desc,wpmc";
             gridViewOperation.RefreshData(sql);
             expotSQL = sql;
         }

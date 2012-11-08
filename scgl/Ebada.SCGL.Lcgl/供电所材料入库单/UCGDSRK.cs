@@ -62,12 +62,9 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 readOnly = value;
-                // btnOK.Visible = 
-                //liuchbarSubItem.Enabled = !value;
-                //btAdd.Enabled = !value;
-                //btEdit.Enabled = !value;
-                //btDelete.Enabled = !value;
-                //btAddKuCun.Enabled = !value;
+                liuchbarSubItem.Enabled = !value;
+                btAdd.Enabled = !value;
+                btDelete.Enabled = !value;
             }
         }
 
@@ -207,20 +204,17 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_gdscrk> e)
         {
             PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
-            if (crk != null)
+            if (crk == null)
             {
-                IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>("where id='"+crk.ID+"'");
-                if (list != null)
+                MsgBox.ShowTipMessageBox("请先选中要删除的一条记录！");
+            }
+            else
+            {
+                var rkcount = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select cast(count(*) as varchar(50)) from pj_gdscrk where ID >" + crk.ID + " and wpmc='" + crk.wpmc + "' and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "'");
+                if (rkcount != null && Convert.ToInt32(rkcount) > 0)
                 {
-                    if (list[0].type == "原始材料")
-                    {
-                        IList ilist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select id from PJ_gdscrk where wpmc='" + crk.wpmc + "'and wpgg='" + crk.wpgg + "' and wpdw='" + crk.wpdw + "' and OrgCode='" + crk.OrgCode + "' and type!='原始材料' ");
-                        if (ilist != null && ilist.Count > 0)
-                        {
-                            MsgBox.ShowWarningMessageBox("该条记录不是最后一条，无法执行删除！");
-                            e.Cancel = true; ;
-                        }
-                    }
+                    MsgBox.ShowWarningMessageBox("该记录不是最后一条,无法删除！");
+                    e.Cancel = true;
                 }
             }
         }
@@ -260,7 +254,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("ckdate");
             hideColumn("OrgCode");
             hideColumn("cksl");
-            gridView1.Columns["num"].Width = 150;
+            hideColumn("num");
         }
         /// <summary>
         /// 封装了数据操作的对象

@@ -19,6 +19,8 @@ namespace Ebada.Scgl.Lcgl
     public partial class frmGDSCKEdit : FormBase, IPopupFormEdit
     {
         ExportGDSCKEdit etdjh = new ExportGDSCKEdit();
+
+        public bool isSet = false;
         #region
         SortableSearchableBindingList<PJ_gdscrk> m_CityDic = new SortableSearchableBindingList<PJ_gdscrk>();
         private bool isWorkflowCall = false;
@@ -137,7 +139,7 @@ namespace Ebada.Scgl.Lcgl
                 MsgBox.ShowTipMessageBox("请选择出库物品单位！");
                 return false;
             }
-            else if (Convert.ToInt32(rowData.cksl) <= 0)
+            else if (Convert.ToDecimal(rowData.cksl) <= 0)
             {
                 MsgBox.ShowAskMessageBox("请输入出库数量！");
                 return false;
@@ -150,7 +152,7 @@ namespace Ebada.Scgl.Lcgl
         private void frmCLRKEdit_Load(object sender, EventArgs e)
         {
             comWpmc.Properties.Items.Clear();
-            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from PJ_gdscrk where OrgCode='" + rowData.OrgCode + "' and type='原始材料' and kcsl !='0'");
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpmc from pj_gdscrk as a where id = (select max(ID) from pj_gdscrk as b where b.wpmc=a.wpmc and b.wpgg=a.wpgg and b.wpdw=a.wpdw and b.OrgCode=a.OrgCode and type='入库') and OrgCode='" + rowData.OrgCode + "' and type='入库' and kcsl !='0'");
             comWpmc.Properties.Items.AddRange(list);
         }
         #endregion
@@ -187,7 +189,7 @@ namespace Ebada.Scgl.Lcgl
             comWpdw.EditValue = null;
             if (comWpgg.EditValue != null && comWpgg.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and type='原始材料'and OrgCode='" + rowData.OrgCode + "'");
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct wpdw from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and OrgCode='" + rowData.OrgCode + "'");
                 if (list != null && list.Count > 0)
                 {
                     comWpdw.Properties.Items.AddRange(list);
@@ -197,36 +199,22 @@ namespace Ebada.Scgl.Lcgl
         #endregion
 
         #region 物品单位更改
-        int cksl = 0;   // 库存数量
+        decimal kcsl = 0;   // 库存数量
         private void comWpdw_EditValueChanged(object sender, EventArgs e)
         {
-            comWpcj.EditValue = null;
+            kcsl = 0;
             if (comWpgg.EditValue != null && comWpgg.EditValue.ToString() != "" && comWpdw.EditValue != null && comWpdw.EditValue.ToString().Trim() != "")
             {
-                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始材料'");
-                if (list != null && list.Count > 0)
-                {
-                    spKcsl.EditValue = list[0].ToString();
-                    rowData.kcsl = list[0].ToString();
-                    cksl = Convert.ToInt32(list[0]);
-                    if (list[0].ToString() == "0")
-                    {
-                        spCksl.Enabled = false;
-                        simpleButton4.Enabled = false;
-                    }
-                    else
-                    {
-                        spCksl.Enabled = true;
-                        simpleButton4.Enabled = true;
-                    }
-                }
-                else
-                {
-                    cksl = 0;
-                    spKcsl.EditValue = "0";
-                    rowData.kcsl = "0";
-                    spCksl.Enabled = false;
-                }
+                string sql = string.Format("select cast(isnull(sum(cast(wpsl as float)),0) as varchar) from PJ_gdscrk where type='入库' and OrgCode='{0}' and wpmc='{1}' and wpgg='{2}' and wpdw='{3}'", rowData.OrgCode, comWpmc.EditValue, comWpgg.EditValue, comWpdw.EditValue);
+                var rkcount = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", sql);
+
+                sql = string.Format("select cast(isnull(sum(cast(cksl as float)),0) as varchar) from PJ_gdscrk where type='出库' and OrgCode='{0}' and wpmc='{1}' and wpgg='{2}' and wpdw='{3}'", rowData.OrgCode, comWpmc.EditValue, comWpgg.EditValue, comWpdw.EditValue);
+                var ckcount = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", sql);
+
+                kcsl = Convert.ToDecimal(rkcount) - Convert.ToDecimal(ckcount);
+
+                rowData.kcsl = kcsl.ToString();
+                spKcsl.EditValue = kcsl;
             }
         }
         #endregion
@@ -247,13 +235,17 @@ namespace Ebada.Scgl.Lcgl
             rowData.lasttime = now;
             rowData.ckdate = now;
             rowData.type = "出库";
+            rowData.wpsl = "";
             if (rowData.kcsl == "0")
             {
                 comWpmc.Properties.Items.Remove(rowData.wpmc);
             }
-           Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
+            if (isSet)
+            {
+                Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
+            }
             this.DialogResult = DialogResult.OK;
-            etdjh.ExportOne(rowData);
+             etdjh.ExportOne(rowData);
         }
         #endregion
 
@@ -266,6 +258,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.lasttime = now;
             rowData.ckdate = now;
             rowData.ID = rowData.CreateID();
+            rowData.wpsl = "";
             rowData.type = "出库";
             Client.ClientHelper.PlatformSqlMap.Create<PJ_gdscrk>(rowData);
             MsgBox.ShowTipMessageBox("出库成功！");
@@ -309,19 +302,19 @@ namespace Ebada.Scgl.Lcgl
         #region 出库数量更改
         private void spCksl_EditValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(spCksl.EditValue.ToString() ) < 0)
+            if (Convert.ToDecimal(spCksl.EditValue.ToString()) < 0)
             {
                 spCksl.EditValue = "0";
                 rowData.cksl = "0";
                 return;
             }
             comWpdw_EditValueChanged(sender, e);
-            int sl = cksl - Convert.ToInt32(spCksl.EditValue.ToString());
+            decimal sl = kcsl - Convert.ToDecimal(spCksl.EditValue.ToString());
             if (sl <= 0)
             {
                 sl = 0;
-                spCksl.EditValue = cksl;
-                rowData.cksl = cksl.ToString();
+                spCksl.EditValue = kcsl;
+                rowData.cksl = kcsl.ToString();
             }
 
             rowData.kcsl = sl.ToString();
