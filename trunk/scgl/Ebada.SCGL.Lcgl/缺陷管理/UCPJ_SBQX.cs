@@ -201,6 +201,7 @@ namespace Ebada.Scgl.Lcgl {
             hideColumn("s2");
             hideColumn("s3");
         }
+        private string basesql;
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -220,7 +221,9 @@ namespace Ebada.Scgl.Lcgl {
                    + ")"
                    ;
             }
-            gridViewOperation.RefreshData(slqwhere);
+            basesql = slqwhere;
+            RefreshData();
+            //gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -474,6 +477,26 @@ namespace Ebada.Scgl.Lcgl {
 
 
             gridControl1.FindForm().Close();
+        }
+
+       
+        private void RefreshData()
+        {
+            if (barCheckItem1.Checked)
+            {
+                
+                gridViewOperation.RefreshData(basesql + " and xcr!=''");
+            }
+            else
+            {
+                gridViewOperation.RefreshData(basesql);
+            }
+        }
+       
+
+        private void barCheckItem1_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            RefreshData();
         }
 
 
