@@ -172,8 +172,12 @@ namespace Ebada.Scgl.Lcgl {
         //清空标记
         private void DelJL(mOrg org)
         {
-            string sqlupdate=" s1=''  where OrgCode='"+org.OrgCode+"'";
-            MainHelper.PlatformSqlMap.Update("UpdatePJ_qxflByWhwer", sqlupdate);
+            if (!ReadOnly)
+            {
+                string sqlupdate = " s1=''  where OrgCode='" + org.OrgCode + "'";
+                MainHelper.PlatformSqlMap.Update("UpdatePJ_qxflByWhwer", sqlupdate);
+            }
+
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -225,16 +229,7 @@ namespace Ebada.Scgl.Lcgl {
              //cob.SelectedIndexChanged += new EventHandler(cob_SelectedIndexChanged);
         }
 
-        void cob_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (gridView1.GetFocusedRow()!=null)
-	        {
-                PJ_qxfl pj=gridView1.GetFocusedRow() as PJ_qxfl;
-                pj.s1=cob.Text;
-                MainHelper.PlatformSqlMap.Update<PJ_qxfl>(pj);
-	        }
-          
-        }
+      
         private string basesql;
         /// <summary>
         /// 刷新数据
