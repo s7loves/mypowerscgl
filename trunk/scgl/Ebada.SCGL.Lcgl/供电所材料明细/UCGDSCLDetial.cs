@@ -59,6 +59,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 readOnly = value;
+                liuchbarSubItem.Enabled = !value;
                 //btnOK.Visible = 
                 //btAdd.Enabled = !value;
                 //btEdit.Enabled = !value;
@@ -602,7 +603,7 @@ namespace Ebada.Scgl.Lcgl
         public void RefreshData()
         {
             if (barGDS.EditValue == null) return;
-            string sql = " where OrgCode='" + barGDS.EditValue + "' and type!='原始入库材料'";
+            string sql = " where OrgCode='" + barGDS.EditValue + "'";
             if (barWpmc.EditValue != null)
             {
                 sql += " and wpmc='" + barWpmc.EditValue + "'";
@@ -619,15 +620,17 @@ namespace Ebada.Scgl.Lcgl
             string _sql = "";
             try
             {
+                DateTime now = DateTime.Now;
+                string time = " " + now.ToLongTimeString();
                 if (barStarTime.EditValue != null && barEndTime.EditValue != null)
                 {
                     if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
                     {
-                        _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue + "'";
+                        _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "'";
                     }
                     else
                     {
-                        _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue + "'";
+                        _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 9) + time + "'";
                     }
                 }
                 else if ((barStarTime.EditValue != null && barStarTime.EditValue.ToString().Trim() != "") && (barEndTime.EditValue == null || barEndTime.EditValue.ToString().Trim() == ""))
@@ -657,7 +660,6 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                 {
-                    item.type = "入库";
                     item.cksl = "";
                 }
             }

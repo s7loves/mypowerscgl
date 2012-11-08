@@ -177,7 +177,7 @@ namespace Ebada.Scgl.Lcgl
                 MsgBox.ShowTipMessageBox("请输入物品单位！");
                 return false;
             }
-            else if (Convert.ToInt32(rowData.wpsl) <= 0)
+            else if (Convert.ToDecimal(rowData.wpsl) <= 0)
             {
                 MsgBox.ShowTipMessageBox("请输入入库数量！");
                 return false;
@@ -281,7 +281,7 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (comWpdw.EditValue != null && comWpdw.EditValue.ToString().Trim() != "")
                     {
-                        IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' and type='原始材料'");
+                        IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select top 1 kcsl from PJ_gdscrk where wpmc='" + comWpmc.EditValue + "' and wpgg='" + comWpgg.EditValue + "' and wpdw='" + comWpdw.EditValue + "' and OrgCode='" + rowData.OrgCode + "' order by id desc");
                         if (list != null && list.Count > 0)
                         {
                             kcls = list[0].ToString();
@@ -309,26 +309,14 @@ namespace Ebada.Scgl.Lcgl
             DateTime now = DateTime.Now;
             rowData.lasttime = now;
             rowData.indate = now;
+            rowData.ckdate = now;
             rowData.type = "入库";
+            rowData.wpsl = spWpsl.EditValue.ToString();
 
             if (!comWpmc.Properties.Items.Contains(rowData.wpmc))
             {
                 comWpmc.Properties.Items.Add(rowData.wpmc);
             }
-
-            //if (isWorkflowCall)
-            //{
-            //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-            //    mrwt.ModleRecordID = rowData.ID;
-            //    mrwt.RecordID = currRecord.ID;
-            //    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-            //    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-            //    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-            //    mrwt.ModleTableName = rowData.GetType().ToString();
-            //    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-            //    mrwt.CreatTime = DateTime.Now;
-            //    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-            //}
 
             this.DialogResult = DialogResult.OK;
             etdjh.ExportOne(rowData);

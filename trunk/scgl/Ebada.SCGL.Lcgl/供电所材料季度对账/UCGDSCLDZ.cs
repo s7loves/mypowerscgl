@@ -53,11 +53,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 readOnly = value;
-                //btnOK.Visible = 
-                //btAdd.Enabled = !value;
-                //btEdit.Enabled = !value;
-                //btDelete.Enabled = !value;
-                //btAddKuCun.Enabled = !value;
+                liuchbarSubItem.Enabled = !value;
             }
         }
 
@@ -198,7 +194,7 @@ namespace Ebada.Scgl.Lcgl
         #region 导出数据2
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (barGDS.EditValue != null )
+            if (barGDS.EditValue != null)
             {
                 if (barEndTime.EditValue == null)
                 {
@@ -314,7 +310,7 @@ namespace Ebada.Scgl.Lcgl
             DateTime now = DateTime.Now;
             string time = " " + now.ToLongTimeString();
             if (barGDS.EditValue == null) return;
-            string sql = " where OrgCode='" + barGDS.EditValue + "' and type='原始材料'";
+            string sql = "  as a where id = (select max(ID) from pj_gdscrk as b where b.wpmc=a.wpmc and b.wpgg=a.wpgg and b.wpdw=a.wpdw and b.OrgCode=a.OrgCode) and  OrgCode='" + barGDS.EditValue + "'";
             if (barWpmc.EditValue != null)
             {
                 sql += " and wpmc='" + barWpmc.EditValue + "'";

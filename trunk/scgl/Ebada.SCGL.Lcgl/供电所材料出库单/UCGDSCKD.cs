@@ -183,6 +183,7 @@ namespace Ebada.Scgl.Lcgl
             wp.type = "出库";
             wp.OrgCode = lkeGDS.EditValue.ToString();
             frm.RowData = wp;
+            frm.isSet = true;
             frm.ShowDialog();
         }
         #endregion
@@ -238,7 +239,7 @@ namespace Ebada.Scgl.Lcgl
         private bool first = true;
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            string sql = " where OrgCode='" + lkeGDS.EditValue + "' and type='原始材料'";
+            string sql = " as a where id = (select max(ID) from pj_gdscrk as b where b.wpmc=a.wpmc and b.wpgg=a.wpgg and b.wpdw=a.wpdw and b.OrgCode=a.OrgCode) and OrgCode='" + lkeGDS.EditValue + "'";
             if (comWpmc.EditValue != null)
             {
                 sql += " and wpmc='" + comWpmc.EditValue + "'";
