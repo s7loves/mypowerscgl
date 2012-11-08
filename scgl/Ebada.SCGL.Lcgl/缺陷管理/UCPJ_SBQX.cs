@@ -129,15 +129,10 @@ namespace Ebada.Scgl.Lcgl {
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_qxfl> e) {
-            //if (isWorkflowCall)
-            //{
+            if (isWorkflowCall) {
 
-            //    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + e.Value.ID + "' and RecordID='" + currRecord.ID + "'"
-            //        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-            //        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-            //        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-            //        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
-            //}
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + e.Value.ID + "' and RecordID='" + currRecord.ID + "'");
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_qxfl> e) {
