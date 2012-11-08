@@ -99,12 +99,16 @@ namespace Ebada.Scgl.Lcgl
                         ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 6);
                     }
                     //消除时限
-                    if (ComboBoxHelper.CompreDate(Convert.ToDateTime(tempobj.xcqx)))
+                    if (tempobj.xcqx!=string.Empty)
                     {
-                        ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Year.ToString(), row + i * len1, 7);
-                        ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Month.ToString(), row + i * len1, 8);
-                        ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Day.ToString(), row + i * len1, 9);
+                        if (ComboBoxHelper.CompreDate(Convert.ToDateTime(tempobj.xcqx)))
+                        {
+                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Year.ToString(), row + i * len1, 7);
+                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Month.ToString(), row + i * len1, 8);
+                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Day.ToString(), row + i * len1, 9);
+                        }
                     }
+                    
                     //备注
                     ex.SetCellValue(tempobj.remark, row + i * len1,10);
 
