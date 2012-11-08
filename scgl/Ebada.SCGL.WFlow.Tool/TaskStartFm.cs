@@ -1741,6 +1741,10 @@ namespace Ebada.SCGL.WFlow.Tool {
         //±£´æ¸½¼þ
         private void SaveFJ()
         {
+            if (downFileControltwo1.FJtable==null)
+            {
+                return;
+            }
             for (int i = 0; i < downFileControltwo1.FJtable.Rows.Count; i++)
             {
 
