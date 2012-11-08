@@ -1048,6 +1048,12 @@
     <Compile Include="自定义流程\frmViewTemplate.Designer.cs">
       <DependentUpon>frmViewTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="自定义流程\DownFileControltwo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="自定义流程\DownFileControltwo.Designer.cs">
+      <DependentUpon>DownFileControltwo.cs</DependentUpon>
+    </Compile>
     <Compile Include="非生产物资管理入库单\ExportFCLRKEdit.cs" />
     <Compile Include="非生产物资管理入库单\frmFCLRKEdit.cs">
       <SubType>Form</SubType>
@@ -4086,6 +4092,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="自定义流程\frmViewTemplate.resx">
       <DependentUpon>frmViewTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="自定义流程\DownFileControltwo.resx">
+      <DependentUpon>DownFileControltwo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

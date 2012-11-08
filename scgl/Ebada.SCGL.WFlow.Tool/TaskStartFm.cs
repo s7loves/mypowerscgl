@@ -12,6 +12,8 @@ using System.Reflection;
 using Ebada.Core;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.IO;
+using System.Threading;
 
 
 namespace Ebada.SCGL.WFlow.Tool {
@@ -111,6 +113,8 @@ namespace Ebada.SCGL.WFlow.Tool {
         private RadioButton rbnWorkTable;
         private DevExpress.XtraEditors.TextEdit cbxWorkExcelTable;
         private CheckBox cbxRiZhi;
+        private TabPage tabPage6;
+        private Ebada.Scgl.Lcgl.DownFileControltwo downFileControltwo1;
         private DataTable rizdt = null;
 
 
@@ -226,6 +230,8 @@ namespace Ebada.SCGL.WFlow.Tool {
             this.cbxTaskExplore = new System.Windows.Forms.CheckBox();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.downFileControltwo1 = new Ebada.Scgl.Lcgl.DownFileControltwo();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -246,6 +252,7 @@ namespace Ebada.SCGL.WFlow.Tool {
             ((System.ComponentModel.ISupportInitialize)(this.cbxWorkExcelTable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).BeginInit();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // plclassFill
@@ -712,6 +719,7 @@ namespace Ebada.SCGL.WFlow.Tool {
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(8, 10);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1063,6 +1071,29 @@ namespace Ebada.SCGL.WFlow.Tool {
             this.contextMenu3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem8});
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.downFileControltwo1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 21);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(538, 495);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "任务附件";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // downFileControltwo1
+            // 
+            this.downFileControltwo1.FormType = "";
+            this.downFileControltwo1.Isdownfile = false;
+            this.downFileControltwo1.Isupfile = false;
+            this.downFileControltwo1.Location = new System.Drawing.Point(10, 15);
+            this.downFileControltwo1.Name = "downFileControltwo1";
+            this.downFileControltwo1.RecordID = null;
+            this.downFileControltwo1.Size = new System.Drawing.Size(516, 471);
+            this.downFileControltwo1.TabIndex = 0;
+            this.downFileControltwo1.UpfilePath = null;
+            // 
             // fmTaskStart
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -1095,6 +1126,7 @@ namespace Ebada.SCGL.WFlow.Tool {
             ((System.ComponentModel.ISupportInitialize)(this.tetWorkPos.Properties)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1231,6 +1263,11 @@ namespace Ebada.SCGL.WFlow.Tool {
 
             //*********日志控制
             iniRiZhiData();
+            #region 附件
+            downFileControltwo1.FormType = "上传";
+            downFileControltwo1.RecordID = NowTask.TaskId;
+            downFileControltwo1.UpfilePath = NowTask.TaskId;
+            #endregion
         }
         public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName) {
             object fromCtrl;
@@ -1698,6 +1735,27 @@ namespace Ebada.SCGL.WFlow.Tool {
             //保存关联模块
             WorkFlowTask.DeleteAllModle(NowTask.TaskId);
             if (UserModleId != "") WorkFlowTask.SetTaskUserModle(UserModleId, NowTask.WorkFlowId, NowTask.TaskId);
+
+            SaveFJ();
+        }
+        //保存附件
+        private void SaveFJ()
+        {
+            for (int i = 0; i < downFileControltwo1.FJtable.Rows.Count; i++)
+            {
+
+                PJ_lcfj lcfu = new PJ_lcfj();
+                lcfu.ID = lcfu.CreateID();
+                lcfu.Filename = Path.GetFileName(downFileControltwo1.FJtable.Rows[i]["FilePath"].ToString());
+                lcfu.FileRelativePath = downFileControltwo1.FJtable.Rows[i]["SaveFileName"].ToString();
+                lcfu.FileSize = Convert.ToInt64(downFileControltwo1.FJtable.Rows[i]["FileSize"]);
+                lcfu.flag = downFileControltwo1.FJtable.Rows[i]["flag"].ToString();
+                lcfu.RecordID = NowTask.TaskId;
+                lcfu.Creattime = DateTime.Now;
+                Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                if (downFileControltwo1.FJtable.Rows[i]["Kind"].ToString() != "已上传")
+                    MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+            }
 
         }
         //private void SaveRiZhiData()

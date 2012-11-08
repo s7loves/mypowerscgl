@@ -11,6 +11,8 @@ using Ebada.Client.Platform;
 using Ebada.Core;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.IO;
+using System.Threading;
 
 
 namespace Ebada.SCGL.WFlow.Tool
@@ -20,6 +22,7 @@ namespace Ebada.SCGL.WFlow.Tool
     /// </summary>
     public class fmTaskAlter : BaseForm_Single
     {
+        #region 属性
         public AlternateTask NowTask;
         public string UserId = "";//操作人账号，用作权限判断。
         public string UserName = "";//操作人姓名，用作显示。
@@ -162,7 +165,11 @@ namespace Ebada.SCGL.WFlow.Tool
         private RadioButton rbnWorkExcel;
         private RadioButton rbnWorkTable;//处理人
         private string varDbTableName = "";
+        private TabPage tabPage8;
+        private Ebada.Scgl.Lcgl.DownFileControltwo downFileControltwo1;
         private DataTable rizdt = null;
+        #endregion
+        
         public fmTaskAlter(AlternateTask alterTask, string userId, string userName)
         {
             //
@@ -333,10 +340,12 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxOtMail = new System.Windows.Forms.CheckBox();
             this.cbxOtMessage = new System.Windows.Forms.CheckBox();
             this.cbxOtSms = new System.Windows.Forms.CheckBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.contextMenu2 = new System.Windows.Forms.ContextMenu();
             this.contextMenu3 = new System.Windows.Forms.ContextMenu();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.downFileControltwo1 = new Ebada.Scgl.Lcgl.DownFileControltwo();
             this.plclassFill.SuspendLayout();
             this.plclassBottom.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -372,6 +381,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabPage4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // plclassFill
@@ -868,6 +878,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(9, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1697,6 +1708,17 @@ namespace Ebada.SCGL.WFlow.Tool
             this.cbxOtSms.TabIndex = 5;
             this.cbxOtSms.Text = "手机短信通知";
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.downFileControltwo1);
+            this.tabPage8.Location = new System.Drawing.Point(4, 21);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(536, 466);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "任务附件";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
             // menuItem5
             // 
             this.menuItem5.Index = 0;
@@ -1716,6 +1738,18 @@ namespace Ebada.SCGL.WFlow.Tool
             // 
             this.menuItem7.Index = 0;
             this.menuItem7.Text = "删除";
+            // 
+            // downFileControltwo1
+            // 
+            this.downFileControltwo1.FormType = "";
+            this.downFileControltwo1.Isdownfile = false;
+            this.downFileControltwo1.Isupfile = false;
+            this.downFileControltwo1.Location = new System.Drawing.Point(6, 6);
+            this.downFileControltwo1.Name = "downFileControltwo1";
+            this.downFileControltwo1.RecordID = null;
+            this.downFileControltwo1.Size = new System.Drawing.Size(522, 437);
+            this.downFileControltwo1.TabIndex = 0;
+            this.downFileControltwo1.UpfilePath = null;
             // 
             // fmTaskAlter
             // 
@@ -1767,6 +1801,7 @@ namespace Ebada.SCGL.WFlow.Tool
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1960,6 +1995,12 @@ namespace Ebada.SCGL.WFlow.Tool
                 if (usr.Length > 0)
                 lbxRmMsgToUsers.Items.Add(usr);
             }
+
+            #region 附件
+            downFileControltwo1.FormType = "上传";
+            downFileControltwo1.RecordID = NowTask.TaskId;
+            downFileControltwo1.UpfilePath = NowTask.TaskId;
+            #endregion
         }
         private void iniRiZhiTablelcbxData(ComboBox cbxtable, ComboBox cbxtablefield, string taskID, string tableID, string fieldID)
         {
@@ -2337,6 +2378,26 @@ namespace Ebada.SCGL.WFlow.Tool
             }
             ev.RmToUsers = us;
             ev.Insert();
+            SaveFJ();
+        }
+        //保存附件
+        private void SaveFJ()
+        {
+            for (int i = 0; i < downFileControltwo1.FJtable.Rows.Count; i++)
+            {
+
+                PJ_lcfj lcfu = new PJ_lcfj();
+                lcfu.ID = lcfu.CreateID();
+                lcfu.Filename = Path.GetFileName(downFileControltwo1.FJtable.Rows[i]["FilePath"].ToString());
+                lcfu.FileRelativePath = downFileControltwo1.FJtable.Rows[i]["SaveFileName"].ToString();
+                lcfu.FileSize = Convert.ToInt64(downFileControltwo1.FJtable.Rows[i]["FileSize"]);
+                lcfu.flag = downFileControltwo1.FJtable.Rows[i]["flag"].ToString();
+                lcfu.RecordID = NowTask.TaskId;
+                lcfu.Creattime = DateTime.Now;
+                Thread.Sleep((new TimeSpan(100000)));//0.1毫秒
+                if (downFileControltwo1.FJtable.Rows[i]["Kind"].ToString() != "已上传")
+                    MainHelper.PlatformSqlMap.Create<PJ_lcfj>(lcfu);
+            }
 
         }
         private void SaveRiZhiData()

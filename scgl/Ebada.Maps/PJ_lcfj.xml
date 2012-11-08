@@ -11,6 +11,11 @@
         <result property="FileSize" column="FileSize" />
         <result property="FileRelativePath" column="FileRelativePath" />
         <result property="Creattime" column="Creattime" />
+        <result property="flag" column="flag" />
+        <result property="by1" column="by1" />
+        <result property="by2" column="by2" />
+        <result property="by3" column="by3" />
+        <result property="by4" column="by4" />
       </resultMap>
   </resultMaps>
 
@@ -22,7 +27,12 @@
          [Filename],
          [FileSize],
          [FileRelativePath],
-         [Creattime]
+         [Creattime],
+         [flag],
+         [by1],
+         [by2],
+         [by3],
+         [by4]
           FROM PJ_lcfj
           $value$
    </select>
@@ -34,7 +44,12 @@
          [Filename],
          [FileSize],
          [FileRelativePath],
-         [Creattime]
+         [Creattime],
+         [flag],
+         [by1],
+         [by2],
+         [by3],
+         [by4]
           FROM PJ_lcfj
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -43,6 +58,11 @@
        <isNotNull prepend="AND" property="FileSize">[FileSize]='$FileSize$'</isNotNull>
        <isNotNull prepend="AND" property="FileRelativePath">[FileRelativePath]='$FileRelativePath$'</isNotNull>
        <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="flag">[flag]='$flag$'</isNotNull>
+       <isNotNull prepend="AND" property="by1">[by1]='$by1$'</isNotNull>
+       <isNotNull prepend="AND" property="by2">[by2]='$by2$'</isNotNull>
+       <isNotNull prepend="AND" property="by3">[by3]='$by3$'</isNotNull>
+       <isNotNull prepend="AND" property="by4">[by4]='$by4$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_lcfjByKey" resultMap="PJ_lcfj_AllColumns" parameterClass="PJ_lcfj">
@@ -52,7 +72,12 @@
          [Filename],
          [FileSize],
          [FileRelativePath],
-         [Creattime]
+         [Creattime],
+         [flag],
+         [by1],
+         [by2],
+         [by3],
+         [by4]
          FROM PJ_lcfj
          WHERE 
            ID = #ID#
@@ -86,7 +111,12 @@
              [Filename]=#Filename#,
              [FileSize]=#FileSize#,
              [FileRelativePath]=#FileRelativePath#,
-             [Creattime]=#Creattime#
+             [Creattime]=#Creattime#,
+             [flag]=#flag#,
+             [by1]=#by1#,
+             [by2]=#by2#,
+             [by3]=#by3#,
+             [by4]=#by4#
             WHERE 
               ID = #ID#
 
@@ -100,7 +130,12 @@
          [Filename],
          [FileSize],
          [FileRelativePath],
-         [Creattime]
+         [Creattime],
+         [flag],
+         [by1],
+         [by2],
+         [by3],
+         [by4]
          )
        VALUES
          (
@@ -109,7 +144,12 @@
          #Filename#,
          #FileSize#,
          #FileRelativePath#,
-         #Creattime#
+         #Creattime#,
+         #flag#,
+         #by1#,
+         #by2#,
+         #by3#,
+         #by4#
          )
 
    </insert>
@@ -124,6 +164,11 @@
        <isNotNull prepend="AND" property="FileSize">[FileSize]='$FileSize$'</isNotNull>
        <isNotNull prepend="AND" property="FileRelativePath">[FileRelativePath]='$FileRelativePath$'</isNotNull>
        <isNotNull prepend="AND" property="Creattime">[Creattime]='$Creattime$'</isNotNull>
+       <isNotNull prepend="AND" property="flag">[flag]='$flag$'</isNotNull>
+       <isNotNull prepend="AND" property="by1">[by1]='$by1$'</isNotNull>
+       <isNotNull prepend="AND" property="by2">[by2]='$by2$'</isNotNull>
+       <isNotNull prepend="AND" property="by3">[by3]='$by3$'</isNotNull>
+       <isNotNull prepend="AND" property="by4">[by4]='$by4$'</isNotNull>
      </dynamic>
 
    </select>
