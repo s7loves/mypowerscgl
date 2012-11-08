@@ -373,8 +373,9 @@ namespace Ebada.SCGL.WFlow.Engine
                
                 string sqlstr = "select top " + topsize + " * from (";
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
-                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
-                sqlstr = sqlstr + " (OperContent = 'ALL')) ";
+                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') )  ";
+                sqlstr += string.Format("OR (EXISTS( SELECT a.modu_id FROM rRoleModul a, rUserRole b where a.roleid=b.roleid and modu_id='{0}' and b.UserId='{1}') )  ", NowTaskId, userId);
+                sqlstr = sqlstr + "or (OperContent = 'ALL')) ";
                 if (topsize > 1) {
                     sqlstr = sqlstr + " and  (OperStatus='0') and (Status='1' ) ";
                 }
@@ -503,8 +504,10 @@ namespace Ebada.SCGL.WFlow.Engine
 
                 string sqlstr = "select top " + topsize + " * from (";
                 sqlstr = sqlstr + "  select " + filedstr + "  from WF_WorkTaskInstanceView  WHERE ";
-                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') ) OR ";
-                sqlstr = sqlstr + " (OperContent = 'ALL')) and  (OperStatus='0' or OperStatus='3' ) and ";
+                sqlstr = sqlstr + " ((OperContent IN (SELECT OperContent FROM WF_OperContentView where UserId='" + userId + "') ) OR (OperContent IN (SELECT RoleID FROM rUserRole where UserId='" + userId + "') )  ";
+                sqlstr += string.Format("OR (EXISTS( SELECT a.modu_id FROM rRoleModul a, rUserRole b where a.roleid=b.roleid and modu_id='{0}' and b.UserId='{1}') )  ", WorkFlowId, userId);
+
+                sqlstr = sqlstr + "or (OperContent = 'ALL')) and  (OperStatus='0' or OperStatus='3' ) and ";
                 sqlstr = sqlstr + " (Status='1' or OperStatus='2') and ( (WorkFlowId='" + WorkFlowId + "' and WorkFlowInsId='" + WorkFlowInstanceId + "')  or WorkFlowInsId in (select WorkFlowInsId from  WF_WorkFlowInstance where " + allworflowid + "  ))";
                 sqlstr = sqlstr + "union  ";
                 sqlstr = sqlstr + " select " + filedstr + " from WF_WorkTaskInsAccreditView where ";
