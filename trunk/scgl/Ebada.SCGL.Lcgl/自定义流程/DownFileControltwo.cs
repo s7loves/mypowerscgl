@@ -17,9 +17,9 @@ using System.Web;
 
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class DownFileControl : UserControl
+    public partial class DownFileControltwo : UserControl
     {
-        public DownFileControl()
+        public DownFileControltwo()
         {
             InitializeComponent();
         }
@@ -51,17 +51,6 @@ namespace Ebada.Scgl.Lcgl
         private string upfileRoot = "UpFileFolder/";//上传文件根目录
         public Thread upThread=null;
         public WebClient webClient=null;
-       
-        private string _taskid = string.Empty;
-        /// <summary>
-        ///  //流程结点id
-        /// </summary>
-        public string TaskId
-        {
-            get { return _taskid; }
-            set { _taskid = value; }
-        }
-       
         public DataTable FJtable
         {
             get { return fjtable; }
@@ -215,7 +204,7 @@ namespace Ebada.Scgl.Lcgl
         {
             //if (formtype == "下载")
             {
-                IList<PJ_lcfj> lifjlis = MainHelper.PlatformSqlMap.GetList<PJ_lcfj>("SelectPJ_lcfjList", "where RecordID='" + recordID + "'  or RecordID='" + TaskId + "' ");
+                IList<PJ_lcfj> lifjlis = MainHelper.PlatformSqlMap.GetList<PJ_lcfj>("SelectPJ_lcfjList", "where RecordID='"+recordID+"'");
                 for (int i = 0; i < lifjlis.Count; i++)
                 {
                     DataRow dr = fjtable.NewRow();
@@ -539,6 +528,8 @@ namespace Ebada.Scgl.Lcgl
                    savefilename = upfileRoot + upfilePath + "/" + strtime + "-" + Path.GetFileName(strFileName);
                    dr["SaveFileName"] = savefilename;
                    dr["FileSize"] = fileStreamtemp.Length;
+                   //从结点上传的附件，标记为1;
+                   dr["flag"] = 1;
                    fjtable.Rows.Add(dr);
                    upfilelist.Add(savefilename);
                    

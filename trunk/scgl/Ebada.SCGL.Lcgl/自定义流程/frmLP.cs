@@ -881,6 +881,7 @@ namespace Ebada.Scgl.Lcgl
                     filecontrol.Location = new System.Drawing.Point(currentPosX, currentPosY + 10);
                     currentPosY = currentPosY + filecontrol.Size.Height;
                     filecontrol.UpfilePath = GetWorkFlowNmae(kind);
+                    filecontrol.TaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
                     if (currRecord == null)
                     {
                         currRecord = new LP_Record();
