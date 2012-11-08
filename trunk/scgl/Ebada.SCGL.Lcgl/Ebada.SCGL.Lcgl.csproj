@@ -480,6 +480,12 @@
     <Compile Include="电压检测点抄表卡\UCPS_21dyjcdcbkM.Designer.cs">
       <DependentUpon>UCPS_21dyjcdcbkM.cs</DependentUpon>
     </Compile>
+    <Compile Include="缺陷管理\UCPJ_SBQXMX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="缺陷管理\UCPJ_SBQXMX.Designer.cs">
+      <DependentUpon>UCPJ_SBQXMX.cs</DependentUpon>
+    </Compile>
     <Compile Include="网改季度对账\jddzWGInquiryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3868,6 +3874,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="电压检测点抄表卡\UCPS_21dyjcdcbkM.resx">
       <DependentUpon>UCPS_21dyjcdcbkM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="缺陷管理\UCPJ_SBQXMX.resx">
+      <DependentUpon>UCPJ_SBQXMX.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="网改季度对账\jddzWGInquiryForm.resx">
