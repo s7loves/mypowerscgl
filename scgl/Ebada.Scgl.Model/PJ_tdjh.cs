@@ -35,7 +35,10 @@ namespace Ebada.Scgl.Model
         private string _s2 = "";
         private bool _IsSelect = false;
         private string _s3 = "";
-        private DateTime _createdate=new DateTime(1900,1,1); 
+        private DateTime _createdate=new DateTime(1900,1,1);
+        //审核人项
+        private string _ShenHeRen = "";
+
 
         #endregion
   
@@ -308,6 +311,24 @@ namespace Ebada.Scgl.Model
                     _createdate = value;
                 }
             }			 
+        }
+
+        /// <summary>
+        /// 属性名称：ShenHeRen
+        /// 属性描述：审核人
+        /// 字段信息：[ShenHeRen],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("审核人")]
+        public string ShenHeRen
+        {
+            get { return _ShenHeRen; }
+            set
+            {
+                if (_ShenHeRen as object == null || !_ShenHeRen.Equals(value))
+                {
+                    _ShenHeRen = value;
+                }
+            }
         }
   
         #endregion 
