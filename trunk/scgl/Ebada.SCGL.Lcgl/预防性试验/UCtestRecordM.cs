@@ -19,6 +19,34 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
+        public UserControl Show(string str)
+        {
+            int m = 0;
+            int.TryParse(str, out m);
+            if (m!=0)
+            {
+                int top = m / 10;
+                int down = m % 10;
+                if (1 <= top && top <= 4)
+                {
+                    for (int i = 0; i < xtraTabControl1.TabPages.Count; i++)
+                    {
+                        xtraTabControl1.TabPages[i].PageVisible = false;
+                    }
+                    xtraTabControl1.TabPages[top - 1].PageVisible = true;
+                }
+                if (1 <= down && down <= 4)
+                {
+                    for (int i = 0; i < xtraTabControl2.TabPages.Count; i++)
+                    {
+                        xtraTabControl2.TabPages[i].PageVisible = false;
+                    }
+                    xtraTabControl2.TabPages[down - 1].PageVisible = true;
+                }
+            }
+
+            return this;
+        }
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
         private DataTable WorkFlowData = null;//实例流程信息
