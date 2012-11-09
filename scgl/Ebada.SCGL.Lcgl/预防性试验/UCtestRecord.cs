@@ -30,7 +30,7 @@ using Ebada.UI.Base;
 
 namespace Ebada.Scgl.Lcgl
 {
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Lcgl
     {
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         public static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
-        public  GridViewOperation<PJ_yfsyjl> gridViewOperation;
+        public GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
@@ -75,10 +75,11 @@ namespace Ebada.Scgl.Lcgl
         }
         public bool IsWorkflowCall
         {
-            set {
+            set
+            {
 
                 isWorkflowCall = value;
-                
+
             }
         }
         public LP_Record CurrRecord
@@ -118,7 +119,7 @@ namespace Ebada.Scgl.Lcgl
                                 TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
                                 if (wt.Description != "") TaskOverButton.Caption = wt.Description;
                             }
-                        
+
                     }
                 }
             }
@@ -144,13 +145,13 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
-            
+
         }
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
         {
             Addqxmx(obj);
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
-        
+
         }
         //处理缺陷明细  lgmqx
         private void Addqxmx(PJ_yfsyjl obj)
@@ -252,7 +253,7 @@ namespace Ebada.Scgl.Lcgl
                                 mx.qxlb = "重大缺陷";
                                 mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             }
-                            
+
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }
@@ -312,8 +313,8 @@ namespace Ebada.Scgl.Lcgl
             if (isWorkflowCall)
             {
 
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID+"'"
-                    + " and  WorkFlowId='"+ WorkFlowData.Rows[0]["WorkFlowId"].ToString()+"'"
+                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
+                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                     + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
@@ -330,23 +331,23 @@ namespace Ebada.Scgl.Lcgl
             //}
             slqwhere = slqwhere + " order by xh";
             IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(slqwhere);
-            int i=1;
+            int i = 1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             foreach (PJ_yfsyjl ob in li)
             {
                 ob.xh = i;
                 i++;
-                list.Add(ob); 
+                list.Add(ob);
             }
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
             if (list.Count > 0)
             {
-                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray ());
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
                 list3.Add(obj3);
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'  ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'  ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -386,7 +387,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _type = value;
-                if (_type != null )
+                if (_type != null)
                 {
                     switch (_type)
                     {
@@ -414,17 +415,17 @@ namespace Ebada.Scgl.Lcgl
                         //    gridView1.Columns["charMan"].OptionsColumn.AllowMerge = DefaultBoolean.True;
                         //    gridView1.Columns["Remark"].OptionsColumn.AllowMerge = DefaultBoolean.True;   
                         //    gridViewOperation.EditForm =  new frmtestRecorddrqEdit();
-                            //break;
+                        //break;
                     }
                     RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  ");
                 }
 
             }
         }
-       
+
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
-           
+
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
@@ -437,7 +438,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 e.Value.type = _type;
                 e.Value.OrgCode = parentObj.OrgCode;
-                e.Value.OrgName = parentObj.OrgName; 
+                e.Value.OrgName = parentObj.OrgName;
             }
         }
         protected override void OnLoad(EventArgs e)
@@ -460,17 +461,17 @@ namespace Ebada.Scgl.Lcgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
         private void initImageList()
@@ -570,12 +571,13 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_yfsyjl newobj)
         {
-            if ( parentID == null)
+            if (parentID == null)
             {
                 return;
             }
-            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
-           
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); }
+            catch { }
+
         }
         /// <summary>
         /// 父表ID
@@ -588,7 +590,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value) )
+                if (!string.IsNullOrEmpty(value))
                 {
                     RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'   ");
 
@@ -644,7 +646,7 @@ namespace Ebada.Scgl.Lcgl
                     export.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
                     break;
             }
-           
+
         }
 
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -652,8 +654,8 @@ namespace Ebada.Scgl.Lcgl
             frmModleSubmit fm = new frmModleSubmit();
             fm.RecordWorkFlowData = WorkFlowData;
             fm.CurrRecord = currRecord;
-            if (currRecord.Status=="申报")
-            fm.Status = "add";
+            if (currRecord.Status == "申报")
+                fm.Status = "add";
             else
                 fm.Status = "edit";
             fm.Kind = currRecord.Kind;
@@ -667,16 +669,16 @@ namespace Ebada.Scgl.Lcgl
             else
                 export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
             fm.ParentTemple = parentTemple;
-            if(fm.ShowDialog()==DialogResult.OK)
+            if (fm.ShowDialog() == DialogResult.OK)
             {
-                
+
                 if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
                     export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
                 else
                     export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
                 gridControl1.FindForm().Close();
             }
-           
+
         }
 
 
