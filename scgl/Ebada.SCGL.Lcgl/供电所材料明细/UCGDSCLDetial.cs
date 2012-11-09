@@ -327,39 +327,39 @@ namespace Ebada.Scgl.Lcgl
         #region 提交审核
         private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmModleSubmit fm = new frmModleSubmit();
-            fm.RecordWorkFlowData = WorkFlowData;
-            fm.CurrRecord = currRecord;
-            if (currRecord.Status == "申报")
-                fm.Status = "add";
-            else
-                fm.Status = "edit";
-            fm.Kind = currRecord.Kind;
-            frmProjectSelect fys = new frmProjectSelect();
-            fys.strType = " and (type = '设置库存' or type = '原始入库材料') ";
-            fys.StrSQL = "select distinct ssgc  from PJ_gdscrk where  (type = '设置库存' or type = '原始入库材料') ";
-            if (fys.ShowDialog() == DialogResult.OK)
-            {
-                //ExportGDSRKEdit export = new ExportGDSRKEdit();
-                //export.CurrRecord = currRecord;
-                //export.IsWorkflowCall = isWorkflowCall;
-                //export.ParentTemple = parentTemple;
-                //export.RecordWorkFlowData = WorkFlowData;
+            //frmModleSubmit fm = new frmModleSubmit();
+            //fm.RecordWorkFlowData = WorkFlowData;
+            //fm.CurrRecord = currRecord;
+            //if (currRecord.Status == "申报")
+            //    fm.Status = "add";
+            //else
+            //    fm.Status = "edit";
+            //fm.Kind = currRecord.Kind;
+            //frmProjectSelect fys = new frmProjectSelect();
+            //fys.strType = " and (type = '设置库存' or type = '原始入库材料') ";
+            //fys.StrSQL = "select distinct ssgc  from PJ_gdscrk where  (type = '设置库存' or type = '原始入库材料') ";
+            //if (fys.ShowDialog() == DialogResult.OK)
+            //{
+            //    ExportGDSRKEdit export = new ExportGDSRKEdit();
+            //    export.CurrRecord = currRecord;
+            //    export.IsWorkflowCall = isWorkflowCall;
+            //    export.ParentTemple = parentTemple;
+            //    export.RecordWorkFlowData = WorkFlowData;
 
-                //export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
+            //    export.ExportExcelSubmit(ref parentTemple, "", fys.strProject, fys.strFenproject, false);
 
-                //fm.ParentTemple = parentTemple;
-                //if (fm.ShowDialog() == DialogResult.OK)
-                //{
-                //    if (fjly == null) fjly = new frmModleFjly();
-                //    fjly.btn_Submit_Click(sender, e);
-                //    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
-                //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
-                //    else
-                //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
-                //    gridControl1.FindForm().Close();
-                //}
-            }
+            //    fm.ParentTemple = parentTemple;
+            //    if (fm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        if (fjly == null) fjly = new frmModleFjly();
+            //        fjly.btn_Submit_Click(sender, e);
+            //        if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+            //            export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+            //        else
+            //            export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns("", fys.strProject, fys.strFenproject);
+            //        gridControl1.FindForm().Close();
+            //    }
+            //}
         }
         #endregion
 
@@ -513,6 +513,11 @@ namespace Ebada.Scgl.Lcgl
                     SelectGdsChanged(this, org);
             }
 
+            GetWpmc();
+        }
+
+        private void GetWpmc()
+        {
             comWpmc.Items.Clear();
             barWpmc.EditValue = null;
             if (barGDS.EditValue == null) return;
@@ -712,6 +717,13 @@ namespace Ebada.Scgl.Lcgl
         private void barEndTime_EditValueChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+        #endregion
+
+        #region 重置查询条件
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GetWpmc();
         }
         #endregion
     }

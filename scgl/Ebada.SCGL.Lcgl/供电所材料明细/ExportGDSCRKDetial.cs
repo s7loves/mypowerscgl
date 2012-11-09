@@ -29,7 +29,7 @@ namespace Ebada.Scgl.Lcgl
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\供电所材料入出入库明细.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\供电所材料出入库明细.xls";
             ex.Open(fname);
 
             string orgname = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 OrgName from mOrg where OrgCode='" + orgCode + "'");
@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 str = datalist[0].num;
             }
-            string tablename = "供电所材料入出入库明细";
+            string tablename = "供电所材料出入库明细";
             if (tablename.Length > 30)
             {
                 tablename = tablename.Substring(tablename.Length - 31);

@@ -614,25 +614,6 @@ namespace Ebada.Scgl.Lcgl
         }
         #endregion
 
-        #region 根据查询条件导出
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (expotSQL == "")
-            {
-                MsgBox.ShowTipMessageBox("请先填充上面的查询条件！");
-            }
-            else
-            {
-                frmGDSSelect fys = new frmGDSSelect();
-                if (fys.ShowDialog() == DialogResult.OK)
-                {
-                    ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
-                    etdjh.ExportExcelForSQL(fys.OrgCode, fys.JingBanRen, expotSQL);
-                }
-            }
-        }
-        #endregion
-
         # region 导出选中出库单
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -652,8 +633,26 @@ namespace Ebada.Scgl.Lcgl
         #region 查询重置
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            barWpmc.EditValue = null;
             GetWpmc();
+        }
+        #endregion
+
+        #region 导出查询结果
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (expotSQL == "")
+            {
+                MsgBox.ShowTipMessageBox("请先填充上面的查询条件！");
+            }
+            else
+            {
+                frmGDSSelect fys = new frmGDSSelect();
+                if (fys.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                    etdjh.ExportExcelForSQL(fys.OrgCode, fys.JingBanRen, expotSQL);
+                }
+            }
         }
         #endregion
 
