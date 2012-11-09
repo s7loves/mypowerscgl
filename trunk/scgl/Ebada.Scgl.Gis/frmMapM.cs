@@ -377,7 +377,7 @@ namespace Ebada.Scgl.Gis {
 
         private void barCAD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           // Ebada.SCGL.CADLib.CAD cad = new Ebada.SCGL.CADLib.CAD();
+            Ebada.SCGL.CADLib.CAD cad = new Ebada.SCGL.CADLib.CAD();
             List<string> list=new List<string>();
             foreach (GMapOverlay lay in rMap1.Overlays) {
                 if (lay is LineOverlay) {
@@ -385,8 +385,8 @@ namespace Ebada.Scgl.Gis {
                         list.Add(lay.Id);
                 }
             }
-           // if(list.Count>0)
-            //cad.ToDwg(list.ToArray());
+            if (list.Count > 0)
+                cad.ToDwg(list.ToArray());
         }
 
         private void barTJ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
