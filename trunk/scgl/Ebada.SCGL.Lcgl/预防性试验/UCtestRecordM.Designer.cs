@@ -221,7 +221,7 @@
             this.xtraTabPage6.Controls.Add(this.uCtestRecordssqkTable1);
             this.xtraTabPage6.Name = "xtraTabPage6";
             this.xtraTabPage6.Size = new System.Drawing.Size(614, 212);
-            this.xtraTabPage6.Text = "计划明细表";
+            this.xtraTabPage6.Text = "实施情况记录";
             // 
             // uCtestRecordssqkTable1
             // 
@@ -242,7 +242,7 @@
             this.xtraTabPage7.Controls.Add(this.uCtestRecordwcqkTable1);
             this.xtraTabPage7.Name = "xtraTabPage7";
             this.xtraTabPage7.Size = new System.Drawing.Size(614, 212);
-            this.xtraTabPage7.Text = "计划明细表";
+            this.xtraTabPage7.Text = "完成情况报表";
             // 
             // uCtestRecordwcqkTable1
             // 
@@ -263,7 +263,7 @@
             this.xtraTabPage8.Controls.Add(this.uCtestHCRecord1);
             this.xtraTabPage8.Name = "xtraTabPage8";
             this.xtraTabPage8.Size = new System.Drawing.Size(614, 212);
-            this.xtraTabPage8.Text = "计划明细表";
+            this.xtraTabPage8.Text = "设备维护实施记录";
             // 
             // uCtestHCRecord1
             // 

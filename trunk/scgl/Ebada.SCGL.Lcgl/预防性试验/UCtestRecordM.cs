@@ -258,7 +258,6 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecordjhmxTable1.Type = "变压器";
                 uCtestRecordssqkTable1.Type = "变压器";
                 uCtestRecordwcqkTable1.Type = "变压器";
-                xtraTabControl2.SelectedTabPageIndex = 0;
             }
             else if (e.Page.Text.IndexOf("断路器") > -1)
             {
@@ -266,7 +265,7 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecordjhmxTable1.Type = "断路器";
                 uCtestRecordssqkTable1.Type = "断路器";
                 uCtestRecordwcqkTable1.Type = "断路器";
-                xtraTabControl2.SelectedTabPageIndex = 1;
+                
             }
             else if (e.Page.Text.IndexOf("避雷器") > -1)
             {
@@ -274,7 +273,6 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecordjhmxTable1.Type = "避雷器";
                 uCtestRecordssqkTable1.Type = "避雷器";
                 uCtestRecordwcqkTable1.Type = "避雷器";
-                xtraTabControl2.SelectedTabPageIndex = 2;
             }
             else if (e.Page.Text.IndexOf("电容器") > -1)
             {
@@ -282,7 +280,6 @@ namespace Ebada.Scgl.Lcgl
                 uCtestRecordjhmxTable1.Type = "电容器";
                 uCtestRecordssqkTable1.Type = "电容器";
                 uCtestRecordwcqkTable1.Type = "电容器";
-                xtraTabControl2.SelectedTabPageIndex = 3;
             }
             //else
             //    uCtestHCRecord1.Type = null;
