@@ -308,7 +308,7 @@ namespace Ebada.Scgl.Lcgl
 
             DateTime dt = Convert.ToDateTime(rowData.xssj );
             string dx = "", sx = "";
-            int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
+            int dayspan1 = 1, dayspan2 = 3, dayspan3 = 3;
             dx = "06设备巡视及缺陷消除记录";
             sx = "紧急缺陷";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
@@ -339,7 +339,7 @@ namespace Ebada.Scgl.Lcgl
                         rowData.xcqx = dt.AddDays(dayspan2).ToShortDateString();
                         break;
                     case "一般缺陷":
-                        rowData.xcqx = dt.AddDays(dayspan3).ToShortDateString();
+                        rowData.xcqx = dt.AddMonths(dayspan3).ToShortDateString();
                         break;
                 }
             dateEdit3.Text = rowData.xcqx;
