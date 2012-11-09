@@ -157,6 +157,8 @@ namespace Ebada.Scgl.Lcgl {
                     mx.qxly = "设备巡视及缺陷消除记录";
                     mx.qxnr = obj.qxnr;
                     mx.qxlb = obj.qxlb;
+                    mx.xcqx = obj.xcqx;
+                  
                    
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                 }
