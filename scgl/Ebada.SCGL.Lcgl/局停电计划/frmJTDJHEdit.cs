@@ -15,10 +15,10 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmTDJHEdit : FormBase, IPopupFormEdit {
+    public partial class frmJTDJHEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_tdjh> m_CityDic = new SortableSearchableBindingList<PJ_tdjh>();
 
-        public frmTDJHEdit()
+        public frmJTDJHEdit()
         {
             InitializeComponent();
         }

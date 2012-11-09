@@ -916,7 +916,7 @@
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(48, 14);
             this.labelControl14.TabIndex = 20;
-            this.labelControl14.Text = "所有材料";
+            this.labelControl14.Text = "所用材料";
             // 
             // groupBox4
             // 
@@ -1008,7 +1008,6 @@
             this.dateEdit5.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit5.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit5.Properties.ShowWeekNumbers = true;
             this.dateEdit5.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit5.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
@@ -1029,7 +1028,6 @@
             this.dateEdit4.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit4.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit4.Properties.ShowWeekNumbers = true;
             this.dateEdit4.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit4.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
