@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1F5C3A84-EA23-43A1-B888-4C4BF2C68905}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -418,6 +418,31 @@
     </Compile>
     <Compile Include="备品备件计划\UCBPBJJHB.Designer.cs">
       <DependentUpon>UCBPBJJHB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局停电计划\ExportJTDJH.cs" />
+    <Compile Include="局停电计划\frmJTDJHEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局停电计划\frmJTDJHEdit.Designer.cs">
+      <DependentUpon>frmJTDJHEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局停电计划\frmJTDJHMonthSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局停电计划\frmJTDJHMonthSet.Designer.cs">
+      <DependentUpon>frmJTDJHMonthSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局停电计划\frmJTDJHWorkFlowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="局停电计划\frmJTDJHWorkFlowEdit.Designer.cs">
+      <DependentUpon>frmJTDJHWorkFlowEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="局停电计划\UCPJ_JTDJH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="局停电计划\UCPJ_JTDJH.Designer.cs">
+      <DependentUpon>UCPJ_JTDJH.cs</DependentUpon>
     </Compile>
     <Compile Include="春秋06设备巡视及缺陷消除\frmcq06sbxsEdit.cs">
       <SubType>Form</SubType>
@@ -3811,6 +3836,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="供电所材料出库单\UCGDSCKD.resx">
       <DependentUpon>UCGDSCKD.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="供电所材料季度对账\UCGDSCLDZ.resx">
       <DependentUpon>UCGDSCLDZ.cs</DependentUpon>
@@ -3834,6 +3860,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="备品备件计划\UCBPBJJHB.resx">
       <DependentUpon>UCBPBJJHB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局停电计划\frmJTDJHEdit.resx">
+      <DependentUpon>frmJTDJHEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局停电计划\frmJTDJHMonthSet.resx">
+      <DependentUpon>frmJTDJHMonthSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局停电计划\frmJTDJHWorkFlowEdit.resx">
+      <DependentUpon>frmJTDJHWorkFlowEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="局停电计划\UCPJ_JTDJH.resx">
+      <DependentUpon>UCPJ_JTDJH.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="春秋06设备巡视及缺陷消除\frmcq06sbxsEdit.resx">

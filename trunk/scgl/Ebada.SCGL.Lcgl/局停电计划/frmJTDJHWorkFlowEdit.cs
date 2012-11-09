@@ -13,12 +13,62 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.WFlow;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmTDJHEdit : FormBase, IPopupFormEdit {
+    public partial class frmJTDJHWorkFlowEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PJ_tdjh> m_CityDic = new SortableSearchableBindingList<PJ_tdjh>();
+        private bool isWorkflowCall = false;
+        private LP_Record currRecord = null;
+        private DataTable WorkFlowData = null;//实例流程信息
+        private LP_Temple parentTemple = null;
+        private string varDbTableName = "PJ_tdjh,LP_Record";
+        public LP_Temple ParentTemple
+        {
+            get { return parentTemple; }
+            set
+            {
+                parentTemple = value;
+            }
+        }
+        public bool IsWorkflowCall
+        {
+            set
+            {
 
-        public frmTDJHEdit()
+                isWorkflowCall = value;
+            }
+        }
+        public LP_Record CurrRecord
+        {
+            get { return currRecord; }
+            set
+            {
+                currRecord = value;
+
+            }
+        }
+
+        public DataTable RecordWorkFlowData
+        {
+            get
+            {
+                return WorkFlowData;
+            }
+            set
+            {
+                WorkFlowData = value;
+            }
+        }
+        public string VarDbTableName
+        {
+            get { return varDbTableName; }
+            set
+            {
+                varDbTableName = value; ;
+            }
+        }
+        public frmJTDJHWorkFlowEdit()
         {
             InitializeComponent();
         }
@@ -31,7 +81,6 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "JXNR");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "JXSB");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
-            this.comboBoxEditShenHeRen.DataBindings.Add("EditValue", rowData, "ShenHeRen");
            
 
         }
@@ -83,8 +132,6 @@ namespace Ebada.Scgl.Lcgl
             SetComboBoxData(comboBoxEdit2, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
             dateEdit1.DateTime = DateTime.Now;
             dateEdit2.DateTime = DateTime.Now;
-
-
         }
 
         /// <summary>
@@ -135,9 +182,84 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("所月度停电计划", "备注", memoEdit3);
         }
 
-        private void dateEdit2_EditValueChanged(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
+            PJ_tdjh sbxs = RowData as PJ_tdjh;
+            string strmes = "";
+            object obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_tdjh>(sbxs.ID);
+            if (obj == null)
+            {
+                MainHelper.PlatformSqlMap.Create<PJ_tdjh>(sbxs);
+            }
 
+            else
+            {
+                MainHelper.PlatformSqlMap.Update<PJ_tdjh>(sbxs);
+
+            }
+            if (isWorkflowCall)
+            {
+                
+
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+                {
+
+                    RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, currRecord });
+
+                }
+                WF_WorkTaskCommands wt;
+
+                if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+                {
+
+                    RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { sbxs, currRecord });
+
+                }
+                //string[] strtemp = RecordWorkTask.RunNewGZPRecord(currRecord.ID, kind, MainHelper.User.UserID);
+                wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                if (wt != null)
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+                }
+                else
+                {
+                    strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+                }
+                if (strmes.IndexOf("未提交至任何人") > -1)
+                {
+                    MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                    return;
+                }
+                else
+                    MsgBox.ShowTipMessageBox(strmes);
+                strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+                if (strmes == "结束节点1")
+                {
+                    currRecord.Status = "存档";
+                }
+                else
+                {
+                    currRecord.Status = strmes;
+                }
+                if (currRecord.ImageAttachment == null)
+                {
+                    currRecord.ImageAttachment = new byte[0];
+                }
+                if (currRecord.DocContent == null)
+                {
+                    currRecord.DocContent = new byte[0];
+                }
+                if (currRecord.SignImg == null)
+                {
+                    currRecord.SignImg = new byte[0];
+                }
+
+                currRecord.LastChangeTime = DateTime.Now.ToString();
+                if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+                if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+                MainHelper.PlatformSqlMap.Update("UpdateLP_Record", currRecord);
+            }
         }
 
        
