@@ -22,8 +22,7 @@ namespace Ebada.Scgl.Lcgl
         public UserControl Show(string str)
         {
             int m = 0;
-            int.TryParse(str, out m);
-            if (m!=0)
+            if (int.TryParse(str, out m))
             {
                 int top = m / 10;
                 int down = m % 10;
