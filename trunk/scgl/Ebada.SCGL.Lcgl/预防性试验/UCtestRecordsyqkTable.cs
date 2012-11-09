@@ -509,7 +509,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxly = "变压器预防性试验实施情况记录";
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
-                          
+                            mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                        
@@ -541,7 +541,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxly = "断路器预防性试验实施情况记录";
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
-                           
+                            mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }
@@ -577,11 +577,13 @@ namespace Ebada.Scgl.Lcgl
                             {
                                 mx.qxnr = "预防性试验不合格";
                                 mx.qxlb = "一般缺陷";
+                                mx.xcqx = mx.xssj.AddMinutes(3).ToShortDateString();
                             }
                             else if (obj.syjg == "绝缘阻值低于1000兆欧")
                             {
                                 mx.qxnr = "预防性试验不合格";
                                 mx.qxlb = "重大缺陷";
+                                mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             }
                             
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
@@ -614,7 +616,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxly = "电容器预防性试验实施情况记录";
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
-                           
+                            mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }

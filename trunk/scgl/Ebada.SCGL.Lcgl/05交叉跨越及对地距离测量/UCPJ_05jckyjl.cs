@@ -100,13 +100,14 @@ namespace Ebada.Scgl.Lcgl {
                     if (obj.scz<parentObj.gdjl*0.5M)
                     {
                         mx.qxlb = "重大缺陷";
+                        mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                     }
                     else
 	                {
                         mx.qxlb = "一般缺陷";
+                        mx.xcqx = mx.xssj.AddMinutes(3).ToShortDateString();
 	                }
                     
-
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                 }
 

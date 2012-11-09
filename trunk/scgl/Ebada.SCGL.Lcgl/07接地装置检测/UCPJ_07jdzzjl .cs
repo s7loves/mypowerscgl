@@ -100,7 +100,7 @@ namespace Ebada.Scgl.Lcgl
                     mx.qxly = "接地装置检测记录";
                     mx.qxnr = "接地电阻检测不合格";
                     mx.qxlb = "一般缺陷";
-                  
+                    mx.xcqx = mx.xssj.AddMinutes(3).ToShortDateString();
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                 }
 
