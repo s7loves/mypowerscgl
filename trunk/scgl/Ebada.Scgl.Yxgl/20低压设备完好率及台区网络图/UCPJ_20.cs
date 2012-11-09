@@ -62,7 +62,16 @@ namespace Ebada.Scgl.Yxgl
         void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e) {
             //
             string linecode = btXlList.EditValue==null?"":btXlList.EditValue.ToString();
-            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
+            string sqlwhere = string.Empty;
+            if (linecode.Length==6)
+            {
+                sqlwhere = string.Format("where xlCode ='{0}'", linecode);
+            }
+            else
+            {
+                sqlwhere = string.Format("where xlCode2 ='{0}'", linecode);
+            }
+            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(sqlwhere);
             repositoryItemLookUpEdit3.DataSource = xlList;
             RefreshData(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
 
@@ -88,10 +97,15 @@ namespace Ebada.Scgl.Yxgl
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
+            }
+            else
+            {
+                btGdsList.Edit.ReadOnly = false ;
             }
 
         }
@@ -104,7 +118,7 @@ namespace Ebada.Scgl.Yxgl
 
             if (org != null) {
                 ParentObj = org;
-                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "'");
+                IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + org.OrgCode + "' and LineVol='10'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);

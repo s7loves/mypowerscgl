@@ -18,6 +18,7 @@ using Ebada.Client;
 using Ebada.Scgl.Core;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Ebada.Scgl.WFlow {
     public class AttributeHelper {
@@ -988,7 +989,8 @@ namespace Ebada.Scgl.WFlow {
         /// <param name="methodName"></param>
         /// <param name="moduName"></param>
         /// <returns></returns>
-        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName) {
+        public static object CreatNewMoldeIns(string assemblyFileName, string moduTypes, string methodName, string moduName, mModule obj)
+        {
             object fromCtrl;
             Assembly assembly = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory + assemblyFileName);
             Type tp = assembly.GetType(moduTypes);
@@ -997,6 +999,13 @@ namespace Ebada.Scgl.WFlow {
             fromCtrl = Activator.CreateInstance(tp);
             //else//窗体的构造函数需要参数
             //    fromCtrl = Activator.CreateInstance(tp, methodName);
+            object instance = null;
+            if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
+            { }
+            else
+            {
+                fromCtrl = Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), null, ref instance);
+            }
             if (fromCtrl is UserControl) {
                 UserControl uc = fromCtrl as UserControl;
                 uc.Name = moduName;
@@ -1016,6 +1025,59 @@ namespace Ebada.Scgl.WFlow {
             //}
 
             return fromCtrl;
+        }
+        public static object Execute(string assemblyName, string className, string methodName, object[] paramValues, Form mdi, ref object classInstance)
+        {
+
+            if (assemblyName == null)
+                assemblyName = string.Empty;
+            if (className == null || className == string.Empty)
+                return null;
+            if (string.IsNullOrEmpty(methodName))
+                methodName = "Show";
+            if (paramValues == null)
+                paramValues = new object[0];
+            object result = null;
+
+            Type type = Assembly.GetExecutingAssembly().GetType(className);
+            if (null == type)
+            {
+                Assembly asm = (assemblyName == string.Empty) ? Assembly.GetExecutingAssembly() : Assembly.LoadFrom(Application.StartupPath + "\\" + assemblyName);
+                type = asm.GetType(className, true);
+            }
+            //
+            Type[] ptypes = new Type[paramValues.Length];
+            for (int i = 0; i < paramValues.Length; i++)
+                ptypes[i] = paramValues[i].GetType();
+
+            MethodInfo method = type.GetMethod(methodName, ptypes);
+            if (method != null)
+            {
+                ParameterInfo[] paramInfos = method.GetParameters();
+                if (paramInfos.Length == paramValues.Length)
+                {
+                    // 参数个数相同才会执行
+                    object[] methodParams = new object[paramValues.Length];
+
+                    for (int i = 0; i < paramValues.Length; i++)
+                        methodParams[i] = Convert.ChangeType(paramValues[i], paramInfos[i].ParameterType, CultureInfo.InvariantCulture);
+                    if (classInstance == null)
+                    {
+                        classInstance = (method.IsStatic) ? null : Activator.CreateInstance(type);
+                    }
+                    if (classInstance is Form && mdi is Form)
+                    {
+                        ((Form)classInstance).MdiParent = mdi;
+                    }
+                    else if (classInstance is UserControl)
+                    {
+                        //return classInstance;
+                    }
+                    result = method.Invoke(classInstance, methodParams);
+                }
+            }
+
+            return result;
         }
         /// <summary>
         /// 获得流程的当前节点关联的模块
@@ -1044,9 +1106,9 @@ namespace Ebada.Scgl.WFlow {
                 }
             }
             if (tp == null) {
-                fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "Ebada.Scgl.Lcgl.frmLP", "", "表单执行平台");
+                fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "Ebada.Scgl.Lcgl.frmLP", "", "表单执行平台",tp);
             } else {
-                fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
+                fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName,tp);
 
             }
             if (tp != null) {
@@ -1085,9 +1147,9 @@ namespace Ebada.Scgl.WFlow {
                 if (wtc == null) return null;
                 mModule tp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(wtc.Modu_ID);
                 if (tp == null) {
-                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP", "", "表单执行平台");
+                    fromCtrl = CreatNewMoldeIns("Ebada.Scgl.Lcgl.dll", "frmLP", "", "表单执行平台",tp);
                 } else {
-                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName);
+                    fromCtrl = CreatNewMoldeIns(tp.AssemblyFileName, tp.ModuTypes, tp.MethodName, tp.ModuName,tp);
 
                 }
                 IList<WF_ModleUsedFunc> mulist = MainHelper.PlatformSqlMap.GetList<WF_ModleUsedFunc>(" where WorkflowId='" + dt.Rows[0]["WorkflowId"] + "' and WorktaskId='" + dt.Rows[0]["WorktaskId"] + "' and Modu_ID='" + tp.Modu_ID + "'");

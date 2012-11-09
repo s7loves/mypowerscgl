@@ -108,7 +108,10 @@ namespace Ebada.Scgl.Lcgl
 
                 WorkFlowData = value;
                 frm.RecordWorkFlowData = value;
-
+                if (isWorkflowCall && fjly == null)
+                {
+                    fjly = new frmModleFjly();
+                }
                 if (isWorkflowCall)
                 {
                     if (RecordWorkTask.HaveRunSPYJRole(currRecord.Kind) || RecordWorkTask.HaveRunFuJianRole(currRecord.Kind))
@@ -162,10 +165,7 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PJ_anqgjcrkd>(gridViewOperation_BeforeUpdate);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_anqgjcrkd>(gridViewOperation_AfterEdit);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
-            if (isWorkflowCall && fjly==null)
-            {
-                fjly = new frmModleFjly();
-            }
+            
         }
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PJ_anqgjcrkd> e)
         {
