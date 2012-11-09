@@ -125,7 +125,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Location = new System.Drawing.Point(87, 1);
             this.simpleButton1.Name = "simpleButton1";
@@ -151,7 +151,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit2);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(506, 262);
+            this.xtraTabPage1.Size = new System.Drawing.Size(504, 259);
             this.xtraTabPage1.Text = "事故原因及处理经过";
             // 
             // memoEdit2
@@ -159,7 +159,7 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(506, 262);
+            this.memoEdit2.Size = new System.Drawing.Size(504, 259);
             this.memoEdit2.TabIndex = 0;
             this.memoEdit2.EditValueChanged += new System.EventHandler(this.memoEdit2_EditValueChanged);
             // 
@@ -167,7 +167,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(506, 263);
+            this.xtraTabPage2.Size = new System.Drawing.Size(504, 260);
             this.xtraTabPage2.Text = "主要原因分析";
             // 
             // memoEdit1
@@ -176,14 +176,14 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(506, 263);
+            this.memoEdit1.Size = new System.Drawing.Size(504, 260);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.memoEdit4);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(506, 263);
+            this.xtraTabPage3.Size = new System.Drawing.Size(504, 260);
             this.xtraTabPage3.Text = "今后防止对策";
             // 
             // memoEdit4
@@ -191,7 +191,7 @@
             this.memoEdit4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit4.Location = new System.Drawing.Point(0, 0);
             this.memoEdit4.Name = "memoEdit4";
-            this.memoEdit4.Size = new System.Drawing.Size(506, 263);
+            this.memoEdit4.Size = new System.Drawing.Size(504, 260);
             this.memoEdit4.TabIndex = 0;
             // 
             // groupBox1
@@ -248,7 +248,6 @@
             this.dateEdit3.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit3.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit3.Properties.ShowWeekNumbers = true;
             this.dateEdit3.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
@@ -269,10 +268,9 @@
             this.dateEdit2.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit2.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit2.Properties.ShowWeekNumbers = true;
             this.dateEdit2.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit2.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit2.Size = new System.Drawing.Size(184, 21);

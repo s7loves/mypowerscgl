@@ -2695,7 +2695,7 @@ namespace Ebada.Scgl.Lcgl
         public static Dictionary<string, object> ReadTaskData(DataTable workflowdata, LP_Temple temp, LP_Record record)
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where tlcjdid='" + workflowdata.Rows[0]["WorkTaskId"].ToString() + "' and tlcjdzdlx = '模块'");
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where WorkFlowId='" + workflowdata.Rows[0]["WorkFlowId"].ToString() + "' AND tlcjdid='" + workflowdata.Rows[0]["WorkTaskId"].ToString() + "' and tlcjdzdlx = '模块'");
             foreach (WF_WorkTastTrans wtt in wttli)
             {
                 IList list = GetTaskCtrlData2(record, temp, wtt.sSQL, wtt);
