@@ -178,6 +178,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("indate");
             hideColumn("kcsl");
             hideColumn("num");
+            hideColumn("lasttime");
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -213,6 +214,11 @@ namespace Ebada.Scgl.Lcgl
 
         #region 供电所改变、重新绑定数
         void btGdsList_EditValueChanged(object sender, EventArgs e)
+        {
+            GetWpmc();
+        }
+
+        private void GetWpmc()
         {
             comWpmc.Items.Clear();
             barWpmc.EditValue = null;
@@ -435,6 +441,13 @@ namespace Ebada.Scgl.Lcgl
             fjly.Kind = currRecord.Kind;
             fjly.Status = RecordWorkTask.GetWorkTaskStatus(WorkFlowData, currRecord);
             fjly.ShowDialog();
+        }
+        #endregion
+
+        #region 重置查询条件
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GetWpmc();
         }
         #endregion
     }

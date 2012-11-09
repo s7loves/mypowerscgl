@@ -207,6 +207,8 @@ namespace Ebada.Scgl.Lcgl
                 mrwt.CreatTime = DateTime.Now;
                 MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             }
+
+            GetWpmc();
         }
         #endregion
 
@@ -268,6 +270,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("ckslcount");
             hideColumn("kcslcount");
             hideColumn("kcsl");
+            hideColumn("lasttime");
             gridView1.Columns["num"].Width = 150;
         }
         /// <summary>
@@ -440,7 +443,7 @@ namespace Ebada.Scgl.Lcgl
             frmGDSSelect fys = new frmGDSSelect();
             if (fys.ShowDialog() == DialogResult.OK)
             {
-                ExportGDSRKEdit etdjh = new ExportGDSRKEdit();
+                ExportGDSCKEdit etdjh = new ExportGDSCKEdit();
                 etdjh.ExportGDSRKDExcel(fys.OrgCode, fys.JingBanRen, enterTime);
             }
         }
@@ -524,6 +527,11 @@ namespace Ebada.Scgl.Lcgl
                     SelectGdsChanged(this, org);
             }
 
+            GetWpmc();
+        }
+
+        private void GetWpmc()
+        {
             comWpmc.Items.Clear();
             barWpmc.EditValue = null;
             if (barGDS.EditValue == null) return;
@@ -735,6 +743,13 @@ namespace Ebada.Scgl.Lcgl
             {
                 MsgBox.ShowTipMessageBox("请先选中要导出的数据！");
             }
+        }
+        #endregion
+
+        #region 重置查询条件
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GetWpmc();
         }
         #endregion
     }
