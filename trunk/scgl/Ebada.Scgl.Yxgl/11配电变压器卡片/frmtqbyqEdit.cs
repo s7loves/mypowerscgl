@@ -27,7 +27,8 @@ namespace Ebada.Scgl.Yxgl {
             string[] ss = comboBoxEdit3.Text.Split('-');
             if (ss.Length != 3) return;
             comboBoxEdit3.Text = ss[0];
-            spinEdit1.Text = ss[2];
+            spinEdit1.EditValue =rowData.byqCapcity=int.Parse( ss[2]);
+           
             //comboBoxEdit7.Text = ss[1].Split('/')[0];
         }
         void dataBind() {
@@ -55,6 +56,8 @@ namespace Ebada.Scgl.Yxgl {
             this.comboBoxEdit14.DataBindings.Add("EditValue", rowData, "byqInstallAdress");
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
+
+            this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "byqkind");  
 
         }
         #region IPopupFormEdit Members
