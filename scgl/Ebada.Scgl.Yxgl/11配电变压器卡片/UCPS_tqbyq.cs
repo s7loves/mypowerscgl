@@ -169,19 +169,12 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_CreatingObjectEvent(PS_tqbyq newobj)
         {
            if (parentID == null) return;
+           newobj.byqVol = "10";
+           newobj.byqkind = "一类";
+           newobj.byqState = "运行";
            newobj.byqCycle = "50HZ";
            newobj.byqVolOne = 10;
            newobj.byqVolTwo = (decimal)0.4;
-          // newobj.byqCode = DateTime.Now.ToString("yyyyMMddHHmmss");
-             // newobj.OrgCode = parentID;
-            ////newobj.OrgName = parentObj.OrgName;
-            ////newobj.CreateDate = DateTime.Now;
-            ////newobj.CreateMan = MainHelper.LoginName;
-            //if (PSObj==null)
-            //{
-            //    return;
-            //}
-            //newobj.byqID = PSObj.byqID;
           
         }
         /// <summary>
