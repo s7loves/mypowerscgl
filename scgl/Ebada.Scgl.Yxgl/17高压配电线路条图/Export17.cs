@@ -11,6 +11,7 @@ using Ebada.Client.Platform;
 using System.Collections;
 using System.Drawing;
 using Microsoft.Office.Core;
+using Microsoft.Win32;
 namespace Ebada.Scgl.Yxgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档
@@ -808,5 +809,47 @@ namespace Ebada.Scgl.Yxgl {
             //System.Diagnostics.Process.Start(outfname);
             return 1;
         }
+        #region 查询注册表，判断本机是否安装Office2003,2007和WPS
+
+        public static int ExistsRegedit() {
+            int ifused = 0;
+            RegistryKey rk = Registry.LocalMachine;
+
+            //查询Office2003
+            RegistryKey f03 = rk.OpenSubKey(@"SOFTWARE\Microsoft\Office\11.0\Excel\InstallRoot\");
+
+            //查询Office2007
+            RegistryKey f07 = rk.OpenSubKey(@"SOFTWARE\Microsoft\Office\12.0\Excel\InstallRoot\");
+
+            ////查询wps
+            //RegistryKey wps = rk.OpenSubKey(@"SOFTWARE\Kingsoft\Office\6.0\common\");
+
+            //检查本机是否安装Office2003
+            if (f03 != null) {
+                //string file03 = f03.GetValue("Path").ToString();
+                //if (File.Exists(file03 + "Excel.exe")) ifused += 1;
+                ifused = 1;
+            }
+
+
+
+            //检查本机是否安装Office2007
+
+            if (f07 != null) {
+                //string file07 = akey.GetValue("Path").ToString();
+                //if (File.Exists(file07 + "Excel.exe")) ifused += 2;
+                ifused = 2;
+            }
+
+            //检查本机是否安装wps
+            //if (wps != null)
+            //{
+            //    //string filewps = akeytwo.GetValue("InstallRoot").ToString();
+            //    //if (File.Exists(filewps + @"\office6\et.exe")) ifused += 4;
+            //    ifused = 3; 
+            //}
+            return ifused;
+        }
+        #endregion
     }
 }
