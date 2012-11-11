@@ -26,6 +26,15 @@
         <result property="s1" column="s1" />
         <result property="s2" column="s2" />
         <result property="s3" column="s3" />
+        <result property="xlid" column="xlid" />
+        <result property="byqid" column="byqid" />
+        <result property="tqid" column="tqid" />
+        <result property="kgid" column="kgid" />
+        <result property="xlname" column="xlname" />
+        <result property="byqname" column="byqname" />
+        <result property="tqname" column="tqname" />
+        <result property="kgname" column="kgname" />
+        <result property="rid" column="rid" />
       </resultMap>
   </resultMaps>
 
@@ -52,7 +61,16 @@
          [remark],
          [s1],
          [s2],
-         [s3]
+         [s3],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [rid]
           FROM PJ_qxfl
           $value$
    </select>
@@ -79,7 +97,16 @@
          [remark],
          [s1],
          [s2],
-         [s3]
+         [s3],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [rid]
           FROM PJ_qxfl
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -103,6 +130,15 @@
        <isNotNull prepend="AND" property="s1">[s1]='$s1$'</isNotNull>
        <isNotNull prepend="AND" property="s2">[s2]='$s2$'</isNotNull>
        <isNotNull prepend="AND" property="s3">[s3]='$s3$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="rid">[rid]='$rid$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_qxflByKey" resultMap="PJ_qxfl_AllColumns" parameterClass="PJ_qxfl">
@@ -127,7 +163,16 @@
          [remark],
          [s1],
          [s2],
-         [s3]
+         [s3],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [rid]
          FROM PJ_qxfl
          WHERE 
            ID = #ID#
@@ -176,16 +221,21 @@
              [remark]=#remark#,
              [s1]=#s1#,
              [s2]=#s2#,
-             [s3]=#s3#
+             [s3]=#s3#,
+             [xlid]=#xlid#,
+             [byqid]=#byqid#,
+             [tqid]=#tqid#,
+             [kgid]=#kgid#,
+             [xlname]=#xlname#,
+             [byqname]=#byqname#,
+             [tqname]=#tqname#,
+             [kgname]=#kgname#,
+             [rid]=#rid#
             WHERE 
               ID = #ID#
 
    </update>
-    <update id="UpdatePJ_qxflByWhwer" parameterClass="string">
-      UPDATE PJ_qxfl
-      SET
-      $value$
-    </update>
+  
    <insert id="InsertPJ_qxfl" parameterClass="PJ_qxfl">
         INSERT INTO PJ_qxfl
          (
@@ -209,7 +259,16 @@
          [remark],
          [s1],
          [s2],
-         [s3]
+         [s3],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [rid]
          )
        VALUES
          (
@@ -233,7 +292,16 @@
          #remark#,
          #s1#,
          #s2#,
-         #s3#
+         #s3#,
+         #xlid#,
+         #byqid#,
+         #tqid#,
+         #kgid#,
+         #xlname#,
+         #byqname#,
+         #tqname#,
+         #kgname#,
+         #rid#
          )
 
    </insert>
@@ -263,6 +331,15 @@
        <isNotNull prepend="AND" property="s1">[s1]='$s1$'</isNotNull>
        <isNotNull prepend="AND" property="s2">[s2]='$s2$'</isNotNull>
        <isNotNull prepend="AND" property="s3">[s3]='$s3$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="rid">[rid]='$rid$'</isNotNull>
      </dynamic>
 
    </select>
