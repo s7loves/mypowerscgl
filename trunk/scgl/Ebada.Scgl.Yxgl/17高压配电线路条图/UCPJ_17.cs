@@ -646,8 +646,11 @@ namespace Ebada.Scgl.Yxgl {
                                         } else {
                                             strfx = "左转";
                                         }
-                                        if (bt.Width < width / 2) {
-                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                        int btw = (int)(bt.Width / 1.33f);
+                                        int bth = (int)(bt.Height / 1.33f);
+                                        if (btw < width / 2) {
+                                            
+                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - btw / 2, fystart + gheifht / 2 - bth / 2, btw, bth);
                                             if (strfx == "左转") {
                                                 if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
                                                     activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
@@ -685,10 +688,12 @@ namespace Ebada.Scgl.Yxgl {
                                     fs.Close();
                                     Image im = Bitmap.FromFile(tempfile);
                                     Bitmap bt = new Bitmap(im);
-                                    if (bt.Width < width / 2) {
-                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - bt.Width / 2, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                    int btw = (int)(bt.Width / 1.33f);
+                                    int bth = (int)(bt.Height / 1.33f);
+                                    if (btw < width / 2) {
+                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - btw / 2, fystart + gheifht / 2 - bth / 2, btw, bth);
                                     } else {
-                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bth / 2, btw, bth);
                                     }
 
                                 } else {
@@ -728,8 +733,10 @@ namespace Ebada.Scgl.Yxgl {
                                         fs.Close();
                                         Image im = Bitmap.FromFile(tempfile);
                                         Bitmap bt = new Bitmap(im);
-                                        if (bt.Width < width / 2) {
-                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 2 - bt.Width / 2, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                        int btw = (int)(bt.Width / 1.33f);
+                                        int bth = (int)(bt.Height / 1.33f);
+                                        if (btw < width / 2) {
+                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 2 - btw / 2, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
                                             xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
                                            oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
                                            kywShape.Left, oldShape.Top + oldShape.Height / 2);
@@ -738,7 +745,7 @@ namespace Ebada.Scgl.Yxgl {
                                           kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
                                           activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
                                         } else {
-                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
                                             xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
                                            oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
                                            kywShape.Left, oldShape.Top + oldShape.Height / 2);
