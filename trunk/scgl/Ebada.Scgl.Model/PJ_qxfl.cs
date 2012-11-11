@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:Ebada物流企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-11-14 11:10:09
+生成时间:2012-11-11 21:47:58
 ***********************************************/
 
 using System;
@@ -41,7 +41,16 @@ namespace Ebada.Scgl.Model
         private string _remark=String.Empty; 
         private string _s1=String.Empty; 
         private string _s2=String.Empty; 
-        private string _s3=String.Empty;   
+        private string _s3=String.Empty; 
+        private string _xlid=String.Empty; 
+        private string _byqid=String.Empty; 
+        private string _tqid=String.Empty; 
+        private string _kgid=String.Empty; 
+        private string _xlname=String.Empty; 
+        private string _byqname=String.Empty; 
+        private string _tqname=String.Empty; 
+        private string _kgname=String.Empty; 
+        private string _rid=String.Empty;   
         #endregion
   
   
@@ -179,7 +188,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：巡视时间
         /// 字段信息：[xssj],datetime
         /// </summary>
-        [DisplayNameAttribute("发现日期")]
+        [DisplayNameAttribute("巡视时间")]
         public DateTime xssj
         {
             get { return _xssj; }
@@ -268,7 +277,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[消除期限]长度不能大于50!");
                 if (_xcqx as object == null || !_xcqx.Equals(value))
                 {
                     _xcqx = value;
@@ -377,7 +386,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：qxly
-        /// 属性描述：
+        /// 属性描述：缺陷来源
         /// 字段信息：[qxly],nvarchar
         /// </summary>
         [DisplayNameAttribute("缺陷来源")]
@@ -388,7 +397,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[缺陷来源]长度不能大于50!");
                 if (_qxly as object == null || !_qxly.Equals(value))
                 {
                     _qxly = value;
@@ -398,7 +407,7 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：remark
-        /// 属性描述：
+        /// 属性描述：说明
         /// 字段信息：[remark],nvarchar
         /// </summary>
         [DisplayNameAttribute("说明")]
@@ -409,7 +418,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1073741823)
-                throw new Exception("[]长度不能大于1073741823!");
+                throw new Exception("[说明]长度不能大于1073741823!");
                 if (_remark as object == null || !_remark.Equals(value))
                 {
                     _remark = value;
@@ -419,10 +428,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：s1
-        /// 属性描述：
+        /// 属性描述：缺陷来源
         /// 字段信息：[s1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("缺陷来源")]
         public string s1
         {
             get { return _s1; }
@@ -430,7 +439,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[缺陷来源]长度不能大于50!");
                 if (_s1 as object == null || !_s1.Equals(value))
                 {
                     _s1 = value;
@@ -443,7 +452,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[s2],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("s2")]
         public string s2
         {
             get { return _s2; }
@@ -451,7 +460,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[s2]长度不能大于50!");
                 if (_s2 as object == null || !_s2.Equals(value))
                 {
                     _s2 = value;
@@ -464,7 +473,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[s3],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("s3")]
         public string s3
         {
             get { return _s3; }
@@ -472,10 +481,199 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[s3]长度不能大于50!");
                 if (_s3 as object == null || !_s3.Equals(value))
                 {
                     _s3 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xlid
+        /// 属性描述：
+        /// 字段信息：[xlid],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("xlid")]
+        public string xlid
+        {
+            get { return _xlid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[xlid]长度不能大于50!");
+                if (_xlid as object == null || !_xlid.Equals(value))
+                {
+                    _xlid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：byqid
+        /// 属性描述：
+        /// 字段信息：[byqid],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("byqid")]
+        public string byqid
+        {
+            get { return _byqid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[byqid]长度不能大于50!");
+                if (_byqid as object == null || !_byqid.Equals(value))
+                {
+                    _byqid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tqid
+        /// 属性描述：
+        /// 字段信息：[tqid],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("tqid")]
+        public string tqid
+        {
+            get { return _tqid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[tqid]长度不能大于50!");
+                if (_tqid as object == null || !_tqid.Equals(value))
+                {
+                    _tqid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：kgid
+        /// 属性描述：
+        /// 字段信息：[kgid],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("kgid")]
+        public string kgid
+        {
+            get { return _kgid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[kgid]长度不能大于50!");
+                if (_kgid as object == null || !_kgid.Equals(value))
+                {
+                    _kgid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：xlname
+        /// 属性描述：线路
+        /// 字段信息：[xlname],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线路")]
+        public string xlname
+        {
+            get { return _xlname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[线路]长度不能大于50!");
+                if (_xlname as object == null || !_xlname.Equals(value))
+                {
+                    _xlname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：byqname
+        /// 属性描述：变压器
+        /// 字段信息：[byqname],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("变压器")]
+        public string byqname
+        {
+            get { return _byqname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[变压器]长度不能大于50!");
+                if (_byqname as object == null || !_byqname.Equals(value))
+                {
+                    _byqname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tqname
+        /// 属性描述：台区
+        /// 字段信息：[tqname],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("台区")]
+        public string tqname
+        {
+            get { return _tqname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[台区]长度不能大于50!");
+                if (_tqname as object == null || !_tqname.Equals(value))
+                {
+                    _tqname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：kgname
+        /// 属性描述：开关
+        /// 字段信息：[kgname],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("开关")]
+        public string kgname
+        {
+            get { return _kgname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[开关]长度不能大于50!");
+                if (_kgname as object == null || !_kgname.Equals(value))
+                {
+                    _kgname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：rid
+        /// 属性描述：
+        /// 字段信息：[rid],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("rid")]
+        public string rid
+        {
+            get { return _rid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[rid]长度不能大于50!");
+                if (_rid as object == null || !_rid.Equals(value))
+                {
+                    _rid = value;
                 }
             }			 
         }
