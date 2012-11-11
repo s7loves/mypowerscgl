@@ -703,12 +703,17 @@ namespace Ebada.Scgl.Yxgl {
                                 IList<PJ_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<PJ_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
                                 if (kyxli.Count == 0) {
                                     //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
-                                    xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                        oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                        activShape.Left , oldShape.Top + oldShape.Height / 2);
-                                    //xx.Shapes.AddLine(
-                                    //      oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                    //      activShape.Left, activShape.Top + activShape.Height / 2);
+                                    //if (Export17.ExistsRegedit() == 1) {//vs2003
+                                    //    xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                    //        oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                    //        //activShape.Left , oldShape.Top + oldShape.Height / 2);
+                                    //     activShape.Left - (oldShape.Left + oldShape.Width), 0);
+                                    //} else 
+                                    {
+                                        xx.Shapes.AddLine(
+                                              oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                              activShape.Left, activShape.Top + activShape.Height / 2);
+                                    }
                                 } else {
                                     PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + kyxli[0].kymc + "'");
                                     if (tb != null) {
