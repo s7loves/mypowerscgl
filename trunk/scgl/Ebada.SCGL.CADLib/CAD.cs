@@ -245,19 +245,23 @@ namespace Ebada.SCGL.CADLib
                 int gtnum = 0;
                 for (int i = 0; i < list.Count; i++)
                 {
+                    if (list[i].gtJg == "是") continue;//跳过借杆
                     double[] pnt = new double[3];
                     pnt[0] = Convert.ToDouble(list[i].gtLon.ToString("0.########"));
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
-                    
-                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.0001*zoom);//杆塔
-                    cirz.Layer = "gt";
-                    cirz.TrueColor = color;
-                    if (list[i].gtJg == "是") continue;
+                   
+                    //if (list[i].gtSpan >7) {//防止重叠，档距小于跳过
+                        AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.00005 * zoom);//杆塔
+                        cirz.Layer = "gt";
+                        cirz.TrueColor = color;
+                    //}
                     gtnum++;
 
                     string gg = list[i].gtHeight.ToString("##");
-                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 1, gg+"/"+gtnum.ToString());
+                    pnt[0] += 0.00005d * zoom;
+                    AcadMText ntext = cad.ActiveDocument.ModelSpace.AddMText(pnt, 2, gg+"/"+gtnum.ToString());
+                    pnt[0] -= 0.00005d * zoom;
                     ntext.Height = 0.00005*zoom;
                     ntext.Layer = "gth";
 
@@ -267,11 +271,11 @@ namespace Ebada.SCGL.CADLib
                         PS_tqbyq byq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" where tqID='" + tq.tqID + "'");
                         if (byq != null)
                         {
-                            cad.ActiveDocument.ModelSpace.InsertBlock(pnt, Application.StartupPath + "\\byq.dwg", 1, 1, 1, 0, 0);
+                            //cad.ActiveDocument.ModelSpace.InsertBlock(pnt, Application.StartupPath + "\\byq.dwg", 0.3, 0.3, 1, 0, 0);
                         }
                     }
 
-                    if (i < list.Count-1)
+                    if (i < list.Count-1 && list[i].gtSpan>15)
                     {
                         double[] n1 = new double[2];
                         n1[0] = Convert.ToDouble(list[i].gtLon);
@@ -283,7 +287,7 @@ namespace Ebada.SCGL.CADLib
                         n[0]=(n1[0] + n2[0]) / 2;
                         n[1]=(n1[1] + n2[1]) / 2;
                         n[2]=0;
-                        AcadMText mtext = cad.ActiveDocument.ModelSpace.AddMText(n, 1, list[i].gtSpan.ToString("#.#")+"M");
+                        AcadMText mtext = cad.ActiveDocument.ModelSpace.AddMText(n, 2, list[i].gtSpan.ToString("#")+"M");
                         mtext.Height = 0.00005 * zoom;
                         mtext.Layer = "text";
                     }
