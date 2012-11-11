@@ -737,23 +737,37 @@ namespace Ebada.Scgl.Yxgl {
                                         int bth = (int)(bt.Height / 1.33f);
                                         if (btw < width / 2) {
                                             kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 2 - btw / 2, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
-                                            xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                           oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                           kywShape.Left, oldShape.Top + oldShape.Height / 2);
+                                           // xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                           //oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                           //kywShape.Left, oldShape.Top + oldShape.Height / 2);
+                                            xx.Shapes.AddLine(
+                                          oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                          kywShape.Left, oldShape.Top + oldShape.Height / 2);
 
-                                            xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                          //kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
+                                          //activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
+
+                                            xx.Shapes.AddLine(
                                           kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
                                           activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
                                         } else {
-                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
-                                            xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                          //  kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
+                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                          // oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                          // kywShape.Left, oldShape.Top + oldShape.Height / 2);
+
+                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                          //kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
+                                          //activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
+
+                                            xx.Shapes.AddLine(
                                            oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
                                            kywShape.Left, oldShape.Top + oldShape.Height / 2);
 
-                                            xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                            xx.Shapes.AddLine(
                                           kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
                                           activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
-
                                         }
                                         //Image im = Bitmap.FromFile(tempfile);
                                         //Bitmap bt = new Bitmap(im);
