@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Sbgl
 {
     public partial class frmgtsbEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_gtsb> m_CityDic = new SortableSearchableBindingList<PS_gtsb>();
-
+        UCPopupLine popLine = new UCPopupLine();
         public frmgtsbEdit() {
             InitializeComponent();
         }
@@ -25,7 +25,10 @@ namespace Ebada.Scgl.Sbgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbCode");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbType");
+            //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sbType");
+            popLine.Bounds = comboBoxEdit2.Bounds;
+            comboBoxEdit2.Hide();
+            popLine.Parent = comboBoxEdit2.Parent;
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "sbName");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "C1");
@@ -35,6 +38,12 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "C5");
 
             this.spinEdit2.DataBindings.Add("EditValue", rowData, "sbNumber");
+
+            this.popLine.DataBindings.Add("EditValue", rowData, "sbType");
+            this.popLine.DisplayField = "mc";
+            this.popLine.ValueField = "bh";
+            this.popLine.DataSource = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh");
+            this.popLine.EditValueChanged += comboBoxEdit2_EditValueChanged;
 
         }
         #region IPopupFormEdit Members
@@ -60,14 +69,14 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
 
-            SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
-            comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
+            //SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            //comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
         }
 
         void comboBoxEdit2_EditValueChanged(object sender, EventArgs e) {
-            object xh = comboBoxEdit2.EditValue;
+            object xh = popLine.EditValue;
             if (string.IsNullOrEmpty(xh as string)) return;
-            rowData.sbName = comboBoxEdit4.Text = comboBoxEdit2.Text;
+            rowData.sbName = comboBoxEdit4.Text = popLine.Text;
             pdsbModelHelper.FillCBox(comboBoxEdit3, xh.ToString().Substring(0, 2));
         }
 
