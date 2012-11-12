@@ -1011,7 +1011,7 @@ namespace Ebada.Scgl.Yxgl {
                                         //ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang+j  + 2, jlie);
                                         //ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang+j  + 3, jlie);
                                     } else {
-                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-"))  /*+ "/"+ icount.ToString()*/, ihang + j + 1, jlie+j);
+                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-"))  /*+ "/"+ icount.ToString()*/, ihang  + 1, jlie+j);
                                         
                                     }
                                 }
@@ -1092,7 +1092,7 @@ namespace Ebada.Scgl.Yxgl {
                             } catch { }
 
                         }
-                        ex.SetCellValue(kglist.Count.ToString(), ihang +j + 2, jlie);
+                        ex.SetCellValue(kglist.Count.ToString(), ihang  + 2, jlie);
                     }
                     ihang += kgRowCount + 2;
 
