@@ -457,6 +457,20 @@ namespace Ebada.Scgl.Lcgl
         {
             if (gridView1.FocusedRowHandle < 0) return;
             PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl;
+            //lgmqxlast
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(ob.ID);
+            if (tempobj != null)
+            {
+                ob.gdstemp = ParentObj.OrgCode;
+                ob.xlid = tempobj.xlid;
+                ob.xlname = tempobj.xlname;
+                ob.tqid = tempobj.tqid;
+                ob.tqname = tempobj.tqname;
+                ob.byqid = tempobj.byqid;
+                ob.byqname = tempobj.byqname;
+                ob.kgid = tempobj.kgid;
+                ob.kgname = tempobj.kgname;
+            }
             switch (_type)
             {
                 case "变压器":
@@ -510,6 +524,15 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                        
@@ -542,6 +565,15 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }
@@ -585,6 +617,15 @@ namespace Ebada.Scgl.Lcgl
                                 mx.qxlb = "重大缺陷";
                                 mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             }
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
@@ -617,6 +658,15 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }

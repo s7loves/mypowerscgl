@@ -59,8 +59,28 @@ namespace Ebada.Scgl.Lcgl {
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_05jckyjl>(gridViewOperation_AfterDelete);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_05jckyjl>(gridViewOperation_BeforeEdit);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
 
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_05jckyjl> e)
+        {
+            //lgmqxlast
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(e.ValueOld.ID);
+            if (tempobj!=null)
+            {
+                e.ValueOld.gdstemp = ParentObj.OrgCode;
+
+                e.ValueOld.xlid = tempobj.xlid;
+                e.ValueOld.xlname = tempobj.xlname;
+                e.ValueOld.tqid = tempobj.tqid;
+                e.ValueOld.tqname = tempobj.tqname;
+                e.ValueOld.byqid = tempobj.byqid;
+                e.ValueOld.byqname = tempobj.byqname;
+                e.ValueOld.kgid = tempobj.kgid;
+                e.ValueOld.kgname = tempobj.kgname;
+            }
         }
 
         void gridViewOperation_AfterDelete(PJ_05jckyjl obj)
@@ -97,6 +117,17 @@ namespace Ebada.Scgl.Lcgl {
                     mx.xsr = obj.clrqz;
                     mx.qxly = "交叉跨越及对地距离测量记录";
                     mx.qxnr = "交叉跨越及对地距离测量不合格";
+                    //lgmqxlast
+                    mx.xlid = obj.xlid;
+                    mx.xlname = obj.xlname;
+                    mx.tqid = obj.tqid;
+                    mx.tqname = obj.tqname;
+                    mx.byqid = obj.byqid;
+                    mx.byqname = obj.byqname;
+                    mx.kgid = obj.kgid;
+                    mx.kgname = obj.kgname;
+                    
+
                     if (obj.scz<parentObj.gdjl*0.5M)
                     {
                         mx.qxlb = "重大缺陷";
@@ -207,6 +238,10 @@ namespace Ebada.Scgl.Lcgl {
             if (parentID == null) return;
             newobj.jckyID = parentID;
             newobj.CreateDate = DateTime.Now;
+
+            //lgmqxlast
+            newobj.gdstemp = ParentObj.OrgCode;
+            newobj.xlid = ParentObj.LineID;
 
         }
         /// <summary>

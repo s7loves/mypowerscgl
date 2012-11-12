@@ -32,7 +32,19 @@ namespace Ebada.Scgl.Model
         private string _jcr=String.Empty; 
         private string _createman=String.Empty; 
         private DateTime _createdate=new DateTime(1900,1,1); 
-        private string _gzrjid=String.Empty;   
+        private string _gzrjid=String.Empty;
+        private string _xlid = String.Empty;
+        private string _byqid = String.Empty;
+        private string _tqid = String.Empty;
+        private string _kgid = String.Empty;
+        private string _xlname = String.Empty;
+        private string _byqname = String.Empty;
+        private string _tqname = String.Empty;
+        private string _kgname = String.Empty;
+
+        private string _gdstemp = String.Empty;
+        private string _linetemp = String.Empty;
+        private string _othertemp = String.Empty; 
         #endregion
   
   
@@ -280,7 +292,244 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        /// <summary>
+        /// 属性名称：xlid
+        /// 属性描述：
+        /// 字段信息：[xlid],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("xlid")]
+        public string xlid
+        {
+            get { return _xlid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[xlid]长度不能大于50!");
+                if (_xlid as object == null || !_xlid.Equals(value))
+                {
+                    _xlid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：byqid
+        /// 属性描述：
+        /// 字段信息：[byqid],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("byqid")]
+        public string byqid
+        {
+            get { return _byqid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[byqid]长度不能大于50!");
+                if (_byqid as object == null || !_byqid.Equals(value))
+                {
+                    _byqid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：tqid
+        /// 属性描述：
+        /// 字段信息：[tqid],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("tqid")]
+        public string tqid
+        {
+            get { return _tqid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[tqid]长度不能大于50!");
+                if (_tqid as object == null || !_tqid.Equals(value))
+                {
+                    _tqid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：kgid
+        /// 属性描述：
+        /// 字段信息：[kgid],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("kgid")]
+        public string kgid
+        {
+            get { return _kgid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[kgid]长度不能大于50!");
+                if (_kgid as object == null || !_kgid.Equals(value))
+                {
+                    _kgid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：xlname
+        /// 属性描述：线路
+        /// 字段信息：[xlname],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("线路")]
+        public string xlname
+        {
+            get { return _xlname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[线路]长度不能大于50!");
+                if (_xlname as object == null || !_xlname.Equals(value))
+                {
+                    _xlname = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：byqname
+        /// 属性描述：变压器
+        /// 字段信息：[byqname],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("变压器")]
+        public string byqname
+        {
+            get { return _byqname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[变压器]长度不能大于50!");
+                if (_byqname as object == null || !_byqname.Equals(value))
+                {
+                    _byqname = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：tqname
+        /// 属性描述：台区
+        /// 字段信息：[tqname],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("台区")]
+        public string tqname
+        {
+            get { return _tqname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[台区]长度不能大于50!");
+                if (_tqname as object == null || !_tqname.Equals(value))
+                {
+                    _tqname = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：kgname
+        /// 属性描述：开关
+        /// 字段信息：[kgname],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("开关")]
+        public string kgname
+        {
+            get { return _kgname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[开关]长度不能大于50!");
+                if (_kgname as object == null || !_kgname.Equals(value))
+                {
+                    _kgname = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：gdstemp
+        /// 属性描述：供电所临时
+        /// 字段信息：[gdstemp],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("供电所临时")]
+        public string gdstemp
+        {
+            get { return _gdstemp; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[供电所临时]长度不能大于50!");
+                if (_gdstemp as object == null || !_gdstemp.Equals(value))
+                {
+                    _gdstemp = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：linetemp
+        /// 属性描述：线路临时
+        /// 字段信息：[linetemp],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("线路临时")]
+        public string linetemp
+        {
+            get { return _linetemp; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[线路临时]长度不能大于50!");
+                if (_linetemp as object == null || !_linetemp.Equals(value))
+                {
+                    _linetemp = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：othertemp
+        /// 属性描述：其它临时
+        /// 字段信息：[othertemp],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("其它临时")]
+        public string othertemp
+        {
+            get { return _othertemp; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[其它临时]长度不能大于50!");
+                if (_othertemp as object == null || !_othertemp.Equals(value))
+                {
+                    _othertemp = value;
+                }
+            }
+        }
         #endregion 
   
         #region 方法
