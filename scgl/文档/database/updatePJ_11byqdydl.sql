@@ -1,5 +1,5 @@
 use [EbadaScgl]
-alter table [PS_gtsbclb] 
+alter table [PJ_11byqdydl] 
 add
 	[bphd] [float] NULL,
 	[tq] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
@@ -7,7 +7,7 @@ add
 	[zjr] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
 	[by1] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
 	[by2] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[by3] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[by3] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL
       
 	
 go
