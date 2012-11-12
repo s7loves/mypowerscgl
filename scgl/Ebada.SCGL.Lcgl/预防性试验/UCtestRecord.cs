@@ -145,7 +145,27 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterDelete);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_yfsyjl>(gridViewOperation_BeforeEdit);
 
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
+        {
+            //lgmqxlast
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(e.ValueOld.ID);
+            if (tempobj != null)
+            {
+                e.ValueOld.gdstemp = ParentObj.OrgCode;
+
+                e.ValueOld.xlid = tempobj.xlid;
+                e.ValueOld.xlname = tempobj.xlname;
+                e.ValueOld.tqid = tempobj.tqid;
+                e.ValueOld.tqname = tempobj.tqname;
+                e.ValueOld.byqid = tempobj.byqid;
+                e.ValueOld.byqname = tempobj.byqname;
+                e.ValueOld.kgid = tempobj.kgid;
+                e.ValueOld.kgname = tempobj.kgname;
+            }
         }
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
         {
@@ -178,6 +198,16 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
 
@@ -210,6 +240,16 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }
@@ -253,7 +293,15 @@ namespace Ebada.Scgl.Lcgl
                                 mx.qxlb = "重大缺陷";
                                 mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
                             }
-
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }
@@ -285,6 +333,15 @@ namespace Ebada.Scgl.Lcgl
                             mx.qxnr = "预防性试验不合格";
                             mx.qxlb = "重大缺陷";
                             mx.xcqx = mx.xssj.AddDays(3).ToShortDateString();
+                            //lgmqxlast
+                            mx.xlid = obj.xlid;
+                            mx.xlname = obj.xlname;
+                            mx.tqid = obj.tqid;
+                            mx.tqname = obj.tqname;
+                            mx.byqid = obj.byqid;
+                            mx.byqname = obj.byqname;
+                            mx.kgid = obj.kgid;
+                            mx.kgname = obj.kgname;
                             MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                         }
                     }

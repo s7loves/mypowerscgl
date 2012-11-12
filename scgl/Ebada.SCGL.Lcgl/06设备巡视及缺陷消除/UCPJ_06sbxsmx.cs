@@ -158,7 +158,15 @@ namespace Ebada.Scgl.Lcgl {
                     mx.qxnr = obj.qxnr;
                     mx.qxlb = obj.qxlb;
                     mx.xcqx = obj.xcqx;
-                  
+                    //lgmqxlast
+                    mx.xlid = obj.xlid;
+                    mx.xlname = obj.xlname;
+                    mx.tqid = obj.tqid;
+                    mx.tqname = obj.tqname;
+                    mx.byqid = obj.byqid;
+                    mx.byqname = obj.byqname;
+                    mx.kgid = obj.kgid;
+                    mx.kgname = obj.kgname;
                    
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                 }
@@ -187,6 +195,22 @@ namespace Ebada.Scgl.Lcgl {
         }
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_06sbxsmx> e) {
             fmx.ParentObj = ParentObj;
+
+           
+            //lgmqxlast
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(e.ValueOld.ID);
+            if (tempobj != null)
+            {
+                e.ValueOld.gdstemp = ParentObj.OrgCode;
+                e.ValueOld.xlid = tempobj.xlid;
+                e.ValueOld.xlname = tempobj.xlname;
+                e.ValueOld.tqid = tempobj.tqid;
+                e.ValueOld.tqname = tempobj.tqname;
+                e.ValueOld.byqid = tempobj.byqid;
+                e.ValueOld.byqname = tempobj.byqname;
+                e.ValueOld.kgid = tempobj.kgid;
+                e.ValueOld.kgname = tempobj.kgname;
+            }
         }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_06sbxsmx> e) {
             if (parentID == null)
@@ -288,6 +312,8 @@ namespace Ebada.Scgl.Lcgl {
             newobj.xcrq = DateTime.Now;
             fmx.ParentObj = ParentObj;
             try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
+
+            newobj.gdstemp = parentObj.OrgCode;
         }
         /// <summary>
         /// 父表ID

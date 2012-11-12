@@ -62,7 +62,27 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_07jdzzjl>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_07jdzzjl>(gridViewOperation_AfterEdit);
             gridViewOperation.AfterDelete += new ObjectEventHandler<PJ_07jdzzjl>(gridViewOperation_AfterDelete);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_07jdzzjl>(gridViewOperation_BeforeEdit);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_07jdzzjl> e)
+        {
+            //lgmqxlast
+            PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(e.ValueOld.ID);
+            if (tempobj != null)
+            {
+                e.ValueOld.gdstemp = ParentObj.OrgCode;
+
+                e.ValueOld.xlid = tempobj.xlid;
+                e.ValueOld.xlname = tempobj.xlname;
+                e.ValueOld.tqid = tempobj.tqid;
+                e.ValueOld.tqname = tempobj.tqname;
+                e.ValueOld.byqid = tempobj.byqid;
+                e.ValueOld.byqname = tempobj.byqname;
+                e.ValueOld.kgid = tempobj.kgid;
+                e.ValueOld.kgname = tempobj.kgname;
+            }
         }
 
         void gridViewOperation_AfterDelete(PJ_07jdzzjl obj)
@@ -101,6 +121,17 @@ namespace Ebada.Scgl.Lcgl
                     mx.qxnr = "接地电阻检测不合格";
                     mx.qxlb = "一般缺陷";
                     mx.xcqx = mx.xssj.AddMinutes(3).ToShortDateString();
+
+                    //lgmqxlast
+                    mx.xlid = obj.xlid;
+                    mx.xlname = obj.xlname;
+                    mx.tqid = obj.tqid;
+                    mx.tqname = obj.tqname;
+                    mx.byqid = obj.byqid;
+                    mx.byqname = obj.byqname;
+                    mx.kgid = obj.kgid;
+                    mx.kgname = obj.kgname;
+
                     MainHelper.PlatformSqlMap.Create<PJ_qxfl>(mx);
                 }
 
@@ -206,6 +237,9 @@ namespace Ebada.Scgl.Lcgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+
+            newobj.gdstemp = ParentObj.OrgCode;
+            newobj.xlid = ParentObj.LineID;
 
         }
         /// <summary>

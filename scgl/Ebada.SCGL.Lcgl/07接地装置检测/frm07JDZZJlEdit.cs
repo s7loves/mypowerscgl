@@ -32,6 +32,11 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "jr");
            // this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "jcr");
 
+            this.combLine.DataBindings.Add("EditValue", rowData, "xlid");
+            this.combTq.DataBindings.Add("EditValue", rowData, "tqid");
+            this.combByq.DataBindings.Add("EditValue", rowData, "byqid");
+            this.combKg.DataBindings.Add("EditValue", rowData, "kgid");
+
         }
         #region IPopupFormEdit Members
         private PJ_07jdzzjl rowData = null;
@@ -39,6 +44,10 @@ namespace Ebada.Scgl.Lcgl
         public object RowData {
             get {
                 getxsr();
+                rowData.xlname = combLine.Text;
+                rowData.tqname = combTq.Text;
+                rowData.byqname = combByq.Text;
+                rowData.kgname = combKg.Text;
                 return rowData;
             }
             set {
@@ -95,6 +104,15 @@ namespace Ebada.Scgl.Lcgl
             PJ_07jdzz pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_07jdzz>(rowData.jdzzID);
             this.comboBoxEdit2.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
             this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
+            combLine.Properties.Items.Clear();
+            for (int i = 0; i < xlList.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = xlList[i].LineName;
+                ot.ValueMember = xlList[i].LineCode;
+                combLine.Properties.Items.Add(ot);
+            }
         }
 
         /// <summary>
@@ -219,6 +237,68 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit3.Text = rowData.hsz.ToString();
             
          
+        }
+
+        private void ReSetSelectValue()
+        {
+            string xlcode = string.Empty;
+            if (combLine.EditValue != null)
+            {
+                xlcode = combLine.EditValue.ToString();
+            }
+            if (xlcode.Length == 6)
+            {
+                IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode='{0}' ", xlcode));
+                combTq.Properties.Items.Clear();
+                for (int i = 0; i < xlList.Count; i++)
+                {
+                    ListItem ot = new ListItem();
+                    ot.DisplayMember = xlList[i].tqName;
+                    ot.ValueMember = xlList[i].tqCode;
+                    combTq.Properties.Items.Add(ot);
+                }
+            }
+            else
+            {
+                IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode2='{0}' ", xlcode));
+                combTq.Properties.Items.Clear();
+                for (int i = 0; i < xlList.Count; i++)
+                {
+                    ListItem ot = new ListItem();
+                    ot.DisplayMember = xlList[i].tqName;
+                    ot.ValueMember = xlList[i].tqCode;
+                    combTq.Properties.Items.Add(ot);
+                }
+            }
+
+            IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where   left(byqcode,3)='{0}' ", rowData.gdstemp));
+            combByq.Properties.Items.Clear();
+            for (int i = 0; i < byqlist.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = byqlist[i].byqName;
+                ot.ValueMember = byqlist[i].byqCode;
+                combByq.Properties.Items.Add(ot);
+            }
+
+
+
+            IList<PS_kg> kglist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>(string.Format("where gtID in ( SELECT gtID FROM ps_gt WHERE lineCode='{0}' ", xlcode));
+            combKg.Properties.Items.Clear();
+            for (int i = 0; i < kglist.Count; i++)
+            {
+                ListItem ot = new ListItem();
+                ot.DisplayMember = kglist[i].kgName;
+                ot.ValueMember = kglist[i].kgCode;
+                combKg.Properties.Items.Add(ot);
+            }
+
+        }
+
+        private void combLine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReSetSelectValue();
+
         }
 
         

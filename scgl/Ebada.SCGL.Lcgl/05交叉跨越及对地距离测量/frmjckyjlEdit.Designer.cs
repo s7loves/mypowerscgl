@@ -45,6 +45,15 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.combLine = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.combTq = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.combByq = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.combKg = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -55,13 +64,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.combLine.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combTq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combByq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combKg.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(324, 179);
+            this.btnCancel.Location = new System.Drawing.Point(333, 266);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 0;
@@ -70,7 +84,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(250, 179);
+            this.btnOK.Location = new System.Drawing.Point(259, 266);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 0;
@@ -79,13 +93,14 @@
             // 
             // groupControlOrg
             // 
+            this.groupControlOrg.Controls.Add(this.groupBox2);
             this.groupControlOrg.Controls.Add(this.groupBox1);
             this.groupControlOrg.Controls.Add(this.btnCancel);
             this.groupControlOrg.Controls.Add(this.btnOK);
             this.groupControlOrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlOrg.Location = new System.Drawing.Point(0, 0);
             this.groupControlOrg.Name = "groupControlOrg";
-            this.groupControlOrg.Size = new System.Drawing.Size(414, 214);
+            this.groupControlOrg.Size = new System.Drawing.Size(423, 301);
             this.groupControlOrg.TabIndex = 9;
             this.groupControlOrg.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControlOrg_Paint);
             // 
@@ -102,7 +117,7 @@
             this.groupBox1.Controls.Add(this.spinEdit1);
             this.groupBox1.Controls.Add(this.dateEdit1);
             this.groupBox1.Controls.Add(this.labelControl5);
-            this.groupBox1.Location = new System.Drawing.Point(16, 34);
+            this.groupBox1.Location = new System.Drawing.Point(20, 36);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(391, 122);
             this.groupBox1.TabIndex = 6;
@@ -228,11 +243,97 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.combKg);
+            this.groupBox2.Controls.Add(this.combByq);
+            this.groupBox2.Controls.Add(this.combTq);
+            this.groupBox2.Controls.Add(this.combLine);
+            this.groupBox2.Controls.Add(this.labelControl8);
+            this.groupBox2.Controls.Add(this.labelControl6);
+            this.groupBox2.Controls.Add(this.labelControl7);
+            this.groupBox2.Controls.Add(this.labelControl9);
+            this.groupBox2.Location = new System.Drawing.Point(20, 164);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(391, 96);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "缺陷";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(19, 32);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(24, 14);
+            this.labelControl6.TabIndex = 1;
+            this.labelControl6.Text = "线路";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(19, 61);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(36, 14);
+            this.labelControl7.TabIndex = 1;
+            this.labelControl7.Text = "变压器";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(201, 32);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(24, 14);
+            this.labelControl9.TabIndex = 1;
+            this.labelControl9.Text = "台区";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(201, 61);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(24, 14);
+            this.labelControl8.TabIndex = 6;
+            this.labelControl8.Text = "开关";
+            // 
+            // combLine
+            // 
+            this.combLine.Location = new System.Drawing.Point(79, 25);
+            this.combLine.Name = "combLine";
+            this.combLine.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.combLine.Size = new System.Drawing.Size(100, 21);
+            this.combLine.TabIndex = 11;
+            this.combLine.SelectedIndexChanged += new System.EventHandler(this.combLine_SelectedIndexChanged);
+            // 
+            // combTq
+            // 
+            this.combTq.Location = new System.Drawing.Point(272, 29);
+            this.combTq.Name = "combTq";
+            this.combTq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.combTq.Size = new System.Drawing.Size(100, 21);
+            this.combTq.TabIndex = 12;
+            // 
+            // combByq
+            // 
+            this.combByq.Location = new System.Drawing.Point(79, 58);
+            this.combByq.Name = "combByq";
+            this.combByq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.combByq.Size = new System.Drawing.Size(100, 21);
+            this.combByq.TabIndex = 13;
+            // 
+            // combKg
+            // 
+            this.combKg.Location = new System.Drawing.Point(272, 58);
+            this.combKg.Name = "combKg";
+            this.combKg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.combKg.Size = new System.Drawing.Size(100, 21);
+            this.combKg.TabIndex = 14;
+            // 
             // frmjckyjlEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 214);
+            this.ClientSize = new System.Drawing.Size(423, 301);
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -250,6 +351,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.combLine.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combTq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combByq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combKg.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,6 +380,15 @@
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.SpinEdit spinEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.ComboBoxEdit combLine;
+        private DevExpress.XtraEditors.ComboBoxEdit combKg;
+        private DevExpress.XtraEditors.ComboBoxEdit combByq;
+        private DevExpress.XtraEditors.ComboBoxEdit combTq;
 
     }
 }
