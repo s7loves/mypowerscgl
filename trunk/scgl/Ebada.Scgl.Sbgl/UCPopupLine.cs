@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Sbgl {
             this.Properties.PopupControl = new PopupContainerControl();
             this.Properties.PopupControl.Size = xlselector.Size;
             this.Properties.PopupControl.Controls.Add(xlselector);
-            this.Properties.NullText = "请选择线路";
+            this.Properties.NullText = "请选择...";
             this.QueryPopUp += new System.ComponentModel.CancelEventHandler(UCPopupLine_QueryPopUp);
             this.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(UCPopupLine_QueryResultValue);
             this.CustomDisplayText+=new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(UCPopupLine_CustomDisplayText);
@@ -40,9 +40,9 @@ namespace Ebada.Scgl.Sbgl {
             
         }
         void xlselector_RowSelected(object sender, EventArgs e) {
-            PS_xl xl = xlselector.GetFocusedRow<PS_xl>();
+            DataRow xl = xlselector.GetFocusedDataRow();
             if (xl != null) {
-               EditValue = xl.GetType().GetProperty(valueField).GetValue(xl, null);
+                EditValue = xl[ValueField];
             }   
             this.ClosePopup();
         }       
@@ -50,6 +50,7 @@ namespace Ebada.Scgl.Sbgl {
         public string GetDisplayText() {
             return this.EditViewInfo.DisplayText;
         }
+        string filterField = "xlpy";
         string displayField = "LineName";
         public string DisplayField {
             get { return displayField; }
@@ -68,14 +69,28 @@ namespace Ebada.Scgl.Sbgl {
                 } else {
                     xlselector.DataSource = ConvertHelper.ToDataTable((IList)value);
                 }
-                xlselector.SetColumnsVisible("LineName");
-                xlselector.SetFilterColumns("xlpy");
+                DataTable dt = xlselector.DataSource as DataTable;
+                createFilterColumn(dt);
+                xlselector.SetColumnsVisible(DisplayField);
+                xlselector.SetFilterColumns(filterField);
                 
             }
         }
-        public class LineItem {
-            public string LineCode;
-            public string LineName;
+        private void createFilterColumn(DataTable dt) {
+            bool find = false;
+            foreach (DataColumn item in dt.Columns) {
+                if (item.ColumnName == filterField) {
+                    find = true; break;
+                }
+            }
+            if (!find) {
+                dt.Columns.Add(filterField, typeof(string));
+                foreach (DataRow row in dt.Rows) {
+
+                    if (string.IsNullOrEmpty(row[displayField].ToString())) continue;
+                    row[filterField] = Ebada.Scgl.Core.SelectorHelper.GetPysm(row[displayField].ToString());
+                }
+            }
         }
     }
 }
