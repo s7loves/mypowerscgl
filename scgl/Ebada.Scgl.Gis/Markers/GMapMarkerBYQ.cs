@@ -36,7 +36,24 @@ namespace Ebada.Scgl.Gis.Markers {
         }
         
         internal override void Update() {
-            
+            if (Tag is TX_Point) {
+                TX_Point pt = Tag as TX_Point;
+                pt.x = this.Position.Lng.ToString();
+                pt.y = this.Position.Lat.ToString();
+                pt.Text = this.Text;
+                TX_PointHelper.Update(pt);
+            } else if (Tag is string) {
+                TX_Point pt = new TX_Point();
+                pt.x = this.Position.Lng.ToString();
+                pt.y = this.Position.Lat.ToString();
+                pt.Text = this.Text;
+                pt.Type = "byqobject";
+                pt.LayerID = this.Overlay.Id;
+                pt.ID = Tag.ToString();
+                TX_PointHelper.Create(pt);
+
+                this.Tag = pt;
+            }
         }
         public override ContextMenu CreatePopuMenu() {
             ContextMenu contextMenu = new ContextMenu();
@@ -48,14 +65,20 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         void 属性_Click(object sender, EventArgs e) {
-            PS_tqbyq byq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tqbyq>(this.Tag);
+            PS_tqbyq byq=null;
+            if (this.Tag is string) {
+                 byq= Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tqbyq>(this.Tag);
+            } else if (this.Tag is TX_Point) {
+                TX_Point tp = this.Tag as TX_Point;
+
+                byq = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_tqbyq>(tp.ID);
+            }
             if (byq == null) return;
             Ebada.Scgl.Sbgl.frmtqbyqEdit dlg = new Ebada.Scgl.Sbgl.frmtqbyqEdit();
             dlg.RowData = byq;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.Update<PS_tqbyq>(dlg.RowData);
             }
-            
         }
     }
 }
