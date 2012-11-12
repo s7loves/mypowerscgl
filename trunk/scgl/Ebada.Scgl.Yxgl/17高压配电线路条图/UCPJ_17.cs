@@ -473,15 +473,13 @@ namespace Ebada.Scgl.Yxgl {
                     ihang++;
                     //导线排列方式
 
-                    //if (gtobj.dxplfs == "")
-                    //{
+                    if (hdobj.Count>0 && hdobj[0].ToString().Contains("三角")) {
 
-                    //    ex.SetCellValue("水平", ihang, jlie);
-                    //}
-                    //else
-                    //{
-                    //    ex.SetCellValue(gtobj.dxplfs, ihang, jlie);
-                    //}
+                        ex.SetCellValue("三角排列", ihang, jlie);
+                    } else {
+                        ex.SetCellValue("水平排列", ihang, jlie);
+                    }
+                    /*
                     if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count) {
                         //合并同类项
                         string stplrname = "";
@@ -602,7 +600,7 @@ namespace Ebada.Scgl.Yxgl {
                             }
                         }
                     }
-
+                    */
                     ihang++;
                     //导线型号规格（mm2）
                     if (dxlist != null && dxlist.Count > 0) {
@@ -968,37 +966,38 @@ namespace Ebada.Scgl.Yxgl {
                         if (btlist.Count > 0) {
                             //ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
                             ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq  Where tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
-                            if (ilisttemp.Count > btRowCount) {
-                                for (j = btRowCount; j < ilisttemp.Count; j++) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount + 1, "A"], xx.Cells[ihang + btRowCount + 1, "A"]);
-                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                            //if (ilisttemp.Count > btRowCount) {
+                            //    for (j = btRowCount; j < ilisttemp.Count; j++) {
+                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount + 1, "A"], xx.Cells[ihang + btRowCount + 1, "A"]);
+                            //        range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
 
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j + 1, 2]);
-                                    range.Merge(Type.Missing);
+                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j + 1, 2]);
+                            //        range.Merge(Type.Missing);
 
-                                }
-                                for (int jtem = 1; jtem < ilisttemp.Count; jtem++) {
-                                    for (int item = 0; item < 29; item += 2) {
-                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 3, jstart + item], xx.Cells[ihang + jtem + 3, jstart + item + 1]);
-                                        range.Merge(Type.Missing);
-                                    }
-                                }
+                            //    }
+                            //    for (int jtem = 1; jtem < ilisttemp.Count; jtem++) {
+                            //        for (int item = 0; item < 29; item += 2) {
+                            //            range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 3, jstart + item], xx.Cells[ihang + jtem + 3, jstart + item + 1]);
+                            //            range.Merge(Type.Missing);
+                            //        }
+                            //    }
 
-                                btRowCount = ilisttemp.Count;
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + btRowCount + 1 - 1, 1]);
-                                range.Merge(Type.Missing);
-                            }
-                            if (btlist.Count == 1)
+                            //    btRowCount = ilisttemp.Count;
+                            //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + btRowCount + 1 - 1, 1]);
+                            //    range.Merge(Type.Missing);
+                            //}
+                            //if (btlist.Count == 1)
                                 ex.SetCellValue(btlist[0].ToString(), ihang, jlie);
                             //else
                             //{
                             //    j = j;
                             //}
-                            for (j = 0; j < ilisttemp.Count; j++) {
+                            int byqrl = 0;
+                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   count(*) from PS_tqbyq where  tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')"));
+                            for (j = 0; j < Math.Min(ilisttemp.Count,2); j++) {//只能显示两个
                                 //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                                 ////int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
                                 //PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   count(*) from PS_tqbyq where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')"));
                                 PS_tqbyq gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" Where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
                                 if (gtsbtemp != null) {
                                     //PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType + ilisttemp[0].ToString());
@@ -1006,17 +1005,19 @@ namespace Ebada.Scgl.Yxgl {
                                     //{
                                     //ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
                                     //}
+                                    byqrl += gtsbtemp.byqCapcity;
                                     if (gtsbtemp.byqModle.IndexOf("-") < 0) {
-                                        ex.SetCellValue(gtsbtemp.byqModle /*+ "/" + icount.ToString()*/, ihang + j + 1, jlie);
-                                        ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang + j + 2, jlie);
-                                        ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang + j + 3, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqModle /*+ "/" + icount.ToString()*/, ihang  + 1, jlie+j);
+                                        //ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang+j  + 2, jlie);
+                                        //ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang+j  + 3, jlie);
                                     } else {
-                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-")) + "/" /*+ icount.ToString()*/, ihang + j + 1, jlie);
-                                        ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang + j + 2, jlie);
-                                        ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang + j + 1, jlie);
+                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-"))  /*+ "/"+ icount.ToString()*/, ihang + j + 1, jlie+j);
+                                        
                                     }
                                 }
                             }
+                            ex.SetCellValue(icount.ToString(), ihang + 2, jlie);
+                            ex.SetCellValue(byqrl.ToString(), ihang + 3, jlie);
                         }
 
                     }
@@ -1084,13 +1085,14 @@ namespace Ebada.Scgl.Yxgl {
                         }
                         for (j = 0; j < kglist.Count; j++) {
                             try {
-                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                ex.SetCellValue(kglist[j].ToString() + "/" + icount, ihang + j, jlie);
-                                ex.SetCellValue( icount.ToString(), ihang + j +2, jlie);
+                                ex.SetCellValue(kglist[j].ToString() , ihang + j, jlie);
+                                
                             } catch { }
 
                         }
+                        ex.SetCellValue(kglist.Count.ToString(), ihang +j + 2, jlie);
                     }
                     ihang += kgRowCount + 2;
 
