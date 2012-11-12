@@ -247,6 +247,7 @@ namespace Ebada.Scgl.Gis {
                      //int i = 0;
                      List<string> byqgt = new List<string>();
                      foreach (DataRow row in byqtable.Rows) {
+                         
                          if (!gtdic.ContainsKey(row["gtid"].ToString())) continue;
                          if(byqgt.Contains(row["gtid"].ToString()))continue;
                          byqgt.Add(row["gtid"].ToString());
@@ -260,6 +261,11 @@ namespace Ebada.Scgl.Gis {
                          marker.Tag = row["byqID"];
                          //marker.IsHitTestVisible = false;
                          layer.Markers.Add(marker);
+                         if (dicp.ContainsKey(row["byqID"].ToString())) {
+                             TX_Point pt = dicp[row["byqID"].ToString()];
+                             marker.Position = new PointLatLng(double.Parse(pt.y), double.Parse(pt.x));
+                             marker.Tag = pt;
+                         }
                      }
                  }
                  if (kglist != null && kglist.Count > 0) {
