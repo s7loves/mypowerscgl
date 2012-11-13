@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmjckyjlEdit : FormBase, IPopupFormEdit {
@@ -21,6 +22,12 @@ namespace Ebada.Scgl.Lcgl
         public frmjckyjlEdit() {
             InitializeComponent();
         }
+         UCPopupLine popLine = new UCPopupLine();
+        
+         UCPopupLine popByq = new UCPopupLine();
+         UCPopupLine popTq = new UCPopupLine();
+         UCPopupLine popKg = new UCPopupLine();
+
         void dataBind() {
 
 
@@ -30,10 +37,46 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "clrqz");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "jr");
 
-            this.combLine.DataBindings.Add("EditValue", rowData, "xlid");
-            this.combTq.DataBindings.Add("EditValue", rowData, "tqid");
-            this.combByq.DataBindings.Add("EditValue", rowData, "byqid");
-            this.combKg.DataBindings.Add("EditValue", rowData, "kgid");
+            //this.lkueLine.DataBindings.Add("EditValue", rowData, "xlid");
+            //this.lkueTq.DataBindings.Add("EditValue", rowData, "tqid");
+            //this.lkueByq.DataBindings.Add("EditValue", rowData, "byqid");
+            //this.lkueKg.DataBindings.Add("EditValue", rowData, "kgid");
+
+            popLine.Bounds = lkueLine.Bounds;
+            lkueLine.Hide();
+            popLine.Parent = lkueLine.Parent;
+
+            this.popLine.DataBindings.Add("EditValue", rowData, "xlid");
+            //this.popLine.DisplayField = "mc";
+            //this.popLine.ValueField = "bh";
+            //this.popLine.DataSource = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh");
+            this.popLine.EditValueChanged += lkueLine_EditValueChanged;
+
+            popTq.Bounds = lkueTq.Bounds;
+            lkueTq.Hide();
+            popTq.Parent = lkueTq.Parent;
+
+            this.popTq.DataBindings.Add("EditValue", rowData, "tqid");
+            this.popTq.DisplayField = "tqName";
+            this.popTq.ValueField = "tqID";
+
+            popByq.Bounds = lkueByq.Bounds;
+            lkueByq.Hide();
+            popByq.Parent = lkueByq.Parent;
+
+            this.popByq.DataBindings.Add("EditValue", rowData, "byqid");
+            this.popByq.DisplayField = "byqName";
+            this.popByq.ValueField = "byqID";
+
+
+            popKg.Bounds = lkueKg.Bounds;
+            lkueKg.Hide();
+            popKg.Parent = lkueKg.Parent;
+
+            this.popKg.DataBindings.Add("EditValue", rowData, "kgid");
+            this.popKg.DisplayField = "kgName";
+            this.popKg.ValueField = "kgID";
+
         }
         #region IPopupFormEdit Members
         private PJ_05jckyjl rowData = null;
@@ -42,10 +85,10 @@ namespace Ebada.Scgl.Lcgl
             get {
                 getqqry();
 
-                rowData.xlname = combLine.Text;
-                rowData.tqname = combTq.Text;
-                rowData.byqname = combByq.Text;
-                rowData.kgname = combKg.Text;
+                rowData.xlname = popLine.Text;
+                rowData.tqname = popTq.Text;
+                rowData.byqname = popByq.Text;
+                rowData.kgname = popKg.Text;
 
                 return rowData;
             }
@@ -75,16 +118,15 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
             this.comboBoxEdit3.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
-            combLine.Properties.Items.Clear();
-            for (int i = 0; i < xlList.Count; i++)
-            {
-                ListItem ot = new ListItem();
-                ot.DisplayMember = xlList[i].LineName;
-                ot.ValueMember = xlList[i].LineCode;
-                combLine.Properties.Items.Add(ot);
-            }
+            popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
 
+            popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
+            popTq.Properties.PopupFormSize = new Size(popTq.Properties.PopupFormSize.Width, 200);
+            popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
+
+
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
+            this.popLine.DataSource = xlList;
         }
         void setqqry()
         {
@@ -165,63 +207,55 @@ namespace Ebada.Scgl.Lcgl
         private void ReSetSelectValue()
         {
             string xlcode=string.Empty;
-            if (combLine.EditValue!=null)
+            if (popLine.EditValue!=null)
             {
-                xlcode=combLine.EditValue.ToString();
+                if (popLine.GetDataRow()!=null)
+	            {
+                    xlcode = popLine.GetDataRow()["LineCode"].ToString(); 
+	            }
+                
+               
             }
             if (xlcode.Length == 6)
             {
                 IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode='{0}' ", xlcode));
-                combTq.Properties.Items.Clear();
-                for (int i = 0; i < xlList.Count; i++)
+                if (xlList.Count!=0)
                 {
-                    ListItem ot = new ListItem();
-                    ot.DisplayMember = xlList[i].tqName;
-                    ot.ValueMember = xlList[i].tqCode;
-                    combTq.Properties.Items.Add(ot);
+                    popTq.DataSource = xlList;
                 }
+               
             }
             else
             {
                 IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode2='{0}' ", xlcode));
-                combTq.Properties.Items.Clear();
-                for (int i = 0; i < xlList.Count; i++)
+
+                if (xlList.Count != 0)
                 {
-                    ListItem ot = new ListItem();
-                    ot.DisplayMember = xlList[i].tqName;
-                    ot.ValueMember = xlList[i].tqCode;
-                    combTq.Properties.Items.Add(ot);
+                    popTq.DataSource = xlList;
                 }
             }
          
             IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where   left(byqcode,3)='{0}' ", rowData.gdstemp));
-            combByq.Properties.Items.Clear();
-            for (int i = 0; i < byqlist.Count; i++)
+            if (byqlist.Count != 0)
             {
-                ListItem ot = new ListItem();
-                ot.DisplayMember = byqlist[i].byqName;
-                ot.ValueMember = byqlist[i].byqCode;
-                combByq.Properties.Items.Add(ot);
+                popByq.DataSource = byqlist;
             }
+            
 
-
-
-            IList<PS_kg> kglist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>(string.Format("where gtID in ( SELECT gtID FROM ps_gt WHERE lineCode='{0}' ",xlcode));
-            combKg.Properties.Items.Clear();
-            for (int i = 0; i < kglist.Count; i++)
+            IList<PS_kg> kglist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>(string.Format("where gtID in ( SELECT gtID FROM ps_gt WHERE lineCode='{0}') ",xlcode));
+            if (kglist.Count != 0)
             {
-                ListItem ot = new ListItem();
-                ot.DisplayMember = kglist[i].kgName;
-                ot.ValueMember = kglist[i].kgCode;
-                combKg.Properties.Items.Add(ot);
+                popKg.DataSource = kglist;
             }
+           
            
         }
 
-        private void combLine_SelectedIndexChanged(object sender, EventArgs e)
+       
+
+        private void lkueLine_EditValueChanged(object sender, EventArgs e)
         {
             ReSetSelectValue();
-        
         }
     }
 }

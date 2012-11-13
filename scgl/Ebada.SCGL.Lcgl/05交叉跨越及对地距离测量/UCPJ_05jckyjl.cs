@@ -68,10 +68,9 @@ namespace Ebada.Scgl.Lcgl {
         {
             //lgmqxlast
             PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(e.ValueOld.ID);
+            e.ValueOld.gdstemp = ParentObj.OrgCode;
             if (tempobj!=null)
             {
-                e.ValueOld.gdstemp = ParentObj.OrgCode;
-
                 e.ValueOld.xlid = tempobj.xlid;
                 e.ValueOld.xlname = tempobj.xlname;
                 e.ValueOld.tqid = tempobj.tqid;
@@ -241,7 +240,7 @@ namespace Ebada.Scgl.Lcgl {
 
             //lgmqxlast
             newobj.gdstemp = ParentObj.OrgCode;
-            newobj.xlid = ParentObj.LineID;
+            //newobj.xlid = ParentObj.LineID;
 
         }
         /// <summary>

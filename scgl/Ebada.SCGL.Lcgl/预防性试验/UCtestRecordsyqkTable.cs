@@ -459,9 +459,10 @@ namespace Ebada.Scgl.Lcgl
             PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl;
             //lgmqxlast
             PJ_qxfl tempobj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(ob.ID);
+            ob.gdstemp = ParentObj.OrgCode;
             if (tempobj != null)
             {
-                ob.gdstemp = ParentObj.OrgCode;
+                
                 ob.xlid = tempobj.xlid;
                 ob.xlname = tempobj.xlname;
                 ob.tqid = tempobj.tqid;
