@@ -494,6 +494,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[xlid],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("xlid")]
         public string xlid
         {
@@ -515,6 +516,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[byqid],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("byqid")]
         public string byqid
         {
@@ -536,6 +538,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[tqid],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("tqid")]
         public string tqid
         {
@@ -557,6 +560,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[kgid],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("kgid")]
         public string kgid
         {
@@ -662,6 +666,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[rid],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("rid")]
         public string rid
         {
