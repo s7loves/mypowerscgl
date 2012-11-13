@@ -41,12 +41,17 @@ namespace Ebada.Scgl.Sbgl {
         }
         void xlselector_RowSelected(object sender, EventArgs e) {
             DataRow xl = xlselector.GetFocusedDataRow();
+            _dr = xl;
             if (xl != null) {
                 EditValue = xl[ValueField];
             }   
             this.ClosePopup();
-        }       
-       
+        }
+        private DataRow _dr = null;
+        public DataRow GetDataRow()
+        {
+            return _dr;
+        }
         public string GetDisplayText() {
             return this.EditViewInfo.DisplayText;
         }
