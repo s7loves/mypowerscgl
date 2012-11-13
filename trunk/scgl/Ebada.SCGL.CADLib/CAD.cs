@@ -251,11 +251,7 @@ namespace Ebada.SCGL.CADLib
                     pnt[1] = Convert.ToDouble(list[i].gtLat.ToString("0.########"));
                     pnt[2] = 0;
                    
-                    //if (list[i].gtSpan >7) {//防止重叠，档距小于跳过
-                        AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.00005 * zoom);//杆塔
-                        cirz.Layer = "gt";
-                        cirz.TrueColor = color;
-                    //}
+                   
                     gtnum++;
 
                     string gg = list[i].gtHeight.ToString("##");
@@ -264,17 +260,22 @@ namespace Ebada.SCGL.CADLib
                     pnt[0] -= 0.00005d * zoom;
                     ntext.Height = 0.00005*zoom;
                     ntext.Layer = "gth";
-
+                    bool hasbyq = false;
                     PS_tq tq= Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where gtID='" + list[i].gtID + "'");
                     if (tq != null)
                     {
                         PS_tqbyq byq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" where tqID='" + tq.tqID + "'");
                         if (byq != null)
                         {
+                            hasbyq = true;
                             //cad.ActiveDocument.ModelSpace.InsertBlock(pnt, Application.StartupPath + "\\byq.dwg", 0.3, 0.3, 1, 0, 0);
                         }
                     }
-
+                    if (!hasbyq) {
+                    AcadCircle cirz = cad.ActiveDocument.ModelSpace.AddCircle(pnt, 0.00005 * zoom);//杆塔
+                    cirz.Layer = "gt";
+                    cirz.TrueColor = color;
+                    }
                     if (i < list.Count-1 && list[i].gtSpan>15)
                     {
                         double[] n1 = new double[2];
