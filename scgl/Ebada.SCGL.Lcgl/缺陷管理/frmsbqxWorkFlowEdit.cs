@@ -165,6 +165,11 @@ namespace Ebada.Scgl.Lcgl {
             get {
                 getxsr();
                 getxcr();
+                rowData.xlid = rowData.LineID;
+                rowData.xlname = rowData.LineName;
+                rowData.tqname = popTq.Text;
+                rowData.byqname = popByq.Text;
+                rowData.kgname = popKg.Text;
                 return rowData;
             }
             set {
