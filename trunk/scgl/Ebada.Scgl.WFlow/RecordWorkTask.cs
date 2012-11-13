@@ -1000,7 +1000,7 @@ namespace Ebada.Scgl.WFlow {
             //else//窗体的构造函数需要参数
             //    fromCtrl = Activator.CreateInstance(tp, methodName);
             object instance = null;
-            if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
+            if (obj==null||obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
             { }
             else
             {
