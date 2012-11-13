@@ -171,7 +171,6 @@
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
             // barAll
@@ -181,6 +180,7 @@
             this.barAll.ImageIndex = 7;
             this.barAll.Name = "barAll";
             this.barAll.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barAll.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barAll_ItemClick);
             // 
             // btExport
