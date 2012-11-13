@@ -219,6 +219,12 @@ namespace Ebada.Scgl.Lcgl {
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
             //comboBoxEdit4.Properties.Items.AddRange(qxlist);
+            popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
+
+            popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
+            popTq.Properties.PopupFormSize = new Size(popTq.Properties.PopupFormSize.Width, 200);
+            popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
+
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol='10'");
             if (xlList.Count!=0)
             {

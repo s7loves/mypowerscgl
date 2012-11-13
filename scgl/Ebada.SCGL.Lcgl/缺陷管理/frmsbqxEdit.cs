@@ -14,12 +14,18 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
 using Ebada.Scgl.WFlow;
+using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Lcgl
 {
     public partial class frmsbqxEdit : FormBase, IPopupFormEdit
     {
         SortableSearchableBindingList<PJ_qxfl> m_CityDic = new SortableSearchableBindingList<PJ_qxfl>();
 
+        UCPopupLine popLine = new UCPopupLine();
+
+        UCPopupLine popByq = new UCPopupLine();
+        UCPopupLine popTq = new UCPopupLine();
+        UCPopupLine popKg = new UCPopupLine();
 
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -95,6 +101,32 @@ namespace Ebada.Scgl.Lcgl
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
             // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
+
+            popTq.Bounds = lkueTq.Bounds;
+            lkueTq.Hide();
+            popTq.Parent = lkueTq.Parent;
+
+            this.popTq.DataBindings.Add("EditValue", rowData, "tqid");
+            this.popTq.DisplayField = "tqName";
+            this.popTq.ValueField = "tqID";
+
+            popByq.Bounds = lkueByq.Bounds;
+            lkueByq.Hide();
+            popByq.Parent = lkueByq.Parent;
+
+            this.popByq.DataBindings.Add("EditValue", rowData, "byqid");
+            this.popByq.DisplayField = "byqName";
+            this.popByq.ValueField = "byqID";
+
+
+            popKg.Bounds = lkueKg.Bounds;
+            lkueKg.Hide();
+            popKg.Parent = lkueKg.Parent;
+
+            this.popKg.DataBindings.Add("EditValue", rowData, "kgid");
+            this.popKg.DisplayField = "kgName";
+            this.popKg.ValueField = "kgID";
+
         }
         #region IPopupFormEdit Members
         private PJ_qxfl rowData = null;
@@ -105,6 +137,11 @@ namespace Ebada.Scgl.Lcgl
             {
                 getxsr();
                 getxcr();
+                rowData.xlid = rowData.LineID;
+                rowData.xlname = rowData.LineName;
+                rowData.tqname = popTq.Text;
+                rowData.byqname = popByq.Text;
+                rowData.kgname = popKg.Text;
                 return rowData;
             }
             set
@@ -155,6 +192,11 @@ namespace Ebada.Scgl.Lcgl
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
             //comboBoxEdit4.Properties.Items.AddRange(qxlist);
+            popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
+
+            popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
+            popTq.Properties.PopupFormSize = new Size(popTq.Properties.PopupFormSize.Width, 200);
+            popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
         }
 
         /// <summary>
@@ -252,6 +294,56 @@ namespace Ebada.Scgl.Lcgl
                     comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
                 }
             }
+
+            ReSetSelectValue();
+
+        }
+        private void ReSetSelectValue()
+        {
+            string xlcode = string.Empty;
+
+            if (lookUpEdit1.EditValue != null)
+            {
+                PS_xl xl = MainHelper.PlatformSqlMap.GetOneByKey<PS_xl>(lookUpEdit1.EditValue.ToString());
+                if (xl != null)
+                {
+                    xlcode = xl.LineCode;
+                }
+
+
+            }
+            if (xlcode.Length == 6)
+            {
+                IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode='{0}' ", xlcode));
+                if (xlList.Count != 0)
+                {
+                    popTq.DataSource = xlList;
+                }
+
+            }
+            else
+            {
+                IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where   xlcode2='{0}' ", xlcode));
+
+                if (xlList.Count != 0)
+                {
+                    popTq.DataSource = xlList;
+                }
+            }
+
+            IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where   left(byqcode,3)='{0}' ", rowData.OrgCode));
+            if (byqlist.Count != 0)
+            {
+                popByq.DataSource = byqlist;
+            }
+
+
+            IList<PS_kg> kglist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>(string.Format("where gtID in ( SELECT gtID FROM ps_gt WHERE lineCode='{0}') ", xlcode));
+            if (kglist.Count != 0)
+            {
+                popKg.DataSource = kglist;
+            }
+
 
         }
 
