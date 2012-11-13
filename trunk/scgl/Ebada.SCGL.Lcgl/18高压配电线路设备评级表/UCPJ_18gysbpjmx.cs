@@ -262,7 +262,7 @@ namespace Ebada.Scgl.Lcgl {
             set {
                 _parentobj = value;
                 if (PSObj != null) {
-                    RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by id desc");
+                    RefreshData(" where PJ_ID='" + value.PJ_ID + "'  order by xh");
                 } else {
                     RefreshData(" where PJ_ID='   ###@@@#'  order by id desc");
                 }

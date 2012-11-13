@@ -485,7 +485,7 @@ namespace Ebada.Scgl.Lcgl {
             if (barCheckItem1.Checked)
             {
                 
-                gridViewOperation.RefreshData(basesql + " and xcr!=''");
+                gridViewOperation.RefreshData(basesql + " and xcr=''");
             }
             else
             {

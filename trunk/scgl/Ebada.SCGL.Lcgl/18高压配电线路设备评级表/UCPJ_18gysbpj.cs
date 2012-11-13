@@ -135,7 +135,8 @@ namespace Ebada.Scgl.Lcgl {
         void gridViewOperation_AfterAdd(PJ_18gysbpj obj) {
             IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + btGdsList.EditValue + "'and ParentID = ''");
             int bh = 0;
-            foreach (PS_xl pl in listxl) {
+            foreach (PS_xl pl in listxl)
+            {
                 bh++;
                 //线路
                 PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
@@ -155,6 +156,24 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.whl = Convert.ToDecimal((line1 + line2) / (line1 + line2 + line3));
                 }
 
+                #region 生成缺陷
+                string xlsqlwhere=string.Format(" where xlid='{0}' and xcr='' order by qxlb",pl.LineID);
+                IList<PJ_qxfl> qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                if (qxlist.Count>0)
+                {
+                    if (qxlist[0].qxlb=="一般缺陷")
+                    {
+                        pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                        pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                    }
+                    else
+                    {
+                        pjmx.qxlb = qxlist[0].qxlb;
+                        pjmx.qxnr = qxlist[0].qxnr;
+                    }
+                }
+                #endregion
+
                 Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 //台区
                 IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where SUBSTRING(xlCode, 1, 6) ='" + pl.LineCode + "'");
@@ -166,7 +185,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.tqName;
+                    pjmx.sbdy = pl.LineName+" "+pq.tqName;
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.btKind) {
@@ -184,17 +203,35 @@ namespace Ebada.Scgl.Lcgl {
                             break;
 
                     }
+                    #region 生成缺陷
+                     xlsqlwhere = string.Format(" where tqid='{0}' and xcr='' order by qxlb", pq.tqID);
+                     qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0)
+                    {
+                        if (qxlist[0].qxlb == "一般缺陷")
+                        {
+                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                        }
+                        else
+                        {
+                            pjmx.qxlb = qxlist[0].qxlb;
+                            pjmx.qxnr = qxlist[0].qxnr;
+                        }
+                    }
+                    #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
                 //开关
                 IList<PS_kg> listkg = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("WHERE (gtID IN(SELECT gtID FROM PS_gt WHERE (SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "')))");
-                foreach (PS_kg pq in listkg) {
+                foreach (PS_kg pq in listkg) 
+                {
                     bh++;
                     pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.kgName;
+                    pjmx.sbdy = pl.LineName + " " + pq.kgName;
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.kgkind) {
@@ -212,17 +249,35 @@ namespace Ebada.Scgl.Lcgl {
                             break;
 
                     }
+                    #region 生成缺陷
+                     xlsqlwhere = string.Format(" where kgid='{0}' and xcr='' order by qxlb", pq.kgID);
+                    qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0)
+                    {
+                        if (qxlist[0].qxlb == "一般缺陷")
+                        {
+                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                        }
+                        else
+                        {
+                            pjmx.qxlb = qxlist[0].qxlb;
+                            pjmx.qxnr = qxlist[0].qxnr;
+                        }
+                    }
+                    #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
                 //变压器
                 IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
-                foreach (PS_tqbyq pq in listbyq) {
+                foreach (PS_tqbyq pq in listbyq) 
+                {
                     bh++;
                     pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.byqName;
+                    pjmx.sbdy = pl.LineName + " " + pq.byqName;
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.byqkind) {
@@ -240,6 +295,23 @@ namespace Ebada.Scgl.Lcgl {
                             break;
 
                     }
+                    #region 生成缺陷
+                    xlsqlwhere = string.Format(" where byqid='{0}' and xcr='' order by qxlb", pq.byqID);
+                     qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0)
+                    {
+                        if (qxlist[0].qxlb == "一般缺陷")
+                        {
+                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                        }
+                        else
+                        {
+                            pjmx.qxlb = qxlist[0].qxlb;
+                            pjmx.qxnr = qxlist[0].qxnr;
+                        }
+                    }
+                    #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
             }
