@@ -53,10 +53,10 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.combKg = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.combByq = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.combTq = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.combLine = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.lkueKg = new DevExpress.XtraEditors.LookUpEdit();
+            this.lkueByq = new DevExpress.XtraEditors.LookUpEdit();
+            this.lkueTq = new DevExpress.XtraEditors.LookUpEdit();
+            this.lkueLine = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -75,10 +75,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.combKg.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combByq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combTq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combLine.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueKg.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueByq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueTq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -324,61 +324,61 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.combKg);
-            this.groupBox3.Controls.Add(this.combByq);
-            this.groupBox3.Controls.Add(this.combTq);
-            this.groupBox3.Controls.Add(this.combLine);
+            this.groupBox3.Controls.Add(this.lkueKg);
+            this.groupBox3.Controls.Add(this.lkueByq);
+            this.groupBox3.Controls.Add(this.lkueTq);
+            this.groupBox3.Controls.Add(this.lkueLine);
             this.groupBox3.Controls.Add(this.labelControl10);
             this.groupBox3.Controls.Add(this.labelControl11);
             this.groupBox3.Controls.Add(this.labelControl12);
             this.groupBox3.Controls.Add(this.labelControl13);
             this.groupBox3.Location = new System.Drawing.Point(15, 202);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(472, 89);
+            this.groupBox3.Size = new System.Drawing.Size(471, 96);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "缺陷";
             // 
-            // combKg
+            // lkueKg
             // 
-            this.combKg.Location = new System.Drawing.Point(353, 54);
-            this.combKg.Name = "combKg";
-            this.combKg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkueKg.Location = new System.Drawing.Point(304, 58);
+            this.lkueKg.Name = "lkueKg";
+            this.lkueKg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.combKg.Size = new System.Drawing.Size(100, 21);
-            this.combKg.TabIndex = 14;
+            this.lkueKg.Size = new System.Drawing.Size(137, 21);
+            this.lkueKg.TabIndex = 18;
             // 
-            // combByq
+            // lkueByq
             // 
-            this.combByq.Location = new System.Drawing.Point(79, 58);
-            this.combByq.Name = "combByq";
-            this.combByq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkueByq.Location = new System.Drawing.Point(79, 58);
+            this.lkueByq.Name = "lkueByq";
+            this.lkueByq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.combByq.Size = new System.Drawing.Size(100, 21);
-            this.combByq.TabIndex = 13;
+            this.lkueByq.Size = new System.Drawing.Size(146, 21);
+            this.lkueByq.TabIndex = 17;
             // 
-            // combTq
+            // lkueTq
             // 
-            this.combTq.Location = new System.Drawing.Point(353, 25);
-            this.combTq.Name = "combTq";
-            this.combTq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkueTq.Location = new System.Drawing.Point(304, 31);
+            this.lkueTq.Name = "lkueTq";
+            this.lkueTq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.combTq.Size = new System.Drawing.Size(100, 21);
-            this.combTq.TabIndex = 12;
+            this.lkueTq.Size = new System.Drawing.Size(137, 21);
+            this.lkueTq.TabIndex = 16;
             // 
-            // combLine
+            // lkueLine
             // 
-            this.combLine.Location = new System.Drawing.Point(79, 25);
-            this.combLine.Name = "combLine";
-            this.combLine.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkueLine.Location = new System.Drawing.Point(79, 29);
+            this.lkueLine.Name = "lkueLine";
+            this.lkueLine.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.combLine.Size = new System.Drawing.Size(100, 21);
-            this.combLine.TabIndex = 11;
-            this.combLine.SelectedIndexChanged += new System.EventHandler(this.combLine_SelectedIndexChanged);
+            this.lkueLine.Size = new System.Drawing.Size(146, 21);
+            this.lkueLine.TabIndex = 15;
+            this.lkueLine.EditValueChanged += new System.EventHandler(this.lkueLine_EditValueChanged);
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(282, 57);
+            this.labelControl10.Location = new System.Drawing.Point(256, 61);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(24, 14);
             this.labelControl10.TabIndex = 6;
@@ -402,7 +402,7 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(282, 28);
+            this.labelControl13.Location = new System.Drawing.Point(256, 32);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(24, 14);
             this.labelControl13.TabIndex = 1;
@@ -438,10 +438,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.combKg.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combByq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combTq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combLine.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueKg.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueByq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueTq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,10 +473,10 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit7;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private System.Windows.Forms.GroupBox groupBox3;
-        private DevExpress.XtraEditors.ComboBoxEdit combKg;
-        private DevExpress.XtraEditors.ComboBoxEdit combByq;
-        private DevExpress.XtraEditors.ComboBoxEdit combTq;
-        private DevExpress.XtraEditors.ComboBoxEdit combLine;
+        private DevExpress.XtraEditors.LookUpEdit lkueKg;
+        private DevExpress.XtraEditors.LookUpEdit lkueByq;
+        private DevExpress.XtraEditors.LookUpEdit lkueTq;
+        private DevExpress.XtraEditors.LookUpEdit lkueLine;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl12;
