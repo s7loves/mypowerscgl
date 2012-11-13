@@ -47,7 +47,6 @@ namespace Ebada.Scgl.Lcgl {
         private DataTable WorkFlowData = null;//实例流程信息
         private bool isWorkflowCall = false;
         private string varDbTableName = "LP_Record";
-        Excel.Workbook wb;
         public bool IsWorkflowCall {
             set {
 
@@ -102,44 +101,46 @@ namespace Ebada.Scgl.Lcgl {
         }
 
         #endregion
+        private string strexcel = "";
+        private Excel.Workbook wb;
+        private Excel.Worksheet sheet;
+        private Excel.Worksheet xx;
         public frm20Template() {
             InitializeComponent();
         }
         void dataBind() {
 
         }
-
+        public void Show(PJ_20 pj, string stat) {
+            RowData = pj;
+            Status = stat;
+        }
         public DataTable RecordWorkFlowData {
             get {
-
                 return WorkFlowData;
             }
             set {
-
-
                 WorkFlowData = value;
-
-
             }
         }
         /// <summary>
         ///设置保护工作表
         /// </summary>
         private void LockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
-            return;
+
 
             //xx.Protect("MyPassword", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing);
             //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
             //wb.SheetBeforeDoubleClick += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
-            ////wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
-            ////wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
-            ////wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
+            //wb.SheetDeactivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetDeactivateEventHandler(Workbook_SheetDeactivate);
+            //wb.SheetActivate += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetActivateEventHandler(Workbook_SheetActivate);
+            //wb.SheetSelectionChange  += new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetSelectionChangeEventHandler(Workbook_SheetSelectionChange);  
         }
         protected void Workbook_SheetSelectionChange(object Sh, Excel.Range Target) {
             //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             //Excel.Worksheet sheet = wb.ActiveSheet as Excel.Worksheet;
             //activeSheetName = sheet.Name;
-             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             Excel.Worksheet sheet = wb.Application.Sheets[activeSheetIndex] as Excel.Worksheet;
             if (activeSheetName != sheet.Name) {
                 sheet.Name = activeSheetName;
@@ -148,26 +149,21 @@ namespace Ebada.Scgl.Lcgl {
 
         }
         protected void Workbook_SheetActivate(object Sh) {
-             wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
             Excel.Worksheet sheet;
             sheet = wb.ActiveSheet as Excel.Worksheet;
             if (activeSheetName != sheet.Name) {
-
                 sheet.Name = activeSheetName;
-
             }
             if (wb.Application.Sheets[activeSheetIndex] != wb.Application.Sheets[activeSheetName]) {
 
                 sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
                 sheet.Move(Type.Missing, wb.Application.Sheets[activeSheetIndex]);
             }
-
-
             ea.ActiveSheet(activeSheetName);
-
         }
         protected void Workbook_SheetDeactivate(object Sh) {
             Workbook_SheetActivate(Sh);
@@ -183,13 +179,12 @@ namespace Ebada.Scgl.Lcgl {
         /// </summary>
         private void unLockExcel(Excel.Workbook wb, Excel.Worksheet xx) {
             try {
-
-
-                xx.Unprotect("MyPassword");
-                xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
-                wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);
+                //xx.Unprotect("MyPassword");
+                //xx.EnableSelection = Microsoft.Office.Interop.Excel.XlEnableSelection.xlNoSelection;
+                //wb.SheetBeforeDoubleClick -= new Microsoft.Office.Interop.Excel.WorkbookEvents_SheetBeforeDoubleClickEventHandler(wb_SheetBeforeDoubleClick);  
             } catch { }
         }
+
         private void LPFrm_Load(object sender, EventArgs e) {
             if (tempCtrlList == null) {
                 tempCtrlList = new List<Control>();
@@ -198,56 +193,113 @@ namespace Ebada.Scgl.Lcgl {
             //InitializeComponent();
             if (valuehs == null)
                 valuehs = new Hashtable();
-            Excel.Workbook wb;
-            Excel.Worksheet sheet;
+
             ExcelAccess ea = new ExcelAccess();
-            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CellName like '%低压线路完好率及台区网络图%'");
+            WF_TableFieldValue wfv = null;
+            parentTemple = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where ( ParentID not in (select LPID from LP_Temple where 1=1 and  CtrlSize!='目录') and  CtrlSize!='目录' ) and  CellName like '%低压线路完好率及台区网络图%'");
+            LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
             currRecord = rowData;
+            if (lp != null) {
+                if (wfv == null) {
+                    wfv = new WF_TableFieldValue();
+                    wfv.ID = wfv.CreateID();
+                    wfv.RecordId = currRecord.ID;
+                    wfv.WorkFlowId = currRecord.tqCode;
+                    wfv.WorkFlowInsId = currRecord.tqName;
+                    wfv.WorkTaskId = "20低压设备完好率及台区网络图";
+                    wfv.WorkTaskInsId = "20低压设备完好率及台区网络图";
+                    wfv.UserControlId = parentTemple.LPID;
+                    wfv.ControlValue = "";
+                    wfv.FieldId = lp.LPID;
+                    wfv.FieldName = lp.CellName;
+                    wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                    wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+                }
+
+                wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+                                 + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+                                 + " and   RecordId='" + wfv.RecordId + "'"
+                                 + " and   UserControlId='" + wfv.UserControlId + "'"
+                                 + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+                                 + " and   fieldname='" + lp.CellName + "'"
+                                 + " and   FieldId='" + lp.LPID + "' and Bigdata is not null"
+                                );
+
+            }
             if (parentTemple == null) {
                 MsgBox.ShowWarningMessageBox("没有找到表单20低压线路完好率及台区网络图!");
                 return;
             }
             //if (currRecord.BigData == null || currRecord.BigData.Length == 0)
             {
-
-                this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                if (status != "edit" || wfv == null || wfv.Bigdata == null || wfv.Bigdata.Length == 0) {
+                    this.dsoFramerWordControl1.FileDataGzip = parentTemple.DocContent;
+                } else {
+                    this.dsoFramerWordControl1.FileDataGzip = wfv.Bigdata;
+                }
             }
             //else
             //{
 
             //    this.dsoFramerWordControl1.FileDataGzip = currRecord.BigData;
             //}
+            wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            xx = wb.ActiveSheet as Excel.Worksheet;
+            sheet = xx;
+            activeSheetName = xx.Name;
+
             InitIndex();
             InitContorl();
             InitData();
+
             if (status == "edit") {
                 IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
                  " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "' and   WorkflowId='" + currRecord.tqCode + "' and WorkFlowInsId='" + currRecord.tqName + "' ");
 
-                Excel.Worksheet xx;
-                wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-                ea.MyWorkBook = wb;
-                ea.MyExcel = wb.Application;
-                string activeSheetName = "";
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                //wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                //ea.MyWorkBook = wb;
+                //ea.MyExcel = wb.Application;
+
+                //xx = wb.Application.Sheets[1] as Excel.Worksheet;
                 int i = 0;
 
                 for (i = 0; i < tfvli.Count; i++) {
-
                     Control ctl = FindCtrl(tfvli[i].FieldId);
                     if (ctl != null) {
-                        ctl.Text = tfvli[i].ControlValue;
-                        ctl.Focus();
+                        //ctl.Text = tfvli[i].ControlValue;
+                        //ctl.Focus();
+                        lp = ctl.Tag as LP_Temple;
+                        if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit") == false) {
+                            if (lp.CellName != "编号" && lp.CellName.IndexOf("低压线路") == -1
+                                 && lp.CellName.IndexOf("最大供电半径") == -1
+                                 && lp.CellName.IndexOf("低压杆基数") == -1
+                                 && lp.CellName.IndexOf("表箱数") == -1
+                                 && lp.CellName.IndexOf("四线的一类") == -1
+                                 && lp.CellName.IndexOf("四线的二类") == -1
+                                 && lp.CellName.IndexOf("四线的三类") == -1
+                                 && lp.CellName.IndexOf("二线的一类") == -1
+                                 && lp.CellName.IndexOf("二线的二类") == -1
+                                 && lp.CellName.IndexOf("二线的三类") == -1
+                                ) {
+                                if (ctl.Text.IndexOf(tfvli[i].ControlValue) == -1)
+                                    ctl.Text += tfvli[i].ControlValue;
+                            } else {
+                                ctl.Text = tfvli[i].ControlValue;
+                            }
+                            ctl.Focus();
+                        } else {
+                            IList<WF_TableFieldValue> tfvlitemp = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                        " where RecordId='" + currRecord.ID + "' and UserControlId='" + parentTemple.LPID + "'   and FieldId='" + tfvli[i].FieldId.ToString() + "' and FieldName='" + tfvli[i].FieldName + "完整时间' order by id desc, YExcelPos,XExcelPos");
+                            if (tfvlitemp.Count > 0) {
+                                ((DevExpress.XtraEditors.DateEdit)ctl).DateTime = Convert.ToDateTime(tfvlitemp[0].ControlValue);
+                            }
+                            //((DevExpress.XtraEditors.DateEdit)ctl).DateTime = Convert.ToDateTime(tfvli[i].ControlValue);
+                        }
                     }
-
-
                 }
                 dsoFramerWordControl1.FileSave();
             }
-
-
         }
-
         protected override void OnShown(EventArgs e) {
             //InitializeComponent();
             base.OnShown(e);
@@ -292,18 +344,38 @@ namespace Ebada.Scgl.Lcgl {
                 strkind = "电力线路第二种工作票";
             else if (kind == "xlqxp")
                 strkind = "电力线路事故应急抢修单";
-
-
-
             return strkind;
-
-
+        }
+        private decimal lineLength(PS_xl line) {
+            return line.WireLength / 1000m;
+            //decimal length = 0, lineloss = 0;
+            //IList<PS_gt> listGT = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>("SelectPS_gtList", "where LineCode ='" + line.LineCode + "' order by gtCode");
+            //foreach (PS_gt gt in listGT) {
+            //    IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("SelectPS_xlList", " where ParentGT = '" + gt.gtCode + "'");
+            //    if (listxl.Count == 0) {
+            //        lineloss += gt.gtSpan;
+            //        if (lineloss > length) {
+            //            length = lineloss;
+            //        }
+            //    } else {
+            //        foreach (PS_xl xl in listxl) {
+            //            lineloss += lineLength(xl);
+            //            if (lineloss > length) {
+            //                length = lineloss;
+            //            }
+            //        }
+            //    }
+            //}
+            //return length / 1000;
         }
         public void InitContorl() {
             int MaxWordWidth = CalcWidth();
             int currentPosY = 10;
             int currentPosX = 10;
             int index = 0;
+            decimal xlsum = 0;
+            decimal maxxl = 0;
+            string strSQL = "";
             if (MaxWordWidth < 300) {
                 MaxWordWidth = 300;
             }
@@ -335,7 +407,6 @@ namespace Ebada.Scgl.Lcgl {
                         currentPosY += int.Parse(size[1]) + 10;
                     }
 
-
                     ctrl.TextChanged += new EventHandler(ctrl_Leave);
 
                     ctrl.Enter += new EventHandler(ctrl_Enter);
@@ -343,49 +414,154 @@ namespace Ebada.Scgl.Lcgl {
                     ctrl.Visible = flag;
                     ctrl.Tag = lp;
                     ctrl.TabIndex = index;
+
                     if (lp.CtrlType.Contains("uc_gridcontrol")) {
                         (ctrl as uc_gridcontrol).InitCol(lp.ColumnName.Split(pchar), lp);
-
-
                         (ctrl as uc_gridcontrol).iniTableRecordData(currRecord.ID, lp, currRecord.tqCode, currRecord.tqName);
-
                     }
                     index++;
                     ctrl.Name = lp.LPID;
                     dockPanel1.Controls.Add(label);
                     dockPanel1.Controls.Add(ctrl);
+                    if (lp.CellName == "类型") {
+
+                        Button btn_rec = new Button();
+                        btn_rec.Location = new Point(ctrl.Location.X + 200, ctrl.Location.Y);
+                        dockPanel1.Controls.Add(btn_rec);
+                        btn_rec.Text = "重新生成";
+                        btn_rec.Click += new EventHandler(btn_rec_Click);
+                    }
                     if (lp.CellName.IndexOf("台区") > -1) {
                         ctrl.Text = currRecord.tqName;
                     } else
                         if (lp.CellName.IndexOf("低压线路") > -1) {
 
-                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                            lp.SqlSentence = "select case  when  cast(sum(wirelength) as varchar) is null then '0' else cast(max(wirelength) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                            strSQL = " where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
                                 + " and linevol='0.4'";
                             ctrl.Tag = lp;
+                            xlsum = 0;
+                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                            foreach (PS_xl xl in xlli) {
+                                xlsum += lineLength(xl);
+                            }
+                            ctrl.Text = (Math.Round(xlsum, 1)).ToString();
                         } else
                             if (lp.CellName.IndexOf("最大供电半径") > -1) {
 
                                 PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                lp.SqlSentence = "select case when    cast(max(gdbj) as varchar) is null then '0' else cast(max(gdbj) as varchar)  end  from ps_xl  where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
-                                    + " and linevol='0.4'";
-                                ctrl.Tag = lp;
+                                strSQL = "where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                //ctrl.Tag = lp;
+                                xlsum = 0;
+                                maxxl = 0;
+                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                foreach (PS_xl xl in xlli) {
+
+                                    xlsum = lineLength(xl);
+                                    if (xlsum > maxxl) {
+                                        maxxl = xlsum;
+                                    }
+                                }
+                                ctrl.Text = (Math.Round(maxxl, 1)).ToString();
                             } else
                                 if (lp.CellName.IndexOf("低压杆基数") > -1) {
 
-                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID "
-                                                        + " from PS_tq where 5=5 and tqName='" + currRecord.tqName + "')";
+                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + currRecord.tqCode + "'");
+                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
+                                                        + " from PS_gt where 5=5 and gtjg='否' and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
                                     ctrl.Tag = lp;
                                 } else
                                     if (lp.CellName.IndexOf("表箱数") > -1) {
 
-                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
-                                        lp.SqlSentence = "select * from PS_sbcs where 5=5  and mc like '%表箱%'"
-                                            + " and ParentID in (select gtid from dbo.PS_gt where"
-                                            + "  gtID in (select gtID from PS_tq where 5=5 and tqName='" + currRecord.tqName + "'))";
+                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqcode='" + currRecord.tqCode + "'");
+                                        lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
+                                            + " and gtID in ("
+                                            + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
                                         ctrl.Tag = lp;
-                                    }
+                                    } else
+                                        if (lp.CellName.IndexOf("四线的一类") > -1) {
+
+                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                            strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+                                            ctrl.Tag = lp;
+                                            xlsum = 0;
+                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                            foreach (PS_xl xl in xlli) {
+                                                xlsum += lineLength(xl);
+                                            }
+                                            if (xlsum > 0)
+                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                        } else
+                                            if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
+
+                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                                strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                ctrl.Tag = lp;
+                                                xlsum = 0;
+                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                foreach (PS_xl xl in xlli) {
+                                                    xlsum += lineLength(xl);
+                                                }
+                                                if (xlsum > 0)
+                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                            } else
+                                                if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
+
+                                                    PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                                    strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                    ctrl.Tag = lp;
+                                                    xlsum = 0;
+                                                    IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                    foreach (PS_xl xl in xlli) {
+                                                        xlsum += lineLength(xl);
+                                                    }
+                                                    if (xlsum > 0)
+                                                        ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                } else
+                                                    if (lp.CellName.IndexOf("二线的一类") > -1) {
+
+                                                        PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                                        strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                        ctrl.Tag = lp;
+                                                        xlsum = 0;
+                                                        IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                        foreach (PS_xl xl in xlli) {
+                                                            xlsum += lineLength(xl);
+                                                        }
+                                                        if (xlsum > 0)
+                                                            ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                    } else
+                                                        if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
+
+                                                            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                                            strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                            ctrl.Tag = lp;
+                                                            xlsum = 0;
+                                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                            foreach (PS_xl xl in xlli) {
+                                                                xlsum += lineLength(xl);
+                                                            }
+                                                            if (xlsum > 0)
+                                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                        } else
+                                                            if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
+
+                                                                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                                                strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                                ctrl.Tag = lp;
+                                                                xlsum = 0;
+                                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                                foreach (PS_xl xl in xlli) {
+                                                                    xlsum += lineLength(xl);
+                                                                }
+                                                                if (xlsum > 0)
+                                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                            }
                 }
             }
             InitEvent();
@@ -428,7 +604,6 @@ namespace Ebada.Scgl.Lcgl {
             btn_Submit.Location = new Point(currentPosX, currentPosY + 10);
             btn_Submit.Text = "提交";
             btn_Submit.Click += new EventHandler(btn_Submit_Click);
-
             Button btn_pic = new Button();
             dockPanel1.Controls.Add(btn_pic);
             btn_pic.Location = new Point(currentPosX + 200, 26);
@@ -437,17 +612,157 @@ namespace Ebada.Scgl.Lcgl {
             btn_pic.Text = "生成台区图";
             if (dockPanel1.ControlContainer.Controls.Count > 0)
                 dockPanel1.ControlContainer.Controls[0].Focus();
+        }
 
-            if (dockPanel1.ControlContainer.Controls.Count > 0)
-                dockPanel1.ControlContainer.Controls[0].Focus();
+        void btn_rec_Click(object sender, EventArgs e) {
+            if (parentTemple != null && templeList != null) {
+                PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                foreach (LP_Temple lp in templeList) {
+                    Control ctrl = FindCtrl(lp.LPID);
+                    string strSQL = "";
+                    decimal xlsum = 0, maxxl = 0;
+                    ctrl.Tag = lp;
+                    if (lp.CellName.IndexOf("台区") > -1) {
+                        ctrl.Text = currRecord.tqName;
+                    } else
+                        if (lp.CellName.IndexOf("低压线路") > -1) {
 
+
+                            strSQL = " where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'"
+                                + " and linevol='0.4'";
+                            ctrl.Tag = lp;
+                            xlsum = 0;
+                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                            foreach (PS_xl xl in xlli) {
+                                xlsum += lineLength(xl);
+                            }
+                            ctrl.Text = Math.Round(xlsum, 1).ToString();
+                        } else
+                            if (lp.CellName.IndexOf("最大供电半径") > -1) {
+
+                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                strSQL = "where left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "'";
+                                //ctrl.Tag = lp;
+                                xlsum = 0;
+                                maxxl = 0;
+                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                foreach (PS_xl xl in xlli) {
+
+                                    xlsum = lineLength(xl);
+                                    if (xlsum > maxxl) {
+                                        maxxl = xlsum;
+                                    }
+                                }
+                                ctrl.Text = (Math.Round(maxxl, 1)).ToString();
+                            } else
+                                if (lp.CellName.IndexOf("低压杆基数") > -1) {
+
+                                    //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                    lp.SqlSentence = "select case  when cast(count(*) as varchar) is null then '0' else cast(count(*) as varchar)  end   from dbo.PS_gt where  gtID in (select gtID"
+                                                        + " from PS_gt where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')";
+                                    ctrl.Tag = lp;
+                                } else
+                                    if (lp.CellName.IndexOf("表箱数") > -1) {
+
+                                        //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqCode='" + currRecord.tqCode + "'");
+                                        lp.SqlSentence = "select cast(sum(sbNumber)as varchar) from PS_gtsb where 5=5  and sbName like '%表箱%'"
+                                            + " and gtID in ("
+                                            + "  (select gtID from PS_gt where 5=5 and LineCode in(select LineCode from PS_xl where 5=5 and  left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "')))";
+                                        ctrl.Tag = lp;
+                                    } else
+                                        if (lp.CellName.IndexOf("四线的一类") > -1) {
+
+                                            //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                            strSQL = "  where linenum='四线' and lineKind='一类' and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+                                            ctrl.Tag = lp;
+                                            xlsum = 0;
+                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                            foreach (PS_xl xl in xlli) {
+                                                xlsum += lineLength(xl);
+                                            }
+                                            if (xlsum != 0)
+                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                        } else
+                                            if (lp.CellName.IndexOf("四线的二类（km）") > -1) {
+
+                                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                strSQL = "where  linenum='四线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                ctrl.Tag = lp;
+                                                xlsum = 0;
+                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                foreach (PS_xl xl in xlli) {
+                                                    xlsum += lineLength(xl);
+                                                }
+                                                if (xlsum != 0)
+                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                            } else
+                                                if (lp.CellName.IndexOf("四线的三类（km）") > -1) {
+
+                                                    //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                    strSQL = "where  linenum='四线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                    ctrl.Tag = lp;
+                                                    xlsum = 0;
+                                                    IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                    foreach (PS_xl xl in xlli) {
+                                                        xlsum += lineLength(xl);
+                                                    }
+                                                    if (xlsum != 0)
+                                                        ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                } else
+                                                    if (lp.CellName.IndexOf("二线的一类") > -1) {
+
+                                                        //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                        strSQL = "where  linenum='二线' and  lineKind='一类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                        ctrl.Tag = lp;
+                                                        xlsum = 0;
+                                                        IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                        foreach (PS_xl xl in xlli) {
+                                                            xlsum += lineLength(xl);
+                                                        }
+                                                        if (xlsum != 0)
+                                                            ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                    } else
+                                                        if (lp.CellName.IndexOf("二线的二类（km）") > -1) {
+
+                                                            //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                            strSQL = "where  linenum='二线' and  lineKind='二类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                            ctrl.Tag = lp;
+                                                            xlsum = 0;
+                                                            IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                            foreach (PS_xl xl in xlli) {
+                                                                xlsum += lineLength(xl);
+                                                            }
+                                                            if (xlsum != 0)
+                                                                ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                        } else
+                                                            if (lp.CellName.IndexOf("二线的三类（km）") > -1) {
+
+                                                                //PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+                                                                strSQL = "where  linenum='二线' and  lineKind='三类'  and left(linecode," + tq.tqCode.Length + ")='" + tq.tqCode + "' and linevol='0.4'";
+
+                                                                ctrl.Tag = lp;
+                                                                xlsum = 0;
+                                                                IList<PS_xl> xlli = MainHelper.PlatformSqlMap.GetList<PS_xl>(strSQL);
+                                                                foreach (PS_xl xl in xlli) {
+                                                                    xlsum += lineLength(xl);
+                                                                }
+                                                                if (xlsum != 0)
+                                                                    ctrl.Text = Math.Round(xlsum, 1).ToString();
+                                                            }
+                    if (ctrl.Tag != null)
+                        InitCtrlData(ctrl, ((LP_Temple)ctrl.Tag).SqlSentence);
+                }
+            }
+            //InitData();
         }
         void btn_pic_Click(object sender, EventArgs e) {
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            ea.ActiveSheet(1);
             insertPic(rowData.tqCode, ea, 5, 70, 420, 360);
         }
         private void insertPic(string tqcode, ExcelAccess ea, int left, int top, int width, int height) {
@@ -455,7 +770,6 @@ namespace Ebada.Scgl.Lcgl {
             if (map != null) {
                 string filename = Path.GetTempFileName() + ".png";
                 map.Save(filename);
-                unLockExcel(ea.MyWorkBook, ea.MyExcel.ActiveSheet as Excel.Worksheet);
                 ea.InsertPicture(filename, top, left, height, width);
                 try {
                     File.Delete(filename);
@@ -467,7 +781,6 @@ namespace Ebada.Scgl.Lcgl {
 
         }
         void btn_Close(object sender, EventArgs e) {
-            dsoFramerWordControl1.FileSave();
             dsoFramerWordControl1.FileClose();
             dsoFramerWordControl1.Dispose();
             dsoFramerWordControl1 = null;
@@ -475,36 +788,45 @@ namespace Ebada.Scgl.Lcgl {
         }
 
         void btn_Submit_Click(object sender, EventArgs e) {
-            Excel.Workbook wb;
-            Excel.Worksheet sheet;
+            //Excel.Workbook wb;
+            //Excel.Worksheet sheet;
             dsoFramerWordControl1.FileSave();
             //currRecord.BigData = this.dsoFramerWordControl1.FileDataGzip;
-            wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            if (activeSheetName != "") {
-                sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
-            } else {
-                sheet = wb.Application.Sheets[1] as Excel.Worksheet;
-            }
-            activeSheetIndex = sheet.Index;
+            //wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            //if (activeSheetName != "")
+            //{
+            //    sheet = wb.Application.Sheets[activeSheetName] as Excel.Worksheet;
+            //}
+            //else
+            //{
+            //    sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+            //}
+            //activeSheetIndex = sheet.Index;
 
-            for (int i = 1; i <= wb.Application.Sheets.Count; i++) {
-                if (i != activeSheetIndex) {
-                    Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
-                    try {
-                        if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetVisible;
-                    } catch { }
+            //for (int i = 1; i <= wb.Application.Sheets.Count; i++)
+            //{
+            //    if (i != activeSheetIndex)
+            //    {
+            //        Excel.Worksheet tmpSheet = (Excel.Worksheet)wb.Application.Sheets.get_Item(i);
+            //        try
+            //        {
+            //            if (tmpSheet != null) tmpSheet.Visible = Excel.XlSheetVisibility.xlSheetVisible ;
+            //        }
+            //        catch { }
 
-                }
-            }
-            unLockExcel(wb, sheet);
-            for (int i = 1; sheet.Protection.AllowEditRanges.Count > 0; ) {
-                Excel.AllowEditRange editRange = sheet.Protection.AllowEditRanges.get_Item(i);
-                editRange.Delete();
-            }
-            LockExcel(wb, sheet);
+            //    }
+            //}
+            //unLockExcel(wb,sheet);
+            //for (int i = 1; sheet.Protection.AllowEditRanges.Count > 0; )
+            //{
+            //    Excel.AllowEditRange editRange = sheet.Protection.AllowEditRanges.get_Item(i);
+            //    editRange.Delete();
+            //}
+            //LockExcel(wb, sheet);
             byte[] bt = new byte[0];
             string strmes = "";
             WF_WorkTaskCommands wt;
+            WF_TableFieldValue wfv = null;
             LP_Temple lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>("where ParentID='" + parentTemple.LPID + "' and  CellName like '%说明%'");
             Control ctl = FindCtrl(lp.LPID);
             if (ctl != null) {
@@ -514,7 +836,7 @@ namespace Ebada.Scgl.Lcgl {
             ArrayList akeys = new ArrayList(valuehs.Keys);
             List<object> list = new List<object>();
             for (int i = 0; i < akeys.Count; i++) {
-                WF_TableFieldValue wfv = valuehs[akeys[i]] as WF_TableFieldValue;
+                wfv = valuehs[akeys[i]] as WF_TableFieldValue;
                 wfv.ID = wfv.CreateID();
                 wfv.RecordId = currRecord.ID;
                 wfv.WorkFlowId = currRecord.tqCode;
@@ -533,7 +855,7 @@ namespace Ebada.Scgl.Lcgl {
             }
             Control ct = null;
             for (int i = 0; i < templeList.Count; i++) {
-                WF_TableFieldValue wfv = new WF_TableFieldValue();
+                wfv = new WF_TableFieldValue();
                 wfv.ExcelSheetName = templeList[i].KindTable;
                 if (templeList[i].CellPos != "") {
                     wfv.XExcelPos = GetCellPos(templeList[i].CellPos)[0];
@@ -559,10 +881,88 @@ namespace Ebada.Scgl.Lcgl {
                 Thread.Sleep(new TimeSpan(100000));//0.1毫秒
                 list.Add(wfv);
             }
+            MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where RecordId ='" + currRecord.ID + "' and WorkTaskInsId='20低压设备完好率及台区网络图' ");
+            lp = MainHelper.PlatformSqlMap.GetOne<LP_Temple>(" where  ParentID='" + parentTemple.LPID + "' and SortID=1");
+            //if (lp != null)
+            //{
+            //    if (wfv == null)
+            //    {
+            //        wfv = new WF_TableFieldValue();
+            //        wfv.ID = wfv.CreateID();
+            //        wfv.RecordId = currRecord.ID;
+            //        wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            //        wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            //        wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            //        wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            //        wfv.UserControlId = parentTemple.LPID;
+            //        wfv.ControlValue = "";
+            //        wfv.FieldId = lp.LPID;
+            //        wfv.FieldName = lp.CellName;
+            //        wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+            //        wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+            //        wfv.ExcelSheetName = activeSheetName;
+            //    }
+
+            //    wfv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
+            //                     + " and   WorkflowId='" + wfv.WorkFlowId + "'"
+            //                     + " and   RecordId='" + wfv.RecordId + "'"
+            //                     + " and   UserControlId='" + wfv.UserControlId + "'"
+            //                     + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
+            //                     + " and   fieldname='" + lp.CellName + "'"
+            //                     + " and   FieldId='" + lp.LPID + "' and Bigdata is not null"
+            //                    );
+
+
+            //    if (wfv == null)
+            //    {
+            //        wfv = new WF_TableFieldValue();
+            //        wfv.ID = wfv.CreateID();
+            //        wfv.RecordId = currRecord.ID;
+            //        wfv.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            //        wfv.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            //        wfv.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            //        wfv.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            //        wfv.UserControlId = parentTemple.LPID;
+            //        wfv.ControlValue = "";
+            //        wfv.FieldId = lp.LPID;
+            //        wfv.FieldName = lp.CellName;
+            //        wfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+            //        wfv.YExcelPos = GetCellPos(lp.CellPos)[1];
+            //        wfv.ExcelSheetName = activeSheetName;
+            //        wfv.Bigdata = currRecord.BigData;
+            //        MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
+            //    }
+            //    else
+            //    {
+            //        wfv.Bigdata = currRecord.BigData;
+            //        MainHelper.PlatformSqlMap.Update<WF_TableFieldValue>(wfv);
+
+            //    }
+            //}
+            dsoFramerWordControl1.FileSave();
+            currRecord.BigData = dsoFramerWordControl1.FileDataGzip;
+            if (currRecord.ParentID == "") {
+                currRecord.ParentID = currRecord.tqCode.Substring(0, 3);
+            }
+            if (currRecord.OrgName == "") {
+                mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + currRecord.ParentID + "'");
+                if (org != null) {
+                    currRecord.OrgName = org.OrgName;
+                    currRecord.OrgCode = org.OrgCode;
+                }
+            }
             switch (status) {
                 case "add":
 
                     if (list.Count > 0) {
+                        foreach (WF_TableFieldValue wfv2 in list) {
+
+                            if (wfv2.FieldId == lp.LPID) {
+                                wfv2.Bigdata = currRecord.BigData;
+                                break;
+                            }
+
+                        }
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list, null, null);
                     }
                     if (currRecord.BigData == null) {
@@ -574,17 +974,24 @@ namespace Ebada.Scgl.Lcgl {
                 case "edit":
 
                     if (list.Count > 0) {
-                        foreach (WF_TableFieldValue wfv in list) {
+                        foreach (WF_TableFieldValue wfv2 in list) {
                             WF_TableFieldValue wtfvtemp = Client.ClientHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(" where  UserControlId='" + parentTemple.LPID + "'"
-                                 + " and   WorkflowId='" + wfv.WorkFlowId + "'"
-                                 + " and   RecordId='" + wfv.RecordId + "'"
-                                 + " and   UserControlId='" + wfv.UserControlId + "'"
-                                 + " and   WorkFlowInsId='" + wfv.WorkFlowInsId + "'"
-                                 + " and   FieldId='" + wfv.FieldId + "'"
-                                 + " and   XExcelPos='" + wfv.XExcelPos + "'"
-                                 + " and   YExcelPos='" + wfv.YExcelPos + "'"
+                                 + " and   WorkflowId='" + wfv2.WorkFlowId + "'"
+                                 + " and   RecordId='" + wfv2.RecordId + "'"
+                                 + " and   UserControlId='" + wfv2.UserControlId + "'"
+                                 + " and   WorkFlowInsId='" + wfv2.WorkFlowInsId + "'"
+                                 + " and   FieldId='" + wfv2.FieldId + "'"
+                                 + " and   XExcelPos='" + wfv2.XExcelPos + "'"
+                                 + " and   YExcelPos='" + wfv2.YExcelPos + "'"
                                  + " and WorkTaskInsId='20低压设备完好率及台区网络图'");
-                            wfv.ID = wtfvtemp.ID;
+                            if (wfv2.FieldId == lp.LPID) {
+                                wfv2.Bigdata = currRecord.BigData;
+                            }
+                            if (wtfvtemp != null)
+                                wfv2.ID = wtfvtemp.ID;
+                            else {
+                                MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv2);
+                            }
                         }
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list, null);
                     }
@@ -594,8 +1001,103 @@ namespace Ebada.Scgl.Lcgl {
                     Client.ClientHelper.PlatformSqlMap.Update<PJ_20>(currRecord);
                     break;
             }
+            PS_tq tq = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>(" where tqName='" + currRecord.tqName + "'");
+            int idw = 1;
+            string valEX = @"[0-9]+(\.)?[0-9]+";//只允许整数或小数的正则表达式
 
-            dsoFramerWordControl1.FileSave();
+            templeList = MainHelper.PlatformSqlMap.GetList<LP_Temple>("SelectLP_TempleList",
+                           "where ParentID ='" + parentTemple.LPID + "' order by SortID");
+            foreach (LP_Temple lp2 in templeList) {
+                if ((lp2.CellName.IndexOf("补偿电容") > -1 || lp2.CellName.IndexOf("电动机") > -1 || lp2.CellName.Trim().IndexOf("机井") > -1
+                    || lp2.CellName.IndexOf("农副业") > -1 || lp2.CellName.IndexOf("照明户数") > -1
+                    || lp2.CellName.IndexOf("单相表数") > -1 || lp2.CellName.IndexOf("三相表数") > -1) == false) {
+                    continue;
+                }
+
+                IList<WF_TableFieldValue> tfvli = MainHelper.PlatformSqlMap.GetList<WF_TableFieldValue>("SelectWF_TableFieldValueList",
+                                " where   UserControlId='" + parentTemple.LPID + "'  and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                                + " and  FieldId='" + lp2.LPID + "' and ( WorkflowId='" + tq.tqCode + "') "
+                                + " order by YExcelPos");
+                object obj = null;
+                double sum = 0;
+                string value = "";
+                foreach (WF_TableFieldValue tfv in tfvli) {
+                    WF_TableFieldValue tfvtemp = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(
+                                  " where   UserControlId='" + parentTemple.LPID + "'"
+                                  + " and   WorkflowId='" + tfv.WorkFlowId + "'"
+                                  + " and   RecordId='" + tfv.RecordId + "'"
+                                  + " and   FieldName='类型'"
+                                  + " and WorkTaskInsId='20低压设备完好率及台区网络图'"
+                                  + " order by YExcelPos");
+                    if (tfvtemp != null && tfvtemp.ControlValue == "新增")
+                        idw = 1;
+                    else
+                        if (tfvtemp != null && tfvtemp.ControlValue == "减少")
+                            idw = -1;
+                        else
+                            idw = 1;
+                    if (tfv.FieldName.IndexOf("时间") == -1 && lp.IsVisible == 0) {
+                        valEX = "^[0-9]+(\\.)?([0-9]+)?$";
+                        if (tfv.ControlValue == "" || Regex.Match(tfv.ControlValue, valEX).Value != "") {
+                            if (tfv.ControlValue == "")
+                                sum += 0;
+                            else
+                                sum += idw * Convert.ToDouble(tfv.ControlValue);
+                            value = sum.ToString();
+                        } else {
+                            valEX = "^[0-9]+(\\.)?([0-9]+)?/[0-9]+(\\.)?([0-9]+)?";
+                            if (Regex.Match(tfv.ControlValue, valEX).Value != "") {
+                                string[] str1 = tfv.ControlValue.Split('/');
+                                if (value == "") {
+
+                                    value = (idw * Convert.ToDouble(str1[0])).ToString() + "/" + (idw * Convert.ToDouble(str1[1])).ToString();
+                                } else {
+                                    string[] str2 = value.Split('/');
+                                    sum = idw * Convert.ToDouble(str1[0]) + Convert.ToDouble(str2[0]);
+                                    value = sum.ToString();
+
+                                    if (str2.Length > 1)
+                                        sum = idw * Convert.ToDouble(str1[1]) + Convert.ToDouble(str2[1]);
+                                    else
+                                        sum = idw * Convert.ToDouble(str1[1]);
+                                    value = value + "/" + sum.ToString();
+                                }
+                            } else {
+                                value = tfv.ControlValue;
+                            }
+
+
+                        }
+                    } else {
+                        value = tfv.ControlValue;
+
+                    }
+                }
+
+                if (lp2.CellName.IndexOf("补偿电容") > -1) {
+                    tq.bcdr = value.ToString();
+                }
+                if (lp2.CellName.IndexOf("电动机") > -1) {
+
+                    tq.ddj = value.ToString();
+                }
+                if (lp2.CellName.Trim().IndexOf("机井") > -1) {
+                    tq.jj = value.ToString();
+                }
+                if (lp2.CellName.IndexOf("农副业") > -1) {
+                    tq.nfy = value.ToString();
+                }
+                if (lp2.CellName.IndexOf("照明户数") > -1) {
+                    tq.zmfs = value.ToString();
+                }
+                if (lp2.CellName.IndexOf("单相表数") > -1) {
+                    tq.dxbs = value.ToString();
+                }
+                if (lp2.CellName.IndexOf("三相表数") > -1) {
+                    tq.sxbs = value.ToString();
+                }
+            }
+            Client.ClientHelper.PlatformSqlMap.Update<PS_tq>(tq);
             dsoFramerWordControl1.FileClose();
 
             this.DialogResult = DialogResult.OK;
@@ -653,22 +1155,22 @@ namespace Ebada.Scgl.Lcgl {
             if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
-
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet sheet;
+            //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            //Excel.Worksheet sheet;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
+            if (lp.KindTable != "" && activeSheetName != lp.KindTable) {
+                if (lp.KindTable != "") {
+                    activeSheetName = lp.KindTable;
+                    sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    activeSheetIndex = sheet.Index;
+                } else {
 
-            if (lp.KindTable != "") {
-                activeSheetName = lp.KindTable;
-                sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                activeSheetIndex = sheet.Index;
-            } else {
-
-                sheet = wb.Application.Sheets[1] as Excel.Worksheet;
-                activeSheetIndex = sheet.Index;
-                activeSheetName = sheet.Name;
+                    sheet = wb.Application.Sheets[1] as Excel.Worksheet;
+                    activeSheetIndex = sheet.Index;
+                    activeSheetName = sheet.Name;
+                }
             }
             ea.ActiveSheet(activeSheetIndex);
             unLockExcel(wb, sheet);
@@ -682,7 +1184,7 @@ namespace Ebada.Scgl.Lcgl {
             arrtemp = StringHelper.ReplaceEmpty(arrtemp).Split(pchar);
             List<int> arrCellCount = String2Int(arrtemp);
             if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
-                ea.SetCellValue(str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                 if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
                     WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
                     tfv.ControlValue = str;
@@ -799,20 +1301,21 @@ namespace Ebada.Scgl.Lcgl {
             if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+            //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+            //Excel.Worksheet xx;
 
-            if (lp.KindTable != "") {
-                activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-            } else {
+            if (lp.KindTable != "" && activeSheetName != lp.KindTable) {
+                if (lp.KindTable != "") {
+                    activeSheetName = lp.KindTable;
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+                } else {
 
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-                activeSheetName = xx.Name;
+                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+                    activeSheetName = xx.Name;
+                }
             }
-
             unLockExcel(wb, xx);
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -856,22 +1359,23 @@ namespace Ebada.Scgl.Lcgl {
             if (dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx;
+
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
-            if (lp.KindTable != "") {
-                activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-            } else {
+            if (activeSheetName != lp.KindTable) {
+                if (lp.KindTable != "") {
+                    activeSheetName = lp.KindTable;
+                    xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+                } else {
 
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-                activeSheetName = xx.Name;
+                    xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                    activeSheetIndex = xx.Index;
+                    activeSheetName = xx.Name;
+                }
+                ea.ActiveSheet(activeSheetIndex);
             }
-            ea.ActiveSheet(activeSheetIndex);
             unLockExcel(wb, xx);
             string[] arrCellpos = lp.CellPos.Split(pchar);
             arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
@@ -894,179 +1398,116 @@ namespace Ebada.Scgl.Lcgl {
             LockExcel(wb, xx);
         }
         void ctrl_Leave(object sender, EventArgs e) {
-
-
             LP_Temple lp = (LP_Temple)(sender as Control).Tag;
             string str = (sender as Control).Text;
-
-
             if (dsoFramerWordControl1 == null || dsoFramerWordControl1.MyExcel == null) {
                 return;
             }
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            ExcelAccess ea = new ExcelAccess();
-            ea.MyWorkBook = wb;
-            ea.MyExcel = wb.Application;
-            Excel.Worksheet xx;
-            if (lp.KindTable != "") {
-                activeSheetName = lp.KindTable;
-                xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-            } else {
-                xx = wb.Application.Sheets[1] as Excel.Worksheet;
-                activeSheetIndex = xx.Index;
-                activeSheetName = xx.Name;
-            }
-            if (lp.KindTable != "") {
-                ea.ActiveSheet(lp.KindTable);
-            } else {
-                ea.ActiveSheet(1);
-            }
-            if (lp.CellPos == "") {
-                lp.CellPos = lp.CellPos;
-                if (valuehs.ContainsKey(lp.LPID)) {
-                    WF_TableFieldValue tfv = valuehs[lp.LPID] as WF_TableFieldValue;
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = -1;
-                    tfv.YExcelPos = -1;
+            try {
+                //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                //Excel.Worksheet xx;
+                if (lp.KindTable != "" && activeSheetName != lp.KindTable) {
+                    if (lp.KindTable != "") {
+                        activeSheetName = lp.KindTable;
 
-                } else {
-                    WF_TableFieldValue tfv = new WF_TableFieldValue();
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = -1;
-                    tfv.YExcelPos = -1;
-                    tfv.ExcelSheetName = xx.Name;
+                        xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
 
-                    valuehs.Add(lp.LPID, tfv);
-                }
-                return;
-            }
-            unLockExcel(wb, xx);
-
-            string[] arrCellpos = lp.CellPos.Split(pchar);
-            string[] arrtemp = lp.WordCount.Split(pchar);
-            arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
-            if (lp.CtrlType.Contains("uc_gridcontrol")) {
-                FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
-                LockExcel(wb, xx);
-                return;
-            } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
-                FillTime(ea, lp, (sender as DateEdit).DateTime);
-                LockExcel(wb, xx);
-                return;
-            } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit")) {
-
-                IList<string> strList = new List<string>();
-                if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
-                    ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
-                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
-                        tfv.ControlValue = str;
-                        tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                        tfv.ExcelSheetName = xx.Name;
-
+                        activeSheetIndex = xx.Index;
                     } else {
-                        WF_TableFieldValue tfv = new WF_TableFieldValue();
-                        tfv.ControlValue = str;
-                        tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
-                        tfv.ExcelSheetName = xx.Name;
-                        valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
+                        xx = wb.Application.Sheets[1] as Excel.Worksheet;
+                        activeSheetIndex = xx.Index;
+                        activeSheetName = xx.Name;
                     }
-                } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
-                    int i = 0;
-                    ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
-                    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i])) {
-                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
-                        tfv.ControlValue = str;
-                        tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
-                        tfv.ExcelSheetName = xx.Name;
-
+                    if (lp.KindTable != "") {
+                        ea.ActiveSheet(lp.KindTable);
                     } else {
-                        WF_TableFieldValue tfv = new WF_TableFieldValue();
-                        tfv.ControlValue = str;
-                        tfv.FieldId = lp.LPID;
-                        tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
-                        tfv.ExcelSheetName = xx.Name;
-                        valuehs.Add(lp.LPID + "$" + arrCellpos[i], tfv);
+                        ea.ActiveSheet(1);
                     }
                 }
-                LockExcel(wb, xx);
-                return;
-            }
-            string[] extraWord = lp.ExtraWord.Split(pchar);
-            List<int> arrCellCount = String2Int(arrtemp);
-            if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
-                ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
-                if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
-                    WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
-                    tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
-                    tfv.ExcelSheetName = xx.Name;
-
-                } else {
-                    WF_TableFieldValue tfv = new WF_TableFieldValue();
-                    tfv.ControlValue = str;
-                    tfv.FieldId = lp.LPID;
-                    tfv.FieldName = lp.CellName;
-                    tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
-                    tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
-                    tfv.ExcelSheetName = xx.Name;
-                    valuehs.Add(lp.LPID + "$" + lp.CellPos, tfv);
-                }
-
-            } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
-                StringHelper help = new StringHelper();
-                if (lp.CellName == "编号") {
-                    for (int j = 0; j < arrCellpos.Length; j++) {
-                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "") {
-                            string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
-                            ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
-                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j])) {
-                                WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
-                                tfv.ControlValue = strNew;
-                                tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
-                                tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
-                                tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
-                                tfv.ExcelSheetName = xx.Name;
-
+                if (lp.CellPos == "") {
+                    if (lp.CellName.IndexOf("绘图") > -1) {
+                        //unLockExcel(wb, xx);
+                        PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + str + "'");
+                        if (tb != null) {
+                            if (tb.picName != "表箱") {
+                                string tempPath = Path.GetTempPath();
+                                string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                                FileStream fs;
+                                fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                                BinaryWriter bw = new BinaryWriter(fs);
+                                bw.Write(tb.picImage);
+                                bw.Flush();
+                                bw.Close();
+                                fs.Close();
+                                //IDataObject data = new DataObject(DataFormats.FileDrop, new string[] { tempfile });
+                                //MemoryStream memo = new MemoryStream(4);
+                                //byte[] bytes = new byte[] { (byte)(5), 0, 0, 0 };
+                                //memo.Write(bytes, 0, bytes.Length);
+                                //data.SetData("ttt", memo);
+                                //Clipboard.SetDataObject(data);
+                                Image im = Bitmap.FromFile(tempfile);
+                                Bitmap bt = new Bitmap(im);
+                                DataObject dataObject = new DataObject();
+                                dataObject.SetData(DataFormats.Bitmap, bt);
+                                Clipboard.SetDataObject(dataObject, true);
                             } else {
-                                WF_TableFieldValue tfv = new WF_TableFieldValue();
-                                tfv.ControlValue = strNew;
-                                tfv.FieldId = lp.LPID;
-                                tfv.FieldName = lp.CellName;
-                                tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
-                                tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
-                                tfv.ExcelSheetName = xx.Name;
-                                valuehs.Add(lp.LPID + "$" + arrCellpos[j], tfv);
+                                Microsoft.Office.Interop.Excel.Shape activShape = null;
+                                activShape = xx.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal,
+                                    (float)153.75, (float)162.75, (float)22.5, (float)10.5);
+                                activShape.TextFrame.Characters(1, 1).Font.Size = 8;
+                                activShape.TextFrame.Characters(1, 1).Text = "1";
+                                activShape.TextFrame.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                                activShape.Cut();
                             }
                         }
+                    } else {
+                        if (valuehs.ContainsKey(lp.LPID)) {
+                            WF_TableFieldValue tfv = valuehs[lp.LPID] as WF_TableFieldValue;
+                            tfv.ControlValue = str;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = -1;
+                            tfv.YExcelPos = -1;
+
+                        } else {
+                            WF_TableFieldValue tfv = new WF_TableFieldValue();
+                            tfv.ControlValue = str;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = -1;
+                            tfv.YExcelPos = -1;
+                            tfv.ExcelSheetName = xx.Name;
+
+                            valuehs.Add(lp.LPID, tfv);
+                        }
                     }
-                    LockExcel(wb, xx);
                     return;
                 }
-                int i = 0;
-                if (arrCellCount[0] != arrCellCount[1]) {
-                    if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0])) {
-                        ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+
+                unLockExcel(wb, xx);
+
+                string[] arrCellpos = lp.CellPos.Split(pchar);
+                string[] arrtemp = lp.WordCount.Split(pchar);
+                arrCellpos = StringHelper.ReplaceEmpty(arrCellpos).Split(pchar);
+                if (lp.CtrlType.Contains("uc_gridcontrol")) {
+                    FillTable(ea, lp, (sender as uc_gridcontrol).GetContent(String2Int(lp.WordCount.Split(pchar))));
+                    LockExcel(wb, xx);
+                    return;
+                } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.DateEdit")) {
+                    FillTime(ea, lp, (sender as DateEdit).DateTime);
+                    LockExcel(wb, xx);
+                    return;
+                } else if (lp.CtrlType.Contains("DevExpress.XtraEditors.SpinEdit")) {
+
+                    IList<string> strList = new List<string>();
+                    if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                        if (string.IsNullOrEmpty(str))
+                            ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        else
+                            ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
                         if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
                             WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
                             tfv.ControlValue = str;
@@ -1086,84 +1527,200 @@ namespace Ebada.Scgl.Lcgl {
                             tfv.ExcelSheetName = xx.Name;
                             valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
                         }
+                    } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
+                        int i = 0;
+                        if (string.IsNullOrEmpty(str))
+                            ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                        else
+                            ea.SetCellValue("'" + str, GetCellPos(arrCellpos[i])[0], GetCellPos(arrCellpos[i])[1]);
+                        if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[i])) {
+                            WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[i]] as WF_TableFieldValue;
+                            tfv.ControlValue = str;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
+                            tfv.ExcelSheetName = xx.Name;
 
-                        LockExcel(wb, xx);
-                        return;
+                        } else {
+                            WF_TableFieldValue tfv = new WF_TableFieldValue();
+                            tfv.ControlValue = str;
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[i])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[i])[1];
+                            tfv.ExcelSheetName = xx.Name;
+                            valuehs.Add(lp.LPID + "$" + arrCellpos[i], tfv);
+                        }
                     }
-                    ea.SetCellValue("'" + str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
-                        GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
-                    if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
-                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
-                        tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
+                    LockExcel(wb, xx);
+
+                    return;
+                }
+
+                string[] extraWord = lp.ExtraWord.Split(pchar);
+                List<int> arrCellCount = String2Int(arrtemp);
+                if (arrCellpos.Length == 1 || string.IsNullOrEmpty(arrCellpos[1])) {
+                    if (string.IsNullOrEmpty(str))
+                        ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    else
+                        ea.SetCellValue("'" + str, GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                    if (valuehs.ContainsKey(lp.LPID + "$" + lp.CellPos)) {
+                        WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + lp.CellPos] as WF_TableFieldValue;
+                        tfv.ControlValue = str;
                         tfv.FieldId = lp.LPID;
                         tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                        tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                        tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                         tfv.ExcelSheetName = xx.Name;
 
                     } else {
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
-                        tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
-                        str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
+                        tfv.ControlValue = str;
                         tfv.FieldId = lp.LPID;
                         tfv.FieldName = lp.CellName;
-                        tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
-                        tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                        tfv.XExcelPos = GetCellPos(lp.CellPos)[0];
+                        tfv.YExcelPos = GetCellPos(lp.CellPos)[1];
                         tfv.ExcelSheetName = xx.Name;
-                        valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
+                        valuehs.Add(lp.LPID + "$" + lp.CellPos, tfv);
                     }
-                    str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
-                        str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
-                    i++;
+
+                } else if (arrCellpos.Length > 1 && (!string.IsNullOrEmpty(arrCellpos[1]))) {
+                    StringHelper help = new StringHelper();
+                    if (lp.CellName == "编号") {
+                        for (int j = 0; j < arrCellpos.Length; j++) {
+                            if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[j]) && str != "") {
+                                string strNew = str.Substring(0, str.Length - 1) + (j + 1).ToString();
+                                ea.SetCellValue("'" + strNew, GetCellPos(arrCellpos[j])[0], GetCellPos(arrCellpos[j])[1]);
+                                if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[j])) {
+                                    WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[j]] as WF_TableFieldValue;
+                                    tfv.ControlValue = strNew;
+                                    tfv.FieldId = lp.LPID;
+                                    tfv.FieldName = lp.CellName;
+                                    tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
+                                    tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
+                                    tfv.ExcelSheetName = xx.Name;
+
+                                } else {
+                                    WF_TableFieldValue tfv = new WF_TableFieldValue();
+                                    tfv.ControlValue = strNew;
+                                    tfv.FieldId = lp.LPID;
+                                    tfv.FieldName = lp.CellName;
+                                    tfv.XExcelPos = GetCellPos(arrCellpos[j])[0];
+                                    tfv.YExcelPos = GetCellPos(arrCellpos[j])[1];
+                                    tfv.ExcelSheetName = xx.Name;
+                                    valuehs.Add(lp.LPID + "$" + arrCellpos[j], tfv);
+                                }
+                            }
+                        }
+                        LockExcel(wb, xx);
+                        return;
+                    }
+                    int i = 0;
+                    if (arrCellCount[0] != arrCellCount[1]) {
+                        if (str.IndexOf("\r\n") == -1 && str.Length <= help.GetFristLen(str, arrCellCount[0])) {
+                            if (string.IsNullOrEmpty(str))
+                                ea.SetCellValue("", GetCellPos(lp.CellPos)[0], GetCellPos(lp.CellPos)[1]);
+                            else
+                                ea.SetCellValue("'" + str, GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                            if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
+                                WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
+                                tfv.ControlValue = str;
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
+                                tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                                tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                                tfv.ExcelSheetName = xx.Name;
+
+                            } else {
+                                WF_TableFieldValue tfv = new WF_TableFieldValue();
+                                tfv.ControlValue = str;
+                                tfv.FieldId = lp.LPID;
+                                tfv.FieldName = lp.CellName;
+                                tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                                tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                                tfv.ExcelSheetName = xx.Name;
+                                valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
+                            }
+
+                            LockExcel(wb, xx);
+                            return;
+                        }
+                        ea.SetCellValue("'" + str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])),
+                            GetCellPos(arrCellpos[0])[0], GetCellPos(arrCellpos[0])[1]);
+                        if (valuehs.ContainsKey(lp.LPID + "$" + arrCellpos[0])) {
+                            WF_TableFieldValue tfv = valuehs[lp.LPID + "$" + arrCellpos[0]] as WF_TableFieldValue;
+                            tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                            tfv.ExcelSheetName = xx.Name;
+
+                        } else {
+                            WF_TableFieldValue tfv = new WF_TableFieldValue();
+                            tfv.ControlValue = (str.Substring(0, str.IndexOf("\r\n") != -1 && help.GetFristLen(str, arrCellCount[0]) >=
+                            str.IndexOf("\r\n") ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0])));
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName;
+                            tfv.XExcelPos = GetCellPos(arrCellpos[0])[0];
+                            tfv.YExcelPos = GetCellPos(arrCellpos[0])[1];
+                            tfv.ExcelSheetName = xx.Name;
+                            valuehs.Add(lp.LPID + "$" + arrCellpos[0], tfv);
+                        }
+                        str = str.Substring(help.GetFristLen(str, arrCellCount[0]) >= str.IndexOf("\r\n") &&
+                            str.IndexOf("\r\n") != -1 ? str.IndexOf("\r\n") : help.GetFristLen(str, arrCellCount[0]));
+                        i++;
+                    }
+                    str = help.GetPlitString(str, arrCellCount[1]);
+                    FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
+
                 }
-                str = help.GetPlitString(str, arrCellCount[1]);
-                FillMutilRows(ea, i, lp, str, arrCellCount, arrCellpos);
+                if (lp.CellName == "单位") {
+                    IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
+                    if (list.Count > 0) {
+                        switch (kind) {
 
-            }
-            if (lp.CellName == "单位") {
-                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + str + "'");
-                if (list.Count > 0) {
-                    switch (kind) {
+                            case "电力线路第一种工作票":
+                            case "yzgzp":
+                                strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                break;
+                            case "电力线路第二种工作票":
+                            case "ezgzp":
+                                strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                break;
+                            case "电力线路倒闸操作票":
+                            case "dzczp":
+                                strNumber = "BJ" + System.DateTime.Now.Year.ToString();
+                                break;
+                            case "电力线路事故应急抢修单":
+                            case "xlqxp":
+                                strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
+                                break;
+                            default:
+                                strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
+                                break;
+                        }
+                        IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
+                        if (kind == "yzgzp") {
+                            strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
+                        } else {
+                            strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
+                        }
+                        if (ctrlNumber != null) {
+                            ctrlNumber.Text = strNumber;
 
-                        case "电力线路第一种工作票":
-                        case "yzgzp":
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
-                        case "电力线路第二种工作票":
-                        case "ezgzp":
-                            strNumber = "08" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
-                        case "电力线路倒闸操作票":
-                        case "dzczp":
-                            strNumber = "BJ" + System.DateTime.Now.Year.ToString();
-                            break;
-                        case "电力线路事故应急抢修单":
-                        case "xlqxp":
-                            strNumber = list[0].ToString().Substring(list[0].ToString().Length - 2, 2) + System.DateTime.Now.Year.ToString();
-                            break;
-                        default:
-                            strNumber = "07" + System.DateTime.Now.Year.ToString() + list[0].ToString().Substring(list[0].ToString().Length - 2, 2);
-                            break;
+                        }
+                        if (currRecord != null) currRecord.OrgName = str;
+                        //ContentChanged(ctrlNumber);
                     }
-                    IList<LP_Record> listLPRecord = ClientHelper.PlatformSqlMap.GetList<LP_Record>("SelectLP_RecordList", " where kind = '" + kind + "' and number like '" + strNumber + "%'");
-                    if (kind == "yzgzp") {
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0') + "-1";
-                    } else {
-                        strNumber += (listLPRecord.Count + 1).ToString().PadLeft(3, '0');
-                    }
-                    if (ctrlNumber != null) {
-                        ctrlNumber.Text = strNumber;
 
-                    }
-                    if (currRecord != null) currRecord.OrgName = str;
-                    //ContentChanged(ctrlNumber);
                 }
 
-            }
-
-            LockExcel(wb, xx);
+                LockExcel(wb, xx);
+            } catch { }
         }
 
         public void FillTable(ExcelAccess ea, LP_Temple lp, string[] content) {
@@ -1305,7 +1862,15 @@ namespace Ebada.Scgl.Lcgl {
                         tfv.XExcelPos = GetCellPos(arrCellPos[i])[0];
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
-
+                        tfv = valuehs[lp.LPID + "$" + arrCellPos[i] + "时间"] as WF_TableFieldValue;
+                        if (tfv != null) {
+                            tfv.ControlValue = dt.ToString();
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName + "完整时间";
+                            tfv.XExcelPos = -1;
+                            tfv.YExcelPos = -1;
+                            tfv.ExcelSheetName = activeSheetName;
+                        }
                     } else {
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
                         tfv.ControlValue = strList[i] + extraWord[i];
@@ -1315,6 +1880,15 @@ namespace Ebada.Scgl.Lcgl {
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
                         valuehs.Add(lp.LPID + "$" + arrCellPos[i], tfv);
+
+                        tfv = new WF_TableFieldValue();
+                        tfv.FieldId = lp.LPID;
+                        tfv.ControlValue = dt.ToString();
+                        tfv.FieldName = lp.CellName + "完整时间";
+                        tfv.XExcelPos = -1;
+                        tfv.YExcelPos = -1;
+                        tfv.ExcelSheetName = activeSheetName;
+                        valuehs.Add(lp.LPID + "$" + arrCellPos[i] + "完整时间", tfv);
                     }
                 } else {
                     ea.SetCellValue("'" + strList[i], GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]);
@@ -1327,6 +1901,16 @@ namespace Ebada.Scgl.Lcgl {
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
 
+                        tfv = valuehs[lp.LPID + "$" + arrCellPos[0] + "时间"] as WF_TableFieldValue;
+                        if (tfv != null) {
+                            tfv.ControlValue = dt.ToString();
+                            tfv.FieldId = lp.LPID;
+                            tfv.FieldName = lp.CellName + "完整时间";
+                            tfv.XExcelPos = -1;
+                            tfv.YExcelPos = -1;
+                            tfv.ExcelSheetName = activeSheetName;
+                        }
+
                     } else {
                         WF_TableFieldValue tfv = new WF_TableFieldValue();
                         tfv.ControlValue = strList[i];
@@ -1336,6 +1920,15 @@ namespace Ebada.Scgl.Lcgl {
                         tfv.YExcelPos = GetCellPos(arrCellPos[i])[1];
                         tfv.ExcelSheetName = activeSheetName;
                         valuehs.Add(lp.LPID + "$" + arrCellPos[i], tfv);
+
+                        tfv = new WF_TableFieldValue();
+                        tfv.FieldId = lp.LPID;
+                        tfv.ControlValue = dt.ToString();
+                        tfv.FieldName = lp.CellName + "完整时间";
+                        tfv.XExcelPos = -1;
+                        tfv.YExcelPos = -1;
+                        tfv.ExcelSheetName = activeSheetName;
+                        valuehs.Add(lp.LPID + "$" + arrCellPos[0] + "完整时间", tfv);
                     }
                 }
 
@@ -1454,13 +2047,14 @@ namespace Ebada.Scgl.Lcgl {
                 string[] arrCellPos = cellpos.Split('|');
                 arrCellPos = StringHelper.ReplaceEmpty(arrCellPos).Split('|');
                 string strcellvalue = "";
-                Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
+                //Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
                 ExcelAccess ea = new ExcelAccess();
                 ea.MyWorkBook = wb;
                 ea.MyExcel = wb.Application;
-                Excel.Worksheet sheet;
-                sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
-
+                //Excel.Worksheet sheet=null;
+                if (activeSheetName != tablename) {
+                    sheet = wb.Application.Sheets[tablename] as Excel.Worksheet;
+                }
                 for (int i = 0; i < arrCellPos.Length; i++) {
                     Excel.Range range = sheet.get_Range(sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]], sheet.Cells[GetCellPos(arrCellPos[i])[0], GetCellPos(arrCellPos[i])[1]]);//坐标
                     strcellvalue += range.Value2;
@@ -1506,7 +2100,7 @@ namespace Ebada.Scgl.Lcgl {
 
                 }
                 try {
-                    sqlSentence = sqlSentence.Replace("\r\n", "");
+                    sqlSentence = sqlSentence.Replace("\r\n", " ");
                     li = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sqlSentence);
                 } catch (Exception ex) {
                     li.Add("出错:" + ex.Message);
@@ -1553,8 +2147,8 @@ namespace Ebada.Scgl.Lcgl {
                         }
                     }
                     if (((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Count > 0) {
-                        if (lp.CellName != "单位")
-                            ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
+                        //if (lp.CellName != "单位")
+                        //    ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).SelectedIndex = 0;
                         //ContentChanged(ctrl);
                         if (lp.CellName == "单位") {
                             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select OrgCode  from mOrg where OrgName='" + ctrl.Text + "'");
@@ -1621,6 +2215,12 @@ namespace Ebada.Scgl.Lcgl {
                 case "DevExpress.XtraEditors.MemoEdit":
                     if (li.Count > 0 && sqlSentence != "")
                         ((DevExpress.XtraEditors.MemoEdit)ctrl).Text = li[0].ToString();
+                    break;
+                case "DevExpress.XtraEditors.SpinEdit":
+                    if (li.Count > 0 && sqlSentence != "" && li[0].ToString() != "") {
+                        ((DevExpress.XtraEditors.SpinEdit)ctrl).Text = li[0].ToString();
+                        ((DevExpress.XtraEditors.SpinEdit)ctrl).Value = Convert.ToDecimal(li[0].ToString());
+                    }
                     break;
                 //case "uc_gridcontrol":
                 //    ((uc_gridcontrol)ctrl).InitData(lp.SqlSentence.Split(new char[] { pchar }, StringSplitOptions.RemoveEmptyEntries), lp.SqlColName.Split(pchar), lp.ComBoxItem.Split(pchar), dsoFramerWordControl1, lp, currRecord);
@@ -1741,7 +2341,6 @@ namespace Ebada.Scgl.Lcgl {
                 //base.Close();
                 currRecord = null;
 
-                dsoFramerWordControl1.FileSave();
                 dsoFramerWordControl1.FileClose();
                 dsoFramerWordControl1.Dispose();
                 dockPanel1.ControlContainer.Controls.Clear();

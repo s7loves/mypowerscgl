@@ -185,7 +185,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pl.LineName+" "+pq.tqName;
+                    pjmx.sbdy = pq.tqName + "台区";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.btKind) {
@@ -194,7 +194,7 @@ namespace Ebada.Scgl.Lcgl {
                             pjmx.whl = 1;
                             break;
                         case "二类":
-                            pjmx.two = 2;
+                            pjmx.two = 1;
                             pjmx.whl = 1;
                             break;
                         case "三类":
@@ -204,20 +204,10 @@ namespace Ebada.Scgl.Lcgl {
 
                     }
                     #region 生成缺陷
-                     xlsqlwhere = string.Format(" where tqid='{0}' and xcr='' order by qxlb", pq.tqID);
-                     qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
-                    if (qxlist.Count > 0)
-                    {
-                        if (qxlist[0].qxlb == "一般缺陷")
-                        {
-                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
-                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
-                        }
-                        else
-                        {
-                            pjmx.qxlb = qxlist[0].qxlb;
-                            pjmx.qxnr = qxlist[0].qxnr;
-                        }
+                    xlsqlwhere = string.Format(" where tqid='{0}' and xcr='' order by qxlb", pq.tqID);
+                    qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0) {
+                        sbpj(qxlist,pjmx);
                     }
                     #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
@@ -231,7 +221,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pl.LineName + " " + pq.kgName;
+                    pjmx.sbdy = pq.kgName + "开关";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.kgkind) {
@@ -254,16 +244,7 @@ namespace Ebada.Scgl.Lcgl {
                     qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
                     if (qxlist.Count > 0)
                     {
-                        if (qxlist[0].qxlb == "一般缺陷")
-                        {
-                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
-                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
-                        }
-                        else
-                        {
-                            pjmx.qxlb = qxlist[0].qxlb;
-                            pjmx.qxnr = qxlist[0].qxnr;
-                        }
+                        sbpj(qxlist, pjmx);
                     }
                     #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
@@ -277,7 +258,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pl.LineName + " " + pq.byqName;
+                    pjmx.sbdy = pq.byqName + "变压器";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
                     switch (pq.byqkind) {
@@ -300,16 +281,7 @@ namespace Ebada.Scgl.Lcgl {
                      qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
                     if (qxlist.Count > 0)
                     {
-                        if (qxlist[0].qxlb == "一般缺陷")
-                        {
-                            pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
-                            pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
-                        }
-                        else
-                        {
-                            pjmx.qxlb = qxlist[0].qxlb;
-                            pjmx.qxnr = qxlist[0].qxnr;
-                        }
+                        sbpj(qxlist, pjmx);
                     }
                     #endregion
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
@@ -332,6 +304,39 @@ namespace Ebada.Scgl.Lcgl {
 
         }
 
+        private void sbpj(IList<PJ_qxfl> qxlist, PJ_18gysbpjmx pjmx) {
+            pjmx.one = 0;
+            
+            if (qxlist[0].qxlb == "一般缺陷") {
+                pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                if (pjmx.qxlb == "一般缺陷") {
+                    pjmx.two = 1;
+
+                } else {
+                    pjmx.three = 1;
+                    pjmx.whl = 0;
+                }
+            } else {
+                pjmx.qxlb = qxlist[0].qxlb;
+                pjmx.qxnr = qxlist[0].qxnr;
+                pjmx.three = 1;
+                pjmx.whl = 0;
+            }
+            if (qxlist.Count > 1 && pjmx.two==1) {
+                if (pjmx.sbdy.Contains("台区") && qxlist.Count==2) {//只有台区超不超过2件为1类，别的为三类
+                    pjmx.three = 0;
+                    pjmx.two = 1;
+                    pjmx.whl = 1;
+                } else {
+                    pjmx.two = 0;
+                    pjmx.three = 1;
+                    pjmx.whl = 0;
+                }
+                
+            }
+        }
+        
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_18gysbpj> e) {
 
             if (isWorkflowCall) {
