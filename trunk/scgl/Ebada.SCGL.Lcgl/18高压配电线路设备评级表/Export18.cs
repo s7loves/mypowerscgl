@@ -54,11 +54,17 @@ namespace Ebada.Scgl.Lcgl {
                     //ex.SetCellValue((p * 29 + i).ToString(), 7 + i, 1);
                     ex.SetCellValue(tempobj.xh.ToString(), 7 + i, 1);
                     ex.SetCellValue(tempobj.sbdy, 7 + i, 2);
-                    ex.SetCellValue(tempobj.one.ToString(), 7 + i, 5);
-                    ex.SetCellValue(tempobj.two.ToString(), 7 + i, 6);
-                    ex.SetCellValue(tempobj.three.ToString(), 7 + i, 9);
+                    if (tempobj.one > 1) {
+                        ex.SetCellValue(Math.Round(tempobj.one / 1000d, 2).ToString(), 7 + i, 5);
+                        ex.SetCellValue(Math.Round(tempobj.two / 1000d, 2).ToString(), 7 + i, 6);
+                        ex.SetCellValue(Math.Round(tempobj.three / 1000d, 2).ToString(), 7 + i, 9);
+                    } else {
+                        ex.SetCellValue(tempobj.one.ToString(), 7 + i, 5);
+                        ex.SetCellValue(tempobj.two.ToString(), 7 + i, 6);
+                        ex.SetCellValue(tempobj.three.ToString(), 7 + i, 9);
+                    }
                     ex.SetCellValue(tempobj.whl*100 + "%", 7 + i, 12);
-                    ex.SetCellValue(tempobj.qxnr, 7 + i, 13);
+                    ex.SetCellValue(tempobj.qxnr==""?"无":tempobj.qxnr, 7 + i, 13);
                     ex.SetCellValue(tempobj.fzdw, 7 + i, 14);
 
                 }
