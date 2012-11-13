@@ -1851,8 +1851,9 @@ namespace Ebada.SCGL.WFlow.Tool
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    //if (li.Count > 0 && sqlSentence != "")
-                    //    ((DevExpress.XtraEditors.DateEdit)ctrl).Text = li[0].ToString();
+                    if (li.Count > 0 && sqlSentence != "") {
+                        ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = Convert.ToDateTime(li[0]);
+                    }
                     //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";          
                     //string[] arrCellPos = lp.CellPos.Split(pchar);
                     //if (arrCellPos.Length == 5)
