@@ -135,6 +135,7 @@ namespace Ebada.Scgl.Lcgl {
         void gridViewOperation_AfterAdd(PJ_18gysbpj obj) {
             IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + btGdsList.EditValue + "'and ParentID = ''");
             int bh = 0;
+            string fzdw = parentObj.OrgName;
             foreach (PS_xl pl in listxl)
             {
                 bh++;
@@ -146,6 +147,7 @@ namespace Ebada.Scgl.Lcgl {
                 pjmx.CreateDate = DateTime.Now;
                 Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
                 pjmx.CreateMan = m_UserBase.RealName;
+                pjmx.fzdw = fzdw;
                 int line1 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '一类')"));
                 int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
                 int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '三类')"));
@@ -188,6 +190,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.sbdy = pq.tqName + "台区";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.fzdw = fzdw;
                     switch (pq.btKind) {
                         case "一类":
                             pjmx.one = 1;
@@ -224,6 +227,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.sbdy = pq.kgName + "开关";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.fzdw = fzdw;
                     switch (pq.kgkind) {
                         case "一类":
                             pjmx.one = 1;
@@ -261,6 +265,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.sbdy = pq.byqName + "变压器";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.fzdw = fzdw;
                     switch (pq.byqkind) {
                         case "一类":
                             pjmx.one = 1;
