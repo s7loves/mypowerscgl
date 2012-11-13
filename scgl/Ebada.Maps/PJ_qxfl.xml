@@ -235,7 +235,11 @@
               ID = #ID#
 
    </update>
-  
+    <update id="UpdatePJ_qxflByWhwer"  parameterClass="string">
+      UPDATE PJ_qxfl set
+      $value$
+
+    </update>
    <insert id="InsertPJ_qxfl" parameterClass="PJ_qxfl">
         INSERT INTO PJ_qxfl
          (
