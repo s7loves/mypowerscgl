@@ -136,6 +136,7 @@ namespace Ebada.Scgl.Lcgl {
             IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + btGdsList.EditValue + "'and ParentID = ''");
             int bh = 0;
             string fzdw = parentObj.OrgName;
+            string loginname = MainHelper.User.UserName;
             foreach (PS_xl pl in listxl)
             {
                 bh++;
@@ -145,12 +146,11 @@ namespace Ebada.Scgl.Lcgl {
                 pjmx.xh = bh;
                 pjmx.sbdy = pl.LineName;
                 pjmx.CreateDate = DateTime.Now;
-                Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-                pjmx.CreateMan = m_UserBase.RealName;
+                pjmx.CreateMan = MainHelper.User.UserName;
                 pjmx.fzdw = fzdw;
-                int line1 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '一类')"));
-                int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
-                int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE SUBSTRING(LineID, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '三类')"));
+                int line1 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and  SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '一类')"));
+                int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
+                int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '三类')"));
                 pjmx.one = line1;
                 pjmx.two = line2;
                 pjmx.three = line3;
@@ -189,7 +189,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.PJ_ID = obj.PJ_ID;
                     pjmx.sbdy = pq.tqName + "台区";
                     pjmx.CreateDate = DateTime.Now;
-                    pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.CreateMan = loginname;
                     pjmx.fzdw = fzdw;
                     switch (pq.btKind) {
                         case "一类":
@@ -226,7 +226,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.PJ_ID = obj.PJ_ID;
                     pjmx.sbdy = pq.kgName + "开关";
                     pjmx.CreateDate = DateTime.Now;
-                    pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.CreateMan = loginname;
                     pjmx.fzdw = fzdw;
                     switch (pq.kgkind) {
                         case "一类":
@@ -264,7 +264,7 @@ namespace Ebada.Scgl.Lcgl {
                     pjmx.PJ_ID = obj.PJ_ID;
                     pjmx.sbdy = pq.byqName + "变压器";
                     pjmx.CreateDate = DateTime.Now;
-                    pjmx.CreateMan = m_UserBase.RealName;
+                    pjmx.CreateMan = loginname;
                     pjmx.fzdw = fzdw;
                     switch (pq.byqkind) {
                         case "一类":
@@ -292,19 +292,19 @@ namespace Ebada.Scgl.Lcgl {
                     Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
             }
-            if (isWorkflowCall) {
-                WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                mrwt.ModleRecordID = obj.PJ_ID;
-                mrwt.RecordID = currRecord.ID;
-                mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                mrwt.ModleTableName = obj.GetType().ToString();
-                mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                mrwt.CreatTime = DateTime.Now;
-                MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
-            }
+            //if (isWorkflowCall) {
+            //    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+            //    mrwt.ModleRecordID = obj.PJ_ID;
+            //    mrwt.RecordID = currRecord.ID;
+            //    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+            //    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+            //    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+            //    mrwt.ModleTableName = obj.GetType().ToString();
+            //    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+            //    mrwt.CreatTime = DateTime.Now;
+            //    MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+            //    MainHelper.PlatformSqlMap.Update<LP_Record>(currRecord);
+            //}
             RefreshData(" where OrgCode='" + parentID + "'");
 
         }
@@ -352,6 +352,7 @@ namespace Ebada.Scgl.Lcgl {
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
+            MainHelper.PlatformSqlMap.DeleteByWhere<PJ_18gysbpjmx>("where pj_id='" + e.Value.PJ_ID + "'");
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_18gysbpj> e) {
