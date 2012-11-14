@@ -355,7 +355,7 @@
       select sum(byqCapcity) from PS_tqbyq $value$
     </select>
     <select id="GetPS_tqbyqRowCountByWhere" parameterClass="string">
-      select  COUNT(*),byqName,byqModle from PS_tqbyq $value$
+      select  COUNT(*),byqModle,byqName from PS_tqbyq $value$
     </select>
     <select id="GetPS_tqbyqbyqCapcitybywhere" parameterClass="string">
       select sum(byqCapcity) from PS_tqbyq where tqID in(select tqID from ps_tq where $value$) 
