@@ -565,35 +565,13 @@ namespace Ebada.Scgl.Lcgl {
 
                         } else if (obj is frm08SBTDJXWorkFlowEdit) {
                             IList<WF_ModleRecordWorkTaskIns> li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
-                             + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_qxfl'"
-                               + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
-                            PJ_08sbtdjx qxfl = new PJ_08sbtdjx();
-                            if (li.Count > 0) {
-                                PJ_qxfl qxfltemp = MainHelper.PlatformSqlMap.GetOneByKey<PJ_qxfl>(li[0].ModleRecordID);
-                                li = MainHelper.PlatformSqlMap.GetListByWhere<WF_ModleRecordWorkTaskIns>(" where RecordID='" + currRecord.ID + "'"
                                + " and  WorkFlowId='" + dt.Rows[0]["WorkFlowId"].ToString() + "' and ModleTableName='Ebada.Scgl.Model.PJ_08sbtdjx'"
                                  + " and  WorkFlowInsId='" + dt.Rows[0]["WorkFlowInsId"].ToString() + "' order by CreatTime desc");
-                                if (li.Count > 0) {
+                            PJ_08sbtdjx qxfl = new PJ_08sbtdjx();
+                            if (li.Count > 0) {
+                                
                                     qxfl = MainHelper.PlatformSqlMap.GetOneByKey<PJ_08sbtdjx>(li[0].ModleRecordID);
-                                } else {
-                                    qxfl.OrgCode = qxfltemp.OrgCode;
-                                    qxfl.OrgName = qxfltemp.OrgName;
-                                    qxfl.LineID = qxfltemp.LineID;
-                                    qxfl.LineName = qxfltemp.LineName;
-                                    qxfl.jxnr = qxfltemp.qxnr;
-                                    if (qxfltemp.qxlb == "紧急缺陷") {
-                                        qxfl.tdxz = "事故停电";
-                                    } else
-                                        if (qxfltemp.qxlb == "重大缺陷") {
-                                            qxfl.tdxz = "临时停电";
-                                        } else
-                                            if (qxfltemp.qxlb == "一般缺陷") {
-                                                qxfl.tdxz = "一般缺陷";
-                                            }
-                                    qxfl.CreateDate = DateTime.Now;
-                                    qxfl.CreateMan = MainHelper.User.UserName;
-                                    
-                                }
+                                    if (qxfl == null) qxfl = new PJ_08sbtdjx();
 
                             } else {
                                 qxfl = new PJ_08sbtdjx();
