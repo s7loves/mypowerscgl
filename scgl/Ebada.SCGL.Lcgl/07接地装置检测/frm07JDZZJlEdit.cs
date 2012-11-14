@@ -148,7 +148,10 @@ namespace Ebada.Scgl.Lcgl
 
 
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
-            this.popLine.DataSource = xlList;
+            if (xlList.Count > 0)
+            {
+                this.popLine.DataSource = xlList;
+            }
         }
 
         /// <summary>

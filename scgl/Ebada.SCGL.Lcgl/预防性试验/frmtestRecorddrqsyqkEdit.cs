@@ -131,13 +131,19 @@ namespace Ebada.Scgl.Lcgl
                 
                 if (rowData == null) {
                     this.rowData = value as PJ_yfsyjl;
+                    PJ_yfsyjl temppj=new PJ_yfsyjl()  ;
+                    ConvertHelper.CopyTo<PJ_yfsyjl>(rowData, temppj);
                     IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
                     if (li.Count == 2)
                     {
                         rowData2 = new PJ_yfsyjl();
                         ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
                         ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
-
+                        this.rowData.xlid = temppj.xlid;
+                        this.rowData.byqid = temppj.byqid;
+                        this.rowData.tqid = temppj.tqid;
+                        this.rowData.kgid = temppj.kgid;
+                        
                     }
                     else
                     {
@@ -218,8 +224,11 @@ namespace Ebada.Scgl.Lcgl
             popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
 
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
-            this.popLine.DataSource = xlList;
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol='10'");
+            if (xlList.Count > 0)
+            {
+                this.popLine.DataSource = xlList;
+            }
         }
 
         /// <summary>
@@ -321,6 +330,10 @@ namespace Ebada.Scgl.Lcgl
 
             
             }
+            rowData.xlname = popLine.Text;
+            rowData.tqname = popTq.Text;
+            rowData.byqname = popByq.Text;
+            rowData.kgname = popKg.Text;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -360,7 +373,7 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
 
-            IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where   left(byqcode,3)='{0}' ", rowData.gdstemp));
+            IList<PS_tqbyq> byqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where   left(byqcode,3)='{0}' ", rowData.OrgCode));
             if (byqlist.Count != 0)
             {
                 popByq.DataSource = byqlist;

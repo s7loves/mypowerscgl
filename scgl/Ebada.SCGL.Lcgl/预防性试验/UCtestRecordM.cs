@@ -198,6 +198,45 @@ namespace Ebada.Scgl.Lcgl
             uCtestRecordjhmxTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
             uCtestRecordssqkTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
             uCtestRecordwcqkTable1.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btReEdit_ItemClick);
+
+            for (int i = 0; i < xtraTabControl1.TabPages.Count; i++)
+            {
+                if ( xtraTabControl1.TabPages[i].PageVisible )
+                {
+                    if (xtraTabControl1.TabPages[i].Text.IndexOf("变压器") > -1)
+                    {
+                        uCtestHCRecord1.Type = "变压器";
+                        uCtestRecordjhmxTable1.Type = "变压器";
+                        uCtestRecordssqkTable1.Type = "变压器";
+                        uCtestRecordwcqkTable1.Type = "变压器";
+                    }
+                    else if (xtraTabControl1.TabPages[i].Text.IndexOf("断路器") > -1)
+                    {
+                        uCtestHCRecord1.Type = "断路器";
+                        uCtestRecordjhmxTable1.Type = "断路器";
+                        uCtestRecordssqkTable1.Type = "断路器";
+                        uCtestRecordwcqkTable1.Type = "断路器";
+
+                    }
+                    else if (xtraTabControl1.TabPages[i].Text.IndexOf("避雷器") > -1)
+                    {
+                        uCtestHCRecord1.Type = "避雷器";
+                        uCtestRecordjhmxTable1.Type = "避雷器";
+                        uCtestRecordssqkTable1.Type = "避雷器";
+                        uCtestRecordwcqkTable1.Type = "避雷器";
+                    }
+                    else if (xtraTabControl1.TabPages[i].Text.IndexOf("电容器") > -1)
+                    {
+                        uCtestHCRecord1.Type = "电容器";
+                        uCtestRecordjhmxTable1.Type = "电容器";
+                        uCtestRecordssqkTable1.Type = "电容器";
+                        uCtestRecordwcqkTable1.Type = "电容器";
+                    }
+                }
+              
+            }
+           
+           
         }
         private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -205,6 +244,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void uCtestRecordRefreshData()
         {
+            
             uCtestRecordjhmxTable1.RefreshData();
             uCtestRecordssqkTable1.RefreshData();
             uCtestRecordwcqkTable1.RefreshData();
