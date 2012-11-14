@@ -189,6 +189,7 @@ namespace Ebada.Scgl.Yxgl
         {
             IList tqSBList = new List<object[]>();
             IList gtSBList = new List<object[]>();
+            IList byqSBList = new List<object[]>();
             IList<string> xlStringList = new List<string>();
             IList<string> tqStringList = new List<string>();
             tjList.Clear();
@@ -219,6 +220,9 @@ namespace Ebada.Scgl.Yxgl
 
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere"," group by byqModle,byqName");
+                            
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -230,6 +234,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = "全局";
+                                tj.SbOwner = "全局";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = "全局";
@@ -255,6 +269,9 @@ namespace Ebada.Scgl.Yxgl
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");                
      
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' group by byqModle,byqName");
+                            
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -266,6 +283,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = org.OrgName;
+                                tj.SbOwner = "全所";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = org.OrgName;
@@ -289,6 +316,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -301,6 +329,17 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit3.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 string strOwner = repositoryItemCheckedComboBoxEdit3.GetDisplayText(str).Trim();
@@ -328,6 +367,7 @@ namespace Ebada.Scgl.Yxgl
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" +str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and  PS_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -340,6 +380,17 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
@@ -366,6 +417,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" + str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and  PS_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -378,6 +430,17 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
@@ -397,6 +460,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -409,6 +473,17 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                string strOwner = repositoryItemCheckedComboBoxEdit3.GetDisplayText(str).Trim();
+                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                                tj.SbOwner = strOwner;
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 string strOwner = repositoryItemCheckedComboBoxEdit3.GetDisplayText(str).Trim();
@@ -434,6 +509,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", " group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -445,6 +521,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = "全局";
+                                tj.SbOwner = "全局";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = "全局";
@@ -460,6 +546,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -471,6 +558,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = org.OrgName;
+                                tj.SbOwner = "全所";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = org.OrgName;
@@ -495,6 +592,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", " group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -506,6 +604,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = "全局";
+                                tj.SbOwner = "全局";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = "全局";
@@ -521,6 +629,7 @@ namespace Ebada.Scgl.Yxgl
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
                             tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -532,6 +641,16 @@ namespace Ebada.Scgl.Yxgl
                                 tjList.Add(tj);
                             }
                             foreach (object[] ob in tqSBList)
+                            {
+                                PS_tj tj = new PS_tj();
+                                tj.SmOrg = org.OrgName;
+                                tj.SbOwner = "全所";
+                                tj.SBNumber = Convert.ToInt32(ob[0]);
+                                tj.SbType = ob[1].ToString();
+                                tj.SbName = ob[2].ToString();
+                                tjList.Add(tj);
+                            }
+                            foreach (object[] ob in byqSBList)
                             {
                                 PS_tj tj = new PS_tj();
                                 tj.SmOrg = org.OrgName;
