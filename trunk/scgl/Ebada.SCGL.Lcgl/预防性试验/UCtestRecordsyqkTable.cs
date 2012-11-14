@@ -483,7 +483,7 @@ namespace Ebada.Scgl.Lcgl
                     if (fm.ShowDialog() == DialogResult.OK)
                     {
                         MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
-
+                        Addqxmx(ob);
                     }
                     break;
 
@@ -494,11 +494,11 @@ namespace Ebada.Scgl.Lcgl
                     if (fm2.ShowDialog() == DialogResult.OK)
                     {
                         MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
-
+                        Addqxmx(ob);
                     }
                     break;
             }
-            Addqxmx(ob);
+           
         }
         //处理缺陷明细  lgmqx
         private void Addqxmx(PJ_yfsyjl obj)

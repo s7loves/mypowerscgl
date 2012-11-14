@@ -47,9 +47,11 @@ namespace Ebada.Scgl.Lcgl
             this.dateEdit2.DataBindings.Add("EditValue", rowData, "planExpTime");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
+           
             switch (rowData.type )
             {
                 case "变压器":
+                    labelControl3.Text = "容量";
                     labelControl3.Visible = true;
                     comboBoxEdit4.Visible = true;
                     spinEdit2.Visible = false;
@@ -59,6 +61,8 @@ namespace Ebada.Scgl.Lcgl
                 case "电容器":
                     //labelControl8.Visible = true;
                     //labelControl8.Visible = true;
+                    labelControl3.Text = "数量";
+                    labelControl3.Visible = true;
                     spinEdit2.Visible = true;
                     break;
 
