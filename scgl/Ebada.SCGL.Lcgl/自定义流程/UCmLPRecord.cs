@@ -212,11 +212,15 @@ namespace Ebada.Scgl.Lcgl {
                     cm.MenuItems.Add(item);
                 }
                  */
+                
                 List<WF_WorkTaskInstance> list = new List<WF_WorkTaskInstance>();
                 GetTaskInsList(ref list, wf[0].WorkFlowInsId, null);
+                list.Sort(delegate(WF_WorkTaskInstance item1,WF_WorkTaskInstance item2){ return item1.StartTime>item2.StartTime?1:-1;});
                 ContextMenu cm = new ContextMenu();
+                int num = 0;
                 foreach (var item in list) {
-                    MenuItem menu = new MenuItem(item.TaskInsCaption, contextmenu_Click);
+                    num++;
+                    MenuItem menu = new MenuItem(num+"、"+item.TaskInsCaption, contextmenu_Click);
                     menu.Tag = item;
                     cm.MenuItems.Add(menu);
                 
@@ -224,6 +228,7 @@ namespace Ebada.Scgl.Lcgl {
                 cm.Show(this, this.PointToClient(MousePosition));
             }
         }
+        
         /// <summary>
         /// 获取流程实例任务表（已执行的）
         /// </summary>
