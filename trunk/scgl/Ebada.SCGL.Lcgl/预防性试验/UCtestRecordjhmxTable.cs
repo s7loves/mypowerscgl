@@ -93,7 +93,7 @@ namespace Ebada.Scgl.Lcgl
 
                 WorkFlowData = value;
 
-               
+
             }
         }
 
@@ -119,31 +119,31 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_yfsyjl>(gridViewOperation_AfterEdit);
         }
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
-        { 
-        
-        
+        {
+
+
         }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
 
             IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' order by xh");
-            int i=1;
+            int i = 1;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             foreach (PJ_yfsyjl ob in li)
             {
                 ob.xh = i;
                 i++;
-                list.Add(ob); 
+                list.Add(ob);
             }
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
             if (list.Count > 0)
             {
-                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray ());
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
                 list3.Add(obj3);
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' and planExpTime like '%" + DateTime.Now.Year + "%' ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' and (planExpTime like '%" + DateTime.Now.Year + "%' or planExpTime like '%" + DateTime.Now.Year + 1 + "%')  ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -151,7 +151,7 @@ namespace Ebada.Scgl.Lcgl
             obj.xh = MainHelper.PlatformSqlMap.GetRowCount<PJ_yfsyjl>(" where OrgCode='" + obj.OrgCode + "' and  type='" + obj.type + "'");
             obj.CreateDate = DateTime.Now;
             MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(obj);
-            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' and planExpTime like '%" + DateTime.Now.Year + "%'  ");
+            RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' and (planExpTime like '%" + DateTime.Now.Year + "%' or planExpTime like '%" + DateTime.Now.Year + 1 + "%')  ");
         }
         public string Type
         {
@@ -159,11 +159,11 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _type = value;
-                if (_type != null )
+                if (_type != null)
                 {
                     gridView1.Columns["sbCapacity"].VisibleIndex = 4;
                     gridView1.Columns["sl"].VisibleIndex = 4;
-                    gridView1.OptionsView.AllowCellMerge = false; 
+                    gridView1.OptionsView.AllowCellMerge = false;
                     switch (_type)
                     {
                         case "变压器":
@@ -184,18 +184,18 @@ namespace Ebada.Scgl.Lcgl
                         case "电容器":
                             hideColumn("sbCapacity");
                             hideColumn("sl", true);
-                            gridView1.OptionsView.AllowCellMerge = true; 
+                            gridView1.OptionsView.AllowCellMerge = true;
                             break;
                     }
-                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%' ");
+                    RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "'  and (planExpTime like '%" + DateTime.Now.Year + "%' or planExpTime like '%" + DateTime.Now.Year + 1 + "%') ");
                 }
 
             }
         }
-       
+
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
-           
+
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
@@ -208,7 +208,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 e.Value.type = _type;
                 e.Value.OrgCode = parentObj.OrgCode;
-                e.Value.OrgName = parentObj.OrgName; 
+                e.Value.OrgName = parentObj.OrgName;
             }
         }
         protected override void OnLoad(EventArgs e)
@@ -231,17 +231,17 @@ namespace Ebada.Scgl.Lcgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
         private void initImageList()
@@ -260,7 +260,7 @@ namespace Ebada.Scgl.Lcgl
             //gridView1.Columns[colname].Visible = false;
             hideColumn(colname, false);
         }
-        private void hideColumn(string colname,bool ishide)
+        private void hideColumn(string colname, bool ishide)
         {
             gridView1.Columns[colname].Visible = ishide;
         }
@@ -308,7 +308,7 @@ namespace Ebada.Scgl.Lcgl
                 slqwhere = slqwhere + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                    + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                  // + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    // + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     // + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()+"'"
                   + ")";
             }
@@ -316,17 +316,17 @@ namespace Ebada.Scgl.Lcgl
         }
         public void RefreshData()
         {
-            string slqwhere = "where OrgCode='" + ParentID + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%' ";
+            string slqwhere = "where OrgCode='" + ParentID + "'  and type='" + _type + "'  and (planExpTime like '%" + DateTime.Now.Year + "%' or planExpTime like '%" + DateTime.Now.Year + 1 + "%') ";
             if (isWorkflowCall)
             {
 
-                slqwhere = slqwhere + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "  
-                +" WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                slqwhere = slqwhere + " and  id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                + " WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
                     + " and   WorkFlowInsId !='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
 
                    //+ " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   //+ " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   //+ " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() +"'"
+                    //+ " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                    //+ " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() +"'"
                    + ")";
             }
             slqwhere = slqwhere + " order by xh";
@@ -347,12 +347,13 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_yfsyjl newobj)
         {
-            if ( parentID == null)
+            if (parentID == null)
             {
                 return;
             }
 
-            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); }
+            catch { }
         }
         /// <summary>
         /// 父表ID
@@ -365,9 +366,9 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value) )
+                if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  and planExpTime like '%" + DateTime.Now.Year + "%'  ");
+                    RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'  and (planExpTime like '%" + DateTime.Now.Year + "%' or planExpTime like '%" + DateTime.Now.AddYears(1).Year + "%')  ");
 
                 }
             }
@@ -424,13 +425,13 @@ namespace Ebada.Scgl.Lcgl
                     export.ExportExceldrqjhb(datalist, _type + "预防性试验计划表", parentID);
                     break;
             }
-           
+
         }
 
         private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.FocusedRowHandle < 0) return;
-            PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl; 
+            PJ_yfsyjl ob = gridView1.GetFocusedRow() as PJ_yfsyjl;
             switch (_type)
             {
                 case "变压器":
@@ -439,10 +440,10 @@ namespace Ebada.Scgl.Lcgl
                     frmtestRecordjhmxEdit fm = new frmtestRecordjhmxEdit();
                     fm.Type = _type;
                     fm.RowData = ob;
-                    if (fm.ShowDialog()==DialogResult.OK  )
+                    if (fm.ShowDialog() == DialogResult.OK)
                     {
-                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob); 
-                    
+                        MainHelper.PlatformSqlMap.Update<PJ_yfsyjl>(ob);
+
                     }
                     break;
 
