@@ -1,0 +1,1 @@
+update mModule set MethodParam=null,MethodName=null where ModuName='‘§∑¿–‘ ‘—È' and AssemblyFileName='Ebada.Scgl.Lcgl.dll' and ModuTypes='Ebada.Scgl.Lcgl.UCtestRecordM' and Modu_ID='20111006154850793250';
