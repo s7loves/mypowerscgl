@@ -65,12 +65,13 @@ namespace Ebada.Scgl.Xtgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            mOrg org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("where orgid='300'");
+            mOrg org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("300");
             if (org == null) {
                 org = new mOrg() { OrgCode = "300", OrgID = "300", OrgType = "0", OrgName = "变电所" };
                 ClientHelper.PlatformSqlMap.Create<mOrg>(org);
             }
             RefreshData(" where parentid='300'");
+            gridView1.BestFitColumns();
         }
         /// <summary>
         /// 初始化列,
@@ -80,6 +81,16 @@ namespace Ebada.Scgl.Xtgl {
             //需要隐藏列时在这写代码
             gridView1.Columns["OrgType"].Visible = false;
             gridView1.Columns["ParentID"].Visible = false;
+
+            GridColumn gc = gridView1.Columns.Add();
+            gc.Caption = "纬度";
+            gc.FieldName = "C1";
+            gc.Visible = true;
+            gc = gridView1.Columns.Add();
+            gc.Caption = "经度";
+            gc.FieldName = "C2";
+            gc.Visible = true;
+
         }
         /// <summary>
         /// 刷新数据

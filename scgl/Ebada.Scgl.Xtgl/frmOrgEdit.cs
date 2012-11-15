@@ -143,15 +143,16 @@ namespace Ebada.Scgl.Xtgl
                         else
                         {
                             //rowData.C1 = checkEdit1.Checked ? 0 : 1;
-                            if (checkEdit1.Checked)
-                                rowData.C1 = "是";
-                            else
-                                rowData.C1 = "否";
-                            if (checkEdit2.Checked)
-                                rowData.C3 = "是";
-                            else
-                                rowData.C3 = "否";
-
+                            if (rowData.OrgType != "2") {
+                                if (checkEdit1.Checked)
+                                    rowData.C1 = "是";
+                                else
+                                    rowData.C1 = "否";
+                                if (checkEdit2.Checked)
+                                    rowData.C3 = "是";
+                                else
+                                    rowData.C3 = "否";
+                            }
                             this.DialogResult = DialogResult.OK;
                         }
                     }
