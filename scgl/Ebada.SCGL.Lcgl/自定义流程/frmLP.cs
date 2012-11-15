@@ -2551,7 +2551,7 @@ namespace Ebada.Scgl.Lcgl
                         //else
                         //{
                         //Control bttip = FindCtrl("bt" + lp.LPID);
-                        if (((ComboBoxEdit)ctrl).Properties.Items.Count > 0 && wtt.cdfs == "下拉并选中")
+                        if (li.Count > 0  && wtt.cdfs == "下拉并选中")
                             ((ComboBoxEdit)ctrl).Text = li[0].ToString();
                         //}
 
