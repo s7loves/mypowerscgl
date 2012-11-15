@@ -322,6 +322,11 @@ namespace TLMapPlatform {
                 GPoint p1 = mRMap.FromLatLngToLocal(rect.LocationTopLeft);
                 GPoint p2 = mRMap.FromLatLngToLocal(rect.LocationRightBottom);
                 RectangleF rf = new RectangleF(p1.X,p1.Y,p2.X-p1.X,p2.Y-p1.Y);
+                Rectangle rt = Rectangle.Round(rf);
+                if (rt.Width * rt.Height > 64000000) {
+                    MsgBox.ShowAskMessageBox("对不起，导出失败，请缩小地图比例后重试!");
+                    return;
+                }  
                 //GMapOverlay lay ;
                 GPoint p3 = p1;
                 p3.Offset(mRMap.Width / 2, mRMap.Height / 2);
@@ -329,7 +334,6 @@ namespace TLMapPlatform {
                 mRMap.Position = mRMap.FromLocalToLatLng(p3.X, p3.Y);
                 mRMap.Invalidate();
                 Application.DoEvents();
-                Rectangle rt = Rectangle.Round(rf);
                 Bitmap bitmap=new Bitmap(rt.Width,rt.Height);
 
                 //mRMap.VirtualSizeEnabled = true;
