@@ -91,5 +91,27 @@ namespace Ebada.Scgl.Lcgl
             #endregion
             ex.ShowExcel();
         }
+
+        public void ExportOne(PJ_gdscrk obj)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\供电所材料季度对账.xls";
+            ex.Open(fname);
+
+            string orgname = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 OrgName from mOrg where OrgCode='" + obj.OrgCode + "'");
+
+            ex.SetCellValue(orgname, 3, 2);
+
+            int row = 5;
+            int col = 1;
+            ex.SetCellValue(obj.wpmc, row, col);
+            ex.SetCellValue(obj.wpgg, row, col + 1);
+            ex.SetCellValue(obj.wpdw, row, col + 2);
+            ex.SetCellValue(obj.rkslcount, row, col + 3);
+            ex.SetCellValue(obj.ckslcount, row, col + 4);
+            ex.SetCellValue(obj.kcslcount, row, col + 5);
+            ex.ShowExcel();
+        }
     }
 }
