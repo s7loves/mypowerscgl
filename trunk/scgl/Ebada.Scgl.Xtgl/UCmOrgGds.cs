@@ -65,12 +65,13 @@ namespace Ebada.Scgl.Xtgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            mOrg org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("where orgid='200'");
+            mOrg org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("200");
             if (org == null) {
                 org = new mOrg() { OrgCode = "200", OrgID = "200", OrgType = "0", OrgName = "供电所" };
                 ClientHelper.PlatformSqlMap.Create<mOrg>(org);
             }
             RefreshData(" where parentid='200'");
+            gridView1.BestFitColumns();
         }
         /// <summary>
         /// 初始化列,
