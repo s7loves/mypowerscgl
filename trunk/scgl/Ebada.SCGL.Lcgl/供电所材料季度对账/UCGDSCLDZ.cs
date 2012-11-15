@@ -206,7 +206,7 @@ namespace Ebada.Scgl.Lcgl
                     DateTime now = DateTime.Now;
                     string time = " " + now.ToLongTimeString();
                     ExportGDSCRKDZ etdjh = new ExportGDSCRKDZ();
-                    etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), barEndTime.EditValue.ToString().Substring(0, 9) + time);
+                    etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), barEndTime.EditValue.ToString().Substring(0, 10) + time);
                 }
             }
         }
@@ -332,7 +332,7 @@ namespace Ebada.Scgl.Lcgl
 
             if (barEndTime.EditValue != null)
             {
-                sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "')";
+                sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue.ToString().Substring(0, 10) + time + "')";
             }
 
             sql += " order by ID desc,wpmc";
@@ -450,5 +450,19 @@ namespace Ebada.Scgl.Lcgl
             GetWpmc();
         }
         #endregion
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
+            {
+                ExportGDSCRKDZ etdjh = new ExportGDSCRKDZ();
+                etdjh.ExportOne(crk);
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("请先选中要导出的数据！");
+            }
+        }
     }
 }
