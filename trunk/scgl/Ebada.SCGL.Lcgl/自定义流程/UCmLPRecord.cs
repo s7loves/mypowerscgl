@@ -215,7 +215,15 @@ namespace Ebada.Scgl.Lcgl {
                 
                 List<WF_WorkTaskInstance> list = new List<WF_WorkTaskInstance>();
                 GetTaskInsList(ref list, wf[0].WorkFlowInsId, null);
-                list.Sort(delegate(WF_WorkTaskInstance item1,WF_WorkTaskInstance item2){ return item1.StartTime>item2.StartTime?1:-1;});
+                list.Sort(delegate(WF_WorkTaskInstance item1,WF_WorkTaskInstance item2){
+                    int ret = 0;
+                    if(item1.StartTime>item2.StartTime){
+                        ret=1;
+                    }else if(item1.StartTime<item2.StartTime){
+                        ret=-1;
+                    }
+                    return ret;                
+                });
                 ContextMenu cm = new ContextMenu();
                 int num = 0;
                 foreach (var item in list) {
