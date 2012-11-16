@@ -390,20 +390,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 432);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1224, 26);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 433);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1224, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 50);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 382);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 383);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1224, 50);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 382);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 383);
             // 
             // barButtonItem1
             // 
@@ -445,8 +445,6 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -570,7 +568,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1224, 382);
+            this.gridControl1.Size = new System.Drawing.Size(1224, 383);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
