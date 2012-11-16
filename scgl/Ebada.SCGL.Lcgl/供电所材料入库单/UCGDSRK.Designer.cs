@@ -179,6 +179,7 @@
             this.barWpmc.Id = 25;
             this.barWpmc.Name = "barWpmc";
             this.barWpmc.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barWpmc.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barWpmc.EditValueChanged += new System.EventHandler(this.comWpmc_EditValueChanged);
             // 
             // comWpmc
@@ -195,6 +196,7 @@
             this.barWpgg.Id = 26;
             this.barWpgg.Name = "barWpgg";
             this.barWpgg.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barWpgg.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barWpgg.EditValueChanged += new System.EventHandler(this.comWpgg_EditValueChanged);
             // 
             // comWpgg
@@ -211,6 +213,7 @@
             this.barWpdw.Id = 27;
             this.barWpdw.Name = "barWpdw";
             this.barWpdw.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barWpdw.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barWpdw.EditValueChanged += new System.EventHandler(this.barWpdw_EditValueChanged);
             // 
             // comWpdw
@@ -227,6 +230,7 @@
             this.barStarTime.Id = 34;
             this.barStarTime.Name = "barStarTime";
             this.barStarTime.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barStarTime.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barStarTime.EditValueChanged += new System.EventHandler(this.barStarTime_EditValueChanged);
             // 
             // repositoryItemDateEdit1
@@ -246,6 +250,7 @@
             this.barEndTime.Id = 35;
             this.barEndTime.Name = "barEndTime";
             this.barEndTime.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barEndTime.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barEndTime.EditValueChanged += new System.EventHandler(this.barEndTime_EditValueChanged);
             // 
             // repositoryItemDateEdit2
@@ -263,6 +268,7 @@
             this.barButtonItem4.Caption = "重置查询条件";
             this.barButtonItem4.Id = 58;
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
             // barButtonItem5
@@ -270,6 +276,7 @@
             this.barButtonItem5.Caption = "导出查询结果";
             this.barButtonItem5.Id = 59;
             this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // bar3
@@ -409,20 +416,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 432);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1224, 26);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 433);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1224, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 50);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 382);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 383);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1224, 50);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 382);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 383);
             // 
             // btView
             // 
@@ -464,8 +471,6 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -481,7 +486,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1224, 382);
+            this.gridControl1.Size = new System.Drawing.Size(1224, 383);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
