@@ -554,11 +554,11 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
                     {
-                        _sql += " and indate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 9) + time + "'";
+                        _sql += " and indate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 10) + time + "'";
                     }
                     else
                     {
-                        _sql += " and indate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 9) + time + "'";
+                        _sql += " and indate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 10) + time + "'";
                     }
                 }
                 else if (barStarTime.EditValue != null && barEndTime.EditValue == null)
