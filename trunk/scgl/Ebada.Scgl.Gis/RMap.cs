@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Gis {
                 //新建
                 double d1=this.Position.Lat;
                 double d2 =this.Position.Lng;
-                double.TryParse(obj.C1, out d1);
+                double.TryParse(obj.C3==""?obj.C1:obj.C3, out d1);
                 double.TryParse(obj.C2, out d2);
                 if (d1 == 0 || d2 == 0)
                     marker = new GMapMarkerBDZ(Position);
