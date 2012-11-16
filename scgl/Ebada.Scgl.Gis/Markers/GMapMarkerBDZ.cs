@@ -50,7 +50,7 @@ namespace Ebada.Scgl.Gis.Markers {
             PointOverLay lay = this.Overlay as PointOverLay;
             if (lay != null && lay.AllowEdit) {
                 mOrg org = this.Tag as mOrg;
-                org.C1 = this.Position.Lat.ToString();
+                org.C3 = this.Position.Lat.ToString();
                 org.C2 = this.Position.Lng.ToString();
                 Client.ClientHelper.PlatformSqlMap.Update<mOrg>(org);
             }

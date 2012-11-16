@@ -252,7 +252,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[C2],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("未定义2")]
+        [DisplayNameAttribute("经度")]
         public string C2
         {
             get { return _c2; }
@@ -274,7 +274,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[C3],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("未定义3")]
+        [DisplayNameAttribute("纬度")]
         public string C3
         {
             get { return _c3; }

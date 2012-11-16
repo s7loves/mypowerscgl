@@ -73,8 +73,8 @@ namespace Ebada.Scgl.Xtgl
                     checkEdit2.Checked = false;
                     if (rowData.C1 == "是")
                         checkEdit1.Checked = true;
-                    if (rowData.C3 == "是")
-                        checkEdit2.Checked = true;
+                    //if (rowData.C4 == "是")
+                    //    checkEdit2.Checked = true;
                 }
                 oldOrgCode = rowData.OrgCode;
                 if (rowData.OrgID.Length == 3)
@@ -142,17 +142,17 @@ namespace Ebada.Scgl.Xtgl
                         }
                         else
                         {
-                            //rowData.C1 = checkEdit1.Checked ? 0 : 1;
-                            if (rowData.OrgType != "2") {
-                                if (checkEdit1.Checked)
-                                    rowData.C1 = "是";
-                                else
-                                    rowData.C1 = "否";
-                                if (checkEdit2.Checked)
-                                    rowData.C3 = "是";
-                                else
-                                    rowData.C3 = "否";
-                            }
+                            rowData.C1 = checkEdit1.Checked ? "是" : "否";
+                            //if (rowData.OrgType != "2") {
+                                //if (checkEdit1.Checked)
+                                //    rowData.C1 = "是";
+                                //else
+                                //    rowData.C1 = "否";
+                                //if (checkEdit2.Checked)
+                                //    rowData.C4 = "是";
+                                //else
+                                //    rowData.C4 = "否";
+                            //}
                             this.DialogResult = DialogResult.OK;
                         }
                     }

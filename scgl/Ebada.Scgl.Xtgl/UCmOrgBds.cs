@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Xtgl {
 
             GridColumn gc = gridView1.Columns.Add();
             gc.Caption = "纬度";
-            gc.FieldName = "C1";
+            gc.FieldName = "C3";
             gc.Visible = true;
             gc = gridView1.Columns.Add();
             gc.Caption = "经度";
