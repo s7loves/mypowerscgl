@@ -219,17 +219,20 @@ namespace Ebada.SCGL.WFlow.Tool {
                WorkFlowId, WorkTaskId));
             if (sbf != null) {
                 IList<WF_WorkTask> wtli = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList",
-           "where WorkFlowId ='" + sbf.subWorkflowId + "'  and TaskTypeId!='2'  order by TaskTypeId");
+           "where WorkFlowId ='" + sbf.subWorkflowId + "' and TaskTypeId!='2'  order by TaskTypeId");// 
                 for (int j = 0; j < wtli.Count; j++) {
                     if (wtli[j].TaskTypeId == "6") {
-                        if (wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) continue;
-                        wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
+                        //if (wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) continue;
+                        //wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
                         GetTaskList(ref  dt, wtli[j].WorkFlowId, wtli[j].WorkTaskId);
                     } else {
-                        DataRow dr = dt.NewRow();
-                        dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
-                        dr["WorkTaskId"] = wtli[j].WorkTaskId;
-                        dt.Rows.Add(dr);
+                        if (!wfhash.Contains(wtli[j].WorkFlowId + wtli[j].WorkTaskId)) {
+                            DataRow dr = dt.NewRow();
+                            dr["TaskCaption"] = sbf.subWorkflowCaption + "-" + wtli[j].TaskCaption;
+                            dr["WorkTaskId"] = wtli[j].WorkTaskId;
+                            dt.Rows.Add(dr);
+                            wfhash.Add(wtli[j].WorkFlowId + wtli[j].WorkTaskId);
+                        }
                     }
                 }
             }
