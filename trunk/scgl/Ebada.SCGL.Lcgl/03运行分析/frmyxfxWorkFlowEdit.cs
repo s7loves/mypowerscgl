@@ -17,7 +17,8 @@ using Ebada.Scgl.WFlow;
 using System.Threading;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmyxfxWorkFlowEdit : FormBase, IPopupFormEdit {
+    public partial class frmyxfxWorkFlowEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_03yxfx> m_CityDic = new SortableSearchableBindingList<PJ_03yxfx>();
         private bool isWorkflowCall = false;
         private LP_Record currRecord = null;
@@ -75,19 +76,20 @@ namespace Ebada.Scgl.Lcgl
             InitializeComponent();
             IniControlStatus();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
-          this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "zcr");
-          this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
-          this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
-          //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cjry");
-          this.memoEdit5.DataBindings.Add("EditValue", rowData, "zt", false, DataSourceUpdateMode.OnPropertyChanged);
-          this.memoEdit1.DataBindings.Add("EditValue", rowData, "jy", false, DataSourceUpdateMode.OnPropertyChanged);
-          this.memoEdit2.DataBindings.Add("EditValue", rowData, "jr", false, DataSourceUpdateMode.OnPropertyChanged);
-          this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
-          this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
-          this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "hydd");
+            this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "zcr");
+            this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
+            this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
+            //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cjry");
+            this.memoEdit5.DataBindings.Add("EditValue", rowData, "zt", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit1.DataBindings.Add("EditValue", rowData, "jy", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit2.DataBindings.Add("EditValue", rowData, "jr", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
+            this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
+            this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "hydd");
 
 
         }
@@ -98,12 +100,12 @@ namespace Ebada.Scgl.Lcgl
             for (int i = 0; i < 15; i++)
             {
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = "";
-               // ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = "";
+                // ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = "";
             }
             for (int i = 0; i < mans.Length; i++)
             {
                 //string[] ry = mans[i].Split(':');
-                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue =mans[i];
+                ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).EditValue = mans[i];
                 //((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 11)]).EditValue = ry[1];
             }
         }
@@ -124,18 +126,24 @@ namespace Ebada.Scgl.Lcgl
         #region IPopupFormEdit Members
         private PJ_03yxfx rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 getqqry();
                 return rowData;
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_03yxfx;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_03yxfx>(value as PJ_03yxfx, rowData);
                 }
                 setqqry();
@@ -143,7 +151,7 @@ namespace Ebada.Scgl.Lcgl
         }
 
 
-       
+
         //private int recordStatus = -1;//记录流程
         private int recordStatus = 0;//记录流程
         public int RecordStatus
@@ -165,29 +173,27 @@ namespace Ebada.Scgl.Lcgl
         #endregion
         private void IniControlStatus()
         {
+            simpleButton1.Enabled = false;
             switch (recordStatus)
             {
                 case 0:
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = true;
-                    groupBox3.Enabled = true;
-                    //groupBox4.Enabled = true;
-                    //groupBox5.Enabled = true;
-                    //groupBox6.Enabled = true;
-
+                    memoEdit5.Properties.ReadOnly = false;
+                    memoEdit1.Properties.ReadOnly = false;
+                    memoEdit2.Properties.ReadOnly = false;
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
                     groupBox7.Enabled = false;
+                    simpleButton1.Enabled = true;
                     break;
                 case 1:
 
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
-                    groupBox3.Enabled = false;
-                    //groupBox4.Enabled = false;
-                    //groupBox5.Enabled = false;
-                    //groupBox6.Enabled = false;
-
+                    memoEdit5.Properties.ReadOnly = true;
+                    memoEdit1.Properties.ReadOnly = true;
+                    memoEdit2.Properties.ReadOnly = true;
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
                     groupBox7.Enabled = true;
@@ -196,11 +202,10 @@ namespace Ebada.Scgl.Lcgl
 
                     groupBox1.Enabled = true;
                     groupBox2.Enabled = false;
-                    groupBox3.Enabled = false;
+                    memoEdit5.Properties.ReadOnly = true;
+                    memoEdit1.Properties.ReadOnly = true;
+                    memoEdit2.Properties.ReadOnly = true;
                     memoEdit4.Enabled = false;
-                    //groupBox4.Enabled = false;
-                    //groupBox5.Enabled = false;
-                    //groupBox6.Enabled = false;
                     dateEdit3.Enabled = false;
                     comboBoxEdit16.Enabled = false;
                     comboBoxEdit18.Enabled = false;
@@ -209,41 +214,41 @@ namespace Ebada.Scgl.Lcgl
                     comboBoxEdit17.Enabled = true;
                     groupBox7.Enabled = true;
                     break;
-                default :
+                default:
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
-                    groupBox3.Enabled = false;
-                    //groupBox4.Enabled = false;
-                    //groupBox5.Enabled = false;
-                    //groupBox6.Enabled = false;
+                    memoEdit5.Properties.ReadOnly = true;
+                    memoEdit1.Properties.ReadOnly = true;
+                    memoEdit2.Properties.ReadOnly = true;
 
                     dateEdit4.Enabled = false;
                     comboBoxEdit17.Enabled = false;
                     groupBox7.Enabled = false;
                     break;
             }
-        
+
         }
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
 
             //填充下拉列表数据
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
-           // ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
+            // ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
             for (int i = 0; i < 16; i++)
             {
-                if (ryList.Count>0)
+                if (ryList.Count > 0)
                 {
-                    if (i<15)
+                    if (i < 15)
                     {
                         ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
                     }
-                    if (i>=15)
+                    if (i >= 15)
                     {
                         ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
                     }
                 }
 
-                
+
             }
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
             ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
@@ -260,7 +265,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -272,7 +278,7 @@ namespace Ebada.Scgl.Lcgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
-       
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -403,7 +409,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 currRecord.ImageAttachment = new byte[0];
             }
-            if (currRecord.DocContent== null)
+            if (currRecord.DocContent == null)
             {
                 currRecord.DocContent = new byte[0];
             }
@@ -421,7 +427,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-           PJ_dyk dyk= SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5,memoEdit1,memoEdit2);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5, memoEdit1, memoEdit2);
             if (dyk != null)
             {
                 rowData.zt = dyk.nr;
