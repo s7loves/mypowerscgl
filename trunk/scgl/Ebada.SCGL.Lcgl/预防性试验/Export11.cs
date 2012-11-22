@@ -2629,7 +2629,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i / 2 + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
+                ex.SetCellValue(Convert.ToString(i + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
                 ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
                 ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
                 ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
@@ -2908,7 +2908,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i / 2 + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
+                ex.SetCellValue(Convert.ToString(i+ 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
                 ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
                 ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
                 ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
@@ -3134,7 +3134,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i / 2 + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
+                ex.SetCellValue(Convert.ToString(i + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
                 ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
                 ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
                 ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
@@ -3390,7 +3390,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else
                     ex.ActiveSheet(sheetname);
-                ex.SetCellValue(Convert.ToString(i / 2 + 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
+                ex.SetCellValue(Convert.ToString(i+ 1), istart + ((i + spanadd) % jmax) * imax2, jstart);
                 ex.SetCellValue(datalist[i].sbInstallAdress, istart + ((i + spanadd) % jmax) * imax2, jstart + 1);
                 ex.SetCellValue(datalist[i].sbModle, istart + ((i + spanadd) % jmax) * imax2, jstart + 2);
                 ex.SetCellValue(datalist[i].sl.ToString(), istart + ((i + spanadd) % jmax) * imax2, jstart + 3);
