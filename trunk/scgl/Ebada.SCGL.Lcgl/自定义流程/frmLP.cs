@@ -1227,6 +1227,7 @@ namespace Ebada.Scgl.Lcgl
                 wfv.UserControlId = parentTemple.LPID;
                 //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
                 //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                wfv.ID = wfv.CreateID()+new Random().Next(10,99);
                 list.Add(wfv);
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where FieldId ='" + wfv.FieldId + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             }
