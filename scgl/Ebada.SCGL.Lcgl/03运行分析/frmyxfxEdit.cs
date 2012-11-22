@@ -28,8 +28,6 @@ namespace Ebada.Scgl.Lcgl
         }
         void dataBind()
         {
-
-
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "zcr");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
@@ -182,6 +180,32 @@ namespace Ebada.Scgl.Lcgl
                     comboBoxEdit17.Enabled = true;
                     groupBox7.Enabled = true;
                     break;
+                case 3:     //供电所人员修改
+                    groupBox2.Enabled = true;
+                    groupBox1.Enabled = true;
+                    memoEdit5.Properties.ReadOnly = false;
+                    memoEdit1.Properties.ReadOnly = false;
+                    memoEdit2.Properties.ReadOnly = false;
+                    simpleButton1.Enabled = true;
+                    break;
+                case 4:     //局人员修改
+                    groupBox7.Enabled = true;
+                    groupBox2.Enabled = false;
+                    groupBox1.Enabled = false;
+                    groupBox3.Enabled = false;
+                    dateEdit4.Enabled = true;
+                    comboBoxEdit17.Enabled = true;
+                    if (rowData.type.IndexOf("局") != -1)
+                    {
+                        groupBox2.Enabled = true;
+                        groupBox1.Enabled = true;
+                        memoEdit5.Properties.ReadOnly = false;
+                        memoEdit1.Properties.ReadOnly = false;
+                        memoEdit2.Properties.ReadOnly = false;
+                        simpleButton1.Enabled = true;
+                        groupBox3.Enabled = true;
+                    }
+                    break;
                 default:
                     groupBox1.Enabled = false;
                     groupBox2.Enabled = false;
@@ -290,6 +314,7 @@ namespace Ebada.Scgl.Lcgl
                 //gzr.ParentID = yxfx.ID;
                 yxfx.CreateDate = DateTime.Now;
                 yxfx.CreateMan = MainHelper.User.UserName;
+                #region
                 //IList<PJ_01gzrj> gzrj01 = MainHelper.PlatformSqlMap.GetList<PJ_01gzrj>("SelectPJ_01gzrjList", "where rq between '" + DateTime.Now.ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:59:59") + "'");
                 //if (gzrj01.Count > 0)
                 //{
@@ -324,6 +349,7 @@ namespace Ebada.Scgl.Lcgl
                 //    MsgBox.ShowWarningMessageBox("未填写今日工作日记");
                 //    return;
                 //}
+                #endregion
                 string strmes = RecordWorkTask.RunNewYXFXRecord(rowData.ID, yxfx.type, MainHelper.User.UserID);
 
                 if (strmes.IndexOf("未提交至任何人") > -1)
@@ -391,6 +417,10 @@ namespace Ebada.Scgl.Lcgl
 
 
                 MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
+            }
+            else if (recordStatus == 3 || recordStatus == 4)
+            {
+                MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
             }
             else
             {
