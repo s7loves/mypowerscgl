@@ -1272,6 +1272,7 @@ namespace Ebada.Scgl.Lcgl
                             wfv2.ID = wtfvtemp.ID;
                         else
                         {
+                            wfv2.ID = wfv2.CreateID();
                             Client.ClientHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv2);
                         }
                     }
