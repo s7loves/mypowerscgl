@@ -66,8 +66,8 @@ namespace Ebada.Scgl.Lcgl
                     labelControl3.Text = "数量";
                     labelControl3.Visible = true;
                     spinEdit2.Visible = true;
-                    poptq.Visible = false;
-                    lkueTq.Visible = true;
+                    poptq.Visible = true;
+                    lkueTq.Visible = false;
                     break;
                 case "断路器":
                     labelControl3.Text = "数量";
@@ -141,9 +141,17 @@ namespace Ebada.Scgl.Lcgl
             {
                 case "变压器":
                     // IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(xlcode,3)='{0}'", rowData.OrgCode));
-                    IList<PS_tqbyq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where left(tqID,3)='{0}'", rowData.OrgCode));
-                    this.poptq.DisplayField = "byqInstallAdress";
-                    this.poptq.ValueField = "byqID";
+                    //IList<PS_tqbyq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where left(tqID,3)='{0}'", rowData.OrgCode));
+                    IList<Hashtable> xlList = Client.ClientHelper.PlatformSqlMap.GetList<Hashtable>("Select", 
+                        string.Format("SELECT     PS_xl.LineName + RIGHT(PS_gt.gtCode, 4) AS name, PS_tqbyq.byqID AS id, PS_tqbyq.byqModle, PS_tqbyq.byqCapcity"
+                                          +" FROM         PS_gt INNER JOIN"
+                                          +" PS_xl ON PS_gt.LineCode = PS_xl.LineCode INNER JOIN"
+                                          +" PS_tqbyq INNER JOIN"
+                                          +" PS_tq ON PS_tqbyq.tqID = PS_tq.tqID ON PS_gt.gtID = PS_tq.gtID"                       
+                        +" WHERE     (LEFT(PS_tqbyq.tqID, 3) = '{0}')", rowData.OrgCode));
+                    
+                    this.poptq.DisplayField = "name";
+                    this.poptq.ValueField = "id";
                     if (xlList.Count != 0)
                     {
                         poptq.DataSource = xlList;
@@ -217,12 +225,40 @@ namespace Ebada.Scgl.Lcgl
                     //    comboBoxEdit1.Properties.Items.Add("FZ-10/50(阀型)");
                     //    comboBoxEdit1.Properties.Items.Add("Y(H)5WS-17/50");
                     //}
-                    IList<PS_tq> tqlist = ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_MytqList", " and LEFT(tq.tqCode,3)='" + rowData.OrgCode + "'");
-                    lkueTq.Properties.ValueMember = "tqID";
-                    lkueTq.Properties.DisplayField = "tqName";
-                    lkueTq.Properties.DataSource = tqlist;
-                    lkueTq.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tqName", 100, "请选择"));
-                    lkueTq.EditValueChanged += new EventHandler(lkueTq_EditValueChanged);
+                    //IList<PS_tq> tqlist = ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_MytqList", " and LEFT(tq.tqCode,3)='" + rowData.OrgCode + "'");
+                    IList<Hashtable> tqlist = ClientHelper.PlatformSqlMap.GetList<Hashtable>("Select",
+                        string.Format("(SELECT     PS_xl.LineName + RIGHT(PS_gt.gtCode, 4) AS name, PS_gt.gtID AS id,PS_gtsb.sbModle"
+                                    + " FROM         PS_kg INNER JOIN"
+                                    + " PS_gt ON PS_kg.gtID = PS_gt.gtID INNER JOIN"
+                                    + " PS_xl ON PS_gt.LineCode = PS_xl.LineCode INNER JOIN"
+                                    + " PS_gtsb ON PS_gt.gtID = PS_gtsb.gtID"
+                                    + " WHERE (LEFT(PS_kg.gtID, 3) = '{0}') AND ps_gtsb.sbname='避雷器'  )"
+                                    + " union "
+                                    + " ( SELECT     PS_xl.LineName + RIGHT(PS_gt.gtCode, 4) AS name,PS_gt.gtID AS id,PS_tqsb.sbModle"
+                                    + " FROM         PS_tqbyq INNER JOIN"
+                                    + " PS_tq ON PS_tqbyq.tqID = PS_tq.tqID INNER JOIN"
+                                    + " PS_gt ON PS_tq.gtID = PS_gt.gtID INNER JOIN"
+                                    + " PS_xl ON PS_gt.LineCode = PS_xl.LineCode INNER JOIN"
+                                    + " PS_tqsb ON PS_tq.tqID = PS_tqsb.tqID"
+                                    + " WHERE (LEFT(PS_tqbyq.tqID, 3) = '{1}') AND PS_tqsb.sbname='避雷器')"
+                        , rowData.OrgCode, rowData.OrgCode));
+                    lkueTq.Properties.ValueMember = "id";
+                    //lkueTq.Properties.DisplayField = "name";
+                    //lkueTq.Properties.DataSource = tqlist;
+                    //if(lkueTq.Properties.Columns.Count<1)
+                    //lkueTq.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", 100, "请选择"));
+                    //lkueTq.EditValueChanged += new EventHandler(lkueTq_EditValueChanged);
+
+                    //改用带查找的控件
+
+                    this.poptq.DisplayField = "name";
+                    this.poptq.ValueField = "id";
+                    if (tqlist.Count != 0)
+                    {
+                        poptq.DataSource = tqlist;
+                    }
+
+
                     if (comboBoxEdit6.Properties.Items.Count == 0)
                     {
                         li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
@@ -251,23 +287,22 @@ namespace Ebada.Scgl.Lcgl
                     //    comboBoxEdit1.Properties.Items.Add("SF6-10-630");
                     //}
 
-
-                    //if (comboBoxEdit6.Properties.Items.Count == 0)
-                    //{
-                    //    li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
-                    //    comboBoxEdit6.Properties.Items.AddRange(li);
-                    //}
-                    //if (comboBoxEdit7.Properties.Items.Count == 0)
-                    //{
-                    //    comboBoxEdit7.Properties.Items.Add("绝缘电阻");
-                    //    comboBoxEdit7.Properties.Items.Add("交流耐压");
-                    //    comboBoxEdit7.Properties.Items.Add("导电回路电阻");
-                    //    comboBoxEdit7.Properties.Items.Add("分合闸磁铁线圈的绝缘电阻和直流电阻");
-                    //}
+                    if (comboBoxEdit6.Properties.Items.Count == 0)
+                    {
+                        li = MainHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select UserName from mUser where OrgCode = ('{0}')", rowData.OrgCode));
+                        comboBoxEdit6.Properties.Items.AddRange(li);
+                    }
+                    if (comboBoxEdit7.Properties.Items.Count == 0)
+                    {
+                        comboBoxEdit7.Properties.Items.Add("绝缘电阻");
+                        comboBoxEdit7.Properties.Items.Add("交流耐压");
+                        comboBoxEdit7.Properties.Items.Add("导电回路电阻");
+                        comboBoxEdit7.Properties.Items.Add("分合闸磁铁线圈的绝缘电阻和直流电阻");
+                    }
                     #endregion
-                    IList<PS_kg> kgList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_kg>(string.Format("where left(gtID,3)='{0}'", rowData.OrgCode));
-                    this.poptq.DisplayField = "kgInstallAdress";
-                    this.poptq.ValueField = "kgID";
+                    IList<Hashtable> kgList = Client.ClientHelper.PlatformSqlMap.GetList<Hashtable>("Select", string.Format("SELECT     PS_xl.LineName + RIGHT(PS_gt.gtCode, 4) AS name, PS_kg.kgID AS id,PS_kg.kgModle FROM   PS_kg INNER JOIN PS_gt ON PS_kg.gtID = PS_gt.gtID INNER JOIN PS_xl ON PS_gt.LineCode = PS_xl.LineCode  where left(PS_kg.gtID,3)='{0}' AND PS_xl.LineVol='10'", rowData.OrgCode));
+                    this.poptq.DisplayField = "name";
+                    this.poptq.ValueField = "id";
                     if (kgList.Count != 0)
                     {
                         poptq.DataSource = kgList;
@@ -341,6 +376,10 @@ namespace Ebada.Scgl.Lcgl
                     comboBoxEdit1.EditValue = row["kgModle"];
                     rowData.sbModle = row["kgModle"].ToString();
                     break;
+                case "避雷器":
+                    comboBoxEdit1.EditValue = row["sbModle"];
+                    rowData.sbModle = row["sbModle"].ToString();
+                    break;
             }
         }
         #endregion
@@ -381,7 +420,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-            //InitComboBoxData();
+            InitComboBoxData();
         }
 
         private void labelControl4_Click(object sender, EventArgs e)

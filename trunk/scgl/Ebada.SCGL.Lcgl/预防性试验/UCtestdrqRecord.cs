@@ -241,7 +241,6 @@ namespace Ebada.Scgl.Lcgl
 
                         case "电容器":
                             hideColumn("sbCapacity");
-                            gridView1.OptionsView.AllowCellMerge = true; 
                            
                             break;
                     }
@@ -421,6 +420,13 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
+
+            newobj.CreateDate = DateTime.Now;
+            newobj.planExpTime= DateTime.Now;
+            newobj.preExpTime = DateTime.Now;
+
+
+
            
         }
         /// <summary>
