@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Lcgl
 
             //this.comboBoxEdit7.DataBindings.Add("EditValue", rowData2, "syPeriod");
             this.checkedComboBoxEdit1.DataBindings.Add("EditValue", rowData, "syProject");
-            this.checkedComboBoxEdit2.DataBindings.Add("EditValue", rowData2, "syProject");
+            //this.checkedComboBoxEdit2.DataBindings.Add("EditValue", rowData2, "syProject");
             //this.memoEdit3.DataBindings.Add("EditValue", rowData2, "syProject");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "preExpTime");
             //this.dateEdit4.DataBindings.Add("EditValue", rowData2, "preExpTime");
@@ -55,8 +55,9 @@ namespace Ebada.Scgl.Lcgl
             //this.comboBoxEdit9.DataBindings.Add("EditValue", rowData2, "charMan");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
 
-            // 陶工要去掉的四个控件
-            //spinEdit1.DataBindings.Add("EditValue", rowData, "syPeriod");
+
+            
+            spinEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
             //this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
 
             switch (rowData.type)
@@ -85,7 +86,7 @@ namespace Ebada.Scgl.Lcgl
         }
         #region IPopupFormEdit Members
         private PJ_yfsyjl rowData = null;
-        private PJ_yfsyjl rowData2 = null;
+        //private PJ_yfsyjl rowData2 = null;
         public object RowData
         {
             get
@@ -94,51 +95,49 @@ namespace Ebada.Scgl.Lcgl
             }
             set
             {
-
                 if (value == null) return;
-
                 if (rowData == null)
                 {
                     this.rowData = value as PJ_yfsyjl;
-                    IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
-                    if (li.Count == 2)
-                    {
-                        rowData2 = new PJ_yfsyjl();
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
+                    //IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
+                    //if (li.Count == 2)
+                    //{
+                    //    //rowData2 = new PJ_yfsyjl();
+                    //    ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
+                    //    //ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
 
-                    }
-                    else
-                    {
-                        rowData2 = new PJ_yfsyjl();
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
-                        rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
-                        rowData2.type = rowData.type;
-                    }
+                    //}
+                    //else
+                    //{
+                    //    //rowData2 = new PJ_yfsyjl();
+                    //    //ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
+                    //    //rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+                    //    //rowData2.type = rowData.type;
+                    //}
                     this.InitComboBoxData();
                     dataBind();
                 }
                 else
                 {
                     ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
-                    IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
-                    if (li.Count == 2)
-                    {
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
+                    //IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
+                    //if (li.Count == 2)
+                    //{
+                    //    ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
+                    //    //ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
 
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
-                        rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
-                    }
+                    //    //ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
+                    //    //rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+                    //}
                 }
                 //comboBoxEdit7.Text=rowData2.syPeriod;
-                checkedComboBoxEdit2.Text = rowData2.syProject;
+                //checkedComboBoxEdit2.Text = rowData2.syProject;
                 //memoEdit3.Text=rowData2.syProject;
-                comboBoxEdit9.Text = rowData2.charMan;
+                //comboBoxEdit9.Text = rowData2.charMan;
 
                 ///spinEdit1.Value = Convert.ToDecimal(rowData2.sl);
                 //dateEdit1.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
@@ -172,10 +171,10 @@ namespace Ebada.Scgl.Lcgl
             checkedComboBoxEdit1.Properties.Items.Add("极对壳绝缘电阻");
             checkedComboBoxEdit1.Properties.Items.Add("电容值");
             checkedComboBoxEdit1.Properties.Items.Add("并联电阻值测量");
-            checkedComboBoxEdit2.Properties.Items.Clear();
-            checkedComboBoxEdit2.Properties.Items.Add("极对壳绝缘电阻");
-            checkedComboBoxEdit2.Properties.Items.Add("电容值");
-            checkedComboBoxEdit2.Properties.Items.Add("并联电阻值测量");
+            //checkedComboBoxEdit2.Properties.Items.Clear();
+            //checkedComboBoxEdit2.Properties.Items.Add("极对壳绝缘电阻");
+            //checkedComboBoxEdit2.Properties.Items.Add("电容值");
+            //checkedComboBoxEdit2.Properties.Items.Add("并联电阻值测量");
             //记录人
 
 
@@ -242,50 +241,50 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            rowData2.sbInstallAdress = rowData.sbInstallAdress;
-            rowData2.sl = rowData.sl;
-            rowData2.sbModle = rowData.sbModle;
-            rowData2.Remark = rowData.Remark;
-            rowData2.planExpTime = rowData.planExpTime;
-            rowData2.preExpTime = rowData.preExpTime;
-            rowData2.sjExpTime = rowData.sjExpTime;
+            //rowData2.sbInstallAdress = rowData.sbInstallAdress;
+            //rowData2.sl = rowData.sl;
+            //rowData2.sbModle = rowData.sbModle;
+            //rowData2.Remark = rowData.Remark;
+            //rowData2.planExpTime = rowData.planExpTime;
+            //rowData2.preExpTime = rowData.preExpTime;
+            //rowData2.sjExpTime = rowData.sjExpTime;
             // rowData2.syPeriod = comboBoxEdit7.Text ;
             //rowData2.syPeriod = spinEdit1.Value.ToString();
-            rowData2.syProject = checkedComboBoxEdit2.Text;
+            //rowData2.syProject = checkedComboBoxEdit2.Text;
 
             //rowData2.preExpTime = Convert.ToDateTime(dateEdit4.Text);
 
 
             //rowData2.planExpTime = Convert.ToDateTime(dateEdit1.Text);
 
-            rowData2.charMan = comboBoxEdit9.Text;
+            //rowData2.charMan = comboBoxEdit9.Text;
 
 
 
 
-            PJ_yfsyjl ob = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_yfsyjl>(rowData2.ID);
-            if (ob == null)
-            {
+            //PJ_yfsyjl ob = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_yfsyjl>(rowData2.ID);
+            //if (ob == null)
+            ///{
                 //IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", 
-                IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
-                rowData2.xh = li.Count + 1;
-                rowData.xh = rowData2.xh;
-                rowData.CreateDate = DateTime.Now;
-                rowData2.CreateDate = rowData.CreateDate.AddSeconds(1);
-                if (rowData.ID == rowData2.ID)
-                {
+                //IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
+                //rowData2.xh = li.Count + 1;
+                //rowData.xh = rowData2.xh;
+                //owData.CreateDate = DateTime.Now;
+                //rowData2.CreateDate = rowData.CreateDate.AddSeconds(1);
+                //if (rowData.ID == rowData2.ID)
+                //{
 
-                    rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
-                }
-                Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
+                //    rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
+                //}
+                //Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
 
-            }
-            else
-            {
-                Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
+            
+            //else
+            //{
+                //Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
 
 
-            }
+            //}
         }
 
         //private void simpleButton2_Click(object sender, EventArgs e)
