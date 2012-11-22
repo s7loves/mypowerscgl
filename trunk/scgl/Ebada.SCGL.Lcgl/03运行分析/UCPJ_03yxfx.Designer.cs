@@ -27,6 +27,8 @@
             this.components = new System.ComponentModel.Container();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
+            this.barJU = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btGdsList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
@@ -51,6 +53,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -81,10 +84,12 @@
             this.bsItem1,
             this.btExport,
             this.btGdsList,
-            this.btView});
-            this.barManager1.MaxItemId = 16;
+            this.btView,
+            this.barJU});
+            this.barManager1.MaxItemId = 18;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1});
+            this.repositoryItemLookUpEdit1,
+            this.repositoryItemLookUpEdit2});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -95,6 +100,7 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barJU, "", false, true, true, 88),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchbarSubItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.btReAdd, true),
@@ -111,12 +117,30 @@
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
             // 
+            // barJU
+            // 
+            this.barJU.Caption = "局";
+            this.barJU.Edit = this.repositoryItemLookUpEdit2;
+            this.barJU.Id = 17;
+            this.barJU.Name = "barJU";
+            this.barJU.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barJU.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barJU.EditValueChanged += new System.EventHandler(this.barJU_EditValueChanged);
+            // 
+            // repositoryItemLookUpEdit2
+            // 
+            this.repositoryItemLookUpEdit2.AutoHeight = false;
+            this.repositoryItemLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit2.Name = "repositoryItemLookUpEdit2";
+            // 
             // btGdsList
             // 
             this.btGdsList.Caption = "供电所";
             this.btGdsList.Edit = this.repositoryItemLookUpEdit1;
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
+            this.btGdsList.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -124,42 +148,6 @@
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            // 
-            // btReAdd
-            // 
-            this.btReAdd.Caption = "增加";
-            this.btReAdd.Id = 0;
-            this.btReAdd.ImageIndex = 6;
-            this.btReAdd.Name = "btReAdd";
-            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
-            // 
-            // btReEdit
-            // 
-            this.btReEdit.Caption = "修改";
-            this.btReEdit.Id = 1;
-            this.btReEdit.ImageIndex = 1;
-            this.btReEdit.Name = "btReEdit";
-            this.btReEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReEdit_ItemClick);
-            // 
-            // btReDelete
-            // 
-            this.btReDelete.Caption = "删除";
-            this.btReDelete.Id = 2;
-            this.btReDelete.ImageIndex = 12;
-            this.btReDelete.Name = "btReDelete";
-            this.btReDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btReDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReDelete_ItemClick);
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Caption = "刷新";
-            this.btRefresh.Id = 4;
-            this.btRefresh.ImageIndex = 9;
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh_ItemClick);
             // 
             // liuchbarSubItem
             // 
@@ -204,6 +192,42 @@
             this.liuchenBarClear.Name = "liuchenBarClear";
             this.liuchenBarClear.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
+            // 
+            // btReAdd
+            // 
+            this.btReAdd.Caption = "增加";
+            this.btReAdd.Id = 0;
+            this.btReAdd.ImageIndex = 6;
+            this.btReAdd.Name = "btReAdd";
+            this.btReAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReAdd_ItemClick);
+            // 
+            // btReEdit
+            // 
+            this.btReEdit.Caption = "修改";
+            this.btReEdit.Id = 1;
+            this.btReEdit.ImageIndex = 1;
+            this.btReEdit.Name = "btReEdit";
+            this.btReEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReEdit_ItemClick);
+            // 
+            // btReDelete
+            // 
+            this.btReDelete.Caption = "删除";
+            this.btReDelete.Id = 2;
+            this.btReDelete.ImageIndex = 12;
+            this.btReDelete.Name = "btReDelete";
+            this.btReDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btReDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReDelete_ItemClick);
+            // 
+            // btRefresh
+            // 
+            this.btRefresh.Caption = "刷新";
+            this.btRefresh.Id = 4;
+            this.btRefresh.ImageIndex = 9;
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh_ItemClick);
             // 
             // btFind
             // 
@@ -263,25 +287,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(513, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(734, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 287);
-            this.barDockControlBottom.Size = new System.Drawing.Size(513, 27);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
+            this.barDockControlBottom.Size = new System.Drawing.Size(734, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 263);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 264);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(513, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 263);
+            this.barDockControlRight.Location = new System.Drawing.Point(734, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 264);
             // 
             // gridControl1
             // 
@@ -291,11 +315,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 25);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(513, 263);
+            this.gridControl1.Size = new System.Drawing.Size(734, 264);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -307,9 +331,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
@@ -324,8 +346,10 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCPJ_03yxfx";
-            this.Size = new System.Drawing.Size(513, 314);
+            this.Size = new System.Drawing.Size(734, 314);
+            this.Load += new System.EventHandler(this.UCPJ_03yxfx_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -360,5 +384,7 @@
         private DevExpress.XtraBars.BarButtonItem TaskOverButton;
         private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
         private DevExpress.XtraBars.BarButtonItem barFJLY;
+        private DevExpress.XtraBars.BarEditItem barJU;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
     }
 }
