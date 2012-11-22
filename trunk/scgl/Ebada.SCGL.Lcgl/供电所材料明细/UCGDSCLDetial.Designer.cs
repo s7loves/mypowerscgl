@@ -77,6 +77,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comWpmc)).BeginInit();
@@ -123,8 +124,9 @@
             this.barFJLY,
             this.liuchenBarClear,
             this.btClose,
-            this.barButtonItem2});
-            this.barManager1.MaxItemId = 49;
+            this.barButtonItem2,
+            this.barButtonItem3});
+            this.barManager1.MaxItemId = 50;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.comWpmc,
@@ -150,7 +152,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barWpdw, "", false, true, true, 51),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barStarTime, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 97),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -363,14 +366,14 @@
             // 
             // btView
             // 
-            this.btView.Caption = "导出数据";
+            this.btView.Caption = "导出全部";
             this.btView.Id = 41;
             this.btView.Name = "btView";
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
             // barExplorYear
             // 
-            this.barExplorYear.Caption = "导出查询结果";
+            this.barExplorYear.Caption = "导出选中";
             this.barExplorYear.Id = 42;
             this.barExplorYear.Name = "barExplorYear";
             this.barExplorYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barExplorYear_ItemClick);
@@ -574,6 +577,13 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "导出查询结果";
+            this.barButtonItem3.Id = 49;
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
             // UCGDSCLDetial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -655,5 +665,6 @@
         private DevExpress.XtraBars.BarButtonItem liuchenBarClear;
         private DevExpress.XtraBars.BarButtonItem btClose;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
     }
 }

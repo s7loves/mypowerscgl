@@ -412,13 +412,13 @@ namespace Ebada.Scgl.Lcgl
             //RefreshData(" where OrgCode='" + parentID + "' ");
         }
         #endregion
-        #region 导出数据 1
+        #region 导出全部
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (barGDS.EditValue != null)
             {
                 ExportGDSCRKDetial etdjh = new ExportGDSCRKDetial();
-                etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), exportsql);
+                etdjh.ExportAll(barGDS.EditValue.ToString());
             }
         }
         #endregion
@@ -427,10 +427,15 @@ namespace Ebada.Scgl.Lcgl
         string exportsql = "";
         private void barExplorYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (barGDS.EditValue != null)
+            PJ_gdscrk crk = gridView1.GetFocusedRow() as PJ_gdscrk;
+            if (crk != null)
             {
                 ExportGDSCRKDetial etdjh = new ExportGDSCRKDetial();
-                etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), exportsql);
+                etdjh.ExportOne(crk);
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("请先选中要导出的数据！");
             }
         }
         #endregion
@@ -724,6 +729,17 @@ namespace Ebada.Scgl.Lcgl
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             GetWpmc();
+        }
+        #endregion
+
+        #region 导出查询结果
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (barGDS.EditValue != null)
+            {
+                ExportGDSCRKDetial etdjh = new ExportGDSCRKDetial();
+                etdjh.ExportGDSRKDExcel(barGDS.EditValue.ToString(), exportsql);
+            }
         }
         #endregion
     }
