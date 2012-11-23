@@ -146,6 +146,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit10.Size = new System.Drawing.Size(125, 21);
             this.comboBoxEdit10.TabIndex = 23;
+            this.comboBoxEdit10.Visible = false;
             // 
             // comboBoxEdit9
             // 
@@ -163,6 +164,7 @@
             this.labelControl13.Size = new System.Drawing.Size(48, 14);
             this.labelControl13.TabIndex = 21;
             this.labelControl13.Text = "是否完成";
+            this.labelControl13.Visible = false;
             // 
             // labelControl12
             // 
