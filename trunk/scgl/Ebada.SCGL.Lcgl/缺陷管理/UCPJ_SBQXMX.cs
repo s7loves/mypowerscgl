@@ -260,6 +260,15 @@ namespace Ebada.Scgl.Lcgl
             gridView1.Columns["s1"].ColumnEdit = box;
             gridView1.Columns["s1"].OptionsColumn.AllowEdit = true;
             //cob.SelectedIndexChanged += new EventHandler(cob_SelectedIndexChanged);
+            hideColumn("CreateMan");
+
+            hideColumn("CreateDate");
+
+            hideColumn("xcr");
+
+            hideColumn("xcrq");
+
+            hideColumn("xsr");
         }
 
 
