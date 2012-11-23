@@ -135,6 +135,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
             this.liuchbarSubItem.Name = "liuchbarSubItem";
+            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // SubmitButton
             // 
