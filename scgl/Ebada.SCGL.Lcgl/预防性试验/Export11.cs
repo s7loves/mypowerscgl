@@ -854,6 +854,9 @@ namespace Ebada.Scgl.Lcgl
             int pagecount = 0, i = 0, istart = 4, jstart = 1, jmax = 24, sheetindex = 0;
             Excel.Workbook wb = ex.MyWorkBook as Excel.Workbook;
 
+            string shengjibanzhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + orgid + "' and PostName='生技班长'");
+            ex.SetCellValue(shengjibanzhang, 28, 7);
+
             pagecount = Convert.ToInt32(Math.Ceiling(datalist.Count / (jmax + 0.0)));
             ex.ActiveSheet(sheetname);
             for (i = 1; i <= wb.Application.Worksheets.Count; i++)
