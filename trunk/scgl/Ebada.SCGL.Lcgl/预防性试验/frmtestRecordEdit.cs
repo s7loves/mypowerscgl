@@ -475,8 +475,8 @@ namespace Ebada.Scgl.Lcgl
         private void dateEdit3_EditValueChanged(object sender, EventArgs e)
         {
             double i = Convert.ToDouble(spinEdit1.Value);
-            dateEdit2.EditValue = Convert.ToDateTime(dateEdit3.EditValue).AddMonths(Convert.ToInt32(i * (12))).ToString();
-            rowData.planExpTime = Convert.ToDateTime(dateEdit2.EditValue);
+            dateEdit2.EditValue = Convert.ToDateTime(dateEdit3.EditValue).AddMonths(Convert.ToInt32(i * (12))).ToString("yyyy-MM-dd");
+            rowData.planExpTime = Convert.ToDateTime(Convert.ToDateTime(dateEdit2.EditValue).ToString("yyyy-MM-dd"));
         }
         #endregion
 
