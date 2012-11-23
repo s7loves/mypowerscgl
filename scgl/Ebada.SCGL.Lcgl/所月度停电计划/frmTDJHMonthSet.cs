@@ -24,8 +24,8 @@ namespace Ebada.Scgl.Lcgl
             InitializeComponent();
         }
         private LP_Temple rowData = null;
-        private DateTime dt =Convert.ToDateTime( DateTime.Now.ToString("yyyy年MM月20日"));
-        private DateTime dt2 = Convert.ToDateTime(DateTime.Now.AddMonths(1).ToString("yyyy年MM月20日"));
+        private DateTime dt =Convert.ToDateTime( DateTime.Now.AddMonths(1).ToString("yyyy-MM-1"));
+        private DateTime dt2 = Convert.ToDateTime(DateTime.Now.AddMonths(2).AddDays(-1).ToString("yyyy-MM-dd"));
         private ArrayList excelList = null;
         public ArrayList ExcelList
         {
