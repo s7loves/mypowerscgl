@@ -104,7 +104,7 @@
             this.xtraTabPage2.Controls.Add(this.uCtestRecord2);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(614, 183);
-            this.xtraTabPage2.Text = "断路器预防性实验记录";
+            this.xtraTabPage2.Text = "断路器预防性试验记录";
             // 
             // uCtestRecord2
             // 
@@ -125,7 +125,7 @@
             this.xtraTabPage3.Controls.Add(this.uCtestRecord3);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(614, 183);
-            this.xtraTabPage3.Text = "避雷器预防性实验记录";
+            this.xtraTabPage3.Text = "避雷器预防性试验记录";
             // 
             // uCtestRecord3
             // 
@@ -146,7 +146,7 @@
             this.xtraTabPage4.Controls.Add(this.uCtestRecord4);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(614, 183);
-            this.xtraTabPage4.Text = "电容器预防性实验记录";
+            this.xtraTabPage4.Text = "电容器预防性试验记录";
             // 
             // uCtestRecord4
             // 
