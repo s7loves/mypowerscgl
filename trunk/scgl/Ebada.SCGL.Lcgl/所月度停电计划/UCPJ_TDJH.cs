@@ -139,6 +139,13 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
+
+        private void ChangeText()
+        {
+            btView.Caption = "导出" + btGdsList.EditValue + "全部历使计划";
+            barExplorMonth.Caption = "导出" + btGdsList.EditValue + "下月计划";
+        }
+
         void gridViewOperation_AfterDelete(PJ_tdjh obj)
         {
 
@@ -151,7 +158,7 @@ namespace Ebada.Scgl.Lcgl
                     + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
             }
-           
+
             //if (isWorkflowCall)
             //{
 
@@ -166,7 +173,7 @@ namespace Ebada.Scgl.Lcgl
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
-           
+
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_tdjh> e)
@@ -194,18 +201,18 @@ namespace Ebada.Scgl.Lcgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
 
+            ChangeText();
         }
         private void initImageList()
         {
@@ -240,23 +247,23 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
-           // hideColumn("S1");
+            // hideColumn("S1");
             //hideColumn("S2");
-           hideColumn("S3");
+            hideColumn("S3");
 
             gridView1.Columns["S1"].Caption = "序号";
             gridView1.Columns["S1"].VisibleIndex = 0;
             gridView1.Columns["SQOrgname"].Caption = "供电所名称";
             gridView1.Columns["SQOrgname"].VisibleIndex = 1;
             gridView1.Columns["S2"].Caption = "缺陷发现日期";
-           // gridView1.Columns["S3"].Caption = "选择流程";
+            // gridView1.Columns["S3"].Caption = "选择流程";
             gridView1.Columns["IsSelect"].OptionsColumn.AllowEdit = true;
             gridView1.Columns["IsSelect"].ColumnEdit = repositoryItemCheckEdit1;
             gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
-          
+
         }
         /// <summary>
         /// 刷新数据
@@ -301,7 +308,8 @@ namespace Ebada.Scgl.Lcgl
             newobj.CreateDate = DateTime.Now;
             newobj.TDtime = newobj.CreateDate;
             newobj.SDtime = newobj.CreateDate;
-            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); }
+            catch { }
         }
         /// <summary>
         /// 父表ID
@@ -341,13 +349,14 @@ namespace Ebada.Scgl.Lcgl
             }
         }
 
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             IList<PJ_tdjh> datalist = gridView1.DataSource as IList<PJ_tdjh>;
             ExportTDJH etdjh = new ExportTDJH();
             etdjh.ExportExcel(datalist);
-           
-           
-           
+
+
+
         }
 
         private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -403,7 +412,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 return;
             }
-            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData,ref strmess))
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
             {
                 MsgBox.ShowTipMessageBox("清除成功");
             }
@@ -468,36 +477,36 @@ namespace Ebada.Scgl.Lcgl
             {
                 IList<PJ_tdjh> list = gridView1.DataSource as IList<PJ_tdjh>;
                 //PJ_tdjh obj = gridView1.GetFocusedRow() as PJ_tdjh;
-              foreach (PJ_tdjh obj in list)
-              {
-                  if (obj.IsSelect)
-                  {
-                      WF_ModleRecordWorkTaskIns mrwt = null;
-                      mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"] + "'"
-                              + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
-                              + " and ModleRecordID='" + obj.ID + "'"
-                              + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
-                              + " and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                foreach (PJ_tdjh obj in list)
+                {
+                    if (obj.IsSelect)
+                    {
+                        WF_ModleRecordWorkTaskIns mrwt = null;
+                        mrwt = MainHelper.PlatformSqlMap.GetOne<WF_ModleRecordWorkTaskIns>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"] + "'"
+                                + " and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"] + "'"
+                                + " and ModleRecordID='" + obj.ID + "'"
+                                + " and WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'"
+                                + " and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
 
-                      );
-                      if (mrwt == null)
-                      {
-                          mrwt = new WF_ModleRecordWorkTaskIns();
-                          mrwt.ModleRecordID = obj.ID;
-                          mrwt.RecordID = currRecord.ID;
-                          mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                          mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                          mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                          mrwt.ModleTableName = obj.GetType().ToString();
-                          mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                          mrwt.CreatTime = DateTime.Now;
-                          MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
-                      }
-                  }
-                  MainHelper.PlatformSqlMap.Update<PJ_tdjh>(obj);
-              }
-              
-              
+                        );
+                        if (mrwt == null)
+                        {
+                            mrwt = new WF_ModleRecordWorkTaskIns();
+                            mrwt.ModleRecordID = obj.ID;
+                            mrwt.RecordID = currRecord.ID;
+                            mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                            mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                            mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                            mrwt.ModleTableName = obj.GetType().ToString();
+                            mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                            mrwt.CreatTime = DateTime.Now;
+                            MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
+                        }
+                    }
+                    MainHelper.PlatformSqlMap.Update<PJ_tdjh>(obj);
+                }
+
+
             }
             string statustemp = currRecord.Status;
             currRecord.Status = "紧急缺陷";
@@ -716,11 +725,11 @@ namespace Ebada.Scgl.Lcgl
 
         private void repositoryItemCheckEdit1_Click(object sender, EventArgs e)
         {
-            if (gridView1.FocusedRowHandle>-1)
+            if (gridView1.FocusedRowHandle > -1)
             {
                 PJ_tdjh obj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_tdjh;
                 obj.IsSelect = Convert.ToBoolean(repositoryItemCheckEdit1.ValueChecked);
-                
+
 
             }
         }
