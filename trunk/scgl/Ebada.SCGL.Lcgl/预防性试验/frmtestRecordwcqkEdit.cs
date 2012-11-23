@@ -55,12 +55,19 @@ namespace Ebada.Scgl.Lcgl
             switch (rowData.type )
             {
                 case "变压器":
+                    this.Text = "变压器" + "完成情况报表";
+
                     labelControl3.Visible = true;
                     comboBoxEdit4.Visible = true;
                     break;
                 case "避雷器":
+                    this.Text = "避雷器" + "完成情况报表";
+                    break;
                 case "断路器":
+                    this.Text = "断路器" + "完成情况报表";
+                    break;
                 case "电容器":
+                    this.Text = "电容器" + "完成情况报表";
                     labelControl8.Visible = true;
                     comboBoxEdit2.Visible = true;
                     labelControl8.Visible = true;

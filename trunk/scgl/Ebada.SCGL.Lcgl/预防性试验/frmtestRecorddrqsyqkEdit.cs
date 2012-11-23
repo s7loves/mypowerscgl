@@ -116,7 +116,7 @@ namespace Ebada.Scgl.Lcgl
         }
         #region IPopupFormEdit Members
         private PJ_yfsyjl rowData = null;
-        private PJ_yfsyjl rowData2 = null;
+        //private PJ_yfsyjl rowData2 = null;
         public object RowData {
             get {
                 rowData.xlname = popLine.Text;
@@ -125,62 +125,20 @@ namespace Ebada.Scgl.Lcgl
                 rowData.kgname = popKg.Text;
                 return rowData;
             }
-            set {
-                
+            set
+            {
                 if (value == null) return;
-                
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_yfsyjl;
-                    PJ_yfsyjl temppj=new PJ_yfsyjl()  ;
-                    ConvertHelper.CopyTo<PJ_yfsyjl>(rowData, temppj);
-                    IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
-                    if (li.Count == 2)
-                    {
-                        rowData2 = new PJ_yfsyjl();
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
-                        this.rowData.xlid = temppj.xlid;
-                        this.rowData.byqid = temppj.byqid;
-                        this.rowData.tqid = temppj.tqid;
-                        this.rowData.kgid = temppj.kgid;
-                        
-                    }
-                    else
-                    {
-                        rowData2 = new PJ_yfsyjl();
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
-                        rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");
-                        rowData2.type = rowData.type;
-                    }
+                    rowData.type = _type;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
-                    ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
-                    IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", "where xh='" + rowData.xh + "'and type ='" + rowData.type + "' order by CreateDate");
-                    if (li.Count == 2)
-                    {
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[0], this.rowData);
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(li[1], rowData2);
-
-                    }
-                    else
-                    {
-
-                        ConvertHelper.CopyTo<PJ_yfsyjl>(this.rowData, rowData2);
-                        rowData2.ID = DateTime.Now.ToString("yyyyMMddHHmmssffffff");                      
-                    }
                 }
-                comboBoxEdit7.Text=rowData2.syPeriod;
-                memoEdit3.Text=rowData2.syProject;
-                comboBoxEdit9.Text=rowData2.charMan;
-
-               
-                dateEdit1.EditValue = rowData2.sjExpTime;
-                dateEdit4.EditValue = rowData2.planExpTime;
-
-                //comboBoxEdit14.Text = rowData2.iswc;
-                comboBoxEdit13.Text = rowData2.syjg;
-               
+                else
+                {
+                    ConvertHelper.CopyTo<PJ_yfsyjl>(value as PJ_yfsyjl, rowData);
+                }
             }
         }
 
@@ -194,29 +152,29 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
             comboBoxEdit3.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
-            comboBoxEdit7.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit7);
+            //comboBoxEdit7.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit7);
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
             comboBoxEdit6.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
-            comboBoxEdit9.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
+            //comboBoxEdit9.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
             comboBoxEdit8.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit8);
-            comboBoxEdit10.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit10);
+            //comboBoxEdit10.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit10);
             comboBoxEdit12.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit12);
-            comboBoxEdit13.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit13);
-            comboBoxEdit13.Properties.Items.Clear();
-            comboBoxEdit13.Properties.Items.Add("合格");
-            comboBoxEdit13.Properties.Items.Add("不合格");
+            //comboBoxEdit13.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit13);
+            //comboBoxEdit13.Properties.Items.Clear();
+            //comboBoxEdit13.Properties.Items.Add("合格");
+            //comboBoxEdit13.Properties.Items.Add("不合格");
             comboBoxEdit11.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit11);
-            comboBoxEdit14.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit14);
+            //comboBoxEdit14.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit14);
             popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
 
             popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
@@ -263,13 +221,13 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit8.Text = mans[0];
                 comboBoxEdit15.Text = mans[1];
             }
-            str = rowData2.syMan;
+            //str = rowData2.syMan;
             mans = str.Split(new char[1] { ' ' });
-            if (mans.Length >= 2)
-            {
-                comboBoxEdit10.Text = mans[0];
-                comboBoxEdit16.Text = mans[1];
-            }
+            //if (mans.Length >= 2)
+            //{
+            //    comboBoxEdit10.Text = mans[0];
+            //    comboBoxEdit16.Text = mans[1];
+            //}
         }
 
        
@@ -282,16 +240,16 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            rowData2.sbInstallAdress = rowData.sbInstallAdress;
-            rowData2.sl = rowData.sl;
-            rowData2.sbModle = rowData.sbModle;
-            rowData2.Remark = rowData.Remark;
-            rowData2.syPeriod = comboBoxEdit7.Text ;
-            rowData2.syProject = memoEdit3.Text;
-            rowData2.planExpTime = Convert.ToDateTime(dateEdit4.Text);
-            rowData2.sjExpTime  = Convert.ToDateTime(dateEdit1.Text);
-            rowData2.charMan = comboBoxEdit9.Text;
-            rowData2.syjg  = comboBoxEdit13.Text;
+            //rowData2.sbInstallAdress = rowData.sbInstallAdress;
+            //rowData2.sl = rowData.sl;
+            //rowData2.sbModle = rowData.sbModle;
+            //rowData2.Remark = rowData.Remark;
+            //rowData2.syPeriod = comboBoxEdit7.Text ;
+            //rowData2.syProject = memoEdit3.Text;
+            //rowData2.planExpTime = Convert.ToDateTime(dateEdit4.Text);
+            //rowData2.sjExpTime  = Convert.ToDateTime(dateEdit1.Text);
+            //rowData2.charMan = comboBoxEdit9.Text;
+            //rowData2.syjg  = comboBoxEdit13.Text;
 
             if (comboBoxEdit8.Text != "")
                 rowData.syMan = comboBoxEdit8.Text;
@@ -300,46 +258,46 @@ namespace Ebada.Scgl.Lcgl
             else if (rowData.syMan == "")
                 rowData.syMan = comboBoxEdit15.Text;
 
-            if (comboBoxEdit10.Text != "")
-                rowData2.syMan = comboBoxEdit10.Text;
-            if (rowData2.syMan != "" && comboBoxEdit16.Text != "")
-                rowData2.syMan += " " + comboBoxEdit16.Text;
-            else if (rowData2.syMan == "")
-                rowData2.syMan = comboBoxEdit16.Text;
+            //if (comboBoxEdit10.Text != "")
+            //    rowData2.syMan = comboBoxEdit10.Text;
+            //if (rowData2.syMan != "" && comboBoxEdit16.Text != "")
+            //    rowData2.syMan += " " + comboBoxEdit16.Text;
+            //else if (rowData2.syMan == "")
+            //    rowData2.syMan = comboBoxEdit16.Text;
 
-            PJ_yfsyjl ob = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_yfsyjl>(rowData2.ID);
-            if (ob == null)
-            {
-                //IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", 
-                IList li  = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
-                rowData2.xh = li.Count+1;
-                rowData.xh = rowData2.xh;
-                rowData.CreateDate = DateTime.Now;
-                rowData2.CreateDate = rowData.CreateDate.AddSeconds(1) ;
-                if (rowData.ID == rowData2.ID)
-                {
+            //PJ_yfsyjl ob = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_yfsyjl>(rowData2.ID);
+            //if (ob == null)
+            //{
+            //    //IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", 
+            //    IList li  = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
+            //    rowData2.xh = li.Count+1;
+            //    rowData.xh = rowData2.xh;
+            //    rowData.CreateDate = DateTime.Now;
+            //    rowData2.CreateDate = rowData.CreateDate.AddSeconds(1) ;
+            //    if (rowData.ID == rowData2.ID)
+            //    {
 
-                    rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
-                }
-                Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
+            //        rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
+            //    }
+            //    Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
 
-            }
-            else
-            {
-                Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
+            //}
+            //else
+            //{
+            //    Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
 
             
-            }
-            rowData.xlname = popLine.Text;
-            rowData.tqname = popTq.Text;
-            rowData.byqname = popByq.Text;
-            rowData.kgname = popKg.Text;
+            //}
+            //rowData.xlname = popLine.Text;
+            //rowData.tqname = popTq.Text;
+            //rowData.byqname = popByq.Text;
+            //rowData.kgname = popKg.Text;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit3);
-            rowData2.syProject = memoEdit3.EditValue.ToString();  
+            //SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit3);
+            //rowData2.syProject = memoEdit3.EditValue.ToString();  
         }
 
         private void ReSetSelectValue()
