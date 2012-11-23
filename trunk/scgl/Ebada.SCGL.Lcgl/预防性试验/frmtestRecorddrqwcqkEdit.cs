@@ -116,7 +116,8 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
             comboBoxEdit6.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
+            comboBoxEdit6.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
             //comboBoxEdit9.Properties.Items.Clear();
             //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
             comboBoxEdit8.Properties.Items.Clear();
