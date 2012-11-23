@@ -2151,7 +2151,7 @@ namespace Ebada.Scgl.Lcgl
         }
         public void InitTaskData()
         {
-            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and  tlcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '下拉%'");
+            IList<WF_WorkTastTrans> wttli = MainHelper.PlatformSqlMap.GetList<WF_WorkTastTrans>(" where  tlcjdid='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "' and cdfs like '下拉%'");
             foreach (WF_WorkTastTrans wtt in wttli)
             {
                 Control ctrl = FindCtrl(wtt.tlcjdzdid);
