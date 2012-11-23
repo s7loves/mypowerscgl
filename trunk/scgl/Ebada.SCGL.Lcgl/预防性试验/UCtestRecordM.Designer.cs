@@ -200,7 +200,7 @@
             this.xtraTabPage5.Controls.Add(this.uCtestRecordjhmxTable1);
             this.xtraTabPage5.Name = "xtraTabPage5";
             this.xtraTabPage5.Size = new System.Drawing.Size(614, 212);
-            this.xtraTabPage5.Text = "计划明细表";
+            this.xtraTabPage5.Text = "计划表";
             // 
             // uCtestRecordjhmxTable1
             // 

@@ -158,37 +158,37 @@ namespace Ebada.Scgl.Lcgl
 
         private void InitComboBoxData() {
 
-            comboBoxEdit5.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
-            comboBoxEdit1.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
-            comboBoxEdit3.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
-            comboBoxEdit4.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
-            comboBoxEdit6.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
-            comboBoxEdit7.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit7);
-            comboBoxEdit8.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit8);
-            comboBoxEdit9.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit9);
-            comboBoxEdit10.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit10);
+            //comboBoxEdit5.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备安装位置", comboBoxEdit5);
+            //comboBoxEdit1.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "设备型号", comboBoxEdit1);
+            //comboBoxEdit3.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验周期", comboBoxEdit3);
+            //comboBoxEdit4.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
+            //comboBoxEdit6.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
+            //comboBoxEdit7.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit7);
+            //comboBoxEdit8.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "试验人", comboBoxEdit8);
+            //comboBoxEdit9.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "实验结果", comboBoxEdit9);
+            //comboBoxEdit10.Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("预防性试验", "是否完成", comboBoxEdit10);
 
-            popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
+            //popLine.Properties.PopupFormSize = new Size(popLine.Properties.PopupFormSize.Width, 200);
 
-            popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
-            popTq.Properties.PopupFormSize = new Size(popTq.Properties.PopupFormSize.Width, 200);
-            popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
+            //popByq.Properties.PopupFormSize = new Size(popByq.Properties.PopupFormSize.Width, 200);
+            //popTq.Properties.PopupFormSize = new Size(popTq.Properties.PopupFormSize.Width, 200);
+            //popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
 
 
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
-            if (xlList.Count > 0)
-            {
-                this.popLine.DataSource = xlList;
-            }
+            //IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
+            //if (xlList.Count > 0)
+            //{
+            //    this.popLine.DataSource = xlList;
+            //}
         }
 
         /// <summary>
