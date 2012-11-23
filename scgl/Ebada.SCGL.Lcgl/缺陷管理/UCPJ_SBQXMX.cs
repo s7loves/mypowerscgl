@@ -257,6 +257,7 @@ namespace Ebada.Scgl.Lcgl
             box.Properties.Items.Add("一般");
             box.Properties.Items.Add("紧急");
             box.Properties.Items.Add("重大");
+            box.Properties.Items.Add("低压");
             gridView1.Columns["s1"].ColumnEdit = box;
             gridView1.Columns["s1"].OptionsColumn.AllowEdit = true;
             //cob.SelectedIndexChanged += new EventHandler(cob_SelectedIndexChanged);
@@ -281,18 +282,18 @@ namespace Ebada.Scgl.Lcgl
         {
             if (isWorkflowCall)
             {
-                if (slqwhere == "") slqwhere = " where 1=1";
-                slqwhere = slqwhere + " and ( id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
-                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                //if (slqwhere == "") slqwhere = " where 1=1";
+                //slqwhere = slqwhere + " and ( id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where 1=1 ";
+                //slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
 
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "') ";
-                slqwhere = slqwhere + " or  id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
-                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "') "
-                   + ")"
-                   ;
+                //   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "') ";
+                //slqwhere = slqwhere + " or  id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+                //slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+                //   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+                //   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+                //   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "') "
+                //   + ")"
+                //   ;
             }
             basesql = slqwhere;
             RefreshData();
@@ -630,7 +631,7 @@ namespace Ebada.Scgl.Lcgl
             if (barCheckItem1.Checked)
             {
 
-                gridViewOperation.RefreshData(basesql + " and xcr!=''");
+                gridViewOperation.RefreshData(basesql + " and len(xcr)=0");
             }
             else
             {
