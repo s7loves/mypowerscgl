@@ -185,7 +185,6 @@ namespace Ebada.Scgl.Lcgl
                 {
                     gridView1.Columns["sbCapacity"].VisibleIndex = 4;
                     gridView1.Columns["sl"].VisibleIndex = 4;
-                    gridView1.OptionsView.AllowCellMerge = false; 
                     switch (_type)
                     {
                         case "变压器":
@@ -206,7 +205,6 @@ namespace Ebada.Scgl.Lcgl
                         case "电容器":
                             hideColumn("sbCapacity");
                             hideColumn("sl", true);
-                            gridView1.OptionsView.AllowCellMerge = true; 
                             break;
 
 

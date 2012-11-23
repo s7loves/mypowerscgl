@@ -33,6 +33,7 @@
             this.liuchbarSubItem = new DevExpress.XtraBars.BarSubItem();
             this.SubmitButton = new DevExpress.XtraBars.BarButtonItem();
             this.TaskOverButton = new DevExpress.XtraBars.BarButtonItem();
+            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -49,7 +50,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.liuchenBarClear = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -135,7 +135,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.TaskOverButton),
             new DevExpress.XtraBars.LinkPersistInfo(this.liuchenBarClear)});
             this.liuchbarSubItem.Name = "liuchbarSubItem";
-            this.liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // SubmitButton
             // 
@@ -152,6 +151,13 @@
             this.TaskOverButton.Name = "TaskOverButton";
             this.TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.TaskOverButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaskOverButton_ItemClick);
+            // 
+            // liuchenBarClear
+            // 
+            this.liuchenBarClear.Caption = "清除关联信息";
+            this.liuchenBarClear.Id = 19;
+            this.liuchenBarClear.Name = "liuchenBarClear";
+            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
             // btAdd
             // 
@@ -293,13 +299,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // liuchenBarClear
-            // 
-            this.liuchenBarClear.Caption = "清除关联信息";
-            this.liuchenBarClear.Id = 19;
-            this.liuchenBarClear.Name = "liuchenBarClear";
-            this.liuchenBarClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.liuchenBarClear_ItemClick);
             // 
             // UCtestRecord
             // 
