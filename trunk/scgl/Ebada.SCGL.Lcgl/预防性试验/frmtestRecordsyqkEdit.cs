@@ -247,6 +247,7 @@ namespace Ebada.Scgl.Lcgl
                 if (popLine.GetDataRow() != null)
                 {
                     xlcode = popLine.GetDataRow()["LineCode"].ToString();
+                    popLine.DataSource = xlcode;   //ZJM
                 }
 
 
