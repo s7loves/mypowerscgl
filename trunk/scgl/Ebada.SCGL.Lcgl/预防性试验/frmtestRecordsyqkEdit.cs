@@ -184,11 +184,11 @@ namespace Ebada.Scgl.Lcgl
             //popKg.Properties.PopupFormSize = new Size(popKg.Properties.PopupFormSize.Width, 200);
 
 
-            //IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
-            //if (xlList.Count > 0)
-            //{
-            //    this.popLine.DataSource = xlList;
-            //}
+            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.gdstemp + "'and linevol='10'");
+            if (xlList.Count > 0)
+            {
+                this.popLine.DataSource = xlList;
+            }
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace Ebada.Scgl.Lcgl
                 if (popLine.GetDataRow() != null)
                 {
                     xlcode = popLine.GetDataRow()["LineCode"].ToString();
-                    popLine.DataSource = xlcode;   //ZJM
+                  //popLine.DataSource = xlcode;   //ZJM
                 }
 
 
