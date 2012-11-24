@@ -2414,6 +2414,13 @@ namespace Ebada.Scgl.Lcgl
                             }
 
                         }
+                    } else if (sqlSentence.IndexOf("where 12=12") > -1) {//表格数据源
+                        StringBuilder sb = new StringBuilder();
+                        foreach (var obj in li) {
+                            sb.Append(obj);
+                        }
+                        li.Clear();
+                        li.Add(sb.ToString());
                     }
                 }
                 catch (Exception ex)
