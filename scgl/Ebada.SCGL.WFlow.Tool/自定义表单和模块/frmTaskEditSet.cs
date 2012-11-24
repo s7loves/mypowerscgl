@@ -437,9 +437,19 @@ namespace Ebada.SCGL.WFlow.Tool {
                         }
                     } else
                         if (rowData.slcjdzdlx == "表单") {
-                            tetSWorkSQL.Text = "select ControlValue from WF_TableFieldValue where 10=10  "
-                            + "and UserControlId='" + rowData.slcjdzdbid + "' "
+                            LP_Temple obj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<LP_Temple>(strli[0]);
+                            string type = "10=10";
+                            bool isgrid=false;
+                            if (obj != null) {
+                                if (obj.CtrlType == "uc_gridcontrol") {
+                                    type = "12=12";//表格控件取数合并标记
+                                    isgrid=true;
+                                }
+                            }
+                            tetSWorkSQL.Text = "select ControlValue from WF_TableFieldValue where "+type
+                            + " and UserControlId='" + rowData.slcjdzdbid + "' "
                             + " and FieldId='" + strli[0] + "' ";
+                           
                             if (ceBind.Checked) {
                                 if ((((ListItem)cbxSWorkFolwDataTable.SelectedItem).ID == ((ListItem)cbxTWorkFolwDataTable.SelectedItem).ID)) {
                                     tetSWorkSQL.Text = tetSWorkSQL.Text + " and RecordId='{recordid}'";
@@ -448,6 +458,8 @@ namespace Ebada.SCGL.WFlow.Tool {
                                 }
 
                             }
+                            if (isgrid)
+                                tetSWorkSQL.Text += " order by XExcelPos,YExcelPos";
                         }
                 } else {
                     simpleButton3.Visible = true;
