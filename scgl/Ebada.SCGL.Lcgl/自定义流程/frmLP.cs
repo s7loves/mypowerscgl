@@ -58,7 +58,6 @@ namespace Ebada.Scgl.Lcgl
         {
             set
             {
-
                 isWorkflowCall = value;
             }
         }
