@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Lcgl
                         repositoryItemLookUpEdit2.ValueMember = "OrgCode";
                         repositoryItemLookUpEdit2.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OrgName", 100, "请选择"));
                     }
-
+                    btReEdit.Caption = "领导检查";
                     barJU.EditValue = list[i].OrgCode;
                     result = true;
                     barJU.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -114,6 +114,7 @@ namespace Ebada.Scgl.Lcgl
                 }
                 else if (i == list.Count - 1 && list[i].UserCode != usercode)
                 {
+                    btReEdit.Caption = "修改";
                     result = false;
                     barJU.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                     if (RecordIkind.IndexOf("局") == -1)
