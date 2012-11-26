@@ -243,7 +243,14 @@ namespace Ebada.SCGL {
                 para = new object[0];
                 Dictionary<string, object> dic = new Dictionary<string, object>();
                 dic.Add("Modu_ID", mdule.Modu_ID);
-                object result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null, null, ref instance);
+                object[] p = null;
+                object result = null;
+                if (!string.IsNullOrEmpty(mdule.MethodParam)) {
+                    p = new object[] { mdule.MethodParam };
+                    result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, p);
+                } else {
+                    result = MainHelper.Execute(mdule.AssemblyFileName, mdule.ModuTypes, mdule.MethodName, null, null, ref instance);
+                }
                 if (instance is Form) {
                     Form form = (Form)instance;
                     form.Tag = dic;
@@ -253,9 +260,12 @@ namespace Ebada.SCGL {
                     form.FormClosed += new FormClosedEventHandler(form_FormClosed);
                     showForms.Add(mdule.Modu_ID,form);
                     form.Show();
-                } else {
+                } else if(instance is Control) {
                     this.Tag = dic;
                     showmodul(instance as UserControl, mdule.ModuName);
+                } else if (result is Control) {
+                    this.Tag = dic;
+                    showmodul(result as UserControl, mdule.ModuName);
                 }
             }
         }
