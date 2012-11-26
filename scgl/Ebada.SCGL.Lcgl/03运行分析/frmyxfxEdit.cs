@@ -30,16 +30,22 @@ namespace Ebada.Scgl.Lcgl
         {
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "zcr");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "rq");
-            this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
+            //this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
             //this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cjry");
             this.memoEdit5.DataBindings.Add("EditValue", rowData, "zt", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "jy", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "jr", false, DataSourceUpdateMode.OnPropertyChanged);
-            this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
-            this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
+            //this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
+            //this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "hydd");
-
-
+            //comboBoxEdit17.Properties.Items.Clear();
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select username from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName in ('生产局长','生技部长','生技部生产专工','生技部配电专工','生技部计划专工') ))");
+            comboBoxEdit17.Properties.Items.AddRange(list);
+            comboBoxEdit17.Properties.ReadOnly = true;
+            if (list.Contains(MainHelper.User.UserName))
+            {
+                comboBoxEdit17.EditValue = MainHelper.User.UserName;
+            }
         }
         void setqqry()
         {
@@ -95,6 +101,7 @@ namespace Ebada.Scgl.Lcgl
                     ConvertHelper.CopyTo<PJ_03yxfx>(value as PJ_03yxfx, rowData);
                 }
                 setqqry();
+                memoEdit4.Text = rowData.py;
             }
         }
 
@@ -181,12 +188,37 @@ namespace Ebada.Scgl.Lcgl
                     groupBox7.Enabled = true;
                     break;
                 case 3:     //供电所人员修改
-                    groupBox2.Enabled = true;
-                    groupBox1.Enabled = true;
-                    memoEdit5.Properties.ReadOnly = false;
-                    memoEdit1.Properties.ReadOnly = false;
-                    memoEdit2.Properties.ReadOnly = false;
-                    simpleButton1.Enabled = true;
+                    ///系统管理员
+                    IList count = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select username from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName='系统管理员'))");
+                    if (count.Count > 0)
+                    {
+                        memoEdit4.Properties.ReadOnly = false;
+                        groupBox7.Enabled = true;
+                        groupBox2.Enabled = false;
+                        groupBox1.Enabled = false;
+                        groupBox3.Enabled = false;
+                        dateEdit4.Enabled = true;
+                        comboBoxEdit17.Enabled = true;
+                        groupBox2.Enabled = true;
+                        groupBox1.Enabled = true;
+                        memoEdit5.Properties.ReadOnly = false;
+                        memoEdit1.Properties.ReadOnly = false;
+                        memoEdit2.Properties.ReadOnly = false;
+                        simpleButton1.Enabled = true;
+                        groupBox3.Enabled = true;
+                        comboBoxEdit17.Properties.ReadOnly = false;
+                    }
+                    else
+                    {
+                        memoEdit4.Properties.ReadOnly = true;
+                        groupBox2.Enabled = true;
+                        groupBox1.Enabled = true;
+                        memoEdit5.Properties.ReadOnly = false;
+                        memoEdit1.Properties.ReadOnly = false;
+                        memoEdit2.Properties.ReadOnly = false;
+                        simpleButton1.Enabled = true;
+                    }
+
                     break;
                 case 4:     //局人员修改
                     groupBox7.Enabled = true;
@@ -224,27 +256,27 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //填充下拉列表数据
-            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
-            // ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
-            for (int i = 0; i < 16; i++)
-            {
-                if (ryList.Count > 0)
-                {
-                    if (i < 15)
-                    {
-                        ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
-                    }
-                    if (i >= 15)
-                    {
-                        ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
-                    }
-                }
+            //ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            //// ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    if (ryList.Count > 0)
+            //    {
+            //        if (i < 15)
+            //        {
+            //            ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+            //        }
+            //        if (i >= 15)
+            //        {
+            //            ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+            //        }
+            //    }
 
 
-            }
-            //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
-            ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
+            //}
+            ////((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
+            //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
+            //ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
             comboBoxEdit18.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit18.Properties);
 
@@ -418,8 +450,30 @@ namespace Ebada.Scgl.Lcgl
 
                 MainHelper.PlatformSqlMap.Create<PJ_gzrjnr>(gzr);
             }
-            else if (recordStatus == 3 || recordStatus == 4)
+            else if (recordStatus == 3)
             {
+                rowData.py = memoEdit4.Text;
+                MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
+            }
+            else if (recordStatus == 4)
+            {
+                rowData.py = memoEdit4.Text;
+                rowData.qzrq = DateTime.Now;
+                if (comboBoxEdit17.Text.Trim() == "")
+                {
+                    if (comboBoxEdit17.Properties.Items.Count > 0)
+                    {
+                        rowData.qz += comboBoxEdit17.Properties.Items[0] + ";";
+                    }
+                    else
+                    {
+                        rowData.qz += MainHelper.User.UserName;
+                    }
+                }
+                else
+                {
+                    rowData.qz += comboBoxEdit17.Text + ";";
+                }
                 MainHelper.PlatformSqlMap.Update<PJ_03yxfx>(RowData);
             }
             else
@@ -489,5 +543,42 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
         }
+
+        #region 工作评语
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            PJ_dyk dyk = SelectorHelper.SelectDyk("公共属性", "工作评语", meTempPY, meTempPY, meTempPY);
+            string line = Environment.NewLine;
+            if (dyk != null)
+            {
+                meTempPY.Text += line + dyk.nr;
+                meTempPY.Text += line + dyk.nr2;
+                meTempPY.Text += line + dyk.nr3;
+            }
+        }
+        #endregion
+
+        #region 审批
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            if (meTempPY.Text.Trim() == "")
+            {
+                MsgBox.ShowWarningMessageBox("请填写评语内容！");
+            }
+            else if (dateEdit4.Text.Trim() == "")
+            {
+                MsgBox.ShowWarningMessageBox("请填写签字时间！");
+            }
+            else if (comboBoxEdit17.Text.Trim() == "")
+            {
+                MsgBox.ShowWarningMessageBox("填写签字人！");
+            }
+            else
+            {
+                string newline = "\r\n";
+                memoEdit4.Text = rowData.py + newline + "------------------------------------" + newline + dateEdit4.Text + newline + comboBoxEdit17.Text + "：" + newline + meTempPY.Text;
+            }
+        }
+        #endregion
     }
 }
