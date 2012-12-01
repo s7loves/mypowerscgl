@@ -221,21 +221,21 @@ namespace Ebada.Scgl.Lcgl
             DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
             dsoFramerControl1.FileOpen(fname);
             Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
-            PJ_23 obj1 = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + obj.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
-            int icount = 1;
-            if (obj1 != null && obj1.xybh != "")
-            {
-                icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
-            }
-            string strname = SelectorHelper.GetPysm(bhname, true);
+            //PJ_23 obj1 = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + obj.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "-" + DateTime.Now.Year.ToString() + "-%' order by xybh ASC");
+            //int icount = 1;
+            //if (obj1 != null && obj1.xybh != "")
+            //{
+            //    //icount = Convert.ToInt32(obj.xybh.Split('-')[2]) + 1;
+            //}
+            string strname = obj.xybh;// SelectorHelper.GetPysm(bhname, true);
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
             ea.SetCellValue(strname.ToUpper(), 4, 8);
-            strname = DateTime.Now.Year.ToString();
-            ea.SetCellValue(strname, 4, 9);
-            strname = string.Format("{0:D3}", icount);
-            ea.SetCellValue(strname, 4, 10);
+            //strname = DateTime.Now.Year.ToString();
+            //ea.SetCellValue(strname, 4, 9);
+            //strname = string.Format("{0:D3}", icount);
+            //ea.SetCellValue(strname, 4, 10);
             ea.SetCellValue(obj.cqdw + "：", 6, 4);
             ea.SetCellValue(obj.linename, 10, 7);
             ea.SetCellValue(obj.fzlinename, 10, 10);
