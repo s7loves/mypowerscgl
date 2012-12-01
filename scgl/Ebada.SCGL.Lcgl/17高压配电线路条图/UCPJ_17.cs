@@ -1390,16 +1390,16 @@ namespace Ebada.Scgl.Lcgl
 
                 } else
                     if (xl.LineType == "2") {
-                        PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
+                        PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xl.ParentID + "'");
                         if (xltemp != null)
                             strname[0] = xltemp.LineName;
                         strname[1] = xl.LineName.Replace(xltemp.LineName, "");
                     } else if (xl.LineType == "3") {
                         strname[2] = xl.LineName;
-                        PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xl.ParentID + "'");
+                        PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xl.ParentID + "'");
                         if (xltemp != null) {
                             strname[1] = xltemp.LineName;
-                            xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + xltemp.ParentID + "'");
+                            xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xltemp.ParentID + "'");
                             if (xltemp != null) strname[0] = xltemp.LineName;
                         }
                         strname[2].Replace(strname[1], "");
