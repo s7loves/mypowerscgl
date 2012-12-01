@@ -99,18 +99,20 @@ namespace Ebada.Scgl.Yxgl {
         public static List<PJ_18gysbpjmx> BuildPj(PJ_18gysbpj obj,bool save) {
             IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + obj.OrgCode + "'and len(ParentID) <3");
             List<PJ_18gysbpjmx> listmx = new List<PJ_18gysbpjmx>();
+            //IList<PS_xl> listxl = Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where orgcode='" + btGdsList.EditValue + "'and ParentID = ''");
             int bh = 0;
-            string loginname=MainHelper.User.UserName;
-            int bl = 1;
+            string fzdw = obj.OrgName;
+            string loginname = MainHelper.User.UserName;
             foreach (PS_xl pl in listxl) {
                 bh++;
                 //线路
                 PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
                 pjmx.PJ_ID = obj.PJ_ID;
                 pjmx.xh = bh;
-                pjmx.sbdy = pl.LineName.Trim();
+                pjmx.sbdy = pl.LineName;
                 pjmx.CreateDate = DateTime.Now;
-                pjmx.CreateMan = loginname;
+                pjmx.CreateMan = MainHelper.User.UserName;
+                pjmx.fzdw = fzdw;
                 int line1 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and  SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '一类')"));
                 int line2 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '二类')"));
                 int line3 = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "SELECT SUM(WireLength) FROM PS_xl WHERE linevol='10' and SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "'AND (lineKind = '三类')"));
@@ -119,125 +121,176 @@ namespace Ebada.Scgl.Yxgl {
                 pjmx.three = line3;
                 if ((line1 + line2 + line3) != 0) {
                     pjmx.whl = Convert.ToDecimal((line1 + line2) / (line1 + line2 + line3));
-                } else {
-                    continue;
                 }
-                listmx.Add(pjmx);
 
-               
-            }
-            foreach (var pl in listxl) {
+                #region 生成缺陷
+                string xlsqlwhere = string.Format(" where xlid='{0}' and xcr='' order by qxlb", pl.LineID);
+                IList<PJ_qxfl> qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                if (qxlist.Count > 0) {
+                    if (qxlist[0].qxlb == "一般缺陷") {
+                        pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                        pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                    } else {
+                        pjmx.qxlb = qxlist[0].qxlb;
+                        pjmx.qxnr = qxlist[0].qxnr;
+                    }
+                }
+                #endregion
+                listmx.Add(pjmx);
+                if (save)
+                Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 //台区
                 IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where SUBSTRING(xlCode, 1, 6) ='" + pl.LineCode + "'");
-                
+
                 foreach (PS_tq pq in listtq) {
-                    if (string.IsNullOrEmpty(pq.tqName)) continue;
+
                     bh++;
-                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
+                    pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.tqName.Trim()+ "台区";
+                    pjmx.sbdy = pq.tqName + "台区";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
+                    pjmx.fzdw = fzdw;
                     switch (pq.btKind) {
                         case "一类":
-                            pjmx.one = 1 * bl;
+                            pjmx.one = 1;
                             pjmx.whl = 1;
                             break;
                         case "二类":
-                            pjmx.two = 1 * bl;
+                            pjmx.two = 1;
                             pjmx.whl = 1;
                             break;
                         case "三类":
-                            pjmx.three = 1 * bl;
+                            pjmx.three = 1;
                             pjmx.whl = 0;
-                            break;
-                        default:
-                            pjmx.one = 1 * bl;
-                            pjmx.whl = 1;
                             break;
 
                     }
+                    #region 生成缺陷
+                    xlsqlwhere = string.Format(" where tqid='{0}' and xcr='' order by qxlb", pq.tqID);
+                    qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0) {
+                        sbpj(qxlist, pjmx);
+                    }
+                    #endregion
                     listmx.Add(pjmx);
+                    if (save)
+                    Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
-            }
-            foreach (var pl in listxl) {
                 //开关
                 IList<PS_kg> listkg = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>("WHERE (gtID IN(SELECT gtID FROM PS_gt WHERE (SUBSTRING(LineCode, 1, 6) = '" + pl.LineCode + "')))");
                 foreach (PS_kg pq in listkg) {
-                    if (string.IsNullOrEmpty(pq.kgName)) continue;
                     bh++;
-                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
+                    pjmx = new PJ_18gysbpjmx();
                     pjmx.ID += bh;
                     pjmx.xh = bh;
                     pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.kgName.Trim()+ "开关";
+                    pjmx.sbdy = pq.kgName + "开关";
                     pjmx.CreateDate = DateTime.Now;
                     pjmx.CreateMan = loginname;
+                    pjmx.fzdw = fzdw;
                     switch (pq.kgkind) {
                         case "一类":
-                            pjmx.one = 1 * bl;
+                            pjmx.one = 1;
                             pjmx.whl = 1;
                             break;
                         case "二类":
-                            pjmx.two = 1 * bl;
+                            pjmx.two = 2;
                             pjmx.whl = 1;
                             break;
                         case "三类":
-                            pjmx.three = 1 * bl;
+                            pjmx.three = 1;
                             pjmx.whl = 0;
-                            break;
-                        default:
-                            pjmx.one = 1 * bl;
-                            pjmx.whl = 1;
-                            break;
-                    }
-                    listmx.Add(pjmx);
-                }
-                
-            }
-            
-            foreach (var pl in listxl) {
-                
-                //变压器
-                IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
-                
-                foreach (PS_tqbyq pq in listbyq) {
-                    if (string.IsNullOrEmpty(pq.byqName)) continue;
-                    bh++;
-                    PJ_18gysbpjmx pjmx = new PJ_18gysbpjmx();
-                    pjmx.ID += bh;
-                    pjmx.xh = bh;
-                    pjmx.PJ_ID = obj.PJ_ID;
-                    pjmx.sbdy = pq.byqName.Trim()+ "变压器";
-                    pjmx.CreateDate = DateTime.Now;
-                    pjmx.CreateMan = loginname;
-                    switch (pq.byqkind) {
-                        case "一类":
-                            pjmx.one = 1 * bl;
-                            pjmx.whl = 1 ;
-                            break;
-                        case "二类":
-                            pjmx.two = 1 * bl;
-                            pjmx.whl = 1 ;
-                            break;
-                        case "三类":
-                            pjmx.three = 1 * bl;
-                            pjmx.whl = 0;
-                            break;
-                        default:
-                            pjmx.one = 1 * bl;
-                            pjmx.whl = 1 ;
                             break;
 
                     }
+                    #region 生成缺陷
+                    xlsqlwhere = string.Format(" where kgid='{0}' and xcr='' order by qxlb", pq.kgID);
+                    qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0) {
+                        sbpj(qxlist, pjmx);
+                    }
+                    #endregion
                     listmx.Add(pjmx);
+                    if (save)
+                    Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
+                }
+                //变压器
+                IList<PS_tqbyq> listbyq = Client.ClientHelper.PlatformSqlMap.GetList<PS_tqbyq>("WHERE (tqID IN(SELECT tqID FROM PS_tq WHERE (SUBSTRING(tqcode, 1, 6) = '" + pl.LineCode + "')))");
+                foreach (PS_tqbyq pq in listbyq) {
+                    bh++;
+                    pjmx = new PJ_18gysbpjmx();
+                    pjmx.ID += bh;
+                    pjmx.xh = bh;
+                    pjmx.PJ_ID = obj.PJ_ID;
+                    pjmx.sbdy = pq.byqName + "变压器";
+                    pjmx.CreateDate = DateTime.Now;
+                    pjmx.CreateMan = loginname;
+                    pjmx.fzdw = fzdw;
+                    switch (pq.byqkind) {
+                        case "一类":
+                            pjmx.one = 1;
+                            pjmx.whl = 1;
+                            break;
+                        case "二类":
+                            pjmx.two = 2;
+                            pjmx.whl = 1;
+                            break;
+                        case "三类":
+                            pjmx.three = 1;
+                            pjmx.whl = 0;
+                            break;
+
+                    }
+                    #region 生成缺陷
+                    xlsqlwhere = string.Format(" where byqid='{0}' and xcr='' order by qxlb", pq.byqID);
+                    qxlist = MainHelper.PlatformSqlMap.GetList<PJ_qxfl>(xlsqlwhere);
+                    if (qxlist.Count > 0) {
+                        sbpj(qxlist, pjmx);
+                    }
+                    #endregion
+                    listmx.Add(pjmx);
+                    if (save)
+                    Client.ClientHelper.PlatformSqlMap.Create<PJ_18gysbpjmx>(pjmx);
                 }
             }
-            if (save)
-                Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(listmx.ToArray(), null, null);
+            //if (save)
+            //    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(listmx.ToArray(), null, null);
             return listmx;
+        }
+        private static void sbpj(IList<PJ_qxfl> qxlist, PJ_18gysbpjmx pjmx) {
+            pjmx.one = 0;
+
+            if (qxlist[0].qxlb == "一般缺陷") {
+                pjmx.qxlb = qxlist[qxlist.Count - 1].qxlb;
+                pjmx.qxnr = qxlist[qxlist.Count - 1].qxnr;
+                if (pjmx.qxlb == "一般缺陷") {
+                    pjmx.two = 1;
+
+                } else {
+                    pjmx.three = 1;
+                    pjmx.whl = 0;
+                }
+            } else {
+                pjmx.qxlb = qxlist[0].qxlb;
+                pjmx.qxnr = qxlist[0].qxnr;
+                pjmx.three = 1;
+                pjmx.whl = 0;
+            }
+            if (qxlist.Count > 1 && pjmx.two == 1) {
+                if (pjmx.sbdy.Contains("台区") && qxlist.Count == 2) {//只有台区超不超过2件为1类，别的为三类
+                    pjmx.three = 0;
+                    pjmx.two = 1;
+                    pjmx.whl = 1;
+                } else {
+                    pjmx.two = 0;
+                    pjmx.three = 1;
+                    pjmx.whl = 0;
+                }
+
+            }
         }
     }
     
