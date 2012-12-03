@@ -1917,6 +1917,7 @@
     <Content Include="00记录模板\17线路条图2.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="00记录模板\10KV降损、电量奖金奖惩表.xls" />
     <None Include="00记录模板\26种记录卡片.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1929,9 +1930,14 @@
     <None Include="00记录模板\8种技术资料.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\pdca周循环一览表.xls" />
+    <None Include="00记录模板\pdca循环一览表.xls" />
     <None Include="00记录模板\事故抢修调度通知.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\企业年金.xls" />
+    <None Include="00记录模板\住房公积金.xls" />
+    <None Include="00记录模板\住房公积金及企业年金查询.xls" />
     <None Include="00记录模板\供电所安全工器具出库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1944,6 +1950,7 @@
     <None Include="00记录模板\供电所材料季度对账.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\信息设备管理系统.xls" />
     <None Include="00记录模板\入库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1959,6 +1966,8 @@
     <None Include="00记录模板\供电所材料出入库明细.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\医疗农电局.xls" />
+    <None Include="00记录模板\医疗农电电工.xls" />
     <None Include="00记录模板\反事故措施计划表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1977,6 +1986,9 @@
     <None Include="00记录模板\变电所电力电容器台帐.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\培训-员工培训档案.xls" />
+    <None Include="00记录模板\培训-考试成绩单.xls" />
+    <None Include="00记录模板\季度财务收支预算完成情况.xls" />
     <None Include="00记录模板\安全工器具出库单.xls" />
     <None Include="00记录模板\安全工器具外观检查单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2035,6 +2047,9 @@
     <None Include="00记录模板\撤旧材料入库单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\支出预算-供电所.xls" />
+    <None Include="00记录模板\支出预算-变电所.xls" />
+    <None Include="00记录模板\支出预算.xls" />
     <None Include="00记录模板\故障性巡视.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2056,9 +2071,11 @@
     <None Include="00记录模板\月安全生产例会.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\月购、售电量同期对比表.xls" />
     <None Include="00记录模板\生产台账 %28撤旧%29.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\用电科报表管理.xls" />
     <None Include="00记录模板\电压检测点抄表卡.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2077,12 +2094,17 @@
     <None Include="00记录模板\百安活动落实情况记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\线损完成情况表.xls" />
     <None Include="00记录模板\绝缘工具试验单.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\绥化市农电局安全生产工作目标.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\维管费.xls" />
+    <None Include="00记录模板\职工工资-供电所.xls" />
+    <None Include="00记录模板\职工工资-机关.xls" />
+    <None Include="00记录模板\营销指标完成情况统计表.xls" />
     <None Include="00记录模板\设备年报六.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
