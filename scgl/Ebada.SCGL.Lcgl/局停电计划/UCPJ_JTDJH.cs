@@ -141,8 +141,12 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
 
+            gridView1.RowUpdated += new RowObjectEventHandler(gridView1_RowUpdated);
 
+        }
 
+        void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
+            try { ClientHelper.PlatformSqlMap.Update<PJ_tdjh>(e.Row); } catch { }
         }
         void gridViewOperation_AfterDelete(PJ_tdjh obj)
         {
@@ -167,7 +171,7 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
 
-            RefreshData(" where OrgCode='" + parentID + "' and IsSelect='false' or IsSelect is null ");
+            RefreshData(" where OrgCode='" + parentID + "'");// and IsSelect='false' or IsSelect is null ");
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
@@ -337,7 +341,7 @@ namespace Ebada.Scgl.Lcgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "'and IsSelect='false'or IsSelect is null ");
+                    RefreshData(" where OrgCode='" + value + "'");//and IsSelect='false'or IsSelect is null ");
                 }
             }
         }
