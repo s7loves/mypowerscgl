@@ -16,7 +16,8 @@ using System.Collections;
 using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmtestRecorddrqsyqkEdit : FormBase, IPopupFormEdit {
+    public partial class frmtestRecorddrqsyqkEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_yfsyjl> m_CityDic = new SortableSearchableBindingList<PJ_yfsyjl>();
         UCPopupLine popLine = new UCPopupLine();
 
@@ -38,8 +39,12 @@ namespace Ebada.Scgl.Lcgl
         {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where OrgCode=(select OrgCode from mOrg where OrgName='修造厂')");
+            comboBoxEdit15.Properties.Items.AddRange(list);
+            comboBoxEdit8.Properties.Items.AddRange(list);
 
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
@@ -59,7 +64,7 @@ namespace Ebada.Scgl.Lcgl
             this.comboBoxEdit12.DataBindings.Add("EditValue", rowData, "syjg");
             //this.comboBoxEdit11.DataBindings.Add("EditValue", rowData, "iswc");
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
-            switch (rowData.type )
+            switch (rowData.type)
             {
                 case "变压器":
                     labelControl3.Visible = true;
@@ -75,9 +80,9 @@ namespace Ebada.Scgl.Lcgl
                     break;
 
 
-            
+
             }
-           
+
             popLine.Bounds = lkueLine.Bounds;
             lkueLine.Hide();
             popLine.Parent = lkueLine.Parent;
@@ -117,8 +122,10 @@ namespace Ebada.Scgl.Lcgl
         #region IPopupFormEdit Members
         private PJ_yfsyjl rowData = null;
         //private PJ_yfsyjl rowData2 = null;
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 rowData.xlname = popLine.Text;
                 rowData.tqname = popTq.Text;
                 rowData.byqname = popByq.Text;
@@ -158,7 +165,7 @@ namespace Ebada.Scgl.Lcgl
             ComboBoxHelper.FillCBoxByDyk("预防性试验", "容量", comboBoxEdit4);
             comboBoxEdit6.Properties.Items.Clear();
             //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit6);
-            comboBoxEdit6.Properties.Items.AddRange( ComboBoxHelper.GetGdsRy(rowData.OrgCode));
+            comboBoxEdit6.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
             //comboBoxEdit9.Properties.Items.Clear();
             //ComboBoxHelper.FillCBoxByDyk("预防性试验", "落实人", comboBoxEdit9);
             comboBoxEdit8.Properties.Items.Clear();
@@ -199,7 +206,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -231,12 +239,12 @@ namespace Ebada.Scgl.Lcgl
             //}
         }
 
-       
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("预防性试验", "试验项目", memoEdit2);
-            rowData.syProject = memoEdit2.EditValue.ToString();  
+            rowData.syProject = memoEdit2.EditValue.ToString();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -287,7 +295,7 @@ namespace Ebada.Scgl.Lcgl
             //{
             //    Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
 
-            
+
             //}
             //rowData.xlname = popLine.Text;
             //rowData.tqname = popTq.Text;
@@ -347,16 +355,16 @@ namespace Ebada.Scgl.Lcgl
 
         }
 
-       
+
 
         private void lkueLine_EditValueChanged(object sender, EventArgs e)
         {
             ReSetSelectValue();
         }
-       
-     
 
-       
-      
+
+
+
+
     }
 }

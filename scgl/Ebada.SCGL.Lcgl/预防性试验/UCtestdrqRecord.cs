@@ -24,6 +24,7 @@ using Ebada.Scgl.Core;
 using Ebada.Components;
 using DevExpress.Utils;
 using System.Collections;
+using Ebada.Scgl.WFlow;
 
 namespace Ebada.Scgl.Lcgl
 {
@@ -33,7 +34,7 @@ namespace Ebada.Scgl.Lcgl
     [ToolboxItem(false)]
     public partial class UCtestdrqRecord : DevExpress.XtraEditors.XtraUserControl
     {
-        public  GridViewOperation<PJ_yfsyjl> gridViewOperation;
+        public GridViewOperation<PJ_yfsyjl> gridViewOperation;
 
         public event SendDataEventHandler<PJ_yfsyjl> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
@@ -53,7 +54,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 readOnly = value;
                 // btnOK.Visible = 
-                //liuchbarSubItem.Enabled = !value;
+                liuchbarSubItem.Enabled = !value;
                 btAdd.Enabled = !value;
                 btEdit.Enabled = !value;
                 btDelete.Enabled = !value;
@@ -94,7 +95,28 @@ namespace Ebada.Scgl.Lcgl
 
                 WorkFlowData = value;
 
+                if (isWorkflowCall)
+                {
+                    IList<WF_WorkTaskCommands> wtlist = MainHelper.PlatformSqlMap.GetList<WF_WorkTaskCommands>("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+                    foreach (WF_WorkTaskCommands wt in wtlist)
+                    {
+                        if (wt.CommandName == "01")
+                        {
+                            liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            SubmitButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                            SubmitButton.Caption = wt.Description;
+                        }
+                        else
+                            if (wt.CommandName == "02")
+                            {
+                                liuchbarSubItem.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                TaskOverButton.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+                                if (wt.Description != "") TaskOverButton.Caption = wt.Description;
+                            }
 
+                    }
+                }
             }
         }
 
@@ -122,7 +144,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterEdit(PJ_yfsyjl obj)
         {
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' ");
-        
+
         }
         void gridViewOperation_AfterDelete(PJ_yfsyjl obj)
         {
@@ -147,7 +169,7 @@ namespace Ebada.Scgl.Lcgl
             //}
             slqwhere = slqwhere + " order by xh";
             IList<PJ_yfsyjl> li = MainHelper.PlatformSqlMap.GetListByWhere<PJ_yfsyjl>(slqwhere);
-            int i=0;
+            int i = 0;
             List<PJ_yfsyjl> list = new List<PJ_yfsyjl>();
             int xh = -1;
             foreach (PJ_yfsyjl ob in li)
@@ -158,18 +180,18 @@ namespace Ebada.Scgl.Lcgl
                     xh = ob.xh;
                 }
                 ob.xh = i;
-               
-                list.Add(ob); 
+
+                list.Add(ob);
             }
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
             if (list.Count > 0)
             {
-                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray ());
+                SqlQueryObject obj3 = new SqlQueryObject(SqlQueryType.Update, list.ToArray());
                 list3.Add(obj3);
             }
 
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type  + "'   ");
+            RefreshData(" where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "'   ");
         }
 
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
@@ -223,7 +245,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _type = value;
-                if (_type != null )
+                if (_type != null)
                 {
                     switch (_type)
                     {
@@ -241,7 +263,7 @@ namespace Ebada.Scgl.Lcgl
 
                         case "电容器":
                             hideColumn("sbCapacity");
-                           
+
                             break;
                     }
                     RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' ");
@@ -249,10 +271,10 @@ namespace Ebada.Scgl.Lcgl
 
             }
         }
-       
+
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
         {
-            string slqwhere ="where xh='" + e.Value.xh + "'and type ='" + e.Value.type + "' ";
+            string slqwhere = "where xh='" + e.Value.xh + "'and type ='" + e.Value.type + "' ";
             //if (isWorkflowCall)
             //{
 
@@ -264,12 +286,12 @@ namespace Ebada.Scgl.Lcgl
             //}
             slqwhere = slqwhere + " order by CreateDate";
             IList<PJ_yfsyjl> li = Client.ClientHelper.PlatformSqlMap.GetList<PJ_yfsyjl>("SelectPJ_yfsyjlList", slqwhere);
-           if (li.Count == 2)
-           {
-               Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[0]);
-               Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[1]);
-           
-           }
+            if (li.Count == 2)
+            {
+                Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[0]);
+                Client.ClientHelper.PlatformSqlMap.Delete<PJ_yfsyjl>(li[1]);
+
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_yfsyjl> e)
@@ -282,7 +304,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 e.Value.type = _type;
                 e.Value.OrgCode = parentObj.OrgCode;
-                e.Value.OrgName = parentObj.OrgName; 
+                e.Value.OrgName = parentObj.OrgName;
             }
         }
         protected override void OnLoad(EventArgs e)
@@ -305,17 +327,17 @@ namespace Ebada.Scgl.Lcgl
         void btGdsList_EditValueChanged(object sender, EventArgs e)
         {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
-            mOrg org=null;
+            mOrg org = null;
             if (list.Count > 0)
                 org = list[0];
-            
+
             if (org != null)
             {
                 ParentObj = org;
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
-            
+
 
         }
         private void initImageList()
@@ -415,19 +437,20 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PJ_yfsyjl newobj)
         {
-            if ( parentID == null)
+            if (parentID == null)
             {
                 return;
             }
-            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); } catch { }
+            try { frmLP.ReadTaskData(newobj, RecordWorkFlowData, ParentTemple, CurrRecord); }
+            catch { }
 
             newobj.CreateDate = DateTime.Now;
-            newobj.planExpTime= DateTime.Now;
+            newobj.planExpTime = DateTime.Now;
             newobj.preExpTime = DateTime.Now;
 
 
 
-           
+
         }
         /// <summary>
         /// 父表ID
@@ -440,7 +463,7 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value) )
+                if (!string.IsNullOrEmpty(value))
                 {
                     RefreshData(" where OrgCode='" + value + "'  and type='" + _type + "'   ");
 
@@ -496,7 +519,104 @@ namespace Ebada.Scgl.Lcgl
                     export.ExportExceldrq(datalist, _type + "预防性试验记录", parentID);
                     break;
             }
-           
+
+        }
+
+        private void SubmitButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //frmModleSubmit fm = new frmModleSubmit();
+            //fm.RecordWorkFlowData = WorkFlowData;
+            //fm.CurrRecord = currRecord;
+            //if (currRecord.Status == "申报")
+            //    fm.Status = "add";
+            //else
+            //    fm.Status = "edit";
+            //fm.Kind = currRecord.Kind;
+            //Export11 export = new Export11();
+            //export.CurrRecord = currRecord;
+            //export.IsWorkflowCall = isWorkflowCall;
+            //export.ParentTemple = parentTemple;
+            //export.RecordWorkFlowData = WorkFlowData;
+            //if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+            //    export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", parentID, false);
+            //else
+            //    export.ExportExceljhbAllSubmit(ref parentTemple, "预防性试验", "设备预防性试验计划（总）表", "", false);
+            //fm.ParentTemple = parentTemple;
+            //if (fm.ShowDialog() == DialogResult.OK)
+            //{
+
+            //    if (MainHelper.UserOrg.OrgName.IndexOf("局") == -1)
+            //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+            //    else
+            //        export.ExportExceljhbAllSubmitToWF_ModleRecordWorkTaskIns(parentID);
+            //    gridControl1.FindForm().Close();
+            //}
+        }
+
+        private void TaskOverButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认此节点结束，并进入下一流程?") != DialogResult.OK)
+            {
+                //SendMessage(this.Handle, 0x0010, (IntPtr)0, (IntPtr)0);
+                return;
+            }
+            string strmes = "";
+
+            if (RecordWorkTask.CheckOnRiZhi(WorkFlowData))
+            {
+
+                RecordWorkTask.CreatRiZhi(WorkFlowData, null, currRecord.ID, new object[] { currRecord });
+
+            }
+            WF_WorkTaskCommands wt = (WF_WorkTaskCommands)MainHelper.PlatformSqlMap.GetObject("SelectWF_WorkTaskCommandsList", " where WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
+            if (wt != null)
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), wt.CommandName);
+            }
+            else
+            {
+                strmes = RecordWorkTask.RunWorkFlow(MainHelper.User.UserID, WorkFlowData.Rows[0]["OperatorInsId"].ToString(), WorkFlowData.Rows[0]["WorkTaskInsId"].ToString(), "提交");
+            }
+            if (strmes.IndexOf("未提交至任何人") > -1)
+            {
+                MsgBox.ShowTipMessageBox("未提交至任何人,创建失败,请检查流程模板和组织机构配置是否正确!");
+                return;
+            }
+            else
+                MsgBox.ShowTipMessageBox(strmes);
+            strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
+            if (strmes == "结束节点1")
+            {
+                currRecord.Status = "存档";
+            }
+            else
+            {
+                currRecord.Status = strmes;
+            }
+            currRecord.LastChangeTime = DateTime.Now.ToString();
+            if (currRecord.ImageAttachment == null) currRecord.ImageAttachment = new byte[0];
+            if (currRecord.SignImg == null) currRecord.SignImg = new byte[0];
+            MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
+            gridControl1.FindForm().Close();
+        }
+
+        private void liuchenBarClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string strmess = "";
+            //请求确认
+            if (MsgBox.ShowAskMessageBox("是否确认清除关联信息?") != DialogResult.OK)
+            {
+                return;
+            }
+            if (RecordWorkTask.DeleteModleRelationRecord(currRecord, WorkFlowData, ref strmess))
+            {
+                MsgBox.ShowTipMessageBox("清除成功");
+            }
+            else
+            {
+                MsgBox.ShowTipMessageBox("清除失败: " + strmess);
+            }
         }
     }
 }
