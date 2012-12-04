@@ -15,14 +15,16 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Lcgl
 {
-    public partial class frmCQCSSQKEdit : FormBase, IPopupFormEdit {
+    public partial class frmCQCSSQKEdit : FormBase, IPopupFormEdit
+    {
         SortableSearchableBindingList<PJ_cqcssqk> m_CityDic = new SortableSearchableBindingList<PJ_cqcssqk>();
 
         public frmCQCSSQKEdit()
         {
             InitializeComponent();
         }
-        void dataBind() {
+        void dataBind()
+        {
 
 
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "kzlr");
@@ -36,23 +38,29 @@ namespace Ebada.Scgl.Lcgl
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-           // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
+            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
 
         }
         #region IPopupFormEdit Members
         private PJ_cqcssqk rowData = null;
 
-        public object RowData {
-            get {
+        public object RowData
+        {
+            get
+            {
                 return rowData;
             }
-            set {
+            set
+            {
                 if (value == null) return;
-                if (rowData == null) {
+                if (rowData == null)
+                {
                     this.rowData = value as PJ_cqcssqk;
                     this.InitComboBoxData();
                     dataBind();
-                } else {
+                }
+                else
+                {
                     ConvertHelper.CopyTo<PJ_cqcssqk>(value as PJ_cqcssqk, rowData);
                 }
             }
@@ -60,7 +68,8 @@ namespace Ebada.Scgl.Lcgl
 
         #endregion
 
-        private void InitComboBoxData() {
+        private void InitComboBoxData()
+        {
             comboBoxEdit1.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "落实情况"));
@@ -91,15 +100,23 @@ namespace Ebada.Scgl.Lcgl
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
             string.Format("select nr from pj_dyk where  dx='春秋查内查发现问题及整改落实情况记录' and sx like '%{0}%' and nr!=''", "督办人"));
             if (strlist.Count > 0)
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
+            {
+                for (int i = 0; i < strlist.Count; i++)
+                {
+                    comboBoxEdit2.Properties.Items.Add(strlist[i]);
+                }
+            }
             else
             {
-                
+
                 comboBoxEdit2.Properties.Items.Add("全所职工");
                 comboBoxEdit2.Properties.Items.Add("所长");
                 strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
            string.Format("select UserName from mUser where 5=5    AND OrgCode IN ( select OrgCode from mOrg where 5=5  AND OrgName ='{0}' )", rowData.OrgName));
-                comboBoxEdit2.Properties.Items.AddRange(strlist);
+                for (int i = 0; i < strlist.Count; i++)
+                {
+                    comboBoxEdit2.Properties.Items.Add(strlist[i]);
+                }
 
             }
 
@@ -121,15 +138,15 @@ namespace Ebada.Scgl.Lcgl
 
 
 
-          
-           
-
-        
 
 
 
 
-         
+
+
+
+
+
         }
 
         /// <summary>
@@ -141,7 +158,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -195,12 +213,12 @@ namespace Ebada.Scgl.Lcgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-       
 
-       
+
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -212,7 +230,7 @@ namespace Ebada.Scgl.Lcgl
             SelectorHelper.SelectDyk("供电所春秋查实施情况记录", "记事", memoEdit2);
         }
 
-       
-      
+
+
     }
 }
