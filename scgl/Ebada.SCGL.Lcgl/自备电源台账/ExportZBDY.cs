@@ -113,7 +113,7 @@ namespace Ebada.Scgl.Lcgl
                 ex.SetCellValue(datalist[j].zdyLineName, row + j % rowcount, col + 4);
                 ex.SetCellValue(datalist[j].zdykgModle, row + j % rowcount, col + 5);
                 ex.SetCellValue(datalist[j].zbdytype, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].zdykgModle, row + j % rowcount, col + 7);
+                ex.SetCellValue(datalist[j].zbdyModle, row + j % rowcount, col + 7);
                 ex.SetCellValue(datalist[j].zbdyrl, row + j % rowcount, col + 8);
                 ex.SetCellValue(datalist[j].kgfs, row + j % rowcount, col + 9);
                 ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 10);
