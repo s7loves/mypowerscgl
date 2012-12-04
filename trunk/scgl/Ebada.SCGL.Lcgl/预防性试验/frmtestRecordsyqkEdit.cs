@@ -41,6 +41,10 @@ namespace Ebada.Scgl.Lcgl
         void dataBind() {
 
 
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where OrgCode=(select OrgCode from mOrg where OrgName='修造厂')");
+            comboBoxEdit7.Properties.Items.AddRange(list);
+            comboBoxEdit8.Properties.Items.AddRange(list);
+
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "sbInstallAdress");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "sbModle");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "sl");
@@ -107,7 +111,6 @@ namespace Ebada.Scgl.Lcgl
             this.popKg.DataBindings.Add("EditValue", rowData, "kgid");
             this.popKg.DisplayField = "kgName";
             this.popKg.ValueField = "kgID";
-
         }
         #region IPopupFormEdit Members
         private PJ_yfsyjl rowData = null;

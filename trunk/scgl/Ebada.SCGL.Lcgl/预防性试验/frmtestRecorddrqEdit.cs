@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Lcgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
 
 
-            
+
             spinEdit3.DataBindings.Add("EditValue", rowData, "syPeriod");
             //this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "charMan");
 
@@ -265,27 +265,36 @@ namespace Ebada.Scgl.Lcgl
             //PJ_yfsyjl ob = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PJ_yfsyjl>(rowData2.ID);
             //if (ob == null)
             ///{
-                //IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", 
-                //IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
-                //rowData2.xh = li.Count + 1;
-                //rowData.xh = rowData2.xh;
-                //owData.CreateDate = DateTime.Now;
-                //rowData2.CreateDate = rowData.CreateDate.AddSeconds(1);
-                //if (rowData.ID == rowData2.ID)
-                //{
+            //IList caplist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", 
+            //IList li = MainHelper.PlatformSqlMap.GetList("SelectOneInt", " select distinct xh from PJ_yfsyjl where  OrgCode='" + rowData2.OrgCode + "' and  type='" + rowData2.type + "'");
+            //rowData2.xh = li.Count + 1;
+            //rowData.xh = rowData2.xh;
+            //owData.CreateDate = DateTime.Now;
+            //rowData2.CreateDate = rowData.CreateDate.AddSeconds(1);
+            //if (rowData.ID == rowData2.ID)
+            //{
 
-                //    rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
-                //}
-                //Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
+            //    rowData2.ID = DateTime.Now.AddMilliseconds(1).ToString("yyyyMMddHHmmssffffff");
+            //}
+            //Client.ClientHelper.PlatformSqlMap.Create<PJ_yfsyjl>(rowData2);
 
-            
+
             //else
             //{
-                //Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
+            //Client.ClientHelper.PlatformSqlMap.Update<PJ_yfsyjl>(rowData2);
 
 
             //}
         }
+
+        #region 实验周期改变自动改变下次实验时间
+        private void spinEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            int next = Convert.ToInt32(spinEdit3.Value);
+            rowData.planExpTime = dateEdit3.DateTime.AddYears(next);
+            dateEdit2.EditValue = rowData.planExpTime;
+        }
+        #endregion
 
         //private void simpleButton2_Click(object sender, EventArgs e)
         //{
