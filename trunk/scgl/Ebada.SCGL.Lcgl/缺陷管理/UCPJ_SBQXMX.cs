@@ -270,6 +270,7 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("xcrq");
 
             hideColumn("xsr");
+            gridView1.Columns["xlqd"].Caption = "缺陷发生地点";
         }
 
 
