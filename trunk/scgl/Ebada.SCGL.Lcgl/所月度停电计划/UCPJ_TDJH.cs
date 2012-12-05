@@ -139,6 +139,9 @@ namespace Ebada.Scgl.Lcgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_tdjh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridView1.RowUpdated += new RowObjectEventHandler(gridView1_RowUpdated);
+            btjqx.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btqx.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btzdqx.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
@@ -278,15 +281,15 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere)
         {
-            if (isWorkflowCall)
-            {
-                if (slqwhere == "") slqwhere = " where 1=1";
-                slqwhere = slqwhere + " and id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
-                slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                   + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                   + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                   + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
-            }
+            //if (isWorkflowCall)
+            //{
+            //    if (slqwhere == "") slqwhere = " where 1=1";
+            //    slqwhere = slqwhere + " and id  in (select ModleRecordID from WF_ModleRecordWorkTaskIns where RecordID='" + CurrRecord.ID + "'";
+            //    slqwhere = slqwhere + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+            //       + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+            //       + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+            //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
+            //}
             slqwhere = slqwhere + " order by ID desc";
 
             gridViewOperation.RefreshData(slqwhere);
