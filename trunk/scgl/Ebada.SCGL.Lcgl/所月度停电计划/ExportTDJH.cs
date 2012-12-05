@@ -81,16 +81,16 @@ namespace Ebada.Scgl.Lcgl
             string fname = Application.StartupPath + "\\00记录模板\\所月度停电计划.xls";
             ex.Open(fname);
             string startday = "20";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
-            if (list.Count > 0)
-                startday=list[0].ToString();
+            //IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+            //    string.Format("select nr from pj_dyk where  dx='所月度停电计划' and sx like '%{0}%' and nr!=''", "申报截止日期"));
+            //if (list.Count > 0)
+            //    startday=list[0].ToString();
             string str = " where (TDtime between '" +dt.Year + "-"
                 + dt.Month + "-" + dt.Day
                 + " 00:00:00' and  '"
                 + dt2.Year + "-"
                 + dt2.Month + "-" + dt2.Day + " 23:59:59' ) ";
-            if (orgid != "") str += " and OrgCode='" + orgid + "'";
+            if (orgid != "") str += " and OrgCode='" + orgid + "' and IsSelect=1 ";
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                str
                 );
@@ -237,6 +237,10 @@ namespace Ebada.Scgl.Lcgl
                 }
             }
             DateTime dt2 = dt.AddMonths(1);
+            if (datalist.Count > 0) {
+                dt2 = datalist[0].TDtime;
+            }
+
             ex.SetCellValue(dt2.Year + "年" + (dt2.Month) + "月份配电设备停电检修计划表", 1, 1);
         
             for (int j = 0; j < datalist.Count; j++)
