@@ -13,11 +13,15 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using DevExpress.XtraTab;
 namespace Ebada.Scgl.Sbgl {
     public partial class frmtqEdit : FormBase, IPopupFormEdit {
         SortableSearchableBindingList<PS_tq> m_CityDic = new SortableSearchableBindingList<PS_tq>();
         private string gdsCode;
-
+        UCPS_TQSB ucps_tqsb;
+        UCPS_TQBYQ ucps_tqbyq;
+        UCPS_TQDLBH ucps_tqdlbh;
+        XtraTabPage tqsbTab, tqdlbhTab, byqTab;
         public string GdsCode {
             get { return gdsCode; }
             set { gdsCode = value; ComboBoxHelper.Fillgdsry(comboBoxEdit9, gdsCode); }
@@ -32,6 +36,39 @@ namespace Ebada.Scgl.Sbgl {
 
         public frmtqEdit() {
             InitializeComponent();
+            xtraTabControl1.SelectedPageChanged += new TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
+            comboBoxEdit5.EditValueChanged+=new EventHandler(comboBoxEdit5_EditValueChanged);
+        }
+
+        void xtraTabControl1_SelectedPageChanged(object sender, TabPageChangedEventArgs e) {
+            if (e.Page == tqsbTab) {
+                if (ucps_tqsb == null) {
+                    ucps_tqsb = new UCPS_TQSB();
+                    ucps_tqsb.Dock = DockStyle.Fill;
+
+                    ucps_tqsb.ParentObj = rowData;
+                    ucps_tqsb.HideList();
+                    ucps_tqsb.Parent = tqsbTab;
+                }
+            } else if (e.Page == tqdlbhTab) {
+                if (ucps_tqdlbh == null) {
+                    ucps_tqdlbh = new UCPS_TQDLBH();
+                    ucps_tqdlbh.Dock = DockStyle.Fill;
+
+                    ucps_tqdlbh.ParentObj = rowData;
+                    ucps_tqdlbh.HideList();
+                    ucps_tqdlbh.Parent = tqdlbhTab;
+                }
+            } else if (e.Page == byqTab) {
+                if (ucps_tqbyq == null) {
+                    ucps_tqbyq = new UCPS_TQBYQ();
+                    ucps_tqbyq.Dock = DockStyle.Fill;
+
+                    ucps_tqbyq.ParentObj = rowData;
+                    ucps_tqbyq.HideList();
+                    ucps_tqbyq.Parent = byqTab;
+                }
+            }
         }
         void dataBind() {
 
@@ -97,6 +134,14 @@ namespace Ebada.Scgl.Sbgl {
                     isnew = true;
             }
         }
+        bool showTab2 = false;
+
+        public bool ShowTab2 {
+            get { return showTab2; }
+            set {
+                showTab2 = value;
+            }
+        }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e); simpleButton1.Show();
             if ("rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(MainHelper.User.UserName) && !isnew) {
@@ -107,6 +152,22 @@ namespace Ebada.Scgl.Sbgl {
                 //simpleButton1.Hide();
                 simpleButton3.Hide();
                 simpleButton4.Hide();
+            }
+        }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            if (showTab2) {
+                if (tqsbTab == null) {
+                    byqTab = new XtraTabPage();
+                    byqTab.Text = "变压器";
+                    xtraTabControl1.TabPages.Add(byqTab);
+                    tqdlbhTab = new XtraTabPage();
+                    tqdlbhTab.Text = "电流动作保护器";
+                    xtraTabControl1.TabPages.Add(tqdlbhTab);
+                    tqsbTab = new XtraTabPage();
+                    tqsbTab.Text = "其它设备";
+                    xtraTabControl1.TabPages.Add(tqsbTab);
+                }
             }
         }
         #endregion
