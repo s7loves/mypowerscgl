@@ -4,6 +4,7 @@ using System.Text;
 using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
+using System.IO;
 namespace Ebada.Scgl.Yxgl
 {
     /// <summary>
@@ -21,7 +22,14 @@ namespace Ebada.Scgl.Yxgl
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
-
+            if (obj.BigData.Length > 10) {
+                fname = Path.GetTempPath() + "23配电线路产权维护范围协议书.xls";
+                //MemoryStream ms = new MemoryStream(obj.BigData);
+                FileStream fs = new FileStream(fname, FileMode.OpenOrCreate);
+                fs.Write(obj.BigData, 0, obj.BigData.Length);
+                fs.Flush();
+                fs.Close();
+            }
             ex.Open(fname);
             ex.SetCellValue(obj.jf+":", 5, 4);
             ex.SetCellValue(obj.xybh, 4, 8);
