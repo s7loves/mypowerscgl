@@ -130,24 +130,22 @@ namespace Ebada.Scgl.Lcgl
         private void frm26Template_Load(object sender, EventArgs e)
         {
             initcomment();
-            string fname = filepath + Guid.NewGuid().ToString() + ".xls";
+            string fname = Path.GetTempFileName() + ".xls"; ;
             filename = fname;
             fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
-            if (pjobject.BigData==null)
-            {
-                dsoFramerControl1.FileOpen(fname);
-            }
-            else
-            {
-                if (pjobject.BigData.Length!=0)
-                {
+            //string temp = Path.GetTempFileName()+".xls";
+            File.Copy(fname, filename);
+            if (pjobject.BigData == null) {
+                dsoFramerControl1.FileOpen(filename);
+
+            } else {
+                if (pjobject.BigData.Length != 0) {
                     dsoFramerControl1.FileData = pjobject.BigData;
-                }
-                else
-                {
-                    dsoFramerControl1.FileOpen(fname);
+                } else {
+                    dsoFramerControl1.FileOpen(filename);
                 }
             }
+            filename = dsoFramerControl1.AxFramerControl.DocumentFullName;
         }
         private void initcomment()
         {
