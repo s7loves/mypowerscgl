@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PS_kgjctj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="PS_kgjctj"  type="Ebada.Scgl.Model.PS_kgjctj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="PS_kgjctj_AllColumns" class="PS_kgjctj">
+        <result property="ID" column="ID" />
+        <result property="kgID" column="kgID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="pdcxmc" column="pdcxmc" />
+        <result property="xdfw" column="xdfw" />
+        <result property="kgModel" column="kgModel" />
+        <result property="iscxkg" column="iscxkg" />
+        <result property="kgCode" column="kgCode" />
+        <result property="jkdxcd" column="jkdxcd" />
+        <result property="dlxlcd" column="dlxlcd" />
+        <result property="publicusercount" column="publicusercount" />
+        <result property="publicbtcount" column="publicbtcount" />
+        <result property="publicbtrlcount" column="publicbtrlcount" />
+        <result property="zyusercount" column="zyusercount" />
+        <result property="zybtcount" column="zybtcount" />
+        <result property="zybtrlcount" column="zybtrlcount" />
+        <result property="sdyusercount" column="sdyusercount" />
+        <result property="sdyrlcount" column="sdyrlcount" />
+        <result property="zyuserqtsbcount" column="zyuserqtsbcount" />
+        <result property="drqcount" column="drqcount" />
+        <result property="drqrl" column="drqrl" />
+        <result property="zyuserqtsbrlcount" column="zyuserqtsbrlcount" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectPS_kgjctjList" resultMap="PS_kgjctj_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [CreateTime],
+         [pdcxmc],
+         [xdfw],
+         [kgModel],
+         [iscxkg],
+         [kgCode],
+         [jkdxcd],
+         [dlxlcd],
+         [publicusercount],
+         [publicbtcount],
+         [publicbtrlcount],
+         [zyusercount],
+         [zybtcount],
+         [zybtrlcount],
+         [sdyusercount],
+         [sdyrlcount],
+         [zyuserqtsbcount],
+         [drqcount],
+         [drqrl],
+         [zyuserqtsbrlcount]
+          FROM PS_kgjctj
+          $value$
+   </select>
+   
+   <select id="SelectPS_kgjctjByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [CreateTime],
+         [pdcxmc],
+         [xdfw],
+         [kgModel],
+         [iscxkg],
+         [kgCode],
+         [jkdxcd],
+         [dlxlcd],
+         [publicusercount],
+         [publicbtcount],
+         [publicbtrlcount],
+         [zyusercount],
+         [zybtcount],
+         [zybtrlcount],
+         [sdyusercount],
+         [sdyrlcount],
+         [zyuserqtsbcount],
+         [drqcount],
+         [drqrl],
+         [zyuserqtsbrlcount]
+          FROM PS_kgjctj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="pdcxmc">[pdcxmc]='$pdcxmc$'</isNotNull>
+       <isNotNull prepend="AND" property="xdfw">[xdfw]='$xdfw$'</isNotNull>
+       <isNotNull prepend="AND" property="kgModel">[kgModel]='$kgModel$'</isNotNull>
+       <isNotNull prepend="AND" property="iscxkg">[iscxkg]='$iscxkg$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCode">[kgCode]='$kgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jkdxcd">[jkdxcd]='$jkdxcd$'</isNotNull>
+       <isNotNull prepend="AND" property="dlxlcd">[dlxlcd]='$dlxlcd$'</isNotNull>
+       <isNotNull prepend="AND" property="publicusercount">[publicusercount]='$publicusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="publicbtcount">[publicbtcount]='$publicbtcount$'</isNotNull>
+       <isNotNull prepend="AND" property="publicbtrlcount">[publicbtrlcount]='$publicbtrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zyusercount">[zyusercount]='$zyusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="zybtcount">[zybtcount]='$zybtcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zybtrlcount">[zybtrlcount]='$zybtrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="sdyusercount">[sdyusercount]='$sdyusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="sdyrlcount">[sdyrlcount]='$sdyrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zyuserqtsbcount">[zyuserqtsbcount]='$zyuserqtsbcount$'</isNotNull>
+       <isNotNull prepend="AND" property="drqcount">[drqcount]='$drqcount$'</isNotNull>
+       <isNotNull prepend="AND" property="drqrl">[drqrl]='$drqrl$'</isNotNull>
+       <isNotNull prepend="AND" property="zyuserqtsbrlcount">[zyuserqtsbrlcount]='$zyuserqtsbrlcount$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectPS_kgjctjByKey" resultMap="PS_kgjctj_AllColumns" parameterClass="PS_kgjctj">
+         SELECT 
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [CreateTime],
+         [pdcxmc],
+         [xdfw],
+         [kgModel],
+         [iscxkg],
+         [kgCode],
+         [jkdxcd],
+         [dlxlcd],
+         [publicusercount],
+         [publicbtcount],
+         [publicbtrlcount],
+         [zyusercount],
+         [zybtcount],
+         [zybtrlcount],
+         [sdyusercount],
+         [sdyrlcount],
+         [zyuserqtsbcount],
+         [drqcount],
+         [drqrl],
+         [zyuserqtsbrlcount]
+         FROM PS_kgjctj
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeletePS_kgjctj" parameterClass="PS_kgjctj">
+        DELETE FROM 
+         PS_kgjctj
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeletePS_kgjctjByWhere" parameterClass="string">
+     delete from PS_kgjctj $value$
+   </delete>
+   
+   <delete id="DeletePS_kgjctjByKey" parameterClass="string">
+        DELETE FROM 
+         PS_kgjctj
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdatePS_kgjctj" parameterClass="PS_kgjctj" resultClass="int">
+          UPDATE PS_kgjctj
+           SET
+             [kgID]=#kgID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [CreateTime]=#CreateTime#,
+             [pdcxmc]=#pdcxmc#,
+             [xdfw]=#xdfw#,
+             [kgModel]=#kgModel#,
+             [iscxkg]=#iscxkg#,
+             [kgCode]=#kgCode#,
+             [jkdxcd]=#jkdxcd#,
+             [dlxlcd]=#dlxlcd#,
+             [publicusercount]=#publicusercount#,
+             [publicbtcount]=#publicbtcount#,
+             [publicbtrlcount]=#publicbtrlcount#,
+             [zyusercount]=#zyusercount#,
+             [zybtcount]=#zybtcount#,
+             [zybtrlcount]=#zybtrlcount#,
+             [sdyusercount]=#sdyusercount#,
+             [sdyrlcount]=#sdyrlcount#,
+             [zyuserqtsbcount]=#zyuserqtsbcount#,
+             [drqcount]=#drqcount#,
+             [drqrl]=#drqrl#,
+             [zyuserqtsbrlcount]=#zyuserqtsbrlcount#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertPS_kgjctj" parameterClass="PS_kgjctj">
+        INSERT INTO PS_kgjctj
+         (
+         [ID],
+         [kgID],
+         [OrgCode],
+         [OrgName],
+         [CreateTime],
+         [pdcxmc],
+         [xdfw],
+         [kgModel],
+         [iscxkg],
+         [kgCode],
+         [jkdxcd],
+         [dlxlcd],
+         [publicusercount],
+         [publicbtcount],
+         [publicbtrlcount],
+         [zyusercount],
+         [zybtcount],
+         [zybtrlcount],
+         [sdyusercount],
+         [sdyrlcount],
+         [zyuserqtsbcount],
+         [drqcount],
+         [drqrl],
+         [zyuserqtsbrlcount]
+         )
+       VALUES
+         (
+         #ID#,
+         #kgID#,
+         #OrgCode#,
+         #OrgName#,
+         #CreateTime#,
+         #pdcxmc#,
+         #xdfw#,
+         #kgModel#,
+         #iscxkg#,
+         #kgCode#,
+         #jkdxcd#,
+         #dlxlcd#,
+         #publicusercount#,
+         #publicbtcount#,
+         #publicbtrlcount#,
+         #zyusercount#,
+         #zybtcount#,
+         #zybtrlcount#,
+         #sdyusercount#,
+         #sdyrlcount#,
+         #zyuserqtsbcount#,
+         #drqcount#,
+         #drqrl#,
+         #zyuserqtsbrlcount#
+         )
+
+   </insert>
+   
+   <select id="GetPS_kgjctjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM PS_kgjctj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="kgID">[kgID]='$kgID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="pdcxmc">[pdcxmc]='$pdcxmc$'</isNotNull>
+       <isNotNull prepend="AND" property="xdfw">[xdfw]='$xdfw$'</isNotNull>
+       <isNotNull prepend="AND" property="kgModel">[kgModel]='$kgModel$'</isNotNull>
+       <isNotNull prepend="AND" property="iscxkg">[iscxkg]='$iscxkg$'</isNotNull>
+       <isNotNull prepend="AND" property="kgCode">[kgCode]='$kgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jkdxcd">[jkdxcd]='$jkdxcd$'</isNotNull>
+       <isNotNull prepend="AND" property="dlxlcd">[dlxlcd]='$dlxlcd$'</isNotNull>
+       <isNotNull prepend="AND" property="publicusercount">[publicusercount]='$publicusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="publicbtcount">[publicbtcount]='$publicbtcount$'</isNotNull>
+       <isNotNull prepend="AND" property="publicbtrlcount">[publicbtrlcount]='$publicbtrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zyusercount">[zyusercount]='$zyusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="zybtcount">[zybtcount]='$zybtcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zybtrlcount">[zybtrlcount]='$zybtrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="sdyusercount">[sdyusercount]='$sdyusercount$'</isNotNull>
+       <isNotNull prepend="AND" property="sdyrlcount">[sdyrlcount]='$sdyrlcount$'</isNotNull>
+       <isNotNull prepend="AND" property="zyuserqtsbcount">[zyuserqtsbcount]='$zyuserqtsbcount$'</isNotNull>
+       <isNotNull prepend="AND" property="drqcount">[drqcount]='$drqcount$'</isNotNull>
+       <isNotNull prepend="AND" property="drqrl">[drqrl]='$drqrl$'</isNotNull>
+       <isNotNull prepend="AND" property="zyuserqtsbrlcount">[zyuserqtsbrlcount]='$zyuserqtsbrlcount$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetPS_kgjctjRowCount" parameterClass="string">
+    select count(*) from PS_kgjctj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

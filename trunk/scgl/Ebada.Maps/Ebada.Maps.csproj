@@ -395,6 +395,9 @@
     <EmbeddedResource Include="PJ_21dyjcdcbkchild.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PS_kgjctj.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
