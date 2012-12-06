@@ -526,6 +526,7 @@ namespace TLMapPlatform {
             if (tq == null) return;
             frmtqEdit dlg = new frmtqEdit();
             dlg.RowData = tq;
+            dlg.ShowTab2 = true;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 Application.DoEvents();
                 Ebada.Client.ClientHelper.PlatformSqlMap.Update<PS_tq>(dlg.RowData);
