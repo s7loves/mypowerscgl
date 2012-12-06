@@ -145,6 +145,8 @@ namespace Ebada.Scgl.Lcgl
         #endregion
         private void IniControlStatus()
         {
+           var orgUser = ComboBoxHelper.GetGdsRy(MainHelper.UserOrg.OrgCode);
+           comboBoxEdit16.Properties.Items.AddRange(orgUser);
             simpleButton1.Enabled = false;
             switch (recordStatus)
             {
@@ -189,8 +191,8 @@ namespace Ebada.Scgl.Lcgl
                     break;
                 case 3:     //供电所人员修改
                     ///系统管理员
-                    IList count = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select username from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName='系统管理员'))");
-                    if (count.Count > 0)
+                    IList count = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select usercode from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName='系统管理员'))");
+                    if (count.Count > 0 && count.Contains(MainHelper.User.UserCode))
                     {
                         memoEdit4.Properties.ReadOnly = false;
                         groupBox7.Enabled = true;

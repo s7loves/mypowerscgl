@@ -190,7 +190,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.OrgName = obj.OrgName;
                             mx.LineID = "01";
                             mx.LineName = obj.sbInstallAdress;
-                            mx.xlqd = obj.sbModle;
+                            mx.xlqd = obj.sbInstallAdress;
                             mx.xssj = obj.sjExpTime;
                             mx.xsr = obj.syMan;
                             mx.qxly = "变压器预防性试验实施情况记录";
@@ -232,7 +232,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.OrgName = obj.OrgName;
                             mx.LineID = "02";
                             mx.LineName = obj.sbInstallAdress;
-                            mx.xlqd = obj.sbModle;
+                            mx.xlqd = obj.sbInstallAdress;
                             mx.xssj = obj.sjExpTime;
                             mx.xsr = obj.syMan;
                             mx.qxly = "断路器预防性试验实施情况记录";
@@ -275,7 +275,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.OrgName = obj.OrgName;
                             mx.LineID = "03";
                             mx.LineName = obj.sbInstallAdress;
-                            mx.xlqd = obj.sbModle;
+                            mx.xlqd = obj.sbInstallAdress;
                             mx.xssj = obj.sjExpTime;
                             mx.xsr = obj.syMan;
                             mx.qxly = "避雷器预防性试验实施情况记录";
@@ -325,7 +325,7 @@ namespace Ebada.Scgl.Lcgl
                             mx.OrgName = obj.OrgName;
                             mx.LineID = "04";
                             mx.LineName = obj.sbInstallAdress;
-                            mx.xlqd = obj.sbModle;
+                            mx.xlqd = obj.sbInstallAdress;
                             mx.xssj = obj.sjExpTime;
                             mx.xsr = obj.syMan;
                             mx.qxly = "电容器预防性试验实施情况记录";

@@ -244,7 +244,7 @@ namespace Ebada.Scgl.Lcgl
             {
                 gridView1.Columns[i].OptionsColumn.AllowEdit = false;
             }
-
+            gridView1.Columns["xlqd"].Caption = "缺陷发生地点";
             hideColumn("OrgCode");
             hideColumn("LineID");
             hideColumn("gzrjID");

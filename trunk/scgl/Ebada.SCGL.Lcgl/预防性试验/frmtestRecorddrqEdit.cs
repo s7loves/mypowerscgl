@@ -229,6 +229,13 @@ namespace Ebada.Scgl.Lcgl
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
             InitComboBoxData();
+
+            if (rowData.type == "电容器")
+            {
+                comboBoxEdit1.Properties.Items.Clear();
+                IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select xh from PS_sbcs where mc='电容器' and parentid='98001' and bh='98'");
+                comboBoxEdit1.Properties.Items.AddRange(list);
+            }
         }
 
 
