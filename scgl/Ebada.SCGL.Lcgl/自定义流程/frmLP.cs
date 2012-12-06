@@ -313,29 +313,30 @@ namespace Ebada.Scgl.Lcgl
         void OpenFile(string keystr)
         {
             //lgm20121103
-            if (linkdic.ContainsKey(keystr))
-            {
+            if (linkdic.ContainsKey(keystr)) {
+                
                 openflie f1 = linkdic[keystr];
-                if (f1.Type == 2)
-                {
-                    //打开24个工作簿
-                    try
-                    {
-                        mModule mdtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(f1.Path);
-                        OpenModule(mdtemp);
+
+                if (keystr == "低压线路完好率及台区网络图") {
+                    MsgBox.ShowWarningMessageBox(keystr+ " 不能在此处打开，请从26种记录薄中进入！" );
+                }else if(keystr=="电力线路防护通知书"){
+                    MsgBox.ShowWarningMessageBox(keystr + " 不能在此处打开，请从26种记录薄中进入！");
+                } else {
+                    if (f1.Type == 2) {
+                        //打开24个工作簿
+                        try {
+                            mModule mdtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(f1.Path);
+                            OpenModule(mdtemp);
+                        } catch (Exception) {
+
+
+                        }
+
+                    } else {
+                        //打开文件夹
+                        System.Diagnostics.Process.Start(GetFileName(f1.Path));
+
                     }
-                    catch (Exception)
-                    {
-
-
-                    }
-
-                }
-                else
-                {
-                    //打开文件夹
-                    System.Diagnostics.Process.Start(GetFileName(f1.Path));
-
                 }
             }
         }
@@ -343,40 +344,32 @@ namespace Ebada.Scgl.Lcgl
         {
 
             object instance = null;//模块接口
-
-            try
-            {
+            //this.WindowState = FormWindowState.Minimized;
+            try {
                 object result = null;
                 if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
                     result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-                else
-                {
-                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries), null, ref instance);
+                else {
+                    result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
                 }
-                if (result is UserControl)
-                {
+                if (result is UserControl) {
                     instance = showControl(result as UserControl, obj.Modu_ID, obj.ModuName);
                 }
-                if (instance is Form)
-                {
+                if (instance is Form) {
                     Form fb = instance as Form;
                     fb.Visible = false;
                     fb.Text = obj.ModuName;
-                    fb.Size = new Size(600, 400);
+                    fb.Size = new Size(800, 600);
                     fb.StartPosition = FormStartPosition.CenterScreen;
                     fb.ShowDialog();
                 }
                 this.Cursor = Cursors.Default;
 
-            }
-            catch (Exception err)
-            {
+            } catch (Exception err) {
                 this.Cursor = Cursors.Default;
                 MsgBox.ShowException(err);
-            }
-            finally
-            {
-
+            } finally {
+                //this.WindowState = FormWindowState.Normal;
             }
         }
         /// <summary>
@@ -388,7 +381,7 @@ namespace Ebada.Scgl.Lcgl
         {
             FormBase dlg = new FormBase();
             dlg.Text = text;
-            dlg.Size = new Size(600, 400);
+            dlg.Size = new Size(800, 600);
             dlg.StartPosition = FormStartPosition.CenterScreen;
             if (!string.IsNullOrEmpty(moduID))
             {
@@ -398,7 +391,7 @@ namespace Ebada.Scgl.Lcgl
             }
             dlg.Controls.Add(uc);
             uc.Dock = DockStyle.Fill;
-            dlg.ShowDialog();
+            //dlg.ShowDialog();
             return dlg;
         }
         protected void Workbook_SheetDeactivate(object Sh)
