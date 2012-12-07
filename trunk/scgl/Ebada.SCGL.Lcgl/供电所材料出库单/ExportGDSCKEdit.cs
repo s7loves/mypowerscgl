@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Lcgl
             ex.SetCellValue(shengjibanzhang, 47, 6);
             ex.SetCellValue(jingbanren, 47, 8);
 
-            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where OrgCode='" + orgCode + "' and type='出库' and ckdate >= '" + enterTime + "'");
+            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where OrgCode='" + orgCode + "' and type='出库' and ckdate >= '" + enterTime + "' order by ckdate desc,wpmc");
 
             #region 开始导出
             //此处写填充内容代码

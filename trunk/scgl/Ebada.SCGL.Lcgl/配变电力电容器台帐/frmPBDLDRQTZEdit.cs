@@ -82,7 +82,7 @@ namespace Ebada.Scgl.Lcgl
             //填充下拉列表数据
             comboBoxEdit3.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
+            string.Format("select replace(nr,'KV','') from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
             comboBoxEdit3.Properties.Items.AddRange(strlist);
 
             comboBoxEdit5.Properties.Items.Clear();

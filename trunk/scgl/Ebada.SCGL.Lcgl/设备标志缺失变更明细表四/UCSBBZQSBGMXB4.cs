@@ -258,11 +258,10 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("OrgCode");
             hideColumn("OrgName");
-            hideColumn("S1");
             hideColumn("S2");
             hideColumn("S3");
 
-           
+            gridView1.Columns["S1"].Caption = "低压标志数量";
         }
         /// <summary>
         /// 刷新数据

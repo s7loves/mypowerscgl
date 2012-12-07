@@ -160,7 +160,7 @@
             0,
             0,
             0});
-            this.spinEdit2.Location = new System.Drawing.Point(90, 49);
+            this.spinEdit2.Location = new System.Drawing.Point(89, 49);
             this.spinEdit2.Name = "spinEdit2";
             this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -186,6 +186,7 @@
             this.spinEdit1.Properties.Mask.EditMask = "####.##";
             this.spinEdit1.Size = new System.Drawing.Size(137, 21);
             this.spinEdit1.TabIndex = 22;
+            this.spinEdit1.EditValueChanged += new System.EventHandler(this.spinEdit1_EditValueChanged);
             // 
             // simpleButton1
             // 

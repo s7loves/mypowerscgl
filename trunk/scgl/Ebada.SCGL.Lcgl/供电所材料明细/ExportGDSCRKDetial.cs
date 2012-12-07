@@ -116,7 +116,7 @@ namespace Ebada.Scgl.Lcgl
 
             ex.SetCellValue(orgname, 3, 3);
 
-            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where orgcode='" + orgCode + "'");
+            IList<PJ_gdscrk> datalist = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(" where orgcode='" + orgCode + "' order by wpmc,indate");
 
             if (datalist.Count <= 0)
             {

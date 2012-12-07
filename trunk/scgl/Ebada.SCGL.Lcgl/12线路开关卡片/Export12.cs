@@ -9,7 +9,67 @@ namespace Ebada.Scgl.Lcgl {
     /// 使用ExcelAccess生成Excel文档
     /// 文档
     /// </summary>
-    public class Export12  {
+    public class Export12
+    {
+        public static void ExportExcel10KV(IList<PS_kgjctj> datalist)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\10KV用户供电可靠性基础数据统计表.xls";
+            ex.Open(fname);
+
+            int rowcount = 1;
+            if (datalist.Count < 1) return;
+            string tablename = "10KV用户供电可靠性基础数据统计表";
+            if (tablename.Length > 30)
+            {
+                tablename = tablename.Substring(tablename.Length - 31);
+            }
+            //
+            //加页
+            int pageindex = datalist.Count;
+
+            for (int j = 1; j < pageindex; j++)
+            {
+                ex.CopySheet(1, j);
+                ex.ReNameWorkSheet(j + 1, tablename + "(" + (j) + ")");
+            }
+            for (int j = 0; j < datalist.Count; j++)
+            {
+                if (j == 0)
+                {
+                    ex.ActiveSheet(tablename);
+                }
+                else
+                {
+                    ex.ActiveSheet(tablename + "(" + j + ")");
+                }
+                // 填值
+                ex.SetCellValue(datalist[j].OrgName, 3, 2);
+                ex.SetCellValue(datalist[j].CreateTime.ToString("yyyy年MM月dd日"), 5, 9);
+                ex.SetCellValue(datalist[j].kgModel, 5, 2);
+                ex.SetCellValue(datalist[j].iscxkg == true ? "是" : "否", 5, 7);
+                ex.SetCellValue(datalist[j].kgCode, 5, 9);
+                ex.SetCellValue(datalist[j].jkdxcd, 10, 2);
+                ex.SetCellValue(datalist[j].dlxlcd, 10, 7);
+                ex.SetCellValue(datalist[j].publicusercount.ToString(), 11, 2);
+                ex.SetCellValue(datalist[j].publicbtcount.ToString(), 11, 5);
+                ex.SetCellValue(datalist[j].publicbtrlcount.ToString(), 11, 9);
+                ex.SetCellValue(datalist[j].zyusercount.ToString(), 12, 2);
+                ex.SetCellValue(datalist[j].zybtcount.ToString(), 12, 5);
+                ex.SetCellValue(datalist[j].zybtrlcount.ToString(), 12, 9);
+
+                ex.SetCellValue(datalist[j].sdyusercount.ToString(), 13, 2);
+                ex.SetCellValue(datalist[j].sdyrlcount.ToString(), 13, 5);
+                ex.SetCellValue(datalist[j].zyuserqtsbcount.ToString(), 13, 9);
+
+                ex.SetCellValue(datalist[j].drqcount.ToString(), 14, 2);
+                ex.SetCellValue(datalist[j].drqrl, 14, 5);
+                ex.SetCellValue(datalist[j].zyuserqtsbrlcount.ToString(), 14, 9);
+            }
+            ex.ActiveSheet(tablename);
+            ex.ShowExcel();
+        }
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>

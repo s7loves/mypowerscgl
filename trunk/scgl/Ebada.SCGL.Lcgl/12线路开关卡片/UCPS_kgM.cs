@@ -22,6 +22,8 @@ namespace Ebada.Scgl.Lcgl
             ucpJ_12kgbd1.HideList();
             ucpJ_12kgjx1.HideList();
             ucpJ_12kgsy1.HideList();
+            ucpJ_12kgtj1.HideList();
+            ucpJ_12kgtj1.HideList();
         }
 
         private bool isWorkflowCall = false;
@@ -44,8 +46,9 @@ namespace Ebada.Scgl.Lcgl
                 ucpS_kg1.ReadOnly = value;
                 ucpJ_12kgbd1.ReadOnly = value;
                 ucpJ_12kgjx1.ReadOnly = value;
-                ucpJ_12kgsy1.ReadOnly = value; 
-
+                ucpJ_12kgsy1.ReadOnly = value;
+                ucpJ_12kgtj1.ReadOnly = value;
+                ucpJ_12kgtj1.ReadOnly = value;
             }
         }
 
@@ -62,6 +65,8 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.ParentTemple = value;
                 ucpJ_12kgjx1.ParentTemple = value;
                 ucpJ_12kgsy1.ParentTemple = value;
+                ucpJ_12kgtj1.ParentTemple = value;
+                ucpJ_12kgtj1.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -74,8 +79,8 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.IsWorkflowCall = value;
                 ucpJ_12kgjx1.IsWorkflowCall = value;
                 ucpJ_12kgsy1.IsWorkflowCall = value;
-
-
+                ucpJ_12kgtj1.IsWorkflowCall = value;
+                ucpJ_12kgtj1.IsWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -88,7 +93,8 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.CurrRecord = value;
                 ucpJ_12kgjx1.CurrRecord = value;
                 ucpJ_12kgsy1.CurrRecord = value;
-
+                ucpJ_12kgtj1.CurrRecord = value;
+                ucpJ_12kgtj1.CurrRecord = value;
             }
         }
 
@@ -105,6 +111,8 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.RecordWorkFlowData = value;
                 ucpJ_12kgjx1.RecordWorkFlowData = value;
                 ucpJ_12kgsy1.RecordWorkFlowData = value;
+                ucpJ_12kgtj1.RecordWorkFlowData = value;
+                ucpJ_12kgtj1.RecordWorkFlowData = value;
             }
         }
         public string VarDbTableName
@@ -117,6 +125,8 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.VarDbTableName = value;
                 ucpJ_12kgjx1.VarDbTableName = value;
                 ucpJ_12kgsy1.VarDbTableName = value;
+                ucpJ_12kgtj1.VarDbTableName = value;
+                ucpJ_12kgtj1.VarDbTableName = value;
             }
         }
 
@@ -124,6 +134,7 @@ namespace Ebada.Scgl.Lcgl
             ucpJ_12kgbd1.ParentObj = obj;
             ucpJ_12kgjx1.ParentObj = obj;
             ucpJ_12kgsy1.ParentObj = obj;
+            ucpJ_12kgtj1.ParentObj = obj;
         }
 
         void ucpS_kg1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_kg obj)
@@ -131,6 +142,7 @@ namespace Ebada.Scgl.Lcgl
             ucpJ_12kgbd1.PSObj = obj;
             ucpJ_12kgjx1.PSObj = obj;
             ucpJ_12kgsy1.PSObj = obj;
+            ucpJ_12kgtj1.PSObj = obj;
         }
 
        

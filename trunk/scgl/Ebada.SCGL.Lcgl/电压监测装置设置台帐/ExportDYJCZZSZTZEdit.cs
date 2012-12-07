@@ -189,13 +189,22 @@ namespace Ebada.Scgl.Lcgl
         }
         public void ExportExcel(ExcelAccess ex, IList<PJ_dyjczzsztz> datalist)
         {
+            if (datalist == null || datalist.Count == 0)
+            {
+                return;
+            }
             //此处写填充内容代码
             int row = 5;
             int col = 1;
             int rowcount = 18;
 
-            //
-
+            string dwname = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 nr from pj_dyk where  dx='公用属性' and sx like '%单位名称%' and nr!=''");
+            ex.SetCellValue(dwname, 3, 3);
+            string suozhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + datalist[0].OrgCode + "' and PostName='所长'");
+            ex.SetCellValue("审核人：" + suozhang, 23,1);
+            string shengjibanzhang = (string)ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 UserName from mUser where OrgCode='" + datalist[0].OrgCode + "' and PostName='生技班长'");
+            ex.SetCellValue("制表人：" + shengjibanzhang, 23, 3);
+            ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 23, 8);
             //加页
             int pageindex = 1;
             if (pageindex < Ecommon.GetPagecount(datalist.Count, rowcount))
