@@ -647,20 +647,20 @@ namespace Ebada.Scgl.Lcgl
                 {
                     if (Convert.ToDateTime(barStarTime.EditValue.ToString()) <= Convert.ToDateTime(barEndTime.EditValue.ToString()))
                     {
-                        _sql += " and indate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 10) + time + "'";
+                        _sql += " and ckdate between '" + barStarTime.EditValue + "' and '" + barEndTime.EditValue.ToString().Substring(0, 10) + time + "'";
                     }
                     else
                     {
-                        _sql += " and indate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 10) + time + "'";
+                        _sql += " and ckdate between '" + barEndTime.EditValue + "' and '" + barStarTime.EditValue.ToString().Substring(0, 10) + time + "'";
                     }
                 }
                 else if (barStarTime.EditValue != null && barEndTime.EditValue == null)
                 {
-                    _sql += " and indate >= '" + barStarTime.EditValue + "'";
+                    _sql += " and ckdate >= '" + barStarTime.EditValue + "'";
                 }
                 else if (barStarTime.EditValue == null && barEndTime.EditValue != null)
                 {
-                    _sql += "and indate <= '" + barEndTime.EditValue + "'";
+                    _sql += "and ckdate <= '" + barEndTime.EditValue + "'";
                 }
             }
             catch
@@ -669,7 +669,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by ID desc,wpmc";
+            sql += " order by ckdate desc,wpmc";
             gridViewOperation.RefreshData(sql);
             expotSQL = sql;
         }

@@ -658,7 +658,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by ID desc, wpmc";
+            sql += " order by wpmc,ckdate desc";
             IList<PJ_gdscrk> list = ClientHelper.PlatformSqlMap.GetList<PJ_gdscrk>(sql);
             foreach (PJ_gdscrk item in list)
             {

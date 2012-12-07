@@ -576,7 +576,7 @@ namespace Ebada.Scgl.Lcgl
             }
             sql += " " + _sql;
 
-            sql += " order by ID desc,wpmc";
+            sql += " order by wpmc,indate";
             gridViewOperation.RefreshData(sql);
             expotSQL = sql;
         }

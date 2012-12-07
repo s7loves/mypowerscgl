@@ -40,6 +40,7 @@ namespace Ebada.Scgl.Lcgl
         public object RowData {
             get {
                 rowData.sssbbh = spinEdit1.Text + "," + spinEdit2.Text + "," + spinEdit3.Text;
+                rowData.S1 = spinEdit6.Text + "," + spinEdit5.Text + "," + spinEdit4.Text + "," + spinEdit7.Text;
                 return rowData;
               
             }

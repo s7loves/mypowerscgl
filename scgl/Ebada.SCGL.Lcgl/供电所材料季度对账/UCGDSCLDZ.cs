@@ -335,7 +335,7 @@ namespace Ebada.Scgl.Lcgl
                 sql += " and (indate <= '" + barEndTime.EditValue + "' or ckdate<='" + barEndTime.EditValue.ToString().Substring(0, 10) + time + "')";
             }
 
-            sql += " order by ID desc,wpmc";
+            sql += " order by  wpmc,indate";
             gridViewOperation.RefreshData(sql);
         }
         #endregion

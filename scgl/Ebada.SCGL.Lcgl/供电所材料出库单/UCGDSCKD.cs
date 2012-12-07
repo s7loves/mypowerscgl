@@ -55,6 +55,8 @@ namespace Ebada.Scgl.Lcgl
             {
                 isWorkflowCall = value;
                 ucgdsck1.IsWorkflowCall = value;
+                TaskOverButton.Visible = value;
+                barFJLY.Visible = value;
             }
         }
         public LP_Record CurrRecord

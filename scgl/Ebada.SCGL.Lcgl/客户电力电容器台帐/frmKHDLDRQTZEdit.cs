@@ -158,13 +158,19 @@ namespace Ebada.Scgl.Lcgl
             }
             comboBoxEdit1.Properties.Items.Clear();
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-           string.Format("select nr from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "客户电压等级"));
+           string.Format("select Replace(nr,'KV','') from pj_dyk where  dx='客户电力电容器台帐' and sx like '%{0}%' and nr!=''", "客户电压等级"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit1.Properties.Items.Add("10KV");
-                comboBoxEdit1.Properties.Items.Add("0.38KV");
+                strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select replace(nr,'KV','') from pj_dyk where  dx='公用属性' and sx like '%电压等级%' and nr!=''");
+                if (strlist.Count > 0)
+                    comboBoxEdit1.Properties.Items.AddRange(strlist);
+                else
+                {
+                    comboBoxEdit1.Properties.Items.Add("10");
+                    comboBoxEdit1.Properties.Items.Add("0.38");
+                }
             }
 
         }

@@ -66,13 +66,8 @@ namespace Ebada.Scgl.Lcgl
             cobType.Properties.Items.Add("D类220");
             cobType.Properties.Items.Add("D类380");
 
-            cobYear.Properties.Items.Clear();
-            int m = DateTime.Now.Year;
-            for (int i = -5; i < 5; i++)
-            {
-                cobYear.Properties.Items.Add(m + i);
-            }
-            
+            IList tempList = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh from PS_sbcs where mc ='电压控测装置型号'");
+            cobModel.Properties.Items.AddRange(tempList);
         }
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Lcgl
             //this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "qz");
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "hydd");
             //comboBoxEdit17.Properties.Items.Clear();
-            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select username from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName in ('生产局长','生技部长','生技部生产专工','生技部配电专工','生技部计划专工') ))");
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select username from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName in ('生产局长','生技部长','生技部生产专工','生技部配电专工','生技部计划专工','生产总工') ))");
             comboBoxEdit17.Properties.Items.AddRange(list);
             comboBoxEdit17.Properties.ReadOnly = true;
             if (list.Contains(MainHelper.User.UserName))

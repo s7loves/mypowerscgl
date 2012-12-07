@@ -142,8 +142,8 @@ namespace Ebada.Scgl.Lcgl
                 case "变压器":
                     // IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(xlcode,3)='{0}'", rowData.OrgCode));
                     //IList<PS_tqbyq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tqbyq>(string.Format("where left(tqID,3)='{0}'", rowData.OrgCode));
-                    IList<Hashtable> xlList = Client.ClientHelper.PlatformSqlMap.GetList<Hashtable>("Select", 
-                        string.Format("SELECT     PS_xl.LineName + RIGHT(PS_gt.gtCode, 4) AS name, PS_tqbyq.byqID AS id, PS_tqbyq.byqModle, PS_tqbyq.byqCapcity"
+                    IList<Hashtable> xlList = Client.ClientHelper.PlatformSqlMap.GetList<Hashtable>("Select",
+                        string.Format("SELECT     PS_xl.LineName + left(RIGHT(PS_gt.gtCode, 4),3) AS name, PS_tqbyq.byqID AS id, PS_tqbyq.byqModle, PS_tqbyq.byqCapcity"
                                           +" FROM         PS_gt INNER JOIN"
                                           +" PS_xl ON PS_gt.LineCode = PS_xl.LineCode INNER JOIN"
                                           +" PS_tqbyq INNER JOIN"
@@ -484,5 +484,14 @@ namespace Ebada.Scgl.Lcgl
         {
             //rowData.sbInstallAdress = popTq.EditValue.ToString();
         }
+
+        #region 试验周期改变
+        private void spinEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            double i = Convert.ToDouble(spinEdit1.Value);
+            dateEdit2.EditValue = Convert.ToDateTime(dateEdit3.EditValue).AddMonths(Convert.ToInt32(i * (12))).ToString("yyyy-MM-dd");
+            rowData.planExpTime = Convert.ToDateTime(Convert.ToDateTime(dateEdit2.EditValue).ToString("yyyy-MM-dd"));
+        }
+        #endregion
     }
 }

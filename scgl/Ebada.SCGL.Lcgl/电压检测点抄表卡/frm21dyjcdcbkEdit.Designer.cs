@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
@@ -42,9 +42,9 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cobGds = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cobYear = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.cobYear = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -52,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobGds.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,16 +89,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cobYear);
             this.groupBox1.Controls.Add(this.cobNum);
             this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.cobModel);
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Controls.Add(this.cobType);
             this.groupBox1.Controls.Add(this.labelControl6);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Controls.Add(this.labelControl8);
             this.groupBox1.Controls.Add(this.cobGds);
-            this.groupBox1.Controls.Add(this.cobYear);
+            this.groupBox1.Controls.Add(this.cobModel);
             this.groupBox1.Location = new System.Drawing.Point(11, 35);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(466, 130);
@@ -201,29 +202,10 @@
             this.cobGds.Location = new System.Drawing.Point(92, 21);
             this.cobGds.Name = "cobGds";
             this.cobGds.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.cobGds.Properties.ReadOnly = true;
             this.cobGds.Size = new System.Drawing.Size(355, 21);
             this.cobGds.TabIndex = 14;
-            // 
-            // cobYear
-            // 
-            this.cobYear.Location = new System.Drawing.Point(92, 53);
-            this.cobYear.Name = "cobYear";
-            this.cobYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cobYear.Properties.DisplayFormat.FormatString = "d";
-            this.cobYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.cobYear.Properties.EditFormat.FormatString = "d";
-            this.cobYear.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.cobYear.Properties.Items.AddRange(new object[] {
-            "增容",
-            "减容",
-            "大修",
-            "设备改造",
-            "烧毁"});
-            this.cobYear.Size = new System.Drawing.Size(134, 21);
-            this.cobYear.TabIndex = 18;
             // 
             // bar1
             // 
@@ -240,6 +222,24 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
+            // 
+            // cobYear
+            // 
+            this.cobYear.EditValue = null;
+            this.cobYear.Location = new System.Drawing.Point(92, 49);
+            this.cobYear.Name = "cobYear";
+            this.cobYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cobYear.Properties.DisplayFormat.FormatString = "yyyy年";
+            this.cobYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cobYear.Properties.EditFormat.FormatString = "yyyy年";
+            this.cobYear.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cobYear.Properties.Mask.EditMask = "yyyy年";
+            this.cobYear.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cobYear.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.cobYear.Size = new System.Drawing.Size(134, 21);
+            this.cobYear.TabIndex = 24;
             // 
             // frm21dyjcdcbkEdit
             // 
@@ -260,6 +260,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobGds.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -277,12 +278,12 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.ComboBoxEdit cobGds;
-        private DevExpress.XtraEditors.ComboBoxEdit cobYear;
         private DevExpress.XtraEditors.ComboBoxEdit cobModel;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.ComboBoxEdit cobType;
         private DevExpress.XtraEditors.ComboBoxEdit cobNum;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.DateEdit cobYear;
 
     }
 }

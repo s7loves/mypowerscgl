@@ -197,6 +197,7 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterAdd(PJ_yfsyjl obj)
         {
             string slqwhere = " where OrgCode='" + obj.OrgCode + "'  and type='" + obj.type + "' ";
+            
             //if (isWorkflowCall)
             //{
 
@@ -237,6 +238,7 @@ namespace Ebada.Scgl.Lcgl
             //         MainHelper.PlatformSqlMap.Create<WF_ModleRecordWorkTaskIns>(mrwt);
             //     }
             //}
+
             RefreshData(" where OrgCode='" + ParentID + "'  and type='" + _type + "' ");
         }
         public string Type

@@ -210,7 +210,7 @@ namespace Ebada.Scgl.Lcgl
                     ex.CopySheet(1, 1);
                 }
             }
-            ex.SetCellValue(MainHelper.User.UserName, 45, 6);
+            ex.SetCellValue(MainHelper.User.UserName, 2, 5);
             for (int j = 0; j < datalist.Count; j++)
             {
 

@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Lcgl
             //填充下拉列表数据
             comboBoxEdit3.Properties.Items.Clear();
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
+            string.Format("select replace(nr,'KV','') from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
             comboBoxEdit3.Properties.Items.AddRange(strlist);
             comboBoxEdit4.Properties.Items.Clear();
          //    IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
@@ -107,7 +107,8 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit5.Properties.Items.Add("BFFR11-100-3W");
             }
             strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select LineName from ps_xl where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
+            string.Format("select (select LineName from ps_xl where LineCode=left(a.LineCode,6)) + ' ' + LineName from ps_xl a where orgcode='{0}' and  LineVol='10'", rowData.OrgCode));
+            
             // string.Format("select LineName from ps_xl where orgcode='{0}' and len(linecode)=6", rowData.OrgCode));
             //  where LineVol='10'
             if (strlist.Count > 0)

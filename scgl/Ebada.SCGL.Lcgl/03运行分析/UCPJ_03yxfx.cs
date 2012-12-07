@@ -92,7 +92,7 @@ namespace Ebada.Scgl.Lcgl
         private bool isJu()
         {
             bool result = false;
-            IList<mUser> list = ClientHelper.PlatformSqlMap.GetList<mUser>(" where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName in ('生产局长','生技部长','生技部生产专工','生技部配电专工','生技部计划专工') ))");
+            IList<mUser> list = ClientHelper.PlatformSqlMap.GetList<mUser>(" where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName in ('生产局长','生技部长','生技部生产专工','生技部配电专工','生技部计划专工','生产总工') ))");
             string usercode = MainHelper.User.UserCode;
             for (int i = 0; i < list.Count; i++)
             {

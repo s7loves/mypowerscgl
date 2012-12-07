@@ -317,6 +317,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit3.Size = new System.Drawing.Size(151, 21);
             this.dateEdit3.TabIndex = 10;
+            this.dateEdit3.EditValueChanged += new System.EventHandler(this.spinEdit3_EditValueChanged);
             // 
             // labelControl16
             // 

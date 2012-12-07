@@ -337,6 +337,12 @@ namespace Ebada.Scgl.Lcgl
                     // + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()+"'"
                 + ")";
             }
+
+
+            if (_type == "电容器")
+            {
+                slqwhere += " and year(planExpTime)=" + DateTime.Now.Year;
+            }
             gridViewOperation.RefreshData(slqwhere);
         }
         public void RefreshData()
@@ -351,6 +357,12 @@ namespace Ebada.Scgl.Lcgl
                     // + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
                     // + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString()+"'"
                  + ")";
+            }
+
+
+            if (_type == "电容器")
+            {
+                slqwhere += " and year(planExpTime)=" + DateTime.Now.Year;
             }
             gridViewOperation.RefreshData(slqwhere);
         }
