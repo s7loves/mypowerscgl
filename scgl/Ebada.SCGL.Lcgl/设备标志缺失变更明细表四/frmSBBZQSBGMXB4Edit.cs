@@ -79,6 +79,36 @@ namespace Ebada.Scgl.Lcgl
                 {
                     spinEdit1.EditValue = spinEdit2.EditValue = spinEdit3.EditValue = 0;
                 }
+
+                string[] numbstr = rowData.S1.Split(',');
+                if (numbstr.Length > 0)
+                {
+                    try
+                    {
+                        int a = 1;
+                        int.TryParse(numbstr[0], out a);
+                        spinEdit6.EditValue = a;
+                        int b = 1;
+                        int.TryParse(numbstr[1], out b);
+                        spinEdit5.EditValue = b;
+                        int c = 1;
+                        int.TryParse(numbstr[2], out c);
+                        spinEdit4.EditValue = c;
+                        int d = 1;
+                        int.TryParse(numbstr[3], out d);
+                        spinEdit7.EditValue = c;
+
+                    }
+                    catch
+                    {
+                        spinEdit6.EditValue = spinEdit5.EditValue = spinEdit4.EditValue = spinEdit7.EditValue = 0;
+                    }
+
+                }
+                else
+                {
+                    spinEdit1.EditValue = spinEdit2.EditValue = spinEdit3.EditValue = 0;
+                }
             }
         }
 
