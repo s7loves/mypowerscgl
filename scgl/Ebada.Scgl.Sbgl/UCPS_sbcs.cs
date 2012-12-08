@@ -53,6 +53,8 @@ namespace Ebada.Scgl.Sbgl {
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_sbcs> e) {
+            if (e.Value.bh.Length <= 5) e.Value.xh = "";
+
             if(string.IsNullOrEmpty(e.Value.xh))
                 e.Value.ID = e.Value.bh;
         }
@@ -120,6 +122,7 @@ namespace Ebada.Scgl.Sbgl {
             cbox.Items.Add("材料");
             gridView1.Columns["c1"].ColumnEdit = cbox;
             gridView1.Columns["c1"].VisibleIndex = 2;
+            
         }
         /// <summary>
         /// 刷新数据
@@ -146,16 +149,25 @@ namespace Ebada.Scgl.Sbgl {
                 newobj.c1 = parentObj.c1;
                 if (parentObj.bh.Length > 2) {
                     newobj.bh = parentObj.bh.Substring(0, 2);
+                    newobj.mc = parentObj.mc;
                 } else  if (parentObj.bh.Length==2){
-                    //newobj.bh = getbh();
+                    newobj.bh = getbh();
                 }
             }
         }
 
         private string getbh() {
             string bh = "";
+            List<string> list = new List<string>(); 
             foreach (var row in gridViewOperation.BindingList) {
-                //
+                if(row.bh.Length==5)
+                list.Add(row.bh);
+            }
+            if (list.Count > 0) {
+                list.Sort();
+                string bh0 = list[list.Count - 1];
+                bh0 = bh0.Substring(bh0.Length-3);
+                bh = (int.Parse("1" + bh0) + 1).ToString().Substring(1);
             }
             if (bh == "") bh =  "001";
             bh = parentObj.bh + bh;
