@@ -32,6 +32,15 @@ namespace Ebada.Scgl.Sbgl {
         public event SendDataEventHandler<PS_sbcs> FocusedRowChanged;
         private string parentID="";
         private PS_sbcs parentObj;
+        private bool iszl = false;
+
+        public bool Iszl {
+            get { return iszl; }
+            set {
+                iszl = value;
+                gridView1.Columns["xh"].Visible = !value;
+            }
+        }
         public UCPS_sbcs() {
             InitializeComponent();
             initImageList();
@@ -133,6 +142,24 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_sbcs newobj) {
             newobj.ParentID = parentID;
+            if (parentObj != null ) {
+                newobj.c1 = parentObj.c1;
+                if (parentObj.bh.Length > 2) {
+                    newobj.bh = parentObj.bh.Substring(0, 2);
+                } else  if (parentObj.bh.Length==2){
+                    //newobj.bh = getbh();
+                }
+            }
+        }
+
+        private string getbh() {
+            string bh = "";
+            foreach (var row in gridViewOperation.BindingList) {
+                //
+            }
+            if (bh == "") bh =  "001";
+            bh = parentObj.bh + bh;
+            return bh;
         }
         /// <summary>
         /// 父表ID
