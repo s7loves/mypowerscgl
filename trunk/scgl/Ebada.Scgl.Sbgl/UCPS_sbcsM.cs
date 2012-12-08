@@ -40,6 +40,7 @@ namespace Ebada.Scgl.Sbgl {
             ucBottom.ParentID = "0";
             ucBottom.InitColumns();
             ucTop.InitColumns();
+            ucTop.Iszl = true;
             ucTop.InitData();
            ucTop.ChildView = ucBottom.GridViewOperation;
         }
