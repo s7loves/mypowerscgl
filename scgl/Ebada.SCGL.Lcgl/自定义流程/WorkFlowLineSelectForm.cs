@@ -156,13 +156,16 @@ namespace Ebada.Scgl.Lcgl
             else
             {
                 comboBoxEdit1.Properties.Items.Clear();
+                List<ListItem> list = new List<ListItem>();
                 foreach (string strtask in akeys)
                 {
                     ListItem lt = new ListItem();
                     lt.DisplayMember = checkkeys[strtask].ToString();
                     lt.ValueMember = strtask;
-                    comboBoxEdit1.Properties.Items.Add(lt);
+                    list.Add(lt);
                 }
+                list.Sort(delegate(ListItem a, ListItem b) { return string.Compare(a.DisplayMember, b.DisplayMember); });
+                comboBoxEdit1.Properties.Items.AddRange(list);
             }
         }
 
@@ -240,8 +243,8 @@ namespace Ebada.Scgl.Lcgl
                 MainHelper.PlatformSqlMap.Update("UpdateLP_Record", CurrRecord);
                 return;
             }
-            else
-                MsgBox.ShowTipMessageBox(strmes);
+            //else
+            //    MsgBox.ShowTipMessageBox(strmes);
             strmes = RecordWorkTask.GetWorkFlowTaskCaption(WorkFlowData.Rows[0]["WorkTaskInsId"].ToString());
             if (strmes == "结束节点1")
             {
