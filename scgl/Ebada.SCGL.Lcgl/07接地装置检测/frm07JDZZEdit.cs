@@ -307,7 +307,7 @@ namespace Ebada.Scgl.Lcgl
             if( comboBoxEdit11.Properties.Items.Count>0)
                 comboBoxEdit11.SelectedIndex = 0;
             //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
 
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.EditValue = string.Empty;
@@ -339,7 +339,7 @@ namespace Ebada.Scgl.Lcgl
             if (comboBoxEdit3.Properties.Items.Count > 0)
                 comboBoxEdit3.SelectedIndex = 0;
             //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
 
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.EditValue = string.Empty;
@@ -364,7 +364,7 @@ namespace Ebada.Scgl.Lcgl
             if (xl == null) return;
             string lineID = xl.LineID;
             //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", lineID));
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
 
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.EditValue = string.Empty;
