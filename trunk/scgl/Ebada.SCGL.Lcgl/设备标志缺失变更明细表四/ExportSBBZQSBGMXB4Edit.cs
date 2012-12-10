@@ -70,47 +70,47 @@ namespace Ebada.Scgl.Lcgl
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\设备标志缺失变更明细表四.xls";
             ex.Open(fname);
-            string filter= "where 1=1 ";
+            string filter = "where 1=1 ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
-                 filter
-                 
-                   );
-                ExportExcel(ex, datalist,orgid);
-           
-           
+            IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+             filter
+
+               );
+            ExportExcel(ex, datalist, orgid);
+
+
             ex.ShowExcel();
-           
+
         }
-        public void ExportExcelYear(string orgid,string year)
+        public void ExportExcelYear(string orgid, string year)
         {
             ////lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\设备标志缺失变更明细表四.xls";
             ex.Open(fname);
-            
+
             string strfirst = "";
             string filter = "";
-            
-                filter = "  where 1=1 ";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
-                if (isWorkflowCall)
-                {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
-                }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
-                 filter
-                   );
-                ExportExcel(ex, datalist,orgid);
-            
-          
-          
+            filter = "  where 1=1 ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+
+            if (isWorkflowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') "
+                    ;
+            }
+            IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+             filter
+               );
+            ExportExcel(ex, datalist, orgid);
+
+
+
 
             ex.ShowExcel();
         }
@@ -119,42 +119,42 @@ namespace Ebada.Scgl.Lcgl
 
             string filter = "";
             int i = 0;
-          
+
             List<WF_ModleRecordWorkTaskIns> mrwtlist = new List<WF_ModleRecordWorkTaskIns>();
-            
-                filter = "  where 1=1 ";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
-                if (isWorkflowCall)
+
+            filter = "  where 1=1 ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+            if (isWorkflowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') ";
+            }
+            IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+             filter
+               );
+            if (isWorkflowCall)
+            {
+                for (i = 0; i < datalist.Count; i++)
                 {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') ";
+                    WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
+                    mrwt.ID = mrwt.CreateID();
+                    mrwt.ModleRecordID = datalist[i].ID;
+                    mrwt.RecordID = currRecord.ID;
+                    mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
+                    mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
+                    mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
+                    mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
+                    mrwt.ModleTableName = datalist[i].GetType().ToString();
+                    mrwt.CreatTime = DateTime.Now;
+                    Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                    mrwtlist.Add(mrwt);
                 }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
-                 filter
-                   );
-                if (isWorkflowCall)
-                {
-                    for (i = 0; i < datalist.Count; i++)
-                    {
-                        WF_ModleRecordWorkTaskIns mrwt = new WF_ModleRecordWorkTaskIns();
-                        mrwt.ID = mrwt.CreateID();
-                        mrwt.ModleRecordID = datalist[i].ID;
-                        mrwt.RecordID = currRecord.ID;
-                        mrwt.WorkFlowId = WorkFlowData.Rows[0]["WorkFlowId"].ToString();
-                        mrwt.WorkFlowInsId = WorkFlowData.Rows[0]["WorkFlowInsId"].ToString();
-                        mrwt.WorkTaskId = WorkFlowData.Rows[0]["WorkTaskId"].ToString();
-                        mrwt.WorkTaskInsId = WorkFlowData.Rows[0]["WorkTaskInsId"].ToString();
-                        mrwt.ModleTableName = datalist[i].GetType().ToString();
-                        mrwt.CreatTime = DateTime.Now;
-                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                        mrwtlist.Add(mrwt);
-                    }
-                }
-                
-            
-           
+            }
+
+
+
             List<SqlQueryObject> list3 = new List<SqlQueryObject>();
             if (mrwtlist.Count > 0)
             {
@@ -162,15 +162,15 @@ namespace Ebada.Scgl.Lcgl
                 list3.Add(obj3);
             }
             MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            
 
 
 
-           
+
+
         }
 
-        
-        public void ExportExcelSubmit(ref LP_Temple parentTemple,  string orgid, bool isShow)
+
+        public void ExportExcelSubmit(ref LP_Temple parentTemple, string orgid, bool isShow)
         {
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string fname = Application.StartupPath + "\\00记录模板\\设备标志缺失变更明细表四.xls";
@@ -190,27 +190,27 @@ namespace Ebada.Scgl.Lcgl
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
             string filter = "";
-           
-           
-           
-                filter = "  where 1=1 ";
-                if (orgid != "") filter += " and OrgCode='" + orgid + "'";
 
-                if (isWorkflowCall)
-                {
-                    filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
-                        + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
-                            + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
-                        + "    RecordID='" + currRecord.ID + "') "
-                        ;
-                }
-                IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
-                 filter
-                   );
-                ExportExcel(ex, datalist, orgid);
-            
-          
-            
+
+
+            filter = "  where 1=1 ";
+            if (orgid != "") filter += " and OrgCode='" + orgid + "'";
+
+            if (isWorkflowCall)
+            {
+                filter = filter + " and id not in (select ModleRecordID from WF_ModleRecordWorkTaskIns where  WorkFlowId='"
+                    + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "') "
+                        + " or id in  (select ModleRecordID from WF_ModleRecordWorkTaskIns where "
+                    + "    RecordID='" + currRecord.ID + "') "
+                    ;
+            }
+            IList<PJ_sbbzqsbgmxb4> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_sbbzqsbgmxb4>(
+             filter
+               );
+            ExportExcel(ex, datalist, orgid);
+
+
+
             //ex.ActiveSheet(1);
             //ex.DeleteWorkSheet(1);
             //Excel.Worksheet sheet;
@@ -223,7 +223,7 @@ namespace Ebada.Scgl.Lcgl
             //    sheet.Visible = Excel.XlSheetVisibility.xlSheetHidden;
             //    dsoFramerWordControl1.FileSave();
 
-                
+
             //    break;
             //}
             if (parentTemple == null)
@@ -242,7 +242,7 @@ namespace Ebada.Scgl.Lcgl
             //此处写填充内容代码
             int row = 7;
             int col = 1;
-            int rowcount = 15;
+            int rowcount = 13;
 
             //
 
@@ -252,23 +252,23 @@ namespace Ebada.Scgl.Lcgl
             {
                 pageindex = Ecommon.GetPagecount(datalist.Count, rowcount);
             }
-            for (int j = 1; j <pageindex; j++)
+            for (int j = 1; j < pageindex; j++)
             {
 
                 ex.CopySheet(1, j);
-               
+
             }
             for (int j = 0; j < datalist.Count; j++)
             {
 
                 if (j % rowcount == 0)
                 {
-                    if(j==0)ex.ActiveSheet(1);
-                    else ex.ActiveSheet((j / rowcount+1) );
-                    if (orgid!="") ex.SetCellValue(datalist[j].OrgName, 4, 2);
+                    if (j == 0) ex.ActiveSheet(1);
+                    else ex.ActiveSheet((j / rowcount + 1));
+                    if (orgid != "") ex.SetCellValue(datalist[j].OrgName, 4, 2);
                     else
                         ex.SetCellValue("绥化市效农电局", 4, 2);
-                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4,5);
+                    ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4, 12);
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
@@ -281,16 +281,28 @@ namespace Ebada.Scgl.Lcgl
                     ex.SetCellValue(tempstr[1], row + j % rowcount, col + 4);
                     ex.SetCellValue(tempstr[2], row + j % rowcount, col + 5);
                 }
-                catch 
+                catch
                 {
                 }
 
-                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 6);
-                ex.SetCellValue(datalist[j].Remark, row + j % rowcount, col + 7);
-               
+                string[] tempstr1 = datalist[j].S1.Split(',');
+                try
+                {
+                    ex.SetCellValue(tempstr1[0], row + j % rowcount, col + 6);
+                    ex.SetCellValue(tempstr1[1], row + j % rowcount, col + 7);
+                    ex.SetCellValue(tempstr1[2], row + j % rowcount, col + 8);
+                    ex.SetCellValue(tempstr1[3], row + j % rowcount, col + 9);
+                }
+                catch
+                {
+                }
+
+                ex.SetCellValue(datalist[j].xw, row + j % rowcount, col + 10);
+                ex.SetCellValue(datalist[j].statuts, row + j % rowcount, col + 11);
+
 
             }
         }
-    
+
     }
 }
