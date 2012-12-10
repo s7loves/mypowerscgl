@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -391,11 +391,23 @@
     <Compile Include="12线路开关卡片\frmkgEdit.Designer.cs">
       <DependentUpon>frmkgEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="12线路开关卡片\frmPJ_12kgtj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\frmPJ_12kgtj.Designer.cs">
+      <DependentUpon>frmPJ_12kgtj.cs</DependentUpon>
+    </Compile>
     <Compile Include="12线路开关卡片\UCPJ_12kgbd.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="12线路开关卡片\UCPJ_12kgbd.Designer.cs">
       <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgtj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="12线路开关卡片\UCPJ_12kgtj.Designer.cs">
+      <DependentUpon>UCPJ_12kgtj.cs</DependentUpon>
     </Compile>
     <Compile Include="12线路开关卡片\UCPS_kgM.cs">
       <SubType>UserControl</SubType>
@@ -912,8 +924,16 @@
       <DependentUpon>frmkgEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\frmPJ_12kgtj.resx">
+      <DependentUpon>frmPJ_12kgtj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgbd.resx">
       <DependentUpon>UCPJ_12kgbd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12线路开关卡片\UCPJ_12kgtj.resx">
+      <DependentUpon>UCPJ_12kgtj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="12线路开关卡片\UCPS_kgM.resx">
