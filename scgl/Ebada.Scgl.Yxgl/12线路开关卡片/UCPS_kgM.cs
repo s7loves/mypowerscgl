@@ -20,12 +20,14 @@ namespace Ebada.Scgl.Yxgl
             ucpJ_12kgbd1.HideList();
             ucpJ_12kgjx1.HideList();
             ucpJ_12kgsy1.HideList();
+            ucpJ_12kgtj1.HideList();
         }
 
         void ucpS_kg1_SelectGdsChanged(object sender, Ebada.Scgl.Model.mOrg obj) {
             ucpJ_12kgbd1.ParentObj = obj;
             ucpJ_12kgjx1.ParentObj = obj;
             ucpJ_12kgsy1.ParentObj = obj;
+            ucpJ_12kgtj1.ParentObj = obj;
         }
 
         void ucpS_kg1_FocusedRowChanged(object sender, Ebada.Scgl.Model.PS_kg obj)
@@ -33,6 +35,7 @@ namespace Ebada.Scgl.Yxgl
             ucpJ_12kgbd1.PSObj = obj;
             ucpJ_12kgjx1.PSObj = obj;
             ucpJ_12kgsy1.PSObj = obj;
+            ucpJ_12kgtj1.PSObj = obj;
         }
 
        
