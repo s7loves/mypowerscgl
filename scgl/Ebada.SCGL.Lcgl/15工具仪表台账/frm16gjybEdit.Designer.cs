@@ -130,22 +130,6 @@
             this.comboBoxEdit5.Name = "comboBoxEdit5";
             this.comboBoxEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15"});
             this.comboBoxEdit5.Properties.Click += new System.EventHandler(this.comboBoxEdit5_Properties_Click);
             this.comboBoxEdit5.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit5.TabIndex = 15;
@@ -202,6 +186,7 @@
             this.comboBoxEdit1.Properties.Click += new System.EventHandler(this.comboBoxEdit1_Properties_Click);
             this.comboBoxEdit1.Size = new System.Drawing.Size(302, 21);
             this.comboBoxEdit1.TabIndex = 9;
+            this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
             // dateEdit1
             // 
