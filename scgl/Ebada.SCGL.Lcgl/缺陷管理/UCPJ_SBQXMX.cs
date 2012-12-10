@@ -249,17 +249,34 @@ namespace Ebada.Scgl.Lcgl
             hideColumn("LineID");
             hideColumn("gzrjID");
             //hideColumn("s1");
-            hideColumn("s2");
             hideColumn("s3");
-            gridView1.Columns["s1"].Caption = "流程选择";
-            DevExpress.XtraEditors.Repository.RepositoryItemComboBox box = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            box.Properties.Items.Clear();
-            box.Properties.Items.Add("一般");
-            box.Properties.Items.Add("紧急");
-            box.Properties.Items.Add("重大");
-            box.Properties.Items.Add("低压");
-            gridView1.Columns["s1"].ColumnEdit = box;
-            gridView1.Columns["s1"].OptionsColumn.AllowEdit = true;
+            hideColumn("s2");
+
+            if (currRecord.Kind == "交叉跨越对地距离测量流程")
+            {
+                gridView1.Columns["s1"].Caption = "是否处理缺陷";
+                DevExpress.XtraEditors.Repository.RepositoryItemComboBox box = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+                box.Properties.Items.Clear();
+                box.Properties.Items.Add("是");
+                box.Properties.Items.Add("否");
+                box.EditValueChanged += new EventHandler(box_EditValueChanged);
+                gridView1.Columns["s1"].ColumnEdit = box;
+                gridView1.Columns["s1"].OptionsColumn.AllowEdit = true;
+                hideColumn("remark");
+            }
+            else
+            {
+                gridView1.Columns["s1"].Caption = "流程选择";
+                DevExpress.XtraEditors.Repository.RepositoryItemComboBox box = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+                box.Properties.Items.Clear();
+                box.Properties.Items.Add("一般");
+                box.Properties.Items.Add("紧急");
+                box.Properties.Items.Add("重大");
+                box.Properties.Items.Add("低压");
+                gridView1.Columns["s1"].ColumnEdit = box;
+                gridView1.Columns["s1"].OptionsColumn.AllowEdit = true;
+            }
+
             //cob.SelectedIndexChanged += new EventHandler(cob_SelectedIndexChanged);
             hideColumn("CreateMan");
 
@@ -271,6 +288,17 @@ namespace Ebada.Scgl.Lcgl
 
             hideColumn("xsr");
             gridView1.Columns["xlqd"].Caption = "缺陷发生地点";
+        }
+
+        void box_EditValueChanged(object sender, EventArgs e)
+        {
+            PJ_qxfl qx = gridView1.GetFocusedRow() as PJ_qxfl;
+            var s1 = ((DevExpress.XtraEditors.ComboBoxEdit)(sender)).EditValue;
+            if (qx != null && s1 != null)
+            {
+                qx.s1 = s1.ToString();
+                ClientHelper.PlatformSqlMap.Update<PJ_qxfl>(qx);
+            }
         }
 
 
@@ -378,33 +406,50 @@ namespace Ebada.Scgl.Lcgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
-
-            Dictionary<string, List<PJ_qxfl>> diclist = new Dictionary<string, List<PJ_qxfl>>();
-            for (int i = 0; i < gridView1.RowCount; i++)
+            if (currRecord.Kind == "交叉跨越对地距离测量流程")
             {
-                PJ_qxfl _pj = gridView1.GetRow(i) as PJ_qxfl;
-                if (diclist.ContainsKey(_pj.LineID))
+                IList<PJ_qxfl> list = gridControl1.DataSource as IList<PJ_qxfl>;
+                IList<PJ_qxfl> temp = new List<PJ_qxfl>();
+                if (list != null && list.Count > 0)
                 {
-                    diclist[_pj.LineID].Add(_pj);
-                }
-                else
-                {
-                    List<PJ_qxfl> lispj = new List<PJ_qxfl>();
-                    lispj.Add(_pj);
-                    diclist[_pj.LineID] = lispj;
+                    foreach (PJ_qxfl item in list)
+                    {
+                        if (item.s1 == "是")
+                        {
+                            temp.Add(item);
+                        }
+                    }
+                    ExportQX.ExportExcel(temp);
                 }
             }
-            foreach (KeyValuePair<string, List<PJ_qxfl>> pp in diclist)
+            else
             {
-                List<PJ_qxfl> objlist = pp.Value;
-                if (objlist.Count > 0)
+
+                Dictionary<string, List<PJ_qxfl>> diclist = new Dictionary<string, List<PJ_qxfl>>();
+                for (int i = 0; i < gridView1.RowCount; i++)
                 {
-                    ExportQX.ExportExcel(objlist);
+                    PJ_qxfl _pj = gridView1.GetRow(i) as PJ_qxfl;
+                    if (diclist.ContainsKey(_pj.LineID))
+                    {
+                        diclist[_pj.LineID].Add(_pj);
+                    }
+                    else
+                    {
+                        List<PJ_qxfl> lispj = new List<PJ_qxfl>();
+                        lispj.Add(_pj);
+                        diclist[_pj.LineID] = lispj;
+                    }
                 }
+                foreach (KeyValuePair<string, List<PJ_qxfl>> pp in diclist)
+                {
+                    List<PJ_qxfl> objlist = pp.Value;
+                    if (objlist.Count > 0)
+                    {
+                        ExportQX.ExportExcel(objlist);
+                    }
 
+                }
             }
-
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
