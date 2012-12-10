@@ -52,6 +52,10 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="obj"></param>
         public static void ExportExcel(IList<PJ_qxfl> objlist) 
         {
+            if (objlist == null || objlist.Count == 0)
+            {
+                return;
+            }
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
