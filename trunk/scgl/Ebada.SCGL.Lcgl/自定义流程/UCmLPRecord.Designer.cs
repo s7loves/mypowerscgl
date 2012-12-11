@@ -41,6 +41,8 @@
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barCopy = new DevExpress.XtraBars.BarButtonItem();
             this.btBJ = new DevExpress.XtraBars.BarButtonItem();
+            this.barYear = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -54,6 +56,8 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -87,8 +91,11 @@
             this.barReChange,
             this.barView,
             this.barCopy,
-            this.btBJ});
-            this.barManager1.MaxItemId = 25;
+            this.btBJ,
+            this.barYear});
+            this.barManager1.MaxItemId = 26;
+            this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemDateEdit1});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -112,7 +119,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btReExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barCopy),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btBJ, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btBJ, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barYear)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -249,6 +257,28 @@
             this.btBJ.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btBJ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btBJ_ItemClick);
             // 
+            // barYear
+            // 
+            this.barYear.Caption = "年份筛选";
+            this.barYear.Edit = this.repositoryItemDateEdit1;
+            this.barYear.Id = 25;
+            this.barYear.ImageIndex = 9;
+            this.barYear.Name = "barYear";
+            this.barYear.Width = 70;
+            this.barYear.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barYear.EditValueChanged += new System.EventHandler(this.barYear_EditValueChanged);
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Mask.EditMask = "yyyy年";
+            this.repositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -273,13 +303,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(940, 26);
+            this.barDockControlTop.Size = new System.Drawing.Size(986, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
-            this.barDockControlBottom.Size = new System.Drawing.Size(940, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(986, 25);
             // 
             // barDockControlLeft
             // 
@@ -290,7 +320,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(940, 26);
+            this.barDockControlRight.Location = new System.Drawing.Point(986, 26);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 263);
             // 
             // imageList1
@@ -342,7 +372,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(940, 263);
+            this.gridControl1.Size = new System.Drawing.Size(986, 263);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -379,8 +409,10 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCmLPRecord";
-            this.Size = new System.Drawing.Size(940, 314);
+            this.Size = new System.Drawing.Size(986, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
@@ -418,5 +450,7 @@
         private DevExpress.XtraBars.BarButtonItem barView;
         private DevExpress.XtraBars.BarButtonItem barCopy;
         private DevExpress.XtraBars.BarButtonItem btBJ;
+        private DevExpress.XtraBars.BarEditItem barYear;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }
