@@ -35,13 +35,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cobNum = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.cobModel = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cobType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cobGds = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cobModel = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.cobYear = new DevExpress.XtraEditors.DateEdit();
@@ -49,9 +49,9 @@
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cobNum.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobGds.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties)).BeginInit();
             this.SuspendLayout();
@@ -133,19 +133,6 @@
             this.labelControl2.TabIndex = 22;
             this.labelControl2.Text = "电压检测点序号:";
             // 
-            // cobModel
-            // 
-            this.cobModel.Location = new System.Drawing.Point(92, 84);
-            this.cobModel.Name = "cobModel";
-            this.cobModel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cobModel.Properties.DisplayFormat.FormatString = "d";
-            this.cobModel.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.cobModel.Properties.EditFormat.FormatString = "d";
-            this.cobModel.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.cobModel.Size = new System.Drawing.Size(134, 21);
-            this.cobModel.TabIndex = 21;
-            // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(23, 87);
@@ -207,6 +194,19 @@
             this.cobGds.Size = new System.Drawing.Size(355, 21);
             this.cobGds.TabIndex = 14;
             // 
+            // cobModel
+            // 
+            this.cobModel.Location = new System.Drawing.Point(92, 84);
+            this.cobModel.Name = "cobModel";
+            this.cobModel.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cobModel.Properties.DisplayFormat.FormatString = "d";
+            this.cobModel.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cobModel.Properties.EditFormat.FormatString = "d";
+            this.cobModel.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cobModel.Size = new System.Drawing.Size(134, 21);
+            this.cobModel.TabIndex = 21;
+            // 
             // bar1
             // 
             this.bar1.BarName = "Tools";
@@ -226,16 +226,12 @@
             // cobYear
             // 
             this.cobYear.EditValue = null;
-            this.cobYear.Location = new System.Drawing.Point(92, 49);
+            this.cobYear.Location = new System.Drawing.Point(92, 53);
             this.cobYear.Name = "cobYear";
             this.cobYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cobYear.Properties.DisplayFormat.FormatString = "yyyy年";
-            this.cobYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.cobYear.Properties.EditFormat.FormatString = "yyyy年";
-            this.cobYear.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.cobYear.Properties.Mask.EditMask = "yyyy年";
-            this.cobYear.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cobYear.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.cobYear.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.cobYear.Size = new System.Drawing.Size(134, 21);
@@ -257,9 +253,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cobNum.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobGds.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cobModel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobYear.Properties)).EndInit();
             this.ResumeLayout(false);
