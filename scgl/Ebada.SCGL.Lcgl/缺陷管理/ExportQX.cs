@@ -44,87 +44,109 @@ namespace Ebada.Scgl.Lcgl
                 ex.ActiveSheet(pags++);
 
             }
-           
+
         }
         /// <summary>
         /// 文档格式预定义好的，只填写内容
         /// </summary>
         /// <param name="obj"></param>
-        public static void ExportExcel(IList<PJ_qxfl> objlist) 
+        public static void ExportExcel(IList<PJ_qxfl> objlist)
         {
+            #region 原先的
+            //if (objlist == null || objlist.Count == 0)
+            //{
+            //    return;
+            //}
+            ////lgm
+            //ExcelAccess ex = new ExcelAccess();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //string fname = Application.StartupPath + "\\00记录模板\\缺陷分类统计表.xls";
+
+            //ex.Open(fname);
+            ////每行显示文字长度
+            //int zc = 20;
+            ////与会人员之间的间隔符号
+            //char[] jksign = new char[1] { ';' };
+            //int row = 6;
+            //int col = 2;
+            //int len1 =1;
+            //ex.SetCellValue(objlist[0].OrgName, 3, 2);
+            //int pagecout = Ecommon.GetPagecount(objlist.Count,12);
+            ////复制空模板
+            //for (int m = 1; m < pagecout; m++) 
+            //{
+            //    ex.CopySheet(1, m);
+            //    ex.ReNameWorkSheet(m + 1, "Sheet" + (m + 1));
+            //}
+
+            //for (int p = 0; p < pagecout; p++)
+            //{
+            //    ex.ActiveSheet(p + 1);
+            //    for (int i = 0; i < 9; i++)
+            //    {
+            //        if (p*9+i>=objlist.Count)
+            //        {
+            //            break;
+            //        }
+            //        PJ_qxfl tempobj = objlist[p *12 + i];
+            //        //缺陷情况
+            //        ex.SetCellValue(tempobj.qxnr, row + i * len1, 2);
+
+            //        //缺陷类别
+            //        ex.SetCellValue(tempobj.qxlb, row + i * len1,3);
+
+
+            //        //发现日期
+            //        if (ComboBoxHelper.CompreDate(tempobj.xssj))
+            //        {
+            //            ex.SetCellValue(tempobj.xssj.Year.ToString(), row  + i * len1, 4);
+            //            ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 5);
+            //            ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 6);
+            //        }
+            //        //消除时限
+            //        if (tempobj.xcqx!=string.Empty)
+            //        {
+            //            if (ComboBoxHelper.CompreDate(Convert.ToDateTime(tempobj.xcqx)))
+            //            {
+            //                ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Year.ToString(), row + i * len1, 7);
+            //                ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Month.ToString(), row + i * len1, 8);
+            //                ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Day.ToString(), row + i * len1, 9);
+            //            }
+            //        }
+
+            //        //备注
+            //        ex.SetCellValue(tempobj.remark, row + i * len1,10);
+
+            //    }
+
+            //}
+
+            //ex.ActiveSheet(1);
+
+            //ex.ShowExcel();
+            #endregion
             if (objlist == null || objlist.Count == 0)
             {
                 return;
             }
-            //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\缺陷分类统计表.xls";
-
             ex.Open(fname);
-            //每行显示文字长度
-            int zc = 20;
-            //与会人员之间的间隔符号
-            char[] jksign = new char[1] { ';' };
-            int row = 6;
-            int col = 2;
-            int len1 =1;
-            ex.SetCellValue(objlist[0].OrgName, 3, 2);
-            int pagecout = Ecommon.GetPagecount(objlist.Count,12);
-            //复制空模板
-            for (int m = 1; m < pagecout; m++) 
+            ex.SetCellValue(objlist[0].OrgName, 2, 2);
+            for (int i = 0; i < objlist.Count; i++)
             {
-                ex.CopySheet(1, m);
-                ex.ReNameWorkSheet(m + 1, "Sheet" + (m + 1));
+                ex.SetCellValue((i + 1).ToString(), i +4, 1);
+                ex.SetCellValue(objlist[i].qxly, i + 4, 2);
+                ex.SetCellValue(objlist[i].xlqd, i + 4, 3);
+                ex.SetCellValue(objlist[i].xssj.ToString("yyyy年MM月dd日"), i + 4, 4);
+                ex.SetCellValue(objlist[i].qxnr, i + 4, 5);
+                ex.SetCellValue(objlist[i].qxlb, i + 4, 6);
+                ex.SetCellValue(objlist[i].xcqx, i + 4, 7);
             }
-
-            for (int p = 0; p < pagecout; p++)
-            {
-                ex.ActiveSheet(p + 1);
-                for (int i = 0; i < 9; i++)
-                {
-                    if (p*9+i>=objlist.Count)
-                    {
-                        break;
-                    }
-                    PJ_qxfl tempobj = objlist[p *12 + i];
-                    //缺陷情况
-                    ex.SetCellValue(tempobj.qxnr, row + i * len1, 2);
-
-                    //缺陷类别
-                    ex.SetCellValue(tempobj.qxlb, row + i * len1,3);
-                  
-                   
-                    //发现日期
-                    if (ComboBoxHelper.CompreDate(tempobj.xssj))
-                    {
-                        ex.SetCellValue(tempobj.xssj.Year.ToString(), row  + i * len1, 4);
-                        ex.SetCellValue(tempobj.xssj.Month.ToString(), row + i * len1, 5);
-                        ex.SetCellValue(tempobj.xssj.Day.ToString(), row + i * len1, 6);
-                    }
-                    //消除时限
-                    if (tempobj.xcqx!=string.Empty)
-                    {
-                        if (ComboBoxHelper.CompreDate(Convert.ToDateTime(tempobj.xcqx)))
-                        {
-                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Year.ToString(), row + i * len1, 7);
-                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Month.ToString(), row + i * len1, 8);
-                            ex.SetCellValue(Convert.ToDateTime(tempobj.xcqx).Day.ToString(), row + i * len1, 9);
-                        }
-                    }
-                    
-                    //备注
-                    ex.SetCellValue(tempobj.remark, row + i * len1,10);
-
-                }
-
-            }
-
             ex.ActiveSheet(1);
-
             ex.ShowExcel();
-           
         }
-      
+
     }
 }
