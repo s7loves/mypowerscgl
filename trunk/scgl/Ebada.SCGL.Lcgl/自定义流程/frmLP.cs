@@ -266,8 +266,8 @@ namespace Ebada.Scgl.Lcgl
             linkdic.Add("高压配电设备完好率汇总表", f019);
             openflie f020 = new openflie(2, "20110510173027557625");
             linkdic.Add("低压线路完好率及台区网络图", f020);
-
-
+            //openflie f020 = new openflie(2, "20111207190409904375");
+            //linkdic.Add("低压线路完好率及台区网络图", f020);
 
             openflie f021 = new openflie(2, "20110510172559932625");
             linkdic.Add("电力故障报修电话接听记录", f021);
@@ -293,8 +293,11 @@ namespace Ebada.Scgl.Lcgl
             }
             else
             {
-                string str = Target.Text.ToString();
-                OpenFile(str.Trim());
+                if (Target.Worksheet.Name == "26种记录卡片")
+                {
+                    string str = Target.Text.ToString();
+                    OpenFile(str.Trim());
+                }
             }
 
 
@@ -313,26 +316,38 @@ namespace Ebada.Scgl.Lcgl
         void OpenFile(string keystr)
         {
             //lgm20121103
-            if (linkdic.ContainsKey(keystr)) {
-                
+            if (linkdic.ContainsKey(keystr))
+            {
+
                 openflie f1 = linkdic[keystr];
 
-                if (keystr == "低压线路完好率及台区网络图") {
-                    MsgBox.ShowWarningMessageBox(keystr+ " 不能在此处打开，请从26种记录薄中进入！" );
-                }else if(keystr=="电力线路防护通知书"){
+                if (keystr == "低压线路完好率及台区网络图")
+                {
                     MsgBox.ShowWarningMessageBox(keystr + " 不能在此处打开，请从26种记录薄中进入！");
-                } else {
-                    if (f1.Type == 2) {
+                }
+                //else if (keystr == "电力线路防护通知书")
+                //{
+                //    MsgBox.ShowWarningMessageBox(keystr + " 不能在此处打开，请从26种记录薄中进入！");
+                //}
+                else
+                {
+                    if (f1.Type == 2)
+                    {
                         //打开24个工作簿
-                        try {
+                        try
+                        {
                             mModule mdtemp = MainHelper.PlatformSqlMap.GetOneByKey<mModule>(f1.Path);
                             OpenModule(mdtemp);
-                        } catch (Exception) {
+                        }
+                        catch (Exception)
+                        {
 
 
                         }
 
-                    } else {
+                    }
+                    else
+                    {
                         //打开文件夹
                         System.Diagnostics.Process.Start(GetFileName(f1.Path));
 
@@ -345,17 +360,23 @@ namespace Ebada.Scgl.Lcgl
 
             object instance = null;//模块接口
             //this.WindowState = FormWindowState.Minimized;
-            try {
+            try
+            {
                 object result = null;
                 if (obj.MethodParam == null || string.IsNullOrEmpty(obj.MethodName))
+                {
                     result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, null, this, ref instance);
-                else {
+                }
+                else
+                {
                     result = MainHelper.Execute(obj.AssemblyFileName, obj.ModuTypes, obj.MethodName, obj.MethodParam.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
                 }
-                if (result is UserControl) {
+                if (result is UserControl)
+                {
                     instance = showControl(result as UserControl, obj.Modu_ID, obj.ModuName);
                 }
-                if (instance is Form) {
+                if (instance is Form)
+                {
                     Form fb = instance as Form;
                     fb.Visible = false;
                     fb.Text = obj.ModuName;
@@ -365,10 +386,14 @@ namespace Ebada.Scgl.Lcgl
                 }
                 this.Cursor = Cursors.Default;
 
-            } catch (Exception err) {
+            }
+            catch (Exception err)
+            {
                 this.Cursor = Cursors.Default;
                 MsgBox.ShowException(err);
-            } finally {
+            }
+            finally
+            {
                 //this.WindowState = FormWindowState.Normal;
             }
         }
@@ -1219,7 +1244,7 @@ namespace Ebada.Scgl.Lcgl
                 wfv.UserControlId = parentTemple.LPID;
                 //MainHelper.PlatformSqlMap.Create<WF_TableFieldValue>(wfv);
                 //Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-                wfv.ID = wfv.CreateID()+new Random().Next(10,99);
+                wfv.ID = wfv.CreateID() + new Random().Next(10, 99);
                 list.Add(wfv);
                 MainHelper.PlatformSqlMap.DeleteByWhere<WF_TableFieldValue>(" where FieldId ='" + wfv.FieldId + "' and WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "' and WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'");
             }
@@ -2406,9 +2431,12 @@ namespace Ebada.Scgl.Lcgl
                             }
 
                         }
-                    } else if (sqlSentence.IndexOf("where 12=12") > -1) {//表格数据源
+                    }
+                    else if (sqlSentence.IndexOf("where 12=12") > -1)
+                    {//表格数据源
                         StringBuilder sb = new StringBuilder();
-                        foreach (var obj in li) {
+                        foreach (var obj in li)
+                        {
                             sb.Append(obj);
                         }
                         li.Clear();
@@ -2456,7 +2484,8 @@ namespace Ebada.Scgl.Lcgl
                 case "DevExpress.XtraEditors.ComboBoxEdit":
                     ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
 
-                    if (li.Count > 0 && sqlSentence != "") {
+                    if (li.Count > 0 && sqlSentence != "")
+                    {
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.Clear();
                         ((DevExpress.XtraEditors.ComboBoxEdit)ctrl).Properties.Items.AddRange(li);
                     }
@@ -2552,7 +2581,7 @@ namespace Ebada.Scgl.Lcgl
                         //else
                         //{
                         //Control bttip = FindCtrl("bt" + lp.LPID);
-                        if (li.Count > 0  && wtt.cdfs == "下拉并选中")
+                        if (li.Count > 0 && wtt.cdfs == "下拉并选中")
                             ((ComboBoxEdit)ctrl).Text = li[0].ToString();
                         //}
 
@@ -2914,10 +2943,12 @@ namespace Ebada.Scgl.Lcgl
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                try {
+                try
+                {
                     sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                } catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
-                
+                }
+                catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
+
                 activeSheetIndex = sheet.Index;
             }
             else
@@ -3101,14 +3132,16 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx=null;
+            Excel.Worksheet xx = null;
 
             if (lp.KindTable != "")
             {
                 activeSheetName = lp.KindTable;
-                try {
+                try
+                {
                     xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                } catch {  }
+                }
+                catch { }
                 if (xx == null) return;
                 activeSheetIndex = xx.Index;
             }
@@ -3176,7 +3209,7 @@ namespace Ebada.Scgl.Lcgl
                 return;
             }
             Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
-            Excel.Worksheet xx=null;
+            Excel.Worksheet xx = null;
             ExcelAccess ea = new ExcelAccess();
             ea.MyWorkBook = wb;
             ea.MyExcel = wb.Application;
@@ -3186,9 +3219,11 @@ namespace Ebada.Scgl.Lcgl
                 {
                     activeSheetName = lp.KindTable;
 
-                    try {
+                    try
+                    {
                         xx = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                    } catch {  }
+                    }
+                    catch { }
                     if (xx == null) return;
                     activeSheetIndex = xx.Index;
 
@@ -3304,12 +3339,16 @@ namespace Ebada.Scgl.Lcgl
                     if (lp.KindTable != "")
                     {
                         activeSheetName = lp.KindTable;
-                        try {
+                        try
+                        {
                             sheet = wb.Application.Sheets[lp.KindTable] as Excel.Worksheet;
-                        } catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
-                
+                        }
+                        catch { sheet = wb.Application.Sheets[1] as Excel.Worksheet; }
+
                         activeSheetIndex = sheet.Index;
-                    } else {
+                    }
+                    else
+                    {
                         sheet = wb.Application.Sheets[1] as Excel.Worksheet;
                         activeSheetIndex = sheet.Index;
                         activeSheetName = sheet.Name;
@@ -5006,7 +5045,8 @@ namespace Ebada.Scgl.Lcgl
                     }
                     break;
                 case "DevExpress.XtraEditors.DateEdit":
-                    if (li.Count > 0 && sqlSentence != "") {
+                    if (li.Count > 0 && sqlSentence != "")
+                    {
                         ((DevExpress.XtraEditors.DateEdit)ctrl).DateTime = Convert.ToDateTime(li[0]);
                     }
                     //((DevExpress.XtraEditors.DateEdit)ctrl).Properties.EditMask = "F";          
