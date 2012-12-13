@@ -291,6 +291,12 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="e"></param>
         private void comboBoxEdit10_EditValueChanged(object sender, EventArgs e)
         {
+            comboBoxEdit11.Properties.Items.Clear();
+            comboBoxEdit11.EditValue = "";
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.EditValue = "";
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = "";
             //取得线路code
             Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit10.EditValue + "'");
 
@@ -304,17 +310,21 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit11.Properties.Items.Clear();
             comboBoxEdit11.EditValue = string.Empty;
             comboBoxEdit11.Properties.Items.AddRange(zxl);
-            if( comboBoxEdit11.Properties.Items.Count>0)
+            if (comboBoxEdit11.Properties.Items.Count > 0)
+            {
                 comboBoxEdit11.SelectedIndex = 0;
-            //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
+            }
+            else
+            {
+                //刷新杆塔号
+                IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode = '{0}'", xl.LineCode));
 
-            comboBoxEdit2.Properties.Items.Clear();
-            comboBoxEdit2.EditValue = string.Empty;
-            comboBoxEdit2.Properties.Items.AddRange(gt);
-            if (comboBoxEdit2.Properties.Items.Count > 0)
-                comboBoxEdit2.SelectedIndex = 0;
-            
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit2.EditValue = string.Empty;
+                comboBoxEdit2.Properties.Items.AddRange(gt);
+                if (comboBoxEdit2.Properties.Items.Count > 0)
+                    comboBoxEdit2.SelectedIndex = 0;
+            }
         }
 
 
@@ -325,6 +335,10 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="e"></param>
         private void comboBoxEdit11_EditValueChanged(object sender, EventArgs e)
         {
+            comboBoxEdit3.Properties.Items.Clear();
+            comboBoxEdit3.EditValue = "";
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = "";
             //comboBoxEdit11
             //取得线路code
             Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit11.EditValue + "'");
@@ -337,16 +351,20 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit3.EditValue = string.Empty;
             comboBoxEdit3.Properties.Items.AddRange(fxl);
             if (comboBoxEdit3.Properties.Items.Count > 0)
+            {
                 comboBoxEdit3.SelectedIndex = 0;
-            //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
+            }
+            else
+            {
+                //刷新杆塔号
+                IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE  LineCode = '{0}'", xl.LineCode));
 
-            comboBoxEdit2.Properties.Items.Clear();
-            comboBoxEdit2.EditValue = string.Empty;
-            comboBoxEdit2.Properties.Items.AddRange(gt);
-            if (comboBoxEdit2.Properties.Items.Count > 0)
-                comboBoxEdit2.SelectedIndex = 0;
-
+                comboBoxEdit2.Properties.Items.Clear();
+                comboBoxEdit2.EditValue = string.Empty;
+                comboBoxEdit2.Properties.Items.AddRange(gt);
+                if (comboBoxEdit2.Properties.Items.Count > 0)
+                    comboBoxEdit2.SelectedIndex = 0;
+            }
 
 
         }
@@ -357,6 +375,8 @@ namespace Ebada.Scgl.Lcgl
         /// <param name="e"></param>
         private void comboBoxEdit3_EditValueChanged(object sender, EventArgs e)
         {
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = "";
             //comboBoxEdit11
             //取得线路code
             Ebada.Scgl.Model.PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<Ebada.Scgl.Model.PS_xl>("WHERE LineName='" + comboBoxEdit3.EditValue + "'");
@@ -364,7 +384,7 @@ namespace Ebada.Scgl.Lcgl
             if (xl == null) return;
             string lineID = xl.LineID;
             //刷新杆塔号
-            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE LineCode LIKE '%{0}%'", xl.LineCode));
+            IList gt = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("SELECT gtCode FROM PS_GT WHERE  LineCode = '{0}'", xl.LineCode));
 
             comboBoxEdit2.Properties.Items.Clear();
             comboBoxEdit2.EditValue = string.Empty;
