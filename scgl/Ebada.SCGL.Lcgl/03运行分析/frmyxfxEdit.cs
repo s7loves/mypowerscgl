@@ -93,13 +93,13 @@ namespace Ebada.Scgl.Lcgl
                 if (rowData == null)
                 {
                     this.rowData = value as PJ_03yxfx;
-                    this.InitComboBoxData();
                     dataBind();
                 }
                 else
                 {
                     ConvertHelper.CopyTo<PJ_03yxfx>(value as PJ_03yxfx, rowData);
                 }
+                this.InitComboBoxData();
                 setqqry();
                 memoEdit4.Text = rowData.py;
             }
@@ -258,24 +258,24 @@ namespace Ebada.Scgl.Lcgl
         {
 
             //填充下拉列表数据
-            //ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
-            //// ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
-            //for (int i = 0; i < 16; i++)
-            //{
-            //    if (ryList.Count > 0)
-            //    {
-            //        if (i < 15)
-            //        {
-            //            ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
-            //        }
-            //        if (i >= 15)
-            //        {
-            //            ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
-            //        }
-            //    }
+            ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
+            // ICollection yyList = ComboBoxHelper.GetQqyy();//获取缺勤原因列表
+            for (int i = 0; i < 16; i++)
+            {
+                if (ryList.Count > 0)
+                {
+                    if (i < 15)
+                    {
+                        ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                    }
+                    if (i >= 15)
+                    {
+                        ((ComboBoxEdit)groupBox1.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
+                    }
+                }
 
 
-            //}
+            }
             ////((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.AddRange(ryList);
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
             //ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
