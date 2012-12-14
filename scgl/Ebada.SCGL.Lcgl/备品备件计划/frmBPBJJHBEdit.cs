@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Lcgl {
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clsl");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "Status");
             this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "cfdd");
-            this.comboBoxEdit7.DataBindings.Add("EditValue", rowData, "jhnf");
+            this.dateEdit1.DataBindings.Add("EditValue", rowData, "jhnf");
             this.comboBoxEdit8.DataBindings.Add("EditValue", rowData, "zrr");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "Remark");
 
@@ -52,7 +52,6 @@ namespace Ebada.Scgl.Lcgl {
                 } else {
                     ConvertHelper.CopyTo<PJ_bpbjjhb>(value as PJ_bpbjjhb, rowData);
                 }
-
             }
         }
 
@@ -401,14 +400,14 @@ namespace Ebada.Scgl.Lcgl {
 
             }
 
-            comboBoxEdit7.Properties.Items.Clear();
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 1);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 2);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 3);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 4);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 5);
-            comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 6);
+            //comboBoxEdit7.Properties.Items.Clear();
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 1);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 2);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 3);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 4);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 5);
+            //comboBoxEdit7.Properties.Items.Add(DateTime.Now.Year + 6);
 
             comboBoxEdit4.Properties.Items.Clear();
             for (int i = 1; i <= 500; i++) {
@@ -461,9 +460,13 @@ namespace Ebada.Scgl.Lcgl {
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e) {
             if(comboBoxEdit1.SelectedIndex==-1)return;
             string bh = sbcsDic[comboBoxEdit1.SelectedItem.ToString()];
-            //comboBoxEdit1.Properties.Items.Clear();
-            IList strList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",string.Format("select distinct xh from ps_sbcs where parentid in ('{0}','{1}')",bh,bh.Substring(0,2)+"001"));
+            comboBoxEdit2.Properties.Items.Clear();
+            IList strList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select distinct xh from ps_sbcs where parentid in ('{0}','{1}')", bh, bh.Substring(0, 2) + "001"));
             comboBoxEdit2.Properties.Items.AddRange(strList);
+            if (strList != null && strList.Count > 0)
+            {
+                comboBoxEdit2.SelectedIndex = 0;
+            }
         }
 
 
