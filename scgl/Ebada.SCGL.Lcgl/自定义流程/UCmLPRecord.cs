@@ -1024,7 +1024,6 @@ namespace Ebada.Scgl.Lcgl
         {
             string str = "";
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-
             mUser user = MainHelper.PlatformSqlMap.GetOne<mUser>(" where UserID='" + m_UserBase.UserID + "'");
             //gridViewOperation.RefreshData(str);
             if (kind == "电力线路倒闸操作票" || kind == "dzczp")
@@ -1071,6 +1070,13 @@ namespace Ebada.Scgl.Lcgl
             }
 
             str += " and year(createtime)='" + Convert.ToDateTime(barYear.EditValue).Year + "'";
+
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr","select userid from muser where usercode in (select UserID from ruserrole where roleID in (select RoleID from mRole where RoleName='生产管理'))");
+            string userid = MainHelper.User.UserID;
+            if (!list.Contains(userid))
+            {
+                str += " and left(right(number,7),3)='" + MainHelper.UserOrg.OrgCode + "'";
+            }
 
             str = str + " order by CreateTime desc";
             if (gridtable != null) gridtable.Rows.Clear();
