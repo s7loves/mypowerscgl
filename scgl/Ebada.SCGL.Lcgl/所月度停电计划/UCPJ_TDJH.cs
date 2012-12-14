@@ -159,15 +159,15 @@ namespace Ebada.Scgl.Lcgl
         void gridViewOperation_AfterDelete(PJ_tdjh obj)
         {
 
-            if (isWorkflowCall)
-            {
+            //if (isWorkflowCall)
+            //{
 
-                MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
-                    + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
-                    + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
-                    + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
-                    + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
-            }
+            //    MainHelper.PlatformSqlMap.DeleteByWhere<WF_ModleRecordWorkTaskIns>(" where ModleRecordID='" + obj.ID + "' and RecordID='" + currRecord.ID + "'"
+            //        + " and  WorkFlowId='" + WorkFlowData.Rows[0]["WorkFlowId"].ToString() + "'"
+            //        + " and  WorkFlowInsId='" + WorkFlowData.Rows[0]["WorkFlowInsId"].ToString() + "'"
+            //        + " and  WorkTaskId='" + WorkFlowData.Rows[0]["WorkTaskId"].ToString() + "'"
+            //        + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "'");
+            //}
 
             //if (isWorkflowCall)
             //{
@@ -179,7 +179,8 @@ namespace Ebada.Scgl.Lcgl
             //       + " and  WorkTaskInsId='" + WorkFlowData.Rows[0]["WorkTaskInsId"].ToString() + "')";
             //}
 
-            RefreshData(" where OrgCode='" + parentID + "' and IsSelect='false' or IsSelect is null ");
+            //RefreshData(" where OrgCode='" + parentID + "' and IsSelect='false' or IsSelect is null ");
+            RefreshData(" where OrgCode='" + parentID + "' ");
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_tdjh> e)
         {
