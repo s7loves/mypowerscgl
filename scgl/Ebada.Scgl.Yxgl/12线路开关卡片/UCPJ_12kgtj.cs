@@ -309,6 +309,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.kgID = PSObj.kgID;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
+            newobj.kgCode = PSObj.kgCode;
             // newobj.dlxlcd = TotalLength; 总长度
         }
         /// <summary>
