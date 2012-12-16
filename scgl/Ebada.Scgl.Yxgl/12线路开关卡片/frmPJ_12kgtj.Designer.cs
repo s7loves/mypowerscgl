@@ -66,6 +66,7 @@
             this.txtpdcxmc = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -114,8 +115,6 @@
             this.groupControl1.Controls.Add(this.txtPublicbtrlCount);
             this.groupControl1.Controls.Add(this.txtzyUserqtsbrl);
             this.groupControl1.Controls.Add(this.txtdrqrl);
-            this.groupControl1.Controls.Add(this.btnCancel);
-            this.groupControl1.Controls.Add(this.btnOK);
             this.groupControl1.Controls.Add(this.txtjkdxcd);
             this.groupControl1.Controls.Add(this.txtdlxlcd);
             this.groupControl1.Controls.Add(this.txtxdfw);
@@ -148,12 +147,11 @@
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.txtCreateTime);
             this.groupControl1.Controls.Add(this.labelControl1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(593, 384);
+            this.groupControl1.Size = new System.Drawing.Size(586, 337);
             this.groupControl1.TabIndex = 2;
-            this.groupControl1.Text = "开关基础统计";
+            this.groupControl1.Text = "统计信息";
             // 
             // txtPublicbtrlCount
             // 
@@ -186,7 +184,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(511, 349);
+            this.btnCancel.Location = new System.Drawing.Point(520, 361);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 23);
             this.btnCancel.TabIndex = 42;
@@ -196,7 +194,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(435, 349);
+            this.btnOK.Location = new System.Drawing.Point(429, 361);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(70, 23);
             this.btnOK.TabIndex = 41;
@@ -517,12 +515,26 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "配电出线名称";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.simpleButton1.Location = new System.Drawing.Point(66, 361);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(70, 23);
+            this.simpleButton1.TabIndex = 41;
+            this.simpleButton1.Text = "统计";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frmPJ_12kgtj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 384);
+            this.ClientSize = new System.Drawing.Size(609, 396);
             this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.simpleButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -594,5 +606,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit txtzyUserqtsbrl;
         private DevExpress.XtraEditors.ComboBoxEdit txtdrqrl;
         private DevExpress.XtraEditors.ComboBoxEdit txtPublicbtrlCount;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
