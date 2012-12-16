@@ -88,5 +88,31 @@ namespace Ebada.Scgl.Lcgl
         }
 
         #endregion
+
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            string sql = string.Format(" where linecode in (select linecode from ps_gt where gtid ='{0}')", rowData.kgID);
+            PS_xl xl = ClientHelper.PlatformSqlMap.GetOne<PS_xl>(sql);
+            if (xl == null) return;
+            this.txtpdcxmc.EditValue = rowData.pdcxmc = xl.LineName;
+            this.txtjkdxcd.EditValue = rowData.jkdxcd = "" + xl.WireLength;
+            //统计容量
+            Object num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            Object num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqOwner like '%局%' and   tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            num0 = num0 ?? 0;
+            num1 = num1 ?? 0;
+            int num2 = (int)num0 - (int)num1;
+
+            this.txtPublicbtrlCount.EditValue = rowData.publicbtrlcount = (int)num1;
+            this.txtzybtrlCount.EditValue = rowData.zybtrlcount = num2;
+            //统计数量
+            num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+
+            num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqOwner like '%局%' and  tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            num0 = num0 ?? 0;
+            num1 = num1 ?? 0;
+            num2 = (int)num0 - (int)num1;
+            this.txtPublicbtCount.EditValue = rowData.publicbtcount = (int)num1;
+            this.txtzybtCount.EditValue = rowData.zybtcount = num2;
+        }
     }
 }
