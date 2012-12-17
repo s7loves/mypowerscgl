@@ -80,7 +80,7 @@ namespace Ebada.Scgl.Sbgl {
             } else {
                 btGdsList.EditValue = "201";
             }
-            
+            //btGdsList_EditValueChanged(null, null);
         }
 
         void xlselector_RowSelected(object sender, EventArgs e) {
@@ -113,6 +113,9 @@ namespace Ebada.Scgl.Sbgl {
 
             IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + code + "'");
             repositoryItemLookUpEdit3.DataSource = list;
+
+            string filter = string.Format(" where gtid in (select gtid from ps_gt where linecode='{0}')", code);
+            RefreshData(filter);
         }
         DataTable xltable;
         void btGdsList_EditValueChanged(object sender, EventArgs e) {
@@ -128,6 +131,9 @@ namespace Ebada.Scgl.Sbgl {
                 xlselector.DataSource = xltable;
                 xlselector.SetColumnsVisible("LineName");
                 xlselector.SetFilterColumns("xlpy");
+
+                string filter = string.Format(" where gtid in (select gtid from ps_gt where left(linecode,3)='{0}')", org.OrgCode);
+                RefreshData(filter);
             }
         }
         private void initImageList() {
