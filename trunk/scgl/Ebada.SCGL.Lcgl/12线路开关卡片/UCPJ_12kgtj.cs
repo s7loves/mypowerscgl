@@ -174,9 +174,10 @@ namespace Ebada.Scgl.Lcgl
             set
             {
                 _parentobj = value;
-                if (ParentID != null && PSObj != null)
-                {
+                if (ParentID != null && PSObj != null) {
                     RefreshData(" where OrgCode='" + ParentID + "'  and kgID='" + PSObj.kgID + "'  ");
+                } else {
+                    RefreshData(" where 1>1");
                 }
 
             }

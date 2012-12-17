@@ -23,7 +23,6 @@ namespace Ebada.Scgl.Lcgl
             ucpJ_12kgjx1.HideList();
             ucpJ_12kgsy1.HideList();
             ucpJ_12kgtj1.HideList();
-            ucpJ_12kgtj1.HideList();
         }
 
         private bool isWorkflowCall = false;
@@ -48,7 +47,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgjx1.ReadOnly = value;
                 ucpJ_12kgsy1.ReadOnly = value;
                 ucpJ_12kgtj1.ReadOnly = value;
-                ucpJ_12kgtj1.ReadOnly = value;
             }
         }
 
@@ -66,7 +64,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgjx1.ParentTemple = value;
                 ucpJ_12kgsy1.ParentTemple = value;
                 ucpJ_12kgtj1.ParentTemple = value;
-                ucpJ_12kgtj1.ParentTemple = value;
             }
         }
         public bool IsWorkflowCall
@@ -80,7 +77,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgjx1.IsWorkflowCall = value;
                 ucpJ_12kgsy1.IsWorkflowCall = value;
                 ucpJ_12kgtj1.IsWorkflowCall = value;
-                ucpJ_12kgtj1.IsWorkflowCall = value;
             }
         }
         public LP_Record CurrRecord
@@ -93,7 +89,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.CurrRecord = value;
                 ucpJ_12kgjx1.CurrRecord = value;
                 ucpJ_12kgsy1.CurrRecord = value;
-                ucpJ_12kgtj1.CurrRecord = value;
                 ucpJ_12kgtj1.CurrRecord = value;
             }
         }
@@ -112,7 +107,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgjx1.RecordWorkFlowData = value;
                 ucpJ_12kgsy1.RecordWorkFlowData = value;
                 ucpJ_12kgtj1.RecordWorkFlowData = value;
-                ucpJ_12kgtj1.RecordWorkFlowData = value;
             }
         }
         public string VarDbTableName
@@ -125,7 +119,6 @@ namespace Ebada.Scgl.Lcgl
                 ucpJ_12kgbd1.VarDbTableName = value;
                 ucpJ_12kgjx1.VarDbTableName = value;
                 ucpJ_12kgsy1.VarDbTableName = value;
-                ucpJ_12kgtj1.VarDbTableName = value;
                 ucpJ_12kgtj1.VarDbTableName = value;
             }
         }
