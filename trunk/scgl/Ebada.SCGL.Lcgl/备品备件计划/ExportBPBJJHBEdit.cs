@@ -219,7 +219,7 @@ namespace Ebada.Scgl.Lcgl
                     ex.ActiveSheet(j / rowcount + 1);
                     ex.SetCellValue(datalist[j].OrgName, 2, 2);
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 2, 6);
-                    ex.SetCellValue(datalist[0].OrgName.Trim() + datalist[0].jhnf + "年度备品备件计划", 1, 1);
+                    ex.SetCellValue(datalist[0].OrgName.Trim() + datalist[0].jhnf.Substring(0,4) + "年度备品备件计划", 1, 1);
 
                 }
                 ex.SetCellValue((j + 1).ToString(), row + j % rowcount, col);
