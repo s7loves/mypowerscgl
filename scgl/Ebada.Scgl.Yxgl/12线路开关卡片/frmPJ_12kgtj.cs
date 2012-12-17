@@ -87,7 +87,7 @@ namespace Ebada.Scgl.Yxgl {
             PS_xl xl = ClientHelper.PlatformSqlMap.GetOne<PS_xl>(sql);
             if (xl == null) return;
             this.txtpdcxmc.EditValue = rowData.pdcxmc = xl.LineName;
-            this.txtjkdxcd.EditValue = rowData.jkdxcd = "" + xl.WireLength;
+            this.txtjkdxcd.EditValue = rowData.jkdxcd = "" + (xl.TotalLength/1000);
             //统计容量
             Object num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
             Object num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqOwner like '自%' and   tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
