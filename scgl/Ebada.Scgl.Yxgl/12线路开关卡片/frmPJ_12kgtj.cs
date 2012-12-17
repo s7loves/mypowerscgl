@@ -87,10 +87,10 @@ namespace Ebada.Scgl.Yxgl {
             PS_xl xl = ClientHelper.PlatformSqlMap.GetOne<PS_xl>(sql);
             if (xl == null) return;
             this.txtpdcxmc.EditValue = rowData.pdcxmc = xl.LineName;
-            this.txtjkdxcd.EditValue = rowData.jkdxcd = "" + (xl.TotalLength/1000);
+            this.txtjkdxcd.EditValue = rowData.jkdxcd = "" + (xl.TotalLength / 1000);
             //统计容量
-            Object num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
-            Object num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqOwner like '自%' and   tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            Object num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where  tqID in (select tqID from ps_tq where xlCode2 like '" + xl.LineCode + "%')");
+            Object num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity", "Where byqOwner like '自%' and   tqID in (select tqID from ps_tq where xlCode2 like '" + xl.LineCode + "%')");
             num0 = num0 ?? 0;
             num1 = num1 ?? 0;
             int num2 = (int)num0 - (int)num1;
@@ -98,16 +98,14 @@ namespace Ebada.Scgl.Yxgl {
             this.txtPublicbtrlCount.EditValue = rowData.publicbtrlcount = num2;
             this.txtzybtrlCount.EditValue = rowData.zybtrlcount = (int)num1;
             //统计数量
-            num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            num0 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where tqID in (select tqID from ps_tq where xlCode2 like '" + xl.LineCode + "%')");
 
-            num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqOwner like '自%' and  tqID in (select tqID from ps_tq where xlCode ='" + xl.LineCode + "')");
+            num1 = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqRowCount", "Where byqOwner like '自%' and  tqID in (select tqID from ps_tq where xlCode2 like '" + xl.LineCode + "%')");
             num0 = num0 ?? 0;
             num1 = num1 ?? 0;
             num2 = (int)num0 - (int)num1;
             this.txtPublicbtCount.EditValue = rowData.publicbtcount = num2;
             this.txtzybtCount.EditValue = rowData.zybtcount = (int)num1;
-
-
         }
     }
 }
