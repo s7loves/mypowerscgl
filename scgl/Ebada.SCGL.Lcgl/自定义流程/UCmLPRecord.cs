@@ -129,8 +129,9 @@ namespace Ebada.Scgl.Lcgl
             gridView1.Columns["Status"].Width = 100;
             //gridView1.Columns["LastChangeTime"].VisibleIndex = 2;
             gridView1.Columns["LastChangeTime"].Width = 200;
-            gridView1.Columns["CreateTime"].VisibleIndex = 5;
-            gridView1.Columns["CreateTime"].Width = 200;
+            gridView1.Columns["CreateTime"].Visible = false;
+            gridView1.Columns["Dcreatetime"].VisibleIndex = 5;
+            gridView1.Columns["Dcreatetime"].Width = 200;
             gridView1.Columns["LastChangeTime"].VisibleIndex = -1;
             //gridView1.Columns["CreateTime"].VisibleIndex = -1;
 
