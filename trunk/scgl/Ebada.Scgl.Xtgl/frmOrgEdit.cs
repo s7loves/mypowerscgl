@@ -78,9 +78,9 @@ namespace Ebada.Scgl.Xtgl
                 }
                 oldOrgCode = rowData.OrgCode;
                 if (rowData.OrgID.Length == 3)
-                    textEdit2.Properties.ReadOnly = true;
+                    textEdit1.Properties.ReadOnly = true;
                 else
-                    textEdit2.Properties.ReadOnly = false;
+                    textEdit1.Properties.ReadOnly = false;
             }
         }
 

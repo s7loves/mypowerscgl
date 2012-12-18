@@ -112,7 +112,7 @@ namespace Ebada.Scgl.Xtgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(mOrg newobj) {
-            newobj.OrgType = "1";
+            newobj.OrgType = "2";
             newobj.ParentID = "300";
         }
         /// <summary>
