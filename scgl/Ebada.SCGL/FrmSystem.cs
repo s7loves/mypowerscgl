@@ -132,6 +132,7 @@ namespace Ebada.SCGL {
             } catch { }
         }
         private void FrmSystem_Load(object sender, EventArgs e) {
+            
             nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
             nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
             CreateMenu();
