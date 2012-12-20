@@ -456,7 +456,7 @@ namespace Ebada.Scgl.Gis {
             if (!rect.IsEmpty) {
                 
                 rect.Inflate(.002d, .001d);
-                string name = "绥化农电局";
+                string name = MainHelper.UserCompany;
                 if (gdscode != null) {
                     mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
 

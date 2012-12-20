@@ -32,7 +32,7 @@ namespace Ebada.SCGL {
             helpitem = new BarButtonItem(barManager1, "帮助");
             InitHelp();
 
-            Text += "-绥化农电局生产管理系统";
+            Text += string.Format("-{0}生产管理系统",MainHelper.UserCompany);
         }
         #region Skins
         string skinMask = "Office 2010";

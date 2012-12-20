@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Yxgl {
             }
             for (int p = 0; p < pagecout; p++) {
                 ex.ActiveSheet(p + 1);
-                ex.SetCellValue("绥化市郊农电局  " + obj.OrgName, 4, 1);
+                ex.SetCellValue(string.Format("{0}  ",MainHelper.UserCompany) + obj.OrgName, 4, 1);
 
                 for (int i = 0; i < 29; i++) {
                     if (p * 29 + i >= objlist.Count) {

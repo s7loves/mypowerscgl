@@ -706,7 +706,7 @@ namespace Ebada.Scgl.Yxgl
                     ht.Add("lineCode", "");
                     ht.Add("selectType", 0);
                     object byqCount = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCountbyProc", ht);
-                    dr["SbName"] = "绥化电业局";
+                    dr["SbName"] = MainHelper.UserCompany;
                     dr["ByqNumber"] = byqCount;
                     ht.Add("owner", "");
                     object byqSum = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_tqbyqbyqCapcity_sumbyProc", ht);

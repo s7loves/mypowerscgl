@@ -55,7 +55,7 @@ namespace Ebada.Scgl.Xtgl {
                     
                     treeList1.AllowDrop = false;
                     mOrg org = new mOrg();
-                    org.OrgName = "绥化市郊局";
+                    org.OrgName = MainHelper.UserCompany;
                     org.OrgID = "0"; org.ParentID = "-";
                     TreeViewOperator.BindingList.Add(org);
                     treeList1.ParentFieldName = "";
