@@ -166,7 +166,7 @@ namespace Ebada.Scgl.Yxgl
             if (MainHelper.UserOrg!=null)
             {
                 //string strSQL = "where OrgCode='" + MainHelper.UserOrg.OrgCode + "' and type='"+recordIkind+"' order by id desc";
-                string strSQL = "where orgcode='" + MainHelper.UserOrg.OrgCode+ "'and  type='" + recordIkind + "' order by id desc";
+                string strSQL = "where orgcode='" + MainHelper.UserOrg.OrgCode+ "'and  type like '%" + recordIkind + "%' order by id desc";
                 RefreshData(strSQL);
             }
             
@@ -290,7 +290,7 @@ namespace Ebada.Scgl.Yxgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where OrgCode='" + value + "' and type='" + recordIkind + "'  order by id desc");
+                    RefreshData(" where OrgCode='" + value + "' and type like '%" + recordIkind + "%'  order by id desc");
                 }
             }
         }
@@ -353,7 +353,7 @@ namespace Ebada.Scgl.Yxgl
             //fm.RecordStatus = 0;
             fm.ShowDialog();
             //InitData();
-            RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type='" + recordIkind + "' order by id desc");
+            RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type like '%" + recordIkind + "%' order by id desc");
         }
 
         private void btReEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -384,7 +384,7 @@ namespace Ebada.Scgl.Yxgl
                 fm.RowData = yxfx;
                 
                 if(fm.ShowDialog()== DialogResult.OK)
-                RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type='" + recordIkind + "' order by id desc");
+                RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type like '%" + recordIkind + "%' order by id desc");
             }
             else
             {
@@ -416,7 +416,7 @@ namespace Ebada.Scgl.Yxgl
                  RecordWorkTask.DeleteRecord(dr["ID"].ToString ());
                  MainHelper.PlatformSqlMap.DeleteByWhere <PJ_03yxfx>(" where id ='"+dr["ID"].ToString ()+"'");
                  //InitData();
-                 RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type='" + recordIkind + "' order by id desc");
+                 RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type like '%" + recordIkind + "%' order by id desc");
              }
              catch(Exception ex )
              {
@@ -428,7 +428,7 @@ namespace Ebada.Scgl.Yxgl
         private void btRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //InitData();
-            RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type='" + recordIkind + "' order by id desc");
+            RefreshData("where orgcode='" + btGdsList.EditValue + "'and  type like '%" + recordIkind + "%' order by id desc");
         }
 
      
