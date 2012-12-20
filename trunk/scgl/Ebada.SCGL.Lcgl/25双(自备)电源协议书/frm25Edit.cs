@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Lcgl
             comboBoxEdit3.Properties.Items.Clear();
             comboBoxEdit3.Properties.Items.Add("双投刀闸");
             comboBoxEdit5.Properties.Items.Clear();
-            comboBoxEdit5.Properties.Items.Add("绥化市郊农电局");
+            comboBoxEdit5.Properties.Items.Add(MainHelper.UserCompany);
         }
 
         /// <summary>

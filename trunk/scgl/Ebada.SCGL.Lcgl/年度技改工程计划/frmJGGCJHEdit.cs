@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Lcgl
                 comboBoxEdit3.Properties.Items.AddRange(strlist);
             else
             {
-                comboBoxEdit3.Properties.Items.Add("绥化市郊农电局"); 
+                comboBoxEdit3.Properties.Items.Add(MainHelper.UserCompany); 
             }
             
             dateEdit1.DateTime = DateTime.Now;

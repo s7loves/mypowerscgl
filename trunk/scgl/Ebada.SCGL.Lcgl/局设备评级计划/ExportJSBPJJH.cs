@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Lcgl {
                     if (j == 0) ex.ActiveSheet(1);
                     else ex.ActiveSheet( (j / rowcount + 1));
 
-                    ex.SetCellValue("绥化市郊农电局"+DateTime.Now.ToString("yyyy年") + "设备评级计划表", 1, 1);
+                    ex.SetCellValue(MainHelper.UserCompany + DateTime.Now.ToString("yyyy年") + "设备评级计划表", 1, 1);
 
                     ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日") , 2,7);
 
