@@ -188,7 +188,7 @@ namespace Ebada.Scgl.Lcgl {
                 {
                     if(j==0)ex.ActiveSheet(1);
                     else ex.ActiveSheet((j / rowcount+1) );
-                    ex.SetCellValue("绥化市效农电局", 4, 1);
+                    ex.SetCellValue(Ebada.Client.Platform.MainHelper.UserCompany, 4, 1);
                     ex.SetCellValue(datalist[j].OrgName, 4,5);
                     //ex.SetCellValue(DateTime.Now.ToString("yyyy年MM月dd日"), 4,5);
 

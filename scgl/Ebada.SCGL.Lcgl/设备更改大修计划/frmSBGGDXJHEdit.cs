@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Lcgl
             else
             {
 
-                comboBoxEdit1.Properties.Items.Add("绥化农电局");
+                comboBoxEdit1.Properties.Items.Add(MainHelper.UserCompany);
               
 
             }

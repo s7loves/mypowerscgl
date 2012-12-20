@@ -813,7 +813,7 @@ namespace Ebada.Scgl.Lcgl
                             else
                             {
                                 qxfl = new PJ_jggcjh();
-                                qxfl.OrgName = "绥化市郊农电局";
+                                qxfl.OrgName = MainHelper.UserCompany;
                                 string str = " where RecordID='" + currRecord.ID + "'"
                                 + " and  FieldName='申请单位' order by id";
                                 WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str);
@@ -2216,7 +2216,7 @@ namespace Ebada.Scgl.Lcgl
                             else
                             {
                                 qxfl = new PJ_jggcjh();
-                                qxfl.OrgName = "绥化市郊农电局";
+                                qxfl.OrgName = MainHelper.UserCompany;
                                 string str = " where RecordID='" + currRecord.ID + "'"
                                 + " and  FieldName='申请单位' order by id";
                                 WF_TableFieldValue mrv = MainHelper.PlatformSqlMap.GetOne<WF_TableFieldValue>(str);

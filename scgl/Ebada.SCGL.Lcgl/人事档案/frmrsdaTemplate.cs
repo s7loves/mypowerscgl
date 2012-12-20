@@ -548,7 +548,7 @@ namespace Ebada.Scgl.Lcgl
                 if (wfv.FieldName == "所在单位")
                 {
 
-                    rowData.OrgName = wfv.ControlValue.Replace("绥化市郊农电局", "");
+                    rowData.OrgName = wfv.ControlValue.Replace(MainHelper.UserCompany, "");
                     mOrg org = MainHelper.PlatformSqlMap.GetOne<mOrg>("where OrgName='" + rowData.OrgName + "'");
                     if (org != null)
                     {

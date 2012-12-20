@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Lcgl {
             for (int p = 0; p < pagecout; p++)
             {
                 ex.ActiveSheet(p + 1);
-                ex.SetCellValue("绥化农电局  " + obj.OrgName, 4, 1);
+                ex.SetCellValue(Ebada.Client.Platform.MainHelper.UserCompany+"  " + obj.OrgName, 4, 1);
 
                 for (int i = 0; i < 29; i++)
                 {
