@@ -149,7 +149,7 @@ namespace Ebada.Scgl.Sbgl {
                 newobj.c1 = parentObj.c1;
                 if (parentObj.bh.Length > 2) {
                     newobj.bh = newobj.ParentID + getbh(8);// parentObj.bh.Substring(0, 2);
-                    newobj.ID = newobj.bh;
+                    //newobj.ID = newobj.bh;
                     newobj.mc = parentObj.mc;
                 } else  if (parentObj.bh.Length==2){
                     newobj.bh =newobj.ParentID+ getbh(5);
