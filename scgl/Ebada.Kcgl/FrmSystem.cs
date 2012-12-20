@@ -32,7 +32,7 @@ namespace Ebada.Kcgl {
             //FormView.PaintPicAll(picback);
             //FormView.PaintUP(pictureEdit1);
 
-            this.Text = "绥化市郊农电局生产库存管理系统";
+            this.Text = MainHelper.UserCompany+"生产库存管理系统";
             topBackbmp =pictureEdit1.Image= ImageListRes.GetTop3();
             topbarWidth = pictureEdit1.Width;
             pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);

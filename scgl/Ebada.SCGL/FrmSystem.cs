@@ -34,9 +34,9 @@ namespace Ebada.SCGL {
             panelControl1.Anchor |= AnchorStyles.Right;
             //FormView.PaintAll(this);
             //FormView.PaintPicAll(picback);
-            
 
-            this.Text = "绥化市郊农电信息管理平台";
+
+            this.Text = string.Format("-{0}信息管理平台", MainHelper.UserCompany); //
             topBackbmp = pictureEdit1.Image = ImageListRes.GetTop2();
             topbarWidth = pictureEdit1.Width;
             pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);

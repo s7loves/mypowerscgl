@@ -17,6 +17,7 @@ using System.Collections;
 using DevExpress.Utils;
 using Ebada.Scgl.Gis.Markers;
 using DevExpress.XtraEditors;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Gis {
     /// <summary>
@@ -404,7 +405,7 @@ namespace Ebada.Scgl.Gis {
             if (!rect.IsEmpty) {
                 
                 rect.Inflate(.002d, .001d);
-                string name = "绥化农电局";
+                string name = MainHelper.UserCompany;
                 if (gdscode != null) {
                     mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + gdscode + "'");
 

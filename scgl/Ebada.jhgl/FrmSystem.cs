@@ -33,7 +33,7 @@ string xtdm="jhgl";
             //FormView.PaintPicAll(picback);
             //FormView.PaintUP(pictureEdit1);
 
-            this.Text = "绥化市郊农电局生产计划管理系统";
+            this.Text = MainHelper.UserCompany+"生产计划管理系统";
             topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.绥化农电计划管理;
             topbarWidth = pictureEdit1.Width;
             pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);

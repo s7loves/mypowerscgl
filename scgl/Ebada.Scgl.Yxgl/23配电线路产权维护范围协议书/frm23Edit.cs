@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit6.Properties.Items.Add(pl.LineName);
             }
             comboBoxEdit9.Properties.Items.Clear();
-            comboBoxEdit9.Properties.Items.Add("绥化市郊农电局");
+            comboBoxEdit9.Properties.Items.Add(MainHelper.UserCompany);
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }
