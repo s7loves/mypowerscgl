@@ -5,6 +5,7 @@ using Ebada.Client;
 using Ebada.Scgl.Model;
 using System.Windows.Forms;
 using System.Data;
+using Ebada.Client.Platform;
 namespace Ebada.Scgl.Lcgl {
     /// <summary>
     /// 使用ExcelAccess生成Excel文档

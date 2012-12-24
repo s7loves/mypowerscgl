@@ -17,6 +17,7 @@ using System.Collections;
 using DevExpress.Utils;
 using Ebada.Scgl.Gis.Markers;
 using DevExpress.XtraEditors;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Gis {
     /// <summary>
