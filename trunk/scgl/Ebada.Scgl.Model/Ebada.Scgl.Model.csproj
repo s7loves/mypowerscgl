@@ -182,6 +182,10 @@
     <Compile Include="rRoleModul.cs" />
     <Compile Include="RS_bx.cs" />
     <Compile Include="rUserRole.cs" />
+    <Compile Include="sd_gt.cs" />
+    <Compile Include="sd_gtsb.cs" />
+    <Compile Include="sd_gtsbclb.cs" />
+    <Compile Include="sd_xl.cs" />
     <Compile Include="TX_Layer.cs" />
     <Compile Include="TX_Line.cs" />
     <Compile Include="TX_Point.cs" />
