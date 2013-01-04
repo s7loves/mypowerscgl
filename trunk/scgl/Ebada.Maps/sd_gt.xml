@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_gt" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_gt"  type="Ebada.Scgl.Model.sd_gt,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_gt_AllColumns" class="sd_gt">
+        <result property="gtID" column="gtID" />
+        <result property="LineCode" column="LineCode" />
+        <result property="gtCode" column="gtCode" />
+        <result property="gth" column="gth" />
+        <result property="gtType" column="gtType" />
+        <result property="gtModle" column="gtModle" />
+        <result property="gtHeight" column="gtHeight" />
+        <result property="gtLon" column="gtLon" />
+        <result property="gtLat" column="gtLat" />
+        <result property="gtElev" column="gtElev" />
+        <result property="X54" column="X54" />
+        <result property="Y54" column="Y54" />
+        <result property="gtSpan" column="gtSpan" />
+        <result property="gtMs" column="gtMs" />
+        <result property="gtZjfx" column="gtZjfx" />
+        <result property="gtZj" column="gtZj" />
+        <result property="gtJg" column="gtJg" />
+        <result property="ImageID" column="ImageID" />
+        <result property="dxplfs" column="dxplfs" />
+        <result property="gtNum" column="gtNum" />
+        <result property="gtSpan2" column="gtSpan2" />
+        <result property="gtSpan3" column="gtSpan3" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+        <result property="c6" column="c6" />
+        <result property="c7" column="c7" />
+        <result property="c8" column="c8" />
+        <result property="c9" column="c9" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_gtList" resultMap="sd_gt_AllColumns" parameterClass="string">
+        SELECT 
+         [gtID],
+         [LineCode],
+         [gtCode],
+         [gth],
+         [gtType],
+         [gtModle],
+         [gtHeight],
+         [gtLon],
+         [gtLat],
+         [gtElev],
+         [X54],
+         [Y54],
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID],
+         [dxplfs],
+         [gtNum],
+         [gtSpan2],
+         [gtSpan3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+          FROM sd_gt
+          $value$
+   </select>
+   
+   <select id="Selectsd_gtByHash" parameterClass="Hashtable">
+         SELECT 
+         [gtID],
+         [LineCode],
+         [gtCode],
+         [gth],
+         [gtType],
+         [gtModle],
+         [gtHeight],
+         [gtLon],
+         [gtLat],
+         [gtElev],
+         [X54],
+         [Y54],
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID],
+         [dxplfs],
+         [gtNum],
+         [gtSpan2],
+         [gtSpan3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+          FROM sd_gt
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gtCode">[gtCode]='$gtCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
+       <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
+       <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
+       <isNotNull prepend="AND" property="gtLon">[gtLon]='$gtLon$'</isNotNull>
+       <isNotNull prepend="AND" property="gtLat">[gtLat]='$gtLat$'</isNotNull>
+       <isNotNull prepend="AND" property="gtElev">[gtElev]='$gtElev$'</isNotNull>
+       <isNotNull prepend="AND" property="X54">[X54]='$X54$'</isNotNull>
+       <isNotNull prepend="AND" property="Y54">[Y54]='$Y54$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan">[gtSpan]='$gtSpan$'</isNotNull>
+       <isNotNull prepend="AND" property="gtMs">[gtMs]='$gtMs$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZjfx">[gtZjfx]='$gtZjfx$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZj">[gtZj]='$gtZj$'</isNotNull>
+       <isNotNull prepend="AND" property="gtJg">[gtJg]='$gtJg$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageID">[ImageID]='$ImageID$'</isNotNull>
+       <isNotNull prepend="AND" property="dxplfs">[dxplfs]='$dxplfs$'</isNotNull>
+       <isNotNull prepend="AND" property="gtNum">[gtNum]='$gtNum$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan2">[gtSpan2]='$gtSpan2$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan3">[gtSpan3]='$gtSpan3$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="c6">[c6]='$c6$'</isNotNull>
+       <isNotNull prepend="AND" property="c7">[c7]='$c7$'</isNotNull>
+       <isNotNull prepend="AND" property="c8">[c8]='$c8$'</isNotNull>
+       <isNotNull prepend="AND" property="c9">[c9]='$c9$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_gtByKey" resultMap="sd_gt_AllColumns" parameterClass="sd_gt">
+         SELECT 
+         [gtID],
+         [LineCode],
+         [gtCode],
+         [gth],
+         [gtType],
+         [gtModle],
+         [gtHeight],
+         [gtLon],
+         [gtLat],
+         [gtElev],
+         [X54],
+         [Y54],
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID],
+         [dxplfs],
+         [gtNum],
+         [gtSpan2],
+         [gtSpan3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+         FROM sd_gt
+         WHERE 
+           gtID = #gtID#
+
+   </select>
+ 
+   <delete id="Deletesd_gt" parameterClass="sd_gt">
+        DELETE FROM 
+         sd_gt
+           WHERE
+         gtID = #gtID#
+
+   </delete>
+   
+   <delete id="Deletesd_gtByWhere" parameterClass="string">
+     delete from sd_gt $value$
+   </delete>
+   
+   <delete id="Deletesd_gtByKey" parameterClass="string">
+        DELETE FROM 
+         sd_gt
+           WHERE
+         gtID = #gtID#
+    
+   </delete>
+   
+   <update id="Updatesd_gt" parameterClass="sd_gt" resultClass="int">
+          UPDATE sd_gt
+           SET
+             [LineCode]=#LineCode#,
+             [gtCode]=#gtCode#,
+             [gth]=#gth#,
+             [gtType]=#gtType#,
+             [gtModle]=#gtModle#,
+             [gtHeight]=#gtHeight#,
+             [gtLon]=#gtLon#,
+             [gtLat]=#gtLat#,
+             [gtElev]=#gtElev#,
+             [X54]=#X54#,
+             [Y54]=#Y54#,
+             [gtSpan]=#gtSpan#,
+             [gtMs]=#gtMs#,
+             [gtZjfx]=#gtZjfx#,
+             [gtZj]=#gtZj#,
+             [gtJg]=#gtJg#,
+             [ImageID]=#ImageID#,
+             [dxplfs]=#dxplfs#,
+             [gtNum]=#gtNum#,
+             [gtSpan2]=#gtSpan2#,
+             [gtSpan3]=#gtSpan3#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#,
+             [c6]=#c6#,
+             [c7]=#c7#,
+             [c8]=#c8#,
+             [c9]=#c9#
+            WHERE 
+              gtID = #gtID#
+
+   </update>
+  
+   <insert id="Insertsd_gt" parameterClass="sd_gt">
+        INSERT INTO sd_gt
+         (
+         [gtID],
+         [LineCode],
+         [gtCode],
+         [gth],
+         [gtType],
+         [gtModle],
+         [gtHeight],
+         [gtLon],
+         [gtLat],
+         [gtElev],
+         [X54],
+         [Y54],
+         [gtSpan],
+         [gtMs],
+         [gtZjfx],
+         [gtZj],
+         [gtJg],
+         [ImageID],
+         [dxplfs],
+         [gtNum],
+         [gtSpan2],
+         [gtSpan3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+         )
+       VALUES
+         (
+         #gtID#,
+         #LineCode#,
+         #gtCode#,
+         #gth#,
+         #gtType#,
+         #gtModle#,
+         #gtHeight#,
+         #gtLon#,
+         #gtLat#,
+         #gtElev#,
+         #X54#,
+         #Y54#,
+         #gtSpan#,
+         #gtMs#,
+         #gtZjfx#,
+         #gtZj#,
+         #gtJg#,
+         #ImageID#,
+         #dxplfs#,
+         #gtNum#,
+         #gtSpan2#,
+         #gtSpan3#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#,
+         #c6#,
+         #c7#,
+         #c8#,
+         #c9#
+         )
+
+   </insert>
+   
+   <select id="Getsd_gtRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_gt
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gtCode">[gtCode]='$gtCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="gtType">[gtType]='$gtType$'</isNotNull>
+       <isNotNull prepend="AND" property="gtModle">[gtModle]='$gtModle$'</isNotNull>
+       <isNotNull prepend="AND" property="gtHeight">[gtHeight]='$gtHeight$'</isNotNull>
+       <isNotNull prepend="AND" property="gtLon">[gtLon]='$gtLon$'</isNotNull>
+       <isNotNull prepend="AND" property="gtLat">[gtLat]='$gtLat$'</isNotNull>
+       <isNotNull prepend="AND" property="gtElev">[gtElev]='$gtElev$'</isNotNull>
+       <isNotNull prepend="AND" property="X54">[X54]='$X54$'</isNotNull>
+       <isNotNull prepend="AND" property="Y54">[Y54]='$Y54$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan">[gtSpan]='$gtSpan$'</isNotNull>
+       <isNotNull prepend="AND" property="gtMs">[gtMs]='$gtMs$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZjfx">[gtZjfx]='$gtZjfx$'</isNotNull>
+       <isNotNull prepend="AND" property="gtZj">[gtZj]='$gtZj$'</isNotNull>
+       <isNotNull prepend="AND" property="gtJg">[gtJg]='$gtJg$'</isNotNull>
+       <isNotNull prepend="AND" property="ImageID">[ImageID]='$ImageID$'</isNotNull>
+       <isNotNull prepend="AND" property="dxplfs">[dxplfs]='$dxplfs$'</isNotNull>
+       <isNotNull prepend="AND" property="gtNum">[gtNum]='$gtNum$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan2">[gtSpan2]='$gtSpan2$'</isNotNull>
+       <isNotNull prepend="AND" property="gtSpan3">[gtSpan3]='$gtSpan3$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="c6">[c6]='$c6$'</isNotNull>
+       <isNotNull prepend="AND" property="c7">[c7]='$c7$'</isNotNull>
+       <isNotNull prepend="AND" property="c8">[c8]='$c8$'</isNotNull>
+       <isNotNull prepend="AND" property="c9">[c9]='$c9$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_gtRowCount" parameterClass="string">
+    select count(*) from sd_gt $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
