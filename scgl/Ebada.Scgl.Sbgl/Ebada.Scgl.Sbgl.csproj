@@ -487,6 +487,84 @@
     <Compile Include="台区元素\uc_gridcontrol.Designer.cs">
       <DependentUpon>uc_gridcontrol.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\frmsdgtEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsdgtEdit.Designer.cs">
+      <DependentUpon>frmsdgtEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\frmsdgtsbEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsdgtsbEdit.Designer.cs">
+      <DependentUpon>frmsdgtsbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\frmsdgtsbEditM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsdgtsbEditM.Designer.cs">
+      <DependentUpon>frmsdgtsbEditM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\frmsd_gtsbclbclEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsd_gtsbclbclEdit.Designer.cs">
+      <DependentUpon>frmsd_gtsbclbclEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\frmsd_gtsbclbEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsd_gtsbclbEdit.Designer.cs">
+      <DependentUpon>frmsd_gtsbclbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_GT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_GT.Designer.cs">
+      <DependentUpon>UCsd_GT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_gtM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_gtM.Designer.cs">
+      <DependentUpon>UCsd_gtM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_GTSB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_GTSB.Designer.cs">
+      <DependentUpon>UCsd_GTSB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclb.Designer.cs">
+      <DependentUpon>UCsd_gtsbclb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclbM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclbM.Designer.cs">
+      <DependentUpon>UCsd_gtsbclbM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclbMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_gtsbclbMain.Designer.cs">
+      <DependentUpon>UCsd_gtsbclbMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_xlTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_xlTree.Designer.cs">
+      <DependentUpon>UCsd_xlTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsdxlTreeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsdxlTreeSelector.Designer.cs">
+      <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmbyqxhEdit.resx">
@@ -735,6 +813,58 @@
       <DependentUpon>UCPS_xl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsdgtEdit.resx">
+      <DependentUpon>frmsdgtEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsdgtsbEdit.resx">
+      <DependentUpon>frmsdgtsbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsdgtsbEditM.resx">
+      <DependentUpon>frmsdgtsbEditM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsd_gtsbclbclEdit.resx">
+      <DependentUpon>frmsd_gtsbclbclEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsd_gtsbclbEdit.resx">
+      <DependentUpon>frmsd_gtsbclbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_GT.resx">
+      <DependentUpon>UCsd_GT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_gtM.resx">
+      <DependentUpon>UCsd_gtM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_GTSB.resx">
+      <DependentUpon>UCsd_GTSB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_gtsbclb.resx">
+      <DependentUpon>UCsd_gtsbclb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_gtsbclbM.resx">
+      <DependentUpon>UCsd_gtsbclbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_gtsbclbMain.resx">
+      <DependentUpon>UCsd_gtsbclbMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_xlTree.resx">
+      <DependentUpon>UCsd_xlTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsdxlTreeSelector.resx">
+      <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="模块说明.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -749,6 +879,9 @@
     <None Include="DSandroid.xss">
       <DependentUpon>DSandroid.xsd</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="变电\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
