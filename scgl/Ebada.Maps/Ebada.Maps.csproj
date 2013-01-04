@@ -398,6 +398,12 @@
     <EmbeddedResource Include="PS_kgjctj.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="sd_gt.xml" />
+    <EmbeddedResource Include="sd_gtsb.xml" />
+    <EmbeddedResource Include="sd_gtsbclb.xml" />
+    <EmbeddedResource Include="sd_xl.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

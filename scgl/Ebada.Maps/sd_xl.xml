@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xl"  type="Ebada.Scgl.Model.sd_xl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xl_AllColumns" class="sd_xl">
+        <result property="LineID" column="LineID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="LineType" column="LineType" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="LineNamePath" column="LineNamePath" />
+        <result property="LineVol" column="LineVol" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgCode2" column="OrgCode2" />
+        <result property="Owner" column="Owner" />
+        <result property="Contractor" column="Contractor" />
+        <result property="RunState" column="RunState" />
+        <result property="InDate" column="InDate" />
+        <result property="LineGtbegin" column="LineGtbegin" />
+        <result property="LineGtend" column="LineGtend" />
+        <result property="WireType" column="WireType" />
+        <result property="WireLength" column="WireLength" />
+        <result property="TotalLength" column="TotalLength" />
+        <result property="gdbj" column="gdbj" />
+        <result property="TheoryLoss" column="TheoryLoss" />
+        <result property="ActualLoss" column="ActualLoss" />
+        <result property="ParentGT" column="ParentGT" />
+        <result property="LineP" column="LineP" />
+        <result property="LineQ" column="LineQ" />
+        <result property="K" column="K" />
+        <result property="lineKind" column="lineKind" />
+        <result property="lineNum" column="lineNum" />
+        <result property="TotalT" column="TotalT" />
+        <result property="SectionalizedMessage" column="SectionalizedMessage" />
+        <result property="xlpy" column="xlpy" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+        <result property="c6" column="c6" />
+        <result property="c7" column="c7" />
+        <result property="c8" column="c8" />
+        <result property="c9" column="c9" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xlList" resultMap="sd_xl_AllColumns" parameterClass="string">
+        SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+          FROM sd_xl
+          $value$
+   </select>
+   
+   <select id="Selectsd_xlByHash" parameterClass="Hashtable">
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+          FROM sd_xl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineType">[LineType]='$LineType$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
+       <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
+       <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+       <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
+       <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
+       <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
+       <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
+       <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
+       <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
+       <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
+       <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
+       <isNotNull prepend="AND" property="xlpy">[xlpy]='$xlpy$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="c6">[c6]='$c6$'</isNotNull>
+       <isNotNull prepend="AND" property="c7">[c7]='$c7$'</isNotNull>
+       <isNotNull prepend="AND" property="c8">[c8]='$c8$'</isNotNull>
+       <isNotNull prepend="AND" property="c9">[c9]='$c9$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xlByKey" resultMap="sd_xl_AllColumns" parameterClass="sd_xl">
+         SELECT 
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+         FROM sd_xl
+         WHERE 
+           LineID = #LineID#
+
+   </select>
+ 
+   <delete id="Deletesd_xl" parameterClass="sd_xl">
+        DELETE FROM 
+         sd_xl
+           WHERE
+         LineID = #LineID#
+
+   </delete>
+   
+   <delete id="Deletesd_xlByWhere" parameterClass="string">
+     delete from sd_xl $value$
+   </delete>
+   
+   <delete id="Deletesd_xlByKey" parameterClass="string">
+        DELETE FROM 
+         sd_xl
+           WHERE
+         LineID = #LineID#
+    
+   </delete>
+   
+   <update id="Updatesd_xl" parameterClass="sd_xl" resultClass="int">
+          UPDATE sd_xl
+           SET
+             [ParentID]=#ParentID#,
+             [LineType]=#LineType#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [LineNamePath]=#LineNamePath#,
+             [LineVol]=#LineVol#,
+             [OrgCode]=#OrgCode#,
+             [OrgCode2]=#OrgCode2#,
+             [Owner]=#Owner#,
+             [Contractor]=#Contractor#,
+             [RunState]=#RunState#,
+             [InDate]=#InDate#,
+             [LineGtbegin]=#LineGtbegin#,
+             [LineGtend]=#LineGtend#,
+             [WireType]=#WireType#,
+             [WireLength]=#WireLength#,
+             [TotalLength]=#TotalLength#,
+             [gdbj]=#gdbj#,
+             [TheoryLoss]=#TheoryLoss#,
+             [ActualLoss]=#ActualLoss#,
+             [ParentGT]=#ParentGT#,
+             [LineP]=#LineP#,
+             [LineQ]=#LineQ#,
+             [K]=#K#,
+             [lineKind]=#lineKind#,
+             [lineNum]=#lineNum#,
+             [TotalT]=#TotalT#,
+             [SectionalizedMessage]=#SectionalizedMessage#,
+             [xlpy]=#xlpy#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#,
+             [c6]=#c6#,
+             [c7]=#c7#,
+             [c8]=#c8#,
+             [c9]=#c9#
+            WHERE 
+              LineID = #LineID#
+
+   </update>
+  
+   <insert id="Insertsd_xl" parameterClass="sd_xl">
+        INSERT INTO sd_xl
+         (
+         [LineID],
+         [ParentID],
+         [LineType],
+         [LineCode],
+         [LineName],
+         [LineNamePath],
+         [LineVol],
+         [OrgCode],
+         [OrgCode2],
+         [Owner],
+         [Contractor],
+         [RunState],
+         [InDate],
+         [LineGtbegin],
+         [LineGtend],
+         [WireType],
+         [WireLength],
+         [TotalLength],
+         [gdbj],
+         [TheoryLoss],
+         [ActualLoss],
+         [ParentGT],
+         [LineP],
+         [LineQ],
+         [K],
+         [lineKind],
+         [lineNum],
+         [TotalT],
+         [SectionalizedMessage],
+         [xlpy],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [c6],
+         [c7],
+         [c8],
+         [c9]
+         )
+       VALUES
+         (
+         #LineID#,
+         #ParentID#,
+         #LineType#,
+         #LineCode#,
+         #LineName#,
+         #LineNamePath#,
+         #LineVol#,
+         #OrgCode#,
+         #OrgCode2#,
+         #Owner#,
+         #Contractor#,
+         #RunState#,
+         #InDate#,
+         #LineGtbegin#,
+         #LineGtend#,
+         #WireType#,
+         #WireLength#,
+         #TotalLength#,
+         #gdbj#,
+         #TheoryLoss#,
+         #ActualLoss#,
+         #ParentGT#,
+         #LineP#,
+         #LineQ#,
+         #K#,
+         #lineKind#,
+         #lineNum#,
+         #TotalT#,
+         #SectionalizedMessage#,
+         #xlpy#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#,
+         #c6#,
+         #c7#,
+         #c8#,
+         #c9#
+         )
+
+   </insert>
+   
+   <select id="Getsd_xlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineType">[LineType]='$LineType$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineNamePath">[LineNamePath]='$LineNamePath$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode2">[OrgCode2]='$OrgCode2$'</isNotNull>
+       <isNotNull prepend="AND" property="Owner">[Owner]='$Owner$'</isNotNull>
+       <isNotNull prepend="AND" property="Contractor">[Contractor]='$Contractor$'</isNotNull>
+       <isNotNull prepend="AND" property="RunState">[RunState]='$RunState$'</isNotNull>
+       <isNotNull prepend="AND" property="InDate">[InDate]='$InDate$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtbegin">[LineGtbegin]='$LineGtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="LineGtend">[LineGtend]='$LineGtend$'</isNotNull>
+       <isNotNull prepend="AND" property="WireType">[WireType]='$WireType$'</isNotNull>
+       <isNotNull prepend="AND" property="WireLength">[WireLength]='$WireLength$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalLength">[TotalLength]='$TotalLength$'</isNotNull>
+       <isNotNull prepend="AND" property="gdbj">[gdbj]='$gdbj$'</isNotNull>
+       <isNotNull prepend="AND" property="TheoryLoss">[TheoryLoss]='$TheoryLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ActualLoss">[ActualLoss]='$ActualLoss$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentGT">[ParentGT]='$ParentGT$'</isNotNull>
+       <isNotNull prepend="AND" property="LineP">[LineP]='$LineP$'</isNotNull>
+       <isNotNull prepend="AND" property="LineQ">[LineQ]='$LineQ$'</isNotNull>
+       <isNotNull prepend="AND" property="K">[K]='$K$'</isNotNull>
+       <isNotNull prepend="AND" property="lineKind">[lineKind]='$lineKind$'</isNotNull>
+       <isNotNull prepend="AND" property="lineNum">[lineNum]='$lineNum$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalT">[TotalT]='$TotalT$'</isNotNull>
+       <isNotNull prepend="AND" property="SectionalizedMessage">[SectionalizedMessage]='$SectionalizedMessage$'</isNotNull>
+       <isNotNull prepend="AND" property="xlpy">[xlpy]='$xlpy$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="c6">[c6]='$c6$'</isNotNull>
+       <isNotNull prepend="AND" property="c7">[c7]='$c7$'</isNotNull>
+       <isNotNull prepend="AND" property="c8">[c8]='$c8$'</isNotNull>
+       <isNotNull prepend="AND" property="c9">[c9]='$c9$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xlRowCount" parameterClass="string">
+    select count(*) from sd_xl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
