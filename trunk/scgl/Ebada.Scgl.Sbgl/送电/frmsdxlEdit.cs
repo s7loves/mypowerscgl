@@ -230,11 +230,11 @@ namespace Ebada.Scgl.Sbgl {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-        UCPS_GT gt = null;
+        UCsd_GT gt = null;
         private void simpleButton2_Click(object sender, EventArgs e) {
             groupControl1.Text = rowData.LineName;
             if (gt == null) {
-                gt = new UCPS_GT(rowData);
+                gt = new UCsd_GT(rowData);
                 gt.Dock = DockStyle.Fill;
                 groupControl1.Controls.Add(gt);
 
