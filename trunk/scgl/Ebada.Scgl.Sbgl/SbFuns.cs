@@ -302,5 +302,51 @@ namespace Ebada.Scgl.Sbgl {
             }
             return ret;
         }
+
+        internal static double CountLineLen(sd_xl xl) {
+            double dLen0 = 0;//总长度，包括下级线路
+            double dLen1 = 0;//当前线路长度
+            IList<sd_gt> gtList = Client.ClientHelper.PlatformSqlMap.GetList<sd_gt>("where linecode='" + xl.LineCode + "' order by gtcode");
+            sd_gt gt0 = new sd_gt();
+            List<object> updateList = new List<object>();
+            for (int i = 0; i < gtList.Count; i++) {
+                sd_gt gt = gtList[i];
+                double d1 = 0;
+                if (gt.gtLat == 0 || gt.gtLon == 0) d1 = -1;
+                if (gt0.gtLat == 0 || gt0.gtLon == 0) {
+                    gt0 = gt; d1 = -1;
+                }
+                if (d1 == 0) {
+                    d1 = GetDistance(new PointLatLng(gt.gtLat, gt.gtLon), new PointLatLng(gt0.gtLat, gt0.gtLon));
+                    gt.gtSpan = (decimal)Math.Round(d1, 1);
+                    if (gt.gtSpan > 9999) {
+                        string err = string.Format("数据异常，计算终止。异常杆塔号{0}-{1},所在线路{2}", gt0.gth, gt.gth, xl.LineName);
+                        throw new Exception(err);
+                    }
+                } else {
+                    gt.gtSpan = 0;
+                    d1 = 0;
+                }
+                //gt.
+                updateList.Add(gt);
+                dLen1 += d1;
+                gt0 = gt;
+            }
+            xl.WireLength = (int)(dLen1);//
+
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, updateList, null);
+            updateList.Clear();
+            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where parentid='" + xl.LineID + "' and linevol='" + xl.LineVol + "'");
+            foreach (sd_xl xl0 in xlList) {
+                double d0 = CountLineLen(xl0);
+                dLen0 += d0;
+                if (xl0.TotalLength == (int)d0) continue;
+                xl0.TotalLength = (int)d0;
+                updateList.Add(xl0);
+            }
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, updateList, null);
+            dLen0 += dLen1;
+            return dLen0;
+        }
     }
 }

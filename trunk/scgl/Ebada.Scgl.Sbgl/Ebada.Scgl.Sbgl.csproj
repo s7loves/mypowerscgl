@@ -517,6 +517,12 @@
     <Compile Include="送电\frmsd_gtsbclbEdit.Designer.cs">
       <DependentUpon>frmsd_gtsbclbEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\frmsdxlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\frmsdxlEdit.Designer.cs">
+      <DependentUpon>frmsdxlEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="送电\UCsd_jcky.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -837,6 +843,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\frmsd_gtsbclbEdit.resx">
       <DependentUpon>frmsd_gtsbclbEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\frmsdxlEdit.resx">
+      <DependentUpon>frmsdxlEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\UCsd_jcky.resx">
