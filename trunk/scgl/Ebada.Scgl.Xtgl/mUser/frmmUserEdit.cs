@@ -19,6 +19,10 @@ namespace Ebada.Scgl.Xtgl {
 
         public frmmUserEdit() {
             InitializeComponent();
+
+            // 职员编号最长为6位
+            textEdit1.Properties.MaxLength = 6;
+
         }
         void dataBind() {
 
@@ -92,5 +96,20 @@ namespace Ebada.Scgl.Xtgl {
         {
 
         }
+
+        #region 确定按钮 职员编号为6位！
+        void btnOK_Click(object sender, System.EventArgs e)
+        {
+            if (textEdit1.Text.Length != 6)
+            {
+                MsgBox.ShowWarningMessageBox("职员编号为6位！");
+                textEdit1.Focus();
+            }
+            else
+            {
+                this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+        #endregion
     }
 }
