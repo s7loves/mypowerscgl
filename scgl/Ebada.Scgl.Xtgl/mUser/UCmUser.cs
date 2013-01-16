@@ -20,21 +20,24 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 
-namespace Ebada.Scgl.Xtgl {
+namespace Ebada.Scgl.Xtgl
+{
 
     [ToolboxItem(false)]
-    public partial class UCmUser : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCmUser : DevExpress.XtraEditors.XtraUserControl
+    {
         private GridViewOperation<mUser> gridViewOperation;
-        
+
         public event SendDataEventHandler<mUser> FocusedRowChanged;
         private string parentID;
         private mOrg parentObj;
-        public UCmUser() {
+        public UCmUser()
+        {
             InitializeComponent();
             initImageList();
 
             gridViewOperation = new GridViewOperation<mUser>(gridControl1, gridView1, barManager1, new frmmUserEdit());
-            gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
+            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeAdd);
             gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<mUser>(gridViewOperation_BeforeInsert);
@@ -42,40 +45,49 @@ namespace Ebada.Scgl.Xtgl {
             initColumns();
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<mUser> e) {
-            if (e.Value.Password.Length <= 12) {
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<mUser> e)
+        {
+            if (e.Value.Password.Length <= 12)
+            {
                 e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
             }
         }
 
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<mUser> e) {
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<mUser> e)
+        {
             e.Value.Password = MainHelper.EncryptoPassword(e.Value.Password);
         }
         /// <summary>
         /// 设置隐藏列
         /// </summary>
-        void initColumns() {
+        void initColumns()
+        {
             gridView1.Columns["OrgCode"].Visible = true;
             gridView1.Columns["OrgName"].Visible = false;
             gridView1.Columns["Password"].ColumnEdit = repositoryItemTextEdit1;
             repositoryItemTextEdit1.EditValueChanged += new EventHandler(repositoryItemTextEdit1_EditValueChanged);
         }
 
-        void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e) {
-            
+        void repositoryItemTextEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<mUser> e) {
-            if (string.IsNullOrEmpty(parentID)) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<mUser> e)
+        {
+            if (string.IsNullOrEmpty(parentID))
+            {
                 e.Cancel = true;
                 MsgBox.ShowWarningMessageBox("请先选择机构后增加职员！");
             }
         }
-        private void initImageList() {
+        private void initImageList()
+        {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as mUser);
         }
@@ -83,7 +95,8 @@ namespace Ebada.Scgl.Xtgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<mUser> GridViewOperation {
+        public GridViewOperation<mUser> GridViewOperation
+        {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -91,28 +104,52 @@ namespace Ebada.Scgl.Xtgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(mUser newobj) {
+        void gridViewOperation_CreatingObjectEvent(mUser newobj)
+        {
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.Valid = true;
+            newobj.UserCode = parentID;
+            var maxid = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select right((max(UserCode) + 1),3) from mUser where isnumeric(usercode)=1 and orgcode='" + parentID + "'");
+            if (maxid != null)
+            {
+                int id = Convert.ToInt32(maxid.ToString());
+                string str_id = "";
+                for (int i = 0; i < 3 - id.ToString().Length; i++)
+                {
+                    str_id += "0";
+                }
+                newobj.UserCode += str_id + id.ToString();
+            }
+            else
+            {
+                newobj.UserCode += "001";
+            }
+            newobj.LoginID = newobj.UserCode;
         }
         /// <summary>
         /// 父表ID
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ParentID {
+        public string ParentID
+        {
             get { return parentID; }
-            set {
-                
-                string str=" where 1>1";
-                if (value == "") {
+            set
+            {
+
+                string str = " where 1>1";
+                if (value == "")
+                {
                     str = "";
                     parentID = null;
-                } else {
+                }
+                else
+                {
                     parentID = value;
 
-                    if (!string.IsNullOrEmpty(parentID)) {
+                    if (!string.IsNullOrEmpty(parentID))
+                    {
                         str = string.Format("where Orgcode='{0}'", parentID);
                     }
                 }
@@ -121,14 +158,19 @@ namespace Ebada.Scgl.Xtgl {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public mOrg ParentObj {
+        public mOrg ParentObj
+        {
             get { return parentObj; }
-            set {
+            set
+            {
 
                 parentObj = value;
-                if (value == null) {
+                if (value == null)
+                {
                     parentID = null;
-                } else {
+                }
+                else
+                {
                     ParentID = value.OrgCode;
                 }
             }

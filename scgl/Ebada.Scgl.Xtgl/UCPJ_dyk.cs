@@ -26,40 +26,46 @@ using Ebada.Components;
 using DevExpress.Utils;
 using Ebada.Scgl.Core;
 
-namespace Ebada.Scgl.Xtgl {
+namespace Ebada.Scgl.Xtgl
+{
     /// <summary>
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPJ_dyk : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCPJ_dyk : DevExpress.XtraEditors.XtraUserControl
+    {
         private GridViewOperation<PJ_dyk> gridViewOperation;
-        
+
         public event SendDataEventHandler<PJ_dyk> FocusedRowChanged;
-        private string parentID="";
+        private string parentID = "";
         private PJ_dyk parentObj;
-        public UCPJ_dyk() {
+        public UCPJ_dyk()
+        {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PJ_dyk>(gridControl1, gridView1, barManager1,new frmdykEdit());
+            gridViewOperation = new GridViewOperation<PJ_dyk>(gridControl1, gridView1, barManager1, new frmdykEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeAdd);
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_dyk>(gridViewOperation_AfterAdd);
-            gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
+            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeEdit);
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_dyk>(gridViewOperation_AfterEdit);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeDelete);
-            gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
-           
+            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+
         }
         private IViewOperation<PJ_dyk> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
-        public IViewOperation<PJ_dyk> ChildView {
+        public IViewOperation<PJ_dyk> ChildView
+        {
             get { return childView; }
-            set {
+            set
+            {
                 childView = value;
-                if (value != null) {
+                if (value != null)
+                {
                     gridView1.Columns["bh"].Caption = "引用编号";
                     gridView1.Columns["zjm"].Caption = "备注";
                     gridViewOperation.EditForm = new PopupFormGridEdit();
@@ -67,7 +73,8 @@ namespace Ebada.Scgl.Xtgl {
                 }
             }
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_dyk> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PJ_dyk> e)
+        {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
         }
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_dyk> e)
@@ -93,9 +100,9 @@ namespace Ebada.Scgl.Xtgl {
                 //obj.ID = obj.bh;
                 Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}' WHERE ID='{1}'", obj.bh, obj.ID));
                 obj.ID = obj.bh;
-                
+
             }
-            if(parentObj!=null)
+            if (parentObj != null)
                 RefreshData(" where parentid='" + parentObj.ID + "'");
         }
         void gridViewOperation_AfterEdit(PJ_dyk obj)
@@ -104,21 +111,22 @@ namespace Ebada.Scgl.Xtgl {
             {
                 //obj.ID = obj.bh;
                 Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", obj.bh, obj.ID));
-                
+
                 Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", obj.bh, obj.bh, obj.ID));
                 obj.ID = obj.bh;
                 MainHelper.PlatformSqlMap.Update<PJ_dyk>(obj);
             }
         }
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_dyk> e) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_dyk> e)
+        {
             if (parentID == null)
                 e.Cancel = true;
-            if (parentObj!=null&&parentID != parentObj.ID) ParentID = parentObj.ID;
+            if (parentObj != null && parentID != parentObj.ID) ParentID = parentObj.ID;
             if (parentID != "")
             {
                 long xhidex = 0;
                 IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
-                if (li.Count > 0 && li[0].bh!="")
+                if (li.Count > 0 && li[0].bh != "")
                     xhidex = (Convert.ToInt64(li[0].bh) + 1);
                 else
                 {
@@ -126,71 +134,79 @@ namespace Ebada.Scgl.Xtgl {
                 }
                 e.Value.ParentID = parentID;
                 e.Value.ID = Convert.ToString(xhidex);
-                e.Value.bh= Convert.ToString(xhidex);
+                e.Value.bh = Convert.ToString(xhidex);
             }
         }
-        protected override void OnLoad(EventArgs e) {
+        protected override void OnLoad(EventArgs e)
+        {
             base.OnLoad(e);
             if (parentID == "0")
             {
                 barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
             else
-
             {
                 barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             }
             //InitColumns();//初始列
             //InitData();//初始数据
         }
-        private void initImageList() {
+        private void initImageList()
+        {
             ImageList imagelist = new ImageList();
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as PJ_dyk);
         }
-        private void hideColumn(string colname) {
+        private void hideColumn(string colname)
+        {
             gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void InitData() {
-            if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
+        public void InitData()
+        {
+            if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
             RefreshData(" where parentid=''");
         }
         /// <summary>
         /// 初始化列,
         /// </summary>
-        public void InitColumns() {
+        public void InitColumns()
+        {
 
             //需要隐藏列时在这写代码
 
             hideColumn("ParentID");
-            if (parentID == "") {
+            if (parentID == "")
+            {
                 hideColumn("nr");
                 hideColumn("nr2");
                 hideColumn("nr3");
                 hideColumn("nr4");
             }
-            
+
         }
         /// <summary>
         /// 刷新数据
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
-        public void RefreshData(string slqwhere) {
+        public void RefreshData(string slqwhere)
+        {
             gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<PJ_dyk> GridViewOperation {
+        public GridViewOperation<PJ_dyk> GridViewOperation
+        {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -198,11 +214,31 @@ namespace Ebada.Scgl.Xtgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(PJ_dyk newobj) {
+        void gridViewOperation_CreatingObjectEvent(PJ_dyk newobj)
+        {
             newobj.ParentID = parentID;
-            if (parentObj != null) {
+            if (parentObj != null)
+            {
                 newobj.sx = parentObj.sx;
                 newobj.dx = parentObj.dx;
+            }
+            else
+            {
+                PJ_dyk temp = gridView1.GetFocusedRow() as PJ_dyk;
+                if (temp != null)
+                {
+                    newobj.dx = temp.dx;
+                }
+                var bh = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where dx='" + newobj.dx + "' and len(bh)=6");
+                if (bh != null)
+                {
+                    string str_bh = "";
+                    for (int i = 0; i < 6 - bh.ToString().Length; i++)
+                    {
+                        str_bh += "0";
+                    }
+                    newobj.bh = str_bh + bh;
+                }
             }
         }
         /// <summary>
@@ -211,11 +247,14 @@ namespace Ebada.Scgl.Xtgl {
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         //[DesignTimeVisible(false)]
-        public string ParentID {
+        public string ParentID
+        {
             get { return parentID; }
-            set {
+            set
+            {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value)) {
+                if (!string.IsNullOrEmpty(value))
+                {
                     if (value != "" && value != "0")
                     {
                         List<PJ_dyk> list2 = new List<PJ_dyk>();
@@ -255,9 +294,10 @@ namespace Ebada.Scgl.Xtgl {
                                         dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
                                         one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
                                     }
-                                   
+
                                 }
-                                else {
+                                else
+                                {
                                     IList<PJ_dyk> litemp = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh =id and ParentID='' order by  bh desc");
                                     if (litemp.Count > 0)
                                     {
@@ -304,26 +344,31 @@ namespace Ebada.Scgl.Xtgl {
                                     dyk.bh = Convert.ToString(xhidex);
                                     Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
                                 }
-                                
+
                             }
                             catch { };
                         }
                     }
-                    
+
                     RefreshData(" where parentid='" + value + "'");
                 }
             }
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PJ_dyk ParentObj {
+        public PJ_dyk ParentObj
+        {
             get { return parentObj; }
-            set {
-                
+            set
+            {
+
                 parentObj = value;
-                if (value == null) {
+                if (value == null)
+                {
                     parentID = null;
-                } else {
+                }
+                else
+                {
                     ParentID = value.ID;
                 }
             }
@@ -347,21 +392,23 @@ namespace Ebada.Scgl.Xtgl {
             {
                 foreach (PJ_dyk xl in list)
                 {
-                    try {
+                    try
+                    {
                         if (xl.nr.Length > 50)
                             xl.zjm = SelectorHelper.GetPysm(xl.nr.Substring(0, 50));
                         else
                             xl.zjm = SelectorHelper.GetPysm(xl.nr);
 
                         listout.Add(xl);
-                    } catch { }
+                    }
+                    catch { }
                 }
                 if (listout.Count > 0)
                     Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, listout, null);
             }
             catch { }
             wdf.Close();
-            
+
         }
     }
 }
