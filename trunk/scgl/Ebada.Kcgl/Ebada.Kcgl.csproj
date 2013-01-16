@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -303,6 +303,7 @@
   <ItemGroup>
     <EmbeddedResource Include="frmCLSelector.resx">
       <DependentUpon>frmCLSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -315,9 +316,11 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv工程到货查询.resx">
       <DependentUpon>UCv工程到货查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC工程计划M.resx">
       <DependentUpon>UC工程计划M.cs</DependentUpon>
@@ -397,18 +400,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UC入库明细表查询.resx">
       <DependentUpon>UC入库明细表查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UC出库明细表查询.resx">
       <DependentUpon>UC出库明细表查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UC退货明细表查询.resx">
       <DependentUpon>UC退货明细表查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv库存明细表查询.resx">
       <DependentUpon>UCv库存明细表查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv库存汇总表查询.resx">
       <DependentUpon>UCv库存汇总表查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +442,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv工程结算查询.resx">
       <DependentUpon>UCv工程结算查询.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
