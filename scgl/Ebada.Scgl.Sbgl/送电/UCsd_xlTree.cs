@@ -47,7 +47,7 @@ namespace Ebada.Scgl.Sbgl {
         public event SendDataEventHandler<sd_xl> AfterDelete;
         public UCsd_xlTree() {
             InitializeComponent();
-            treeViewOperator = new TreeViewOperation<sd_xl>(treeList1, barManager1,new frmxlEdit());
+            treeViewOperator = new TreeViewOperation<sd_xl>(treeList1, barManager1,new frmsdxlEdit());
             treeViewOperator.CreatingObjectEvent += treeViewOperator_CreatingObject;
             treeViewOperator.BeforeAdd += new ObjectOperationEventHandler<sd_xl>(treeViewOperator_BeforeAdd);
             treeViewOperator.AfterAdd += treeViewOperator_AfterAdd;
