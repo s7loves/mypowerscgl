@@ -206,6 +206,7 @@
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(186, 21);
             this.textEdit1.TabIndex = 1;
+            this.textEdit1.Properties.MaxLength = 3;
             // 
             // bar1
             // 
