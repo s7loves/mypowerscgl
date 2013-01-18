@@ -19,7 +19,7 @@ using DevExpress.XtraTab;
 namespace Ebada.Scgl.Sbgl
 {
     public partial class frmsdgtEdit : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<PS_gt> m_CityDic = new SortableSearchableBindingList<PS_gt>();
+        SortableSearchableBindingList<sd_gt> m_CityDic = new SortableSearchableBindingList<sd_gt>();
         private Boolean multipleAdd = false;
         XtraTabPage tqTab, kgTab,byqTab;
         //UCPS_TQ ucps_tq;
@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Sbgl
 
         }
         #region IPopupFormEdit Members
-        private PS_gt rowData = null;
+        private sd_gt rowData = null;
 
         public object RowData {
             get {
@@ -103,11 +103,11 @@ namespace Ebada.Scgl.Sbgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as PS_gt;
+                    this.rowData = value as sd_gt;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<PS_gt>(value as PS_gt, rowData);
+                    ConvertHelper.CopyTo<sd_gt>(value as sd_gt, rowData);
                 }
                 setImage();
             }
@@ -117,13 +117,13 @@ namespace Ebada.Scgl.Sbgl
             pictureEdit1.EditValue = null;
             imageData = null;
             if (string.IsNullOrEmpty(rowData.ImageID)) {
-                string gtid="0000000000";//
-                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + rowData.LineCode + "'");
+                string gtid="0000000002";//
+                sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + rowData.LineCode + "'");
                 if (xl == null) return;
-                if (xl.LineVol == "0.4")
-                    gtid = "1111111111";
+                if (xl.LineVol == "35")
+                    gtid = "1111111112";
                //PS_gt gt=  Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>("where linecode='"+rowData.LineCode+"' and gtModle='直线杆' and len(imageid)>6 order by gtcode");
-                PS_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(gtid);
+                sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(gtid);
                 if(gt!=null)
                     image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(gt.ImageID);
             } else {
@@ -146,14 +146,14 @@ namespace Ebada.Scgl.Sbgl
         public bool ShowTab2 {
             get { return showTab2; }
             set {
-                showTab2 = value;
+                //showTab2 = value;
             }
         }
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             Application.DoEvents();
             if (showTab2) {
-                UCPS_GTSB gtsb = new UCPS_GTSB();
+                UCsd_GTSB gtsb = new UCsd_GTSB();
                 gtsb.ParentObj = rowData;
                 gtsb.HideList();
                 gtsb.Dock = DockStyle.Fill;
