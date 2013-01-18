@@ -21,6 +21,8 @@ namespace Ebada.Scgl.Sbgl
             ucpS_GTSB1.HideList();
             ucpS_GT1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_gt>(ucpS_GT1_FocusedRowChanged);
             xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
+            xtraTabControl1.TabPages.Remove(xtraTabPage1);
+            xtraTabControl1.TabPages.Remove(xtraTabPage2);
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

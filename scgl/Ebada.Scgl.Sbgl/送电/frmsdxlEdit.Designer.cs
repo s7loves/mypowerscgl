@@ -526,9 +526,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit5.Properties.Items.AddRange(new object[] {
             "110",
-            "35",
-            "10",
-            "0.4"});
+            "35"});
             this.comboBoxEdit5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEdit5.Size = new System.Drawing.Size(198, 21);
             this.comboBoxEdit5.TabIndex = 17;

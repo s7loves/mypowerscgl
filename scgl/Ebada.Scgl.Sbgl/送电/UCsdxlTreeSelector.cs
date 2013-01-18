@@ -59,10 +59,10 @@ namespace Ebada.Scgl.Sbgl {
             foreach (mOrg org in list) {
                 mTable.Rows.Add(org.OrgName, org.OrgCode, "gds", "gds");
                 mOrgs.Add(org.OrgCode, org);
-                if(showHvol)
-                mTable.Rows.Add("高压线路",  "g_" + org.OrgCode, org.OrgCode, "gyxl");
-                if(showLvol)
-                mTable.Rows.Add("低压线路", "d_" + org.OrgCode, org.OrgCode, "dyxl");
+                if (showHvol)
+                    mTable.Rows.Add("送电线路", "g_" + org.OrgCode, org.OrgCode, "gyxl");
+                //if(showLvol)
+                //mTable.Rows.Add("低压线路", "d_" + org.OrgCode, org.OrgCode, "dyxl");
             }
         }
         void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {

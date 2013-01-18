@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Sbgl {
                 }
                 isnew = false;
                 if (rowData.LineVol == "") {
-                    rowData.LineVol = "10";
+                    rowData.LineVol = "35";
 
                 }
                 if (rowData.LineName == "")
@@ -134,7 +134,7 @@ namespace Ebada.Scgl.Sbgl {
         #endregion
         private void initParentGtList() {
             //初始分支杆号
-            string sql = string.Format("select a.gtcode from ps_gt a ,ps_xl b where a.LineCode=b.Linecode and b.LineID='{0}'", rowData.ParentID);
+            string sql = string.Format("select a.gtcode from sd_gt a ,sd_xl b where a.LineCode=b.Linecode and b.LineID='{0}'", rowData.ParentID);
             IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
             comboBoxEdit15.Properties.Items.Clear();
             comboBoxEdit15.Properties.Items.AddRange(list);
@@ -261,14 +261,14 @@ namespace Ebada.Scgl.Sbgl {
         void simpleButton4_Click(object sender, EventArgs e) {
             //恢复经纬度
 
-            SbFuns.RestoreGTLatLng(rowData.LineCode);
-            Client.MsgBox.ShowTipMessageBox("恢复完成。");
+            //SbFuns.RestoreGTLatLng(rowData.LineCode);
+            //Client.MsgBox.ShowTipMessageBox("恢复完成。");
         }
 
         void simpleButton3_Click(object sender, EventArgs e) {
             //备份经纬度
-            SbFuns.BackupGTLatLng(rowData.LineCode);
-            Client.MsgBox.ShowTipMessageBox("备份完成。");
+            //SbFuns.BackupGTLatLng(rowData.LineCode);
+            //Client.MsgBox.ShowTipMessageBox("备份完成。");
         }
         private void groupControl1_VisibleChanged(object sender, EventArgs e) {
             simpleButton3.Visible = groupControl1.Visible;

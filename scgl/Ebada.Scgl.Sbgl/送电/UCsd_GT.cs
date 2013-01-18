@@ -316,7 +316,7 @@ namespace Ebada.Scgl.Sbgl
             gt.gtHeight = 10m;
             gt.gtModle = "直线杆";
             gt.gtType = "混凝土拔梢杆";
-            frmgtEdit frm = new frmgtEdit();
+            frmsdgtEdit frm = new frmsdgtEdit();
             frm.RowData = gt;
             frm.MultipleAdd = true;//批量增加
             if (frm.ShowDialog() == DialogResult.OK) {
