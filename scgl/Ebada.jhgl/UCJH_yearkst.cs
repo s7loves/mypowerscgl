@@ -134,7 +134,7 @@ namespace Ebada.jhgl {
             btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             InitData();
-            buildyear(DateTime.Today.Year);
+            buildyear(DateTime.Today.AddDays(30).Year);
             treeViewOperator.RefreshData("");
         }
         private void buildyear(int year) {
