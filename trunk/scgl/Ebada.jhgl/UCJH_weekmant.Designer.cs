@@ -51,7 +51,6 @@
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.btJZ = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -82,8 +81,7 @@
             this.btExport,
             this.btExport1,
             this.barEditItem1,
-            this.barStaticItem1,
-            this.btJZ});
+            this.barStaticItem1});
             this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
@@ -106,7 +104,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport1, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btJZ, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -325,13 +322,6 @@
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // btJZ
-            // 
-            this.btJZ.Caption = "结转";
-            this.btJZ.Id = 16;
-            this.btJZ.Name = "btJZ";
-            this.btJZ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btJZ_ItemClick);
-            // 
             // UCJH_weekmant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -383,6 +373,5 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
-        private DevExpress.XtraBars.BarButtonItem btJZ;
     }
 }
