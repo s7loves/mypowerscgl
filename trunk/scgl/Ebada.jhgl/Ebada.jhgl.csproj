@@ -161,6 +161,18 @@
     <Compile Include="UCJH_weekks.Designer.cs">
       <DependentUpon>UCJH_weekks.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCJH_weekman.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_weekman.Designer.cs">
+      <DependentUpon>UCJH_weekman.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCJH_weekmant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_weekmant.Designer.cs">
+      <DependentUpon>UCJH_weekmant.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
@@ -205,6 +217,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCJH_weekks.resx">
       <DependentUpon>UCJH_weekks.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_weekman.resx">
+      <DependentUpon>UCJH_weekman.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_weekmant.resx">
+      <DependentUpon>UCJH_weekmant.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
