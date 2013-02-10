@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="JH_weekmant" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="JH_weekmant"  type="Ebada.Scgl.Model.JH_weekmant,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="JH_weekmant_AllColumns" class="JH_weekmant">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="单位代码" column="单位代码" />
+        <result property="单位名称" column="单位名称" />
+        <result property="开始日期" column="开始日期" />
+        <result property="结束日期" column="结束日期" />
+        <result property="标题" column="标题" />
+        <result property="年月周" column="年月周" />
+        <result property="姓名" column="姓名" />
+        <result property="职务" column="职务" />
+        <result property="考核人" column="考核人" />
+        <result property="考核结果" column="考核结果" />
+        <result property="考核时间" column="考核时间" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectJH_weekmantList" resultMap="JH_weekmant_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月周],
+         [姓名],
+         [职务],
+         [考核人],
+         [考核结果],
+         [考核时间],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_weekmant
+          $value$
+   </select>
+   
+   <select id="SelectJH_weekmantByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月周],
+         [姓名],
+         [职务],
+         [考核人],
+         [考核结果],
+         [考核时间],
+         [c1],
+         [c2],
+         [c3]
+          FROM JH_weekmant
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年月周">[年月周]='$年月周$'</isNotNull>
+       <isNotNull prepend="AND" property="姓名">[姓名]='$姓名$'</isNotNull>
+       <isNotNull prepend="AND" property="职务">[职务]='$职务$'</isNotNull>
+       <isNotNull prepend="AND" property="考核人">[考核人]='$考核人$'</isNotNull>
+       <isNotNull prepend="AND" property="考核结果">[考核结果]='$考核结果$'</isNotNull>
+       <isNotNull prepend="AND" property="考核时间">[考核时间]='$考核时间$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectJH_weekmantByKey" resultMap="JH_weekmant_AllColumns" parameterClass="JH_weekmant">
+         SELECT 
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月周],
+         [姓名],
+         [职务],
+         [考核人],
+         [考核结果],
+         [考核时间],
+         [c1],
+         [c2],
+         [c3]
+         FROM JH_weekmant
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteJH_weekmant" parameterClass="JH_weekmant">
+        DELETE FROM 
+         JH_weekmant
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteJH_weekmantByWhere" parameterClass="string">
+     delete from JH_weekmant $value$
+   </delete>
+   
+   <delete id="DeleteJH_weekmantByKey" parameterClass="string">
+        DELETE FROM 
+         JH_weekmant
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateJH_weekmant" parameterClass="JH_weekmant" resultClass="int">
+          UPDATE JH_weekmant
+           SET
+             [ParentID]=#ParentID#,
+             [单位代码]=#单位代码#,
+             [单位名称]=#单位名称#,
+             [开始日期]=#开始日期#,
+             [结束日期]=#结束日期#,
+             [标题]=#标题#,
+             [年月周]=#年月周#,
+             [姓名]=#姓名#,
+             [职务]=#职务#,
+             [考核人]=#考核人#,
+             [考核结果]=#考核结果#,
+             [考核时间]=#考核时间#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertJH_weekmant" parameterClass="JH_weekmant">
+        INSERT INTO JH_weekmant
+         (
+         [ID],
+         [ParentID],
+         [单位代码],
+         [单位名称],
+         [开始日期],
+         [结束日期],
+         [标题],
+         [年月周],
+         [姓名],
+         [职务],
+         [考核人],
+         [考核结果],
+         [考核时间],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #单位代码#,
+         #单位名称#,
+         #开始日期#,
+         #结束日期#,
+         #标题#,
+         #年月周#,
+         #姓名#,
+         #职务#,
+         #考核人#,
+         #考核结果#,
+         #考核时间#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="GetJH_weekmantRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM JH_weekmant
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="单位代码">[单位代码]='$单位代码$'</isNotNull>
+       <isNotNull prepend="AND" property="单位名称">[单位名称]='$单位名称$'</isNotNull>
+       <isNotNull prepend="AND" property="开始日期">[开始日期]='$开始日期$'</isNotNull>
+       <isNotNull prepend="AND" property="结束日期">[结束日期]='$结束日期$'</isNotNull>
+       <isNotNull prepend="AND" property="标题">[标题]='$标题$'</isNotNull>
+       <isNotNull prepend="AND" property="年月周">[年月周]='$年月周$'</isNotNull>
+       <isNotNull prepend="AND" property="姓名">[姓名]='$姓名$'</isNotNull>
+       <isNotNull prepend="AND" property="职务">[职务]='$职务$'</isNotNull>
+       <isNotNull prepend="AND" property="考核人">[考核人]='$考核人$'</isNotNull>
+       <isNotNull prepend="AND" property="考核结果">[考核结果]='$考核结果$'</isNotNull>
+       <isNotNull prepend="AND" property="考核时间">[考核时间]='$考核时间$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetJH_weekmantRowCount" parameterClass="string">
+    select count(*) from JH_weekmant $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
