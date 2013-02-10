@@ -57,6 +57,8 @@
     <Compile Include="JH_monthkst.cs" />
     <Compile Include="JH_weekks.cs" />
     <Compile Include="JH_weekkst.cs" />
+    <Compile Include="JH_weekman.cs" />
+    <Compile Include="JH_weekmant.cs" />
     <Compile Include="JH_yearks.cs" />
     <Compile Include="JH_yearkst.cs" />
     <Compile Include="LP_Record.cs" />
