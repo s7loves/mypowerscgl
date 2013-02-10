@@ -155,7 +155,7 @@ namespace Ebada.jhgl {
                 parentOBJ = value;
 
                 ParentID = value.年;
-                if (gridViewOperation.BindingList.Count == 0) {
+                if (gridViewOperation.BindingList.Count == 0 && (!全局&&!部门)) {
                     btAdd.PerformClick();
                 }
                 gridView1.Columns["考核结果"].OptionsColumn.AllowEdit = gridView1.RowCount>1;
