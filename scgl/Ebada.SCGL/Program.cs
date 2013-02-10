@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Ebada.Scgl.Run;
+using System.Configuration;
 
 namespace Ebada.SCGL
 {
@@ -54,6 +55,9 @@ namespace Ebada.SCGL
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Application.ThreadExit += new EventHandler(Application_ThreadExit);
             //Application.Run(new frmMain2());
+            string uc= ConfigurationManager.AppSettings["usercompany"];
+            if (!string.IsNullOrEmpty(uc))
+                Ebada.Client.Platform.MainHelper.UserCompany = uc;
             Application.Run(new FrmSystem());
         }
 
