@@ -404,6 +404,10 @@
     <EmbeddedResource Include="sd_xl.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="JH_weekman.xml" />
+    <EmbeddedResource Include="JH_weekmant.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
