@@ -523,6 +523,18 @@
     <Compile Include="送电\frmsdxlEdit.Designer.cs">
       <DependentUpon>frmsdxlEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\UCsd_sbcs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_sbcs.Designer.cs">
+      <DependentUpon>UCsd_sbcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\UCsd_sbcsM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\UCsd_sbcsM.Designer.cs">
+      <DependentUpon>UCsd_sbcsM.cs</DependentUpon>
+    </Compile>
     <Compile Include="送电\UCsd_jcky.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -847,6 +859,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\frmsdxlEdit.resx">
       <DependentUpon>frmsdxlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_sbcs.resx">
+      <DependentUpon>UCsd_sbcs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\UCsd_sbcsM.resx">
+      <DependentUpon>UCsd_sbcsM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\UCsd_jcky.resx">
