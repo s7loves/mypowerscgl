@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_sbcs" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_sbcs"  type="Ebada.Scgl.Model.sd_sbcs,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_sbcs_AllColumns" class="sd_sbcs">
+        <result property="bh" column="bh" />
+        <result property="mc" column="mc" />
+        <result property="xh" column="xh" />
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_sbcsList" resultMap="sd_sbcs_AllColumns" parameterClass="string">
+        SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
+          FROM sd_sbcs
+          $value$
+   </select>
+   
+   <select id="Selectsd_sbcsByHash" parameterClass="Hashtable">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
+          FROM sd_sbcs
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_sbcsByKey" resultMap="sd_sbcs_AllColumns" parameterClass="sd_sbcs">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
+         FROM sd_sbcs
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_sbcs" parameterClass="sd_sbcs">
+        DELETE FROM 
+         sd_sbcs
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_sbcsByWhere" parameterClass="string">
+     delete from sd_sbcs $value$
+   </delete>
+   
+   <delete id="Deletesd_sbcsByKey" parameterClass="string">
+        DELETE FROM 
+         sd_sbcs
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_sbcs" parameterClass="sd_sbcs" resultClass="int">
+          UPDATE sd_sbcs
+           SET
+             [bh]=#bh#,
+             [mc]=#mc#,
+             [xh]=#xh#,
+             [ParentID]=#ParentID#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_sbcs" parameterClass="sd_sbcs">
+        INSERT INTO sd_sbcs
+         (
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #bh#,
+         #mc#,
+         #xh#,
+         #ID#,
+         #ParentID#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getsd_sbcsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_sbcs
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_sbcsRowCount" parameterClass="string">
+    select count(*) from sd_sbcs $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
