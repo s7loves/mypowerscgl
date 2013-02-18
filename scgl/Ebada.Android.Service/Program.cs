@@ -4,32 +4,56 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ServiceModel.Activation;
+using System.ServiceModel.Configuration;
+using System.Configuration;
+using System.Reflection;
 
-namespace Ebada.Android.Service
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace Ebada.Android.Service {
+    class Program {
+        static void Main(string[] args) {
             //using (ServiceHost host = new ServiceHost(typeof(AccountService)))
-            using (ServiceHost host = new ServiceHost(typeof(ScglService)))
-            {
-                host.Open();
-                Console.WriteLine("AccountService Address:");
-                foreach (var endpoint in host.Description.Endpoints)
-                {
+            //using (ServiceHost host = new ServiceHost(typeof(ScglService)))
+            //{
+            //    host.Open();
+            //    Console.WriteLine("AccountService Address:");
+            //    foreach (var endpoint in host.Description.Endpoints)
+            //    {
+            //        Console.WriteLine(endpoint.Address.ToString());
+            //    }
+            //    Console.WriteLine("AccountService Started,Press any key to stop service...");
+            //    Console.ReadKey();
+            //    host.Close();
+            //}
+            Configuration conf = ConfigurationManager.OpenExeConfiguration(Assembly.GetEntryAssembly().Location);
+            ServiceModelSectionGroup svcmod = (ServiceModelSectionGroup)conf.GetSectionGroup("system.serviceModel");
+            IList<ServiceHost> hostList = new List<ServiceHost>();
+            Console.WriteLine("Service Address:");
+            foreach (ServiceElement el in svcmod.Services.Services) {
+                Type svcType = Type.GetType(el.Name + "," + "Ebada.Android.Service");
+                if (svcType == null) {
+
+                    Console.WriteLine("Invalid Service Type " + el.Name + " in configuration file.");
+                    continue;
+                }
+                ServiceHost aServiceHost = new ServiceHost(svcType);
+                aServiceHost.Open();
+                hostList.Add(aServiceHost);
+                foreach (var endpoint in aServiceHost.Description.Endpoints) {
                     Console.WriteLine(endpoint.Address.ToString());
                 }
-                Console.WriteLine("AccountService Started,Press any key to stop service...");
-                Console.ReadKey();
-                host.Close();
+
+            }
+            Console.WriteLine("Service Started,Press any key to stop service...");
+
+            Console.ReadKey();
+            foreach (var h in hostList) {
+                h.Close();
             }
         }
     }
 
     [ServiceContract]
-    public interface IAccountJsonService
-    {
+    public interface IAccountJsonService {
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetAccountData", BodyStyle = WebMessageBodyStyle.Bare)]
         List<Account> GetAccountData();
@@ -49,8 +73,7 @@ namespace Ebada.Android.Service
     }
 
     [ServiceContract]
-    public interface IAccountXmlService
-    {
+    public interface IAccountXmlService {
         [OperationContract(Name = "GetAccountDataXml")]
         [WebGet(RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml, UriTemplate = "GetAccountData", BodyStyle = WebMessageBodyStyle.Bare)]
         List<Account> GetAccountData();
@@ -61,16 +84,14 @@ namespace Ebada.Android.Service
     }
 
     //[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
-    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]  
-    public class AccountService : IAccountJsonService, IAccountXmlService
-    {
-        public List<Account> GetAccountData()
-        {
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class AccountService : IAccountJsonService, IAccountXmlService {
+        public List<Account> GetAccountData() {
             return MockAccount.AccountList;
         }
         public Account SetAccountData(Account obj) {
             Account data = obj;
-            
+
             Console.WriteLine(data.Name);
             Console.WriteLine(data.Age);
             Console.WriteLine(data.Birthday);
@@ -100,16 +121,14 @@ namespace Ebada.Android.Service
             data.Name = "rabbit";
             return data;
         }
-        public string SendMessage(string Message)
-        {
-            
+        public string SendMessage(string Message) {
+
             return " Message:" + Message;
         }
     }
 
     [DataContract]
-    public class Account
-    {
+    public class Account {
         [DataMember]
         public string Name { get; set; }
         [DataMember]
@@ -120,12 +139,9 @@ namespace Ebada.Android.Service
         public DateTime Birthday { get; set; }
     }
 
-    public class MockAccount
-    {
-        public static List<Account> AccountList
-        {
-            get
-            {
+    public class MockAccount {
+        public static List<Account> AccountList {
+            get {
                 var list = new List<Account>();
                 list.Add(new Account { Name = "Bill Gates", Address = "YouYi East Road", Age = 56, Birthday = DateTime.Now });
                 list.Add(new Account { Name = "Steve Paul Jobs", Address = "YouYi West Road", Age = 57, Birthday = DateTime.Now });
