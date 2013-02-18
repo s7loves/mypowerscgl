@@ -239,6 +239,7 @@
     <Compile Include="PS_tj.cs" />
     <Compile Include="WF_WorkTastTrans.cs" />
     <Compile Include="PJ_gdscrk.cs" />
+    <Compile Include="sd_sbcs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
