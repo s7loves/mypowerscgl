@@ -177,7 +177,7 @@ namespace Ebada.Android.Service {
 
         public List<ps_sbzl> GetsbzlList() {
             List<ps_sbzl> list = new List<ps_sbzl>();
-            IList<PS_sbcs> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>(null);
+            IList<PS_sbcs> list2 = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where c1='材料'");
             foreach (PS_sbcs gt in list2) {
                 list.Add(new ps_sbzl() {
                     id = gt.ID, xh = gt.xh, bh = gt.bh, mc = gt.mc, parentid = gt.ParentID
