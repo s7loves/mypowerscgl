@@ -321,7 +321,8 @@ namespace Ebada.jhgl
                }
 
            }
-           JH_weekmant year2 = ClientHelper.PlatformSqlMap.GetOne<JH_weekmant>(string.Format(" where 姓名='{0}' and 年月周>'{1}' and 单位代码='{2}' order by 年月周 desc", year.姓名, year.年月周, year.单位代码));
+           DateTime dt2 = year.结束日期.AddDays(1);
+           JH_weekmant year2 = ClientHelper.PlatformSqlMap.GetOne<JH_weekmant>(string.Format(" where 姓名='{0}' and 开始日期='{1}' and 单位代码='{2}' ", year.姓名, year.结束日期.AddDays(1), year.单位代码));
            if (year2 != null) {
                IList<JH_weekman> nrList2 = ClientHelper.PlatformSqlMap.GetList<JH_weekman>(string.Format("where parentid='{0}'", year2.ID));
                row += 6;
@@ -339,12 +340,12 @@ namespace Ebada.jhgl
                            ex.SetCellValue(nrList2[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + i, 5);
                            ex.SetCellValue(nrList2[starow - 1 + i].协作人员, row + i, 6);
                            ex.SetCellValue(nrList2[starow - 1 + i].工作内容, row + i, 7);
-                           ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
-                           ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
-                           if (nrList[starow - 1 + i].完成时间.Year != 1900)
-                               ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
-                           ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
-                           ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
+                           //if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                           //    ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
 
 
                        }
@@ -354,12 +355,12 @@ namespace Ebada.jhgl
                            ex.SetCellValue(nrList2[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + i, 5);
                            ex.SetCellValue(nrList2[starow - 1 + i].协作人员, row + i, 6);
                            ex.SetCellValue(nrList2[starow - 1 + i].工作内容, row + i, 7);
-                           ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
-                           ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
-                           ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
-                           if (nrList[starow - 1 + i].完成时间.Year != 1900)
-                               ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
-                           ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
+                           //if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                           //    ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
+                           //ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
 
                        }
                    }

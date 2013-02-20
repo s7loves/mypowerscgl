@@ -70,7 +70,7 @@ namespace Ebada.jhgl {
             btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             this.FocusedRowChanged += new SendDataEventHandler<JH_weekmant>(UCJH_weekmant_FocusedRowChanged);
             splitContainerControl1.SplitterPosition += 60;
-            
+            bar1.Visible = true;
         }
 
         void UCJH_weekmant_FocusedRowChanged(object sender, JH_weekmant obj) {
@@ -295,8 +295,8 @@ namespace Ebada.jhgl {
                 childView = value;
                 if (value != null) {
                     bar3.Visible = false;
-                    bar1.Visible = false;
-                    gridView1.OptionsBehavior.Editable = false;
+                    //bar1.Visible = false;
+                    //gridView1.OptionsBehavior.Editable = false;
                 }
             }
         }
