@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{33DA3681-4BD2-4C0A-9098-FA133DE22EBF}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -238,6 +238,7 @@
     <None Include="00记录模板\pdca循环一览表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="00记录模板\员工工作写实.xls" />
     <None Include="绥化农电计划管理.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
