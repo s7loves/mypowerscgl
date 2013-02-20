@@ -237,7 +237,7 @@ namespace Ebada.Scgl.Sbgl {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where orgcode='" + value + "' and linevol='10'  order by linecode");
+                    RefreshData(" where orgcode='" + value + "'   order by linecode");
                 }
             }
         }

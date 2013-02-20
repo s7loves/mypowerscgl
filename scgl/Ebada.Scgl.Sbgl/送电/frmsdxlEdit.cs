@@ -102,6 +102,7 @@ namespace Ebada.Scgl.Sbgl {
                 }
                 if (rowData.LineType == "") {
                     rowData.InDate = DateTime.Now;
+                    rowData.RunState = "运行";
                 }
                 isnew = false;
                 if (rowData.LineVol == "") {
