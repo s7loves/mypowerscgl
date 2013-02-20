@@ -26,7 +26,7 @@ using Ebada.Core;
 
 namespace Ebada.jhgl {
     /// <summary>
-    /// 工程类别管理
+    /// 
     /// </summary>
     [ToolboxItem(false)]
     public partial class UCJH_weekman : DevExpress.XtraEditors.XtraUserControl {
