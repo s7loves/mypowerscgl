@@ -165,8 +165,7 @@ namespace Ebada.jhgl
            ex.ActiveSheet(1);
            ex.ShowExcel();
        }
-       public static void ExportExcelWeek(JH_yearkst year, IList<JH_weekks> nrList)
-       {
+       public static void ExportExcelWeek(JH_yearkst year, IList<JH_weekks> nrList) {
 
            ExcelAccess ex = new ExcelAccess();
            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -176,14 +175,11 @@ namespace Ebada.jhgl
            int col = 1;
            //加页
            int pageindex = 1;
-           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 7))
-           {
+           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 7)) {
                pageindex = Ecommonjh.GetPagecount(nrList.Count, 7);
            }
-           for (int j = 1; j <= pageindex; j++)
-           {
-               if (j > 1)
-               {
+           for (int j = 1; j <= pageindex; j++) {
+               if (j > 1) {
                    ex.CopySheet(1, 1);
                }
            }
@@ -191,22 +187,20 @@ namespace Ebada.jhgl
            string strWeek = "";
            string strYearMonth = "";
            int pos = year.标题.IndexOf("第");
-           if (pos >= 0)
-           {
+           if (pos >= 0) {
                strWeek = year.标题.Substring(pos, 3);
                strYearMonth = year.标题.Substring(0, pos);
            }
 
-          // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
            ex.SetCellValue(strYearMonth, row, 1);
-           ex.SetCellValue("("+strWeek+")", row, 6);
+           ex.SetCellValue("(" + strWeek + ")", row, 6);
            ex.SetCellValue("PDCA循环一览表", row, 7);
 
            ex.SetCellValue(year.单位代码, row + 2, col); ;
            ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
            ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
-           for (int j = 1; j <= pageindex; j++)
-           {
+           for (int j = 1; j <= pageindex; j++) {
                ex.ActiveSheet(j);
                //ex.ReNameWorkSheet(j, "Sheet" + (j));
                int prepageindex = j - 1;
@@ -214,28 +208,8 @@ namespace Ebada.jhgl
                int starow = prepageindex * 7 + 1;
                int endrow = j * 7;
 
-               if (nrList.Count > endrow)
-               {
-                   for (int i = 0; i < 7; i++)
-                   {
-                       ex.SetCellValue(nrList[starow - 1 + i].计划项目, row + 5 + i, 2);
-                       ex.SetCellValue(nrList[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + 5 + i, 3);
-                       ex.SetCellValue(nrList[starow - 1 + i].主要负责人, row + 5 + i, 4);
-                       ex.SetCellValue(nrList[starow - 1 + i].参加人员, row + 5 + i, 5);
-                       ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
-                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 8);
-                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 9);
-                       if(nrList[starow - 1 + i].完成时间.Year!=1900)
-                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
-                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 11);
-
-
-                   }
-               }
-               else if (nrList.Count <= endrow && nrList.Count >= starow)
-               {
-                   for (int i = 0; i < nrList.Count - starow + 1; i++)
-                   {
+               if (nrList.Count > endrow) {
+                   for (int i = 0; i < 7; i++) {
                        ex.SetCellValue(nrList[starow - 1 + i].计划项目, row + 5 + i, 2);
                        ex.SetCellValue(nrList[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + 5 + i, 3);
                        ex.SetCellValue(nrList[starow - 1 + i].主要负责人, row + 5 + i, 4);
@@ -244,7 +218,22 @@ namespace Ebada.jhgl
                        ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 8);
                        ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 9);
                        if (nrList[starow - 1 + i].完成时间.Year != 1900)
-                       ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
+                           ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 11);
+
+
+                   }
+               } else if (nrList.Count <= endrow && nrList.Count >= starow) {
+                   for (int i = 0; i < nrList.Count - starow + 1; i++) {
+                       ex.SetCellValue(nrList[starow - 1 + i].计划项目, row + 5 + i, 2);
+                       ex.SetCellValue(nrList[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + 5 + i, 3);
+                       ex.SetCellValue(nrList[starow - 1 + i].主要负责人, row + 5 + i, 4);
+                       ex.SetCellValue(nrList[starow - 1 + i].参加人员, row + 5 + i, 5);
+                       ex.SetCellValue(nrList[starow - 1 + i].实施内容, row + 5 + i, 6);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row + 5 + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + 5 + i, 9);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                           ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + 5 + i, 10);
                        ex.SetCellValue(nrList[starow - 1 + i].总结提升, row + 5 + i, 11);
 
                    }
@@ -254,5 +243,131 @@ namespace Ebada.jhgl
            ex.ActiveSheet(1);
            ex.ShowExcel();
        }
-    }
+       public static void ExportExcelWeekMan(JH_weekmant year, IList<JH_weekman> nrList) {
+
+           ExcelAccess ex = new ExcelAccess();
+           SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+           string fname = Application.StartupPath + "\\00记录模板\\员工工作写实.xls";
+           ex.Open(fname);
+           int row = 1;
+           int col = 1;
+           int pageRowNum = 6;
+           //加页
+           int pageindex = 1;
+           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, pageRowNum)) {
+               pageindex = Ecommonjh.GetPagecount(nrList.Count, pageRowNum);
+           }
+           for (int j = 1; j <= pageindex; j++) {
+               if (j > 1) {
+                   ex.CopySheet(1, 1);
+               }
+           }
+           ex.ActiveSheet(1);
+           string strWeek = "";
+           string strYearMonth = "";
+           int pos = year.标题.IndexOf("第");
+           if (pos >= 0) {
+               strWeek = year.标题.Substring(pos, 3);
+               strYearMonth = year.标题.Substring(0, pos);
+           }
+
+           ex.SetCellValue(year.标题.Replace("第"," （第 ").Replace("周"," 周）").Replace("计划",""), 3, 2);
+           ex.SetCellValue(year.姓名, 4, 2);
+           ex.SetCellValue(year.职务, 4, 5);
+           ex.SetCellValue(year.考核结果, 4, 8);
+           string sdate = string.Format("{0} － {1}", year.开始日期.ToString("yyyy年MM月dd日"), year.结束日期.ToString("yyyy年MM月dd日"));
+
+           ex.SetCellValue(sdate, 4, 9); ;
+           //ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
+           //ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
+           row += 6;
+           for (int j = 1; j <= pageindex; j++) {
+               ex.ActiveSheet(j);
+               //ex.ReNameWorkSheet(j, "Sheet" + (j));
+               int prepageindex = j - 1;
+               //主题
+               int starow = prepageindex * pageRowNum + 1;
+               int endrow = j * pageRowNum;
+
+               if (nrList.Count > endrow) {
+                   for (int i = 0; i < pageRowNum; i++) {
+                       ex.SetCellValue(nrList[starow - 1 + i].计划项目, row  + i, 3);
+                       ex.SetCellValue(nrList[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row  + i, 5);
+                       ex.SetCellValue(nrList[starow - 1 + i].协作人员, row  + i, 6);
+                       ex.SetCellValue(nrList[starow - 1 + i].工作内容, row  + i, 7);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row  + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row + i, 9);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                           ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row +  i, 12);
+                       ex.SetCellValue(nrList[starow - 1 + i].评语考核人, row  + i, 11);
+
+
+                   }
+               } else if (nrList.Count <= endrow && nrList.Count >= starow) {
+                   for (int i = 0; i < nrList.Count - starow + 1; i++) {
+                       ex.SetCellValue(nrList[starow - 1 + i].计划项目, row  + i, 3);
+                       ex.SetCellValue(nrList[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row  + i, 5);
+                       ex.SetCellValue(nrList[starow - 1 + i].协作人员, row  + i, 6);
+                       ex.SetCellValue(nrList[starow - 1 + i].工作内容, row  + i, 7);
+                       ex.SetCellValue(nrList[starow - 1 + i].评语考核人, row  + i, 11);
+                       ex.SetCellValue(nrList[starow - 1 + i].完成标记, row  + i, 8);
+                       ex.SetCellValue(nrList[starow - 1 + i].未完成原因, row  + i, 9);
+                       if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                           ex.SetCellValue(nrList[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row  + i, 10);
+                       ex.SetCellValue(nrList[starow - 1 + i].总结提升, row  + i, 12);
+
+                   }
+               }
+
+           }
+           JH_weekmant year2 = ClientHelper.PlatformSqlMap.GetOne<JH_weekmant>(string.Format(" where 姓名='{0}' and 年月周>'{1}' and 单位代码='{2}' order by 年月周 desc", year.姓名, year.年月周, year.单位代码));
+           if (year2 != null) {
+               IList<JH_weekman> nrList2 = ClientHelper.PlatformSqlMap.GetList<JH_weekman>(string.Format("where parentid='{0}'", year2.ID));
+               row += 6;
+               for (int j = 1; j <= pageindex; j++) {
+                   ex.ActiveSheet(j);
+                   //ex.ReNameWorkSheet(j, "Sheet" + (j));
+                   int prepageindex = j - 1;
+                   //主题
+                   int starow = prepageindex * pageRowNum + 1;
+                   int endrow = j * pageRowNum;
+
+                   if (nrList2.Count > endrow) {
+                       for (int i = 0; i < pageRowNum; i++) {
+                           ex.SetCellValue(nrList2[starow - 1 + i].计划项目, row + i, 3);
+                           ex.SetCellValue(nrList2[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + i, 5);
+                           ex.SetCellValue(nrList2[starow - 1 + i].协作人员, row + i, 6);
+                           ex.SetCellValue(nrList2[starow - 1 + i].工作内容, row + i, 7);
+                           ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
+                           ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
+                           if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                               ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
+                           ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
+                           ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
+
+
+                       }
+                   } else if (nrList2.Count <= endrow && nrList2.Count >= starow) {
+                       for (int i = 0; i < nrList.Count - starow + 1; i++) {
+                           ex.SetCellValue(nrList2[starow - 1 + i].计划项目, row + i, 3);
+                           ex.SetCellValue(nrList2[starow - 1 + i].预计时间.ToString("yyyy-MM-dd"), row + i, 5);
+                           ex.SetCellValue(nrList2[starow - 1 + i].协作人员, row + i, 6);
+                           ex.SetCellValue(nrList2[starow - 1 + i].工作内容, row + i, 7);
+                           ex.SetCellValue(nrList2[starow - 1 + i].评语考核人, row + i, 11);
+                           ex.SetCellValue(nrList2[starow - 1 + i].完成标记, row + i, 8);
+                           ex.SetCellValue(nrList2[starow - 1 + i].未完成原因, row + i, 9);
+                           if (nrList[starow - 1 + i].完成时间.Year != 1900)
+                               ex.SetCellValue(nrList2[starow - 1 + i].完成时间.ToString("yyyy-MM-dd"), row + i, 10);
+                           ex.SetCellValue(nrList2[starow - 1 + i].总结提升, row + i, 12);
+
+                       }
+                   }
+
+               }
+           }
+           ex.ActiveSheet(1);
+           ex.ShowExcel();
+       }
+   }
 }

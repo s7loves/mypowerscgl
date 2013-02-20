@@ -238,7 +238,9 @@
     <None Include="00记录模板\pdca循环一览表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\员工工作写实.xls" />
+    <None Include="00记录模板\员工工作写实.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="绥化农电计划管理.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

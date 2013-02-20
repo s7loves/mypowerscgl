@@ -305,13 +305,15 @@ namespace Ebada.jhgl {
 
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (ParentObj == null) return;
             IList<JH_weekman> list1 = gridView1.DataSource as IList<JH_weekman>;
-            //ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            ExportPDCA.ExportExcelWeekMan(ParentObj, list1);
         }
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (ParentObj == null) return;
             IList<JH_weekman> list1 = gridView1.DataSource as IList<JH_weekman>;
-            //ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            ExportPDCA.ExportExcelWeekMan(ParentObj, list1);
         }
 
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {

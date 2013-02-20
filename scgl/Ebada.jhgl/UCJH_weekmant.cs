@@ -26,7 +26,7 @@ using Ebada.Core;
 
 namespace Ebada.jhgl {
     /// <summary>
-    /// 工程类别管理
+    /// 员工工作写实
     /// </summary>
     [ToolboxItem(false)]
     public partial class UCJH_weekmant : DevExpress.XtraEditors.XtraUserControl {
@@ -93,6 +93,7 @@ namespace Ebada.jhgl {
             split.SplitterPosition = 200;
             ks.Parent = split.Panel2;
             gridControl1.Parent = split.Panel1;
+            this.ChildView = ks.GridViewOperation;
         }
         
         void inittree(string year) {
@@ -359,13 +360,15 @@ namespace Ebada.jhgl {
 
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_weekmant> list1 = gridView1.DataSource as IList<JH_weekmant>;
-            //ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            if (ucjh_year.ParentObj == null) return;
+            IList<JH_weekman> list1 = ChildView.BindingList;
+            ExportPDCA.ExportExcelWeekMan(ucjh_year.ParentObj, list1);
         }
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_weekmant> list1 = gridView1.DataSource as IList<JH_weekmant>;
-            //ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            if (ucjh_year.ParentObj == null) return;
+            IList<JH_weekman> list1 = ChildView.BindingList;
+            ExportPDCA.ExportExcelWeekMan(ucjh_year.ParentObj, list1);
         }
 
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
