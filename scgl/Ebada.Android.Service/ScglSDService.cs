@@ -154,7 +154,7 @@ namespace Ebada.Android.Service {
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
                     if (list != null) {
                         List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
-                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from ps_gtsb where gtid='" + gt.gtID + "'");
+                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from sd_gtsb where gtid='" + gt.gtID + "'");
                         sqllist.Add(sqo);
                         int num = 0;
                         foreach (ps_gtsb sb in list) {
