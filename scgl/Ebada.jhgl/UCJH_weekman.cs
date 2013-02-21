@@ -214,9 +214,10 @@ namespace Ebada.jhgl {
             gridView1.Columns["可选标记"].Visible = false;
             gridView1.Columns["c5"].Visible = false;
 
-            //RepositoryItemComboBox box1 = new RepositoryItemComboBox();
-            //box1.Items.AddRange(new string[] { "常规计划", "临时计划" });
-            //gridView1.Columns["计划种类"].ColumnEdit = box1;
+            RepositoryItemComboBox box1 = new RepositoryItemComboBox();
+            box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] { "完成", "未完成" });
+            gridView1.Columns["完成标记"].ColumnEdit = box1;
 
             //box1 = new RepositoryItemComboBox();
             //box1.Items.AddRange(new string[] { "全年计划", "临时计划" });
