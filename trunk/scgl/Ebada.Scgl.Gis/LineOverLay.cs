@@ -145,7 +145,7 @@ namespace Ebada.Scgl.Gis {
                 sd_gt gt2 = marker.Tag as sd_gt;
                 gt2.gtLat = (decimal)marker.Position.Lat;
                 gt2.gtLon = (decimal)marker.Position.Lng;
-                string sql = string.Format("update sd_gt set gtlat={0},gtlon={1} where gtid='{0}'", gt2.gtLat, gt2.gtLon,gt2.gtID);
+                string sql = string.Format("update sd_gt set gtlat={0},gtlon={1} where gtid='{2}'", gt2.gtLat, gt2.gtLon,gt2.gtID);
                 Client.ClientHelper.PlatformSqlMap.Update("Update", sql);
             }
         }
