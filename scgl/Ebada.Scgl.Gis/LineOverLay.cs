@@ -89,7 +89,11 @@ namespace Ebada.Scgl.Gis {
         public static LineOverlay CreateLine(GMapControl map, string lineCode,string lineName){
             LineOverlay lay = new LineOverlay(map, lineCode);
             List<PointLatLng> points=new List<PointLatLng>();
-            MapBuilder.Build10kVLines(ref lay, lineCode);
+            if (lineCode.Substring(3, 1) == "3") {
+                MapBuilder.Build35kVLines(ref lay, lineCode);
+            } else {
+                MapBuilder.Build10kVLines(ref lay, lineCode);
+            }
             return lay;
         }
         public static LineOverlay CreateLine(GMapControl map, PS_xl xl){
@@ -137,6 +141,12 @@ namespace Ebada.Scgl.Gis {
                 gt.gtLat = (decimal)marker.Position.Lat;
                 gt.gtLon = (decimal)marker.Position.Lng;
                 Client.ClientHelper.PlatformSqlMap.Update("UpdatePS_gtLatLng", gt);
+            } else if(marker.Tag is sd_gt) {
+                sd_gt gt2 = marker.Tag as sd_gt;
+                gt2.gtLat = (decimal)marker.Position.Lat;
+                gt2.gtLon = (decimal)marker.Position.Lng;
+                string sql = string.Format("update sd_gt set gtlat={0},gtlon={1} where gtid='{0}'", gt2.gtLat, gt2.gtLon,gt2.gtID);
+                Client.ClientHelper.PlatformSqlMap.Update("Update", sql);
             }
         }
         public virtual ContextMenu CreatePopuMenu() {
@@ -149,8 +159,12 @@ namespace Ebada.Scgl.Gis {
         }
 
        
-        public void ShowDialog(GMapMarker marker) { 
-            
+        public void ShowDialog(GMapMarker marker) {
+            if (marker.Tag is sd_gt) {
+
+                ShowDialogSD(marker);
+                return;
+            }
             frmgtEdit frm = new frmgtEdit();            
             PS_gt gt0 = marker.Tag as PS_gt;
             GMapMarkerVector pm = (marker as GMapMarkerVector).ParentMarker;
@@ -186,6 +200,43 @@ namespace Ebada.Scgl.Gis {
                 OnMarkerChanged(marker as GMapMarkerVector);
             }
         }
+        public void ShowDialogSD(GMapMarker marker) {
+
+            frmsdgtEdit frm = new frmsdgtEdit();
+            sd_gt gt0 = marker.Tag as sd_gt;
+            GMapMarkerVector pm = (marker as GMapMarkerVector).ParentMarker;
+            if (pm != null) {
+                gt0.gtSpan = (decimal)Math.Round(control.Manager.GetDistance(pm.Position, marker.Position) * 1000, 1);
+            }
+            sd_gt gt2 = new sd_gt();
+            Ebada.Core.ConvertHelper.CopyTo(gt0, gt2);
+            frm.RowData = gt2;
+            frm.ShowTab2 = true;
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
+                Ebada.Core.ConvertHelper.CopyTo(frm.RowData, gt0);
+                sd_gt gt = gt0;
+                PS_Image image = frm.GetPS_Image();
+                if (frm.GetImage() != null) {
+                    if (gt.ImageID == "" || image == null) {
+                        image = new PS_Image();
+                        image.ImageName = "杆塔照片";
+                        image.ImageType = "gt";
+                        image.ImageData = (byte[])frm.GetImage();
+                        gt.ImageID = image.ImageID;
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, gt, null);
+                    } else {
+
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { gt, image }, null);
+                    }
+
+                } else {
+                    Client.ClientHelper.PlatformSqlMap.Update<sd_gt>(gt);
+                }
+
+                marker.Position = new PointLatLng((double)gt.gtLat, (double)gt.gtLon);
+                OnMarkerChanged(marker as GMapMarkerVector);
+            }
+        }
         public void ShowDialog(string type,GMapMarker marker) {
             if (type == "jcky") {//交叉跨跃
                 PS_gt gt = selectedMarker.Tag as PS_gt;
@@ -205,14 +256,31 @@ namespace Ebada.Scgl.Gis {
         }
         
         public void ShowLineinfo(GMapMarker selectedMarker) {
-            PS_gt gt = selectedMarker.Tag as PS_gt;
-            string linecode=gt.gtCode.Substring(0, gt.gtCode.Length - 4);
-            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");
+            if (selectedMarker.Tag is sd_gt) {
+                ShowLineinfoSD(selectedMarker);
+            } else {
+                PS_gt gt = selectedMarker.Tag as PS_gt;
+                string linecode = gt.gtCode.Substring(0, gt.gtCode.Length - 4);
+                PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where linecode='" + linecode + "'");
+                if (xl != null) {
+                    frmxlEdit dlg = new frmxlEdit();
+                    dlg.RowData = xl;
+                    if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
+                        Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(dlg.RowData);
+                    }
+                }
+            }
+
+        }
+        public void ShowLineinfoSD(GMapMarker selectedMarker) {
+            sd_gt gt = selectedMarker.Tag as sd_gt;
+            string linecode = gt.gtCode.Substring(0, gt.gtCode.Length - 4);
+            sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>("where linecode='" + linecode + "'");
             if (xl != null) {
-                frmxlEdit dlg = new frmxlEdit();
+                frmsdxlEdit dlg = new frmsdxlEdit();
                 dlg.RowData = xl;
                 if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK && allowEdit) {
-                    Client.ClientHelper.PlatformSqlMap.Update<PS_xl>(dlg.RowData);
+                    Client.ClientHelper.PlatformSqlMap.Update<sd_xl>(dlg.RowData);
                 }
             }
 
