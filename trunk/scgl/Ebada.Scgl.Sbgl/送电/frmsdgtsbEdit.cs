@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Sbgl
             this.popLine.DataBindings.Add("EditValue", rowData, "sbType");
             this.popLine.DisplayField = "mc";
             this.popLine.ValueField = "bh";
-            this.popLine.DataSource = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh");
+            this.popLine.DataSource = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<sd_sbcs>("where len(bh)=5 order by bh");
             this.popLine.EditValueChanged += comboBoxEdit2_EditValueChanged;
 
         }
@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitComboBoxData() {
 
-            //SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where len(bh)=5 order by bh"));
+            //SetComboBoxData(comboBoxEdit2, "mc", "bh", "", "种类", Ebada.Client.ClientHelper.PlatformSqlMap.GetList<sd_sbcs>("where len(bh)=5 order by bh"));
             //comboBoxEdit2.EditValueChanged += new EventHandler(comboBoxEdit2_EditValueChanged);
         }
 
@@ -89,7 +89,7 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_sbcs> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<sd_sbcs> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -118,7 +118,7 @@ namespace Ebada.Scgl.Sbgl
             if (comboBoxEdit3.Text == "")
             {
                 comboBoxEdit3.Properties.Items.Clear();
-                IList<PS_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>(" where mc='" + comboBoxEdit4.Text  + "' order by ID");
+                IList<sd_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<sd_sbcs>(" where mc='" + comboBoxEdit4.Text  + "' order by ID");
                 for (int i = 0; i < list.Count; i++)
                 {
 
