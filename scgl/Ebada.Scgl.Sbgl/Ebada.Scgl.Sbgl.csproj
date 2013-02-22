@@ -127,6 +127,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmLinewh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLinewh.Designer.cs">
+      <DependentUpon>frmLinewh.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPS_tqsbclbclEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -779,6 +785,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmLinewh.resx">
+      <DependentUpon>frmLinewh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPS_tqsbclbclEdit.resx">
       <DependentUpon>frmPS_tqsbclbclEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -922,6 +931,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="变电\" />
+    <Folder Include="维护\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
