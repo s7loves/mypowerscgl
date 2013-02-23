@@ -8,14 +8,15 @@ using System.Windows.Forms;
 using Ebada.Scgl.Model;
 using Ebada.Client;
 using Ebada.UI.Base;
+using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
     /// 线路代码变更
-    /// 调用存储过程 exec p_changeLineCode oldcode,newcode,'10'
+    /// 调用存储过程 exec p_changeLineCode oldcode,newcode,linevol,byuser,type
     /// </summary>
     public partial class frmLinewh : FormBase {
-        string execsql = "exec p_changeLineCode '{0}','{1}','10'";
+        string execsql = "exec p_changeLineCode '{0}','{1}','{2}','{3}','PS_xl'";
         string lineInfo = "";
         string oldcode = "";
         string linevol = "";
@@ -55,7 +56,7 @@ namespace Ebada.Scgl.Sbgl {
             }
             string askmsg=string.Format("是否确认将原线路代码 {0} 改为 {1} ！",xl.LineCode,code);
             if (MsgBox.ShowAskMessageBox(askmsg) == DialogResult.OK) {
-                Client.ClientHelper.PlatformSqlMap.GetObject("Select", string.Format(execsql, xl.LineCode, code, xl.LineVol));
+                Client.ClientHelper.PlatformSqlMap.GetObject("Select", string.Format(execsql, xl.LineCode, code, xl.LineVol,MainHelper.User.UserName));
                 var line = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(string.Format("where linecode='{0}'", code));
                 if (line != null) {
                     StringBuilder sb = new StringBuilder();
