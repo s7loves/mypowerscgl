@@ -4,6 +4,9 @@ Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[Met
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('设备管理','Ebada.Scgl.Sbgl.UCsd_gtM','Ebada.Scgl.Sbgl.dll','1','','','',1,0,'','','20130116170523917625','20130116170504855125','')
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('线路管理','Ebada.Scgl.Sbgl.UCsd_xlTree','Ebada.Scgl.Sbgl.dll','0','','','',1,0,'','','20130116170610292625','20130116170504855125','')
 Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('设备参数','Ebada.Scgl.Sbgl.UCsd_sbcsM','Ebada.Scgl.Sbgl.dll','3','','','',1,0,'','','20130219061227096452','20130116170504855125','')
+Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('配电线路代码修改','Ebada.Scgl.Sbgl.frmLinewh','Ebada.Scgl.Sbgl.DLL','80','','','',1,0,'','','20130222153514112625','20110510171217589125','')
+Insert Into [mModule] ([ModuName],[ModuTypes],[AssemblyFileName],[Sequence],[MethodName],[MethodParam],[IconName],[visiableFlag],[ActivityFlag],[IsCores],[Description],[Modu_ID],[ParentID],[Rights]) Values('低压台区代码修改','Ebada.Scgl.Sbgl.frmLineTQwh','Ebada.Scgl.Sbgl.DLL','90','','','',1,0,'','','20130223170535321500','20110510171217589125','')
+
 
 SET ANSI_NULLS ON
 GO
