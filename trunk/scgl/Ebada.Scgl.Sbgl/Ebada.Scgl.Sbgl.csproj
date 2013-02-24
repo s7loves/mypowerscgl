@@ -127,10 +127,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmLinewh.cs">
+    <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLinewh.Designer.cs">
+    <Compile Include="维护\frmLinewh.Designer.cs">
       <DependentUpon>frmLinewh.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPS_tqsbclbclEdit.cs">
@@ -289,6 +289,12 @@
     </Compile>
     <Compile Include="UCPS_xl.Designer.cs">
       <DependentUpon>UCPS_xl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="维护\frmLineTQwh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="维护\frmLineTQwh.Designer.cs">
+      <DependentUpon>frmLineTQwh.cs</DependentUpon>
     </Compile>
     <Compile Include="台区元素\frmTemplate.cs">
       <SubType>Form</SubType>
@@ -785,7 +791,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmLinewh.resx">
+    <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPS_tqsbclbclEdit.resx">
@@ -845,6 +851,9 @@
     <EmbeddedResource Include="UCPS_xl.resx">
       <DependentUpon>UCPS_xl.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="维护\frmLineTQwh.resx">
+      <DependentUpon>frmLineTQwh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\frmsdgtEdit.resx">
       <DependentUpon>frmsdgtEdit.cs</DependentUpon>
@@ -931,7 +940,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="变电\" />
-    <Folder Include="维护\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
