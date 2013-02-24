@@ -73,9 +73,10 @@ namespace TLMapPlatform {
             treeList1.DataSource = mTable;
             treeList1.KeyFieldName = "ID";
             treeList1.ParentFieldName = "ParentID";
-            
-            mTable.Rows.Add(hide, "0", "高压线路", "10", "0");
-            mTable.Rows.Add(hide, "0", "低压台区", "0.4", "0");
+
+            mTable.Rows.Add(hide, "0", "送电线路", "35", "0");
+            mTable.Rows.Add(hide, "0", "配电高压", "10", "0");
+            mTable.Rows.Add(hide, "0", "配电低压", "0.4", "0");
             mTable.Rows.Add(hide, "0", "变电所", "bdz", "0");
             mTable.Rows.Add(visible, "0", "区界", "city", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
@@ -136,7 +137,10 @@ namespace TLMapPlatform {
             foreach (PS_xl xl in list) {
                 mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, xl.OrgCode);
             }
-            
+            IList<sd_xl> list2 = ClientHelper.PlatformSqlMap.GetList<sd_xl>("where len(linecode)=6 order by linecode");
+            foreach (var xl in list2) {
+                mTable.Rows.Add(hide, "0", xl.LineName, xl.LineCode, "35");
+            }
             treeList1.EndInit();
         }
         private void inittq(string gdscode) {
