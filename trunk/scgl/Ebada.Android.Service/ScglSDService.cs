@@ -190,7 +190,7 @@ namespace Ebada.Android.Service {
 
             return list; throw new NotImplementedException();
         }
-        string select_ver = "select value from msys where dm='androidver'";
+        string select_ver = "select value from msys where dm='androidver_sd'";
         public string GetVersion() {
             string ver = "0";
             try {
