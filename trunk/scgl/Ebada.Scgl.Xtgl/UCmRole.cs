@@ -147,5 +147,13 @@ namespace Ebada.Scgl.Xtgl {
                 dlg.ShowDialog();
             }
         }
+
+        private void btRoleOrg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (gridView1.GetFocusedRow() != null) {
+                mRole role = gridView1.GetFocusedRow() as mRole;
+                frmRoleOrg dlg = new frmRoleOrg(role.RoleID, role.RoleName);
+                dlg.ShowDialog();
+            }
+        }
     }
 }
