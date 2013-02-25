@@ -182,6 +182,7 @@
     <Compile Include="PX_Objects.cs" />
     <Compile Include="rRoleFun.cs" />
     <Compile Include="rRoleModul.cs" />
+    <Compile Include="rRoleOrg.cs" />
     <Compile Include="RS_bx.cs" />
     <Compile Include="rUserRole.cs" />
     <Compile Include="sd_gt.cs" />
