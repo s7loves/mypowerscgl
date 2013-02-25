@@ -44,7 +44,7 @@ namespace Ebada.jhgl {
         public UCJH_weekman() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<JH_weekman>(gridControl1, gridView1, barManager1,true);
+            gridViewOperation = new GridViewOperation<JH_weekman>(gridControl1, gridView1, barManager1,new frmJH_weekmanEdit());
             
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
