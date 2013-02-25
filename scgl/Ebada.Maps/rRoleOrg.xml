@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="rRoleOrg" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="rRoleOrg"  type="Ebada.Scgl.Model.rRoleOrg,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="rRoleOrg_AllColumns" class="rRoleOrg">
+        <result property="RoleID" column="RoleID" />
+        <result property="OrgID" column="OrgID" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectrRoleOrgList" resultMap="rRoleOrg_AllColumns" parameterClass="string">
+        SELECT 
+         [RoleID],
+         [OrgID]
+          FROM rRoleOrg
+          $value$
+   </select>
+   
+   <select id="SelectrRoleOrgByHash" parameterClass="Hashtable">
+         SELECT 
+         [RoleID],
+         [OrgID]
+          FROM rRoleOrg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectrRoleOrgByKey" resultMap="rRoleOrg_AllColumns" parameterClass="rRoleOrg">
+         SELECT 
+         [RoleID],
+         [OrgID]
+         FROM rRoleOrg
+         WHERE 
+           RoleID = #RoleID#
+         and OrgID = #OrgID#
+
+   </select>
+ 
+   <delete id="DeleterRoleOrg" parameterClass="rRoleOrg">
+        DELETE FROM 
+         rRoleOrg
+           WHERE
+         RoleID = #RoleID#
+         and OrgID = #OrgID#
+
+   </delete>
+   
+   <delete id="DeleterRoleOrgByWhere" parameterClass="string">
+     delete from rRoleOrg $value$
+   </delete>
+   
+   <delete id="DeleterRoleOrgByKey" parameterClass="string">
+        DELETE FROM 
+         rRoleOrg
+           WHERE
+         RoleID = #RoleID#
+         and OrgID = #OrgID#
+    
+   </delete>
+   
+   <update id="UpdaterRoleOrg" parameterClass="rRoleOrg" resultClass="int">
+          UPDATE rRoleOrg
+           SET
+
+            WHERE 
+              RoleID = #RoleID#
+         and OrgID = #OrgID#
+
+   </update>
+  
+   <insert id="InsertrRoleOrg" parameterClass="rRoleOrg">
+        INSERT INTO rRoleOrg
+         (
+         [RoleID],
+         [OrgID]
+         )
+       VALUES
+         (
+         #RoleID#,
+         #OrgID#
+         )
+
+   </insert>
+   
+   <select id="GetrRoleOrgRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM rRoleOrg
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="RoleID">[RoleID]='$RoleID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetrRoleOrgRowCount" parameterClass="string">
+    select count(*) from rRoleOrg $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
