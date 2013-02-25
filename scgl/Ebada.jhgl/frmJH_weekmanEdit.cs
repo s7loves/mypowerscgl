@@ -56,19 +56,8 @@ namespace Ebada.jhgl
 
         private void InitComboBoxData()
         {
-            //comboBoxEdit2.Properties.Items.AddRange(list);
-            ICollection ic = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(MainHelper.User.OrgCode);
-            foreach (string sr in ic)
-            {
-                ccboxCooperationMan.Properties.Items.Add(sr, CheckState.Unchecked, true);
-            }
-            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
-            ICollection ic2 = (ICollection)list2;
-            for (int i = 0; i < list2.Count; i++)
-            {
-                comboxOrgName.Properties.Items.Add(list2[i].OrgName);
-            }
-           
+            this.cbxCompleteStatus.Properties.Items.Add("完成");
+            this.cbxCompleteStatus.Properties.Items.Add("未完成");
            
         }
 
@@ -78,13 +67,13 @@ namespace Ebada.jhgl
             {
                 rowData.完成时间 = DateTime.Now;
             }
-            this.comboxOrgName.DataBindings.Add("EditValue", rowData, "单位名称");
+            rowData.单位名称 = MainHelper.User.OrgName;
             this.mePlanPro.DataBindings.Add("EditValue", rowData, "计划项目");
             this.meWorkContent.DataBindings.Add("EditValue", rowData, "工作内容");
-            this.ccboxCooperationMan.DataBindings.Add("EditValue", rowData, "协作人员");
+            this.meCooperationMan.DataBindings.Add("EditValue", rowData, "协作人员");
             this.dateStartDate.DataBindings.Add("EditValue", rowData, "预计时间");
             this.dateEndDate.DataBindings.Add("EditValue", rowData, "预计时间2");
-            this.txtComplete.DataBindings.Add("EditValue", rowData, "完成标记");
+            this.cbxCompleteStatus.DataBindings.Add("EditValue", rowData, "完成标记");
             this.dateCompleteDate.DataBindings.Add("EditValue", rowData, "完成时间");
             this.meSummryUp.DataBindings.Add("EditValue", rowData, "总结提升");
             this.meUnCompleteReason.DataBindings.Add("EditValue", rowData, "未完成原因");
