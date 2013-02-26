@@ -173,7 +173,9 @@
             // 
             this.btnAddWeeks.Caption = "增加本周计划";
             this.btnAddWeeks.Id = 17;
+            this.btnAddWeeks.ImageIndex = 6;
             this.btnAddWeeks.Name = "btnAddWeeks";
+            this.btnAddWeeks.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnAddWeeks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddWeeks_ItemClick);
             // 
             // bar3
