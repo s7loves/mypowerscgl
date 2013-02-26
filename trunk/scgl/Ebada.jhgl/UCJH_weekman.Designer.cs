@@ -97,8 +97,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnAddWeeks),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btLastWeek)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnAddWeeks, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btLastWeek, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -174,7 +174,7 @@
             // 
             // btnAddWeeks
             // 
-            this.btnAddWeeks.Caption = "增加本周计划";
+            this.btnAddWeeks.Caption = "导入本周部门计划";
             this.btnAddWeeks.Id = 17;
             this.btnAddWeeks.ImageIndex = 6;
             this.btnAddWeeks.Name = "btnAddWeeks";
@@ -183,7 +183,7 @@
             // 
             // btLastWeek
             // 
-            this.btLastWeek.Caption = "增加上周计划";
+            this.btLastWeek.Caption = "导入上周计划";
             this.btLastWeek.Id = 18;
             this.btLastWeek.ImageIndex = 6;
             this.btLastWeek.Name = "btLastWeek";
@@ -219,20 +219,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 377);
-            this.barDockControlBottom.Size = new System.Drawing.Size(631, 26);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 378);
+            this.barDockControlBottom.Size = new System.Drawing.Size(631, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 353);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 354);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(631, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 353);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 354);
             // 
             // repositoryItemComboBox1
             // 
@@ -254,7 +254,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(631, 353);
+            this.gridControl1.Size = new System.Drawing.Size(631, 354);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -277,7 +277,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
-            this.splitContainerControl1.Size = new System.Drawing.Size(631, 353);
+            this.splitContainerControl1.Size = new System.Drawing.Size(631, 354);
             this.splitContainerControl1.SplitterPosition = 159;
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";

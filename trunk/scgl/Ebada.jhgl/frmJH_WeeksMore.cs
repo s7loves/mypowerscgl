@@ -128,32 +128,40 @@ namespace Ebada.jhgl
 
         private void InitGridColumn()
         {
+            gridView1.OptionsBehavior.Editable = true;
             gridView1.Columns["ID"].Visible = false;
             gridView1.Columns["ParentID"].Visible = false;
             gridView1.Columns["_单位代码"].Visible = false;
 
             gridView1.Columns["IsSelect"].Caption = "选择";
             gridView1.Columns["IsSelect"].ColumnEdit = repositoryItemCheckEdit1;
-            repositoryItemCheckEdit1.Click += new EventHandler(repositoryItemCheckEdit1_Click);
+            //repositoryItemCheckEdit1.Click += new EventHandler(repositoryItemCheckEdit1_Click);
             gridView1.Columns["IsSelect"].VisibleIndex = 0;
 
             gridView1.Columns["_单位名称"].Caption = "单位名称";
             gridView1.Columns["_单位名称"].VisibleIndex = 1;
+            gridView1.Columns["_单位名称"].OptionsColumn.AllowEdit = false;
 
             gridView1.Columns["_计划项目"].Caption = "计划项目";
             gridView1.Columns["_计划项目"].VisibleIndex = 2;
+            gridView1.Columns["_计划项目"].OptionsColumn.AllowEdit = false;
 
             gridView1.Columns["_实施内容"].Caption = "实施内容";
             gridView1.Columns["_实施内容"].VisibleIndex = 3;
+            gridView1.Columns["_实施内容"].OptionsColumn.AllowEdit = false;
+
 
             gridView1.Columns["_参加人员"].Caption = "参加人员";
             gridView1.Columns["_参加人员"].VisibleIndex = 4;
+            gridView1.Columns["_参加人员"].OptionsColumn.AllowEdit = false;
 
             gridView1.Columns["_预计时间"].Caption = "开始时间";
             gridView1.Columns["_预计时间"].VisibleIndex = 5;
+            gridView1.Columns["_预计时间"].OptionsColumn.AllowEdit = false;
 
             gridView1.Columns["_预计时间2"].Caption = "结束时间";
             gridView1.Columns["_预计时间2"].VisibleIndex = 6;
+            gridView1.Columns["_预计时间2"].OptionsColumn.AllowEdit = false;
         }
 
         void repositoryItemCheckEdit1_Click(object sender, EventArgs e)
