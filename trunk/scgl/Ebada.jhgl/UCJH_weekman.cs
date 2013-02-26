@@ -298,7 +298,7 @@ namespace Ebada.jhgl {
 
                 btAdd.Enabled = flag;
                 btDelete.Enabled = flag;
-                gridView1.OptionsBehavior.Editable = flag;
+                gridView1.OptionsBehavior.Editable = false;
 
                 RefreshData(where);
             }
