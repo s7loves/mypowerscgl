@@ -186,5 +186,19 @@ namespace Ebada.jhgl
             this.DialogResult = DialogResult.Cancel;
         }
 
+       
+
+        private void splitContainerControl1_Panel1_Resize(object sender, EventArgs e)
+        {
+            this.splitContainerControl1.Panel1.MinSize = 410;
+            this.splitContainerControl1.Panel2.MinSize = this.splitContainerControl1.Panel2.Height + 5;
+        }
+
+        private void splitContainerControl1_Panel2_Resize(object sender, EventArgs e)
+        {
+            this.splitContainerControl1.Panel1.MinSize = 410;
+            this.splitContainerControl1.Panel2.MinSize = this.splitContainerControl1.Panel2.Height + 5;
+        }
+
     }
 }
