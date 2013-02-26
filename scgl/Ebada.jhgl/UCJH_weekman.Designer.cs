@@ -45,6 +45,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btLastWeek = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -73,8 +74,9 @@
             this.bsItem1,
             this.btExport,
             this.btExport1,
-            this.btnAddWeeks});
-            this.barManager1.MaxItemId = 18;
+            this.btnAddWeeks,
+            this.btLastWeek});
+            this.barManager1.MaxItemId = 19;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -95,7 +97,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnAddWeeks)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnAddWeeks),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btLastWeek)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -269,6 +272,13 @@
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
+            // btLastWeek
+            // 
+            this.btLastWeek.Caption = "增加上周计划";
+            this.btLastWeek.Id = 18;
+            this.btLastWeek.Name = "btLastWeek";
+            this.btLastWeek.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLastWeek_ItemClick);
+            // 
             // UCJH_weekman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -314,5 +324,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraBars.BarButtonItem btnAddWeeks;
         private DevExpress.XtraBars.BarBaseButtonItem btAddWeek;
+        private DevExpress.XtraBars.BarButtonItem btLastWeek;
     }
 }
