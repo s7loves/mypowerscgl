@@ -107,6 +107,12 @@
     <Compile Include="frmJH_weekmanEdit.Designer.cs">
       <DependentUpon>frmJH_weekmanEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmJH_WeeksMore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJH_WeeksMore.Designer.cs">
+      <DependentUpon>frmJH_WeeksMore.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmJH_yearksEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmJH_weekmanEdit.resx">
       <DependentUpon>frmJH_weekmanEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmJH_WeeksMore.resx">
+      <DependentUpon>frmJH_WeeksMore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmJH_yearksEdit.resx">
       <DependentUpon>frmJH_yearksEdit.cs</DependentUpon>
