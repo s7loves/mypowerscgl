@@ -19,6 +19,9 @@ namespace Ebada.jhgl
     {
         DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
         public List<JH_weekks> jhWeeksList;
+        public List<JH_weekman> jhWeekManList;
+        public bool isAddLastWeek = false;
+        public bool isAddWeek = false;
         DataTable dt;
         public DataTable GetDataTable
         {
@@ -46,6 +49,8 @@ namespace Ebada.jhgl
             dt.Columns.Add("_计划项目", typeof(string));
             dt.Columns.Add("_实施内容", typeof(string));
             dt.Columns.Add("_参加人员", typeof(string));
+            dt.Columns.Add("_预计时间", typeof(DateTime));
+            dt.Columns.Add("_预计时间2", typeof(DateTime));
         }
 
         #region IPopupFormEdit 成员
@@ -66,29 +71,59 @@ namespace Ebada.jhgl
 
         private void frmJH_WeeksMore_Load(object sender, EventArgs e)
         {
-            if (jhWeeksList != null)
+            dt.Rows.Clear();
+            if (isAddWeek)
             {
-                if (jhWeeksList.Count > 0)
+                if (jhWeeksList != null)
                 {
-                    foreach (JH_weekks jhweeks in jhWeeksList)
+                    if (jhWeeksList.Count > 0)
                     {
-                        DataRow dr = dt.NewRow();
-                        dr["IsSelect"] = false;
-                        dr["ID"] = jhweeks.ID;
-                        dr["ParentID"] = jhweeks.ParentID;
-                        dr["_单位代码"] = jhweeks.单位代码;
-                        dr["_单位名称"] = jhweeks.单位名称;
-                        dr["_计划项目"] = jhweeks.计划项目;
-                        dr["_实施内容"] = jhweeks.实施内容;
-                        dr["_参加人员"] = jhweeks.参加人员;
-                        dt.Rows.Add(dr);
+                        foreach (JH_weekks jhweeks in jhWeeksList)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr["IsSelect"] = false;
+                            dr["ID"] = jhweeks.ID;
+                            dr["ParentID"] = jhweeks.ParentID;
+                            dr["_单位代码"] = jhweeks.单位代码;
+                            dr["_单位名称"] = jhweeks.单位名称;
+                            dr["_计划项目"] = jhweeks.计划项目;
+                            dr["_实施内容"] = jhweeks.实施内容;
+                            dr["_参加人员"] = jhweeks.参加人员;
+                            dr["_预计时间"] = jhweeks.预计时间;
+                            dr["_预计时间2"] = jhweeks.预计时间2;
+                            dt.Rows.Add(dr);
+                        }
+                       
                     }
-                    gridControl1.DataSource = dt;
-                    InitGridColumn();
+
                 }
-                
             }
-            
+            else if (isAddLastWeek)
+            {
+                if (jhWeekManList != null)
+                {
+                    if (jhWeekManList.Count > 0)
+                    {
+                        foreach (JH_weekman jhweekman in jhWeekManList)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr["IsSelect"] = false;
+                            dr["ID"] = jhweekman.ID;
+                            dr["ParentID"] = jhweekman.ParentID;
+                            dr["_单位代码"] = jhweekman.单位代码;
+                            dr["_单位名称"] = jhweekman.单位名称;
+                            dr["_计划项目"] = jhweekman.计划项目;
+                            dr["_实施内容"] = jhweekman.工作内容;
+                            dr["_参加人员"] = jhweekman.协作人员;
+                            dr["_预计时间"] = jhweekman.预计时间;
+                            dr["_预计时间2"] = jhweekman.预计时间2;
+                            dt.Rows.Add(dr);
+                        }
+                    }
+                }
+            }
+            gridControl1.DataSource = dt;
+            InitGridColumn();
         }
 
         private void InitGridColumn()
@@ -113,6 +148,12 @@ namespace Ebada.jhgl
 
             gridView1.Columns["_参加人员"].Caption = "参加人员";
             gridView1.Columns["_参加人员"].VisibleIndex = 4;
+
+            gridView1.Columns["_预计时间"].Caption = "开始时间";
+            gridView1.Columns["_预计时间"].VisibleIndex = 5;
+
+            gridView1.Columns["_预计时间2"].Caption = "结束时间";
+            gridView1.Columns["_预计时间2"].VisibleIndex = 6;
         }
 
         void repositoryItemCheckEdit1_Click(object sender, EventArgs e)
