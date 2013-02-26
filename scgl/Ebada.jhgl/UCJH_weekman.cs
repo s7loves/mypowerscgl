@@ -320,5 +320,47 @@ namespace Ebada.jhgl {
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
            
         }
+
+        /// <summary>
+        /// 增加本周计划
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddWeeks_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string parentID = ParentObj.ParentID;
+            string parent = ParentID;
+            string orgcode = org.OrgCode;
+            IList<JH_weekks> jhweeksList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekks>("where ParentID='" + parentID + "' and 单位代码='"+orgcode+"'");
+            frmJH_WeeksMore fr = new frmJH_WeeksMore();
+            fr.jhWeeksList = (List<JH_weekks>)jhweeksList;
+            if (fr.ShowDialog() == DialogResult.OK)
+            {
+                DataTable dt = fr.GetDataTable;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if ((bool)dt.Rows[i]["IsSelect"] == true)
+                    {
+                        IList<JH_weekman> weekmanList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>("where c5='" + dt.Rows[i]["ID"] + "'");
+                        if (weekmanList.Count==0)
+                        {
+                            JH_weekman weekman = new JH_weekman();
+                            weekman.ParentID = ParentID;
+                            weekman.单位代码 = (string)dt.Rows[i]["_单位代码"];
+                            weekman.单位名称 = (string)dt.Rows[i]["_单位名称"];
+                            weekman.计划项目 = (string)dt.Rows[i]["_计划项目"];
+                            weekman.工作内容 = (string)dt.Rows[i]["_实施内容"];
+                            weekman.协作人员 = (string)dt.Rows[i]["_参加人员"];
+                            weekman.c5 = (string)dt.Rows[i]["ID"];
+                            Client.ClientHelper.PlatformSqlMap.Create<JH_weekman>(weekman);
+                        }
+                    }
+                    
+                    
+                }
+                ParentID = parent;
+                
+            }
+        }
     }
 }
