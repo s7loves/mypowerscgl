@@ -47,13 +47,16 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel1.Resize += new System.EventHandler(this.splitContainerControl1_Panel1_Resize);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainerControl1.Panel2.Controls.Add(this.btnOk);
             this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Panel2.Resize += new System.EventHandler(this.splitContainerControl1_Panel2_Resize);
             this.splitContainerControl1.Size = new System.Drawing.Size(684, 448);
             this.splitContainerControl1.SplitterPosition = 410;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+           
             // 
             // gridControl1
             // 
@@ -76,7 +79,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(384, 6);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(578, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -85,7 +89,8 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(276, 6);
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(479, 6);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 0;
