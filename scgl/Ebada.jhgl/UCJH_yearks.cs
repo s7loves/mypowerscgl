@@ -426,8 +426,12 @@ namespace Ebada.jhgl {
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             JH_yearkst kst = ClientHelper.PlatformSqlMap.GetOneByKey<JH_yearkst>(parentID);
-
-            IList<JH_yearks> list = ClientHelper.PlatformSqlMap.GetList<JH_yearks>(filter);
+            string sql = filter;
+            IList<JH_yearks> list = gridViewOperation.BindingList;
+            if (!string.IsNullOrEmpty(gridView1.RowFilter)) {
+                sql += " and " + gridView1.RowFilter;
+                list = ClientHelper.PlatformSqlMap.GetList<JH_yearks>(sql);
+            } 
             ExportPDCA.ExportExcelYear(kst, list);
         }
     }

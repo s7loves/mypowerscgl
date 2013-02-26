@@ -469,12 +469,22 @@ namespace Ebada.jhgl {
 
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_monthks> list1=gridView1.DataSource as IList<JH_monthks>;
+            IList<JH_monthks> list1=new List<JH_monthks>();// gridView1.DataSource as IList<JH_monthks>;
+            for (int i = 0; i < gridView1.RowCount; i++) {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is JH_monthks)
+                    list1.Add(row as JH_monthks);
+            }
             ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
         }
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_monthks> list1 = gridView1.DataSource as IList<JH_monthks>;
+            IList<JH_monthks> list1 = new List<JH_monthks>();// gridView1.DataSource as IList<JH_monthks>;
+            for (int i = 0; i < gridView1.RowCount; i++) {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is JH_monthks)
+                    list1.Add(row as JH_monthks);
+            } 
             ExportPDCA.ExportExcelMoth(ParentOBJ, list1);
         }
 

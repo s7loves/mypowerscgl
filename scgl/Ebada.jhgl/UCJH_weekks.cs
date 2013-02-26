@@ -439,13 +439,21 @@ namespace Ebada.jhgl {
 
         private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_weekks> list1 = gridView1.DataSource as IList<JH_weekks>;
-            ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            IList<JH_weekks> list1 = new List<JH_weekks>();// gridView1.DataSource as IList<JH_weekks>;
+            for (int i = 0; i < gridView1.RowCount; i++) {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is JH_weekks)
+                    list1.Add(row as JH_weekks);
+            } ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
         }
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            IList<JH_weekks> list1 = gridView1.DataSource as IList<JH_weekks>;
-            ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
+            IList<JH_weekks> list1 = new List<JH_weekks>();// gridView1.DataSource as IList<JH_weekks>;
+            for (int i = 0; i < gridView1.RowCount; i++) {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is JH_weekks)
+                    list1.Add(row as JH_weekks);
+            } ExportPDCA.ExportExcelWeek(ParentOBJ, list1);
         }
 
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
