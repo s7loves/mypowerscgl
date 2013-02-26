@@ -35,6 +35,7 @@
             this.btExport1 = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.btnAddWeeks = new DevExpress.XtraBars.BarButtonItem();
+            this.btLastWeek = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -45,7 +46,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.btLastWeek = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -181,6 +181,15 @@
             this.btnAddWeeks.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnAddWeeks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddWeeks_ItemClick);
             // 
+            // btLastWeek
+            // 
+            this.btLastWeek.Caption = "增加上周计划";
+            this.btLastWeek.Id = 18;
+            this.btLastWeek.ImageIndex = 6;
+            this.btLastWeek.Name = "btLastWeek";
+            this.btLastWeek.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btLastWeek.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLastWeek_ItemClick);
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -271,13 +280,6 @@
             this.splitContainerControl1.SplitterPosition = 159;
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // btLastWeek
-            // 
-            this.btLastWeek.Caption = "增加上周计划";
-            this.btLastWeek.Id = 18;
-            this.btLastWeek.Name = "btLastWeek";
-            this.btLastWeek.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btLastWeek_ItemClick);
             // 
             // UCJH_weekman
             // 
