@@ -334,6 +334,7 @@ namespace Ebada.jhgl {
             IList<JH_weekks> jhweeksList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekks>("where ParentID='" + parentID + "' and 单位代码='"+orgcode+"'");
             frmJH_WeeksMore fr = new frmJH_WeeksMore();
             fr.jhWeeksList = (List<JH_weekks>)jhweeksList;
+            fr.isAddWeek = true;
             if (fr.ShowDialog() == DialogResult.OK)
             {
                 DataTable dt = fr.GetDataTable;
@@ -360,6 +361,43 @@ namespace Ebada.jhgl {
                 }
                 ParentID = parent;
                 
+            }
+        }
+        /// <summary>
+        /// 增加上周计划
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btLastWeek_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string parent = ParentID;
+            string where = "where ParentID in(select ID from JH_weekmant where 开始日期=" +
+                "(select dateadd(\"d\",-7,开始日期) from JH_weekmant where ID='" + ParentID + "'))"+"and 单位代码='"+org.OrgCode+"'";
+            IList<JH_weekman> jhweekManList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>(where);
+            frmJH_WeeksMore frm = new frmJH_WeeksMore();
+            frm.jhWeekManList = (List<JH_weekman>)jhweekManList;
+            frm.isAddLastWeek = true;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataTable dt = frm.GetDataTable;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if ((bool)dt.Rows[i]["IsSelect"] == true)
+                    {
+                        JH_weekman weekman = new JH_weekman();
+                        weekman.ParentID = ParentID;
+                        weekman.单位代码 = (string)dt.Rows[i]["_单位代码"];
+                        weekman.单位名称 = (string)dt.Rows[i]["_单位名称"];
+                        weekman.计划项目 = (string)dt.Rows[i]["_计划项目"];
+                        weekman.工作内容 = (string)dt.Rows[i]["_实施内容"];
+                        weekman.协作人员 = (string)dt.Rows[i]["_参加人员"];
+                        weekman.预计时间 = (DateTime)dt.Rows[i]["_预计时间"];
+                        weekman.预计时间2 = (DateTime)dt.Rows[i]["_预计时间2"];
+                        weekman.c5 = (string)dt.Rows[i]["ID"];
+                        Client.ClientHelper.PlatformSqlMap.Create<JH_weekman>(weekman);
+                    }
+                }
+                ParentID = parent;
             }
         }
     }
