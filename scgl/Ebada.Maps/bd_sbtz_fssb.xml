@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bd_sbtz_fssb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bd_sbtz_fssb"  type="Ebada.Scgl.Model.bd_sbtz_fssb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bd_sbtz_fssb_AllColumns" class="bd_sbtz_fssb">
+        <result property="gtID" column="gtID" />
+        <result property="sbID" column="sbID" />
+        <result property="sbCode" column="sbCode" />
+        <result property="sbType" column="sbType" />
+        <result property="sbModle" column="sbModle" />
+        <result property="sbName" column="sbName" />
+        <result property="sbNumber" column="sbNumber" />
+        <result property="C1" column="C1" />
+        <result property="C2" column="C2" />
+        <result property="C3" column="C3" />
+        <result property="C4" column="C4" />
+        <result property="C5" column="C5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbd_sbtz_fssbList" resultMap="bd_sbtz_fssb_AllColumns" parameterClass="string">
+        SELECT 
+         [gtID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM bd_sbtz_fssb
+          $value$
+   </select>
+   
+   <select id="Selectbd_sbtz_fssbByHash" parameterClass="Hashtable">
+         SELECT 
+         [gtID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+          FROM bd_sbtz_fssb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbd_sbtz_fssbByKey" resultMap="bd_sbtz_fssb_AllColumns" parameterClass="bd_sbtz_fssb">
+         SELECT 
+         [gtID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         FROM bd_sbtz_fssb
+         WHERE 
+           sbID = #sbID#
+
+   </select>
+ 
+   <delete id="Deletebd_sbtz_fssb" parameterClass="bd_sbtz_fssb">
+        DELETE FROM 
+         bd_sbtz_fssb
+           WHERE
+         sbID = #sbID#
+
+   </delete>
+   
+   <delete id="Deletebd_sbtz_fssbByWhere" parameterClass="string">
+     delete from bd_sbtz_fssb $value$
+   </delete>
+   
+   <delete id="Deletebd_sbtz_fssbByKey" parameterClass="string">
+        DELETE FROM 
+         bd_sbtz_fssb
+           WHERE
+         sbID = #sbID#
+    
+   </delete>
+   
+   <update id="Updatebd_sbtz_fssb" parameterClass="bd_sbtz_fssb" resultClass="int">
+          UPDATE bd_sbtz_fssb
+           SET
+             [gtID]=#gtID#,
+             [sbCode]=#sbCode#,
+             [sbType]=#sbType#,
+             [sbModle]=#sbModle#,
+             [sbName]=#sbName#,
+             [sbNumber]=#sbNumber#,
+             [C1]=#C1#,
+             [C2]=#C2#,
+             [C3]=#C3#,
+             [C4]=#C4#,
+             [C5]=#C5#
+            WHERE 
+              sbID = #sbID#
+
+   </update>
+  
+   <insert id="Insertbd_sbtz_fssb" parameterClass="bd_sbtz_fssb">
+        INSERT INTO bd_sbtz_fssb
+         (
+         [gtID],
+         [sbID],
+         [sbCode],
+         [sbType],
+         [sbModle],
+         [sbName],
+         [sbNumber],
+         [C1],
+         [C2],
+         [C3],
+         [C4],
+         [C5]
+         )
+       VALUES
+         (
+         #gtID#,
+         #sbID#,
+         #sbCode#,
+         #sbType#,
+         #sbModle#,
+         #sbName#,
+         #sbNumber#,
+         #C1#,
+         #C2#,
+         #C3#,
+         #C4#,
+         #C5#
+         )
+
+   </insert>
+   
+   <select id="Getbd_sbtz_fssbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bd_sbtz_fssb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbd_sbtz_fssbRowCount" parameterClass="string">
+    select count(*) from bd_sbtz_fssb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

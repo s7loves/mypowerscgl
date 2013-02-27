@@ -52,6 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bd_sbtzclb.cs" />
+    <Compile Include="bd_sbtz_fssb.cs" />
+    <Compile Include="DB_SBTZ.cs" />
+    <Compile Include="DB_SBTZ_SX.cs" />
+    <Compile Include="DB_SBTZ_ZL.cs" />
     <Compile Include="Empolyees.cs" />
     <Compile Include="JH_monthks.cs" />
     <Compile Include="JH_monthkst.cs" />
