@@ -292,6 +292,13 @@ namespace Ebada.jhgl {
 
             repositoryItemComboBox1.Items.AddRange(list);
 
+            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
+
+            foreach (mOrg org in list2)
+            {
+                this.repositoryItemCheckedComboBoxEdit1.Items.Add(org.OrgName, CheckState.Unchecked, true);
+            }
+
             //IList<mOrg> list2= Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='0' and c3='是'");
             //list2.Add(new mOrg() {OrgID="0", OrgCode = "0", OrgName = "全部" });
             //treeList1.DataSource = list2;
@@ -477,6 +484,42 @@ namespace Ebada.jhgl {
                 }
                 btRefresh.PerformClick();
             }
+        }
+
+        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
+        {
+            string[] orgname = barEditItem2.EditValue.ToString().Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries);
+            string prID = ParentID;
+            string sqlWhere = "";
+            if (prID != null)
+            {
+                sqlWhere = "where parentid='" + prID + "'";
+            }
+            if (orgname.Length > 0)
+            {
+                if (sqlWhere == "")
+                {
+                    sqlWhere = "where 单位名称 in (";
+                }
+                else
+                {
+                    sqlWhere = sqlWhere + " and 单位名称 in (";
+                }
+                for (int i = 0; i < orgname.Length; i++)
+                {
+                    if (i != orgname.Length - 1)
+                    {
+                        sqlWhere = sqlWhere + "'" + orgname[i] + "',";
+                    }
+                    else
+                    {
+                        sqlWhere = sqlWhere + "'" + orgname[i] + "')";
+                    }
+
+                }
+            }
+            
+            RefreshData(sqlWhere);
         }
     }
 }
