@@ -141,9 +141,9 @@ namespace Ebada.Scgl.Sbgl {
             comboBoxEdit15.Properties.Items.AddRange(list);
         }
         private void InitComboBoxData() {
-            IList<ViewGds> list = Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+            IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(" where C1='是' order by orgcode");//生产单位
             comboBoxEdit7.Properties.DataSource = list;
-            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>(" where Orgtype='2'");
+            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mOrg>(" where orgtype='2'");//变电所
             comboBoxEdit8.Properties.DataSource = list2;
             pdsbModelHelper.FillCBox(comboBoxEdit14, pdsbModelHelper.dxxh);
             ComboBoxHelper.Fillgdsry(comboBoxEdit10, rowData.OrgCode);

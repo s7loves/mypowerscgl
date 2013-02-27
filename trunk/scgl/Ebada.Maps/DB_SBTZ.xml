@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="DB_SBTZ" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="DB_SBTZ"  type="Ebada.Scgl.Model.DB_SBTZ,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="DB_SBTZ_AllColumns" class="DB_SBTZ">
+        <result property="sb_id" column="sb_id" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="sbvol" column="sbvol" />
+        <result property="a1" column="a1" />
+        <result property="a2" column="a2" />
+        <result property="a3" column="a3" />
+        <result property="a4" column="a4" />
+        <result property="a5" column="a5" />
+        <result property="a6" column="a6" />
+        <result property="a7" column="a7" />
+        <result property="a8" column="a8" />
+        <result property="a9" column="a9" />
+        <result property="a10" column="a10" />
+        <result property="a11" column="a11" />
+        <result property="a13" column="a13" />
+        <result property="a12" column="a12" />
+        <result property="a14" column="a14" />
+        <result property="a15" column="a15" />
+        <result property="a16" column="a16" />
+        <result property="a17" column="a17" />
+        <result property="a18" column="a18" />
+        <result property="a19" column="a19" />
+        <result property="a20" column="a20" />
+        <result property="a21" column="a21" />
+        <result property="a22" column="a22" />
+        <result property="a23" column="a23" />
+        <result property="a24" column="a24" />
+        <result property="a25" column="a25" />
+        <result property="a26" column="a26" />
+        <result property="a27" column="a27" />
+        <result property="a28" column="a28" />
+        <result property="a29" column="a29" />
+        <result property="a30" column="a30" />
+        <result property="a31" column="a31" />
+        <result property="a32" column="a32" />
+        <result property="a33" column="a33" />
+        <result property="a34" column="a34" />
+        <result property="a35" column="a35" />
+        <result property="a36" column="a36" />
+        <result property="a37" column="a37" />
+        <result property="a38" column="a38" />
+        <result property="a39" column="a39" />
+        <result property="a40" column="a40" />
+        <result property="a41" column="a41" />
+        <result property="a42" column="a42" />
+        <result property="a43" column="a43" />
+        <result property="a44" column="a44" />
+        <result property="a45" column="a45" />
+        <result property="a46" column="a46" />
+        <result property="a47" column="a47" />
+        <result property="a48" column="a48" />
+        <result property="a49" column="a49" />
+        <result property="a50" column="a50" />
+        <result property="a51" column="a51" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectDB_SBTZList" resultMap="DB_SBTZ_AllColumns" parameterClass="string">
+        SELECT 
+         [sb_id],
+         [OrgCode],
+         [sbvol],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a13],
+         [a12],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25],
+         [a26],
+         [a27],
+         [a28],
+         [a29],
+         [a30],
+         [a31],
+         [a32],
+         [a33],
+         [a34],
+         [a35],
+         [a36],
+         [a37],
+         [a38],
+         [a39],
+         [a40],
+         [a41],
+         [a42],
+         [a43],
+         [a44],
+         [a45],
+         [a46],
+         [a47],
+         [a48],
+         [a49],
+         [a50],
+         [a51]
+          FROM DB_SBTZ
+          $value$
+   </select>
+   
+   <select id="SelectDB_SBTZByHash" parameterClass="Hashtable">
+         SELECT 
+         [sb_id],
+         [OrgCode],
+         [sbvol],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a13],
+         [a12],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25],
+         [a26],
+         [a27],
+         [a28],
+         [a29],
+         [a30],
+         [a31],
+         [a32],
+         [a33],
+         [a34],
+         [a35],
+         [a36],
+         [a37],
+         [a38],
+         [a39],
+         [a40],
+         [a41],
+         [a42],
+         [a43],
+         [a44],
+         [a45],
+         [a46],
+         [a47],
+         [a48],
+         [a49],
+         [a50],
+         [a51]
+          FROM DB_SBTZ
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbvol">[sbvol]='$sbvol$'</isNotNull>
+       <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
+       <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
+       <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
+       <isNotNull prepend="AND" property="a4">[a4]='$a4$'</isNotNull>
+       <isNotNull prepend="AND" property="a5">[a5]='$a5$'</isNotNull>
+       <isNotNull prepend="AND" property="a6">[a6]='$a6$'</isNotNull>
+       <isNotNull prepend="AND" property="a7">[a7]='$a7$'</isNotNull>
+       <isNotNull prepend="AND" property="a8">[a8]='$a8$'</isNotNull>
+       <isNotNull prepend="AND" property="a9">[a9]='$a9$'</isNotNull>
+       <isNotNull prepend="AND" property="a10">[a10]='$a10$'</isNotNull>
+       <isNotNull prepend="AND" property="a11">[a11]='$a11$'</isNotNull>
+       <isNotNull prepend="AND" property="a13">[a13]='$a13$'</isNotNull>
+       <isNotNull prepend="AND" property="a12">[a12]='$a12$'</isNotNull>
+       <isNotNull prepend="AND" property="a14">[a14]='$a14$'</isNotNull>
+       <isNotNull prepend="AND" property="a15">[a15]='$a15$'</isNotNull>
+       <isNotNull prepend="AND" property="a16">[a16]='$a16$'</isNotNull>
+       <isNotNull prepend="AND" property="a17">[a17]='$a17$'</isNotNull>
+       <isNotNull prepend="AND" property="a18">[a18]='$a18$'</isNotNull>
+       <isNotNull prepend="AND" property="a19">[a19]='$a19$'</isNotNull>
+       <isNotNull prepend="AND" property="a20">[a20]='$a20$'</isNotNull>
+       <isNotNull prepend="AND" property="a21">[a21]='$a21$'</isNotNull>
+       <isNotNull prepend="AND" property="a22">[a22]='$a22$'</isNotNull>
+       <isNotNull prepend="AND" property="a23">[a23]='$a23$'</isNotNull>
+       <isNotNull prepend="AND" property="a24">[a24]='$a24$'</isNotNull>
+       <isNotNull prepend="AND" property="a25">[a25]='$a25$'</isNotNull>
+       <isNotNull prepend="AND" property="a26">[a26]='$a26$'</isNotNull>
+       <isNotNull prepend="AND" property="a27">[a27]='$a27$'</isNotNull>
+       <isNotNull prepend="AND" property="a28">[a28]='$a28$'</isNotNull>
+       <isNotNull prepend="AND" property="a29">[a29]='$a29$'</isNotNull>
+       <isNotNull prepend="AND" property="a30">[a30]='$a30$'</isNotNull>
+       <isNotNull prepend="AND" property="a31">[a31]='$a31$'</isNotNull>
+       <isNotNull prepend="AND" property="a32">[a32]='$a32$'</isNotNull>
+       <isNotNull prepend="AND" property="a33">[a33]='$a33$'</isNotNull>
+       <isNotNull prepend="AND" property="a34">[a34]='$a34$'</isNotNull>
+       <isNotNull prepend="AND" property="a35">[a35]='$a35$'</isNotNull>
+       <isNotNull prepend="AND" property="a36">[a36]='$a36$'</isNotNull>
+       <isNotNull prepend="AND" property="a37">[a37]='$a37$'</isNotNull>
+       <isNotNull prepend="AND" property="a38">[a38]='$a38$'</isNotNull>
+       <isNotNull prepend="AND" property="a39">[a39]='$a39$'</isNotNull>
+       <isNotNull prepend="AND" property="a40">[a40]='$a40$'</isNotNull>
+       <isNotNull prepend="AND" property="a41">[a41]='$a41$'</isNotNull>
+       <isNotNull prepend="AND" property="a42">[a42]='$a42$'</isNotNull>
+       <isNotNull prepend="AND" property="a43">[a43]='$a43$'</isNotNull>
+       <isNotNull prepend="AND" property="a44">[a44]='$a44$'</isNotNull>
+       <isNotNull prepend="AND" property="a45">[a45]='$a45$'</isNotNull>
+       <isNotNull prepend="AND" property="a46">[a46]='$a46$'</isNotNull>
+       <isNotNull prepend="AND" property="a47">[a47]='$a47$'</isNotNull>
+       <isNotNull prepend="AND" property="a48">[a48]='$a48$'</isNotNull>
+       <isNotNull prepend="AND" property="a49">[a49]='$a49$'</isNotNull>
+       <isNotNull prepend="AND" property="a50">[a50]='$a50$'</isNotNull>
+       <isNotNull prepend="AND" property="a51">[a51]='$a51$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectDB_SBTZByKey" resultMap="DB_SBTZ_AllColumns" parameterClass="DB_SBTZ">
+         SELECT 
+         [sb_id],
+         [OrgCode],
+         [sbvol],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a13],
+         [a12],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25],
+         [a26],
+         [a27],
+         [a28],
+         [a29],
+         [a30],
+         [a31],
+         [a32],
+         [a33],
+         [a34],
+         [a35],
+         [a36],
+         [a37],
+         [a38],
+         [a39],
+         [a40],
+         [a41],
+         [a42],
+         [a43],
+         [a44],
+         [a45],
+         [a46],
+         [a47],
+         [a48],
+         [a49],
+         [a50],
+         [a51]
+         FROM DB_SBTZ
+         WHERE 
+           sb_id = #sb_id#
+
+   </select>
+ 
+   <delete id="DeleteDB_SBTZ" parameterClass="DB_SBTZ">
+        DELETE FROM 
+         DB_SBTZ
+           WHERE
+         sb_id = #sb_id#
+
+   </delete>
+   
+   <delete id="DeleteDB_SBTZByWhere" parameterClass="string">
+     delete from DB_SBTZ $value$
+   </delete>
+   
+   <delete id="DeleteDB_SBTZByKey" parameterClass="string">
+        DELETE FROM 
+         DB_SBTZ
+           WHERE
+         sb_id = #sb_id#
+    
+   </delete>
+   
+   <update id="UpdateDB_SBTZ" parameterClass="DB_SBTZ" resultClass="int">
+          UPDATE DB_SBTZ
+           SET
+             [OrgCode]=#OrgCode#,
+             [sbvol]=#sbvol#,
+             [a1]=#a1#,
+             [a2]=#a2#,
+             [a3]=#a3#,
+             [a4]=#a4#,
+             [a5]=#a5#,
+             [a6]=#a6#,
+             [a7]=#a7#,
+             [a8]=#a8#,
+             [a9]=#a9#,
+             [a10]=#a10#,
+             [a11]=#a11#,
+             [a13]=#a13#,
+             [a12]=#a12#,
+             [a14]=#a14#,
+             [a15]=#a15#,
+             [a16]=#a16#,
+             [a17]=#a17#,
+             [a18]=#a18#,
+             [a19]=#a19#,
+             [a20]=#a20#,
+             [a21]=#a21#,
+             [a22]=#a22#,
+             [a23]=#a23#,
+             [a24]=#a24#,
+             [a25]=#a25#,
+             [a26]=#a26#,
+             [a27]=#a27#,
+             [a28]=#a28#,
+             [a29]=#a29#,
+             [a30]=#a30#,
+             [a31]=#a31#,
+             [a32]=#a32#,
+             [a33]=#a33#,
+             [a34]=#a34#,
+             [a35]=#a35#,
+             [a36]=#a36#,
+             [a37]=#a37#,
+             [a38]=#a38#,
+             [a39]=#a39#,
+             [a40]=#a40#,
+             [a41]=#a41#,
+             [a42]=#a42#,
+             [a43]=#a43#,
+             [a44]=#a44#,
+             [a45]=#a45#,
+             [a46]=#a46#,
+             [a47]=#a47#,
+             [a48]=#a48#,
+             [a49]=#a49#,
+             [a50]=#a50#,
+             [a51]=#a51#
+            WHERE 
+              sb_id = #sb_id#
+
+   </update>
+  
+   <insert id="InsertDB_SBTZ" parameterClass="DB_SBTZ">
+        INSERT INTO DB_SBTZ
+         (
+         [sb_id],
+         [OrgCode],
+         [sbvol],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a13],
+         [a12],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25],
+         [a26],
+         [a27],
+         [a28],
+         [a29],
+         [a30],
+         [a31],
+         [a32],
+         [a33],
+         [a34],
+         [a35],
+         [a36],
+         [a37],
+         [a38],
+         [a39],
+         [a40],
+         [a41],
+         [a42],
+         [a43],
+         [a44],
+         [a45],
+         [a46],
+         [a47],
+         [a48],
+         [a49],
+         [a50],
+         [a51]
+         )
+       VALUES
+         (
+         #sb_id#,
+         #OrgCode#,
+         #sbvol#,
+         #a1#,
+         #a2#,
+         #a3#,
+         #a4#,
+         #a5#,
+         #a6#,
+         #a7#,
+         #a8#,
+         #a9#,
+         #a10#,
+         #a11#,
+         #a13#,
+         #a12#,
+         #a14#,
+         #a15#,
+         #a16#,
+         #a17#,
+         #a18#,
+         #a19#,
+         #a20#,
+         #a21#,
+         #a22#,
+         #a23#,
+         #a24#,
+         #a25#,
+         #a26#,
+         #a27#,
+         #a28#,
+         #a29#,
+         #a30#,
+         #a31#,
+         #a32#,
+         #a33#,
+         #a34#,
+         #a35#,
+         #a36#,
+         #a37#,
+         #a38#,
+         #a39#,
+         #a40#,
+         #a41#,
+         #a42#,
+         #a43#,
+         #a44#,
+         #a45#,
+         #a46#,
+         #a47#,
+         #a48#,
+         #a49#,
+         #a50#,
+         #a51#
+         )
+
+   </insert>
+   
+   <select id="GetDB_SBTZRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM DB_SBTZ
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbvol">[sbvol]='$sbvol$'</isNotNull>
+       <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
+       <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
+       <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
+       <isNotNull prepend="AND" property="a4">[a4]='$a4$'</isNotNull>
+       <isNotNull prepend="AND" property="a5">[a5]='$a5$'</isNotNull>
+       <isNotNull prepend="AND" property="a6">[a6]='$a6$'</isNotNull>
+       <isNotNull prepend="AND" property="a7">[a7]='$a7$'</isNotNull>
+       <isNotNull prepend="AND" property="a8">[a8]='$a8$'</isNotNull>
+       <isNotNull prepend="AND" property="a9">[a9]='$a9$'</isNotNull>
+       <isNotNull prepend="AND" property="a10">[a10]='$a10$'</isNotNull>
+       <isNotNull prepend="AND" property="a11">[a11]='$a11$'</isNotNull>
+       <isNotNull prepend="AND" property="a13">[a13]='$a13$'</isNotNull>
+       <isNotNull prepend="AND" property="a12">[a12]='$a12$'</isNotNull>
+       <isNotNull prepend="AND" property="a14">[a14]='$a14$'</isNotNull>
+       <isNotNull prepend="AND" property="a15">[a15]='$a15$'</isNotNull>
+       <isNotNull prepend="AND" property="a16">[a16]='$a16$'</isNotNull>
+       <isNotNull prepend="AND" property="a17">[a17]='$a17$'</isNotNull>
+       <isNotNull prepend="AND" property="a18">[a18]='$a18$'</isNotNull>
+       <isNotNull prepend="AND" property="a19">[a19]='$a19$'</isNotNull>
+       <isNotNull prepend="AND" property="a20">[a20]='$a20$'</isNotNull>
+       <isNotNull prepend="AND" property="a21">[a21]='$a21$'</isNotNull>
+       <isNotNull prepend="AND" property="a22">[a22]='$a22$'</isNotNull>
+       <isNotNull prepend="AND" property="a23">[a23]='$a23$'</isNotNull>
+       <isNotNull prepend="AND" property="a24">[a24]='$a24$'</isNotNull>
+       <isNotNull prepend="AND" property="a25">[a25]='$a25$'</isNotNull>
+       <isNotNull prepend="AND" property="a26">[a26]='$a26$'</isNotNull>
+       <isNotNull prepend="AND" property="a27">[a27]='$a27$'</isNotNull>
+       <isNotNull prepend="AND" property="a28">[a28]='$a28$'</isNotNull>
+       <isNotNull prepend="AND" property="a29">[a29]='$a29$'</isNotNull>
+       <isNotNull prepend="AND" property="a30">[a30]='$a30$'</isNotNull>
+       <isNotNull prepend="AND" property="a31">[a31]='$a31$'</isNotNull>
+       <isNotNull prepend="AND" property="a32">[a32]='$a32$'</isNotNull>
+       <isNotNull prepend="AND" property="a33">[a33]='$a33$'</isNotNull>
+       <isNotNull prepend="AND" property="a34">[a34]='$a34$'</isNotNull>
+       <isNotNull prepend="AND" property="a35">[a35]='$a35$'</isNotNull>
+       <isNotNull prepend="AND" property="a36">[a36]='$a36$'</isNotNull>
+       <isNotNull prepend="AND" property="a37">[a37]='$a37$'</isNotNull>
+       <isNotNull prepend="AND" property="a38">[a38]='$a38$'</isNotNull>
+       <isNotNull prepend="AND" property="a39">[a39]='$a39$'</isNotNull>
+       <isNotNull prepend="AND" property="a40">[a40]='$a40$'</isNotNull>
+       <isNotNull prepend="AND" property="a41">[a41]='$a41$'</isNotNull>
+       <isNotNull prepend="AND" property="a42">[a42]='$a42$'</isNotNull>
+       <isNotNull prepend="AND" property="a43">[a43]='$a43$'</isNotNull>
+       <isNotNull prepend="AND" property="a44">[a44]='$a44$'</isNotNull>
+       <isNotNull prepend="AND" property="a45">[a45]='$a45$'</isNotNull>
+       <isNotNull prepend="AND" property="a46">[a46]='$a46$'</isNotNull>
+       <isNotNull prepend="AND" property="a47">[a47]='$a47$'</isNotNull>
+       <isNotNull prepend="AND" property="a48">[a48]='$a48$'</isNotNull>
+       <isNotNull prepend="AND" property="a49">[a49]='$a49$'</isNotNull>
+       <isNotNull prepend="AND" property="a50">[a50]='$a50$'</isNotNull>
+       <isNotNull prepend="AND" property="a51">[a51]='$a51$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetDB_SBTZRowCount" parameterClass="string">
+    select count(*) from DB_SBTZ $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bd_sbtzclb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bd_sbtzclb"  type="Ebada.Scgl.Model.bd_sbtzclb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bd_sbtzclb_AllColumns" class="bd_sbtzclb">
+        <result property="bh" column="bh" />
+        <result property="mc" column="mc" />
+        <result property="xh" column="xh" />
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="S1" column="S1" />
+        <result property="S2" column="S2" />
+        <result property="S3" column="S3" />
+        <result property="zl" column="zl" />
+        <result property="zlCode" column="zlCode" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbd_sbtzclbList" resultMap="bd_sbtzclb_AllColumns" parameterClass="string">
+        SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+          FROM bd_sbtzclb
+          $value$
+   </select>
+   
+   <select id="Selectbd_sbtzclbByHash" parameterClass="Hashtable">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+          FROM bd_sbtzclb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+       <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbd_sbtzclbByKey" resultMap="bd_sbtzclb_AllColumns" parameterClass="bd_sbtzclb">
+         SELECT 
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+         FROM bd_sbtzclb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebd_sbtzclb" parameterClass="bd_sbtzclb">
+        DELETE FROM 
+         bd_sbtzclb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebd_sbtzclbByWhere" parameterClass="string">
+     delete from bd_sbtzclb $value$
+   </delete>
+   
+   <delete id="Deletebd_sbtzclbByKey" parameterClass="string">
+        DELETE FROM 
+         bd_sbtzclb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebd_sbtzclb" parameterClass="bd_sbtzclb" resultClass="int">
+          UPDATE bd_sbtzclb
+           SET
+             [bh]=#bh#,
+             [mc]=#mc#,
+             [xh]=#xh#,
+             [ParentID]=#ParentID#,
+             [S1]=#S1#,
+             [S2]=#S2#,
+             [S3]=#S3#,
+             [zl]=#zl#,
+             [zlCode]=#zlCode#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbd_sbtzclb" parameterClass="bd_sbtzclb">
+        INSERT INTO bd_sbtzclb
+         (
+         [bh],
+         [mc],
+         [xh],
+         [ID],
+         [ParentID],
+         [S1],
+         [S2],
+         [S3],
+         [zl],
+         [zlCode]
+         )
+       VALUES
+         (
+         #bh#,
+         #mc#,
+         #xh#,
+         #ID#,
+         #ParentID#,
+         #S1#,
+         #S2#,
+         #S3#,
+         #zl#,
+         #zlCode#
+         )
+
+   </insert>
+   
+   <select id="Getbd_sbtzclbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bd_sbtzclb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="mc">[mc]='$mc$'</isNotNull>
+       <isNotNull prepend="AND" property="xh">[xh]='$xh$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="S1">[S1]='$S1$'</isNotNull>
+       <isNotNull prepend="AND" property="S2">[S2]='$S2$'</isNotNull>
+       <isNotNull prepend="AND" property="S3">[S3]='$S3$'</isNotNull>
+       <isNotNull prepend="AND" property="zl">[zl]='$zl$'</isNotNull>
+       <isNotNull prepend="AND" property="zlCode">[zlCode]='$zlCode$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbd_sbtzclbRowCount" parameterClass="string">
+    select count(*) from bd_sbtzclb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

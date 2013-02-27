@@ -414,6 +414,13 @@
     <EmbeddedResource Include="rRoleOrg.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="bd_sbtzclb.xml" />
+    <EmbeddedResource Include="bd_sbtz_fssb.xml" />
+    <EmbeddedResource Include="DB_SBTZ.xml" />
+    <EmbeddedResource Include="DB_SBTZ_SX.xml" />
+    <EmbeddedResource Include="DB_SBTZ_ZL.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
