@@ -323,7 +323,7 @@ namespace Ebada.jhgl {
             repositoryItemComboBox1.Items.AddRange(list);
 
 
-            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where parentid='0' and orgtype='0'");
+            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgName,OrgType");
 
             foreach (mOrg org in list2)
             {
@@ -541,11 +541,11 @@ namespace Ebada.jhgl {
                 {
                     if (i != orgname.Length - 1)
                     {
-                        sqlWhere = sqlWhere + "'" + orgname[i] + "',";
+                        sqlWhere = sqlWhere + "'" + orgname[i].Trim() + "',";
                     }
                     else
                     {
-                        sqlWhere = sqlWhere + "'" + orgname[i] + "')";
+                        sqlWhere = sqlWhere + "'" + orgname[i].Trim() + "')";
                     }
 
                 }
