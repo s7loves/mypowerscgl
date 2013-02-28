@@ -235,6 +235,8 @@ namespace Ebada.Scgl.Sbgl {
                 if (!string.IsNullOrEmpty(value))
                 {
                     RefreshData(string.Format(" where left(linecode,{0})='{1}' and linevol='0.4' order by parentid, linecode",tq.tqCode.Length,tq.tqCode));
+                    treeList1.KeyFieldName = "ID";
+                    treeList1.KeyFieldName = "LineID";
                 }
             }
         }
