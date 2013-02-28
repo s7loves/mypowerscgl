@@ -149,6 +149,12 @@
     <Compile Include="UCJH_date.Designer.cs">
       <DependentUpon>UCJH_date.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCJH_weekmanthz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_weekmanthz.Designer.cs">
+      <DependentUpon>UCJH_weekmanthz.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCJH_yearkst.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     <EmbeddedResource Include="UCJH_date.resx">
       <DependentUpon>UCJH_date.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_weekmanthz.resx">
+      <DependentUpon>UCJH_weekmanthz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCJH_yearkst.resx">
       <DependentUpon>UCJH_yearkst.cs</DependentUpon>
