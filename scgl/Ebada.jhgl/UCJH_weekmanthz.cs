@@ -283,7 +283,7 @@ namespace Ebada.jhgl
             }
             if (barEditItem3.EditValue != null)
             {
-                title += title + barEditItem3.EditValue.ToString();
+                title = title + barEditItem3.EditValue.ToString();
             }
             title = title + "员工工作写实总分";
             ExportPDCA.ExportExcelMantthz(title, exportList);
