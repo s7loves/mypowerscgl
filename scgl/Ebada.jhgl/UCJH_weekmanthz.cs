@@ -69,12 +69,11 @@ namespace Ebada.jhgl
             return this;
         }
 
-
+        /// <summary>
+        /// 初始化Gridview列
+        /// </summary>
         private void InitGridViewColumn()
         {
-            int m = 0;
-
-            //gridView1.Columns["ID"].Visible = false;
             gridView1.Columns["ParentID"].Visible = false;
             gridView1.Columns["单位代码"].Visible = false;
             gridView1.Columns["c1"].Visible = false;
@@ -117,7 +116,9 @@ namespace Ebada.jhgl
         {
             RefershData();
         }
-
+        /// <summary>
+        /// 刷新数据
+        /// </summary>
         private void RefershData()
         {
             string where = "";
