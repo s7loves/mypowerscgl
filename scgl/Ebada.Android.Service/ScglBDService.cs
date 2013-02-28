@@ -104,7 +104,7 @@ namespace Ebada.Android.Service {
             List<bd_sbsxz> gsonList = new List<bd_sbsxz>();
             Type t = gt.GetType();
             if (!dicsx.ContainsKey(gt.a1)) {
-                dicsx.Add(gt.a1, Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ_SX>(" where zldm='" + gt.a1 + "'"));
+                dicsx.Add(gt.a1, Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ_SX>(" where zldm='" + gt.a1 + "' and sxcol<>'a1' "));
             }
             foreach(var zlsx in dicsx[gt.a1]){
                 
