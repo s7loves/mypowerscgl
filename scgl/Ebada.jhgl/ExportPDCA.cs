@@ -10,6 +10,66 @@ namespace Ebada.jhgl
 {
    public class ExportPDCA
     {
+       public static void ExportExcelMantthz(string title, IList<JH_weekmant> nrList)
+       {
+           ExcelAccess ex = new ExcelAccess();
+           SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+           string fname = Application.StartupPath + "\\00记录模板\\员工工作写实年终总分表.xls";
+           ex.Open(fname);
+           int row = 1;
+           int col = 1;
+           //加页
+           int pageindex = 1;
+           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 20))
+           {
+               pageindex = Ecommonjh.GetPagecount(nrList.Count, 20);
+           }
+           for (int j = 1; j <= pageindex; j++)
+           {
+               if (j > 1)
+               {
+                   ex.CopySheet(1, 1);
+               }
+           }
+           // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
+           ex.ActiveSheet(1);
+
+           ex.SetCellValue(title, row, col);
+           for (int j = 1; j <= pageindex; j++)
+           {
+               ex.ActiveSheet(j);
+               //ex.ReNameWorkSheet(j, "Sheet" + (j));
+               int prepageindex = j - 1;
+               //主题
+               int starow = prepageindex * 7 + 1;
+               int endrow = j * 7;
+
+               if (nrList.Count > endrow)
+               {
+                   for (int i = 0; i < 7; i++)
+                   {
+                       ex.SetCellValue(nrList[starow - 1 + i].单位名称, row + 2 + i, 1);
+                       ex.SetCellValue(nrList[starow - 1 + i].姓名, row + 2 + i, 3);
+                       ex.SetCellValue(nrList[starow - 1 + i].考核结果, row + 2 + i, 5);
+                       ex.SetCellValue(nrList[starow - 1 + i].c3, row + 2 + i, 10); 
+                   }
+               }
+               else if (nrList.Count <= endrow && nrList.Count >= starow)
+               {
+                   for (int i = 0; i < nrList.Count - starow + 1; i++)
+                   {
+                       ex.SetCellValue(nrList[starow - 1 + i].单位名称, row + 2 + i, 1);
+                       ex.SetCellValue(nrList[starow - 1 + i].姓名, row + 2 + i, 3);
+                       ex.SetCellValue(nrList[starow - 1 + i].考核结果, row + 2 + i, 5);
+                       ex.SetCellValue(nrList[starow - 1 + i].c3, row + 2 + i, 10);
+                   }
+               }
+
+           }
+           ex.ActiveSheet(1);
+           ex.ShowExcel();
+
+       }
        public static void ExportExcelYear(JH_yearkst year, IList<JH_yearks> nrList) {
 
            ExcelAccess ex = new ExcelAccess();
