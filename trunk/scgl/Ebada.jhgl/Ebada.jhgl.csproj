@@ -262,7 +262,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="00记录模板\pdca周循环一览表.xls" />
+    <None Include="00记录模板\pdca周循环一览表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\pdca循环一览表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
