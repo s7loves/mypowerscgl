@@ -54,6 +54,12 @@ namespace Ebada.Scgl.Sbgl {
                 MsgBox.ShowWarningMessageBox("代码只能输入数字,并且长度只能是6，10，13，16。。。");
                 return;
             }
+            var obj = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where LineCode='" + code + "'");
+            if (obj != null) {
+                PS_xl tq = obj as PS_xl;
+                MsgBox.ShowWarningMessageBox(string.Format("已存在代码为{0}的线路\r\n线路名称：{1}\r\n所在供电所：{2}", tq.LineCode, tq.LineName, tq.OrgCode));
+                return;
+            }
             string askmsg=string.Format("是否确认将原线路代码 {0} 改为 {1} ！",xl.LineCode,code);
             if (MsgBox.ShowAskMessageBox(askmsg) == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.GetObject("Select", string.Format(execsql, xl.LineCode, code, xl.LineVol,MainHelper.User.UserName));

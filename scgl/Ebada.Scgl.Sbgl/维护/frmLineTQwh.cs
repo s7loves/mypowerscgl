@@ -43,15 +43,22 @@ namespace Ebada.Scgl.Sbgl {
             }
             int nlen = code.Length;
 
-            if (nlen !=10) {
+            if (nlen <10) {
                 flag = true;
             } 
 
             Label1:
             if (flag) {
-                MsgBox.ShowWarningMessageBox("代码只能输入数字,并且长度只能是10");
+                MsgBox.ShowWarningMessageBox("代码只能输入数字,并且长度不能小于10");
                 return;
             }
+            var obj = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='" + code + "'");
+            if (obj != null) {
+                PS_tq tq = obj as PS_tq;
+                MsgBox.ShowWarningMessageBox(string.Format("已存在代码为{0}的台区\r\n台区名称：{1}\r\n所在线路：{2}",tq.tqCode,tq.tqName,tq.xlCode));
+                return;
+            }
+
             string askmsg=string.Format("是否确认将原台区代码 {0} 改为 {1} ！",xl.tqCode,code);
             if (MsgBox.ShowAskMessageBox(askmsg) == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.GetObject("Select", string.Format(execsql, xl.tqCode, code, MainHelper.User.UserName));
