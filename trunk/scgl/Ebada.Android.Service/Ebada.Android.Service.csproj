@@ -109,6 +109,13 @@
     <Compile Include="ps_gtsb.cs" />
     <Compile Include="ps_image.cs" />
     <Compile Include="ScglSDService.cs" />
+    <Compile Include="bd_bdz.cs" />
+    <Compile Include="ScglBDService.cs" />
+    <Compile Include="IScglBDService.cs" />
+    <Compile Include="bd_sb.cs" />
+    <Compile Include="bd_sbsxc.cs" />
+    <Compile Include="bd_sbzl.cs" />
+    <Compile Include="bd_sbzlsx.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
