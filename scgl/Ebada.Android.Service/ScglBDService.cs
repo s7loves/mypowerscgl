@@ -146,11 +146,11 @@ namespace Ebada.Android.Service {
             return "";
         }
         int ncount = 0;
-        public string UpdateGt(List<ps_gt> data) {
+        public string UpdateGt(List<bd_sb> data) {
             string ret = "0";
             if (data != null) {
                 ncount = 0;
-                foreach (ps_gt gt in data) {
+                foreach (bd_sb gt in data) {
                     try { UpdateGtOne(gt); } catch (Exception err) { Console.WriteLine(err.Message); }
                 }
                 ret = data.Count.ToString();
@@ -158,37 +158,34 @@ namespace Ebada.Android.Service {
             }
             return ret;
         }
-        public string UpdateGtOne(ps_gt data) {
-            sd_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(data.gtID);
+        public string UpdateGtOne(bd_sb data) {
+            bd_sb gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<bd_sb>(data.sbid);
             if (gt != null) {
-                //foreach(FieldInfo fi in data.GetType().GetFields()){
-                //    try {
-                //        gt.GetType().GetProperty(fi.Name).SetValue(gt, fi.GetValue(data), null);
-                //    } catch { }
-                //}
-                gt.gtType = data.gtType;
-                gt.gtModle = data.gtModle;
-                gt.gtElev = (int)decimal.Parse(data.gtElev);
-                gt.gtLat = decimal.Parse(data.gtLat);
-                gt.gtLon = decimal.Parse(data.gtLon);
-                gt.gtHeight = decimal.Parse(data.gtHeight);
-                gt.gtJg = data.gtSpan == "是" ? "是" : "否";//借杆
-                if ((gt.gtLat + gt.gtLon) > 0) {
-                    int n = Ebada.Client.ClientHelper.PlatformSqlMap.Update<sd_gt>(gt);
-                    ncount += n;
+               
+                if (string.IsNullOrEmpty(data.jsonData2)) {
+                    Console.WriteLine("data.jsonData2;\r\n"+data.jsonData2);
+                    List<bd_sbsxz> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<bd_sbsxz>>(data.jsonData);
+                    if (list != null) {
+                        Type t = gt.GetType();
+                        foreach (var sx in list) {
+                            t.GetProperty(sx.k).SetValue(gt, sx.v,null);
+                        }
+                        int n=Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(gt);
+                        ncount += n>0?n:0;
+                    }
                 }
                 if (data.jsonData != null) {
-                    Console.WriteLine(data.jsonData);
+                    Console.WriteLine("data.jsonData;\r\n" + data.jsonData);
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
                     if (list != null) {
                         List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
-                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from sd_gtsb where gtid='" + gt.gtID + "'");
+                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from bd_sbtz_fssb where gtid='" + gt.sbid + "'");
                         sqllist.Add(sqo);
                         int num = 0;
                         foreach (ps_gtsb sb in list) {
                             num++;
-                            sd_gtsb gtsb = new sd_gtsb() { gtID = gt.gtID, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
-                            gtsb.sbID = gt.gtID + num.ToString("000");
+                            sd_gtsb gtsb = new sd_gtsb() { gtID = gt.sbid, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
+                            gtsb.sbID = gt.sbid + num.ToString("000");
                             sqo = new SqlQueryObject(SqlQueryType.Insert, gtsb);
                             sqllist.Add(sqo);
                         }
