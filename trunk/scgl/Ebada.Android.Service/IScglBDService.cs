@@ -61,10 +61,10 @@ namespace Ebada.Android.Service {
         string UpdateXl(List<ps_xl> data);
         [OperationContract]
         [WebInvoke(UriTemplate = "UpdateGtList", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        string UpdateGt(List<ps_gt> data);
+        string UpdateGt(List<bd_sb> data);
         [OperationContract]
         [WebInvoke(UriTemplate = "UpdateGtOne", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        string UpdateGtOne(ps_gt data);
+        string UpdateGtOne(bd_sb data);
         [OperationContract]
         [WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         string UploadFile(string id,string type, Stream fileContents);
