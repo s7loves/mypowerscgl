@@ -349,7 +349,7 @@ namespace Ebada.jhgl {
                         {
                             JH_weekman weekman = new JH_weekman();
                             weekman.ID = weekman.CreateID();
-                            weekman.ParentID = ParentID;
+                            weekman.ParentID = ParentObj.ID;
                             weekman.单位代码 = (string)dt.Rows[i]["_单位代码"];
                             weekman.单位名称 = (string)dt.Rows[i]["_单位名称"];
                             weekman.计划项目 = (string)dt.Rows[i]["_计划项目"];
