@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="DB_SBTZ" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="BD_SBTZ" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="DB_SBTZ"  type="Ebada.Scgl.Model.DB_SBTZ,Ebada.Scgl.Model" />
+  <typeAlias alias="BD_SBTZ"  type="Ebada.Scgl.Model.BD_SBTZ,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="DB_SBTZ_AllColumns" class="DB_SBTZ">
+      <resultMap id="BD_SBTZ_AllColumns" class="BD_SBTZ">
         <result property="sb_id" column="sb_id" />
         <result property="OrgCode" column="OrgCode" />
         <result property="sbvol" column="sbvol" />
@@ -63,7 +63,7 @@
   </resultMaps>
 
   <statements>
-   <select id="SelectDB_SBTZList" resultMap="DB_SBTZ_AllColumns" parameterClass="string">
+   <select id="SelectBD_SBTZList" resultMap="BD_SBTZ_AllColumns" parameterClass="string">
         SELECT 
          [sb_id],
          [OrgCode],
@@ -119,11 +119,11 @@
          [a49],
          [a50],
          [a51]
-          FROM DB_SBTZ
+          FROM BD_SBTZ
           $value$
    </select>
    
-   <select id="SelectDB_SBTZByHash" parameterClass="Hashtable">
+   <select id="SelectBD_SBTZByHash" parameterClass="Hashtable">
          SELECT 
          [sb_id],
          [OrgCode],
@@ -179,7 +179,7 @@
          [a49],
          [a50],
          [a51]
-          FROM DB_SBTZ
+          FROM BD_SBTZ
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -237,7 +237,7 @@
        <isNotNull prepend="AND" property="a51">[a51]='$a51$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectDB_SBTZByKey" resultMap="DB_SBTZ_AllColumns" parameterClass="DB_SBTZ">
+   <select id="SelectBD_SBTZByKey" resultMap="BD_SBTZ_AllColumns" parameterClass="BD_SBTZ">
          SELECT 
          [sb_id],
          [OrgCode],
@@ -293,34 +293,34 @@
          [a49],
          [a50],
          [a51]
-         FROM DB_SBTZ
+         FROM BD_SBTZ
          WHERE 
            sb_id = #sb_id#
 
    </select>
  
-   <delete id="DeleteDB_SBTZ" parameterClass="DB_SBTZ">
+   <delete id="DeleteBD_SBTZ" parameterClass="BD_SBTZ">
         DELETE FROM 
-         DB_SBTZ
+         BD_SBTZ
            WHERE
          sb_id = #sb_id#
 
    </delete>
    
-   <delete id="DeleteDB_SBTZByWhere" parameterClass="string">
-     delete from DB_SBTZ $value$
+   <delete id="DeleteBD_SBTZByWhere" parameterClass="string">
+     delete from BD_SBTZ $value$
    </delete>
    
-   <delete id="DeleteDB_SBTZByKey" parameterClass="string">
+   <delete id="DeleteBD_SBTZByKey" parameterClass="string">
         DELETE FROM 
-         DB_SBTZ
+         BD_SBTZ
            WHERE
          sb_id = #sb_id#
     
    </delete>
    
-   <update id="UpdateDB_SBTZ" parameterClass="DB_SBTZ" resultClass="int">
-          UPDATE DB_SBTZ
+   <update id="UpdateBD_SBTZ" parameterClass="BD_SBTZ" resultClass="int">
+          UPDATE BD_SBTZ
            SET
              [OrgCode]=#OrgCode#,
              [sbvol]=#sbvol#,
@@ -380,8 +380,8 @@
 
    </update>
   
-   <insert id="InsertDB_SBTZ" parameterClass="DB_SBTZ">
-        INSERT INTO DB_SBTZ
+   <insert id="InsertBD_SBTZ" parameterClass="BD_SBTZ">
+        INSERT INTO BD_SBTZ
          (
          [sb_id],
          [OrgCode],
@@ -498,9 +498,9 @@
 
    </insert>
    
-   <select id="GetDB_SBTZRowCountByHash" parameterClass="Hashtable">
+   <select id="GetBD_SBTZRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM DB_SBTZ
+          FROM BD_SBTZ
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
@@ -560,8 +560,8 @@
 
    </select>
    
-   <select id="GetDB_SBTZRowCount" parameterClass="string">
-    select count(*) from DB_SBTZ $value$
+   <select id="GetBD_SBTZRowCount" parameterClass="string">
+    select count(*) from BD_SBTZ $value$
    </select>
   </statements>
 </sqlMap>

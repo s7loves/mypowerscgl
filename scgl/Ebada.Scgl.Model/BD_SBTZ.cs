@@ -13,11 +13,11 @@ using System.ComponentModel;
 namespace Ebada.Scgl.Model
 {
     /// <summary>
-    ///[DB_SBTZ]业务实体类
-    ///对应表名:DB_SBTZ
+    ///[BD_SBTZ]业务实体类
+    ///对应表名:BD_SBTZ
     /// </summary>
     [Serializable]
-    public class DB_SBTZ
+    public class BD_SBTZ
     {
         
         #region Private 成员

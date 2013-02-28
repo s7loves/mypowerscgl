@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="DB_SBTZ_SX" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="BD_SBTZ_SX" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="DB_SBTZ_SX"  type="Ebada.Scgl.Model.DB_SBTZ_SX,Ebada.Scgl.Model" />
+  <typeAlias alias="BD_SBTZ_SX"  type="Ebada.Scgl.Model.BD_SBTZ_SX,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="DB_SBTZ_SX_AllColumns" class="DB_SBTZ_SX">
+      <resultMap id="BD_SBTZ_SX_AllColumns" class="BD_SBTZ_SX">
         <result property="id" column="id" />
         <result property="zldm" column="zldm" />
         <result property="sxcol" column="sxcol" />
@@ -23,7 +23,7 @@
   </resultMaps>
 
   <statements>
-   <select id="SelectDB_SBTZ_SXList" resultMap="DB_SBTZ_SX_AllColumns" parameterClass="string">
+   <select id="SelectBD_SBTZ_SXList" resultMap="BD_SBTZ_SX_AllColumns" parameterClass="string">
         SELECT 
          [id],
          [zldm],
@@ -39,11 +39,11 @@
          [isedit],
          [c1],
          [c2]
-          FROM DB_SBTZ_SX
+          FROM BD_SBTZ_SX
           $value$
    </select>
    
-   <select id="SelectDB_SBTZ_SXByHash" parameterClass="Hashtable">
+   <select id="SelectBD_SBTZ_SXByHash" parameterClass="Hashtable">
          SELECT 
          [id],
          [zldm],
@@ -59,7 +59,7 @@
          [isedit],
          [c1],
          [c2]
-          FROM DB_SBTZ_SX
+          FROM BD_SBTZ_SX
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
        <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
@@ -77,7 +77,7 @@
        <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectDB_SBTZ_SXByKey" resultMap="DB_SBTZ_SX_AllColumns" parameterClass="DB_SBTZ_SX">
+   <select id="SelectBD_SBTZ_SXByKey" resultMap="BD_SBTZ_SX_AllColumns" parameterClass="BD_SBTZ_SX">
          SELECT 
          [id],
          [zldm],
@@ -93,34 +93,34 @@
          [isedit],
          [c1],
          [c2]
-         FROM DB_SBTZ_SX
+         FROM BD_SBTZ_SX
          WHERE 
            id = #id#
 
    </select>
  
-   <delete id="DeleteDB_SBTZ_SX" parameterClass="DB_SBTZ_SX">
+   <delete id="DeleteBD_SBTZ_SX" parameterClass="BD_SBTZ_SX">
         DELETE FROM 
-         DB_SBTZ_SX
+         BD_SBTZ_SX
            WHERE
          id = #id#
 
    </delete>
    
-   <delete id="DeleteDB_SBTZ_SXByWhere" parameterClass="string">
-     delete from DB_SBTZ_SX $value$
+   <delete id="DeleteBD_SBTZ_SXByWhere" parameterClass="string">
+     delete from BD_SBTZ_SX $value$
    </delete>
    
-   <delete id="DeleteDB_SBTZ_SXByKey" parameterClass="int">
+   <delete id="DeleteBD_SBTZ_SXByKey" parameterClass="int">
         DELETE FROM 
-         DB_SBTZ_SX
+         BD_SBTZ_SX
            WHERE
          id = #id#
     
    </delete>
    
-   <update id="UpdateDB_SBTZ_SX" parameterClass="DB_SBTZ_SX" resultClass="int">
-          UPDATE DB_SBTZ_SX
+   <update id="UpdateBD_SBTZ_SX" parameterClass="BD_SBTZ_SX" resultClass="int">
+          UPDATE BD_SBTZ_SX
            SET
              [zldm]=#zldm#,
              [sxcol]=#sxcol#,
@@ -140,8 +140,8 @@
 
    </update>
   
-   <insert id="InsertDB_SBTZ_SX" parameterClass="DB_SBTZ_SX">
-        INSERT INTO DB_SBTZ_SX
+   <insert id="InsertBD_SBTZ_SX" parameterClass="BD_SBTZ_SX">
+        INSERT INTO BD_SBTZ_SX
          (
          [zldm],
          [sxcol],
@@ -179,9 +179,9 @@
 
    </insert>
    
-   <select id="GetDB_SBTZ_SXRowCountByHash" parameterClass="Hashtable">
+   <select id="GetBD_SBTZ_SXRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM DB_SBTZ_SX
+          FROM BD_SBTZ_SX
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
        <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
@@ -201,8 +201,8 @@
 
    </select>
    
-   <select id="GetDB_SBTZ_SXRowCount" parameterClass="string">
-    select count(*) from DB_SBTZ_SX $value$
+   <select id="GetBD_SBTZ_SXRowCount" parameterClass="string">
+    select count(*) from BD_SBTZ_SX $value$
    </select>
   </statements>
 </sqlMap>
