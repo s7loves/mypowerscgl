@@ -376,9 +376,6 @@ namespace Ebada.jhgl {
             string parent = ParentID;
             string where = "where ParentID in(select ID from JH_weekmant where 开始日期=" +
                 "(select dateadd(\"d\",-7,开始日期) from JH_weekmant where ID='" + ParentID + "')" + " and 单位代码='" + org.OrgCode + "' and 姓名='" + parentObj.姓名+"')";
-            //string date = parentObj.开始日期.AddDays(-7).ToString("yyyy-MM-dd");
-            //string where = string.Format(" where ParentID in(select ID from JH_weekmant where 开始日期='{0}' and 姓名='{1}' and 单位代码='{2}')", date,parentObj.姓名, org.OrgCode);
-
             IList<JH_weekman> jhweekManList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>(where);
             frmJH_WeeksMore frm = new frmJH_WeeksMore();
             frm.jhWeekManList = (List<JH_weekman>)jhweekManList;
