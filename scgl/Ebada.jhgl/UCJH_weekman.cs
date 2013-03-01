@@ -347,6 +347,8 @@ namespace Ebada.jhgl {
                         IList<JH_weekman> weekmanList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>("where c5='" + dt.Rows[i]["ID"] + "'");
                         if (weekmanList.Count==0)
                         {
+                            //newobj.预计时间 = parentObj.开始日期;
+                            //newobj.预计时间2 = ParentObj.结束日期;
                             JH_weekman weekman = new JH_weekman();
                             weekman.ID = weekman.CreateID();
                             weekman.ParentID = ParentObj.ID;
@@ -355,6 +357,9 @@ namespace Ebada.jhgl {
                             weekman.计划项目 = (string)dt.Rows[i]["_计划项目"];
                             weekman.工作内容 = (string)dt.Rows[i]["_实施内容"];
                             weekman.协作人员 = (string)dt.Rows[i]["_参加人员"];
+                            weekman.预计时间 = parentObj.开始日期;
+                            weekman.预计时间2 = ParentObj.结束日期;
+                            weekman.完成时间 = DateTime.Now;
                             weekman.c5 = (string)dt.Rows[i]["ID"];
                             Client.ClientHelper.PlatformSqlMap.Create<JH_weekman>(weekman);
                         }
@@ -398,8 +403,9 @@ namespace Ebada.jhgl {
                             weekman.计划项目 = (string)dt.Rows[i]["_计划项目"];
                             weekman.工作内容 = (string)dt.Rows[i]["_实施内容"];
                             weekman.协作人员 = (string)dt.Rows[i]["_参加人员"];
-                            weekman.预计时间 = (DateTime)dt.Rows[i]["_预计时间"];
-                            weekman.预计时间2 = (DateTime)dt.Rows[i]["_预计时间2"];
+                            weekman.预计时间 = ((DateTime)dt.Rows[i]["_预计时间"]).AddDays(7);
+                            weekman.预计时间2 = ((DateTime)dt.Rows[i]["_预计时间2"]).AddDays(7);
+                            weekman.完成时间 = DateTime.Now;
                             weekman.c5 = (string)dt.Rows[i]["ID"];
                             Client.ClientHelper.PlatformSqlMap.Create<JH_weekman>(weekman);
                         }                       
