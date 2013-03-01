@@ -112,6 +112,8 @@ namespace Ebada.jhgl {
             }
             addjh.ID = addjh.CreateID();
             addjh.c2 = obj.ID;
+            addjh.完成标记 = "未完成";
+            addjh.完成时间 = DateTime.Now;
             addjh.ParentID = parentID;
             Client.ClientHelper.PlatformSqlMap.Create<JH_weekks>(addjh);
             gridViewOperation.BindingList.Add(addjh);
