@@ -37,6 +37,14 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation = new GridViewOperation<mOrg>(gridControl1, gridView1, barManager1);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsView.ColumnAutoWidth = true;
+            gridView1.Click += new EventHandler(gridView1_Click);
+        }
+
+        void gridView1_Click(object sender, EventArgs e) {
+            if (FocusedRowChanged != null && focusedRow != gridView1.GetFocusedRow()) {
+                focusedRow = gridView1.GetFocusedRow();
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as mOrg);
+            }
         }
 
         void treeViewOperator_BeforeInsert(object render, ObjectOperationEventArgs<mOrg> e) {
@@ -53,9 +61,13 @@ namespace Ebada.Scgl.Sbgl {
             imagelist.ImageStream = (Ebada.Client.Resource.UCGridToolbar.UCGridToolbarImageList);
             barManager1.Images = imagelist;
         }
+        
+        object focusedRow;
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
-            if (FocusedRowChanged != null)
+            if (FocusedRowChanged != null&&focusedRow!=gridView1.GetFocusedDataRow()) {
+                focusedRow = gridView1.GetFocusedRow();
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as mOrg);
+            }
         }
         /// <summary>
         /// 初始化数据

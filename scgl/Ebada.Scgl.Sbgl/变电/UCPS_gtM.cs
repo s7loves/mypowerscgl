@@ -44,10 +44,12 @@ namespace Ebada.Scgl.Sbgl
 
         void zl_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ_ZL obj) {
             ucpS_GT1.ParentType =ptype= obj;
+            setCaption();
         }
 
         void xltree_FocusedRowChanged(object sender, Ebada.Scgl.Model.mOrg obj) {
             ucpS_GT1.ParentObj =pobj= obj;
+            setCaption();
         }
         BD_SBTZ_ZL ptype = null;
         mOrg pobj = null;
