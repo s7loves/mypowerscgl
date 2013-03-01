@@ -159,6 +159,8 @@ namespace Ebada.jhgl {
             addjh.ID = addjh.CreateID();
             addjh.c2 = obj.ID;
             addjh.ParentID = parentID;
+            addjh.完成标记 = "未完成";//xjq add
+            addjh.完成时间 = DateTime.Now;
             Client.ClientHelper.PlatformSqlMap.Create<JH_monthks>(addjh);
             gridViewOperation.BindingList.Add(addjh);
             if (obj.计划种类.Contains("一")) {
