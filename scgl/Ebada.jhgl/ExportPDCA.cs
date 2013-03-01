@@ -20,21 +20,23 @@ namespace Ebada.jhgl
            int col = 1;
            //加页
            int pageindex = 1;
-           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 7))
+           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 20))
            {
-               pageindex = Ecommonjh.GetPagecount(nrList.Count, 7);
+               pageindex = Ecommonjh.GetPagecount(nrList.Count, 20);
            }
            for (int j = 1; j <= pageindex; j++)
            {
+               ex.ActiveSheet(1);
                if (j > 1)
                {
                    ex.CopySheet(1, 1);
                }
+               ex.SetCellValue(title, row, col);
            }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
-           ex.ActiveSheet(1);
+          
 
-           ex.SetCellValue(title, row, col);
+           
            for (int j = 1; j <= pageindex; j++)
            {
                ex.ActiveSheet(j);
@@ -84,18 +86,24 @@ namespace Ebada.jhgl
                pageindex = Ecommonjh.GetPagecount(nrList.Count, 7);
            }
            for (int j = 1; j <= pageindex; j++) {
+               ex.ActiveSheet(j);
                if (j > 1) {
                    ex.CopySheet(1, 1);
                }
+               ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+
+               ex.SetCellValue(year.单位代码, row + 2, col); ;
+               ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+               ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
            }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
-           ex.ActiveSheet(1);
+           //ex.ActiveSheet(1);
      
-           ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           //ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
 
-           ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
-           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
+           //ex.SetCellValue(year.单位代码, row + 2, col); ;
+           //ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+           //ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
 
            for (int j = 1; j <= pageindex; j++) {
                ex.ActiveSheet(j);
@@ -164,17 +172,22 @@ namespace Ebada.jhgl
            }
            for (int j = 1; j <= pageindex; j++)
            {
+               ex.ActiveSheet(j);//xjq change
                if (j > 1)
                {
                    ex.CopySheet(1, 1);
                }
+               ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);//xjq change
+               ex.SetCellValue(year.单位代码, row + 2, col); ;
+               ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+               ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
            }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
-           ex.ActiveSheet(1);
-           ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
-           ex.SetCellValue(year.单位代码,row+2,col);;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
-           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
+           //ex.ActiveSheet(1);
+           //ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           //ex.SetCellValue(year.单位代码,row+2,col);;
+           //ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 9);
+           //ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 11);
 
            for (int j = 1; j <= pageindex; j++)
            {
@@ -239,27 +252,45 @@ namespace Ebada.jhgl
                pageindex = Ecommonjh.GetPagecount(nrList.Count, 7);
            }
            for (int j = 1; j <= pageindex; j++) {
+               ex.ActiveSheet(j);//xjq change 2013-03-01;
                if (j > 1) {
                    ex.CopySheet(1, 1);
                }
-           }
-           ex.ActiveSheet(1);
-           string strWeek = "";
-           string strYearMonth = "";
-           int pos = year.标题.IndexOf("第");
-           if (pos >= 0) {
-               strWeek = year.标题.Substring(pos, 3);
-               strYearMonth = year.标题.Substring(0, pos);
-           }
+               string strWeek = "";//xjq change 2013-03-01;
+               string strYearMonth = "";
+               int pos = year.标题.IndexOf("第");
+               if (pos >= 0)
+               {
+                   strWeek = year.标题.Substring(pos, 3);
+                   strYearMonth = year.标题.Substring(0, pos);
+               }
 
-           // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
-           ex.SetCellValue(strYearMonth, row, 1);
-           ex.SetCellValue("(" + strWeek + ")", row, 6);
-           ex.SetCellValue("PDCA循环一览表", row, 7);
+               // ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+               ex.SetCellValue(strYearMonth, row, 1);
+               ex.SetCellValue("(" + strWeek + ")", row, 6);
+               ex.SetCellValue("PDCA循环一览表", row, 7);
 
-           ex.SetCellValue(year.单位代码, row + 2, col); ;
-           ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
-           ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
+               ex.SetCellValue(year.单位代码, row + 2, col); ;
+               ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
+               ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
+           }
+           //ex.ActiveSheet(1);
+           //string strWeek = "";
+           //string strYearMonth = "";
+           //int pos = year.标题.IndexOf("第");
+           //if (pos >= 0) {
+           //    strWeek = year.标题.Substring(pos, 3);
+           //    strYearMonth = year.标题.Substring(0, pos);
+           //}
+
+           //// ex.SetCellValue(year.标题.Replace("计划", "PDCA循环一览表"), row, col);
+           //ex.SetCellValue(strYearMonth, row, 1);
+           //ex.SetCellValue("(" + strWeek + ")", row, 6);
+           //ex.SetCellValue("PDCA循环一览表", row, 7);
+
+           //ex.SetCellValue(year.单位代码, row + 2, col); ;
+           //ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
+           //ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
            for (int j = 1; j <= pageindex; j++) {
                ex.ActiveSheet(j);
                //ex.ReNameWorkSheet(j, "Sheet" + (j));
@@ -311,33 +342,50 @@ namespace Ebada.jhgl
            ex.Open(fname);
            int row = 1;
            int col = 1;
-           int pageRowNum = 6;
+           int pageRowNum = 7;
            //加页
            int pageindex = 1;
            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, pageRowNum)) {
                pageindex = Ecommonjh.GetPagecount(nrList.Count, pageRowNum);
            }
            for (int j = 1; j <= pageindex; j++) {
+               ex.ActiveSheet(j);//xjq change 2013-03-01;
                if (j > 1) {
                    ex.CopySheet(1, 1);
                }
-           }
-           ex.ActiveSheet(1);
-           string strWeek = "";
-           string strYearMonth = "";
-           int pos = year.标题.IndexOf("第");
-           if (pos >= 0) {
-               strWeek = year.标题.Substring(pos, 3);
-               strYearMonth = year.标题.Substring(0, pos);
-           }
+               string strWeek = "";//xjq change 2013-03-01;
+               string strYearMonth = "";
+               int pos = year.标题.IndexOf("第");
+               if (pos >= 0)
+               {
+                   strWeek = year.标题.Substring(pos, 3);
+                   strYearMonth = year.标题.Substring(0, pos);
+               }
 
-           ex.SetCellValue(year.标题.Replace("第"," （第 ").Replace("周"," 周）").Replace("计划",""), 3, 2);
-           ex.SetCellValue(year.姓名, 4, 2);
-           ex.SetCellValue(year.职务, 4, 5);
-           ex.SetCellValue(year.考核结果, 4, 8);
-           string sdate = string.Format("{0} － {1}", year.开始日期.ToString("yyyy年MM月dd日"), year.结束日期.ToString("yyyy年MM月dd日"));
+               ex.SetCellValue(year.标题.Replace("第", " （第 ").Replace("周", " 周）").Replace("计划", ""), 3, 2);
+               ex.SetCellValue(year.姓名, 4, 2);
+               ex.SetCellValue(year.职务, 4, 5);
+               ex.SetCellValue(year.考核结果, 4, 8);
+               string sdate = string.Format("{0} － {1}", year.开始日期.ToString("yyyy年MM月dd日"), year.结束日期.ToString("yyyy年MM月dd日"));
 
-           ex.SetCellValue(sdate, 4, 9); ;
+               ex.SetCellValue(sdate, 4, 9); ;
+           }
+           //ex.ActiveSheet(1);
+           //string strWeek = "";
+           //string strYearMonth = "";
+           //int pos = year.标题.IndexOf("第");
+           //if (pos >= 0) {
+           //    strWeek = year.标题.Substring(pos, 3);
+           //    strYearMonth = year.标题.Substring(0, pos);
+           //}
+
+           //ex.SetCellValue(year.标题.Replace("第"," （第 ").Replace("周"," 周）").Replace("计划",""), 3, 2);
+           //ex.SetCellValue(year.姓名, 4, 2);
+           //ex.SetCellValue(year.职务, 4, 5);
+           //ex.SetCellValue(year.考核结果, 4, 8);
+           //string sdate = string.Format("{0} － {1}", year.开始日期.ToString("yyyy年MM月dd日"), year.结束日期.ToString("yyyy年MM月dd日"));
+
+           //ex.SetCellValue(sdate, 4, 9); ;
            //ex.SetCellValue(year.开始日期.ToString("yyyy-MM-dd"), 3, 10);
            //ex.SetCellValue(year.结束日期.ToString("yyyy-MM-dd"), 3, 12);
            row += 6;
