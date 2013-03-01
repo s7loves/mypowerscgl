@@ -20,9 +20,9 @@ namespace Ebada.jhgl
            int col = 1;
            //加页
            int pageindex = 1;
-           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 20))
+           if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 7))
            {
-               pageindex = Ecommonjh.GetPagecount(nrList.Count, 20);
+               pageindex = Ecommonjh.GetPagecount(nrList.Count, 7);
            }
            for (int j = 1; j <= pageindex; j++)
            {
