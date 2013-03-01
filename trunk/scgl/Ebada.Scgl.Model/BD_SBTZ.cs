@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2013-2-27 16:51:06
+生成时间:2013-3-1 11:17:38
 ***********************************************/
 
 using System;
@@ -24,6 +24,22 @@ namespace Ebada.Scgl.Model
         private string _sb_id=Newid(); 
         private string _orgcode=String.Empty; 
         private string _sbvol=String.Empty; 
+        private string _sbtype=String.Empty; 
+        private string _sbname=String.Empty; 
+        private string _sbunit=String.Empty; 
+        private int _jxzq=0; 
+        private double _a_left=0; 
+        private double _a_top=0; 
+        private double _a_width=0; 
+        private double _a_height=0; 
+        private int _a_color=0; 
+        private int _a_orient=0; 
+        private int _a_itemnum=0; 
+        private int _a_zdyxnum=0; 
+        private string _a_extdata=String.Empty; 
+        private string _c1=String.Empty; 
+        private string _c2=String.Empty; 
+        private string _c3=String.Empty; 
         private string _a1=String.Empty; 
         private string _a2=String.Empty; 
         private string _a3=String.Empty; 
@@ -140,6 +156,318 @@ namespace Ebada.Scgl.Model
                 if (_sbvol as object == null || !_sbvol.Equals(value))
                 {
                     _sbvol = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sbtype
+        /// 属性描述：设备种类
+        /// 字段信息：[sbtype],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("设备种类")]
+        public string sbtype
+        {
+            get { return _sbtype; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[设备种类]长度不能大于50!");
+                if (_sbtype as object == null || !_sbtype.Equals(value))
+                {
+                    _sbtype = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sbname
+        /// 属性描述：设备名称
+        /// 字段信息：[sbname],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("设备名称")]
+        public string sbname
+        {
+            get { return _sbname; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[设备名称]长度不能大于50!");
+                if (_sbname as object == null || !_sbname.Equals(value))
+                {
+                    _sbname = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：sbunit
+        /// 属性描述：设备单元
+        /// 字段信息：[sbunit],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("设备单元")]
+        public string sbunit
+        {
+            get { return _sbunit; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[设备单元]长度不能大于50!");
+                if (_sbunit as object == null || !_sbunit.Equals(value))
+                {
+                    _sbunit = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：jxzq
+        /// 属性描述：检修周期
+        /// 字段信息：[jxzq],int
+        /// </summary>
+        [DisplayNameAttribute("检修周期")]
+        public int jxzq
+        {
+            get { return _jxzq; }
+            set
+            {			
+                if (_jxzq as object == null || !_jxzq.Equals(value))
+                {
+                    _jxzq = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_left
+        /// 属性描述：
+        /// 字段信息：[a_left],float
+        /// </summary>
+        [DisplayNameAttribute("a_left")]
+        public double a_left
+        {
+            get { return _a_left; }
+            set
+            {			
+                if (_a_left as object == null || !_a_left.Equals(value))
+                {
+                    _a_left = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_top
+        /// 属性描述：
+        /// 字段信息：[a_top],float
+        /// </summary>
+        [DisplayNameAttribute("a_top")]
+        public double a_top
+        {
+            get { return _a_top; }
+            set
+            {			
+                if (_a_top as object == null || !_a_top.Equals(value))
+                {
+                    _a_top = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_width
+        /// 属性描述：
+        /// 字段信息：[a_width],float
+        /// </summary>
+        [DisplayNameAttribute("a_width")]
+        public double a_width
+        {
+            get { return _a_width; }
+            set
+            {			
+                if (_a_width as object == null || !_a_width.Equals(value))
+                {
+                    _a_width = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_height
+        /// 属性描述：
+        /// 字段信息：[a_height],float
+        /// </summary>
+        [DisplayNameAttribute("a_height")]
+        public double a_height
+        {
+            get { return _a_height; }
+            set
+            {			
+                if (_a_height as object == null || !_a_height.Equals(value))
+                {
+                    _a_height = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_color
+        /// 属性描述：
+        /// 字段信息：[a_color],int
+        /// </summary>
+        [DisplayNameAttribute("a_color")]
+        public int a_color
+        {
+            get { return _a_color; }
+            set
+            {			
+                if (_a_color as object == null || !_a_color.Equals(value))
+                {
+                    _a_color = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_orient
+        /// 属性描述：
+        /// 字段信息：[a_orient],int
+        /// </summary>
+        [DisplayNameAttribute("a_orient")]
+        public int a_orient
+        {
+            get { return _a_orient; }
+            set
+            {			
+                if (_a_orient as object == null || !_a_orient.Equals(value))
+                {
+                    _a_orient = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_itemnum
+        /// 属性描述：
+        /// 字段信息：[a_itemnum],int
+        /// </summary>
+        [DisplayNameAttribute("a_itemnum")]
+        public int a_itemnum
+        {
+            get { return _a_itemnum; }
+            set
+            {			
+                if (_a_itemnum as object == null || !_a_itemnum.Equals(value))
+                {
+                    _a_itemnum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_zdyxnum
+        /// 属性描述：
+        /// 字段信息：[a_zdyxnum],int
+        /// </summary>
+        [DisplayNameAttribute("a_zdyxnum")]
+        public int a_zdyxnum
+        {
+            get { return _a_zdyxnum; }
+            set
+            {			
+                if (_a_zdyxnum as object == null || !_a_zdyxnum.Equals(value))
+                {
+                    _a_zdyxnum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：a_extdata
+        /// 属性描述：
+        /// 字段信息：[a_extdata],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("a_extdata")]
+        public string a_extdata
+        {
+            get { return _a_extdata; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 1073741823)
+                throw new Exception("[a_extdata]长度不能大于1073741823!");
+                if (_a_extdata as object == null || !_a_extdata.Equals(value))
+                {
+                    _a_extdata = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c1
+        /// 属性描述：备
+        /// 字段信息：[c1],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c1
+        {
+            get { return _c1; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c1 as object == null || !_c1.Equals(value))
+                {
+                    _c1 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c2
+        /// 属性描述：备
+        /// 字段信息：[c2],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c2
+        {
+            get { return _c2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c2 as object == null || !_c2.Equals(value))
+                {
+                    _c2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c3
+        /// 属性描述：备
+        /// 字段信息：[c3],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c3
+        {
+            get { return _c3; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c3 as object == null || !_c3.Equals(value))
+                {
+                    _c3 = value;
                 }
             }			 
         }

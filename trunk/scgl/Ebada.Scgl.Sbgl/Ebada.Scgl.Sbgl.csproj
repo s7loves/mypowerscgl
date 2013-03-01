@@ -127,6 +127,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="变电\UCBD_SBTZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_SBTZ.Designer.cs">
+      <DependentUpon>UCBD_SBTZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCmOrgBds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCmOrgBds.Designer.cs">
+      <DependentUpon>UCmOrgBds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCPS_gtM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCPS_gtM.Designer.cs">
+      <DependentUpon>UCPS_gtM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCBD_SBTZ_ZL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_SBTZ_ZL.Designer.cs">
+      <DependentUpon>UCBD_SBTZ_ZL.cs</DependentUpon>
+    </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -791,6 +815,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="变电\UCBD_SBTZ.resx">
+      <DependentUpon>UCBD_SBTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCmOrgBds.resx">
+      <DependentUpon>UCmOrgBds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCPS_gtM.resx">
+      <DependentUpon>UCPS_gtM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCBD_SBTZ_ZL.resx">
+      <DependentUpon>UCBD_SBTZ_ZL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
     </EmbeddedResource>
@@ -937,9 +977,6 @@
     <None Include="DSandroid.xss">
       <DependentUpon>DSandroid.xsd</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="变电\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

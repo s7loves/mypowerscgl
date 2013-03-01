@@ -8,6 +8,22 @@
         <result property="sb_id" column="sb_id" />
         <result property="OrgCode" column="OrgCode" />
         <result property="sbvol" column="sbvol" />
+        <result property="sbtype" column="sbtype" />
+        <result property="sbname" column="sbname" />
+        <result property="sbunit" column="sbunit" />
+        <result property="jxzq" column="jxzq" />
+        <result property="a_left" column="a_left" />
+        <result property="a_top" column="a_top" />
+        <result property="a_width" column="a_width" />
+        <result property="a_height" column="a_height" />
+        <result property="a_color" column="a_color" />
+        <result property="a_orient" column="a_orient" />
+        <result property="a_itemnum" column="a_itemnum" />
+        <result property="a_zdyxnum" column="a_zdyxnum" />
+        <result property="a_extdata" column="a_extdata" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
         <result property="a1" column="a1" />
         <result property="a2" column="a2" />
         <result property="a3" column="a3" />
@@ -68,6 +84,22 @@
          [sb_id],
          [OrgCode],
          [sbvol],
+         [sbtype],
+         [sbname],
+         [sbunit],
+         [jxzq],
+         [a_left],
+         [a_top],
+         [a_width],
+         [a_height],
+         [a_color],
+         [a_orient],
+         [a_itemnum],
+         [a_zdyxnum],
+         [a_extdata],
+         [c1],
+         [c2],
+         [c3],
          [a1],
          [a2],
          [a3],
@@ -128,6 +160,22 @@
          [sb_id],
          [OrgCode],
          [sbvol],
+         [sbtype],
+         [sbname],
+         [sbunit],
+         [jxzq],
+         [a_left],
+         [a_top],
+         [a_width],
+         [a_height],
+         [a_color],
+         [a_orient],
+         [a_itemnum],
+         [a_zdyxnum],
+         [a_extdata],
+         [c1],
+         [c2],
+         [c3],
          [a1],
          [a2],
          [a3],
@@ -184,6 +232,22 @@
        <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="sbvol">[sbvol]='$sbvol$'</isNotNull>
+       <isNotNull prepend="AND" property="sbtype">[sbtype]='$sbtype$'</isNotNull>
+       <isNotNull prepend="AND" property="sbname">[sbname]='$sbname$'</isNotNull>
+       <isNotNull prepend="AND" property="sbunit">[sbunit]='$sbunit$'</isNotNull>
+       <isNotNull prepend="AND" property="jxzq">[jxzq]='$jxzq$'</isNotNull>
+       <isNotNull prepend="AND" property="a_left">[a_left]='$a_left$'</isNotNull>
+       <isNotNull prepend="AND" property="a_top">[a_top]='$a_top$'</isNotNull>
+       <isNotNull prepend="AND" property="a_width">[a_width]='$a_width$'</isNotNull>
+       <isNotNull prepend="AND" property="a_height">[a_height]='$a_height$'</isNotNull>
+       <isNotNull prepend="AND" property="a_color">[a_color]='$a_color$'</isNotNull>
+       <isNotNull prepend="AND" property="a_orient">[a_orient]='$a_orient$'</isNotNull>
+       <isNotNull prepend="AND" property="a_itemnum">[a_itemnum]='$a_itemnum$'</isNotNull>
+       <isNotNull prepend="AND" property="a_zdyxnum">[a_zdyxnum]='$a_zdyxnum$'</isNotNull>
+       <isNotNull prepend="AND" property="a_extdata">[a_extdata]='$a_extdata$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
        <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
        <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
        <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
@@ -242,6 +306,22 @@
          [sb_id],
          [OrgCode],
          [sbvol],
+         [sbtype],
+         [sbname],
+         [sbunit],
+         [jxzq],
+         [a_left],
+         [a_top],
+         [a_width],
+         [a_height],
+         [a_color],
+         [a_orient],
+         [a_itemnum],
+         [a_zdyxnum],
+         [a_extdata],
+         [c1],
+         [c2],
+         [c3],
          [a1],
          [a2],
          [a3],
@@ -324,6 +404,22 @@
            SET
              [OrgCode]=#OrgCode#,
              [sbvol]=#sbvol#,
+             [sbtype]=#sbtype#,
+             [sbname]=#sbname#,
+             [sbunit]=#sbunit#,
+             [jxzq]=#jxzq#,
+             [a_left]=#a_left#,
+             [a_top]=#a_top#,
+             [a_width]=#a_width#,
+             [a_height]=#a_height#,
+             [a_color]=#a_color#,
+             [a_orient]=#a_orient#,
+             [a_itemnum]=#a_itemnum#,
+             [a_zdyxnum]=#a_zdyxnum#,
+             [a_extdata]=#a_extdata#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
              [a1]=#a1#,
              [a2]=#a2#,
              [a3]=#a3#,
@@ -386,6 +482,22 @@
          [sb_id],
          [OrgCode],
          [sbvol],
+         [sbtype],
+         [sbname],
+         [sbunit],
+         [jxzq],
+         [a_left],
+         [a_top],
+         [a_width],
+         [a_height],
+         [a_color],
+         [a_orient],
+         [a_itemnum],
+         [a_zdyxnum],
+         [a_extdata],
+         [c1],
+         [c2],
+         [c3],
          [a1],
          [a2],
          [a3],
@@ -443,6 +555,22 @@
          #sb_id#,
          #OrgCode#,
          #sbvol#,
+         #sbtype#,
+         #sbname#,
+         #sbunit#,
+         #jxzq#,
+         #a_left#,
+         #a_top#,
+         #a_width#,
+         #a_height#,
+         #a_color#,
+         #a_orient#,
+         #a_itemnum#,
+         #a_zdyxnum#,
+         #a_extdata#,
+         #c1#,
+         #c2#,
+         #c3#,
          #a1#,
          #a2#,
          #a3#,
@@ -505,6 +633,22 @@
        <isNotNull prepend="AND" property="sb_id">[sb_id]='$sb_id$'</isNotNull>
        <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
        <isNotNull prepend="AND" property="sbvol">[sbvol]='$sbvol$'</isNotNull>
+       <isNotNull prepend="AND" property="sbtype">[sbtype]='$sbtype$'</isNotNull>
+       <isNotNull prepend="AND" property="sbname">[sbname]='$sbname$'</isNotNull>
+       <isNotNull prepend="AND" property="sbunit">[sbunit]='$sbunit$'</isNotNull>
+       <isNotNull prepend="AND" property="jxzq">[jxzq]='$jxzq$'</isNotNull>
+       <isNotNull prepend="AND" property="a_left">[a_left]='$a_left$'</isNotNull>
+       <isNotNull prepend="AND" property="a_top">[a_top]='$a_top$'</isNotNull>
+       <isNotNull prepend="AND" property="a_width">[a_width]='$a_width$'</isNotNull>
+       <isNotNull prepend="AND" property="a_height">[a_height]='$a_height$'</isNotNull>
+       <isNotNull prepend="AND" property="a_color">[a_color]='$a_color$'</isNotNull>
+       <isNotNull prepend="AND" property="a_orient">[a_orient]='$a_orient$'</isNotNull>
+       <isNotNull prepend="AND" property="a_itemnum">[a_itemnum]='$a_itemnum$'</isNotNull>
+       <isNotNull prepend="AND" property="a_zdyxnum">[a_zdyxnum]='$a_zdyxnum$'</isNotNull>
+       <isNotNull prepend="AND" property="a_extdata">[a_extdata]='$a_extdata$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
        <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
        <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
        <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
