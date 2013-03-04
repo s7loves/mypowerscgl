@@ -84,7 +84,7 @@ namespace Ebada.Android.Service {
             Dictionary<string, IList<BD_SBTZ_SX>> dicsx = new Dictionary<string, IList<BD_SBTZ_SX>>();
             foreach (BD_SBTZ gt in list2) {
                 bd_sb psgt = new bd_sb() {
-                    sbid= gt.sb_id, bdzdm=gt.OrgCode, sbmc=gt.a2, sbzl=gt.a1,sbzlmc=dic[gt.a1].ToString()
+                    sbid= gt.sb_id, bdzdm=gt.OrgCode, sbmc=gt.a2, sbzl=gt.sbtype,sbzlmc=dic[gt.sbtype].ToString()
                 };
                 
                 psgt.jsonData = getjsonData(gt.sb_id);
@@ -103,10 +103,10 @@ namespace Ebada.Android.Service {
             string jsondata = null;
             List<bd_sbsxz> gsonList = new List<bd_sbsxz>();
             Type t = gt.GetType();
-            if (!dicsx.ContainsKey(gt.a1)) {
-                dicsx.Add(gt.a1, Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ_SX>(" where zldm='" + gt.a1 + "' and sxcol<>'a1' "));
+            if (!dicsx.ContainsKey(gt.sbtype)) {
+                dicsx.Add(gt.sbtype, Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ_SX>(" where zldm='" + gt.sbtype + "' and sxcol<>'a1' "));
             }
-            foreach(var zlsx in dicsx[gt.a1]){
+            foreach(var zlsx in dicsx[gt.sbtype]){
                 
                 bd_sbsxz sx = new bd_sbsxz() {
                      k=zlsx.sxcol,t=zlsx.sxname,v=t.GetProperty(zlsx.sxcol).GetValue(gt,null).ToString(),
