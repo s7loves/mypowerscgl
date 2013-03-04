@@ -184,6 +184,8 @@ namespace Ebada.jhgl {
         }
         public Control showdw() {
             全局 = false;
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
