@@ -149,6 +149,8 @@ namespace Ebada.jhgl {
         }
         //科室计划
         public Control showtype1() {
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             type1 = "1";
             type2 = "全年";
             return this;
@@ -156,6 +158,8 @@ namespace Ebada.jhgl {
         //各科室计划
         public Control showtype11() {
             type1 = "1";
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             type2 = "临时";
             return this;
         }
@@ -163,12 +167,16 @@ namespace Ebada.jhgl {
         public Control showtype2() {
             type1 = "2";
             type2 = "全年";
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
         //所
         public Control showtype22() {
             type1 = "2";
             type2 = "临时";
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
         }
        
