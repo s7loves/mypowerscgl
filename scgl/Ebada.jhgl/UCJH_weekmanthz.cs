@@ -43,7 +43,7 @@ namespace Ebada.jhgl
 
         private void InitGridViewData()
         {
-           IList<JH_weekmant> weekmantList=Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekmant>("where 1>0 order by 单位名称,ParentID");
+           IList<JH_weekmant> weekmantList=Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekmant>("where 0>1 order by 单位名称,ParentID");
            gridControl1.DataSource = weekmantList;
            InitGridViewColumn();
         }
@@ -121,6 +121,10 @@ namespace Ebada.jhgl
         /// </summary>
         private void RefershData()
         {
+            if (barEditItem1.EditValue == null)
+            {
+                return;
+            }
             string where = "";
 
             if (barEditItem1.EditValue != null)
