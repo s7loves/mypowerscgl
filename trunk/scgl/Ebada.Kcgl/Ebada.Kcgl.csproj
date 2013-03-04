@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -77,6 +77,10 @@
     <Reference Include="Ebada.Scgl.Resource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Ebada.Scgl.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Scgl.Run, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Scgl.Run.dll</HintPath>
     </Reference>
     <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
