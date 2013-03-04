@@ -31,7 +31,7 @@ namespace Ebada.jhgl {
     [ToolboxItem(false)]
     public partial class UCJH_yearks : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<JH_yearks> gridViewOperation;
-
+        private string edit2where = "";
         public event SendDataEventHandler<JH_yearks> FocusedRowChanged;
         public event SendDataEventHandler<JH_yearks> RowDoubleClicked;
         private string parentID;
@@ -433,6 +433,10 @@ namespace Ebada.jhgl {
                         where += " and 计划分类='" + type2 + "'";
                     }
                 }
+                if (edit2where != "")
+                {
+                    where = where + edit2where;
+                }
                 filter = where;
                 RefreshData(where);
             }
@@ -454,19 +458,19 @@ namespace Ebada.jhgl {
             string[] orgname = barEditItem2.EditValue.ToString().Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries);
             string prID = ParentID;
             string sqlWhere = "";
-            if (prID != null)
-            {
-                sqlWhere = "where parentid='"+prID+"'";
-            }
+            //if (prID != null)
+            //{
+            //    sqlWhere = "where parentid='"+prID+"'";
+            //}
             if (orgname.Length > 0)
             {
-                if (sqlWhere == "")
+                //if (sqlWhere == "")
+                //{
+                //    sqlWhere = "where 单位名称 in (";
+                //}
+                //else
                 {
-                    sqlWhere = "where 单位名称 in (";
-                }
-                else
-                {
-                    sqlWhere = sqlWhere + " and 单位名称 in (";
+                    sqlWhere = " and 单位名称 in (";
                 }
                 for (int i = 0; i < orgname.Length; i++)
                 {
@@ -481,8 +485,9 @@ namespace Ebada.jhgl {
 
                 }
             }
-           
-            RefreshData(sqlWhere);
+            edit2where = sqlWhere;
+            //RefreshData(sqlWhere);
+            ParentID = prID;
         }
     }
 }
