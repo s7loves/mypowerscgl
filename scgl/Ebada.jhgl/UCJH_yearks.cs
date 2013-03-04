@@ -199,6 +199,8 @@ namespace Ebada.jhgl {
             btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             barEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
             ParentID = year;
             selected = true;
