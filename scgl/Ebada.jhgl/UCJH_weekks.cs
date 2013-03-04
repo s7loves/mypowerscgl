@@ -201,6 +201,8 @@ namespace Ebada.jhgl {
         }
         public Control showdw() {
             全局 = false;
+            barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -294,7 +296,7 @@ namespace Ebada.jhgl {
 
             repositoryItemComboBox1.Items.AddRange(list);
 
-            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgName,OrgType");
+            IList<mOrg> list2 = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgCode,OrgType");
 
             foreach (mOrg org in list2)
             {
