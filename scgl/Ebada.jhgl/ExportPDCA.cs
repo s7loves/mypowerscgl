@@ -43,12 +43,12 @@ namespace Ebada.jhgl
                //ex.ReNameWorkSheet(j, "Sheet" + (j));
                int prepageindex = j - 1;
                //主题
-               int starow = prepageindex * 7 + 1;
-               int endrow = j * 7;
+               int starow = prepageindex * 20 + 1;
+               int endrow = j * 20;
 
                if (nrList.Count > endrow)
                {
-                   for (int i = 0; i < 7; i++)
+                   for (int i = 0; i < 20; i++)
                    {
                        ex.SetCellValue(nrList[starow - 1 + i].单位名称, row + 2 + i, 1);
                        ex.SetCellValue(nrList[starow - 1 + i].姓名, row + 2 + i, 3);
