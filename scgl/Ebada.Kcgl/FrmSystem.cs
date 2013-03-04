@@ -43,7 +43,7 @@ namespace Ebada.Kcgl {
             labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
             labshow.Parent = panelControl1;
-
+            labSet.Text = "      设置";
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
             if (!STAThread) {
@@ -84,7 +84,9 @@ namespace Ebada.Kcgl {
             frmLogin dlg = new frmLogin();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 if (MainHelper.User.LoginID == "rabbit") {
+                    labSet.Visible = true;
                 } else {
+                    labSet.Visible = false;
                     InitFunction(MainHelper.User.UserID);
                 }
             } else {
@@ -310,9 +312,9 @@ namespace Ebada.Kcgl {
         }
 
         private void labSet_Click(object sender, EventArgs e) {
-            //frmModule frm = new frmModule();
-            //frm.ShowDialog();
-            //CreateMenu();
+            Ebada.Scgl.Run.frmModule frm = new Ebada.Scgl.Run.frmModule("kcgl");
+            frm.ShowDialog();
+            CreateMenu();
         }
 
         private void labExit_Click(object sender, EventArgs e) {
