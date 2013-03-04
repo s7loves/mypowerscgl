@@ -52,7 +52,7 @@ namespace Ebada.Scgl.Sbgl {
             if (mTable == null) initTable();
             IList<mOrg> list=new List<mOrg>();
             if (m_org == null) {
-                list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgtype='1'");
+                list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where c1='是' order by orgcode");
             } else {
                 list.Add(m_org);
             }
