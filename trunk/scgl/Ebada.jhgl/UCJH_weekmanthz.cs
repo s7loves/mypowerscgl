@@ -100,7 +100,7 @@ namespace Ebada.jhgl
             listMonth.AddRange(new string[] {"1","2","3","4","5","6","7","8","9","10","11","12" });
             this.repositoryItemComboBox3.Items.AddRange(listMonth);
 
-            IList<mOrg> listorg = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgName,OrgType");
+            IList<mOrg> listorg = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgCode,OrgType");
 
             foreach (mOrg org in listorg)
             {
@@ -121,10 +121,10 @@ namespace Ebada.jhgl
         /// </summary>
         private void RefershData()
         {
-            if (barEditItem1.EditValue == null)
-            {
-                return;
-            }
+            //if (barEditItem1.EditValue == null)
+            //{
+            //    return;
+            //}
             string where = "";
 
             if (barEditItem1.EditValue != null)
@@ -243,6 +243,7 @@ namespace Ebada.jhgl
         {
             if (barEditItem1.EditValue == null)
             {
+                MessageBox.Show("请选择年!");
                 return;
             }
             string title = "";
