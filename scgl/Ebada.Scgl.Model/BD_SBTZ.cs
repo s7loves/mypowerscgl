@@ -1547,11 +1547,11 @@ namespace Ebada.Scgl.Model
   
         #region 方法
         public static string Newid(){
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         public string CreateID(){
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion		
     }	
