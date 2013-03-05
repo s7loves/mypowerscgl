@@ -347,8 +347,8 @@ namespace Ebada.jhgl {
                 parentID = value;
                 string where = "where parentid = '" + value + "' ";
                 if (全局) {
-                    where += " and 职务 in ('所长','主任','站长')";
-                } if (部门) {
+                    where += string.Format(" and 单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}')) ",MainHelper.User.UserID);
+                }else if (部门) {
                     where += " and 单位代码='" + MainHelper.UserOrg.OrgCode + "'";
                 } else {
                     where += " and 姓名='" + MainHelper.User.UserName + "'";
