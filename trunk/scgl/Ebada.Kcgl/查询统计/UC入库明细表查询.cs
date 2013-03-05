@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Collections;
 using DevExpress.XtraGrid.Columns;
 
+
 namespace Ebada.Kcgl {
     [ToolboxItem(false)]
     public partial class UC入库明细表查询 : UserControl {

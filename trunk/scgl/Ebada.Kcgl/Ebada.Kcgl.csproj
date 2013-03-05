@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataConvert.cs" />
+    <Compile Include="Ecommonjh.cs" />
+    <Compile Include="ExportPDCA.cs" />
     <Compile Include="FormView.cs" />
     <Compile Include="frmCLSelector.cs">
       <SubType>Form</SubType>
@@ -146,6 +148,12 @@
     </Compile>
     <Compile Include="UCRepositoryItemPopupEdit.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="查询统计\UC材料明细分类账.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="查询统计\UC材料明细分类账.Designer.cs">
+      <DependentUpon>UC材料明细分类账.cs</DependentUpon>
     </Compile>
     <Compile Include="查询统计\UCv工程到货查询.cs">
       <SubType>UserControl</SubType>
@@ -424,7 +432,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="00记录模板\财务-材料明细分类账.xls" />
+    <None Include="00记录模板\财务-材料明细分类账.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -444,6 +454,9 @@
     <EmbeddedResource Include="UC工程项目M.resx">
       <DependentUpon>UC工程项目M.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询统计\UC材料明细分类账.resx">
+      <DependentUpon>UC材料明细分类账.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv工程结算查询.resx">
       <DependentUpon>UCv工程结算查询.cs</DependentUpon>
