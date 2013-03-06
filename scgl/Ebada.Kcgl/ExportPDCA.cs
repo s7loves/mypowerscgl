@@ -92,14 +92,22 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = numin.ToString().IndexOf(".");
-                               for (int k = 1; k <= numLength; k++)
+                               
+                               int t = 0;
+                               for (int k = 0; k < numLength; k++)
                                {
-                                   string numstr = numin.ToString()[k - 1].ToString();
+
+                                   string numstr = numin.ToString()[k].ToString();
                                    if (k != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumin + k);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumin +t);
                                    }
 
+                               }
+                               if (numin.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumin + t + 1);
                                }
                            }
 
@@ -127,14 +135,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = allMoney.ToString().IndexOf(".");
-                               for (int m = 1; m <= numLength; m++)
+                               int t = 0;
+                               for (int m = 0; m < numLength; m++)
                                {
-                                   string numstr = allMoney.ToString()[m - 1].ToString();
+                                   string numstr = allMoney.ToString()[m].ToString();
                                    if (m != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumAll + m);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumAll+t);
                                    }
 
+                               }
+                               if (allMoney.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumAll + t + 1);
                                }
                            }
 
@@ -165,14 +179,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = numout.ToString().IndexOf(".");
-                               for (int k = 1; k <= numLength; k++)
+                               int t = 0;
+                               for (int k = 0; k < numLength; k++)
                                {
-                                   string numstr = numout.ToString()[k - 1].ToString();
+                                   string numstr = numout.ToString()[k].ToString();
                                    if (k != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumin + k);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumin + t);
                                    }
 
+                               }
+                               if (numout.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumin + t + 1);
                                }
                            }
                            allCount = allCount - Convert.ToInt32(dt.Rows[starow - 1 + i]["数量"]);
@@ -196,14 +216,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = allMoney.ToString().IndexOf(".");
-                               for (int m = 1; m <= numLength; m++)
+                               int t = 0;
+                               for (int m = 0; m < numLength; m++)
                                {
-                                   string numstr = allMoney.ToString()[m - 1].ToString();
+                                   string numstr = allMoney.ToString()[m].ToString();
                                    if (m != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumAll + m);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumAll + t);
                                    }
 
+                               }
+                               if (allMoney.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumAll + t + 1);
                                }
                            }
 
@@ -240,14 +266,22 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = numin.ToString().IndexOf(".");
-                               for (int k = 1; k <= numLength; k++)
+                               int t = 0;
+                               for (int k = 0; k < numLength; k++)
                                {
-                                   string numstr = numin.ToString()[k - 1].ToString();
+
+                                   string numstr = numin.ToString()[k].ToString();
+
                                    if (k != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumin + k);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumin +t);
                                    }
 
+                               }
+                               if (numin.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumin + t + 1);
                                }
                            }
 
@@ -275,14 +309,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = allMoney.ToString().IndexOf(".");
-                               for (int m = 1; m <= numLength; m++)
+                               int t = 0;
+                               for (int m = 0; m <allMoney.ToString().Length; m++)
                                {
-                                   string numstr = allMoney.ToString()[m - 1].ToString();
+                                   string numstr = allMoney.ToString()[m].ToString();
                                    if (m != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumAll + m);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumAll + t);
                                    }
 
+                               }
+                               if (allMoney.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumAll + t + 1);
                                }
                            }
 
@@ -291,7 +331,7 @@ namespace Ebada.jhgl
                            //    string numstr = allMoney.ToString()[m-1].ToString();
                            //    ex.SetCellValue(numstr, row + i, startNumAll + m);
                            //}
-                       }
+                       }//出库
                        else
                        {
                            ex.SetCellValue(dt.Rows[starow - 1 + i]["数量"].ToString(), row + i, 16);
@@ -313,14 +353,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = numout.ToString().IndexOf(".");
-                               for (int k = 1; k <= numLength; k++)
+                               int t = 0;
+                               for (int k = 0; k < numLength; k++)
                                {
-                                   string numstr = numout.ToString()[k - 1].ToString();
+                                   string numstr = numout.ToString()[k].ToString();
                                    if (k != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumin + k);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumin + t);
                                    }
 
+                               }
+                               if (numout.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumin + t + 1);
                                }
                            }
                            allCount = allCount - Convert.ToInt32(dt.Rows[starow - 1 + i]["数量"]);
@@ -330,7 +376,7 @@ namespace Ebada.jhgl
                            allMoney = allMoney - Math.Round(Convert.ToDecimal(dt.Rows[starow - 1 + i]["合计"]), 2);
                            outMoney = outMoney + Math.Round(Convert.ToDecimal(dt.Rows[starow - 1 + i]["合计"]), 2);
                            int startNumAll = 29 + 10 - allMoney.ToString().Length;
-                           if (allCount.ToString().IndexOf(".") < 0)
+                           if (allMoney.ToString().IndexOf(".") < 0)
                            {
                                startNumAll = startNumAll - 2;
                                for (int m = 1; m <= allMoney.ToString().Length; m++)
@@ -344,14 +390,20 @@ namespace Ebada.jhgl
                            else
                            {
                                int spotposition = allMoney.ToString().IndexOf(".");
-                               for (int m = 1; m <= numLength; m++)
+                               int t = 0;
+                               for (int m =0; m <allMoney.ToString().Length; m++)
                                {
-                                   string numstr = allMoney.ToString()[m - 1].ToString();
+                                   string numstr = allMoney.ToString()[m].ToString();
                                    if (m != spotposition)
                                    {
-                                       ex.SetCellValue(numstr, row + i, startNumAll + m);
+                                       t++;
+                                       ex.SetCellValue(numstr, row + i, startNumAll + t);
                                    }
 
+                               }
+                               if (allMoney.ToString().Split('.')[1].Length < 2)
+                               {
+                                   ex.SetCellValue("0", row + i, startNumAll + t+1);
                                }
                            }
 
@@ -375,14 +427,20 @@ namespace Ebada.jhgl
                else
                {
                    int spotposition = inMoney.ToString().IndexOf(".");
-                   for (int k = 1; k <=inMoney.ToString().Length; k++)
+                   int t = 0;
+                   for (int k = 0; k <inMoney.ToString().Length; k++)
                    {
-                       string numstr = inMoney.ToString()[k - 1].ToString();
+                       string numstr = inMoney.ToString()[k].ToString();
                        if (k != spotposition)
                        {
-                           ex.SetCellValue(numstr, 35, startin + k);
+                           t++;
+                           ex.SetCellValue(numstr, 35, startin + t);
                        }
 
+                   }
+                   if (inMoney.ToString().Split('.')[1].Length < 2)
+                   {
+                       ex.SetCellValue("0", 35, startin + t + 1);
                    }
                }
                //累计出库
@@ -402,14 +460,20 @@ namespace Ebada.jhgl
                else
                {
                    int spotposition = outMoney.ToString().IndexOf(".");
-                   for (int k = 1; k <= outMoney.ToString().Length; k++)
+                   int t = 0;
+                   for (int k = 0; k < outMoney.ToString().Length; k++)
                    {
-                       string numstr = outMoney.ToString()[k - 1].ToString();
+                       string numstr = outMoney.ToString()[k].ToString();
                        if (k != spotposition)
                        {
-                           ex.SetCellValue(numstr, 35, startout + k);
+                           t++;
+                           ex.SetCellValue(numstr, 35, startout + t);
                        }
 
+                   }
+                   if (outMoney.ToString().Split('.')[1].Length < 2)
+                   {
+                       ex.SetCellValue("0", 35, startout + t + 1);
                    }
                }
                //累计合并
@@ -429,14 +493,20 @@ namespace Ebada.jhgl
                else
                {
                    int spotposition = allMoney.ToString().IndexOf(".");
-                   for (int k = 1; k <= allMoney.ToString().Length; k++)
+                   int t = 0;
+                   for (int k = 0; k < allMoney.ToString().Length; k++)
                    {
-                       string numstr = allMoney.ToString()[k - 1].ToString();
+                       string numstr = allMoney.ToString()[k].ToString();
                        if (k != spotposition)
                        {
-                           ex.SetCellValue(numstr, 35, startinout + k);
+                           t++;
+                           ex.SetCellValue(numstr, 35, startinout + t);
                        }
 
+                   }
+                   if (allMoney.ToString().Split('.')[1].Length < 2)
+                   {
+                       ex.SetCellValue("0", 35, startinout + t + 1);
                    }
                }
 
