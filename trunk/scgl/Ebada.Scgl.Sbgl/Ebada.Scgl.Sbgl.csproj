@@ -139,17 +139,35 @@
     <Compile Include="变电\UCmOrgBds.Designer.cs">
       <DependentUpon>UCmOrgBds.cs</DependentUpon>
     </Compile>
-    <Compile Include="变电\UCPS_gtM.cs">
+    <Compile Include="变电\UCBD_SBTZM.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="变电\UCPS_gtM.Designer.cs">
-      <DependentUpon>UCPS_gtM.cs</DependentUpon>
+    <Compile Include="变电\UCBD_SBTZM.Designer.cs">
+      <DependentUpon>UCBD_SBTZM.cs</DependentUpon>
     </Compile>
     <Compile Include="变电\UCBD_SBTZ_ZL.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="变电\UCBD_SBTZ_ZL.Designer.cs">
       <DependentUpon>UCBD_SBTZ_ZL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCBD_SBTZ_FSSB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_SBTZ_FSSB.Designer.cs">
+      <DependentUpon>UCBD_SBTZ_FSSB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCbd_bdcs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCbd_bdcs.Designer.cs">
+      <DependentUpon>UCbd_bdcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCbd_bdcsM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCbd_bdcsM.Designer.cs">
+      <DependentUpon>UCbd_bdcsM.cs</DependentUpon>
     </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
@@ -823,12 +841,24 @@
       <DependentUpon>UCmOrgBds.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="变电\UCPS_gtM.resx">
-      <DependentUpon>UCPS_gtM.cs</DependentUpon>
+    <EmbeddedResource Include="变电\UCBD_SBTZM.resx">
+      <DependentUpon>UCBD_SBTZM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\UCBD_SBTZ_ZL.resx">
       <DependentUpon>UCBD_SBTZ_ZL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCBD_SBTZ_FSSB.resx">
+      <DependentUpon>UCBD_SBTZ_FSSB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCbd_bdcs.resx">
+      <DependentUpon>UCbd_bdcs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCbd_bdcsM.resx">
+      <DependentUpon>UCbd_bdcsM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
