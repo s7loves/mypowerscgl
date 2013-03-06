@@ -32,7 +32,6 @@
             this.ucpS_GT1 = new Ebada.Scgl.Sbgl.UCBD_SBTZ();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.ucpS_GTSB1 = new Ebada.Scgl.Sbgl.UCPS_GTSB();
             this.ucbD_SBTZ1 = new Ebada.Scgl.Sbgl.UCBD_SBTZ();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
@@ -43,7 +42,6 @@
             this.splitCC1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).BeginInit();
             this.xtraTabControl2.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -93,18 +91,9 @@
             // 
             // xtraTabPage3
             // 
-            this.xtraTabPage3.Controls.Add(this.ucpS_GTSB1);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(364, 167);
             this.xtraTabPage3.Text = "其它设备";
-            // 
-            // ucpS_GTSB1
-            // 
-            this.ucpS_GTSB1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucpS_GTSB1.Location = new System.Drawing.Point(0, 0);
-            this.ucpS_GTSB1.Name = "ucpS_GTSB1";
-            this.ucpS_GTSB1.Size = new System.Drawing.Size(364, 167);
-            this.ucpS_GTSB1.TabIndex = 0;
             // 
             // ucbD_SBTZ1
             // 
@@ -187,7 +176,6 @@
             this.splitCC1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl2)).EndInit();
             this.xtraTabControl2.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
@@ -205,7 +193,6 @@
         private UCBD_SBTZ ucpS_GT1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private UCPS_GTSB ucpS_GTSB1;
         private UCBD_SBTZ ucbD_SBTZ1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
