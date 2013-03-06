@@ -14,10 +14,11 @@ namespace Ebada.Scgl.Sbgl
     [ToolboxItem(false)]
     public partial class UCBD_SBTZM : DevExpress.XtraEditors.XtraUserControl
     {
+        UCBD_SBTZ_FSSB ucbd_Fssb;
         public UCBD_SBTZM()
         {
             InitializeComponent();
-            ucpS_GTSB1.HideList();
+            //ucpS_GTSB1.HideList();
             xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
         }
         protected override void OnLoad(EventArgs e) {
@@ -26,7 +27,9 @@ namespace Ebada.Scgl.Sbgl
         }
         private void init() {
             ucpS_GT1.HideList();
-            
+            ucbd_Fssb = new UCBD_SBTZ_FSSB();
+            ucbd_Fssb.Dock = DockStyle.Fill;
+            xtraTabPage3.Controls.Add(ucbd_Fssb);
             xltree = new UCmOrgBds();
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "2") {//如果是供电所人员，则锁定
                 xltree.SetShowOrg(MainHelper.UserOrg);
@@ -40,6 +43,13 @@ namespace Ebada.Scgl.Sbgl
             zl.Parent = splitContainerControl2.Panel2;
             zl.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.BD_SBTZ_ZL>(zl_FocusedRowChanged);
             xltree.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(xltree_FocusedRowChanged);
+            ucpS_GT1.FocusedRowChanged+=new Ebada.Client.SendDataEventHandler<BD_SBTZ>(ucpS_GT1_FocusedRowChanged);
+        }
+
+        void ucpS_GT1_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ obj)
+        {
+            if(obj!=null)
+            ucbd_Fssb.ParentObj = obj;
         }
 
         void zl_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ_ZL obj) {
@@ -60,24 +70,6 @@ namespace Ebada.Scgl.Sbgl
         Ebada.Scgl.Model.BD_SBTZ mgt;
         void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {
             
-        }
-
-        void ucpS_GT1_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ obj) {
-            
-            if (obj!=null)
-            {
-                mgt = obj;
-                //ucpS_GTSB1.ParentObj = obj;
-            }
-            else
-            {
-                mgt = null;
-                ucpS_GTSB1.ParentObj = null;
-            }
-            //if (xtraTabControl1.SelectedTabPage == xtraTabPage4)
-            //    ucps_jcky.ParentObj = mgt;
-
-            //splitCC1.Panel2.Text = "杆塔编号：" + (obj != null ? obj.gtCode : "");
-        }
+        } 
     }
 }
