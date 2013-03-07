@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Sbgl {
     [ToolboxItem(false)]
     public partial class UCBD_SBTZ : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<BD_SBTZ> gridViewOperation;
-
+        DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
         public event SendDataEventHandler<BD_SBTZ> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         frmtqbyqEdit frm = new frmtqbyqEdit();
@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         private void createXLSearch() {
             RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1 = new RepositoryItemPopupContainerEdit();
-
+            repositoryDateEdit1.DisplayFormat.FormatString = "yyyy-MM-dd";
             xlselector = new UCPopupSelectorBase();
             xlselector.RowSelected += new EventHandler(xlselector_RowSelected);
             repositoryItemPopupContainerEdit1.PopupControl = new PopupContainerControl();
@@ -159,6 +159,11 @@ namespace Ebada.Scgl.Sbgl {
                 cname="a"+i;
                 gridView1.Columns[cname].VisibleIndex = i;
                 gridView1.Columns[cname].Caption = dic[cname].ToString();
+                if (i == 5 || i == 6 || i == 8)
+                {
+                    gridView1.Columns[cname].ColumnEdit = repositoryDateEdit1;
+                    gridView1.Columns[cname].DisplayFormat.FormatString = "yyyy-MM-dd";
+                }
             }
         }
         /// <summary>
@@ -197,8 +202,8 @@ namespace Ebada.Scgl.Sbgl {
         void gridViewOperation_CreatingObjectEvent(BD_SBTZ newobj) {
 
             if (gridView1.FocusedRowHandle > -1) {
-                BD_SBTZ tq = gridView1.GetFocusedRow() as BD_SBTZ;
-                Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
+                //BD_SBTZ tq = gridView1.GetFocusedRow() as BD_SBTZ;
+                //Ebada.Core.ConvertHelper.CopyTo(tq, newobj);
                 newobj.sb_id = newobj.CreateID();
             }
             newobj.OrgCode = parentObj.OrgCode;
