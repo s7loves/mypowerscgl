@@ -44,7 +44,7 @@ namespace Ebada.Scgl.Sbgl {
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<BD_SBTZ_ZL> e)
         {
             BD_SBTZ_ZL sbzl = e.Value as BD_SBTZ_ZL;
-            IList<BD_SBTZ_ZL> sbzlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_ZL>("where dm="+sbzl.dm+"'");
+            IList<BD_SBTZ_ZL> sbzlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_ZL>("where dm='"+sbzl.dm+"'");
             if (sbzlList.Count > 0)
             {
                 MessageBox.Show("种类代码重复，添加失败!");
