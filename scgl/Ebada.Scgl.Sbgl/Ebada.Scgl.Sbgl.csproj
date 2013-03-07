@@ -169,6 +169,24 @@
     <Compile Include="变电\UCbd_bdcsM.Designer.cs">
       <DependentUpon>UCbd_bdcsM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\UCBD_ZL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_ZL.Designer.cs">
+      <DependentUpon>UCBD_ZL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCBD_SX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_SX.Designer.cs">
+      <DependentUpon>UCBD_SX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\UCBD_SXM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\UCBD_SXM.Designer.cs">
+      <DependentUpon>UCBD_SXM.cs</DependentUpon>
+    </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -859,6 +877,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\UCbd_bdcsM.resx">
       <DependentUpon>UCbd_bdcsM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCBD_ZL.resx">
+      <DependentUpon>UCBD_ZL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCBD_SX.resx">
+      <DependentUpon>UCBD_SX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\UCBD_SXM.resx">
+      <DependentUpon>UCBD_SXM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
