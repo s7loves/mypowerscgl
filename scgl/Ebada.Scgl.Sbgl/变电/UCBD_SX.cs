@@ -52,6 +52,13 @@ namespace Ebada.Scgl.Sbgl {
                 MessageBox.Show("不能添加a1-a8之间的值");
                 e.Cancel = true;
             }
+            IList<BD_SBTZ_SX> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_SX>("where sxcol='" + (e.Value as BD_SBTZ_SX).sxcol + "'" +
+                "and zldm='" + parentID + "'");
+            if (list.Count > 0)
+            {
+                MessageBox.Show("字段添加重复，添加数据失败！");
+                e.Cancel = true;
+            }
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<BD_SBTZ_SX> e)
@@ -63,6 +70,13 @@ namespace Ebada.Scgl.Sbgl {
                 MessageBox.Show("不能添加a1-a8之间的值");
                 e.Cancel = true;
 
+            }
+            IList<BD_SBTZ_SX> list= Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_SX>("where sxcol='" + (e.Value as BD_SBTZ_SX).sxcol + "'"+
+                "and zldm='"+parentID+"'");
+            if (list.Count > 0)
+            {
+                MessageBox.Show("字段添加重复，添加数据失败！");
+                e.Cancel = true;
             }
         }
         #endregion
