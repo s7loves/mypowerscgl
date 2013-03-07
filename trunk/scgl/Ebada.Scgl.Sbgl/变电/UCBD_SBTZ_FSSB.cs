@@ -43,7 +43,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             initImageList();
             HideList();
-            gridViewOperation = new GridViewOperation<bd_sbtz_fssb>(gridControl1, gridView1, barManager1,true);
+            gridViewOperation = new GridViewOperation<bd_sbtz_fssb>(gridControl1, gridView1, barManager1);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bd_sbtz_fssb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bd_sbtz_fssb>(gridViewOperation_BeforeDelete);
