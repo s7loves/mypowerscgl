@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Sbgl {
         public UCBD_SBTZ() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<BD_SBTZ>(gridControl1, gridView1, barManager1, true);
+            gridViewOperation = new GridViewOperation<BD_SBTZ>(gridControl1, gridView1, barManager1);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeDelete);
