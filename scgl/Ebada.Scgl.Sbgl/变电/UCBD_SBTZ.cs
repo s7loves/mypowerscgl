@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using DevExpress.XtraEditors.Repository;
 using System.Collections;
+using Ebada.Scgl.Sbgl.变电;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
@@ -42,8 +43,10 @@ namespace Ebada.Scgl.Sbgl {
         public UCBD_SBTZ() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<BD_SBTZ>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<BD_SBTZ>(gridControl1, gridView1, barManager1,new frmSBTZ());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeUpdate);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeInsert);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<BD_SBTZ>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
@@ -53,6 +56,68 @@ namespace Ebada.Scgl.Sbgl {
             btEdit.Enabled = false;
             btDelete.Enabled = false;
             HideList();
+        }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<BD_SBTZ> e)
+        {
+            e.Cancel = true;
+            try
+            {
+                frmSBTZ frm = gridViewOperation.EditForm as frmSBTZ;
+                PS_Image image = null;
+                if (frm.GetImage() != null)
+                {
+                    image = new PS_Image();
+                    image.ImageName = "送电设备照片";
+                    image.ImageType = "sdsb";
+                    image.ImageData = (byte[])frm.GetImage();
+                    e.Value.c3 = image.ImageID;
+                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(new object[] { e.Value, image }, null, null);
+                }
+                else
+                {
+                    Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ>(e.Value);
+                }
+
+                gridViewOperation.BindingList.Add(e.Value);
+            }
+            catch (Exception err) { throw err; }
+        }
+
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<BD_SBTZ> e)
+        {
+            e.Cancel = true;
+            try
+            {
+                BD_SBTZ sdsb = e.Value;
+                frmSBTZ frm = gridViewOperation.EditForm as frmSBTZ;
+                PS_Image image = frm.GetPS_Image();
+                if (frm.GetImage() != null)
+                {
+                    if (sdsb.c3 == "" || image == null)
+                    {
+                        image = new PS_Image();
+                        image.ImageName = "送电设备照片";
+                        image.ImageType = "sdsb";
+                        image.ImageData = (byte[])frm.GetImage();
+                        sdsb.c3 = image.ImageID;
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, sdsb, null);
+                    }
+                    else
+                    {
+
+                        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { sdsb, image }, null);
+                    }
+
+                }
+                else
+                {
+                    Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(e.Value);
+                }
+
+                Ebada.Core.ConvertHelper.CopyTo(sdsb, e.ValueOld);
+            }
+            catch (Exception err) { throw err; }
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<BD_SBTZ> e) {
@@ -153,10 +218,13 @@ namespace Ebada.Scgl.Sbgl {
             foreach (GridColumn c in gridView1.Columns) {
                 c.Visible = false;
             }
+            //parentObj、parentType
+
             IDictionary dic = ClientHelper.PlatformSqlMap.GetDictionary<BD_SBTZ_SX>("where zldm='14'", "sxcol", "sxname");
-            string cname="";
-            for (int i = 1; i <= 8; i++) {
-                cname="a"+i;
+            string cname = "";
+            for (int i = 1; i <= 8; i++)
+            {
+                cname = "a" + i;
                 gridView1.Columns[cname].VisibleIndex = i;
                 gridView1.Columns[cname].Caption = dic[cname].ToString();
                 if (i == 5 || i == 6 || i == 8)
@@ -166,6 +234,30 @@ namespace Ebada.Scgl.Sbgl {
                 }
             }
         }
+        private void InitGridColumns()
+        {
+
+            if (parentType != null)
+            {
+                string sqlwhere = "where zldm='"+parentType.dm+"'";
+                IDictionary dic= ClientHelper.PlatformSqlMap.GetDictionary<BD_SBTZ_SX>(sqlwhere, "sxcol", "sxname");
+                string cname = "";
+                if (dic.Count > 0)
+                {
+                    for (int i = 1; i <= 50; i++)
+                    {
+                        cname = "a" + i;
+                        if (dic.Contains(cname))
+                        {
+                            gridView1.Columns[cname].VisibleIndex = i;
+                            gridView1.Columns[cname].Caption = dic[cname].ToString();
+                        }
+                    }
+                }
+                
+            }
+        }
+        
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -247,6 +339,7 @@ namespace Ebada.Scgl.Sbgl {
         public BD_SBTZ_ZL ParentType {
             set {
                 parentType = value;
+                InitGridColumns();
                 setToolbar();
                 RefreshData();
             }
@@ -268,5 +361,7 @@ namespace Ebada.Scgl.Sbgl {
 
 
         }
+
+        
     }
 }
