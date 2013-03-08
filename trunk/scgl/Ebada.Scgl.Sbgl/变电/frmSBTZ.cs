@@ -67,16 +67,22 @@ namespace Ebada.Scgl.Sbgl.变电
         //垂直增加33  
         private void frmSBTZ_Load(object sender, EventArgs e)
         {
+            //lable一个字符站12个宽度
             this.xtraTabControl1.TabPages.Clear();
-                //lable起始位置
-                int startlblw = 11;
-                int startlblh = 11;
-                //textbox起始位置
-                int starttextw = 180;
-                int starttexth = 8;
-                int addh = 33;
-                int pageNumber = 1;
-                IList<BD_SBTZ_SX> sbsxList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_SX>("where zldm='" + rowData.sbtype + "' order by convert(int,norder)");
+            //lable起始位置
+            int startlblw = 11;
+            int startlblh = 11;
+            //textbox起始位置
+            int starttextw = 180;
+            int starttexth = 8;
+            int addh = 33;
+            int pageNumber = 1;
+            IList<BD_SBTZ_SX> sbsxList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_SX>("where zldm='" + rowData.sbtype + "' order by convert(int,norder)");
+            int[] widthArr = new int[sbsxList.Count / 11 + 1];
+            for (int i = 0; i < widthArr.Length; i++)
+            {
+                widthArr[i] = GetMaxLblWidth(i, sbsxList);
+            }
                 if (sbsxList.Count > 0)
                 {
                     DevExpress.XtraTab.XtraTabPage XtraPage = null;
@@ -101,14 +107,16 @@ namespace Ebada.Scgl.Sbgl.变电
                         }
                         DevExpress.XtraEditors.LabelControl lbl = new DevExpress.XtraEditors.LabelControl();
                         lbl.Name = lbl + sbsx.sxcol;
-                        lbl.Text = sbsx.sxname;
+                        lbl.Text = sbsx.sxname.Trim();
                         lbl.Location = new Point(startlblw, startlblh);
 
                         DevExpress.XtraEditors.TextEdit txtEdit = new DevExpress.XtraEditors.TextEdit();
                         txtEdit.Name = sbsx.sxcol;
                         txtEdit.DataBindings.Add("EditValue", rowData, sbsx.sxcol);
                         txtEdit.Size = new Size(337, 21);
-                        txtEdit.Location = new Point(starttextw, starttexth);
+                        //txtEdit.Location = new Point(starttextw, starttexth);
+                        txtEdit.Location = new Point(widthArr[pageNumber - 2] + 40, starttexth);
+                        
                         XtraPage.Controls.Add(lbl);
                         XtraPage.Controls.Add(txtEdit);
                         startlblh += 33;
@@ -142,10 +150,34 @@ namespace Ebada.Scgl.Sbgl.变电
 
 
                     XtraPage.Controls.Add(btnOk);
-               
+
+                }
+            setImage();
+
+        }
+        /// <summary>
+        /// 获取lable最大宽度
+        /// </summary>
+        /// <param name="i">第几个Tab页</param>
+        /// <param name="sbsxList">计算列表</param>
+        /// <returns></returns>
+        private int GetMaxLblWidth(int i, IList<BD_SBTZ_SX> sbsxList)
+        {
+            int retMax = 0;
+            int start = i * 10;
+            int end = (i + 1) * 10-1;
+            if (end >= sbsxList.Count)
+            {
+                end = sbsxList.Count-1;
             }
-                setImage();
-            
+            for (int j = start; j <= end; j++)
+            {
+                if (sbsxList[j].sxname.ToString().Trim().Length * 9 > retMax)
+                {
+                    retMax = sbsxList[j].sxname.ToString().Trim().Length * 9;
+                }
+            }
+                return retMax;
         }
 
         void pictureEdit1_EditValueChanged(object sender, EventArgs e)
