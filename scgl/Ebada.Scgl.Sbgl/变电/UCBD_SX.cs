@@ -155,6 +155,9 @@ namespace Ebada.Scgl.Sbgl {
             gridView1.Columns["sxname"].Visible = true;
             gridView1.Columns["sxname"].VisibleIndex = m;
             m++;
+            gridView1.Columns["norder"].Visible = true;
+            gridView1.Columns["norder"].VisibleIndex = m;
+            m++;
             gridView1.Columns["isvisible"].Visible = true;
             gridView1.Columns["isvisible"].ColumnEdit = cbox;
             gridView1.Columns["isvisible"].VisibleIndex = m;
@@ -200,7 +203,7 @@ namespace Ebada.Scgl.Sbgl {
             set {
                 parentID = value;
                 if(value!=null)
-                RefreshData("where zldm='"+parentID+"' order by sxcol");
+                    RefreshData("where zldm='" + parentID + "' order by Convert(int,norder)");
             }
         }
 
