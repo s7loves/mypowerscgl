@@ -64,6 +64,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
+            btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             InitColumns();//初始列
