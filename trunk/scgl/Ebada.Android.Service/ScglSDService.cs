@@ -213,7 +213,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage(List<ps_image> list) {
             ps_image data = list[0];
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "sd" };
             image.ImageData = Convert.FromBase64String(data.data);
             PS_Image image2 = new PS_Image() { ImageID = data.id };
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, null, image2);
@@ -253,7 +253,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage3(string id, byte[] data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "sd" };
             image.ImageData = data;
             PS_Image image2 = new PS_Image() { ImageID = id };
             sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
@@ -274,7 +274,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage3(string id, string data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "sd" };
             image.ImageData = Convert.FromBase64String(data);
             PS_Image image2 = new PS_Image() { ImageID = id };
             sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
