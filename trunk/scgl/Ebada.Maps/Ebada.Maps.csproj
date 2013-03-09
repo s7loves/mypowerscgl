@@ -421,6 +421,9 @@
     <EmbeddedResource Include="BD_SBTZ_ZL.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="bd_sbcs.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

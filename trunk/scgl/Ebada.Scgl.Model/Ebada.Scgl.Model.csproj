@@ -246,6 +246,7 @@
     <Compile Include="WF_WorkTastTrans.cs" />
     <Compile Include="PJ_gdscrk.cs" />
     <Compile Include="sd_sbcs.cs" />
+    <Compile Include="bd_sbcs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
