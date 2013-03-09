@@ -84,7 +84,7 @@ namespace Ebada.Android.Service {
             Dictionary<string, IList<BD_SBTZ_SX>> dicsx = new Dictionary<string, IList<BD_SBTZ_SX>>();
             foreach (BD_SBTZ gt in list2) {
                 bd_sb psgt = new bd_sb() {
-                    sbid= gt.sb_id, bdzdm=gt.OrgCode, sbmc=gt.a2, sbzl=gt.sbtype,sbzlmc=dic[gt.sbtype].ToString()
+                    sbid= gt.sb_id, bdzdm=gt.OrgCode, sbmc=gt.sbname, sbzl=gt.sbtype,sbzlmc=dic[gt.sbtype].ToString()
                 };
                 
                 psgt.jsonData = getjsonData(gt.sb_id);
@@ -159,14 +159,14 @@ namespace Ebada.Android.Service {
             return ret;
         }
         public string UpdateGtOne(bd_sb data) {
-            bd_sb gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<bd_sb>(data.sbid);
+            BD_SBTZ gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<BD_SBTZ>(data.sbid);
             if (gt != null) {
                
-                if (string.IsNullOrEmpty(data.jsonData2)) {
+                if (!string.IsNullOrEmpty(data.jsonData2)) {
                     Console.WriteLine("data.jsonData2;\r\n"+data.jsonData2);
-                    List<bd_sbsxz> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<bd_sbsxz>>(data.jsonData);
+                    List<bd_sbsxz> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<bd_sbsxz>>(data.jsonData2);
                     if (list != null) {
-                        Type t = gt.GetType();
+                        Type t = gt.GetType(); gt.sbname = data.sbmc;
                         foreach (var sx in list) {
                             t.GetProperty(sx.k).SetValue(gt, sx.v,null);
                         }
@@ -174,18 +174,18 @@ namespace Ebada.Android.Service {
                         ncount += n>0?n:0;
                     }
                 }
-                if (data.jsonData != null) {
+                if (!string.IsNullOrEmpty(data.jsonData)) {
                     Console.WriteLine("data.jsonData;\r\n" + data.jsonData);
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
                     if (list != null) {
                         List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
-                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from bd_sbtz_fssb where gtid='" + gt.sbid + "'");
+                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from bd_sbtz_fssb where gtid='" + gt.sb_id + "'");
                         sqllist.Add(sqo);
                         int num = 0;
                         foreach (ps_gtsb sb in list) {
                             num++;
-                            sd_gtsb gtsb = new sd_gtsb() { gtID = gt.sbid, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
-                            gtsb.sbID = gt.sbid + num.ToString("000");
+                            bd_sbtz_fssb gtsb = new bd_sbtz_fssb() { gtID = gt.sb_id, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
+                            gtsb.sbID = gt.sb_id + num.ToString("000");
                             sqo = new SqlQueryObject(SqlQueryType.Insert, gtsb);
                             sqllist.Add(sqo);
                         }
