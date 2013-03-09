@@ -69,6 +69,7 @@ namespace Ebada.Scgl.Sbgl.变电
         {
             //lable一个字符站12个宽度
             this.xtraTabControl1.TabPages.Clear();
+            this.splitContainerControl1.Panel2.Controls.Clear();
             //lable起始位置
             int startlblw = 11;
             int startlblh = 11;
@@ -144,16 +145,28 @@ namespace Ebada.Scgl.Sbgl.变电
 
                     DevExpress.XtraEditors.SimpleButton btnOk = new DevExpress.XtraEditors.SimpleButton();
                     btnOk.Name = "btnOk";
-                    btnOk.Text = "提交";
-                    btnOk.Location = new Point(448, 402);
+                    btnOk.Text = "确定";
+                    btnOk.Location = new Point(357, 9);
                     btnOk.Click += new EventHandler(btnOk_Click);
 
+                    DevExpress.XtraEditors.SimpleButton btnCancel = new DevExpress.XtraEditors.SimpleButton();
+                    btnCancel.Name = "btnCancel";
+                    btnCancel.Text = "取消";
+                    btnCancel.Location = new Point(461, 9);
+                    btnCancel.Click += new EventHandler(btnCancel_Click);
 
-                    XtraPage.Controls.Add(btnOk);
+                    this.splitContainerControl1.Panel2.Controls.Add(btnOk);
+                    this.splitContainerControl1.Panel2.Controls.Add(btnCancel);
 
                 }
             setImage();
 
+        }
+
+        void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
         /// <summary>
         /// 获取lable最大宽度
