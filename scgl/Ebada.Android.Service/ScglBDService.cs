@@ -206,7 +206,7 @@ namespace Ebada.Android.Service {
         
         public List<ps_sbzl> GetsbzlList() {
             var list = new List<ps_sbzl>();
-            var list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_gtsbclb>("where c1='材料'");
+            var list2 = Client.ClientHelper.PlatformSqlMap.GetList<bd_sbcs>("where c1='材料'");
             foreach (var gt in list2) {
                 list.Add(new ps_sbzl() {
                     id = gt.ID, xh = gt.xh, bh = gt.bh, mc = gt.mc, parentid = gt.ParentID
@@ -238,7 +238,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage(List<ps_image> list) {
             ps_image data = list[0];
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "bd" };
             image.ImageData = Convert.FromBase64String(data.data);
             PS_Image image2 = new PS_Image() { ImageID = data.id };
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, null, image2);
@@ -252,20 +252,13 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage3(string id, byte[] data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "bd" };
             image.ImageData = data;
             PS_Image image2 = new PS_Image() { ImageID = id };
-            sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
+            BD_SBTZ gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<BD_SBTZ>(id);
             object update = null;
             object delete = image2;
-            if (gt != null && gt.ImageID != id) {
-                if (gt.ImageID != "") {
-                    delete = new PS_Image() { ImageID = gt.ImageID };
-                    delete = new object[] { image2, delete };
-                }
-                gt.ImageID = id;
-                update = gt;
-            }
+            
 
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, update, delete);
             return msg;
@@ -273,7 +266,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage3(string id, string data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "gt" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "bd" };
             image.ImageData = Convert.FromBase64String(data);
             PS_Image image2 = new PS_Image() { ImageID = id };
             sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
