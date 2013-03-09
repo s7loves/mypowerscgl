@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Model
         private string _sxcol=String.Empty; 
         private string _sxname=String.Empty; 
         private string _sxtype=String.Empty; 
-        private string _norder=String.Empty; 
+        private int _norder=0; 
         private string _isvisible=("是"); 
         private string _defaultvalue=String.Empty; 
         private string _boxtype=("value"); 
@@ -149,7 +149,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[norder],nvarchar
         /// </summary>
         [DisplayNameAttribute("显示顺序")]
-        public string norder
+        public int norder
         {
             get { return _norder; }
             set
