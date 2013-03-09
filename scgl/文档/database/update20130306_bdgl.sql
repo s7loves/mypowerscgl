@@ -183,7 +183,7 @@ CREATE TABLE [dbo].[BD_SBTZ_SX](
 	[sxcol] [nvarchar](50) NULL,
 	[sxname] [nvarchar](50) NULL,
 	[sxtype] [nvarchar](50) NULL,
-	[norder] [nvarchar](50) NULL,
+	[norder] [int]  NULL,
 	[isvisible] [nvarchar](50) NULL CONSTRAINT [DF__DB_SBTZ_S__isvis__06ED0088]  DEFAULT ('ÊÇ'),
 	[defaultvalue] [nvarchar](50) NULL,
 	[boxtype] [nvarchar](50) NULL CONSTRAINT [DF__DB_SBTZ_S__boxty__07E124C1]  DEFAULT ('value'),
