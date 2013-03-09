@@ -35,7 +35,6 @@ namespace Ebada.Scgl.Sbgl
 
         public event SendDataEventHandler<bd_sbtz_fssb> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
-        //frmsdgtsbEdit frm = new frmsdgtsbEdit();
         private string parentID = null;
         private BD_SBTZ parentObj;
         public UCBD_SBTZ_FSSB()
@@ -43,7 +42,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             initImageList();
             HideList();
-            gridViewOperation = new GridViewOperation<bd_sbtz_fssb>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<bd_sbtz_fssb>(gridControl1, gridView1, barManager1, new frmbdsbEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bd_sbtz_fssb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bd_sbtz_fssb>(gridViewOperation_BeforeDelete);
@@ -309,6 +308,11 @@ namespace Ebada.Scgl.Sbgl
             uc.Dock = DockStyle.Fill;
             dlg.ShowDialog();
             return dlg;
+        }
+
+        private void btAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
