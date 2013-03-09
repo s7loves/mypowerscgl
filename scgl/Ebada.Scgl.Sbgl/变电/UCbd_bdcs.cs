@@ -27,11 +27,11 @@ namespace Ebada.Scgl.Sbgl {
     /// </summary>
     
     public partial class UCbd_bdcs : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<bd_sbtzclb> gridViewOperation;
+        private GridViewOperation<bd_sbcs> gridViewOperation;
         
-        public event SendDataEventHandler<bd_sbtzclb> FocusedRowChanged;
+        public event SendDataEventHandler<bd_sbcs> FocusedRowChanged;
         private string parentID="";
-        private bd_sbtzclb parentObj;
+        private bd_sbcs parentObj;
         private bool iszl = false;
 
         public bool Iszl {
@@ -45,26 +45,26 @@ namespace Ebada.Scgl.Sbgl {
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<bd_sbtzclb>(gridControl1, gridView1, barManager1);
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bd_sbtzclb>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<bd_sbcs>(gridControl1, gridView1, barManager1);
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bd_sbcs>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bd_sbtzclb>(gridViewOperation_BeforeDelete);
-            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<bd_sbtzclb>(gridViewOperation_BeforeInsert);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bd_sbcs>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<bd_sbcs>(gridViewOperation_BeforeInsert);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
         }
 
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<bd_sbtzclb> e) {
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<bd_sbcs> e) {
             if (e.Value.ParentID.Length < 5) e.Value.xh = "";
 
             if(string.IsNullOrEmpty(e.Value.xh))
                 e.Value.ID = e.Value.bh;
         }
-        private IViewOperation<bd_sbtzclb> childView;
+        private IViewOperation<bd_sbcs> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
-        public IViewOperation<bd_sbtzclb> ChildView {
+        public IViewOperation<bd_sbcs> ChildView {
             get { return childView; }
             set {
                 childView = value;
@@ -73,11 +73,11 @@ namespace Ebada.Scgl.Sbgl {
                 }
             }
         }
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<bd_sbtzclb> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<bd_sbcs> e) {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<bd_sbtzclb> e) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<bd_sbcs> e) {
             if (parentID == null)
                 e.Cancel = true;
         }
@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as bd_sbtzclb);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as bd_sbcs);
         }
         private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
@@ -116,22 +116,15 @@ namespace Ebada.Scgl.Sbgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-
             hideColumn("ParentID");
-            hideColumn("zlCode");
             DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             cbox.Items.Add("设备");
             cbox.Items.Add("材料");
-            gridView1.Columns["zl"].ColumnEdit = cbox;
-            gridView1.Columns["zl"].VisibleIndex = 2;
  
-            //hideColumn("S2");
-            //hideColumn("S3");
-            //hideColumn("c1");
-            //hideColumn("c2");
-            //hideColumn("c3");
-            //gridView1.Columns["c1"].ColumnEdit = cbox;
-            //gridView1.Columns["c1"].VisibleIndex = 2;
+            hideColumn("c2");
+            hideColumn("c3");
+            gridView1.Columns["c1"].ColumnEdit = cbox;
+            gridView1.Columns["c1"].VisibleIndex = 2;
             
         }
         /// <summary>
@@ -145,7 +138,7 @@ namespace Ebada.Scgl.Sbgl {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<bd_sbtzclb> GridViewOperation {
+        public GridViewOperation<bd_sbcs> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -153,10 +146,10 @@ namespace Ebada.Scgl.Sbgl {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(bd_sbtzclb newobj) {
+        void gridViewOperation_CreatingObjectEvent(bd_sbcs newobj) {
             newobj.ParentID = parentID;
             if (parentObj != null ) {
-                newobj.S1 = parentObj.S1;
+                newobj.c1 = parentObj.c1;
                 if (parentObj.bh.Length > 2) {
                     newobj.bh = newobj.ParentID + getbh(8);// parentObj.bh.Substring(0, 2);
                     //newobj.ID = newobj.bh;
@@ -200,7 +193,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bd_sbtzclb ParentObj {
+        public bd_sbcs ParentObj {
             get { return parentObj; }
             set {
                 

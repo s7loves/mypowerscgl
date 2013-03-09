@@ -28,10 +28,10 @@ namespace Ebada.Scgl.Sbgl {
         {
             InitializeComponent();
             //接收TreeList行焦点改变事件
-            ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<bd_sbtzclb>(ucTop_FocusedRowChanged);
+            ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<bd_sbcs>(ucTop_FocusedRowChanged);
         }
 
-        void ucTop_FocusedRowChanged(object sender, bd_sbtzclb obj)
+        void ucTop_FocusedRowChanged(object sender, bd_sbcs obj)
         {
             ucBottom.ParentObj = obj;
             splitCC1.Panel2.Text = "设备分类：" + (obj != null ? obj.mc : "");
