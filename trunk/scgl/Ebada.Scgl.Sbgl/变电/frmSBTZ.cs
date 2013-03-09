@@ -220,7 +220,7 @@ namespace Ebada.Scgl.Sbgl.变电
             pictureEdit1.EditValue = null;
             imageData = null;
             
-                image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.c3);
+                image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.sb_id);
             
             if (image != null)
                 pictureEdit1.EditValue = image.ImageData;
