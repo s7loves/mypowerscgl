@@ -59,7 +59,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：种类代码
         /// 字段信息：[zldm],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("种类代码")]
         public string zldm
         {
