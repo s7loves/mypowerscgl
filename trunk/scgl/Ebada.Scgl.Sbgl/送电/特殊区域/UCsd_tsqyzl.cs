@@ -39,6 +39,9 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<sd_tsqyzl>(gridViewOperation_BeforeInsert);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.Click += new EventHandler(gridView1_Click);
+            //btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_tsqyzl> e)
@@ -64,9 +67,9 @@ namespace Ebada.Scgl.Sbgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btClose.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             InitColumns();//初始列
             InitData();//初始数据
         }

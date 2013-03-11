@@ -42,6 +42,11 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<sd_tsqyzlsx>(gridViewOperation_BeforeInsert);
             gridView1.Click += new EventHandler(gridView1_Click);
             enableList.AddRange(new string[] { "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8" });
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<sd_tsqyzlsx>(gridViewOperation_BeforeAdd);
+        }
+
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<sd_tsqyzlsx> e) {
+            if (parentObject == null) e.Cancel = true;
         }
 
         #region 
@@ -102,22 +107,16 @@ namespace Ebada.Scgl.Sbgl {
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
 
             sd_tsqyzlsx sbsx = gridView1.GetFocusedRow() as sd_tsqyzlsx;
-            if (sbsx != null)
-            {
+            if (sbsx != null) {
                 string enablestr = sbsx.sxcol;
-                if (enableList.Contains(enablestr))
-                {
+                if (enableList.Contains(enablestr)) {
                     btEdit.Enabled = false;
                     btDelete.Enabled = false;
-                }
-                else
-                {
+                } else {
                     btEdit.Enabled = true;
                     btDelete.Enabled = true;
                 }
-            }
-            else
-            {
+            } else {
                 btEdit.Enabled = false;
                 btDelete.Enabled = false;
             }
@@ -134,41 +133,42 @@ namespace Ebada.Scgl.Sbgl {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            gridView1.BestFitColumns();
+            //gridView1.BestFitColumns();
         }
         /// <summary>
         /// 初始化列,
         /// </summary>
         public void InitColumns() {
-            foreach (GridColumn c in gridView1.Columns)
-            {
-                c.Visible = false;
-            }
+            //foreach (GridColumn c in gridView1.Columns)
+            //{
+            //    c.Visible = false;
+            //}
+            gridView1.Columns["zldm"].Visible = false;
             int m = 1;
             //sxcol(属性列)、sxname(属性名)、isuse(是否显示)、isdel(是否可删除)、isedit(是否可修改)
             DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             cbox.Items.Add("是");
             cbox.Items.Add("否");
-            gridView1.Columns["sxcol"].Visible = true;
-            gridView1.Columns["sxcol"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["sxname"].Visible = true;
-            gridView1.Columns["sxname"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["norder"].Visible = true;
-            gridView1.Columns["norder"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isuse"].Visible = true;
             gridView1.Columns["isuse"].ColumnEdit = cbox;
-            gridView1.Columns["isuse"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isdel"].Visible = true;
             gridView1.Columns["isdel"].ColumnEdit = cbox;
-            gridView1.Columns["isdel"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isedit"].Visible = true;
             gridView1.Columns["isedit"].ColumnEdit = cbox;
-            gridView1.Columns["isedit"].VisibleIndex = m;
+            //gridView1.Columns["sxcol"].Visible = true;
+            //gridView1.Columns["sxcol"].VisibleIndex = m;
+            //m++;
+            //gridView1.Columns["sxname"].Visible = true;
+            //gridView1.Columns["sxname"].VisibleIndex = m;
+            //m++;
+            //gridView1.Columns["norder"].Visible = true;
+            //gridView1.Columns["norder"].VisibleIndex = m;
+            //m++;
+            //gridView1.Columns["isuse"].Visible = true;
+            //gridView1.Columns["isuse"].VisibleIndex = m;
+            //m++;
+            //gridView1.Columns["isdel"].Visible = true;
+            //gridView1.Columns["isdel"].VisibleIndex = m;
+            //m++;
+            //gridView1.Columns["isedit"].Visible = true;
+            //gridView1.Columns["isedit"].VisibleIndex = m;
 
         }
         /// <summary>
@@ -191,7 +191,7 @@ namespace Ebada.Scgl.Sbgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(sd_tsqyzlsx newobj) {
-           
+            newobj.zldm = parentID;
         }
         /// <summary>
         /// 父表ID
@@ -202,9 +202,26 @@ namespace Ebada.Scgl.Sbgl {
             get { return parentID; }
             set {
                 parentID = value;
-                if(value!=null)
+                if (value != null) {
                     RefreshData("where zldm='" + parentID + "' order by norder");
+                    if (gridView1.RowCount == 0) {
+                        createzlsx();
+                    }
+                } else
+                    RefreshData("where 1>1");
             }
+        }
+
+        private void createzlsx() {
+            List<sd_tsqyzlsx> list = new List<sd_tsqyzlsx>();
+            for (int i = 1; i <= 25; i++) {
+                sd_tsqyzlsx sx = new sd_tsqyzlsx() {
+                     zldm=parentID, sxcol="a"+i,sxname="属性"+i, isdel="是",isedit="是",isuse="否"
+                     , norder=i, vtype="文本", ctype=""
+                };
+                list.Add(sx);
+            }
+            ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list.ToArray(), null, null);
         }
 
         public sd_tsqyzl ParentObject
@@ -212,10 +229,11 @@ namespace Ebada.Scgl.Sbgl {
             get { return this.parentObject; }
             set
             {
-                if (value != null)
-                {
+                if (value != null) {
                     this.parentObject = value;
                     ParentID = value.zldm;
+                } else {
+                    ParentID = null;
                 }
             }
         }
