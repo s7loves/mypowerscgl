@@ -36,12 +36,13 @@ namespace Ebada.Scgl.Sbgl {
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<sd_tsqyzlsx>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<sd_tsqyzlsx>(gridControl1, gridView1, barManager1,true);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<sd_tsqyzlsx>(gridViewOperation_BeforeUpdate);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<sd_tsqyzlsx>(gridViewOperation_BeforeInsert);
             gridView1.Click += new EventHandler(gridView1_Click);
-            enableList.AddRange(new string[] { "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8" });
+            btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //enableList.AddRange(new string[] { "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8" });
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<sd_tsqyzlsx>(gridViewOperation_BeforeAdd);
         }
 
@@ -52,37 +53,37 @@ namespace Ebada.Scgl.Sbgl {
         #region 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<sd_tsqyzlsx> e)
         {
-            if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
-            {
-                MessageBox.Show("不能添加a1-a8之间的值");
-                e.Cancel = true;
-            }
-            IList<sd_tsqyzlsx> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'" +
-                "and zldm='" + parentID + "'");
-            if (list.Count > 0)
-            {
-                MessageBox.Show("字段添加重复，添加数据失败！");
-                e.Cancel = true;
-            }
+            //if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
+            //{
+            //    MessageBox.Show("不能添加a1-a8之间的值");
+            //    e.Cancel = true;
+            //}
+            //IList<sd_tsqyzlsx> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'" +
+            //    "and zldm='" + parentID + "'");
+            //if (list.Count > 0)
+            //{
+            //    MessageBox.Show("字段添加重复，添加数据失败！");
+            //    e.Cancel = true;
+            //}
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_tsqyzlsx> e)
         {
 
-            if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
-            {
-                //不创建类
-                MessageBox.Show("不能添加a1-a8之间的值");
-                e.Cancel = true;
+            //if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
+            //{
+            //    //不创建类
+            //    MessageBox.Show("不能添加a1-a8之间的值");
+            //    e.Cancel = true;
 
-            }
-            IList<sd_tsqyzlsx> list= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'"+
-                "and zldm='"+parentID+"'");
-            if (list.Count > 0)
-            {
-                MessageBox.Show("字段添加重复，添加数据失败！");
-                e.Cancel = true;
-            }
+            //}
+            //IList<sd_tsqyzlsx> list= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'"+
+            //    "and zldm='"+parentID+"'");
+            //if (list.Count > 0)
+            //{
+            //    MessageBox.Show("字段添加重复，添加数据失败！");
+            //    e.Cancel = true;
+            //}
         }
         #endregion
         
@@ -143,7 +144,8 @@ namespace Ebada.Scgl.Sbgl {
             //{
             //    c.Visible = false;
             //}
-            gridView1.Columns["zldm"].Visible = false;
+            gridView1.Columns["c2"].Visible = false;
+            gridView1.Columns["sxcol"].OptionsColumn.AllowEdit = false;
             int m = 1;
             //sxcol(属性列)、sxname(属性名)、isuse(是否显示)、isdel(是否可删除)、isedit(是否可修改)
             DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -207,6 +209,7 @@ namespace Ebada.Scgl.Sbgl {
                     if (gridView1.RowCount == 0) {
                         createzlsx();
                     }
+                    btRefresh.PerformClick();
                 } else
                     RefreshData("where 1>1");
             }
@@ -219,7 +222,7 @@ namespace Ebada.Scgl.Sbgl {
                      zldm=parentID, sxcol="a"+i,sxname="属性"+i, isdel="是",isedit="是",isuse="否"
                      , norder=i, vtype="文本", ctype=""
                 };
-                sx.ID = sx.CreateID();
+                sx.ID += i;
                 list.Add(sx);
             }
             ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list.ToArray(), null, null);
