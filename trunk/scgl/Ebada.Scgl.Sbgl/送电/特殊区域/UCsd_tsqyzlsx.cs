@@ -219,6 +219,7 @@ namespace Ebada.Scgl.Sbgl {
                      zldm=parentID, sxcol="a"+i,sxname="属性"+i, isdel="是",isedit="是",isuse="否"
                      , norder=i, vtype="文本", ctype=""
                 };
+                sx.ID = sx.CreateID();
                 list.Add(sx);
             }
             ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(list.ToArray(), null, null);
