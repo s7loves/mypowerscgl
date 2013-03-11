@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_tsqy" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_tsqy"  type="Ebada.Scgl.Model.sd_tsqy,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_tsqy_AllColumns" class="sd_tsqy">
+        <result property="ID" column="ID" />
+        <result property="zldm" column="zldm" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="LineID" column="LineID" />
+        <result property="gtbegin" column="gtbegin" />
+        <result property="gtend" column="gtend" />
+        <result property="createdate" column="createdate" />
+        <result property="createman" column="createman" />
+        <result property="a1" column="a1" />
+        <result property="a2" column="a2" />
+        <result property="a3" column="a3" />
+        <result property="a4" column="a4" />
+        <result property="a5" column="a5" />
+        <result property="a6" column="a6" />
+        <result property="a7" column="a7" />
+        <result property="a8" column="a8" />
+        <result property="a9" column="a9" />
+        <result property="a10" column="a10" />
+        <result property="a11" column="a11" />
+        <result property="a12" column="a12" />
+        <result property="a13" column="a13" />
+        <result property="a14" column="a14" />
+        <result property="a15" column="a15" />
+        <result property="a16" column="a16" />
+        <result property="a17" column="a17" />
+        <result property="a18" column="a18" />
+        <result property="a19" column="a19" />
+        <result property="a20" column="a20" />
+        <result property="a21" column="a21" />
+        <result property="a22" column="a22" />
+        <result property="a23" column="a23" />
+        <result property="a24" column="a24" />
+        <result property="a25" column="a25" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_tsqyList" resultMap="sd_tsqy_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [zldm],
+         [OrgCode],
+         [LineID],
+         [gtbegin],
+         [gtend],
+         [createdate],
+         [createman],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a12],
+         [a13],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25]
+          FROM sd_tsqy
+          $value$
+   </select>
+   
+   <select id="Selectsd_tsqyByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [zldm],
+         [OrgCode],
+         [LineID],
+         [gtbegin],
+         [gtend],
+         [createdate],
+         [createman],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a12],
+         [a13],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25]
+          FROM sd_tsqy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbegin">[gtbegin]='$gtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="gtend">[gtend]='$gtend$'</isNotNull>
+       <isNotNull prepend="AND" property="createdate">[createdate]='$createdate$'</isNotNull>
+       <isNotNull prepend="AND" property="createman">[createman]='$createman$'</isNotNull>
+       <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
+       <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
+       <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
+       <isNotNull prepend="AND" property="a4">[a4]='$a4$'</isNotNull>
+       <isNotNull prepend="AND" property="a5">[a5]='$a5$'</isNotNull>
+       <isNotNull prepend="AND" property="a6">[a6]='$a6$'</isNotNull>
+       <isNotNull prepend="AND" property="a7">[a7]='$a7$'</isNotNull>
+       <isNotNull prepend="AND" property="a8">[a8]='$a8$'</isNotNull>
+       <isNotNull prepend="AND" property="a9">[a9]='$a9$'</isNotNull>
+       <isNotNull prepend="AND" property="a10">[a10]='$a10$'</isNotNull>
+       <isNotNull prepend="AND" property="a11">[a11]='$a11$'</isNotNull>
+       <isNotNull prepend="AND" property="a12">[a12]='$a12$'</isNotNull>
+       <isNotNull prepend="AND" property="a13">[a13]='$a13$'</isNotNull>
+       <isNotNull prepend="AND" property="a14">[a14]='$a14$'</isNotNull>
+       <isNotNull prepend="AND" property="a15">[a15]='$a15$'</isNotNull>
+       <isNotNull prepend="AND" property="a16">[a16]='$a16$'</isNotNull>
+       <isNotNull prepend="AND" property="a17">[a17]='$a17$'</isNotNull>
+       <isNotNull prepend="AND" property="a18">[a18]='$a18$'</isNotNull>
+       <isNotNull prepend="AND" property="a19">[a19]='$a19$'</isNotNull>
+       <isNotNull prepend="AND" property="a20">[a20]='$a20$'</isNotNull>
+       <isNotNull prepend="AND" property="a21">[a21]='$a21$'</isNotNull>
+       <isNotNull prepend="AND" property="a22">[a22]='$a22$'</isNotNull>
+       <isNotNull prepend="AND" property="a23">[a23]='$a23$'</isNotNull>
+       <isNotNull prepend="AND" property="a24">[a24]='$a24$'</isNotNull>
+       <isNotNull prepend="AND" property="a25">[a25]='$a25$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_tsqyByKey" resultMap="sd_tsqy_AllColumns" parameterClass="sd_tsqy">
+         SELECT 
+         [ID],
+         [zldm],
+         [OrgCode],
+         [LineID],
+         [gtbegin],
+         [gtend],
+         [createdate],
+         [createman],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a12],
+         [a13],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25]
+         FROM sd_tsqy
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_tsqy" parameterClass="sd_tsqy">
+        DELETE FROM 
+         sd_tsqy
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_tsqyByWhere" parameterClass="string">
+     delete from sd_tsqy $value$
+   </delete>
+   
+   <delete id="Deletesd_tsqyByKey" parameterClass="string">
+        DELETE FROM 
+         sd_tsqy
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_tsqy" parameterClass="sd_tsqy" resultClass="int">
+          UPDATE sd_tsqy
+           SET
+             [zldm]=#zldm#,
+             [OrgCode]=#OrgCode#,
+             [LineID]=#LineID#,
+             [gtbegin]=#gtbegin#,
+             [gtend]=#gtend#,
+             [createdate]=#createdate#,
+             [createman]=#createman#,
+             [a1]=#a1#,
+             [a2]=#a2#,
+             [a3]=#a3#,
+             [a4]=#a4#,
+             [a5]=#a5#,
+             [a6]=#a6#,
+             [a7]=#a7#,
+             [a8]=#a8#,
+             [a9]=#a9#,
+             [a10]=#a10#,
+             [a11]=#a11#,
+             [a12]=#a12#,
+             [a13]=#a13#,
+             [a14]=#a14#,
+             [a15]=#a15#,
+             [a16]=#a16#,
+             [a17]=#a17#,
+             [a18]=#a18#,
+             [a19]=#a19#,
+             [a20]=#a20#,
+             [a21]=#a21#,
+             [a22]=#a22#,
+             [a23]=#a23#,
+             [a24]=#a24#,
+             [a25]=#a25#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_tsqy" parameterClass="sd_tsqy">
+        INSERT INTO sd_tsqy
+         (
+         [ID],
+         [zldm],
+         [OrgCode],
+         [LineID],
+         [gtbegin],
+         [gtend],
+         [createdate],
+         [createman],
+         [a1],
+         [a2],
+         [a3],
+         [a4],
+         [a5],
+         [a6],
+         [a7],
+         [a8],
+         [a9],
+         [a10],
+         [a11],
+         [a12],
+         [a13],
+         [a14],
+         [a15],
+         [a16],
+         [a17],
+         [a18],
+         [a19],
+         [a20],
+         [a21],
+         [a22],
+         [a23],
+         [a24],
+         [a25]
+         )
+       VALUES
+         (
+         #ID#,
+         #zldm#,
+         #OrgCode#,
+         #LineID#,
+         #gtbegin#,
+         #gtend#,
+         #createdate#,
+         #createman#,
+         #a1#,
+         #a2#,
+         #a3#,
+         #a4#,
+         #a5#,
+         #a6#,
+         #a7#,
+         #a8#,
+         #a9#,
+         #a10#,
+         #a11#,
+         #a12#,
+         #a13#,
+         #a14#,
+         #a15#,
+         #a16#,
+         #a17#,
+         #a18#,
+         #a19#,
+         #a20#,
+         #a21#,
+         #a22#,
+         #a23#,
+         #a24#,
+         #a25#
+         )
+
+   </insert>
+   
+   <select id="Getsd_tsqyRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_tsqy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbegin">[gtbegin]='$gtbegin$'</isNotNull>
+       <isNotNull prepend="AND" property="gtend">[gtend]='$gtend$'</isNotNull>
+       <isNotNull prepend="AND" property="createdate">[createdate]='$createdate$'</isNotNull>
+       <isNotNull prepend="AND" property="createman">[createman]='$createman$'</isNotNull>
+       <isNotNull prepend="AND" property="a1">[a1]='$a1$'</isNotNull>
+       <isNotNull prepend="AND" property="a2">[a2]='$a2$'</isNotNull>
+       <isNotNull prepend="AND" property="a3">[a3]='$a3$'</isNotNull>
+       <isNotNull prepend="AND" property="a4">[a4]='$a4$'</isNotNull>
+       <isNotNull prepend="AND" property="a5">[a5]='$a5$'</isNotNull>
+       <isNotNull prepend="AND" property="a6">[a6]='$a6$'</isNotNull>
+       <isNotNull prepend="AND" property="a7">[a7]='$a7$'</isNotNull>
+       <isNotNull prepend="AND" property="a8">[a8]='$a8$'</isNotNull>
+       <isNotNull prepend="AND" property="a9">[a9]='$a9$'</isNotNull>
+       <isNotNull prepend="AND" property="a10">[a10]='$a10$'</isNotNull>
+       <isNotNull prepend="AND" property="a11">[a11]='$a11$'</isNotNull>
+       <isNotNull prepend="AND" property="a12">[a12]='$a12$'</isNotNull>
+       <isNotNull prepend="AND" property="a13">[a13]='$a13$'</isNotNull>
+       <isNotNull prepend="AND" property="a14">[a14]='$a14$'</isNotNull>
+       <isNotNull prepend="AND" property="a15">[a15]='$a15$'</isNotNull>
+       <isNotNull prepend="AND" property="a16">[a16]='$a16$'</isNotNull>
+       <isNotNull prepend="AND" property="a17">[a17]='$a17$'</isNotNull>
+       <isNotNull prepend="AND" property="a18">[a18]='$a18$'</isNotNull>
+       <isNotNull prepend="AND" property="a19">[a19]='$a19$'</isNotNull>
+       <isNotNull prepend="AND" property="a20">[a20]='$a20$'</isNotNull>
+       <isNotNull prepend="AND" property="a21">[a21]='$a21$'</isNotNull>
+       <isNotNull prepend="AND" property="a22">[a22]='$a22$'</isNotNull>
+       <isNotNull prepend="AND" property="a23">[a23]='$a23$'</isNotNull>
+       <isNotNull prepend="AND" property="a24">[a24]='$a24$'</isNotNull>
+       <isNotNull prepend="AND" property="a25">[a25]='$a25$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_tsqyRowCount" parameterClass="string">
+    select count(*) from sd_tsqy $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

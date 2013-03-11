@@ -424,6 +424,12 @@
     <EmbeddedResource Include="bd_sbcs.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="sd_tsqy.xml" />
+    <EmbeddedResource Include="sd_tsqyimage.xml" />
+    <EmbeddedResource Include="sd_tsqyzl.xml" />
+    <EmbeddedResource Include="sd_tsqyzlsx.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
