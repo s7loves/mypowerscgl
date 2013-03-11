@@ -52,6 +52,7 @@ namespace Ebada.Scgl.Sbgl
             try {
                 gridView1.Columns["dxplfs"].VisibleIndex=-1;//导线排列方式
             } catch { }
+            btAddM2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         public UCsd_GT(sd_xl xl):this() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -241,7 +242,7 @@ namespace Ebada.Scgl.Sbgl
             newobj.gtMs = 1.7m;
             newobj.gtHeight = 10m;
             newobj.gtModle = "直线杆";
-            newobj.gtType = "混凝土拔梢杆";
+            newobj.gtType = "水泥杆";
         }
         /// <summary>
         /// 父表ID
@@ -315,7 +316,7 @@ namespace Ebada.Scgl.Sbgl
             gt.gtMs = 1.7m;
             gt.gtHeight = 10m;
             gt.gtModle = "直线杆";
-            gt.gtType = "混凝土拔梢杆";
+            gt.gtType = "水泥杆";
             frmsdgtEdit frm = new frmsdgtEdit();
             frm.RowData = gt;
             frm.MultipleAdd = true;//批量增加

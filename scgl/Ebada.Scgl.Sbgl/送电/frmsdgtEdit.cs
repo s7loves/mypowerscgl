@@ -159,24 +159,27 @@ namespace Ebada.Scgl.Sbgl
                 gtsb.Dock = DockStyle.Fill;
                 gtsb.Parent = xtraTabPage2;
                 xtraTabControl1.TabPages.Add(xtraTabPage2);
-                if (tqTab == null) {
-                    tqTab = new XtraTabPage();
-                    tqTab.Text = "台区";
-                    xtraTabControl1.TabPages.Add(tqTab);
-                    kgTab = new XtraTabPage();
-                    kgTab.Text = "开关";
-                    xtraTabControl1.TabPages.Add(kgTab);
-                    byqTab = new XtraTabPage();
-                    byqTab.Text = "变压器";
-                    xtraTabControl1.TabPages.Add(byqTab);
-                }
+                //if (tqTab == null) {
+                //    tqTab = new XtraTabPage();
+                //    tqTab.Text = "台区";
+                //    xtraTabControl1.TabPages.Add(tqTab);
+                //    kgTab = new XtraTabPage();
+                //    kgTab.Text = "开关";
+                //    xtraTabControl1.TabPages.Add(kgTab);
+                //    byqTab = new XtraTabPage();
+                //    byqTab.Text = "变压器";
+                //    xtraTabControl1.TabPages.Add(byqTab);
+                //}
             }
         }
         #endregion
 
         private void InitComboBoxData() {
             ComboBoxHelper.FillCBoxByGttype(comboBoxEdit4);
-            pdsbModelHelper.FillCBoxByGt(comboBoxEdit3);
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select mc from sd_sbcs where bh like '01%' and len(bh)=5");
+
+            comboBoxEdit3.Properties.Items.AddRange(list);
+            //pdsbModelHelper.FillCBoxByGt(comboBoxEdit3);
 
         }
 
