@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_tsqyzlsx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_tsqyzlsx"  type="Ebada.Scgl.Model.sd_tsqyzlsx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_tsqyzlsx_AllColumns" class="sd_tsqyzlsx">
+        <result property="ID" column="ID" />
+        <result property="zldm" column="zldm" />
+        <result property="sxcol" column="sxcol" />
+        <result property="sxname" column="sxname" />
+        <result property="norder" column="norder" />
+        <result property="vtype" column="vtype" />
+        <result property="ctype" column="ctype" />
+        <result property="defaultvalue" column="defaultvalue" />
+        <result property="inittype" column="inittype" />
+        <result property="initsql" column="initsql" />
+        <result property="isdel" column="isdel" />
+        <result property="isedit" column="isedit" />
+        <result property="isuse" column="isuse" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_tsqyzlsxList" resultMap="sd_tsqyzlsx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [zldm],
+         [sxcol],
+         [sxname],
+         [norder],
+         [vtype],
+         [ctype],
+         [defaultvalue],
+         [inittype],
+         [initsql],
+         [isdel],
+         [isedit],
+         [isuse],
+         [c1],
+         [c2]
+          FROM sd_tsqyzlsx
+          $value$
+   </select>
+   
+   <select id="Selectsd_tsqyzlsxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [zldm],
+         [sxcol],
+         [sxname],
+         [norder],
+         [vtype],
+         [ctype],
+         [defaultvalue],
+         [inittype],
+         [initsql],
+         [isdel],
+         [isedit],
+         [isuse],
+         [c1],
+         [c2]
+          FROM sd_tsqyzlsx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="sxcol">[sxcol]='$sxcol$'</isNotNull>
+       <isNotNull prepend="AND" property="sxname">[sxname]='$sxname$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="vtype">[vtype]='$vtype$'</isNotNull>
+       <isNotNull prepend="AND" property="ctype">[ctype]='$ctype$'</isNotNull>
+       <isNotNull prepend="AND" property="defaultvalue">[defaultvalue]='$defaultvalue$'</isNotNull>
+       <isNotNull prepend="AND" property="inittype">[inittype]='$inittype$'</isNotNull>
+       <isNotNull prepend="AND" property="initsql">[initsql]='$initsql$'</isNotNull>
+       <isNotNull prepend="AND" property="isdel">[isdel]='$isdel$'</isNotNull>
+       <isNotNull prepend="AND" property="isedit">[isedit]='$isedit$'</isNotNull>
+       <isNotNull prepend="AND" property="isuse">[isuse]='$isuse$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_tsqyzlsxByKey" resultMap="sd_tsqyzlsx_AllColumns" parameterClass="sd_tsqyzlsx">
+         SELECT 
+         [ID],
+         [zldm],
+         [sxcol],
+         [sxname],
+         [norder],
+         [vtype],
+         [ctype],
+         [defaultvalue],
+         [inittype],
+         [initsql],
+         [isdel],
+         [isedit],
+         [isuse],
+         [c1],
+         [c2]
+         FROM sd_tsqyzlsx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_tsqyzlsx" parameterClass="sd_tsqyzlsx">
+        DELETE FROM 
+         sd_tsqyzlsx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_tsqyzlsxByWhere" parameterClass="string">
+     delete from sd_tsqyzlsx $value$
+   </delete>
+   
+   <delete id="Deletesd_tsqyzlsxByKey" parameterClass="string">
+        DELETE FROM 
+         sd_tsqyzlsx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_tsqyzlsx" parameterClass="sd_tsqyzlsx" resultClass="int">
+          UPDATE sd_tsqyzlsx
+           SET
+             [zldm]=#zldm#,
+             [sxcol]=#sxcol#,
+             [sxname]=#sxname#,
+             [norder]=#norder#,
+             [vtype]=#vtype#,
+             [ctype]=#ctype#,
+             [defaultvalue]=#defaultvalue#,
+             [inittype]=#inittype#,
+             [initsql]=#initsql#,
+             [isdel]=#isdel#,
+             [isedit]=#isedit#,
+             [isuse]=#isuse#,
+             [c1]=#c1#,
+             [c2]=#c2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_tsqyzlsx" parameterClass="sd_tsqyzlsx">
+        INSERT INTO sd_tsqyzlsx
+         (
+         [ID],
+         [zldm],
+         [sxcol],
+         [sxname],
+         [norder],
+         [vtype],
+         [ctype],
+         [defaultvalue],
+         [inittype],
+         [initsql],
+         [isdel],
+         [isedit],
+         [isuse],
+         [c1],
+         [c2]
+         )
+       VALUES
+         (
+         #ID#,
+         #zldm#,
+         #sxcol#,
+         #sxname#,
+         #norder#,
+         #vtype#,
+         #ctype#,
+         #defaultvalue#,
+         #inittype#,
+         #initsql#,
+         #isdel#,
+         #isedit#,
+         #isuse#,
+         #c1#,
+         #c2#
+         )
+
+   </insert>
+   
+   <select id="Getsd_tsqyzlsxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_tsqyzlsx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="sxcol">[sxcol]='$sxcol$'</isNotNull>
+       <isNotNull prepend="AND" property="sxname">[sxname]='$sxname$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="vtype">[vtype]='$vtype$'</isNotNull>
+       <isNotNull prepend="AND" property="ctype">[ctype]='$ctype$'</isNotNull>
+       <isNotNull prepend="AND" property="defaultvalue">[defaultvalue]='$defaultvalue$'</isNotNull>
+       <isNotNull prepend="AND" property="inittype">[inittype]='$inittype$'</isNotNull>
+       <isNotNull prepend="AND" property="initsql">[initsql]='$initsql$'</isNotNull>
+       <isNotNull prepend="AND" property="isdel">[isdel]='$isdel$'</isNotNull>
+       <isNotNull prepend="AND" property="isedit">[isedit]='$isedit$'</isNotNull>
+       <isNotNull prepend="AND" property="isuse">[isuse]='$isuse$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_tsqyzlsxRowCount" parameterClass="string">
+    select count(*) from sd_tsqyzlsx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

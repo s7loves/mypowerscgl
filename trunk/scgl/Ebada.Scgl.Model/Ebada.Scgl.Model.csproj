@@ -193,6 +193,10 @@
     <Compile Include="sd_gt.cs" />
     <Compile Include="sd_gtsb.cs" />
     <Compile Include="sd_gtsbclb.cs" />
+    <Compile Include="sd_tsqy.cs" />
+    <Compile Include="sd_tsqyimage.cs" />
+    <Compile Include="sd_tsqyzl.cs" />
+    <Compile Include="sd_tsqyzlsx.cs" />
     <Compile Include="sd_xl.cs" />
     <Compile Include="TX_Layer.cs" />
     <Compile Include="TX_Line.cs" />

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_tsqyzl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_tsqyzl"  type="Ebada.Scgl.Model.sd_tsqyzl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_tsqyzl_AllColumns" class="sd_tsqyzl">
+        <result property="ID" column="ID" />
+        <result property="zldm" column="zldm" />
+        <result property="zlmc" column="zlmc" />
+        <result property="isuse" column="isuse" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_tsqyzlList" resultMap="sd_tsqyzl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [zldm],
+         [zlmc],
+         [isuse],
+         [c1],
+         [c2]
+          FROM sd_tsqyzl
+          $value$
+   </select>
+   
+   <select id="Selectsd_tsqyzlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [zldm],
+         [zlmc],
+         [isuse],
+         [c1],
+         [c2]
+          FROM sd_tsqyzl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="zlmc">[zlmc]='$zlmc$'</isNotNull>
+       <isNotNull prepend="AND" property="isuse">[isuse]='$isuse$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_tsqyzlByKey" resultMap="sd_tsqyzl_AllColumns" parameterClass="sd_tsqyzl">
+         SELECT 
+         [ID],
+         [zldm],
+         [zlmc],
+         [isuse],
+         [c1],
+         [c2]
+         FROM sd_tsqyzl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_tsqyzl" parameterClass="sd_tsqyzl">
+        DELETE FROM 
+         sd_tsqyzl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_tsqyzlByWhere" parameterClass="string">
+     delete from sd_tsqyzl $value$
+   </delete>
+   
+   <delete id="Deletesd_tsqyzlByKey" parameterClass="string">
+        DELETE FROM 
+         sd_tsqyzl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_tsqyzl" parameterClass="sd_tsqyzl" resultClass="int">
+          UPDATE sd_tsqyzl
+           SET
+             [zldm]=#zldm#,
+             [zlmc]=#zlmc#,
+             [isuse]=#isuse#,
+             [c1]=#c1#,
+             [c2]=#c2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_tsqyzl" parameterClass="sd_tsqyzl">
+        INSERT INTO sd_tsqyzl
+         (
+         [ID],
+         [zldm],
+         [zlmc],
+         [isuse],
+         [c1],
+         [c2]
+         )
+       VALUES
+         (
+         #ID#,
+         #zldm#,
+         #zlmc#,
+         #isuse#,
+         #c1#,
+         #c2#
+         )
+
+   </insert>
+   
+   <select id="Getsd_tsqyzlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_tsqyzl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="zldm">[zldm]='$zldm$'</isNotNull>
+       <isNotNull prepend="AND" property="zlmc">[zlmc]='$zlmc$'</isNotNull>
+       <isNotNull prepend="AND" property="isuse">[isuse]='$isuse$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_tsqyzlRowCount" parameterClass="string">
+    select count(*) from sd_tsqyzl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
