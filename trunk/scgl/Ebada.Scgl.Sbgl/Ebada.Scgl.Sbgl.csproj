@@ -678,6 +678,24 @@
     <Compile Include="送电\UCsdxlTreeSelector.Designer.cs">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzlsx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzlsx.Designer.cs">
+      <DependentUpon>UCsd_tsqyzlsx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzlM.Designer.cs">
+      <DependentUpon>UCsd_tsqyzlM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyzl.Designer.cs">
+      <DependentUpon>UCsd_tsqyzl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmbyqxhEdit.resx">
@@ -1049,6 +1067,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\UCsdxlTreeSelector.resx">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsd_tsqyzlsx.resx">
+      <DependentUpon>UCsd_tsqyzlsx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsd_tsqyzlM.resx">
+      <DependentUpon>UCsd_tsqyzlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsd_tsqyzl.resx">
+      <DependentUpon>UCsd_tsqyzl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="模块说明.txt" />
