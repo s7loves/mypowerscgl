@@ -293,7 +293,7 @@ namespace Ebada.Scgl.Sbgl
         }
         string getGgh() {
             //杆塔号0010-9990
-            object obj=Client.ClientHelper.PlatformSqlMap.GetObject("Select", "Select isnull(max(gth),'0') as gth from ps_gt where Linecode='" + parentID + "'");
+            object obj=Client.ClientHelper.PlatformSqlMap.GetObject("Select", "Select isnull(max(gth),'0') as gth from sd_gt where Linecode='" + parentID + "'");
             string gth = "0";
             if (obj != null) {
                 Hashtable ht = obj as Hashtable;
