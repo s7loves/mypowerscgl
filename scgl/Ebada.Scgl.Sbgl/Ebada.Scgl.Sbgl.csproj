@@ -678,6 +678,36 @@
     <Compile Include="送电\UCsdxlTreeSelector.Designer.cs">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\特殊区域\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\frmsd_tsqyEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\frmsd_tsqyEdit.Designer.cs">
+      <DependentUpon>frmsd_tsqyEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsdxlTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsdxlTree.Designer.cs">
+      <DependentUpon>UCsdxlTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqy.Designer.cs">
+      <DependentUpon>UCsd_tsqy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\特殊区域\UCsd_tsqyM.Designer.cs">
+      <DependentUpon>UCsd_tsqyM.cs</DependentUpon>
+    </Compile>
     <Compile Include="送电\特殊区域\UCsd_tsqyzlsx.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1067,6 +1097,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\UCsdxlTreeSelector.resx">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\frmsd_tsqyEdit.resx">
+      <DependentUpon>frmsd_tsqyEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsdxlTree.resx">
+      <DependentUpon>UCsdxlTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsd_tsqy.resx">
+      <DependentUpon>UCsd_tsqy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\特殊区域\UCsd_tsqyM.resx">
+      <DependentUpon>UCsd_tsqyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\特殊区域\UCsd_tsqyzlsx.resx">
