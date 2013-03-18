@@ -284,11 +284,15 @@ namespace Ebada.Scgl.Sbgl.变电
         }
 
         object imageData;
+        //获取图片
         public object GetImage()
         {
 
             return imageData;
         }
+        /// <summary>
+        /// 加载时设置图片
+        /// </summary>
         private void setImage()
         {
             pictureEdit1.EditValue = null;
