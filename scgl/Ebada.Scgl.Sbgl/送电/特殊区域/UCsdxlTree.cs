@@ -54,8 +54,9 @@ namespace Ebada.Scgl.Sbgl {
             IList<sd_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where 1>0");
             foreach (sd_xl xl in list)
             {
-                mTable.Rows.Add(xl.LineName, xl.LineID, xl.ParentID, "xl");
                 mLines.Add(xl.LineID, xl);
+                mTable.Rows.Add(xl.LineName, xl.LineID, xl.ParentID, "xl");
+               
             }
         }
         void treeList1_BeforeExpand(object sender, BeforeExpandEventArgs e) {
