@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Sbgl.变电
 {
     public partial class frmsd_tsqyEdit : FormBase, IPopupFormEdit
     {
+        public bool ispicChange = false;
         private bool isfirst = true;
         public sd_xl sdxl;
         DevExpress.XtraTab.XtraTabPage XtraPage = null;
@@ -269,7 +270,14 @@ namespace Ebada.Scgl.Sbgl.变电
 
         void pictureEdit1_EditValueChanged(object sender, EventArgs e)
         {
+            
+            if (!isfirst)
+            {
+                ispicChange = true;
+            }
+            isfirst = false;
             imageData = pictureEdit1.EditValue;
+            
         }
 
         void btnOk_Click(object sender, EventArgs e)
@@ -302,7 +310,7 @@ namespace Ebada.Scgl.Sbgl.变电
             
             if (image != null)
                 pictureEdit1.EditValue = image.data;
-            imageData = null;
+            //imageData = null;
         }
         sd_tsqyimage image = null;
         public sd_tsqyimage GetPS_Image()
