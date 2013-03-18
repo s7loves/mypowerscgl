@@ -23,7 +23,8 @@ namespace Ebada.Scgl.Sbgl.变电
 {
     public partial class frmSBTZ : FormBase, IPopupFormEdit
     {
-        private bool isfirst = true;
+        private bool isfirst = false;
+        
         DevExpress.XtraEditors.PictureEdit pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
         public frmSBTZ()
         {
@@ -196,6 +197,13 @@ namespace Ebada.Scgl.Sbgl.变电
         void pictureEdit1_EditValueChanged(object sender, EventArgs e)
         {
             imageData = pictureEdit1.EditValue;
+            if (imageData == null)
+            {
+                imageData = new byte[] { 0 };
+            }
+            if (image == null)
+                image = new PS_Image();
+            image.ImageData = (byte[])imageData;
         }
 
         void btnOk_Click(object sender, EventArgs e)
@@ -220,7 +228,7 @@ namespace Ebada.Scgl.Sbgl.变电
             pictureEdit1.EditValue = null;
             imageData = null;
             
-                image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.sb_id);
+                image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.c3);
             
             if (image != null)
                 pictureEdit1.EditValue = image.ImageData;
