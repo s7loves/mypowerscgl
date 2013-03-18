@@ -310,7 +310,7 @@ namespace Ebada.Scgl.Sbgl.变电
             
             if (image != null)
                 pictureEdit1.EditValue = image.data;
-            //imageData = null;
+            imageData = null;
         }
         sd_tsqyimage image = null;
         public sd_tsqyimage GetPS_Image()
