@@ -40,10 +40,11 @@ namespace Ebada.Scgl.Sbgl
            
             
             sdxlTree = new UCsdxlTree();
-            sdxlTree.Dock = DockStyle.Fill;
-            sdxlTree.Parent = splitContainerControl2.Panel1;
             sdxlTree.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xl>(xltree_FocusedRowChanged);
             UCsd_tsqy.ParentType = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyzl>("where zldm='" + tsqyZL + "'");
+            sdxlTree.Dock = DockStyle.Fill;
+            sdxlTree.Parent = splitContainerControl2.Panel1;
+            
 
         }
         public Control Show(string i)
