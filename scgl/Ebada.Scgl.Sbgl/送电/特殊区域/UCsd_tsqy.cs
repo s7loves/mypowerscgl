@@ -405,10 +405,19 @@ namespace Ebada.Scgl.Sbgl {
                 if (frmtsqy.GetImage() != null)
                 {
                     sd_tsqyimage tsqyImage = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyimage>("where ParentID='" + tsqy.ID + "'");
-                    tsqyImage.ParentID = tsqy.ID;
-                    tsqyImage.data = (byte[])frmtsqy.GetImage();
-                    Client.ClientHelper.PlatformSqlMap.Update<sd_tsqyimage>(tsqyImage);
-                    
+                    if (tsqyImage == null)
+                    {
+                        tsqyImage = new sd_tsqyimage();
+                        tsqyImage.ParentID = tsqy.ID;
+                        tsqyImage.data = (byte[])frmtsqy.GetImage();
+                        Client.ClientHelper.PlatformSqlMap.Create<sd_tsqyimage>(tsqyImage);
+                    }
+                    else
+                    {
+                        tsqyImage.ParentID = tsqy.ID;
+                        tsqyImage.data = (byte[])frmtsqy.GetImage();
+                        Client.ClientHelper.PlatformSqlMap.Update<sd_tsqyimage>(tsqyImage);
+                    }
                 }
                 RefreshData();
             }
