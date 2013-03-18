@@ -40,8 +40,7 @@ namespace Ebada.Scgl.Sbgl {
         private sd_xl parentObj;
         private sd_tsqyzl parentType;
         private UCPopupSelectorBase xlselector;
-        public UCsd_tsqy()
-        {
+        public UCsd_tsqy() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<sd_tsqy>(gridControl1, gridView1, barManager1, new frmsd_tsqyEdit());
@@ -59,8 +58,7 @@ namespace Ebada.Scgl.Sbgl {
             HideList();
         }
 
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_tsqy> e)
-        {
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_tsqy> e) {
             //e.Cancel = true;
             //try
             //{
@@ -85,8 +83,7 @@ namespace Ebada.Scgl.Sbgl {
             //catch (Exception err) { throw err; }
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<sd_tsqy> e)
-        {
+        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<sd_tsqy> e) {
             //e.Cancel = true;
             //try
             //{
@@ -127,7 +124,7 @@ namespace Ebada.Scgl.Sbgl {
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<sd_tsqy> e) {
             if (parentObj == null) {
-                frmbdsbEdit frm= gridViewOperation.EditForm as frmbdsbEdit;
+                frmbdsbEdit frm = gridViewOperation.EditForm as frmbdsbEdit;
 
                 e.Cancel = true;
                 MsgBox.ShowTipMessageBox("请先选择送电线路后增加！");
@@ -207,7 +204,7 @@ namespace Ebada.Scgl.Sbgl {
         /// </summary>
         public void HideList() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            
+
             bar3.Visible = false;
         }
         /// <summary>
@@ -225,39 +222,33 @@ namespace Ebada.Scgl.Sbgl {
             gridView1.Columns["gtbegin"].VisibleIndex = 0;
             gridView1.Columns["gtend"].Caption = "终止杆塔";
             gridView1.Columns["gtend"].VisibleIndex = 1;
-           
+
         }
-        private void InitGridColumns()
-        {
-            foreach (GridColumn c in gridView1.Columns)
-            {
+        private void InitGridColumns() {
+            foreach (GridColumn c in gridView1.Columns) {
                 c.Visible = false;
             }
             gridView1.Columns["gtbegin"].Caption = "起始杆塔";
             gridView1.Columns["gtbegin"].VisibleIndex = 0;
             gridView1.Columns["gtend"].Caption = "终止杆塔";
             gridView1.Columns["gtend"].VisibleIndex = 1;
-            if (parentType != null)
-            {
-                string sqlwhere = "where zldm='"+parentType.zldm+"' and isuse='是'";
-                IDictionary dic= ClientHelper.PlatformSqlMap.GetDictionary<sd_tsqyzlsx>(sqlwhere, "sxcol", "sxname");
+            if (parentType != null) {
+                string sqlwhere = "where zldm='" + parentType.zldm + "' and isuse='是'";
+                IDictionary dic = ClientHelper.PlatformSqlMap.GetDictionary<sd_tsqyzlsx>(sqlwhere, "sxcol", "sxname");
                 string cname = "";
-                if (dic.Count > 0)
-                {
-                    for (int i = 2; i <=26; i++)
-                    {
-                        cname = "a" + (i-1);
-                        if (dic.Contains(cname))
-                        {
+                if (dic.Count > 0) {
+                    for (int i = 2; i <= 26; i++) {
+                        cname = "a" + (i - 1);
+                        if (dic.Contains(cname)) {
                             gridView1.Columns[cname].VisibleIndex = i;
                             gridView1.Columns[cname].Caption = dic[cname].ToString();
                         }
                     }
                 }
-                
+
             }
         }
-        
+
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -303,7 +294,7 @@ namespace Ebada.Scgl.Sbgl {
             newobj.zldm = parentType.zldm;
             newobj.createdate = DateTime.Now;
             newobj.createman = MainHelper.User.UserName;
-            
+
         }
 
         /// <summary>
@@ -362,9 +353,8 @@ namespace Ebada.Scgl.Sbgl {
 
         }
 
-        private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
+        private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+
             frmsd_tsqyEdit frmtsqy = new frmsd_tsqyEdit();
             sd_tsqy tsqy = new sd_tsqy();
             tsqy.OrgCode = parentObj.OrgCode;
@@ -375,23 +365,20 @@ namespace Ebada.Scgl.Sbgl {
             frmtsqy.sdxl = this.parentObj;
             frmtsqy.tsqyzl = this.parentType;
             frmtsqy.RowData = tsqy;
-            if (frmtsqy.ShowDialog() == DialogResult.OK)
-            {
+            if (frmtsqy.ShowDialog() == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.Create<sd_tsqy>(frmtsqy.RowData);
-                if (frmtsqy.GetImage() != null)
-                {
+                if (frmtsqy.GetImage() != null) {
                     sd_tsqyimage tsqyImage = new sd_tsqyimage();
                     tsqyImage.ParentID = tsqy.ID;
                     tsqyImage.data = (byte[])frmtsqy.GetImage();
                     Client.ClientHelper.PlatformSqlMap.Create<sd_tsqyimage>(tsqyImage);
-                    
+
                 }
                 RefreshData();
             }
         }
 
-        private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+        private void btEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.GetFocusedRow() == null)
                 return;
             sd_tsqy tsqy = gridView1.GetFocusedRow() as sd_tsqy;
@@ -399,33 +386,28 @@ namespace Ebada.Scgl.Sbgl {
             frmtsqy.sdxl = this.parentObj;
             frmtsqy.tsqyzl = this.parentType;
             frmtsqy.RowData = tsqy;
-            if (frmtsqy.ShowDialog() == DialogResult.OK)
-            {
+            if (frmtsqy.ShowDialog() == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.Update<sd_tsqy>(tsqy);
-                if (frmtsqy.ispicChange)
-                {
-                    sd_tsqyimage tsqyImage = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyimage>("where ParentID='" + tsqy.ID + "'");
-                    if (tsqyImage == null)
-                    {
+                if (frmtsqy.ispicChange) {
+                    sd_tsqyimage tsqyImage = frmtsqy.GetPS_Image();
+                    if (tsqyImage == null) {
                         tsqyImage = new sd_tsqyimage();
                         tsqyImage.ParentID = tsqy.ID;
-                        tsqyImage.data = (byte[])frmtsqy.GetImage();
+                        //tsqyImage.data = (byte[])frmtsqy.GetImage();
                         Client.ClientHelper.PlatformSqlMap.Create<sd_tsqyimage>(tsqyImage);
-                    }
-                    else
-                    {
+                    } else {
                         tsqyImage.ParentID = tsqy.ID;
-                        tsqyImage.data = (byte[])frmtsqy.GetImage();
+                        //tsqyImage.data = (byte[])frmtsqy.GetImage();
                         if (tsqyImage.data == null)
                             tsqyImage.data = new byte[] { 0 };
 
                         Client.ClientHelper.PlatformSqlMap.Update<sd_tsqyimage>(tsqyImage);
                     }
                 }
-                RefreshData();
+                //RefreshData();
             }
         }
 
-        
+
     }
 }
