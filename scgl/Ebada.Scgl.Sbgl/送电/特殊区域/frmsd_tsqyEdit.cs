@@ -167,7 +167,7 @@ namespace Ebada.Scgl.Sbgl.变电
                             pageNumber++;
                             XtraPage = new DevExpress.XtraTab.XtraTabPage();
                             XtraPage.Name = "xtrpage" + pageNumber;
-                            XtraPage.Text = string.Format("送电区域第{0}页", pageNumber);
+                            XtraPage.Text = string.Format("特殊区域第{0}页", pageNumber);
                             this.xtraTabControl1.TabPages.Add(XtraPage);
                             
                         }
@@ -201,7 +201,7 @@ namespace Ebada.Scgl.Sbgl.变电
                     }
                     XtraPage = new DevExpress.XtraTab.XtraTabPage();
                     XtraPage.Name = "xtrPagePicture";
-                    XtraPage.Text = "送电区域照片";
+                    XtraPage.Text = "特殊区域照片";
                     this.xtraTabControl1.TabPages.Add(XtraPage);
                     GroupBox grpbox = new GroupBox();
                     grpbox.Location = new Point(0, 0);
