@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation = new GridViewOperation<mOrg>(gridControl1, gridView1, barManager1);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.OptionsView.ColumnAutoWidth = true;
+            gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             gridView1.Click += new EventHandler(gridView1_Click);
         }
 
@@ -55,6 +56,8 @@ namespace Ebada.Scgl.Sbgl {
 
             InitColumns();//初始列
             InitData();//初始数据
+            if (gridView1.RowCount > 0)
+                gridView1.SelectRow(0);
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -64,7 +67,7 @@ namespace Ebada.Scgl.Sbgl {
         
         object focusedRow;
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e) {
-            if (FocusedRowChanged != null&&focusedRow!=gridView1.GetFocusedDataRow()) {
+            if (FocusedRowChanged != null && focusedRow != gridView1.GetFocusedRow()) {
                 focusedRow = gridView1.GetFocusedRow();
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as mOrg);
             }
@@ -77,7 +80,7 @@ namespace Ebada.Scgl.Sbgl {
             //需要初始化数据时在这写代码
 
             RefreshData(" where parentid='300' order by orgcode");
-            //gridView1.BestFitColumns();
+            gridView1.BestFitColumns();
         }
         /// <summary>
         /// 初始化列,

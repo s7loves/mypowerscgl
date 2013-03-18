@@ -37,6 +37,7 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation = new GridViewOperation<BD_SBTZ_ZL>(gridControl1, gridView1, barManager1);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridView1.Click += new EventHandler(gridView1_Click);
+            gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
         }
 
         void gridView1_Click(object sender, EventArgs e) {
@@ -54,6 +55,8 @@ namespace Ebada.Scgl.Sbgl {
 
             InitColumns();//初始列
             InitData();//初始数据
+            if (gridView1.RowCount > 0)
+                gridView1.SelectRow(0);
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
