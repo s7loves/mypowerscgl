@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Sbgl.变电
             {
                 XtraPage = new DevExpress.XtraTab.XtraTabPage();
                 XtraPage.Name = "xtrpage" + pageNumber;
-                XtraPage.Text = string.Format("送电区域第{0}页", pageNumber);
+                XtraPage.Text = string.Format("特殊区域第{0}页", pageNumber);
                 this.xtraTabControl1.TabPages.Add(XtraPage);
 
                 DevExpress.XtraEditors.LabelControl lblstart = new DevExpress.XtraEditors.LabelControl();
