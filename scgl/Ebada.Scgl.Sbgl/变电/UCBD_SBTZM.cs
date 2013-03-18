@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Sbgl
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             init();
+            xltree.Focus();
         }
         private void init() {
             ucpS_GT1.HideList();
@@ -31,18 +32,18 @@ namespace Ebada.Scgl.Sbgl
             ucbd_Fssb.Dock = DockStyle.Fill;
             xtraTabPage3.Controls.Add(ucbd_Fssb);
             xltree = new UCmOrgBds();
+            xltree.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(xltree_FocusedRowChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "2") {//如果是供电所人员，则锁定
                 xltree.SetShowOrg(MainHelper.UserOrg);
             }
+            xltree.HideList();
             xltree.Dock = DockStyle.Fill;
             xltree.Parent = splitContainerControl2.Panel1;
-            xltree.HideList();
             UCBD_SBTZ_ZL zl = new UCBD_SBTZ_ZL();
+            zl.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.BD_SBTZ_ZL>(zl_FocusedRowChanged);
             zl.HideList();
             zl.Dock = DockStyle.Fill;
             zl.Parent = splitContainerControl2.Panel2;
-            zl.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.BD_SBTZ_ZL>(zl_FocusedRowChanged);
-            xltree.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(xltree_FocusedRowChanged);
             ucpS_GT1.FocusedRowChanged+=new Ebada.Client.SendDataEventHandler<BD_SBTZ>(ucpS_GT1_FocusedRowChanged);
         }
 
