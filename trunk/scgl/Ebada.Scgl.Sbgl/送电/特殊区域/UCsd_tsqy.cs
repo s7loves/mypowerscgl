@@ -402,22 +402,22 @@ namespace Ebada.Scgl.Sbgl {
             if (frmtsqy.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Update<sd_tsqy>(tsqy);
-                if (frmtsqy.GetImage() != null)
+                sd_tsqyimage tsqyImage = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyimage>("where ParentID='" + tsqy.ID + "'");
+                if (tsqyImage == null)
                 {
-                    sd_tsqyimage tsqyImage = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyimage>("where ParentID='" + tsqy.ID + "'");
-                    if (tsqyImage == null)
-                    {
-                        tsqyImage = new sd_tsqyimage();
-                        tsqyImage.ParentID = tsqy.ID;
-                        tsqyImage.data = (byte[])frmtsqy.GetImage();
-                        Client.ClientHelper.PlatformSqlMap.Create<sd_tsqyimage>(tsqyImage);
-                    }
-                    else
-                    {
-                        tsqyImage.ParentID = tsqy.ID;
-                        tsqyImage.data = (byte[])frmtsqy.GetImage();
-                        Client.ClientHelper.PlatformSqlMap.Update<sd_tsqyimage>(tsqyImage);
-                    }
+                    tsqyImage = new sd_tsqyimage();
+                    tsqyImage.ParentID = tsqy.ID;
+                    tsqyImage.data = (byte[])frmtsqy.GetImage();
+                    Client.ClientHelper.PlatformSqlMap.Create<sd_tsqyimage>(tsqyImage);
+                }
+                else
+                {
+                    tsqyImage.ParentID = tsqy.ID;
+                    tsqyImage.data = (byte[])frmtsqy.GetImage();
+                    if(tsqyImage.data==null)
+                        tsqyImage.data=new byte[]{0};
+
+                    Client.ClientHelper.PlatformSqlMap.Update<sd_tsqyimage>(tsqyImage);
                 }
                 RefreshData();
             }
