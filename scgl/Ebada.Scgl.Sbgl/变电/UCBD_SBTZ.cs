@@ -92,8 +92,8 @@ namespace Ebada.Scgl.Sbgl {
                 BD_SBTZ sdsb = e.Value;
                 frmSBTZ frm = gridViewOperation.EditForm as frmSBTZ;
                 PS_Image image = frm.GetPS_Image();
-                if (frm.GetImage() != null)
-                {
+                //if (frm.GetImage() != null)
+                //{
                     if (sdsb.c3 == "" || image == null)
                     {
                         image = new PS_Image();
@@ -109,13 +109,16 @@ namespace Ebada.Scgl.Sbgl {
                         Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { sdsb, image }, null);
                     }
 
-                }
-                else
-                {
-                    Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(e.Value);
-                }
+                //}
+                //else
+                ////{
+                //    Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(e.Value);
+
+                //}
 
                 Ebada.Core.ConvertHelper.CopyTo(sdsb, e.ValueOld);
+                RefreshData();
+
             }
             catch (Exception err) { throw err; }
         }
