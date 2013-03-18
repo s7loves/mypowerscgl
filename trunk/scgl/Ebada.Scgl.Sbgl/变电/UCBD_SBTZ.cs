@@ -68,7 +68,7 @@ namespace Ebada.Scgl.Sbgl {
                 if (frm.GetImage() != null)
                 {
                     image = new PS_Image();
-                    image.ImageName = "送电设备照片";
+                    image.ImageName = "变电设备照片";
                     image.ImageType = "sdsb";
                     image.ImageData = (byte[])frm.GetImage();
                     e.Value.c3 = image.ImageID;
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Sbgl {
                     if (sdsb.c3 == "" || image == null)
                     {
                         image = new PS_Image();
-                        image.ImageName = "送电设备照片";
+                        image.ImageName = "变电设备照片";
                         image.ImageType = "sdsb";
                         image.ImageData = (byte[])frm.GetImage();
                         sdsb.c3 = image.ImageID;
