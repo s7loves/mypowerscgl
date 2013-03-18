@@ -117,7 +117,7 @@ namespace Ebada.Scgl.Sbgl.变电
             {
                 XtraPage = new DevExpress.XtraTab.XtraTabPage();
                 XtraPage.Name = "xtrpage" + pageNumber;
-                XtraPage.Text = string.Format("特殊区域第{0}页", pageNumber);
+                XtraPage.Text = string.Format("属性第{0}页", pageNumber);
                 this.xtraTabControl1.TabPages.Add(XtraPage);
 
                 DevExpress.XtraEditors.LabelControl lblstart = new DevExpress.XtraEditors.LabelControl();
@@ -277,7 +277,8 @@ namespace Ebada.Scgl.Sbgl.变电
             }
             isfirst = false;
             imageData = pictureEdit1.EditValue;
-            
+            if(image!=null)
+            image.data =imageData as byte[] ;
         }
 
         void btnOk_Click(object sender, EventArgs e)
@@ -307,9 +308,14 @@ namespace Ebada.Scgl.Sbgl.变电
             imageData = null;
 
             image = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyimage>("where ParentID='"+rowData.ID+"'");
-            
-            if (image != null)
+
+            if (image != null) {
+
                 pictureEdit1.EditValue = image.data;
+            } else {
+
+            }
+            isfirst = false;
             imageData = null;
         }
         sd_tsqyimage image = null;
