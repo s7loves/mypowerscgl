@@ -53,37 +53,12 @@ namespace Ebada.Scgl.Sbgl {
         #region 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<sd_tsqyzlsx> e)
         {
-            //if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
-            //{
-            //    MessageBox.Show("不能添加a1-a8之间的值");
-            //    e.Cancel = true;
-            //}
-            //IList<sd_tsqyzlsx> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'" +
-            //    "and zldm='" + parentID + "'");
-            //if (list.Count > 0)
-            //{
-            //    MessageBox.Show("字段添加重复，添加数据失败！");
-            //    e.Cancel = true;
-            //}
+            
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_tsqyzlsx> e)
         {
 
-            //if (enableList.Contains((e.Value as sd_tsqyzlsx).sxcol))
-            //{
-            //    //不创建类
-            //    MessageBox.Show("不能添加a1-a8之间的值");
-            //    e.Cancel = true;
-
-            //}
-            //IList<sd_tsqyzlsx> list= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where sxcol='" + (e.Value as sd_tsqyzlsx).sxcol + "'"+
-            //    "and zldm='"+parentID+"'");
-            //if (list.Count > 0)
-            //{
-            //    MessageBox.Show("字段添加重复，添加数据失败！");
-            //    e.Cancel = true;
-            //}
         }
         #endregion
         
@@ -154,24 +129,18 @@ namespace Ebada.Scgl.Sbgl {
             gridView1.Columns["isuse"].ColumnEdit = cbox;
             gridView1.Columns["isdel"].ColumnEdit = cbox;
             gridView1.Columns["isedit"].ColumnEdit = cbox;
-            //gridView1.Columns["sxcol"].Visible = true;
-            //gridView1.Columns["sxcol"].VisibleIndex = m;
-            //m++;
-            //gridView1.Columns["sxname"].Visible = true;
-            //gridView1.Columns["sxname"].VisibleIndex = m;
-            //m++;
-            //gridView1.Columns["norder"].Visible = true;
-            //gridView1.Columns["norder"].VisibleIndex = m;
-            //m++;
-            //gridView1.Columns["isuse"].Visible = true;
-            //gridView1.Columns["isuse"].VisibleIndex = m;
-            //m++;
-            //gridView1.Columns["isdel"].Visible = true;
-            //gridView1.Columns["isdel"].VisibleIndex = m;
-            //m++;
-            //gridView1.Columns["isedit"].Visible = true;
-            //gridView1.Columns["isedit"].VisibleIndex = m;
 
+            cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            cbox.Items.Add("文本");
+            cbox.Items.Add("下拉列表");
+            cbox.Items.Add("日期");
+            cbox.Items.Add("整数");
+            cbox.Items.Add("小数");
+            gridView1.Columns["ctype"].ColumnEdit = cbox;
+            cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            cbox.Items.Add("查询");
+            cbox.Items.Add("数组(分隔符'|')");
+            gridView1.Columns["inittype"].ColumnEdit = cbox;
         }
         /// <summary>
         /// 刷新数据
@@ -220,7 +189,7 @@ namespace Ebada.Scgl.Sbgl {
             for (int i = 1; i <= 25; i++) {
                 sd_tsqyzlsx sx = new sd_tsqyzlsx() {
                      zldm=parentID, sxcol="a"+i,sxname="属性"+i, isdel="是",isedit="是",isuse="否"
-                     , norder=i, vtype="文本", ctype=""
+                     , norder=i, vtype="文本", ctype="文本"
                 };
                 sx.ID += i;
                 list.Add(sx);
