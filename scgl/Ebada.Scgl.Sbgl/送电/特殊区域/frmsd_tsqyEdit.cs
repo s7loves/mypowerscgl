@@ -186,7 +186,7 @@ namespace Ebada.Scgl.Sbgl.变电
                         lbl.Text = sbsx.sxname.Trim();
                         lbl.Location = new Point(startlblw, startlblh);
 
-                        DevExpress.XtraEditors.TextEdit txtEdit = new DevExpress.XtraEditors.TextEdit();
+                        Control txtEdit = createControl(sbsx);
                         txtEdit.Name = sbsx.sxcol;
                         txtEdit.DataBindings.Add("EditValue", rowData, sbsx.sxcol);
                         txtEdit.Size = new Size(337, 21);
@@ -238,6 +238,42 @@ namespace Ebada.Scgl.Sbgl.变电
 
         }
 
+        private Control createControl(sd_tsqyzlsx sbsx) {
+            Control c = createControl(sbsx.ctype);
+            if (sbsx.ctype == "下拉列表") {
+                DevExpress.XtraEditors.ComboBoxEdit box = c as DevExpress.XtraEditors.ComboBoxEdit;
+                switch (sbsx.inittype) {
+                    case "查询":
+                        
+                        try {
+                            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sbsx.initsql);
+                            box.Properties.Items.AddRange(list);
+                        } catch { }
+                        break;
+                    default :
+                        box.Properties.Items.AddRange(sbsx.initsql.Split('|'));
+                        break;
+                }
+            }
+            return c;
+        }
+        Control createControl(string name){
+            Control c = null ;
+            switch (name) {
+                case "日期":
+                    c = new DevExpress.XtraEditors.DateEdit();
+                    break;
+                case "下拉列表":
+                    c = new DevExpress.XtraEditors.ComboBoxEdit();
+                    break;
+
+                case "文本":
+                default:
+                    c = new DevExpress.XtraEditors.TextEdit();
+                    break;
+            }
+            return c;
+        }
         void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
