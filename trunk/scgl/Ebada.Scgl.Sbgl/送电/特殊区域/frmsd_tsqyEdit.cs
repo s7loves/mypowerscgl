@@ -188,7 +188,7 @@ namespace Ebada.Scgl.Sbgl.变电
 
                         Control txtEdit = createControl(sbsx);
                         txtEdit.Name = sbsx.sxcol;
-                        txtEdit.DataBindings.Add("EditValue", rowData, sbsx.sxcol);
+                        //txtEdit.DataBindings.Add("EditValue", rowData, sbsx.sxcol);
                         txtEdit.Size = new Size(337, 21);
                         //txtEdit.Location = new Point(starttextw, starttexth);
                         txtEdit.Location = new Point(widthArr[pageNumber - 1] + 40, starttexth);
@@ -255,18 +255,40 @@ namespace Ebada.Scgl.Sbgl.变电
                         break;
                 }
             }
+            if (sbsx.ctype == "日期") {
+                var cdate = c as DateEditEx;
+                cdate.BindingData(rowData, sbsx.sxcol);
+                //c.DataBindings.Add("EditValue", rowData, sbsx.sxcol, true, DataSourceUpdateMode.OnPropertyChanged, DBNull.Value, "yyyy-MM-dd");
+            } else {
+                c.DataBindings.Add("EditValue", rowData, sbsx.sxcol);
+            }
             return c;
         }
         Control createControl(string name){
             Control c = null ;
             switch (name) {
                 case "日期":
-                    c = new DevExpress.XtraEditors.DateEdit();
+                    var cdate = new DateEditEx();
+                    cdate.Properties.EditMask = "yyyy-MM-dd";
+                    cdate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+                    cdate.Properties.AllowNullInput  = DevExpress.Utils.DefaultBoolean.True;
+                    cdate.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+                    
+                    c = cdate;
                     break;
                 case "下拉列表":
                     c = new DevExpress.XtraEditors.ComboBoxEdit();
                     break;
-
+                case "整数":
+                    var c1 = new DevExpress.XtraEditors.SpinEdit();
+                    c1.Properties.IsFloatValue = false;
+                    c = c1;
+                    break;
+                case "小数":
+                    var c2 = new DevExpress.XtraEditors.SpinEdit();
+                    c2.Properties.IsFloatValue = true;
+                    c = c2;
+                    break;
                 case "文本":
                 default:
                     c = new DevExpress.XtraEditors.TextEdit();
