@@ -47,11 +47,25 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_14aqgjsy>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.AfterAdd += new ObjectEventHandler<PJ_14aqgjsy>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_14aqgjsy>(gridViewOperation_AfterEdit);
+        }
+
+        void gridViewOperation_AfterEdit(PJ_14aqgjsy obj) {
+            if (PSObj != null) {
+                _parentobj.syrq = obj.rq;
+                _parentobj.syrq2 = obj.xcsyrq;
+                ClientHelper.PlatformSqlMap.Update<PS_aqgj>(_parentobj);
+            }
         }
 
         void gridViewOperation_AfterAdd(PJ_14aqgjsy obj)
         {
             RefreshData(" where OrgCode='" + parentID + "' and sbID='" + PSObj.sbID + "' order by rq");
+            if (PSObj != null) {
+                _parentobj.syrq = obj.rq;
+                _parentobj.syrq2 = obj.xcsyrq;
+                ClientHelper.PlatformSqlMap.Update<PS_aqgj>(_parentobj);
+            }
         }
         public PS_aqgj PSObj
         {
