@@ -681,6 +681,48 @@
     <Compile Include="送电\UCsdxlTreeSelector.Designer.cs">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\巡视计划\frmsdxs_jh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\frmsdxs_jh.Designer.cs">
+      <DependentUpon>frmsdxs_jh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\frmsd_xsjhnr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\frmsd_xsjhnr.Designer.cs">
+      <DependentUpon>frmsd_xsjhnr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\frmsd_xsxm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\frmsd_xsxm.Designer.cs">
+      <DependentUpon>frmsd_xsxm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jh.Designer.cs">
+      <DependentUpon>UCsdxs_jh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jhM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jhM.Designer.cs">
+      <DependentUpon>UCsdxs_jhM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jhnr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsdxs_jhnr.Designer.cs">
+      <DependentUpon>UCsdxs_jhnr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsd_xsxm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsd_xsxm.Designer.cs">
+      <DependentUpon>UCsd_xsxm.cs</DependentUpon>
+    </Compile>
     <Compile Include="送电\特殊区域\frmsd_tsqyEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1095,6 +1137,27 @@
     <EmbeddedResource Include="送电\UCsdxlTreeSelector.resx">
       <DependentUpon>UCsdxlTreeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\frmsdxs_jh.resx">
+      <DependentUpon>frmsdxs_jh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\frmsd_xsjhnr.resx">
+      <DependentUpon>frmsd_xsjhnr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\frmsd_xsxm.resx">
+      <DependentUpon>frmsd_xsxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\UCsdxs_jh.resx">
+      <DependentUpon>UCsdxs_jh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\UCsdxs_jhM.resx">
+      <DependentUpon>UCsdxs_jhM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\UCsdxs_jhnr.resx">
+      <DependentUpon>UCsdxs_jhnr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\UCsd_xsxm.resx">
+      <DependentUpon>UCsd_xsxm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\特殊区域\frmsd_tsqyEdit.resx">
       <DependentUpon>frmsd_tsqyEdit.cs</DependentUpon>
