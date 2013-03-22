@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xsimage" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xsimage"  type="Ebada.Scgl.Model.sd_xsimage,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xsimage_AllColumns" class="sd_xsimage">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="gtID" column="gtID" />
+        <result property="norder" column="norder" />
+        <result property="des" column="des" />
+        <result property="data" column="data" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xsimageList" resultMap="sd_xsimage_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [gtID],
+         [norder],
+         [des],
+         [data],
+         [c1],
+         [c2]
+          FROM sd_xsimage
+          $value$
+   </select>
+   
+   <select id="Selectsd_xsimageByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gtID],
+         [norder],
+         [des],
+         [data],
+         [c1],
+         [c2]
+          FROM sd_xsimage
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="des">[des]='$des$'</isNotNull>
+       <isNotNull prepend="AND" property="data">[data]='$data$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xsimageByKey" resultMap="sd_xsimage_AllColumns" parameterClass="sd_xsimage">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gtID],
+         [norder],
+         [des],
+         [data],
+         [c1],
+         [c2]
+         FROM sd_xsimage
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_xsimage" parameterClass="sd_xsimage">
+        DELETE FROM 
+         sd_xsimage
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_xsimageByWhere" parameterClass="string">
+     delete from sd_xsimage $value$
+   </delete>
+   
+   <delete id="Deletesd_xsimageByKey" parameterClass="string">
+        DELETE FROM 
+         sd_xsimage
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_xsimage" parameterClass="sd_xsimage" resultClass="int">
+          UPDATE sd_xsimage
+           SET
+             [ParentID]=#ParentID#,
+             [gtID]=#gtID#,
+             [norder]=#norder#,
+             [des]=#des#,
+             [data]=#data#,
+             [c1]=#c1#,
+             [c2]=#c2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_xsimage" parameterClass="sd_xsimage">
+        INSERT INTO sd_xsimage
+         (
+         [ID],
+         [ParentID],
+         [gtID],
+         [norder],
+         [des],
+         [data],
+         [c1],
+         [c2]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #gtID#,
+         #norder#,
+         #des#,
+         #data#,
+         #c1#,
+         #c2#
+         )
+
+   </insert>
+   
+   <select id="Getsd_xsimageRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xsimage
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="des">[des]='$des$'</isNotNull>
+       <isNotNull prepend="AND" property="data">[data]='$data$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xsimageRowCount" parameterClass="string">
+    select count(*) from sd_xsimage $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
