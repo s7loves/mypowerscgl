@@ -9,13 +9,14 @@ using System.ComponentModel;
 using Ebada.Components;
 using System.IO;
 using System.ServiceModel.Activation;
+using System.Collections;
 
 namespace Ebada.Android.Service {
     /// <summary>
     /// 送电数据采集服务
     /// </summary>
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class ScglSDService : IScglService {
+    public class ScglSbxjService : IScglSbxjService {
         #region IScglService 成员
 
         public User GetUserData(string id, string pwd) {
@@ -52,53 +53,36 @@ namespace Ebada.Android.Service {
             Console.WriteLine("orgname:{0}", user.OrgName);
             return user;
         }
-        public List<ps_xl> GetXlList(string gdscode) {
-            List<ps_xl> list = new List<ps_xl>();
-            IList<sd_xl> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where orgcode='" + gdscode + "'");
-            foreach (sd_xl xl in list2) {
-                list.Add(new ps_xl() {
-                    LineCode = xl.LineCode, LineID = xl.LineID, LineName = xl.LineName, LineVol = xl.LineVol,
-                    WireLength = xl.WireLength.ToString(), WireType = xl.WireType, ParentID = xl.ParentID, OrgCode = xl.OrgCode, Contractor = xl.Contractor
-                });
-            }
+       
 
-            return list;
-        }
-        public List<ps_xl> GetXlList2(string username) {
-            List<ps_xl> list = new List<ps_xl>();
-            IList<sd_xl> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where Contractor='" + username + "'");
-            foreach (sd_xl xl in list2) {
-                list.Add(new ps_xl() {
-                    LineCode = xl.LineCode, LineID = xl.LineID, LineName = xl.LineName, LineVol = xl.LineVol,
-                    WireLength = xl.WireLength.ToString(), WireType = xl.WireType, ParentID = xl.ParentID, OrgCode = xl.OrgCode, Contractor = xl.Contractor
-                });
+        private string getjsonData(BD_SBTZ gt,Dictionary<string, IList<BD_SBTZ_SX>> dicsx) {
+            string jsondata = null;
+            List<bd_sbsxz> gsonList = new List<bd_sbsxz>();
+            Type t = gt.GetType();
+            if (!dicsx.ContainsKey(gt.sbtype)) {
+                dicsx.Add(gt.sbtype, Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ_SX>(" where zldm='" + gt.sbtype + "' and sxcol<>'a1' "));
             }
-
-            return list;
-        }
-        public List<ps_gt> GetGtList(string xlcode) {
-            List<ps_gt> list = new List<ps_gt>();
-            IList<sd_gt> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_gt>("where LineCode='" + xlcode + "'");
-            foreach (sd_gt gt in list2) {
-                ps_gt psgt = new ps_gt() {
-                    LineCode = gt.LineCode,
-                    gtCode = gt.gtCode, gtElev = gt.gtElev.ToString(), gtHeight = gt.gtHeight.ToString(),
-                    gth = gt.gth, gtID = gt.gtID, gtLat = gt.gtLat.ToString(), gtLon = gt.gtLon.ToString(), gtSpan = gt.gtJg,
-                    gtModle = gt.gtModle, gtType = gt.gtType.ToString()
+            foreach(var zlsx in dicsx[gt.sbtype]){
+                
+                bd_sbsxz sx = new bd_sbsxz() {
+                     k=zlsx.sxcol,t=zlsx.sxname,v=t.GetProperty(zlsx.sxcol).GetValue(gt,null).ToString(),
+                      bv=zlsx.boxvalue,type=zlsx.sxtype
                 };
-                list.Add(psgt);
-                psgt.jsonData = getjsonData(gt.gtID);
-            }
 
-            return list;
+                gsonList.Add(sx);
+            }
+            try {
+                jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(gsonList);
+            } catch (Exception err) { Console.WriteLine(err.Message); }
+            return jsondata;
         }
 
         private string getjsonData(string p) {
-            IList<sd_gtsb> list = Client.ClientHelper.PlatformSqlMap.GetList<sd_gtsb>("where gtid='" + p + "'");
+            IList<bd_sbtz_fssb> list = Client.ClientHelper.PlatformSqlMap.GetList<bd_sbtz_fssb>("where gtid='" + p + "'");
             string jsondata = null;
             if (list.Count > 0) {
                 IList<ps_gtsb> gsonList = new List<ps_gtsb>();
-                foreach (sd_gtsb sb in list) {
+                foreach (bd_sbtz_fssb sb in list) {
                     ps_gtsb gtsb = new ps_gtsb() { sl = sb.sbNumber.ToString(), xh = sb.sbModle, zl = sb.sbName, zldm = sb.sbType };
                     gsonList.Add(gtsb);
                 }
@@ -118,11 +102,11 @@ namespace Ebada.Android.Service {
             return "";
         }
         int ncount = 0;
-        public string UpdateGt(List<ps_gt> data) {
+        public string UpdateGt(List<bd_sb> data) {
             string ret = "0";
             if (data != null) {
                 ncount = 0;
-                foreach (ps_gt gt in data) {
+                foreach (bd_sb gt in data) {
                     try { UpdateGtOne(gt); } catch (Exception err) { Console.WriteLine(err.Message); }
                 }
                 ret = data.Count.ToString();
@@ -130,37 +114,34 @@ namespace Ebada.Android.Service {
             }
             return ret;
         }
-        public string UpdateGtOne(ps_gt data) {
-            sd_gt gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(data.gtID);
+        public string UpdateGtOne(bd_sb data) {
+            BD_SBTZ gt = Ebada.Client.ClientHelper.PlatformSqlMap.GetOneByKey<BD_SBTZ>(data.sbid);
             if (gt != null) {
-                //foreach(FieldInfo fi in data.GetType().GetFields()){
-                //    try {
-                //        gt.GetType().GetProperty(fi.Name).SetValue(gt, fi.GetValue(data), null);
-                //    } catch { }
-                //}
-                gt.gtType = data.gtType;
-                gt.gtModle = data.gtModle;
-                gt.gtElev = (int)decimal.Parse(data.gtElev);
-                gt.gtLat = decimal.Parse(data.gtLat);
-                gt.gtLon = decimal.Parse(data.gtLon);
-                gt.gtHeight = decimal.Parse(data.gtHeight);
-                gt.gtJg = data.gtSpan == "是" ? "是" : "否";//借杆
-                if ((gt.gtLat + gt.gtLon) > 0) {
-                    int n = Ebada.Client.ClientHelper.PlatformSqlMap.Update<sd_gt>(gt);
-                    ncount += n;
+               
+                if (!string.IsNullOrEmpty(data.jsonData2)) {
+                    Console.WriteLine("data.jsonData2;\r\n"+data.jsonData2);
+                    List<bd_sbsxz> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<bd_sbsxz>>(data.jsonData2);
+                    if (list != null) {
+                        Type t = gt.GetType(); gt.sbname = data.sbmc;
+                        foreach (var sx in list) {
+                            t.GetProperty(sx.k).SetValue(gt, sx.v,null);
+                        }
+                        int n=Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(gt);
+                        ncount += n>0?n:0;
+                    }
                 }
-                if (data.jsonData != null) {
-                    Console.WriteLine(data.jsonData);
+                if (!string.IsNullOrEmpty(data.jsonData)) {
+                    Console.WriteLine("data.jsonData;\r\n" + data.jsonData);
                     List<ps_gtsb> list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ps_gtsb>>(data.jsonData);
                     if (list != null) {
                         List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
-                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from sd_gtsb where gtid='" + gt.gtID + "'");
+                        SqlQueryObject sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from bd_sbtz_fssb where gtid='" + gt.sb_id + "'");
                         sqllist.Add(sqo);
                         int num = 0;
                         foreach (ps_gtsb sb in list) {
                             num++;
-                            sd_gtsb gtsb = new sd_gtsb() { gtID = gt.gtID, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
-                            gtsb.sbID = gt.gtID + num.ToString("000");
+                            bd_sbtz_fssb gtsb = new bd_sbtz_fssb() { gtID = gt.sb_id, sbModle = sb.xh, sbType = sb.zldm, sbNumber = short.Parse(sb.sl), sbName = sb.zl, sbCode = num.ToString("000") };
+                            gtsb.sbID = gt.sb_id + num.ToString("000");
                             sqo = new SqlQueryObject(SqlQueryType.Insert, gtsb);
                             sqllist.Add(sqo);
                         }
@@ -178,19 +159,7 @@ namespace Ebada.Android.Service {
         #region IScglService 成员
 
 
-        
-        public List<ps_sbzl> GetsbzlList() {
-            var list = new List<ps_sbzl>();
-            var list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_sbcs>("where c1='材料'");
-            foreach (var gt in list2) {
-                list.Add(new ps_sbzl() {
-                    id = gt.ID, xh = gt.xh, bh = gt.bh, mc = gt.mc, parentid = gt.ParentID
-                });
-            }
-
-            return list; throw new NotImplementedException();
-        }
-        string select_ver = "select value from msys where dm='androidver_sd'";
+        string select_ver = "select value from msys where dm='androidver_sdxj'";
         public string GetVersion() {
             string ver = "0";
             try {
@@ -213,7 +182,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage(List<ps_image> list) {
             ps_image data = list[0];
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "sd" };
+            PS_Image image = new PS_Image() { ImageID = data.id, ImageType = "bd" };
             image.ImageData = Convert.FromBase64String(data.data);
             PS_Image image2 = new PS_Image() { ImageID = data.id };
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, null, image2);
@@ -223,50 +192,17 @@ namespace Ebada.Android.Service {
 
             return UpdateGtImage3(data.id, data.data, data.type);
         }
-        //public string UpdateGtImage2(string id, string data, string type,int flag) {
-        //    switch (flag) {
-        //        case 1:
-        //            if (!imageCache.ContainsKey(id)) {
-        //                imageCache.Add(id, new MemoryStream());
-        //            } else {
-        //                imageCache[id] = new MemoryStream();
-        //            }
-        //            imageCache[id].WriteBase64String(data);
-        //            break;
-        //        case 2:
-        //            imageCache[id].WriteBase64String(data);
-        //            break;
-        //        case 0:
-        //            return UpdateGtImage3(id, data, type);
-        //        case 100:
-        //            imageCache[id].WriteBase64String(data);
-        //            byte[] buff = imageCache[id].ToArray();
-        //            imageCache.Remove(id);
-        //            return UpdateGtImage3(id, buff, type);
-        //        default:
-        //            break;
-        //    }
-        //    string msg = "1";
-            
-        //    return msg;
-        //}
+        
         public string UpdateGtImage3(string id, byte[] data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "sd" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "bd" };
             image.ImageData = data;
             PS_Image image2 = new PS_Image() { ImageID = id };
-            sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
+            BD_SBTZ gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<BD_SBTZ>(id);
             object update = null;
             object delete = image2;
-            if (gt != null && gt.ImageID != id) {
-                if (gt.ImageID != "") {
-                    delete = new PS_Image() { ImageID = gt.ImageID };
-                    delete = new object[] { image2, delete };
-                }
-                gt.ImageID = id;
-                update = gt;
-            }
+            
 
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, update, delete);
             return msg;
@@ -274,7 +210,7 @@ namespace Ebada.Android.Service {
         public string UpdateGtImage3(string id, string data, string type) {
 
             string msg = "";
-            PS_Image image = new PS_Image() { ImageID = id, ImageType = "sd" };
+            PS_Image image = new PS_Image() { ImageID = id, ImageType = "bd" };
             image.ImageData = Convert.FromBase64String(data);
             PS_Image image2 = new PS_Image() { ImageID = id };
             sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(id);
@@ -310,12 +246,66 @@ namespace Ebada.Android.Service {
         }
 
         #endregion
-    }
-    //public static class Extensions {
 
-    //    public static void WriteBase64String(this MemoryStream m, string data) {
-    //        byte[] bytes = Convert.FromBase64String(data);
-    //        m.Write(bytes, 0, bytes.Length);
-    //    }
-    //}
+
+        #region IScglSbxjService 成员
+
+
+       
+        public string GetPlanList(string username) {
+            List<sbxj_jh> jhlist = new List<sbxj_jh>();
+            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>(null);
+            foreach (var jh in list1) {
+
+
+                jhlist.Add(new sbxj_jh() {
+                    id = jh.ID, LineName = jh.LineName, xslb = jh.xslb, xsnr = jh.xsnr, wcbj = jh.wcbj, vol = jh.vol
+                        ,
+                    jhsj = jh.jhsj
+                        ,
+                    wcsj = jh.xswcsj
+                        ,
+                    kssj = jh.xskssj
+                    ,
+                    qxnr = jh.qxnr
+                    ,
+                    xsr = jh.sxr
+                    ,
+                    rwlist = getrwlist(jh.ID)
+                    ,
+                    xmlist = getxmlist(jh.ID)
+                });
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(jhlist);
+        }
+        List<sbxj_rw> getrwlist(string pid) {
+            List<sbxj_rw> rwlist = new List<sbxj_rw>();
+            IList<sd_xsjhnr> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjhnr>("where parentid='" + pid + "'");
+            foreach (var nr in list2) {
+                rwlist.Add(new sbxj_rw() {
+                    id=nr.ID, sbbh=nr.gtbh,pid=pid, jd=nr.lng,wd=nr.lat
+                });
+            }
+            return rwlist;
+        }
+        List<sbxj_xm> getxmlist(string pid) {
+            List<sbxj_xm> rwlist = new List<sbxj_xm>();
+            IList<sd_xsxm> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsxm>("where parentid='" + pid + "'");
+            foreach (var nr in list2) {
+                rwlist.Add(new sbxj_xm() {
+                    id = nr.ID, xmlb = nr.zl, xmnr = nr.mc,  norder=nr.norder
+                });
+            }
+            return rwlist;
+        }
+        
+        public string UpdatePlanList(string data) {
+
+             IList<sbxj_jh> list= Newtonsoft.Json.JsonConvert.DeserializeObject<List<sbxj_jh>>(data);
+
+            return "ok";
+        }
+        #endregion
+    }
+   
 }

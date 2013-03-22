@@ -116,6 +116,12 @@
     <Compile Include="bd_sbsxc.cs" />
     <Compile Include="bd_sbzl.cs" />
     <Compile Include="bd_sbzlsx.cs" />
+    <Compile Include="IScglSbxjService.cs" />
+    <Compile Include="sbxj_jh.cs" />
+    <Compile Include="sbxj_rw.cs" />
+    <Compile Include="sbxj_xm.cs" />
+    <Compile Include="sbxj_gj.cs" />
+    <Compile Include="ScglSbxjService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
