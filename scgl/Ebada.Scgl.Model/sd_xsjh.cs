@@ -399,7 +399,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备
         /// 字段信息：[c1],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备")]
         public string c1
         {
@@ -421,7 +420,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备
         /// 字段信息：[c2],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备")]
         public string c2
         {
