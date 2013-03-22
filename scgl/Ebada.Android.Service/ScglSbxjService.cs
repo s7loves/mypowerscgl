@@ -302,7 +302,7 @@ namespace Ebada.Android.Service {
         public string UpdatePlanList(string data) {
 
              IList<sbxj_jh> list= Newtonsoft.Json.JsonConvert.DeserializeObject<List<sbxj_jh>>(data);
-
+             Console.Write(data);
             return "ok";
         }
         #endregion
