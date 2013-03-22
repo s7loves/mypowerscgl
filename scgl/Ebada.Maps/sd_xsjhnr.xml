@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xsjhnr" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xsjhnr"  type="Ebada.Scgl.Model.sd_xsjhnr,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xsjhnr_AllColumns" class="sd_xsjhnr">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="gtid" column="gtid" />
+        <result property="gtbh" column="gtbh" />
+        <result property="flag1" column="flag1" />
+        <result property="lng" column="lng" />
+        <result property="lat" column="lat" />
+        <result property="flag2" column="flag2" />
+        <result property="xssj" column="xssj" />
+        <result property="qxnr" column="qxnr" />
+        <result property="norder" column="norder" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xsjhnrList" resultMap="sd_xsjhnr_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [gtid],
+         [gtbh],
+         [flag1],
+         [lng],
+         [lat],
+         [flag2],
+         [xssj],
+         [qxnr],
+         [norder],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sd_xsjhnr
+          $value$
+   </select>
+   
+   <select id="Selectsd_xsjhnrByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gtid],
+         [gtbh],
+         [flag1],
+         [lng],
+         [lat],
+         [flag2],
+         [xssj],
+         [qxnr],
+         [norder],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sd_xsjhnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtid">[gtid]='$gtid$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbh">[gtbh]='$gtbh$'</isNotNull>
+       <isNotNull prepend="AND" property="flag1">[flag1]='$flag1$'</isNotNull>
+       <isNotNull prepend="AND" property="lng">[lng]='$lng$'</isNotNull>
+       <isNotNull prepend="AND" property="lat">[lat]='$lat$'</isNotNull>
+       <isNotNull prepend="AND" property="flag2">[flag2]='$flag2$'</isNotNull>
+       <isNotNull prepend="AND" property="xssj">[xssj]='$xssj$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xsjhnrByKey" resultMap="sd_xsjhnr_AllColumns" parameterClass="sd_xsjhnr">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gtid],
+         [gtbh],
+         [flag1],
+         [lng],
+         [lat],
+         [flag2],
+         [xssj],
+         [qxnr],
+         [norder],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sd_xsjhnr
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_xsjhnr" parameterClass="sd_xsjhnr">
+        DELETE FROM 
+         sd_xsjhnr
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_xsjhnrByWhere" parameterClass="string">
+     delete from sd_xsjhnr $value$
+   </delete>
+   
+   <delete id="Deletesd_xsjhnrByKey" parameterClass="string">
+        DELETE FROM 
+         sd_xsjhnr
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_xsjhnr" parameterClass="sd_xsjhnr" resultClass="int">
+          UPDATE sd_xsjhnr
+           SET
+             [ParentID]=#ParentID#,
+             [gtid]=#gtid#,
+             [gtbh]=#gtbh#,
+             [flag1]=#flag1#,
+             [lng]=#lng#,
+             [lat]=#lat#,
+             [flag2]=#flag2#,
+             [xssj]=#xssj#,
+             [qxnr]=#qxnr#,
+             [norder]=#norder#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_xsjhnr" parameterClass="sd_xsjhnr">
+        INSERT INTO sd_xsjhnr
+         (
+         [ID],
+         [ParentID],
+         [gtid],
+         [gtbh],
+         [flag1],
+         [lng],
+         [lat],
+         [flag2],
+         [xssj],
+         [qxnr],
+         [norder],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #gtid#,
+         #gtbh#,
+         #flag1#,
+         #lng#,
+         #lat#,
+         #flag2#,
+         #xssj#,
+         #qxnr#,
+         #norder#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsd_xsjhnrRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xsjhnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gtid">[gtid]='$gtid$'</isNotNull>
+       <isNotNull prepend="AND" property="gtbh">[gtbh]='$gtbh$'</isNotNull>
+       <isNotNull prepend="AND" property="flag1">[flag1]='$flag1$'</isNotNull>
+       <isNotNull prepend="AND" property="lng">[lng]='$lng$'</isNotNull>
+       <isNotNull prepend="AND" property="lat">[lat]='$lat$'</isNotNull>
+       <isNotNull prepend="AND" property="flag2">[flag2]='$flag2$'</isNotNull>
+       <isNotNull prepend="AND" property="xssj">[xssj]='$xssj$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xsjhnrRowCount" parameterClass="string">
+    select count(*) from sd_xsjhnr $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -198,6 +198,12 @@
     <Compile Include="sd_tsqyzl.cs" />
     <Compile Include="sd_tsqyzlsx.cs" />
     <Compile Include="sd_xl.cs" />
+    <Compile Include="sd_xsgj.cs" />
+    <Compile Include="sd_xsimage.cs" />
+    <Compile Include="sd_xsjh.cs" />
+    <Compile Include="sd_xsjhnr.cs" />
+    <Compile Include="sd_xsqxbzk.cs" />
+    <Compile Include="sd_xsxm.cs" />
     <Compile Include="TX_Layer.cs" />
     <Compile Include="TX_Line.cs" />
     <Compile Include="TX_Point.cs" />

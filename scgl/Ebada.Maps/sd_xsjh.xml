@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xsjh" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xsjh"  type="Ebada.Scgl.Model.sd_xsjh,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xsjh_AllColumns" class="sd_xsjh">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="LineID" column="LineID" />
+        <result property="LineName" column="LineName" />
+        <result property="vol" column="vol" />
+        <result property="xslb" column="xslb" />
+        <result property="xsnr" column="xsnr" />
+        <result property="sxr" column="sxr" />
+        <result property="jhsj" column="jhsj" />
+        <result property="xskssj" column="xskssj" />
+        <result property="xswcsj" column="xswcsj" />
+        <result property="wcbj" column="wcbj" />
+        <result property="qxnr" column="qxnr" />
+        <result property="flag" column="flag" />
+        <result property="cjr" column="cjr" />
+        <result property="fbr" column="fbr" />
+        <result property="fbsj" column="fbsj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xsjhList" resultMap="sd_xsjh_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [LineID],
+         [LineName],
+         [vol],
+         [xslb],
+         [xsnr],
+         [sxr],
+         [jhsj],
+         [xskssj],
+         [xswcsj],
+         [wcbj],
+         [qxnr],
+         [flag],
+         [cjr],
+         [fbr],
+         [fbsj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sd_xsjh
+          $value$
+   </select>
+   
+   <select id="Selectsd_xsjhByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [LineID],
+         [LineName],
+         [vol],
+         [xslb],
+         [xsnr],
+         [sxr],
+         [jhsj],
+         [xskssj],
+         [xswcsj],
+         [wcbj],
+         [qxnr],
+         [flag],
+         [cjr],
+         [fbr],
+         [fbsj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sd_xsjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="vol">[vol]='$vol$'</isNotNull>
+       <isNotNull prepend="AND" property="xslb">[xslb]='$xslb$'</isNotNull>
+       <isNotNull prepend="AND" property="xsnr">[xsnr]='$xsnr$'</isNotNull>
+       <isNotNull prepend="AND" property="sxr">[sxr]='$sxr$'</isNotNull>
+       <isNotNull prepend="AND" property="jhsj">[jhsj]='$jhsj$'</isNotNull>
+       <isNotNull prepend="AND" property="xskssj">[xskssj]='$xskssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xswcsj">[xswcsj]='$xswcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="wcbj">[wcbj]='$wcbj$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="flag">[flag]='$flag$'</isNotNull>
+       <isNotNull prepend="AND" property="cjr">[cjr]='$cjr$'</isNotNull>
+       <isNotNull prepend="AND" property="fbr">[fbr]='$fbr$'</isNotNull>
+       <isNotNull prepend="AND" property="fbsj">[fbsj]='$fbsj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xsjhByKey" resultMap="sd_xsjh_AllColumns" parameterClass="sd_xsjh">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [LineID],
+         [LineName],
+         [vol],
+         [xslb],
+         [xsnr],
+         [sxr],
+         [jhsj],
+         [xskssj],
+         [xswcsj],
+         [wcbj],
+         [qxnr],
+         [flag],
+         [cjr],
+         [fbr],
+         [fbsj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sd_xsjh
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_xsjh" parameterClass="sd_xsjh">
+        DELETE FROM 
+         sd_xsjh
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_xsjhByWhere" parameterClass="string">
+     delete from sd_xsjh $value$
+   </delete>
+   
+   <delete id="Deletesd_xsjhByKey" parameterClass="string">
+        DELETE FROM 
+         sd_xsjh
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_xsjh" parameterClass="sd_xsjh" resultClass="int">
+          UPDATE sd_xsjh
+           SET
+             [OrgCode]=#OrgCode#,
+             [LineID]=#LineID#,
+             [LineName]=#LineName#,
+             [vol]=#vol#,
+             [xslb]=#xslb#,
+             [xsnr]=#xsnr#,
+             [sxr]=#sxr#,
+             [jhsj]=#jhsj#,
+             [xskssj]=#xskssj#,
+             [xswcsj]=#xswcsj#,
+             [wcbj]=#wcbj#,
+             [qxnr]=#qxnr#,
+             [flag]=#flag#,
+             [cjr]=#cjr#,
+             [fbr]=#fbr#,
+             [fbsj]=#fbsj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_xsjh" parameterClass="sd_xsjh">
+        INSERT INTO sd_xsjh
+         (
+         [ID],
+         [OrgCode],
+         [LineID],
+         [LineName],
+         [vol],
+         [xslb],
+         [xsnr],
+         [sxr],
+         [jhsj],
+         [xskssj],
+         [xswcsj],
+         [wcbj],
+         [qxnr],
+         [flag],
+         [cjr],
+         [fbr],
+         [fbsj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #LineID#,
+         #LineName#,
+         #vol#,
+         #xslb#,
+         #xsnr#,
+         #sxr#,
+         #jhsj#,
+         #xskssj#,
+         #xswcsj#,
+         #wcbj#,
+         #qxnr#,
+         #flag#,
+         #cjr#,
+         #fbr#,
+         #fbsj#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsd_xsjhRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xsjh
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="vol">[vol]='$vol$'</isNotNull>
+       <isNotNull prepend="AND" property="xslb">[xslb]='$xslb$'</isNotNull>
+       <isNotNull prepend="AND" property="xsnr">[xsnr]='$xsnr$'</isNotNull>
+       <isNotNull prepend="AND" property="sxr">[sxr]='$sxr$'</isNotNull>
+       <isNotNull prepend="AND" property="jhsj">[jhsj]='$jhsj$'</isNotNull>
+       <isNotNull prepend="AND" property="xskssj">[xskssj]='$xskssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xswcsj">[xswcsj]='$xswcsj$'</isNotNull>
+       <isNotNull prepend="AND" property="wcbj">[wcbj]='$wcbj$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="flag">[flag]='$flag$'</isNotNull>
+       <isNotNull prepend="AND" property="cjr">[cjr]='$cjr$'</isNotNull>
+       <isNotNull prepend="AND" property="fbr">[fbr]='$fbr$'</isNotNull>
+       <isNotNull prepend="AND" property="fbsj">[fbsj]='$fbsj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xsjhRowCount" parameterClass="string">
+    select count(*) from sd_xsjh $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

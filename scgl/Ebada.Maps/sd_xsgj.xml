@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xsgj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xsgj"  type="Ebada.Scgl.Model.sd_xsgj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xsgj_AllColumns" class="sd_xsgj">
+        <result property="ID" column="ID" />
+        <result property="rwID" column="rwID" />
+        <result property="sj" column="sj" />
+        <result property="jd" column="jd" />
+        <result property="wd" column="wd" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xsgjList" resultMap="sd_xsgj_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [rwID],
+         [sj],
+         [jd],
+         [wd]
+          FROM sd_xsgj
+          $value$
+   </select>
+   
+   <select id="Selectsd_xsgjByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [rwID],
+         [sj],
+         [jd],
+         [wd]
+          FROM sd_xsgj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="rwID">[rwID]='$rwID$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="jd">[jd]='$jd$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xsgjByKey" resultMap="sd_xsgj_AllColumns" parameterClass="sd_xsgj">
+         SELECT 
+         [ID],
+         [rwID],
+         [sj],
+         [jd],
+         [wd]
+         FROM sd_xsgj
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_xsgj" parameterClass="sd_xsgj">
+        DELETE FROM 
+         sd_xsgj
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_xsgjByWhere" parameterClass="string">
+     delete from sd_xsgj $value$
+   </delete>
+   
+   <delete id="Deletesd_xsgjByKey" parameterClass="long">
+        DELETE FROM 
+         sd_xsgj
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_xsgj" parameterClass="sd_xsgj" resultClass="int">
+          UPDATE sd_xsgj
+           SET
+             [rwID]=#rwID#,
+             [sj]=#sj#,
+             [jd]=#jd#,
+             [wd]=#wd#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_xsgj" parameterClass="sd_xsgj">
+        INSERT INTO sd_xsgj
+         (
+         [rwID],
+         [sj],
+         [jd],
+         [wd]
+         )
+       VALUES
+         (
+         #rwID#,
+         #sj#,
+         #jd#,
+         #wd#
+         )
+     <selectKey resultClass="int"  type="post" property="ID">
+     <![CDATA[select @@IDENTITY as value ]]>
+     </selectKey>
+
+   </insert>
+   
+   <select id="Getsd_xsgjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xsgj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="rwID">[rwID]='$rwID$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="jd">[jd]='$jd$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xsgjRowCount" parameterClass="string">
+    select count(*) from sd_xsgj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

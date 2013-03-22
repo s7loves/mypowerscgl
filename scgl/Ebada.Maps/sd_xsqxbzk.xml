@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sd_xsqxbzk" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sd_xsqxbzk"  type="Ebada.Scgl.Model.sd_xsqxbzk,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sd_xsqxbzk_AllColumns" class="sd_xsqxbzk">
+        <result property="ID" column="ID" />
+        <result property="norder" column="norder" />
+        <result property="sbzl" column="sbzl" />
+        <result property="qxzl" column="qxzl" />
+        <result property="qxnr" column="qxnr" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsd_xsqxbzkList" resultMap="sd_xsqxbzk_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [norder],
+         [sbzl],
+         [qxzl],
+         [qxnr],
+         [c1],
+         [c2]
+          FROM sd_xsqxbzk
+          $value$
+   </select>
+   
+   <select id="Selectsd_xsqxbzkByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [norder],
+         [sbzl],
+         [qxzl],
+         [qxnr],
+         [c1],
+         [c2]
+          FROM sd_xsqxbzk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="sbzl">[sbzl]='$sbzl$'</isNotNull>
+       <isNotNull prepend="AND" property="qxzl">[qxzl]='$qxzl$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsd_xsqxbzkByKey" resultMap="sd_xsqxbzk_AllColumns" parameterClass="sd_xsqxbzk">
+         SELECT 
+         [ID],
+         [norder],
+         [sbzl],
+         [qxzl],
+         [qxnr],
+         [c1],
+         [c2]
+         FROM sd_xsqxbzk
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesd_xsqxbzk" parameterClass="sd_xsqxbzk">
+        DELETE FROM 
+         sd_xsqxbzk
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesd_xsqxbzkByWhere" parameterClass="string">
+     delete from sd_xsqxbzk $value$
+   </delete>
+   
+   <delete id="Deletesd_xsqxbzkByKey" parameterClass="string">
+        DELETE FROM 
+         sd_xsqxbzk
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesd_xsqxbzk" parameterClass="sd_xsqxbzk" resultClass="int">
+          UPDATE sd_xsqxbzk
+           SET
+             [norder]=#norder#,
+             [sbzl]=#sbzl#,
+             [qxzl]=#qxzl#,
+             [qxnr]=#qxnr#,
+             [c1]=#c1#,
+             [c2]=#c2#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsd_xsqxbzk" parameterClass="sd_xsqxbzk">
+        INSERT INTO sd_xsqxbzk
+         (
+         [ID],
+         [norder],
+         [sbzl],
+         [qxzl],
+         [qxnr],
+         [c1],
+         [c2]
+         )
+       VALUES
+         (
+         #ID#,
+         #norder#,
+         #sbzl#,
+         #qxzl#,
+         #qxnr#,
+         #c1#,
+         #c2#
+         )
+
+   </insert>
+   
+   <select id="Getsd_xsqxbzkRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sd_xsqxbzk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="norder">[norder]='$norder$'</isNotNull>
+       <isNotNull prepend="AND" property="sbzl">[sbzl]='$sbzl$'</isNotNull>
+       <isNotNull prepend="AND" property="qxzl">[qxzl]='$qxzl$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsd_xsqxbzkRowCount" parameterClass="string">
+    select count(*) from sd_xsqxbzk $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
