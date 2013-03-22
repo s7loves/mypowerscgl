@@ -9,16 +9,19 @@ namespace ConsoleClient
     class Program
     {
         static string baseUrl = "http://192.168.238.129:83/ScglService";
+        static string baseUrlxj = "http://192.168.238.129:83/ScglSbxjService";
         static void Main(string[] args)
         {
-            
+            Label1:
             try {
                 testGetUser("rabbit", "aaa");
                 //test();
+                testsbxj();
             } catch (Exception err) {
                 Console.WriteLine(err.Message);
             }
-            Console.ReadLine();
+            string rl= Console.ReadLine();
+            if (rl == "") goto Label1;
         }
         static void test() {
             var client = new WebClient();
@@ -61,6 +64,17 @@ namespace ConsoleClient
             client.Encoding = Encoding.UTF8; //有中文时必须
             user = client.UploadString(baseUrl+"/SetUser",user);
             Console.WriteLine(user);
+        }
+        static void testsbxj() {
+            var client = new WebClient();
+            client.Headers.Add("content-type", "application/json;charset=utf-8");
+            string user = client.DownloadString(baseUrlxj + "/GetPlanList/" + "u");
+            Console.WriteLine(user);
+            client.Headers.Add("content-type", "application/json");
+            client.Encoding = Encoding.UTF8; //有中文时必须
+            user = client.UploadString(baseUrlxj + "/UpdatePlanList", "POST", user);
+            Console.WriteLine(user);
+
         }
         static string convert(string utf8string) {
             byte[] buffer1 = Encoding.Default.GetBytes(utf8string);
