@@ -14,7 +14,7 @@ namespace ConsoleClient
         {
             Label1:
             try {
-                testGetUser("rabbit", "aaa");
+                //testGetUser("rabbit", "aaa");
                 //test();
                 testsbxj();
             } catch (Exception err) {
@@ -68,7 +68,7 @@ namespace ConsoleClient
         static void testsbxj() {
             var client = new WebClient();
             client.Headers.Add("content-type", "application/json;charset=utf-8");
-            string user = client.DownloadString(baseUrlxj + "/GetPlanList/" + "u");
+            string user = client.DownloadString(baseUrlxj + "/GetPlanList/" + "rabbit");
             Console.WriteLine(user);
             client.Headers.Add("content-type", "application/json");
             client.Encoding = Encoding.UTF8; //有中文时必须

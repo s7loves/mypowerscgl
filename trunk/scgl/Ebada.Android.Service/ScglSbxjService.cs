@@ -254,7 +254,7 @@ namespace Ebada.Android.Service {
        
         public string GetPlanList(string username) {
             List<sbxj_jh> jhlist = new List<sbxj_jh>();
-            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>(null);
+            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>("where sxr like '%"+username+"%' and wcbj=''");
             foreach (var jh in list1) {
 
 
