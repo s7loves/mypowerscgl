@@ -1,0 +1,176 @@
+﻿namespace Ebada.Scgl.Sbgl
+{
+    partial class frmsd_xsxm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lblzl = new DevExpress.XtraEditors.LabelControl();
+            this.txtzl = new DevExpress.XtraEditors.TextEdit();
+            this.lblmc = new DevExpress.XtraEditors.LabelControl();
+            this.txtmc = new DevExpress.XtraEditors.TextEdit();
+            this.lblflag = new DevExpress.XtraEditors.LabelControl();
+            this.txtflag = new DevExpress.XtraEditors.TextEdit();
+            this.lblxssj = new DevExpress.XtraEditors.LabelControl();
+            this.datexssj = new DevExpress.XtraEditors.DateEdit();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.txtzl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtmc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblzl
+            // 
+            this.lblzl.Location = new System.Drawing.Point(25, 23);
+            this.lblzl.Name = "lblzl";
+            this.lblzl.Size = new System.Drawing.Size(48, 14);
+            this.lblzl.TabIndex = 0;
+            this.lblzl.Text = "项目种类";
+            // 
+            // txtzl
+            // 
+            this.txtzl.Location = new System.Drawing.Point(89, 20);
+            this.txtzl.Name = "txtzl";
+            this.txtzl.Size = new System.Drawing.Size(315, 21);
+            this.txtzl.TabIndex = 1;
+            // 
+            // lblmc
+            // 
+            this.lblmc.Location = new System.Drawing.Point(25, 68);
+            this.lblmc.Name = "lblmc";
+            this.lblmc.Size = new System.Drawing.Size(48, 14);
+            this.lblmc.TabIndex = 2;
+            this.lblmc.Text = "项目内容";
+            // 
+            // txtmc
+            // 
+            this.txtmc.Location = new System.Drawing.Point(89, 65);
+            this.txtmc.Name = "txtmc";
+            this.txtmc.Size = new System.Drawing.Size(315, 21);
+            this.txtmc.TabIndex = 3;
+            // 
+            // lblflag
+            // 
+            this.lblflag.Location = new System.Drawing.Point(25, 113);
+            this.lblflag.Name = "lblflag";
+            this.lblflag.Size = new System.Drawing.Size(48, 14);
+            this.lblflag.TabIndex = 4;
+            this.lblflag.Text = "巡视状态";
+            // 
+            // txtflag
+            // 
+            this.txtflag.Location = new System.Drawing.Point(89, 110);
+            this.txtflag.Name = "txtflag";
+            this.txtflag.Size = new System.Drawing.Size(315, 21);
+            this.txtflag.TabIndex = 5;
+            // 
+            // lblxssj
+            // 
+            this.lblxssj.Location = new System.Drawing.Point(25, 158);
+            this.lblxssj.Name = "lblxssj";
+            this.lblxssj.Size = new System.Drawing.Size(48, 14);
+            this.lblxssj.TabIndex = 6;
+            this.lblxssj.Text = "巡检时间";
+            // 
+            // datexssj
+            // 
+            this.datexssj.EditValue = null;
+            this.datexssj.Location = new System.Drawing.Point(89, 155);
+            this.datexssj.Name = "datexssj";
+            this.datexssj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datexssj.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.datexssj.Size = new System.Drawing.Size(315, 21);
+            this.datexssj.TabIndex = 7;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(247, 261);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 8;
+            this.btnOK.Text = "确定";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(342, 261);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // frmsd_xsxm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(440, 296);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.datexssj);
+            this.Controls.Add(this.lblxssj);
+            this.Controls.Add(this.txtflag);
+            this.Controls.Add(this.lblflag);
+            this.Controls.Add(this.txtmc);
+            this.Controls.Add(this.lblmc);
+            this.Controls.Add(this.txtzl);
+            this.Controls.Add(this.lblzl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmsd_xsxm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "巡检项目信息";
+            this.Load += new System.EventHandler(this.frmsd_xsxm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtzl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtmc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraEditors.LabelControl lblzl;
+        private DevExpress.XtraEditors.TextEdit txtzl;
+        private DevExpress.XtraEditors.LabelControl lblmc;
+        private DevExpress.XtraEditors.TextEdit txtmc;
+        private DevExpress.XtraEditors.LabelControl lblflag;
+        private DevExpress.XtraEditors.TextEdit txtflag;
+        private DevExpress.XtraEditors.LabelControl lblxssj;
+        private DevExpress.XtraEditors.DateEdit datexssj;
+        private DevExpress.XtraEditors.SimpleButton btnOK;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+    }
+}
