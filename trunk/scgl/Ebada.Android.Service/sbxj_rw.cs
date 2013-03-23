@@ -19,6 +19,8 @@ namespace Ebada.Android.Service {
         [DataMember]
         public string sbzt;//设备状态(是否有缺陷)
         [DataMember]
+        public string qxnr;//缺陷
+        [DataMember]
         public string jd;//经度
         [DataMember]
         public string wd;//纬度 
