@@ -90,10 +90,10 @@ namespace Ebada.Scgl.Lcgl
                 + " 00:00:00' and  '"
                 + dt2.Year + "-"
                 + dt2.Month + "-" + dt2.Day + " 23:59:59' ) ";
-            if (orgid != "") str += " and OrgCode='" + orgid + "' ";//and IsSelect=1 
-            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
-               str
-                );
+            if (orgid != "") str += " and OrgCode='" + orgid + "' ";// 
+            string str2 = str + "  and IsSelect=1";
+            IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(str2);
+            if (datalist.Count == 0) datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(str);
             ExportExcel(dt, ex, datalist);
             ex.ShowExcel();
 

@@ -159,7 +159,7 @@ namespace Ebada.Scgl.Lcgl {
             newobj.CreateDate = DateTime.Now;
             newobj.CreateMan = MainHelper.User.UserName;
 
-            newobj.bigshowtime = new DateTime(int.Parse(ParentObj.year), DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute,DateTime.Now.Second);
+            newobj.bigshowtime = new DateTime(int.Parse(ParentObj.year.Substring(0,4)), DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute,DateTime.Now.Second);
             newobj.minshowtime = newobj.bigshowtime;
 
         }
