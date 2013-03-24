@@ -15,99 +15,76 @@ using Ebada.Client;
 using System.Text.RegularExpressions;
 using Ebada.SCGL.WFlow.Tool;
 
-namespace Ebada.Scgl.Lcgl
-{
-    public partial class frmTDJHMonthSet : FormBase
-    {
-        public frmTDJHMonthSet()
-        {
+namespace Ebada.Scgl.Lcgl {
+    public partial class frmTDJHMonthSet : FormBase {
+        public frmTDJHMonthSet() {
             InitializeComponent();
+            dt2 = dt.AddMonths(1).AddDays(-1);
         }
         private LP_Temple rowData = null;
-        private DateTime dt =Convert.ToDateTime( DateTime.Now.AddMonths(1).ToString("yyyy-MM-1"));
-        private DateTime dt2 = Convert.ToDateTime(DateTime.Now.AddMonths(2).AddDays(-1).ToString("yyyy-MM-dd"));
+        private DateTime dt = Convert.ToDateTime(DateTime.Now.AddMonths(1).ToString("yyyy-MM-1"));
+        private DateTime dt2 ;
         private ArrayList excelList = null;
-        public ArrayList ExcelList
-        {
-            get
-            {
+        public ArrayList ExcelList {
+            get {
                 return excelList;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 excelList = value;
             }
         }
-        public DateTime dtTime
-        {
-            get
-            {
+        public DateTime dtTime {
+            get {
                 return dt;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 dt = value;
             }
         }
-        public DateTime dtTime2
-        {
-            get
-            {
+        public DateTime dtTime2 {
+            get {
                 return dt2;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 dt2 = value;
             }
         }
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
                 this.rowData = value as LP_Temple;
             }
         }
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            dt = Convert.ToDateTime( dateEdit1.EditValue);
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            dt = dateEdit1.DateTime;
+            dt2 = dateEdit2.DateTime;
+
             this.DialogResult = DialogResult.OK;
         }
 
-        private void frmExcelEditSQLSet_Load(object sender, EventArgs e)
-        {
-            dateEdit1.DateTime = dt;
-            dateEdit2.DateTime = dt2;
-
+        private void frmExcelEditSQLSet_Load(object sender, EventArgs e) {
+            dateEdit1.EditValue = dt;
+            dateEdit2.EditValue = dt2;
         }
-       
-    
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
+
+
+        private void simpleButton2_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
+        private void memoEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e) {
             e.Cancel = true;
         }
-
-     
-      
-
-
-
 
     }
 }
