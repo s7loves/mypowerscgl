@@ -16,20 +16,9 @@ namespace Ebada.Scgl.Sbgl
     {
         UCsdxlTree sdxlTree;
         private string tsqyZL;
-        Dictionary<string, string> dictsqyZl = new Dictionary<string, string>();
         public UCsd_tsqyM()
         {
             InitializeComponent();
-            //ucpS_GTSB1.HideList();
-            dictsqyZl.Add("1", "01");
-            dictsqyZl.Add("2", "02");
-            dictsqyZl.Add("3", "03");
-            dictsqyZl.Add("4", "04");
-            dictsqyZl.Add("5", "05");
-            dictsqyZl.Add("6", "06");
-            dictsqyZl.Add("7", "07");
-            
-
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -37,28 +26,17 @@ namespace Ebada.Scgl.Sbgl
         }
         private void init() {
             UCsd_tsqy.HideList();
-           
-            
             sdxlTree = new UCsdxlTree();
             sdxlTree.LineSelectionChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xl>(xltree_FocusedRowChanged);
             UCsd_tsqy.ParentType = Client.ClientHelper.PlatformSqlMap.GetOne<sd_tsqyzl>("where zldm='" + tsqyZL + "'");
             sdxlTree.Dock = DockStyle.Fill;
             sdxlTree.Parent = splitContainerControl2.Panel1;
-            
-
         }
         public Control Show(string i)
         {
-            if (dictsqyZl.ContainsKey(i))
-            {
-                tsqyZL = dictsqyZl[i];
-            }
+            tsqyZL = i;
             return this;
         }
-        
-
-       
-
         void xltree_FocusedRowChanged(object sender, Ebada.Scgl.Model.sd_xl obj)
         {
             UCsd_tsqy.ParentObj =pobj= obj;
