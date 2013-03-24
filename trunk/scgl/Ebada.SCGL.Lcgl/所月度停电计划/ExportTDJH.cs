@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Lcgl
                 + " 00:00:00' and  '"
                 + dt2.Year + "-"
                 + dt2.Month + "-" + dt2.Day + " 23:59:59' ) ";
-            if (orgid != "") str += " and OrgCode='" + orgid + "' and IsSelect=1 ";
+            if (orgid != "") str += " and OrgCode='" + orgid + "' ";//and IsSelect=1 
             IList<PJ_tdjh> datalist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_tdjh>(
                str
                 );

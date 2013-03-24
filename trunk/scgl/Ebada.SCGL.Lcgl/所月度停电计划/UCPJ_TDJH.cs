@@ -152,7 +152,7 @@ namespace Ebada.Scgl.Lcgl
 
         private void ChangeText()
         {
-            btView.Caption = "导出" + btGdsList.EditValue + "全部历使计划";
+            btView.Caption = "导出" + btGdsList.EditValue + "全部历史计划";
             barExplorMonth.Caption = "导出" + btGdsList.EditValue + "下月计划";
         }
 
