@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Lcgl {
             bar3.Visible = false;
             //btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             //btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         void gridViewOperation_AfterAdd(PS_kg obj) {
