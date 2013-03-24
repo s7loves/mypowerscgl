@@ -175,15 +175,24 @@ namespace Ebada.Scgl.Lcgl
         void repositoryItemLookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
             //this.ParentID = barEditItem2.EditValue.ToString();
-
+            string tqcode = btTQList.EditValue == null ? "" : btTQList.EditValue.ToString();
+            RefreshData(string.Format("where tqcode='{0}'", tqcode));
         }
 
         void repositoryItemLookUpEdit2_EditValueChanged(object sender, EventArgs e) {
             //
             string linecode = btXlList.EditValue==null?"":btXlList.EditValue.ToString();
-            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
+            string sql = "";
+            if (linecode.Length == 6) {
+                sql = string.Format("where xlcode='{2}'",linecode);
+
+                RefreshData(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
+            } else {
+                sql = string.Format("where xlcode2='{0}'", linecode);
+
+            }
+            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(sql);
             repositoryItemLookUpEdit3.DataSource = xlList;
-            RefreshData(string.Format("where left(tqcode,{0})='{1}'", linecode.Length, linecode));
 
         }
         

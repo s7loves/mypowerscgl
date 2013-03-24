@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Lcgl {
             string strfirst = "";
             string filter = "";
             filter = "  where 1=1";
-            if (year!="全部") filter += " and  jhwcsj between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+            if (year != "全部") filter += " and  ssrq between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
                 + year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
             if (isWorkflowCall)
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Lcgl {
             string filter = "";
 
             filter = "  where 1=1";
-            if (year != "全部") filter += " and  jhwcsj between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
+            if (year != "全部") filter += " and  ssrq between '" + year + "-" + startmonth + "-" + startday + " 00:00:00' and  cast('"
                 + year + "-" + endmonth + "-" + endtday + " 23:59:59' as datetime) ";
             if (orgid != "") filter += " and OrgCode='" + orgid + "' ";
             if (isWorkflowCall)

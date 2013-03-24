@@ -27,7 +27,7 @@ namespace Ebada.Scgl.Lcgl
 
             this.cobGds.DataBindings.Add("EditValue", rowData, "GdsName");
             this.cobType.DataBindings.Add("EditValue", rowData, "type");
-            this.cobYear.DataBindings.Add("EditValue", rowData,"year");
+            //this.cobYear.DataBindings.Add("EditValue", rowData,"year");
             this.cobModel.DataBindings.Add("EditValue", rowData, "zzxh");
             this.cobNum.DataBindings.Add("EditValue", rowData,"num");
         }
@@ -36,6 +36,7 @@ namespace Ebada.Scgl.Lcgl
 
         public object RowData {
             get {
+                rowData.year = cobYear.DateTime.Year.ToString();
                 return rowData;
             }
             set {
@@ -47,6 +48,7 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_21dyjcdcbk>(value as PJ_21dyjcdcbk, rowData);
                 }
+                cobYear.EditValue = rowData.year + "-1-1";
             }
         }
 
