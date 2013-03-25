@@ -729,6 +729,12 @@
     <Compile Include="送电\巡视计划\UCsd_xsxm.Designer.cs">
       <DependentUpon>UCsd_xsxm.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电\巡视计划\UCsd_xs_jhSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电\巡视计划\UCsd_xs_jhSearch.Designer.cs">
+      <DependentUpon>UCsd_xs_jhSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="送电\特殊区域\frmsd_tsqyEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1167,6 +1173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsd_xsxm.resx">
       <DependentUpon>UCsd_xsxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电\巡视计划\UCsd_xs_jhSearch.resx">
+      <DependentUpon>UCsd_xs_jhSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\特殊区域\frmsd_tsqyEdit.resx">
       <DependentUpon>frmsd_tsqyEdit.cs</DependentUpon>
