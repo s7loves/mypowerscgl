@@ -114,12 +114,14 @@
             this.btUpdates.Caption = "修改";
             this.btUpdates.Id = 1;
             this.btUpdates.Name = "btUpdates";
+            this.btUpdates.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btUpdates_ItemClick);
             // 
             // btDeletes
             // 
             this.btDeletes.Caption = "删除";
             this.btDeletes.Id = 2;
             this.btDeletes.Name = "btDeletes";
+            this.btDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletes_ItemClick);
             // 
             // bar3
             // 

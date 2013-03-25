@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Sbgl
         private void Init()
         {
             uCsdxs_jh1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xsjh>(uCsdxs_jh1_FocusedRowChanged);
+            
         }
 
         void uCsdxs_jh1_FocusedRowChanged(object sender, Ebada.Scgl.Model.sd_xsjh obj)

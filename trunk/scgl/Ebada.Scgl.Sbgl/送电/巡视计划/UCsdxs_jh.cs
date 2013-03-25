@@ -162,5 +162,24 @@ namespace Ebada.Scgl.Sbgl
                 RefreshData();
             }
         }
+
+        private void btDeletes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+                return;
+            sd_xsjh xsjh = gridView1.GetFocusedRow() as sd_xsjh;
+            Client.ClientHelper.PlatformSqlMap.DeleteByWhere<sd_xsjhnr>("where ParentID='" + xsjh.ID + "'");
+            Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjh>(xsjh);
+            RefreshData();
+        }
+
+        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            if (FocusedRowChanged != null)
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as sd_xsjh);
+
+        }
+
+       
     }
 }
