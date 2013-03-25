@@ -20,6 +20,20 @@ namespace Ebada.Scgl.Sbgl
     {
         private GridViewOperation<sd_xsjh> gridViewOperation;
         public event SendDataEventHandler<sd_xsjh> FocusedRowChanged;
+
+        private string checkState="";
+        public string CheckState
+        {
+            get
+            {
+                return this.checkState;
+            }
+            set
+            {
+                this.checkState = value;
+            }
+        }
+
         public UCsdxs_jh()
         {
             InitializeComponent();
@@ -87,8 +101,11 @@ namespace Ebada.Scgl.Sbgl
             this.gridView1.Columns["sxr"].Caption = "巡视人员";
             this.gridView1.Columns["sxr"].VisibleIndex = m++;
 
-            this.gridView1.Columns["jhsj"].Caption = "计划时间";
-            this.gridView1.Columns["jhsj"].VisibleIndex = m++;
+            if (checkState == "01")
+            {
+                this.gridView1.Columns["jhsj"].Caption = "计划时间";
+                this.gridView1.Columns["jhsj"].VisibleIndex = m++;
+            }
 
             this.gridView1.Columns["xskssj"].Caption = "巡视开始时间";
             this.gridView1.Columns["xskssj"].VisibleIndex = m++;
@@ -105,14 +122,18 @@ namespace Ebada.Scgl.Sbgl
             this.gridView1.Columns["flag"].Caption = "任务状态";
             this.gridView1.Columns["flag"].VisibleIndex = m++;
 
-            this.gridView1.Columns["cjr"].Caption = "创建人";
-            this.gridView1.Columns["cjr"].VisibleIndex = m++;
+            if (checkState == "01")
+            {
 
-            this.gridView1.Columns["fbr"].Caption = "发布人";
-            this.gridView1.Columns["fbr"].VisibleIndex = m++;
+                this.gridView1.Columns["cjr"].Caption = "创建人";
+                this.gridView1.Columns["cjr"].VisibleIndex = m++;
 
-            this.gridView1.Columns["fbsj"].Caption = "发布时间";
-            this.gridView1.Columns["fbsj"].VisibleIndex = m++;
+                this.gridView1.Columns["fbr"].Caption = "发布人";
+                this.gridView1.Columns["fbr"].VisibleIndex = m++;
+
+                this.gridView1.Columns["fbsj"].Caption = "发布时间";
+                this.gridView1.Columns["fbsj"].VisibleIndex = m++;
+            }
 
         }
 
@@ -124,7 +145,16 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.RefreshData(slqwhere);
         }
         public void RefreshData() {
-            string sql = " where 1>0";
+
+            string sql = "";
+            if (checkState == "01")
+            {
+                sql = "where wcbj='未完成'";
+            }
+            else
+            {
+                sql = "where wcbj='完成'";
+            }
             gridViewOperation.RefreshData(sql);
         }
 
