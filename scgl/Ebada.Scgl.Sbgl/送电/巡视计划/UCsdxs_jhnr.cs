@@ -149,60 +149,41 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentobj == null)
                 return;
-            int startgt =-1;
-            int endgt = -1; 
-            try
-            {
-                 startgt = Convert.ToInt32(parentobj.c1);
-                 endgt = Convert.ToInt32(parentobj.c2);
-                int temp = 0;
-                if (startgt > endgt)
-                {
-                    temp = startgt;
-                    startgt = endgt;
-                    endgt = temp;
-                }
-            }
-            catch
-            {
-                MsgBox.ShowWarningMessageBox("杆塔序号错误!");
-                return;
-            }
-            if (startgt < 0 || endgt < 0)
-                return;
-            
-            string sql = "where Convert(int,gtCode) between "+startgt+" and "+ endgt+" and LineCode='"+parentobj.LineID+"'";
-
-            List<sd_gt> sdgtList=(List<sd_gt>)Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_gt>(sql);
-            if (sdgtList == null)
-                return;
-            if (sdgtList.Count == 0)
-                return;
-            List<sd_xsjhnr> xsjhnrList = new List<sd_xsjhnr>();
-            foreach (sd_gt gt in sdgtList)
-            {
-                sd_xsjhnr xsjhnr = new sd_xsjhnr();
-                xsjhnr.ParentID = parentid;
-                xsjhnr.gtid = gt.gtID;
-                xsjhnr.gtbh = gt.gtCode;
-                xsjhnr.lat = gt.gtLat.ToString();
-                xsjhnr.lng = gt.gtLon.ToString();
-                xsjhnrList.Add(xsjhnr);
-                Thread.Sleep(10);
-            }
-           
             frmsd_xsjhnr frm = new frmsd_xsjhnr();
-            frm.gtList = sdgtList;
-            frm.RowData = xsjhnrList;
+            frm.sdxsjh = parentobj;
             if (frm.ShowDialog() == DialogResult.OK)
             {
 
                 foreach (sd_xsjhnr jhnr in (List<sd_xsjhnr>)frm.RowData)
                 {
-                    Client.ClientHelper.PlatformSqlMap.Create<sd_xsjhnr>(jhnr);
+                    if(Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where ID='" + jhnr.ID + "'")==null)
+                        Client.ClientHelper.PlatformSqlMap.Create<sd_xsjhnr>(jhnr);
                 }
                 RefreshData();
                 
+            }
+        }
+
+        private void btnDeletes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+                return;
+            sd_xsjhnr jhnr = this.gridView1.GetFocusedRow() as sd_xsjhnr;
+            Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(jhnr);
+            RefreshData();
+        }
+
+        private void btUpdates_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+                return;
+            sd_xsjhnr jhnr = this.gridView1.GetFocusedRow() as sd_xsjhnr;
+            frmsd_xsjhnrEdit frm = new frmsd_xsjhnrEdit();
+            frm.RowData = jhnr;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Client.ClientHelper.PlatformSqlMap.Update<sd_xsjhnr>(frm.RowData);
+                RefreshData();
             }
         }
 

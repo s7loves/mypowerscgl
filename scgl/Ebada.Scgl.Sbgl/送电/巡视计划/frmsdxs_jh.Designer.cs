@@ -32,10 +32,6 @@
             this.lkueOrg = new DevExpress.XtraEditors.LookUpEdit();
             this.lblLine = new DevExpress.XtraEditors.LabelControl();
             this.lkueLine = new DevExpress.XtraEditors.LookUpEdit();
-            this.lblStartGt = new DevExpress.XtraEditors.LabelControl();
-            this.lkueStartGt = new DevExpress.XtraEditors.LookUpEdit();
-            this.lblEndGt = new DevExpress.XtraEditors.LabelControl();
-            this.lkueEndGt = new DevExpress.XtraEditors.LookUpEdit();
             this.lblvol = new DevExpress.XtraEditors.LabelControl();
             this.txtVol = new DevExpress.XtraEditors.TextEdit();
             this.lblxslb = new DevExpress.XtraEditors.LabelControl();
@@ -66,8 +62,6 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.lkueOrg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueStartGt.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueEndGt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVol.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxslb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsxr.Properties)).BeginInit();
@@ -123,45 +117,9 @@
             this.lkueLine.TabIndex = 3;
             this.lkueLine.EditValueChanged += new System.EventHandler(this.lkueLine_EditValueChanged);
             // 
-            // lblStartGt
-            // 
-            this.lblStartGt.Location = new System.Drawing.Point(33, 105);
-            this.lblStartGt.Name = "lblStartGt";
-            this.lblStartGt.Size = new System.Drawing.Size(48, 14);
-            this.lblStartGt.TabIndex = 4;
-            this.lblStartGt.Text = "起始杆塔";
-            // 
-            // lkueStartGt
-            // 
-            this.lkueStartGt.Location = new System.Drawing.Point(110, 102);
-            this.lkueStartGt.Name = "lkueStartGt";
-            this.lkueStartGt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkueStartGt.Size = new System.Drawing.Size(285, 21);
-            this.lkueStartGt.TabIndex = 5;
-            this.lkueStartGt.EditValueChanged += new System.EventHandler(this.lkueStartGt_EditValueChanged);
-            // 
-            // lblEndGt
-            // 
-            this.lblEndGt.Location = new System.Drawing.Point(33, 143);
-            this.lblEndGt.Name = "lblEndGt";
-            this.lblEndGt.Size = new System.Drawing.Size(48, 14);
-            this.lblEndGt.TabIndex = 6;
-            this.lblEndGt.Text = "终止杆塔";
-            // 
-            // lkueEndGt
-            // 
-            this.lkueEndGt.Location = new System.Drawing.Point(110, 140);
-            this.lkueEndGt.Name = "lkueEndGt";
-            this.lkueEndGt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkueEndGt.Size = new System.Drawing.Size(285, 21);
-            this.lkueEndGt.TabIndex = 7;
-            this.lkueEndGt.EditValueChanged += new System.EventHandler(this.lkueEndGt_EditValueChanged);
-            // 
             // lblvol
             // 
-            this.lblvol.Location = new System.Drawing.Point(33, 181);
+            this.lblvol.Location = new System.Drawing.Point(33, 105);
             this.lblvol.Name = "lblvol";
             this.lblvol.Size = new System.Drawing.Size(48, 14);
             this.lblvol.TabIndex = 8;
@@ -169,14 +127,14 @@
             // 
             // txtVol
             // 
-            this.txtVol.Location = new System.Drawing.Point(110, 178);
+            this.txtVol.Location = new System.Drawing.Point(110, 102);
             this.txtVol.Name = "txtVol";
             this.txtVol.Size = new System.Drawing.Size(285, 21);
             this.txtVol.TabIndex = 9;
             // 
             // lblxslb
             // 
-            this.lblxslb.Location = new System.Drawing.Point(33, 219);
+            this.lblxslb.Location = new System.Drawing.Point(33, 143);
             this.lblxslb.Name = "lblxslb";
             this.lblxslb.Size = new System.Drawing.Size(48, 14);
             this.lblxslb.TabIndex = 10;
@@ -184,14 +142,14 @@
             // 
             // txtxslb
             // 
-            this.txtxslb.Location = new System.Drawing.Point(110, 216);
+            this.txtxslb.Location = new System.Drawing.Point(110, 140);
             this.txtxslb.Name = "txtxslb";
             this.txtxslb.Size = new System.Drawing.Size(285, 21);
             this.txtxslb.TabIndex = 11;
             // 
             // lblxsnr
             // 
-            this.lblxsnr.Location = new System.Drawing.Point(33, 257);
+            this.lblxsnr.Location = new System.Drawing.Point(33, 181);
             this.lblxsnr.Name = "lblxsnr";
             this.lblxsnr.Size = new System.Drawing.Size(48, 14);
             this.lblxsnr.TabIndex = 12;
@@ -199,7 +157,7 @@
             // 
             // lblsxr
             // 
-            this.lblsxr.Location = new System.Drawing.Point(33, 295);
+            this.lblsxr.Location = new System.Drawing.Point(33, 219);
             this.lblsxr.Name = "lblsxr";
             this.lblsxr.Size = new System.Drawing.Size(48, 14);
             this.lblsxr.TabIndex = 14;
@@ -207,14 +165,14 @@
             // 
             // txtsxr
             // 
-            this.txtsxr.Location = new System.Drawing.Point(110, 292);
+            this.txtsxr.Location = new System.Drawing.Point(110, 216);
             this.txtsxr.Name = "txtsxr";
             this.txtsxr.Size = new System.Drawing.Size(285, 21);
             this.txtsxr.TabIndex = 15;
             // 
             // lbljhsj
             // 
-            this.lbljhsj.Location = new System.Drawing.Point(33, 333);
+            this.lbljhsj.Location = new System.Drawing.Point(33, 257);
             this.lbljhsj.Name = "lbljhsj";
             this.lbljhsj.Size = new System.Drawing.Size(48, 14);
             this.lbljhsj.TabIndex = 16;
@@ -223,7 +181,7 @@
             // datejhsj
             // 
             this.datejhsj.EditValue = null;
-            this.datejhsj.Location = new System.Drawing.Point(110, 330);
+            this.datejhsj.Location = new System.Drawing.Point(110, 254);
             this.datejhsj.Name = "datejhsj";
             this.datejhsj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -306,7 +264,7 @@
             // 
             // txtxsnr
             // 
-            this.txtxsnr.Location = new System.Drawing.Point(110, 254);
+            this.txtxsnr.Location = new System.Drawing.Point(110, 178);
             this.txtxsnr.Name = "txtxsnr";
             this.txtxsnr.Size = new System.Drawing.Size(285, 21);
             this.txtxsnr.TabIndex = 26;
@@ -345,7 +303,7 @@
             // 
             // lblfbr
             // 
-            this.lblfbr.Location = new System.Drawing.Point(415, 295);
+            this.lblfbr.Location = new System.Drawing.Point(34, 294);
             this.lblfbr.Name = "lblfbr";
             this.lblfbr.Size = new System.Drawing.Size(36, 14);
             this.lblfbr.TabIndex = 31;
@@ -353,14 +311,14 @@
             // 
             // txtfbr
             // 
-            this.txtfbr.Location = new System.Drawing.Point(502, 292);
+            this.txtfbr.Location = new System.Drawing.Point(110, 291);
             this.txtfbr.Name = "txtfbr";
-            this.txtfbr.Size = new System.Drawing.Size(312, 21);
+            this.txtfbr.Size = new System.Drawing.Size(285, 21);
             this.txtfbr.TabIndex = 32;
             // 
             // lblfbsj
             // 
-            this.lblfbsj.Location = new System.Drawing.Point(415, 333);
+            this.lblfbsj.Location = new System.Drawing.Point(415, 298);
             this.lblfbsj.Name = "lblfbsj";
             this.lblfbsj.Size = new System.Drawing.Size(48, 14);
             this.lblfbsj.TabIndex = 33;
@@ -369,7 +327,7 @@
             // datefbsj
             // 
             this.datefbsj.EditValue = null;
-            this.datefbsj.Location = new System.Drawing.Point(502, 330);
+            this.datefbsj.Location = new System.Drawing.Point(502, 295);
             this.datefbsj.Name = "datefbsj";
             this.datefbsj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -380,7 +338,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(656, 373);
+            this.btnOK.Location = new System.Drawing.Point(624, 336);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 35;
@@ -389,7 +347,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(751, 373);
+            this.btnCancel.Location = new System.Drawing.Point(729, 336);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 36;
@@ -399,7 +357,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 408);
+            this.ClientSize = new System.Drawing.Size(829, 395);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.datefbsj);
@@ -428,10 +386,6 @@
             this.Controls.Add(this.lblxslb);
             this.Controls.Add(this.txtVol);
             this.Controls.Add(this.lblvol);
-            this.Controls.Add(this.lkueEndGt);
-            this.Controls.Add(this.lblEndGt);
-            this.Controls.Add(this.lkueStartGt);
-            this.Controls.Add(this.lblStartGt);
             this.Controls.Add(this.lkueLine);
             this.Controls.Add(this.lblLine);
             this.Controls.Add(this.lkueOrg);
@@ -445,8 +399,6 @@
             this.Load += new System.EventHandler(this.frmsdxs_jh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lkueOrg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueStartGt.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueEndGt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVol.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxslb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsxr.Properties)).EndInit();
@@ -475,10 +427,6 @@
         private DevExpress.XtraEditors.LookUpEdit lkueOrg;
         private DevExpress.XtraEditors.LabelControl lblLine;
         private DevExpress.XtraEditors.LookUpEdit lkueLine;
-        private DevExpress.XtraEditors.LabelControl lblStartGt;
-        private DevExpress.XtraEditors.LookUpEdit lkueStartGt;
-        private DevExpress.XtraEditors.LabelControl lblEndGt;
-        private DevExpress.XtraEditors.LookUpEdit lkueEndGt;
         private DevExpress.XtraEditors.LabelControl lblvol;
         private DevExpress.XtraEditors.TextEdit txtVol;
         private DevExpress.XtraEditors.LabelControl lblxslb;

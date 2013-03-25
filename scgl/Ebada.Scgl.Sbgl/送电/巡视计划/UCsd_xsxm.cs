@@ -166,6 +166,29 @@ namespace Ebada.Scgl.Sbgl
             }
         }
 
+        private void btUpdates_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+                return;
+            sd_xsxm xsxm = this.gridView1.GetFocusedRow() as sd_xsxm;
+            frmsd_xsxm frm = new frmsd_xsxm();
+            frm.RowData = xsxm;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Client.ClientHelper.PlatformSqlMap.Update<sd_xsxm>(frm.RowData);
+                RefreshData();
+            }
+        }
+
+        private void btDeletes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+                return;
+            sd_xsxm xsxm = this.gridView1.GetFocusedRow() as sd_xsxm;
+            Client.ClientHelper.PlatformSqlMap.Delete<sd_xsxm>(xsxm);
+            RefreshData();
+        }
+
        
 
 

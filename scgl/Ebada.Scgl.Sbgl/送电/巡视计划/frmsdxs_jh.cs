@@ -102,8 +102,6 @@ namespace Ebada.Scgl.Sbgl
         {
             this.lkueOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
             this.lkueLine.DataBindings.Add("EditValue", rowData, "LineID");
-            this.lkueStartGt.DataBindings.Add("EditValue", rowData, "c1");
-            this.lkueEndGt.DataBindings.Add("EditValue", rowData, "c2");
             this.txtVol.DataBindings.Add("EditValue", rowData, "vol");
             this.txtxslb.DataBindings.Add("EditValue", rowData, "xslb");
             this.txtxsnr.DataBindings.Add("EditValue", rowData, "xsnr");
@@ -152,14 +150,6 @@ namespace Ebada.Scgl.Sbgl
             if (this.lkueLine.EditValue == null)
                 return;
             rowData.LineName = lkueLine.Text;
-            List<DicType> gtDictypeList = new List<DicType>();
-            IList<sd_gt> gtList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_gt>("where LineCode='" + lkueLine.EditValue.ToString() + "'");
-            foreach (sd_gt gt in gtList)
-            {
-                gtDictypeList.Add(new DicType(gt.gtCode, gt.gtCode));
-            }
-            SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
-            SetComboBoxData(lkueEndGt, "Value", "Key", "请选择", "终止杆塔", gtDictypeList);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -181,6 +171,6 @@ namespace Ebada.Scgl.Sbgl
             
         }
 
-
+       
     }
 }

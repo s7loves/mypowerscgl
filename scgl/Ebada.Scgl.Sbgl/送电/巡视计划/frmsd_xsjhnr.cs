@@ -18,6 +18,7 @@ using DevExpress.XtraEditors.Repository;
 using System.Collections;
 using Ebada.Core;
 using Ebada.UI.Base;
+using System.Threading;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -25,11 +26,13 @@ namespace Ebada.Scgl.Sbgl
     {
       
         DevExpress.XtraTab.XtraTabPage XtraPage = null;
-        
         public  IList<sd_gt> gtList;
+        public sd_xsjh sdxsjh;
+        
         public frmsd_xsjhnr()
         {
             InitializeComponent();
+            
         }
 
         #region IPopupFormEdit 成员
@@ -84,11 +87,33 @@ namespace Ebada.Scgl.Sbgl
         private void frmSBTZ_Load(object sender, EventArgs e)
         {
            
+            InitLkue();
+           
+        }
+
+        private void InitLkue()
+        {
+            List<DicType> gtDictypeList = new List<DicType>();
+            IList<sd_gt> gtList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_gt>("where LineCode='" + sdxsjh.LineID+ "'");
+            foreach (sd_gt gt in gtList)
+            {
+                gtDictypeList.Add(new DicType(gt.gtCode, gt.gtCode));
+            }
+            SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
+            SetComboBoxData(lkueEndGt, "Value", "Key", "请选择", "终止杆塔", gtDictypeList);
+        }
+
+        private void RefershControl()
+        {
+            int pageCount = xtraTabControl1.TabPages.Count;
             //lable一个字符站12个宽度
-            this.xtraTabControl1.TabPages.Clear();
+            for (int i = pageCount-1; i >0; i--)
+            {
+                xtraTabControl1.TabPages.RemoveAt(i);
+            }
             //this.splitContainerControl1.Panel2.Controls.Clear();
             //lable起始位置
-            
+
             int pageNumber = 1;
 
             if (gtList == null)
@@ -110,9 +135,9 @@ namespace Ebada.Scgl.Sbgl
                 this.xtraTabControl1.TabPages.Add(XtraPage);
                 pageNumber++;
 
-               
+
                 AddLable(startlblw, "gtid", "设备ID", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtid", "gtid", ref starttexth, 48, XtraPage, pageNumber-2);
+                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtid", "gtid", ref starttexth, 48, XtraPage, pageNumber - 2);
 
                 AddLable(startlblw, "gtbh", "杆塔编号", ref startlblh, XtraPage);
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtbh", "gtbh", ref starttexth, 48, XtraPage, pageNumber - 2);
@@ -255,6 +280,68 @@ namespace Ebada.Scgl.Sbgl
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
-        }      
+        }
+
+        private void lkueStartGt_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.lkueStartGt.EditValue == null)
+                return;
+            if (this.lkueEndGt.EditValue == null)
+                return;
+            InitControl();
+            RefershControl();
+        }
+
+        private void InitControl()
+        {
+            int startgt = -1;
+            int endgt = -1;
+
+            startgt = Convert.ToInt32(this.lkueStartGt.EditValue);
+            endgt = Convert.ToInt32(this.lkueEndGt.EditValue);
+            int temp = 0;
+            if (startgt > endgt)
+            {
+                temp = startgt;
+                startgt = endgt;
+                endgt = temp;
+            }
+
+            if (startgt < 0 || endgt < 0)
+                return;
+            if (gtList != null)
+            {
+                gtList.Clear();
+            }
+            string sql = "where Convert(int,gtCode) between " + startgt + " and " + endgt + " and LineCode='" +sdxsjh.LineID +"'";
+            gtList = (List<sd_gt>)Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_gt>(sql);
+            if (gtList == null)
+                return;
+            if (gtList.Count == 0)
+                return;
+            List<sd_xsjhnr> xsjhnrList = new List<sd_xsjhnr>();
+            foreach (sd_gt gt in gtList)
+            {
+                sd_xsjhnr xsjhnr = new sd_xsjhnr();
+                xsjhnr.ParentID = sdxsjh.ID;
+                xsjhnr.gtid = gt.gtID;
+                xsjhnr.gtbh = gt.gtCode;
+                xsjhnr.lat = gt.gtLat.ToString();
+                xsjhnr.lng = gt.gtLon.ToString();
+                xsjhnrList.Add(xsjhnr);
+                Thread.Sleep(10);
+            }
+            rowData = xsjhnrList;
+        }
+
+        private void lkueEndGt_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.lkueStartGt.EditValue == null)
+                return;
+            if (this.lkueEndGt.EditValue == null)
+                return;
+            InitControl();
+            RefershControl();
+        }
     }
 }

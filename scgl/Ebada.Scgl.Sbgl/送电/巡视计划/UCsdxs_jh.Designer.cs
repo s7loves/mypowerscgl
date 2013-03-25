@@ -97,6 +97,7 @@
             this.btDeletes.Caption = "删除";
             this.btDeletes.Id = 2;
             this.btDeletes.Name = "btDeletes";
+            this.btDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletes_ItemClick);
             // 
             // btRefresh
             // 
@@ -159,6 +160,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
             // UCsdxs_jh
             // 
