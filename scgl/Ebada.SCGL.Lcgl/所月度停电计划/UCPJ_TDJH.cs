@@ -249,13 +249,18 @@ namespace Ebada.Scgl.Lcgl {
             gridView1.Columns["S2"].Caption = "缺陷发现日期";
             // gridView1.Columns["S3"].Caption = "选择流程";
             gridView1.Columns["IsSelect"].OptionsColumn.AllowEdit = true;
-            gridView1.Columns["IsSelect"].ColumnEdit = repositoryItemCheckEdit1;
+            //gridView1.Columns["IsSelect"].ColumnEdit = repositoryItemCheckEdit1;
+            //repositoryItemCheckEdit1.CheckedChanged += new EventHandler(repositoryItemCheckEdit1_CheckedChanged);
             gridView1.Columns["TDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             gridView1.Columns["TDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             gridView1.Columns["SDtime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             gridView1.Columns["SDtime"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
 
-            //gridView1.CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
+            gridView1.CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
+        }
+
+        void repositoryItemCheckEdit1_CheckedChanged(object sender, EventArgs e) {
+            //throw new NotImplementedException();
         }
 
 
@@ -349,6 +354,7 @@ namespace Ebada.Scgl.Lcgl {
         }
 
         private void barExplorMonth_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            this.gridView1.PostEditor();//马上保存编辑
             ExportTDJH etdjh = new ExportTDJH();
             frmTDJHMonthSet fms = new frmTDJHMonthSet();
             if (fms.ShowDialog() == DialogResult.OK) {
@@ -651,10 +657,9 @@ namespace Ebada.Scgl.Lcgl {
 
         private void repositoryItemCheckEdit1_Click(object sender, EventArgs e) {
             if (gridView1.FocusedRowHandle > -1) {
-                PJ_tdjh obj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_tdjh;
-                obj.IsSelect = Convert.ToBoolean(repositoryItemCheckEdit1.ValueChecked);
-                gridView1.UpdateCurrentRow();
-
+                //PJ_tdjh obj = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_tdjh;
+                //obj.IsSelect = Convert.ToBoolean(repositoryItemCheckEdit1.ValueChecked);
+                //ClientHelper.PlatformSqlMap.Update<PJ_tdjh>(obj);
             }
            
         }
