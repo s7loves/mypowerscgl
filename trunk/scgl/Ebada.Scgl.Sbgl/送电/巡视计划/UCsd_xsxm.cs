@@ -171,7 +171,9 @@ namespace Ebada.Scgl.Sbgl
             if (this.gridView1.GetFocusedRow() == null)
                 return;
             sd_xsxm xsxm = this.gridView1.GetFocusedRow() as sd_xsxm;
+            
             frmsd_xsxm frm = new frmsd_xsxm();
+            frm.isupdate = true;
             frm.RowData = xsxm;
             if (frm.ShowDialog() == DialogResult.OK)
             {

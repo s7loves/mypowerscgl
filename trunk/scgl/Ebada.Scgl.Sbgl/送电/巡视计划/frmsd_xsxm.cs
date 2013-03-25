@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Sbgl
 {
     public partial class frmsd_xsxm : FormBase, IPopupFormEdit
     {
+        public bool isupdate = false;
         public frmsd_xsxm()
         {
             InitializeComponent();
@@ -54,10 +55,16 @@ namespace Ebada.Scgl.Sbgl
 
         private void dataBind()
         {
+            if (!isupdate)
+            {
+                this.datexssj.EditValue = DateTime.Now;
+                rowData.xssj = DateTime.Now;
+            }
             this.txtzl.DataBindings.Add("EditValue", rowData, "zl");
             this.txtmc.DataBindings.Add("EditValue", rowData, "mc");
             this.txtflag.DataBindings.Add("EditValue", rowData, "flag");
             this.datexssj.DataBindings.Add("EditValue", rowData, "xssj");
+           
         }
 
         private void Initlkue()
