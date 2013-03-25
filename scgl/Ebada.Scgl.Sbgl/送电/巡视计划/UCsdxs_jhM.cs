@@ -21,9 +21,17 @@ namespace Ebada.Scgl.Sbgl
             Init();
             
         }
+        private string state;
+        public Control Show(string parastate)
+        {
+            this.state = parastate;
+            uCsdxs_jh1.CheckState = state;
+            return this;
+        }
 
         private void Init()
         {
+            
             uCsdxs_jh1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xsjh>(uCsdxs_jh1_FocusedRowChanged);
             
         }
