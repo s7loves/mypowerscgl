@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Lcgl
                 } else {
                     ConvertHelper.CopyTo<PJ_21dyjcdcbk>(value as PJ_21dyjcdcbk, rowData);
                 }
-                cobYear.EditValue = rowData.year + "-1-1";
+                cobYear.EditValue = rowData.year.Substring(0,4) + "-1-1";
             }
         }
 
