@@ -23,7 +23,7 @@ namespace Ebada.Scgl.Sbgl
     {
 
 
-
+        public bool issearch = false;
         private GridViewOperation<sd_xsjhnr> gridViewOperation;
         public event SendDataEventHandler<sd_xsjhnr> FocusedRowChanged;
         public UCsdxs_jhnr()
@@ -40,8 +40,16 @@ namespace Ebada.Scgl.Sbgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             InitData();//初始数据
             InitColumns();//初始列
-            
+            InitBar();
 
+        }
+
+        private void InitBar()
+        {
+            if (issearch)
+            {
+                bar1.Visible = false;
+            }
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();

@@ -20,7 +20,7 @@ namespace Ebada.Scgl.Sbgl
     {
         private GridViewOperation<sd_xsjh> gridViewOperation;
         public event SendDataEventHandler<sd_xsjh> FocusedRowChanged;
-
+        public bool isSearch = false;
         private string checkState="";
         public string CheckState
         {
@@ -48,8 +48,16 @@ namespace Ebada.Scgl.Sbgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             InitData();//初始数据
             InitColumns();//初始列
-            
+            InitBar();
 
+        }
+
+        private void InitBar()
+        {
+            if (isSearch)
+            {
+                this.bar1.Visible = false;
+            }
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -151,9 +159,13 @@ namespace Ebada.Scgl.Sbgl
             {
                 sql = "where wcbj='未完成'";
             }
-            else
+            else if (checkState == "02")
             {
                 sql = "where wcbj='完成'";
+            }
+            else
+            {
+                sql = "where 1>0";
             }
             gridViewOperation.RefreshData(sql);
         }
