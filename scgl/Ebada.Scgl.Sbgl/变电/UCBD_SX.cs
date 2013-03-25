@@ -32,6 +32,7 @@ namespace Ebada.Scgl.Sbgl {
         private string addColName="";
         private string editColValue="";
         private BD_SBTZ_ZL parentObject;
+        bool canDel = false;
         public UCBD_SX()
         {
             InitializeComponent();
@@ -41,7 +42,15 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<BD_SBTZ_SX>(gridViewOperation_BeforeUpdate);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<BD_SBTZ_SX>(gridViewOperation_BeforeInsert);
             gridView1.Click += new EventHandler(gridView1_Click);
+            gridView1.CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
             enableList.AddRange(new string[]{"a1","a2","a3","a4","a5","a6","a7","a8"});
+            
+        }
+
+        void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e) {
+            object obj = gridView1.GetRow(e.RowHandle);
+            if (obj != null)
+                ClientHelper.PlatformSqlMap.Update<BD_SBTZ_SX>(obj);
         }
 
         #region 
@@ -89,7 +98,8 @@ namespace Ebada.Scgl.Sbgl {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            gridView1.OptionsBehavior.Editable = btEdit.Enabled;
+            canDel = btDelete.Enabled;
             InitColumns();//初始列
             InitData();//初始数据
         }
@@ -107,20 +117,19 @@ namespace Ebada.Scgl.Sbgl {
                 string enablestr = sbsx.sxcol;
                 if (enableList.Contains(enablestr))
                 {
-                    btEdit.Enabled = false;
+                    //btEdit.Enabled = false;
+                    gridView1.Columns["sxname"].OptionsColumn.AllowEdit = false;
                     btDelete.Enabled = false;
                 }
                 else
                 {
-                    btEdit.Enabled = true;
+                    //btEdit.Enabled = true;
+                    gridView1.Columns["sxname"].OptionsColumn.AllowEdit = true;
+                    if(canDel)
                     btDelete.Enabled = true;
                 }
             }
-            else
-            {
-                btEdit.Enabled = false;
-                btDelete.Enabled = false;
-            }
+            
             
             if (FocusedRowChanged != null) {
                 focusedRow = gridView1.GetFocusedRow();
@@ -140,36 +149,31 @@ namespace Ebada.Scgl.Sbgl {
         /// 初始化列,
         /// </summary>
         public void InitColumns() {
-            foreach (GridColumn c in gridView1.Columns)
-            {
-                c.Visible = false;
-            }
+            
             int m = 1;
             //sxcol(属性列)、sxname(属性名)、isvisible(是否显示)、isdel(是否可删除)、isedit(是否可修改)
             DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             cbox.Items.Add("是");
             cbox.Items.Add("否");
-            gridView1.Columns["sxcol"].Visible = true;
-            gridView1.Columns["sxcol"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["sxname"].Visible = true;
-            gridView1.Columns["sxname"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["norder"].Visible = true;
-            gridView1.Columns["norder"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isvisible"].Visible = true;
             gridView1.Columns["isvisible"].ColumnEdit = cbox;
-            gridView1.Columns["isvisible"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isdel"].Visible = true;
             gridView1.Columns["isdel"].ColumnEdit = cbox;
-            gridView1.Columns["isdel"].VisibleIndex = m;
-            m++;
-            gridView1.Columns["isedit"].Visible = true;
             gridView1.Columns["isedit"].ColumnEdit = cbox;
-            gridView1.Columns["isvisible"].VisibleIndex = m;
 
+            gridView1.Columns["zldm"].Visible = false;
+            gridView1.Columns["c1"].Visible = false;
+            gridView1.Columns["c2"].Visible = false;
+
+            cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            cbox.Items.Add("文本");
+            cbox.Items.Add("下拉列表");
+            cbox.Items.Add("日期");
+            cbox.Items.Add("整数");
+            cbox.Items.Add("小数");
+            gridView1.Columns["sxtype"].ColumnEdit = cbox;
+            cbox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            cbox.Items.Add("查询");
+            cbox.Items.Add("数组(分隔符'|')");
+            gridView1.Columns["boxtype"].ColumnEdit = cbox;
         }
         /// <summary>
         /// 刷新数据
