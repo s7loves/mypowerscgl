@@ -30,15 +30,8 @@ namespace Ebada.Scgl.Sbgl
 
         #region IPopupFormEdit 成员
         private sd_xsjh rowData = null;
-        private bool isfirstLoad = true;
-        private bool isgtChange = false;
-        public bool GetIsGtChange
-        {
-            get
-            {
-                return isgtChange;
-            }
-        }
+
+        public bool isupdate = false;
         public object RowData
         {
             get
@@ -115,13 +108,24 @@ namespace Ebada.Scgl.Sbgl
             this.txtcjr.DataBindings.Add("EditValue", rowData, "cjr");
             this.txtfbr.DataBindings.Add("EditValue", rowData, "fbr");
             this.datefbsj.DataBindings.Add("EditValue", rowData, "fbsj");
+            if (!isupdate)
+            {
+                this.datejhsj.EditValue = DateTime.Now;
+                this.rowData.jhsj = DateTime.Now;
+                this.datexskssj.EditValue = DateTime.Now;
+                this.rowData.xskssj = DateTime.Now;
+                this.datexswcsj.EditValue = DateTime.Now;
+                this.rowData.xswcsj = DateTime.Now;
+                this.datefbsj.EditValue = DateTime.Now;
+                this.rowData.fbsj = DateTime.Now;
+            }
         }
 
         #endregion
 
         private void frmsdxs_jh_Load(object sender, EventArgs e)
         {
-            isfirstLoad = false;
+            
         }
         /// <summary>
         /// 单位变化
@@ -158,18 +162,7 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.OK;
         }
 
-        private void lkueStartGt_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!isfirstLoad)
-                isgtChange = true;
-        }
-
-        private void lkueEndGt_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!isfirstLoad)
-                isgtChange = true; 
-            
-        }
+       
 
        
     }

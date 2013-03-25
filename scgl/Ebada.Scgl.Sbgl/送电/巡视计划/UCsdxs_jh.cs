@@ -75,12 +75,6 @@ namespace Ebada.Scgl.Sbgl
             this.gridView1.Columns["LineName"].Caption = "线路名称";
             this.gridView1.Columns["LineName"].VisibleIndex = m++;
 
-            this.gridView1.Columns["c1"].Caption = "起始杆塔号";
-            this.gridView1.Columns["c1"].VisibleIndex = m++;
-
-            this.gridView1.Columns["c2"].Caption = "终止杆塔号";
-            this.gridView1.Columns["c2"].VisibleIndex = m++;
-
             this.gridView1.Columns["vol"].Caption = "电压等级";
             this.gridView1.Columns["vol"].VisibleIndex = m++;
 
@@ -153,12 +147,11 @@ namespace Ebada.Scgl.Sbgl
                 return;
             sd_xsjh xsjh = gridView1.GetFocusedRow() as sd_xsjh;
             frmsdxs_jh frm = new frmsdxs_jh();
+            frm.isupdate = true;
             frm.RowData = xsjh;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Update<sd_xsjh>(frm.RowData);
-                if (frm.GetIsGtChange)
-                    MsgBox.ShowWarningMessageBox("杆塔变化了，重新加载杆塔信息!");
                 RefreshData();
             }
         }
