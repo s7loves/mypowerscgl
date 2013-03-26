@@ -62,6 +62,7 @@ namespace Ebada.Scgl.Sbgl
             uCsdxs_jhnr1.ParentObj = obj;
             uCsd_xsxm1.ParentObj = obj;
         }
+
         #region 绑定数据
         public void SetCheckComboBoxData(DevExpress.XtraEditors.CheckedComboBoxEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
         {
