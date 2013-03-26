@@ -163,9 +163,9 @@ namespace Ebada.Scgl.Sbgl
             {
                 sql = "where wcbj='完成'";
             }
-            else
+            else if(checkState=="03")
             {
-                sql = "where 1>0";
+                sql = "where RTrim(Ltrim(qxnr))!=''";
             }
             gridViewOperation.RefreshData(sql);
         }
