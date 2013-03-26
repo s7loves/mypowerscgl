@@ -352,6 +352,7 @@
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 36;
             this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmsdxs_jh
             // 
@@ -397,6 +398,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "送电巡视计划";
             this.Load += new System.EventHandler(this.frmsdxs_jh_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmsdxs_jh_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.lkueOrg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVol.Properties)).EndInit();
