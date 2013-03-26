@@ -106,21 +106,27 @@
             // 
             this.btAdds.Caption = "增加";
             this.btAdds.Id = 0;
+            this.btAdds.ImageIndex = 6;
             this.btAdds.Name = "btAdds";
+            this.btAdds.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAdds.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdds_ItemClick);
             // 
             // btUpdates
             // 
             this.btUpdates.Caption = "修改";
             this.btUpdates.Id = 1;
+            this.btUpdates.ImageIndex = 1;
             this.btUpdates.Name = "btUpdates";
+            this.btUpdates.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btUpdates.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btUpdates_ItemClick);
             // 
             // btDeletes
             // 
             this.btDeletes.Caption = "删除";
             this.btDeletes.Id = 2;
+            this.btDeletes.ImageIndex = 12;
             this.btDeletes.Name = "btDeletes";
+            this.btDeletes.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletes_ItemClick);
             // 
             // bar3

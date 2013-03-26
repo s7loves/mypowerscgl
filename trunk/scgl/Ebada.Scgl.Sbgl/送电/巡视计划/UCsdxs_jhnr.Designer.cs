@@ -98,6 +98,7 @@
             // 
             this.btAdds.Caption = "增加";
             this.btAdds.Id = 0;
+            this.btAdds.ImageIndex = 6;
             this.btAdds.Name = "btAdds";
             this.btAdds.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdds_ItemClick);
             // 
@@ -105,6 +106,7 @@
             // 
             this.btUpdates.Caption = "修改";
             this.btUpdates.Id = 1;
+            this.btUpdates.ImageIndex = 1;
             this.btUpdates.Name = "btUpdates";
             this.btUpdates.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btUpdates_ItemClick);
             // 
@@ -112,6 +114,7 @@
             // 
             this.btnDeletes.Caption = "删除";
             this.btnDeletes.Id = 2;
+            this.btnDeletes.ImageIndex = 12;
             this.btnDeletes.Name = "btnDeletes";
             this.btnDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeletes_ItemClick);
             // 
