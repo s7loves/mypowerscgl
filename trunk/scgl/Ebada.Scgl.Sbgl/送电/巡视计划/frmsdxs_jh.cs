@@ -162,6 +162,17 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.OK;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void frmsdxs_jh_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            rowData.LineName = lkueLine.Text;
+            this.DialogResult = DialogResult.Cancel;
+        }
+
        
 
        
