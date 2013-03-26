@@ -100,6 +100,7 @@
             this.btAdds.Id = 0;
             this.btAdds.ImageIndex = 6;
             this.btAdds.Name = "btAdds";
+            this.btAdds.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAdds.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdds_ItemClick);
             // 
             // btUpdates
@@ -108,6 +109,7 @@
             this.btUpdates.Id = 1;
             this.btUpdates.ImageIndex = 1;
             this.btUpdates.Name = "btUpdates";
+            this.btUpdates.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btUpdates.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btUpdates_ItemClick);
             // 
             // btnDeletes
@@ -116,6 +118,7 @@
             this.btnDeletes.Id = 2;
             this.btnDeletes.ImageIndex = 12;
             this.btnDeletes.Name = "btnDeletes";
+            this.btnDeletes.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeletes_ItemClick);
             // 
             // bar3
