@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Sbgl
 
 
         public bool issearch = false;
+        public bool isqx = false;
         private GridViewOperation<sd_xsjhnr> gridViewOperation;
         public event SendDataEventHandler<sd_xsjhnr> FocusedRowChanged;
         public UCsdxs_jhnr()
@@ -127,13 +128,27 @@ namespace Ebada.Scgl.Sbgl
                 if (string.IsNullOrEmpty(value))
                     return;
                 parentid = value;
-                RefreshData();
+                if (isqx)
+                {
+                    RefreshQxData();
+                }
+                else
+                {
+                    RefreshData();
+                }
+                
             }
         }
 
         public void RefreshData()
         {
             string sql = " where ParentID='"+ParentID+"'";
+            gridViewOperation.RefreshData(sql);
+        }
+
+        public void RefreshQxData()
+        {
+            string sql = " where ParentID='" + ParentID + "' and RTrim(Ltrim(qxnr))!=''";
             gridViewOperation.RefreshData(sql);
         }
 

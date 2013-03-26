@@ -26,6 +26,13 @@ namespace Ebada.Scgl.Sbgl
         {
             this.state = parastate;
             uCsdxs_jh1.CheckState = state;
+            if (parastate == "03")
+            {
+                xtraTabControl1.TabPages.RemoveAt(1);
+                uCsdxs_jh1.isSearch = true;
+                uCsdxs_jhnr1.issearch = true;
+                uCsdxs_jhnr1.isqx = true;
+            }
             return this;
         }
 
