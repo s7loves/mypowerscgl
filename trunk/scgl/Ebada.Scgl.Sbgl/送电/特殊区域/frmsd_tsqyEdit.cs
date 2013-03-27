@@ -18,6 +18,7 @@ using DevExpress.XtraEditors.Repository;
 using System.Collections;
 using Ebada.Core;
 using Ebada.UI.Base;
+using DevExpress.XtraTab;
 
 namespace Ebada.Scgl.Sbgl.变电
 {
@@ -33,27 +34,23 @@ namespace Ebada.Scgl.Sbgl.变电
         public frmsd_tsqyEdit()
         {
             InitializeComponent();
+            //xtraTabControl1.Anchor = AnchorStyles.Right | AnchorStyles.Bottom| AnchorStyles.Left| AnchorStyles.Top;
+           
         }
 
         #region IPopupFormEdit 成员
         private sd_tsqy rowData = null;
-        public object RowData
-        {
-            get
-            {
+        public object RowData {
+            get {
                 return rowData;
             }
-            set
-            {
+            set {
                 if (value == null) return;
-                if (rowData == null)
-                {
+                if (rowData == null) {
                     this.rowData = value as sd_tsqy;
-                    
+
                     dataBind();
-                }
-                else
-                {
+                } else {
                     ConvertHelper.CopyTo<sd_tsqy>(value as sd_tsqy, rowData);
                 }
                 //setImage();
@@ -106,8 +103,9 @@ namespace Ebada.Scgl.Sbgl.变电
             int starttexth = 8;
             int addh = 33;
             int pageNumber = 1;
+            int nrows = 30;
             IList<sd_tsqyzlsx> sbsxList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_tsqyzlsx>("where zldm='" + tsqyzl.zldm + "' and isuse='是' order by convert(int,norder)");
-            int[] widthArr = new int[sbsxList.Count / 11 + 1];
+            int[] widthArr = new int[sbsxList.Count / nrows + 1];
             for (int i = 0; i < widthArr.Length; i++)
             {
                 widthArr[i] = GetMaxLblWidth(i, sbsxList);
@@ -117,7 +115,7 @@ namespace Ebada.Scgl.Sbgl.变电
             {
                 XtraPage = new DevExpress.XtraTab.XtraTabPage();
                 XtraPage.Name = "xtrpage" + pageNumber;
-                XtraPage.Text = string.Format("属性第{0}页", pageNumber);
+                XtraPage.Text = string.Format("特殊区域属性");
                 this.xtraTabControl1.TabPages.Add(XtraPage);
 
                 DevExpress.XtraEditors.LabelControl lblstart = new DevExpress.XtraEditors.LabelControl();
@@ -162,17 +160,18 @@ namespace Ebada.Scgl.Sbgl.变电
                     int i = 3;
                     foreach (sd_tsqyzlsx sbsx in sbsxList)
                     {
-                        if (i > 10 || XtraPage == null)
+                        if (i > nrows || XtraPage == null)
                         {
                             pageNumber++;
                             XtraPage = new DevExpress.XtraTab.XtraTabPage();
                             XtraPage.Name = "xtrpage" + pageNumber;
                             XtraPage.Text = string.Format("特殊区域第{0}页", pageNumber);
                             this.xtraTabControl1.TabPages.Add(XtraPage);
-                            
+                            XtraPage.AutoScroll = true;
+                            //XtraPage.SizeChanged += new EventHandler(XtraPage_SizeChanged);
                         }
-                        
-                        if (i > 10)
+
+                        if (i > nrows)
                         {
                             i = 1;
                             startlblw = 11;
@@ -195,6 +194,7 @@ namespace Ebada.Scgl.Sbgl.变电
                         
                         XtraPage.Controls.Add(lbl);
                         XtraPage.Controls.Add(txtEdit);
+                        XtraPage.AutoScrollMinSize = new Size(txtEdit.Right + 10, txtEdit.Bottom + 10);
                         startlblh += 33;
                         starttexth += 33;
                         i++;
@@ -223,19 +223,24 @@ namespace Ebada.Scgl.Sbgl.变电
                     btnOk.Text = "确定";
                     btnOk.Location = new Point(357, 9);
                     btnOk.Click += new EventHandler(btnOk_Click);
-
+                    btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
                     DevExpress.XtraEditors.SimpleButton btnCancel = new DevExpress.XtraEditors.SimpleButton();
                     btnCancel.Name = "btnCancel";
                     btnCancel.Text = "取消";
                     btnCancel.Location = new Point(461, 9);
                     btnCancel.Click += new EventHandler(btnCancel_Click);
-
+                    btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
                     this.splitContainerControl1.Panel2.Controls.Add(btnOk);
                     this.splitContainerControl1.Panel2.Controls.Add(btnCancel);
 
                 }
             setImage();
 
+        }
+
+        void XtraPage_SizeChanged(object sender, EventArgs e) {
+            XtraTabPage aa=(sender as XtraTabPage);
+            aa.AutoScrollMinSize = aa.ClientSize;
         }
 
         private Control createControl(sd_tsqyzlsx sbsx) {
