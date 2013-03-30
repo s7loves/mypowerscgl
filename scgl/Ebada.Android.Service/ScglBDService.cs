@@ -82,13 +82,14 @@ namespace Ebada.Android.Service {
             IList<BD_SBTZ> list2 = Client.ClientHelper.PlatformSqlMap.GetList<BD_SBTZ>("where OrgCode='" + xlcode + "'");
             IDictionary dic = Client.ClientHelper.PlatformSqlMap.GetDictionary<BD_SBTZ_ZL>(null, "dm", "mc");
             Dictionary<string, IList<BD_SBTZ_SX>> dicsx = new Dictionary<string, IList<BD_SBTZ_SX>>();
+            Dictionary<int, string> dicvalue = new Dictionary<int, string>();
             foreach (BD_SBTZ gt in list2) {
                 bd_sb psgt = new bd_sb() {
                     sbid= gt.sb_id, bdzdm=gt.OrgCode, sbmc=gt.sbname, sbzl=gt.sbtype,sbzlmc=dic[gt.sbtype].ToString()
                 };
                 
                 psgt.jsonData = getjsonData(gt.sb_id);
-                try { psgt.jsonData2 = getjsonData(gt, dicsx); } catch(Exception err) {
+                try { psgt.jsonData2 = getjsonData(gt, dicsx,dicvalue); } catch(Exception err) {
                     Console.WriteLine(err.Message);
                     Console.WriteLine(err.Source);
                     Console.WriteLine(err.StackTrace);
@@ -99,7 +100,7 @@ namespace Ebada.Android.Service {
             return list;
         }
 
-        private string getjsonData(BD_SBTZ gt,Dictionary<string, IList<BD_SBTZ_SX>> dicsx) {
+        private string getjsonData(BD_SBTZ gt, Dictionary<string, IList<BD_SBTZ_SX>> dicsx, Dictionary<int, string> dicvalue) {
             string jsondata = null;
             List<bd_sbsxz> gsonList = new List<bd_sbsxz>();
             Type t = gt.GetType();
@@ -109,16 +110,60 @@ namespace Ebada.Android.Service {
             foreach(var zlsx in dicsx[gt.sbtype]){
                 
                 bd_sbsxz sx = new bd_sbsxz() {
-                     k=zlsx.sxcol,t=zlsx.sxname,v=t.GetProperty(zlsx.sxcol).GetValue(gt,null).ToString(),
-                      bv=zlsx.boxvalue,type=zlsx.sxtype
+                     k=zlsx.sxcol,t=zlsx.sxname,v=t.GetProperty(zlsx.sxcol).GetValue(gt,null).ToString()
                 };
-
+                setvalue(sx, zlsx,dicvalue);
                 gsonList.Add(sx);
             }
             try {
                 jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(gsonList);
             } catch (Exception err) { Console.WriteLine(err.Message); }
             return jsondata;
+        }
+
+        private void setvalue(bd_sbsxz sx, BD_SBTZ_SX zlsx, Dictionary<int, string> dicvalue) {
+            switch (zlsx.sxtype) {
+                case "1":
+                case "下拉列表":
+                    sx.type = "1";
+                    break;
+                case "2":
+                case "日期":
+                    sx.type = "2";
+                    break;
+                default:
+                    sx.type = "0";
+                    break;
+            }
+            if (!string.IsNullOrEmpty(zlsx.boxtype)) {
+                if (zlsx.boxtype == "查询") {
+                    try {
+                        if (dicvalue.ContainsKey(zlsx.id)) {
+                            sx.bv = dicvalue[zlsx.id];
+                        } else {
+                            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", zlsx.boxvalue);
+                            if (list.Count > 0) {
+                                string[] ss = new string[list.Count];
+                                list.CopyTo(ss, 0);
+                                sx.bv = string.Join("|", ss);
+                            }
+                            dicvalue.Add(zlsx.id, sx.bv);
+                        }
+                        
+                    } catch (Exception err) {
+                        Console.WriteLine(zlsx.sxname+Environment.NewLine+zlsx.boxvalue);
+                        Console.WriteLine(err.Message);
+                        Console.WriteLine(err.Source);
+                    }
+
+                } else {
+                    sx.bv = zlsx.boxvalue;
+                }
+            }
+        }
+
+        private string gettype(string p) {
+            throw new NotImplementedException();
         }
 
         private string getjsonData(string p) {
