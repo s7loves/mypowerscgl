@@ -21,6 +21,12 @@ namespace Ebada.Scgl.Lcgl
         public frmTDJHEdit()
         {
             InitializeComponent();
+            comboBoxEdit1.EditValueChanged += new EventHandler(comboBoxEdit1_EditValueChanged);
+        }
+
+        void comboBoxEdit1_EditValueChanged(object sender, EventArgs e) {
+
+            comboBoxEditShenHeRen.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy((comboBoxEdit1.EditValue ?? "").ToString()));
         }
         void dataBind() {
 
@@ -83,7 +89,7 @@ namespace Ebada.Scgl.Lcgl
             SetComboBoxData(comboBoxEdit2, "OrgName", "OrgName", "选择供电所", "", gdslist as IList);
             dateEdit1.DateTime = DateTime.Now;
             dateEdit2.DateTime = DateTime.Now;
-
+            
 
         }
 
