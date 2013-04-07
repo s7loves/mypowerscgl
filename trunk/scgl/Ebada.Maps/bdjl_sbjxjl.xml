@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_sbjxjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_sbjxjl"  type="Ebada.Scgl.Model.bdjl_sbjxjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_sbjxjl_AllColumns" class="bdjl_sbjxjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="lineCode" column="lineCode" />
+        <result property="jxrq" column="jxrq" />
+        <result property="sbmc" column="sbmc" />
+        <result property="jxxz" column="jxxz" />
+        <result property="jxfzr" column="jxfzr" />
+        <result property="ysr" column="ysr" />
+        <result property="jxxm" column="jxxm" />
+        <result property="ysyj" column="ysyj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_sbjxjlList" resultMap="bdjl_sbjxjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [jxrq],
+         [sbmc],
+         [jxxz],
+         [jxfzr],
+         [ysr],
+         [jxxm],
+         [ysyj],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_sbjxjl
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_sbjxjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [jxrq],
+         [sbmc],
+         [jxxz],
+         [jxfzr],
+         [ysr],
+         [jxxm],
+         [ysyj],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_sbjxjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="lineCode">[lineCode]='$lineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jxrq">[jxrq]='$jxrq$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="jxxz">[jxxz]='$jxxz$'</isNotNull>
+       <isNotNull prepend="AND" property="jxfzr">[jxfzr]='$jxfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="ysr">[ysr]='$ysr$'</isNotNull>
+       <isNotNull prepend="AND" property="jxxm">[jxxm]='$jxxm$'</isNotNull>
+       <isNotNull prepend="AND" property="ysyj">[ysyj]='$ysyj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_sbjxjlByKey" resultMap="bdjl_sbjxjl_AllColumns" parameterClass="bdjl_sbjxjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [jxrq],
+         [sbmc],
+         [jxxz],
+         [jxfzr],
+         [ysr],
+         [jxxm],
+         [ysyj],
+         [c1],
+         [c2],
+         [c3]
+         FROM bdjl_sbjxjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_sbjxjl" parameterClass="bdjl_sbjxjl">
+        DELETE FROM 
+         bdjl_sbjxjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_sbjxjlByWhere" parameterClass="string">
+     delete from bdjl_sbjxjl $value$
+   </delete>
+   
+   <delete id="Deletebdjl_sbjxjlByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_sbjxjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_sbjxjl" parameterClass="bdjl_sbjxjl" resultClass="int">
+          UPDATE bdjl_sbjxjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [lineCode]=#lineCode#,
+             [jxrq]=#jxrq#,
+             [sbmc]=#sbmc#,
+             [jxxz]=#jxxz#,
+             [jxfzr]=#jxfzr#,
+             [ysr]=#ysr#,
+             [jxxm]=#jxxm#,
+             [ysyj]=#ysyj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_sbjxjl" parameterClass="bdjl_sbjxjl">
+        INSERT INTO bdjl_sbjxjl
+         (
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [jxrq],
+         [sbmc],
+         [jxxz],
+         [jxfzr],
+         [ysr],
+         [jxxm],
+         [ysyj],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #lineCode#,
+         #jxrq#,
+         #sbmc#,
+         #jxxz#,
+         #jxfzr#,
+         #ysr#,
+         #jxxm#,
+         #ysyj#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_sbjxjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_sbjxjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="lineCode">[lineCode]='$lineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="jxrq">[jxrq]='$jxrq$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="jxxz">[jxxz]='$jxxz$'</isNotNull>
+       <isNotNull prepend="AND" property="jxfzr">[jxfzr]='$jxfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="ysr">[ysr]='$ysr$'</isNotNull>
+       <isNotNull prepend="AND" property="jxxm">[jxxm]='$jxxm$'</isNotNull>
+       <isNotNull prepend="AND" property="ysyj">[ysyj]='$ysyj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_sbjxjlRowCount" parameterClass="string">
+    select count(*) from bdjl_sbjxjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

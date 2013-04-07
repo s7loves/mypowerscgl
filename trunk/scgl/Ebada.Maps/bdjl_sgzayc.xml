@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_sgzayc" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_sgzayc"  type="Ebada.Scgl.Model.bdjl_sgzayc,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_sgzayc_AllColumns" class="bdjl_sgzayc">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="fssj" column="fssj" />
+        <result property="xz" column="xz" />
+        <result property="jt" column="jt" />
+        <result property="fsjg" column="fsjg" />
+        <result property="sgsxqk" column="sgsxqk" />
+        <result property="yyjfzfx" column="yyjfzfx" />
+        <result property="dc" column="dc" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_sgzaycList" resultMap="bdjl_sgzayc_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [fssj],
+         [xz],
+         [jt],
+         [fsjg],
+         [sgsxqk],
+         [yyjfzfx],
+         [dc],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_sgzayc
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_sgzaycByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [fssj],
+         [xz],
+         [jt],
+         [fsjg],
+         [sgsxqk],
+         [yyjfzfx],
+         [dc],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_sgzayc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="fssj">[fssj]='$fssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xz">[xz]='$xz$'</isNotNull>
+       <isNotNull prepend="AND" property="jt">[jt]='$jt$'</isNotNull>
+       <isNotNull prepend="AND" property="fsjg">[fsjg]='$fsjg$'</isNotNull>
+       <isNotNull prepend="AND" property="sgsxqk">[sgsxqk]='$sgsxqk$'</isNotNull>
+       <isNotNull prepend="AND" property="yyjfzfx">[yyjfzfx]='$yyjfzfx$'</isNotNull>
+       <isNotNull prepend="AND" property="dc">[dc]='$dc$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_sgzaycByKey" resultMap="bdjl_sgzayc_AllColumns" parameterClass="bdjl_sgzayc">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [fssj],
+         [xz],
+         [jt],
+         [fsjg],
+         [sgsxqk],
+         [yyjfzfx],
+         [dc],
+         [c1],
+         [c2],
+         [c3]
+         FROM bdjl_sgzayc
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_sgzayc" parameterClass="bdjl_sgzayc">
+        DELETE FROM 
+         bdjl_sgzayc
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_sgzaycByWhere" parameterClass="string">
+     delete from bdjl_sgzayc $value$
+   </delete>
+   
+   <delete id="Deletebdjl_sgzaycByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_sgzayc
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_sgzayc" parameterClass="bdjl_sgzayc" resultClass="int">
+          UPDATE bdjl_sgzayc
+           SET
+             [OrgCode]=#OrgCode#,
+             [fssj]=#fssj#,
+             [xz]=#xz#,
+             [jt]=#jt#,
+             [fsjg]=#fsjg#,
+             [sgsxqk]=#sgsxqk#,
+             [yyjfzfx]=#yyjfzfx#,
+             [dc]=#dc#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_sgzayc" parameterClass="bdjl_sgzayc">
+        INSERT INTO bdjl_sgzayc
+         (
+         [ID],
+         [OrgCode],
+         [fssj],
+         [xz],
+         [jt],
+         [fsjg],
+         [sgsxqk],
+         [yyjfzfx],
+         [dc],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #fssj#,
+         #xz#,
+         #jt#,
+         #fsjg#,
+         #sgsxqk#,
+         #yyjfzfx#,
+         #dc#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_sgzaycRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_sgzayc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="fssj">[fssj]='$fssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xz">[xz]='$xz$'</isNotNull>
+       <isNotNull prepend="AND" property="jt">[jt]='$jt$'</isNotNull>
+       <isNotNull prepend="AND" property="fsjg">[fsjg]='$fsjg$'</isNotNull>
+       <isNotNull prepend="AND" property="sgsxqk">[sgsxqk]='$sgsxqk$'</isNotNull>
+       <isNotNull prepend="AND" property="yyjfzfx">[yyjfzfx]='$yyjfzfx$'</isNotNull>
+       <isNotNull prepend="AND" property="dc">[dc]='$dc$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_sgzaycRowCount" parameterClass="string">
+    select count(*) from bdjl_sgzayc $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

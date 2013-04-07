@@ -52,6 +52,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bdjl_aqhdjlb.cs" />
+    <Compile Include="bdjl_blqdzjlcs.cs" />
+    <Compile Include="bdjl_czpdjb.cs" />
+    <Compile Include="bdjl_ddzczl.cs" />
+    <Compile Include="bdjl_fsgyxjlb.cs" />
+    <Compile Include="bdjl_gzjlzb.cs" />
+    <Compile Include="bdjl_gzpdjb.cs" />
+    <Compile Include="bdjl_jdbhjl.cs" />
+    <Compile Include="bdjl_kgtzjl.cs" />
+    <Compile Include="bdjl_sbjxjl.cs" />
+    <Compile Include="bdjl_sbqxjl.cs" />
+    <Compile Include="bdjl_sgyxjlb.cs" />
+    <Compile Include="bdjl_sgzayc.cs" />
+    <Compile Include="bdjl_xdctzjlb.cs" />
+    <Compile Include="bdjl_xdjl.cs" />
+    <Compile Include="bdjl_yxfxjlb.cs" />
+    <Compile Include="bdjl_yxgzjlb.cs" />
     <Compile Include="bd_sbtzclb.cs" />
     <Compile Include="bd_sbtz_fssb.cs" />
     <Compile Include="BD_SBTZ.cs" />

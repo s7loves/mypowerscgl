@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_xdjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_xdjl"  type="Ebada.Scgl.Model.bdjl_xdjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_xdjl_AllColumns" class="bdjl_xdjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="xdsj" column="xdsj" />
+        <result property="xdflr" column="xdflr" />
+        <result property="xdslr" column="xdslr" />
+        <result property="xdxl" column="xdxl" />
+        <result property="xddl" column="xddl" />
+        <result property="sdsj" column="sdsj" />
+        <result property="sdflr" column="sdflr" />
+        <result property="sdslr" column="sdslr" />
+        <result property="xdsdl" column="xdsdl" />
+        <result property="xdzhdl" column="xdzhdl" />
+        <result property="bz" column="bz" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_xdjlList" resultMap="bdjl_xdjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [xdsj],
+         [xdflr],
+         [xdslr],
+         [xdxl],
+         [xddl],
+         [sdsj],
+         [sdflr],
+         [sdslr],
+         [xdsdl],
+         [xdzhdl],
+         [bz],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_xdjl
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_xdjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [xdsj],
+         [xdflr],
+         [xdslr],
+         [xdxl],
+         [xddl],
+         [sdsj],
+         [sdflr],
+         [sdslr],
+         [xdsdl],
+         [xdzhdl],
+         [bz],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_xdjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="xdsj">[xdsj]='$xdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="xdflr">[xdflr]='$xdflr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdslr">[xdslr]='$xdslr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdxl">[xdxl]='$xdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="xddl">[xddl]='$xddl$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdflr">[sdflr]='$sdflr$'</isNotNull>
+       <isNotNull prepend="AND" property="sdslr">[sdslr]='$sdslr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdsdl">[xdsdl]='$xdsdl$'</isNotNull>
+       <isNotNull prepend="AND" property="xdzhdl">[xdzhdl]='$xdzhdl$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_xdjlByKey" resultMap="bdjl_xdjl_AllColumns" parameterClass="bdjl_xdjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [xdsj],
+         [xdflr],
+         [xdslr],
+         [xdxl],
+         [xddl],
+         [sdsj],
+         [sdflr],
+         [sdslr],
+         [xdsdl],
+         [xdzhdl],
+         [bz],
+         [c1],
+         [c2],
+         [c3]
+         FROM bdjl_xdjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_xdjl" parameterClass="bdjl_xdjl">
+        DELETE FROM 
+         bdjl_xdjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_xdjlByWhere" parameterClass="string">
+     delete from bdjl_xdjl $value$
+   </delete>
+   
+   <delete id="Deletebdjl_xdjlByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_xdjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_xdjl" parameterClass="bdjl_xdjl" resultClass="int">
+          UPDATE bdjl_xdjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [xdsj]=#xdsj#,
+             [xdflr]=#xdflr#,
+             [xdslr]=#xdslr#,
+             [xdxl]=#xdxl#,
+             [xddl]=#xddl#,
+             [sdsj]=#sdsj#,
+             [sdflr]=#sdflr#,
+             [sdslr]=#sdslr#,
+             [xdsdl]=#xdsdl#,
+             [xdzhdl]=#xdzhdl#,
+             [bz]=#bz#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_xdjl" parameterClass="bdjl_xdjl">
+        INSERT INTO bdjl_xdjl
+         (
+         [ID],
+         [OrgCode],
+         [xdsj],
+         [xdflr],
+         [xdslr],
+         [xdxl],
+         [xddl],
+         [sdsj],
+         [sdflr],
+         [sdslr],
+         [xdsdl],
+         [xdzhdl],
+         [bz],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #xdsj#,
+         #xdflr#,
+         #xdslr#,
+         #xdxl#,
+         #xddl#,
+         #sdsj#,
+         #sdflr#,
+         #sdslr#,
+         #xdsdl#,
+         #xdzhdl#,
+         #bz#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_xdjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_xdjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="xdsj">[xdsj]='$xdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="xdflr">[xdflr]='$xdflr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdslr">[xdslr]='$xdslr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdxl">[xdxl]='$xdxl$'</isNotNull>
+       <isNotNull prepend="AND" property="xddl">[xddl]='$xddl$'</isNotNull>
+       <isNotNull prepend="AND" property="sdsj">[sdsj]='$sdsj$'</isNotNull>
+       <isNotNull prepend="AND" property="sdflr">[sdflr]='$sdflr$'</isNotNull>
+       <isNotNull prepend="AND" property="sdslr">[sdslr]='$sdslr$'</isNotNull>
+       <isNotNull prepend="AND" property="xdsdl">[xdsdl]='$xdsdl$'</isNotNull>
+       <isNotNull prepend="AND" property="xdzhdl">[xdzhdl]='$xdzhdl$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_xdjlRowCount" parameterClass="string">
+    select count(*) from bdjl_xdjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

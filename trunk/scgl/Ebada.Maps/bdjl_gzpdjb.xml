@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_gzpdjb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_gzpdjb"  type="Ebada.Scgl.Model.bdjl_gzpdjb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_gzpdjb_AllColumns" class="bdjl_gzpdjb">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="gzpbh" column="gzpbh" />
+        <result property="gzpzl" column="gzpzl" />
+        <result property="gzpfzr" column="gzpfzr" />
+        <result property="gzkssj" column="gzkssj" />
+        <result property="gzjssj" column="gzjssj" />
+        <result property="gzxkr" column="gzxkr" />
+        <result property="zbz" column="zbz" />
+        <result property="gzpqfr" column="gzpqfr" />
+        <result property="gzddjnr" column="gzddjnr" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_gzpdjbList" resultMap="bdjl_gzpdjb_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [gzpbh],
+         [gzpzl],
+         [gzpfzr],
+         [gzkssj],
+         [gzjssj],
+         [gzxkr],
+         [zbz],
+         [gzpqfr],
+         [gzddjnr],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_gzpdjb
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_gzpdjbByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [gzpbh],
+         [gzpzl],
+         [gzpfzr],
+         [gzkssj],
+         [gzjssj],
+         [gzxkr],
+         [zbz],
+         [gzpqfr],
+         [gzddjnr],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_gzpdjb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpbh">[gzpbh]='$gzpbh$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpzl">[gzpzl]='$gzpzl$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpfzr">[gzpfzr]='$gzpfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="gzkssj">[gzkssj]='$gzkssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gzjssj">[gzjssj]='$gzjssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gzxkr">[gzxkr]='$gzxkr$'</isNotNull>
+       <isNotNull prepend="AND" property="zbz">[zbz]='$zbz$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpqfr">[gzpqfr]='$gzpqfr$'</isNotNull>
+       <isNotNull prepend="AND" property="gzddjnr">[gzddjnr]='$gzddjnr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_gzpdjbByKey" resultMap="bdjl_gzpdjb_AllColumns" parameterClass="bdjl_gzpdjb">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [gzpbh],
+         [gzpzl],
+         [gzpfzr],
+         [gzkssj],
+         [gzjssj],
+         [gzxkr],
+         [zbz],
+         [gzpqfr],
+         [gzddjnr],
+         [c1],
+         [c2],
+         [c3]
+         FROM bdjl_gzpdjb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_gzpdjb" parameterClass="bdjl_gzpdjb">
+        DELETE FROM 
+         bdjl_gzpdjb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_gzpdjbByWhere" parameterClass="string">
+     delete from bdjl_gzpdjb $value$
+   </delete>
+   
+   <delete id="Deletebdjl_gzpdjbByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_gzpdjb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_gzpdjb" parameterClass="bdjl_gzpdjb" resultClass="int">
+          UPDATE bdjl_gzpdjb
+           SET
+             [OrgCode]=#OrgCode#,
+             [gzpbh]=#gzpbh#,
+             [gzpzl]=#gzpzl#,
+             [gzpfzr]=#gzpfzr#,
+             [gzkssj]=#gzkssj#,
+             [gzjssj]=#gzjssj#,
+             [gzxkr]=#gzxkr#,
+             [zbz]=#zbz#,
+             [gzpqfr]=#gzpqfr#,
+             [gzddjnr]=#gzddjnr#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_gzpdjb" parameterClass="bdjl_gzpdjb">
+        INSERT INTO bdjl_gzpdjb
+         (
+         [ID],
+         [OrgCode],
+         [gzpbh],
+         [gzpzl],
+         [gzpfzr],
+         [gzkssj],
+         [gzjssj],
+         [gzxkr],
+         [zbz],
+         [gzpqfr],
+         [gzddjnr],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #gzpbh#,
+         #gzpzl#,
+         #gzpfzr#,
+         #gzkssj#,
+         #gzjssj#,
+         #gzxkr#,
+         #zbz#,
+         #gzpqfr#,
+         #gzddjnr#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_gzpdjbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_gzpdjb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpbh">[gzpbh]='$gzpbh$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpzl">[gzpzl]='$gzpzl$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpfzr">[gzpfzr]='$gzpfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="gzkssj">[gzkssj]='$gzkssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gzjssj">[gzjssj]='$gzjssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gzxkr">[gzxkr]='$gzxkr$'</isNotNull>
+       <isNotNull prepend="AND" property="zbz">[zbz]='$zbz$'</isNotNull>
+       <isNotNull prepend="AND" property="gzpqfr">[gzpqfr]='$gzpqfr$'</isNotNull>
+       <isNotNull prepend="AND" property="gzddjnr">[gzddjnr]='$gzddjnr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_gzpdjbRowCount" parameterClass="string">
+    select count(*) from bdjl_gzpdjb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
