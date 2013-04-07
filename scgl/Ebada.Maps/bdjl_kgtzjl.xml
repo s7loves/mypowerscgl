@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_kgtzjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_kgtzjl"  type="Ebada.Scgl.Model.bdjl_kgtzjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_kgtzjl_AllColumns" class="bdjl_kgtzjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="lineCode" column="lineCode" />
+        <result property="kgmc" column="kgmc" />
+        <result property="tzrq" column="tzrq" />
+        <result property="tzsj" column="tzsj" />
+        <result property="kgms" column="kgms" />
+        <result property="dlqyxgztzcs" column="dlqyxgztzcs" />
+        <result property="sgtzcs" column="sgtzcs" />
+        <result property="sdfzcs" column="sdfzcs" />
+        <result property="jlr" column="jlr" />
+        <result property="bhzhzzdqk" column="bhzhzzdqk" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_kgtzjlList" resultMap="bdjl_kgtzjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [kgmc],
+         [tzrq],
+         [tzsj],
+         [kgms],
+         [dlqyxgztzcs],
+         [sgtzcs],
+         [sdfzcs],
+         [jlr],
+         [bhzhzzdqk],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_kgtzjl
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_kgtzjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [kgmc],
+         [tzrq],
+         [tzsj],
+         [kgms],
+         [dlqyxgztzcs],
+         [sgtzcs],
+         [sdfzcs],
+         [jlr],
+         [bhzhzzdqk],
+         [c1],
+         [c2],
+         [c3]
+          FROM bdjl_kgtzjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="lineCode">[lineCode]='$lineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="kgmc">[kgmc]='$kgmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="tzsj">[tzsj]='$tzsj$'</isNotNull>
+       <isNotNull prepend="AND" property="kgms">[kgms]='$kgms$'</isNotNull>
+       <isNotNull prepend="AND" property="dlqyxgztzcs">[dlqyxgztzcs]='$dlqyxgztzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="sgtzcs">[sgtzcs]='$sgtzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="sdfzcs">[sdfzcs]='$sdfzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="jlr">[jlr]='$jlr$'</isNotNull>
+       <isNotNull prepend="AND" property="bhzhzzdqk">[bhzhzzdqk]='$bhzhzzdqk$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_kgtzjlByKey" resultMap="bdjl_kgtzjl_AllColumns" parameterClass="bdjl_kgtzjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [kgmc],
+         [tzrq],
+         [tzsj],
+         [kgms],
+         [dlqyxgztzcs],
+         [sgtzcs],
+         [sdfzcs],
+         [jlr],
+         [bhzhzzdqk],
+         [c1],
+         [c2],
+         [c3]
+         FROM bdjl_kgtzjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_kgtzjl" parameterClass="bdjl_kgtzjl">
+        DELETE FROM 
+         bdjl_kgtzjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_kgtzjlByWhere" parameterClass="string">
+     delete from bdjl_kgtzjl $value$
+   </delete>
+   
+   <delete id="Deletebdjl_kgtzjlByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_kgtzjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_kgtzjl" parameterClass="bdjl_kgtzjl" resultClass="int">
+          UPDATE bdjl_kgtzjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [lineCode]=#lineCode#,
+             [kgmc]=#kgmc#,
+             [tzrq]=#tzrq#,
+             [tzsj]=#tzsj#,
+             [kgms]=#kgms#,
+             [dlqyxgztzcs]=#dlqyxgztzcs#,
+             [sgtzcs]=#sgtzcs#,
+             [sdfzcs]=#sdfzcs#,
+             [jlr]=#jlr#,
+             [bhzhzzdqk]=#bhzhzzdqk#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_kgtzjl" parameterClass="bdjl_kgtzjl">
+        INSERT INTO bdjl_kgtzjl
+         (
+         [ID],
+         [OrgCode],
+         [lineCode],
+         [kgmc],
+         [tzrq],
+         [tzsj],
+         [kgms],
+         [dlqyxgztzcs],
+         [sgtzcs],
+         [sdfzcs],
+         [jlr],
+         [bhzhzzdqk],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #lineCode#,
+         #kgmc#,
+         #tzrq#,
+         #tzsj#,
+         #kgms#,
+         #dlqyxgztzcs#,
+         #sgtzcs#,
+         #sdfzcs#,
+         #jlr#,
+         #bhzhzzdqk#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_kgtzjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_kgtzjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="lineCode">[lineCode]='$lineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="kgmc">[kgmc]='$kgmc$'</isNotNull>
+       <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="tzsj">[tzsj]='$tzsj$'</isNotNull>
+       <isNotNull prepend="AND" property="kgms">[kgms]='$kgms$'</isNotNull>
+       <isNotNull prepend="AND" property="dlqyxgztzcs">[dlqyxgztzcs]='$dlqyxgztzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="sgtzcs">[sgtzcs]='$sgtzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="sdfzcs">[sdfzcs]='$sdfzcs$'</isNotNull>
+       <isNotNull prepend="AND" property="jlr">[jlr]='$jlr$'</isNotNull>
+       <isNotNull prepend="AND" property="bhzhzzdqk">[bhzhzzdqk]='$bhzhzzdqk$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_kgtzjlRowCount" parameterClass="string">
+    select count(*) from bdjl_kgtzjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
