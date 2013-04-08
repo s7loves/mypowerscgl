@@ -91,6 +91,11 @@ namespace Ebada.Scgl.Sbgl
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (lkuekgmc.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择开关名称!");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
         }
 

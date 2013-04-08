@@ -92,6 +92,11 @@ namespace Ebada.Scgl.Sbgl
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (lkueblqmc.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择避雷器名称!");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
         }
 
