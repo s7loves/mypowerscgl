@@ -249,6 +249,24 @@
     <Compile Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.Designer.cs">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\frm_sbjxjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\frm_sbjxjl.Designer.cs">
+      <DependentUpon>frm_sbjxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\Ucm_sbjxjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\Ucm_sbjxjl.Designer.cs">
+      <DependentUpon>Ucm_sbjxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\Ucm_sbjxjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备检修记录\Ucm_sbjxjlM.Designer.cs">
+      <DependentUpon>Ucm_sbjxjlM.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1098,6 +1116,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.resx">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备检修记录\frm_sbjxjl.resx">
+      <DependentUpon>frm_sbjxjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备检修记录\Ucm_sbjxjl.resx">
+      <DependentUpon>Ucm_sbjxjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备检修记录\Ucm_sbjxjlM.resx">
+      <DependentUpon>Ucm_sbjxjlM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.resx">
       <DependentUpon>frm_sbqxjl.cs</DependentUpon>

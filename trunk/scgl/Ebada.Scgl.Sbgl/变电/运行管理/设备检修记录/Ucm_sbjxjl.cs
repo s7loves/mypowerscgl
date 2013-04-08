@@ -16,15 +16,14 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Sbgl
 {
-    [ToolboxItem(false)]
-    public partial class Ucm_sbqxjl : DevExpress.XtraEditors.XtraUserControl
+    public partial class Ucm_sbjxjl : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<bdjl_sbqxjl> gridViewOperation;
-        public Ucm_sbqxjl()
+        private GridViewOperation<bdjl_sbjxjl> gridViewOperation;
+        public Ucm_sbjxjl()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<bdjl_sbqxjl>(gridControl1, gridView1, barManager1, false);
+            gridViewOperation = new GridViewOperation<bdjl_sbjxjl>(gridControl1, gridView1, barManager1, false);
            
         }
 
@@ -42,7 +41,7 @@ namespace Ebada.Scgl.Sbgl
                     return;
                 sqlwhere = "where OrgCode='" + parentID + "'";
             }
-            gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_sbqxjl>(sqlwhere);
+            gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_sbjxjl>(sqlwhere);
         }
 
         private string parentID;
@@ -70,6 +69,7 @@ namespace Ebada.Scgl.Sbgl
         private void InitGridviewColumn()
         {
             gridView1.Columns["OrgCode"].Visible = false;
+            gridView1.Columns["lineCode"].Visible = false;
             gridView1.Columns["c1"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
             gridView1.Columns["c3"].Visible = false;
@@ -82,14 +82,14 @@ namespace Ebada.Scgl.Sbgl
                 MsgBox.ShowWarningMessageBox("请先选择一个变电所!");
                 return;
             }
-            frm_sbqxjl frm = new frm_sbqxjl();
-            bdjl_sbqxjl sbqxjl = new bdjl_sbqxjl();
-            sbqxjl.OrgCode = parentID;
-            sbqxjl.fxrq = DateTime.Now;
-            frm.RowData = sbqxjl;
+            frm_sbjxjl frm = new frm_sbjxjl();
+            bdjl_sbjxjl sbjxjl = new bdjl_sbjxjl();
+            sbjxjl.OrgCode = parentID;
+            sbjxjl.jxrq = DateTime.Now;
+            frm.RowData = sbjxjl;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Client.ClientHelper.PlatformSqlMap.Create<bdjl_sbqxjl>(frm.RowData);
+                Client.ClientHelper.PlatformSqlMap.Create<bdjl_sbjxjl>(frm.RowData);
                 RefreshGridData("");
             }
         }
@@ -98,12 +98,12 @@ namespace Ebada.Scgl.Sbgl
         {
             if (gridView1.GetFocusedRow() == null)
                 return;
-            bdjl_sbqxjl czpdjb = gridView1.GetFocusedRow() as bdjl_sbqxjl;
-            frm_sbqxjl frm = new frm_sbqxjl();
+            bdjl_sbjxjl czpdjb = gridView1.GetFocusedRow() as bdjl_sbjxjl;
+            frm_sbjxjl frm = new frm_sbjxjl();
             frm.RowData = czpdjb;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Client.ClientHelper.PlatformSqlMap.Update<bdjl_sbqxjl>(frm.RowData);
+                Client.ClientHelper.PlatformSqlMap.Update<bdjl_sbjxjl>(frm.RowData);
                 RefreshGridData("");
             }
         }
@@ -114,8 +114,8 @@ namespace Ebada.Scgl.Sbgl
                 return;
             if (MsgBox.ShowAskMessageBox("确定要删除吗?") == DialogResult.OK)
             {
-                bdjl_sbqxjl czpdjb = gridView1.GetFocusedRow() as bdjl_sbqxjl;
-                Client.ClientHelper.PlatformSqlMap.Delete<bdjl_sbqxjl>(czpdjb);
+                bdjl_sbjxjl czpdjb = gridView1.GetFocusedRow() as bdjl_sbjxjl;
+                Client.ClientHelper.PlatformSqlMap.Delete<bdjl_sbjxjl>(czpdjb);
                 RefreshGridData("");
             }
         }
