@@ -225,6 +225,24 @@
     <Compile Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.Designer.cs">
       <DependentUpon>Ucm_gzpdjbM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\frm_kgtzjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\frm_kgtzjl.Designer.cs">
+      <DependentUpon>frm_kgtzjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjl.Designer.cs">
+      <DependentUpon>Ucm_kgtzjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjlM.Designer.cs">
+      <DependentUpon>Ucm_kgtzjlM.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\操作票登记簿\frm_czpdjb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1104,6 +1122,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.resx">
       <DependentUpon>Ucm_gzpdjbM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\frm_kgtzjl.resx">
+      <DependentUpon>frm_kgtzjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjl.resx">
+      <DependentUpon>Ucm_kgtzjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjlM.resx">
+      <DependentUpon>Ucm_kgtzjlM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\frm_czpdjb.resx">
       <DependentUpon>frm_czpdjb.cs</DependentUpon>
