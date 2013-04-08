@@ -9,10 +9,10 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Sbgl
 {
-    [ToolboxItem(false)]
-    public partial class Ucm_czpdjbM : DevExpress.XtraEditors.XtraUserControl
+    [ToolboxItem(false)] 
+    public partial class Ucm_sbqxjlM : DevExpress.XtraEditors.XtraUserControl
     {
-        public Ucm_czpdjbM()
+        public Ucm_sbqxjlM()
         {
             InitializeComponent();
             ucmOrg ucOrg = new ucmOrg();
@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Sbgl
         {
             if (obj == null)
                 return;
-            this.ucm_czpdjb1.ParentID = obj.OrgCode;
+            this.ucm_sbqxjl1.ParentID = obj.OrgCode;
         }
     }
 }

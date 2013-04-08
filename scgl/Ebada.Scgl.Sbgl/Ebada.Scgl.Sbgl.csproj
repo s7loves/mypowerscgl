@@ -207,6 +207,24 @@
     <Compile Include="变电\UCBD_SXM.Designer.cs">
       <DependentUpon>UCBD_SXM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\frm_gzpdjb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\frm_gzpdjb.Designer.cs">
+      <DependentUpon>frm_gzpdjb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\Ucm_gzpdjb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\Ucm_gzpdjb.Designer.cs">
+      <DependentUpon>Ucm_gzpdjb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.Designer.cs">
+      <DependentUpon>Ucm_gzpdjbM.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\操作票登记簿\frm_czpdjb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +248,24 @@
     </Compile>
     <Compile Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.Designer.cs">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.Designer.cs">
+      <DependentUpon>frm_sbqxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjl.Designer.cs">
+      <DependentUpon>Ucm_sbqxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.Designer.cs">
+      <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
     </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
@@ -1042,6 +1078,15 @@
       <DependentUpon>UCBD_SXM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\工作票登记簿\frm_gzpdjb.resx">
+      <DependentUpon>frm_gzpdjb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\工作票登记簿\Ucm_gzpdjb.resx">
+      <DependentUpon>Ucm_gzpdjb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.resx">
+      <DependentUpon>Ucm_gzpdjbM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\frm_czpdjb.resx">
       <DependentUpon>frm_czpdjb.cs</DependentUpon>
     </EmbeddedResource>
@@ -1053,6 +1098,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.resx">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.resx">
+      <DependentUpon>frm_sbqxjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjl.resx">
+      <DependentUpon>Ucm_sbqxjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.resx">
+      <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
