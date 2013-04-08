@@ -303,6 +303,24 @@
     <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.Designer.cs">
       <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.Designer.cs">
+      <DependentUpon>frm_blqdzjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjl.Designer.cs">
+      <DependentUpon>Ucm_blqdzjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.Designer.cs">
+      <DependentUpon>Ucm_blqdzjlM.cs</DependentUpon>
+    </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1161,6 +1179,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.resx">
       <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.resx">
+      <DependentUpon>frm_blqdzjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjl.resx">
+      <DependentUpon>Ucm_blqdzjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.resx">
+      <DependentUpon>Ucm_blqdzjlM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
