@@ -91,6 +91,11 @@ namespace Ebada.Scgl.Sbgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (lkuesbmc.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择设备名称!");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
         }
 
