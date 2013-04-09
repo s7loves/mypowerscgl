@@ -321,6 +321,18 @@
     <Compile Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.Designer.cs">
       <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\调度操作指令记录簿\frm_ddczzl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\调度操作指令记录簿\frm_ddczzl.Designer.cs">
+      <DependentUpon>frm_ddczzl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.Designer.cs">
+      <DependentUpon>Ucm_ddczzl.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1224,6 +1236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.resx">
       <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\调度操作指令记录簿\frm_ddczzl.resx">
+      <DependentUpon>frm_ddczzl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.resx">
+      <DependentUpon>Ucm_ddczzl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.resx">
       <DependentUpon>frm_blqdzjl.cs</DependentUpon>
