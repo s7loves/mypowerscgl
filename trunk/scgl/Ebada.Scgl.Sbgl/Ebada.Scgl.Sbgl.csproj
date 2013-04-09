@@ -267,6 +267,24 @@
     <Compile Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.Designer.cs">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\frm_jdbhjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\frm_jdbhjl.Designer.cs">
+      <DependentUpon>frm_jdbhjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjl.Designer.cs">
+      <DependentUpon>Ucm_jdbhjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjlM.Designer.cs">
+      <DependentUpon>Ucm_jdbhjlM.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\设备检修记录\frm_sbjxjl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +338,24 @@
     </Compile>
     <Compile Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.Designer.cs">
       <DependentUpon>Ucm_blqdzjlM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\frm_xdjl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\frm_xdjl.Designer.cs">
+      <DependentUpon>frm_xdjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\Ucm_xdjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\Ucm_xdjl.Designer.cs">
+      <DependentUpon>Ucm_xdjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\Ucm_xdjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\限电记录\Ucm_xdjlM.Designer.cs">
+      <DependentUpon>Ucm_xdjlM.cs</DependentUpon>
     </Compile>
     <Compile Include="维护\frmLinewh.cs">
       <SubType>Form</SubType>
@@ -1162,6 +1198,15 @@
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.resx">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\继电保护记录簿\frm_jdbhjl.resx">
+      <DependentUpon>frm_jdbhjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjl.resx">
+      <DependentUpon>Ucm_jdbhjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjlM.resx">
+      <DependentUpon>Ucm_jdbhjlM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备检修记录\frm_sbjxjl.resx">
       <DependentUpon>frm_sbjxjl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1188,6 +1233,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.resx">
       <DependentUpon>Ucm_blqdzjlM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\限电记录\frm_xdjl.resx">
+      <DependentUpon>frm_xdjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\限电记录\Ucm_xdjl.resx">
+      <DependentUpon>Ucm_xdjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\限电记录\Ucm_xdjlM.resx">
+      <DependentUpon>Ucm_xdjlM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
