@@ -441,6 +441,36 @@
     <Compile Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.Designer.cs">
       <DependentUpon>Ucm_yxfxjlbM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\frm_gzjlzb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\frm_gzjlzb.Designer.cs">
+      <DependentUpon>frm_gzjlzb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\frm_yxgzjlb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\frm_yxgzjlb.Designer.cs">
+      <DependentUpon>frm_yxgzjlb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlb.Designer.cs">
+      <DependentUpon>Ucm_yxgzjlb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlbM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlbM.Designer.cs">
+      <DependentUpon>Ucm_yxgzjlbM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_gzjlzb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行工作记录簿\Ucm_gzjlzb.Designer.cs">
+      <DependentUpon>Ucm_gzjlzb.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1405,6 +1435,21 @@
     <EmbeddedResource Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.resx">
       <DependentUpon>Ucm_yxfxjlbM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行工作记录簿\frm_gzjlzb.resx">
+      <DependentUpon>frm_gzjlzb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行工作记录簿\frm_yxgzjlb.resx">
+      <DependentUpon>frm_yxgzjlb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlb.resx">
+      <DependentUpon>Ucm_yxgzjlb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlbM.resx">
+      <DependentUpon>Ucm_yxgzjlbM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_gzjlzb.resx">
+      <DependentUpon>Ucm_gzjlzb.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.resx">
       <DependentUpon>frm_blqdzjl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1612,6 +1657,39 @@
     <Content Include="模块说明.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="00记录模板\事故预想记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\反事故演习记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\安全活动记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\断路器故障跳闸记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\继电保护及自动装置调试工作记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\蓄电池调整及检测记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\设备检修、试验记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\设备缺陷记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\调度操作指令记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\运行工作记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\避雷器动作记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="DSandroid.xsc">
       <DependentUpon>DSandroid.xsd</DependentUpon>
     </None>
