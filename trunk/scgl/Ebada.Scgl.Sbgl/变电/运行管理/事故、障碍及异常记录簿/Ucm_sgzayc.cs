@@ -16,6 +16,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class Ucm_sgzayc : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<bdjl_sgzayc> gridViewOperation;
@@ -84,11 +85,11 @@ namespace Ebada.Scgl.Sbgl
                 MsgBox.ShowWarningMessageBox("请先选择一个变电所!");
                 return;
             }
-            frm_aqhdjlb frm = new frm_aqhdjlb();
-            bdjl_sgzayc agzayc = new bdjl_sgzayc();
-            agzayc.OrgCode = parentID;
-            
-            frm.RowData = agzayc;
+            frm_sgzayc frm = new frm_sgzayc();
+            bdjl_sgzayc sgzayc = new bdjl_sgzayc();
+            sgzayc.OrgCode = parentID;
+            sgzayc.fssj = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            frm.RowData = sgzayc;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Create<bdjl_sgzayc>(frm.RowData);
@@ -101,7 +102,7 @@ namespace Ebada.Scgl.Sbgl
             if (gridView1.GetFocusedRow() == null)
                 return;
             bdjl_sgzayc sgzayc = gridView1.GetFocusedRow() as bdjl_sgzayc;
-            frm_aqhdjlb frm = new frm_aqhdjlb();
+            frm_sgzayc frm = new frm_sgzayc();
             frm.RowData = sgzayc;
             if (frm.ShowDialog() == DialogResult.OK)
             {
