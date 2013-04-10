@@ -16,6 +16,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class Ucm_jdbhjlM : DevExpress.XtraEditors.XtraUserControl
     {
         public Ucm_jdbhjlM()

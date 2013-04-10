@@ -207,6 +207,18 @@
     <Compile Include="变电\UCBD_SXM.Designer.cs">
       <DependentUpon>UCBD_SXM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\事故、障碍及异常记录簿\frm_sgzayc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\事故、障碍及异常记录簿\frm_sgzayc.Designer.cs">
+      <DependentUpon>frm_sgzayc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\事故、障碍及异常记录簿\Ucm_sgzayc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\事故、障碍及异常记录簿\Ucm_sgzayc.Designer.cs">
+      <DependentUpon>Ucm_sgzayc.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\事故预想记录簿\frm_sgyxjlb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1251,6 +1263,12 @@
     <EmbeddedResource Include="变电\UCBD_SXM.resx">
       <DependentUpon>UCBD_SXM.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\事故、障碍及异常记录簿\frm_sgzayc.resx">
+      <DependentUpon>frm_sgzayc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\事故、障碍及异常记录簿\Ucm_sgzayc.resx">
+      <DependentUpon>Ucm_sgzayc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故预想记录簿\frm_sgyxjlb.resx">
       <DependentUpon>frm_sgyxjlb.cs</DependentUpon>

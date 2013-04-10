@@ -16,6 +16,7 @@ using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Sbgl
 {
+    [ToolboxItem(false)]
     public partial class Ucm_blqdzjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<bdjl_blqdzjlcs> gridViewOperation;
