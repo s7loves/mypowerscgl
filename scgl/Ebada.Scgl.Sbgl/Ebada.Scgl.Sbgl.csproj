@@ -423,6 +423,24 @@
     <Compile Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.Designer.cs">
       <DependentUpon>Ucm_ddczzl.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\frm_yxfxjlb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\frm_yxfxjlb.Designer.cs">
+      <DependentUpon>frm_yxfxjlb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlb.Designer.cs">
+      <DependentUpon>Ucm_yxfxjlb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.Designer.cs">
+      <DependentUpon>Ucm_yxfxjlbM.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1377,6 +1395,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.resx">
       <DependentUpon>Ucm_ddczzl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行分析记录簿\frm_yxfxjlb.resx">
+      <DependentUpon>frm_yxfxjlb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlb.resx">
+      <DependentUpon>Ucm_yxfxjlb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.resx">
+      <DependentUpon>Ucm_yxfxjlbM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.resx">
       <DependentUpon>frm_blqdzjl.cs</DependentUpon>
