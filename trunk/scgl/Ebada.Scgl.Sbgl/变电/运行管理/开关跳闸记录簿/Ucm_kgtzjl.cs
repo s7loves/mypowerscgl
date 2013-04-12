@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Sbgl
             dte.Mask.EditMask = "yyyy-MM-dd";
             dte.Mask.UseMaskAsDisplayFormat = true;
             gridView1.Columns["c1"].ColumnEdit = dte;
-            gridView1.Columns["c2"].Visible = false;
+            gridView1.Columns["c2"].Visible = false;      
             gridView1.Columns["c3"].Visible = false;
             gridView1.Columns["tzsj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             gridView1.Columns["tzsj"].DisplayFormat.FormatString = "HH:mm:ss";
