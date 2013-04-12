@@ -207,6 +207,8 @@
     <Compile Include="变电\UCBD_SXM.Designer.cs">
       <DependentUpon>UCBD_SXM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\Ecommonjh.cs" />
+    <Compile Include="变电\运行管理\ExportBdjl.cs" />
     <Compile Include="变电\运行管理\事故、障碍及异常记录簿\frm_sgzayc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1657,6 +1659,9 @@
     <Content Include="模块说明.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="00记录模板\事故、障碍及异常运行记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\事故预想记录簿.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1682,6 +1687,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\调度操作指令记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\运行分析记录簿.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\运行工作记录簿.xls">

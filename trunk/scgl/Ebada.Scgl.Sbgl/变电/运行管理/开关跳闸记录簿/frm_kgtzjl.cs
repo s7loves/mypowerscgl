@@ -51,6 +51,7 @@ namespace Ebada.Scgl.Sbgl
             this.lkuekgmc.DataBindings.Add("EditValue", rowData, "kgmc");
             this.datetzrq.DataBindings.Add("EditValue", rowData, "tzrq");
             this.timetzsj.DataBindings.Add("EditValue", rowData, "tzsj");
+            this.datejtrq.DataBindings.Add("EditValue", rowData, "c1");
             this.txtkgms.DataBindings.Add("EditValue", rowData, "kgms");
             this.spedlqtzcs.DataBindings.Add("EditValue", rowData, "dlqyxgztzcs");
             this.spesgtzcs.DataBindings.Add("EditValue", rowData, "sgtzcs");

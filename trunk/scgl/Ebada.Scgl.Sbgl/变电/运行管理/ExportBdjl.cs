@@ -170,7 +170,7 @@ namespace Ebada.Scgl.Sbgl
         /// 开关跳闸记录簿
         /// </summary>
         /// <param name="nrList"></param>
-        public static void ExportExcelJdqbhjl(IList<bdjl_jdbhjl> nrList)
+        public static void ExportExcelKgtzjl(IList<bdjl_kgtzjl> nrList)
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -190,8 +190,9 @@ namespace Ebada.Scgl.Sbgl
                 {
                     ex.CopySheet(1, 1);
                 }
-                //if (!string.IsNullOrEmpty(title))
-                //    ex.SetCellValue(title, 2, 2);
+                ex.SetCellValue(nrList[0].kgmc, 2, 4);
+                ex.SetCellValue(nrList[0].dlqyxgztzcs.ToString(), 2, 10);
+
             }
 
             for (int j = 1; j <= pageindex; j++)
@@ -207,25 +208,33 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                       
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 6);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 7);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 10);
-
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Year.ToString(), row + 4 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Month.ToString(), row + 4 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Day.ToString(), row + 4 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].sdfzcs.ToString(), row + 4 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].sgtzcs.ToString(), row + 4 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].bhzhzzdqk, row + 4 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 10);
                     }
                 }
                 else if (nrList.Count <= endrow && nrList.Count >= starow)
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-                     
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 6);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 7);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 10);
+
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Year.ToString(), row + 4 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Month.ToString(), row + 4 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].tzrq.Day.ToString(), row + 4 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].sdfzcs.ToString(), row + 4 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].sgtzcs.ToString(), row + 4 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].bhzhzzdqk, row + 4 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 10);
 
                     }
                 }

@@ -126,5 +126,10 @@ namespace Ebada.Scgl.Sbgl
             RefreshGridData("");
         }
 
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
     }
 }
