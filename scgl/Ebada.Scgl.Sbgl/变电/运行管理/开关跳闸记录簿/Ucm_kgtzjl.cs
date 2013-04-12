@@ -101,7 +101,7 @@ namespace Ebada.Scgl.Sbgl
             gridView1.Columns["OrgCode"].Visible = false;
             gridView1.Columns["lineCode"].Visible = false;
             gridView1.Columns["c1"].Caption = "上次解体检修日期";
-            gridView1.Columns["c1"].VisibleIndex = 4;
+            gridView1.Columns["c1"].VisibleIndex = 3;
             DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dte = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             dte.Mask.EditMask = "yyyy-MM-dd";
             dte.Mask.UseMaskAsDisplayFormat = true;
