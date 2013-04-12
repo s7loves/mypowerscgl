@@ -46,6 +46,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
+            this.datesj.EditValue = DateTime.Now.ToString("yyyy-MM");
             RefreshGridData("");
             InitGridviewColumn();
         }
@@ -109,6 +110,39 @@ namespace Ebada.Scgl.Sbgl
         private void btRefreshs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RefreshGridData("");
+        }
+
+        private void btnSearchs_Click(object sender, EventArgs e)
+        {
+            if (datesj.EditValue == null)
+                return;
+            string searchtime = Convert.ToDateTime(datesj.EditValue).ToString("yyyy-M");
+            string sqlwhere = "where Convert(varchar,Year(kssj)) + '-' + Convert(varchar,Month(kssj))='"+searchtime+"'";
+            RefreshGridData(sqlwhere);
+            //Convert(varchar,Year(kssj)) + '-' + Convert(varchar,Month(kssj))
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            this.datesj.EditValue = null;
+            RefreshGridData("");
+        }
+
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<bdjl_ddzczl> ddList = new List<bdjl_ddzczl>();// gridView1.DataSource as IList<JH_weekks>;
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_ddzczl)
+                    ddList.Add(row as bdjl_ddzczl);
+            }
+            string title = "";
+            if (datesj.EditValue != null)
+            {
+               title = Convert.ToDateTime(datesj.EditValue).Year + "年" + Convert.ToDateTime(datesj.EditValue).Month + "月";
+            }
+            ExportBdjl.ExportExcelDdczzl(title, ddList);
         }
 
     }
