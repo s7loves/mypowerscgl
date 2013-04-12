@@ -13,6 +13,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -65,14 +66,36 @@ namespace Ebada.Scgl.Sbgl
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
             InitGridviewColumn();
+            List<DicType> qxlbList = new List<DicType>();
+            qxlbList.Add(new DicType("一般", "一般"));
+            qxlbList.Add(new DicType("重大", "重大"));
+            SetComboBoxData(lkueqxlb, "Value", "Key", "请选择", "缺陷类别", qxlbList);
+        }
+        //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
         private void InitGridviewColumn()
         {
             gridView1.Columns["OrgCode"].Visible = false;
-            gridView1.Columns["c1"].Visible = false;
-            gridView1.Columns["c2"].Visible = false;
-            gridView1.Columns["c3"].Visible = false;
+            gridView1.Columns["c1"].Caption = "消除日期";
+            DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dte = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            dte.Mask.EditMask = "yyyy-MM-dd";
+            dte.Mask.UseMaskAsDisplayFormat = true;
+            gridView1.Columns["c1"].ColumnEdit=dte;
+            
+            gridView1.Columns["c2"].Caption = "消除人";
+            gridView1.Columns["c3"].Caption = "验收人";
         }
 
         private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -86,6 +109,7 @@ namespace Ebada.Scgl.Sbgl
             bdjl_sbqxjl sbqxjl = new bdjl_sbqxjl();
             sbqxjl.OrgCode = parentID;
             sbqxjl.fxrq = DateTime.Now;
+            sbqxjl.c1 = DateTime.Now.ToShortDateString();
             frm.RowData = sbqxjl;
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -123,6 +147,37 @@ namespace Ebada.Scgl.Sbgl
         private void btRefreshs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RefreshGridData("");
+        }
+
+        private void btnSearchs_Click(object sender, EventArgs e)
+        {
+            if (this.lkueqxlb.EditValue == null)
+                return;
+            string sqlwhere = " where qxlb='" + lkueqxlb.EditValue.ToString() + "'";
+            RefreshGridData(sqlwhere);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            this.lkueqxlb.EditValue = null;
+            RefreshGridData("");
+        }
+
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<bdjl_sbqxjl> ddList = new List<bdjl_sbqxjl>();// gridView1.DataSource as IList<JH_weekks>;
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_sbqxjl)
+                    ddList.Add(row as bdjl_sbqxjl);
+            }
+            string title = "";
+            if (this.lkueqxlb.EditValue != null)
+            {
+                title = this.lkueqxlb.EditValue.ToString();
+            }
+            ExportBdjl.ExportExcelSbqxjl(title, ddList);
         }
 
     }
