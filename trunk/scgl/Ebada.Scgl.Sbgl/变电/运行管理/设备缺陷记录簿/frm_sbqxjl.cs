@@ -69,6 +69,9 @@ namespace Ebada.Scgl.Sbgl
             this.txtfxr.DataBindings.Add("EditValue", rowData, "fxr");
             this.lkueqxlb.DataBindings.Add("EditValue", rowData, "qxlb");
             this.meoqxnr.DataBindings.Add("EditValue", rowData, "qxnr");
+            this.datexcrq.DataBindings.Add("EditValue", rowData, "c1");
+            this.txtxcr.DataBindings.Add("EditValue", rowData, "c2");
+            this.txtysr.DataBindings.Add("EditValue", rowData, "c3");
         }
 
         #endregion
@@ -80,11 +83,14 @@ namespace Ebada.Scgl.Sbgl
                 MsgBox.ShowWarningMessageBox("请选择设备名称!");
                 return;
             }
+            //if (this.datexcrq.EditValue != null)
+            //    rowData.c1 = Convert.ToDateTime(datexcrq.EditValue).ToShortDateString();
             this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+          
             this.DialogResult = DialogResult.Cancel;
         }
 
