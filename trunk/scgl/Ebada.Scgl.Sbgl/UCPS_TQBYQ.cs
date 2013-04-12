@@ -40,6 +40,7 @@ namespace Ebada.Scgl.Sbgl
         private string parentID = null;
         private PS_tq parentObj;
         private UCPopupSelectorBase xlselector;
+        UCPopupLine popTq = new UCPopupLine();
         public UCPS_TQBYQ()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tqbyq>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_tqbyq> e)
@@ -141,9 +142,9 @@ namespace Ebada.Scgl.Sbgl
                 code = obj.ToString();
             string xlcode = code;
             if (string.IsNullOrEmpty(xlcode)) return;
-            IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xlcode + "'");
-            repositoryItemLookUpEdit3.DataSource = list;
-            IList<PS_tq> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where left(tqcode,{0})='{1}'", xlcode.Length, xlcode));
+            //IList<PS_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_gt>("where LineCode='" + xlcode + "'");
+            //repositoryItemLookUpEdit3.DataSource = list;
+            IList<PS_tq> list2 = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where xlcode2='{0}'", xlcode));
             repositoryItemLookUpEdit4.DataSource = list2;
             
             RefreshData(string.Format(" where left(byqcode,{0})='{1}'",xlcode.Length,xlcode));
