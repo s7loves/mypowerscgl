@@ -142,6 +142,7 @@
             this.btExports.ImageIndex = 7;
             this.btExports.Name = "btExports";
             this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExports_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -173,7 +174,7 @@
             this.btRefresh.Id = 3;
             this.btRefresh.Name = "btRefresh";
             // 
-            // Ucm_czpdjb
+            // Ucm_sgzayc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -182,7 +183,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "Ucm_czpdjb";
+            this.Name = "Ucm_sgzayc";
             this.Size = new System.Drawing.Size(564, 408);
             this.Load += new System.EventHandler(this.Ucm_czpdjb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<bdjl_aqhdjlb>(gridControl1, gridView1, barManager1, false);
-           
+
         }
 
         private void initImageList()
@@ -47,16 +47,18 @@ namespace Ebada.Scgl.Sbgl
 
         private string parentID;
         private string sql = "";
-        public string ParentID { 
+        public string ParentID
+        {
             get
             {
                 return this.parentID;
             }
-            set {
+            set
+            {
                 if (!string.IsNullOrEmpty(value))
                 {
                     this.parentID = value;
-                    sql = "where OrgCode='"+parentID+"'";
+                    sql = "where OrgCode='" + parentID + "'";
                     RefreshGridData(sql);
                 }
             }
@@ -130,5 +132,17 @@ namespace Ebada.Scgl.Sbgl
             RefreshGridData("");
         }
 
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择要导出的记录!");
+                return;
+            }
+            IList<bdjl_aqhdjlb> aqList = new List<bdjl_aqhdjlb>();
+            aqList.Add(gridView1.GetFocusedRow() as bdjl_aqhdjlb);
+            ExportBdjl.ExportExcelAqhdjlb(aqList);
+
+        }
     }
 }
