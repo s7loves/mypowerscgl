@@ -33,8 +33,13 @@ namespace Ebada.Scgl.Sbgl
         void yxgzjlb_FocusedRowChanged(object sender, Ebada.Scgl.Model.bdjl_yxgzjlb obj)
         {
             if (obj == null)
-                return;
-            this.gzjlzb.ParentID = obj.ID;
+            {
+                gzjlzb.ParentID = "";
+            }
+            else
+            {
+                this.gzjlzb.ParentID = obj.ID;
+            }
         }
 
         void ucorg_FocusedRowChanged(object sender, Ebada.Scgl.Model.mOrg obj)

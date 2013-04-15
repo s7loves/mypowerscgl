@@ -33,10 +33,7 @@ namespace Ebada.Scgl.Sbgl
         {
             if (FocusedRowChanged != null)
             {
-                if (gridView1.GetFocusedRow() != null)
-                {
-                    FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as bdjl_yxgzjlb);
-                }
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as bdjl_yxgzjlb);
             }
         }
 
@@ -138,6 +135,18 @@ namespace Ebada.Scgl.Sbgl
         private void btRefreshs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RefreshGridData("");
+        }
+
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView1.GetFocusedRow() == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择要导出的记录!");
+                return;
+            }
+            bdjl_yxgzjlb yxfxjl = gridView1.GetFocusedRow() as bdjl_yxgzjlb;
+            IList<bdjl_gzjlzb> gzjlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_gzjlzb>("where ParentID='" + yxfxjl.ID + "'");
+            ExportBdjl.ExportExcelYxgzjlb(yxfxjl, gzjlList);
         }
 
     }
