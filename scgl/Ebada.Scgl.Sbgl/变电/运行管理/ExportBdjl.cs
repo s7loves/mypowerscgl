@@ -936,6 +936,79 @@ namespace Ebada.Scgl.Sbgl
         }
 
         /// <summary>
+        /// 运行工作记录簿
+        /// </summary>
+        /// <param name="yxgzjl">工作记录</param>
+        /// <param name="nrList">工作记录内容</param>
+        public static void ExportExcelYxgzjlb(bdjl_yxgzjlb yxgzjl, IList<bdjl_gzjlzb> nrList)
+        {
+            #region  运行工作记录簿        
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\运行工作记录簿.xls";
+            ex.Open(fname);
+            int row = 1;
+            //加页
+            int pageindex = 1;
+            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 15))
+            {
+                pageindex = Ecommonjh.GetPagecount(nrList.Count, 15);
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(1);
+                
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+                ex.SetCellValue(Convert.ToDateTime(yxgzjl.rq).Year + "年" + Convert.ToDateTime(yxgzjl.rq).Month + "月"
+                    + Convert.ToDateTime(yxgzjl.rq).Day + "日", 2, 1);
+                ex.SetCellValue(GetWeeks(Convert.ToDateTime(yxgzjl.rq).DayOfWeek), 2, 5);
+                ex.SetCellValue(yxgzjl.tq, 2, 8);
+                ex.SetCellValue(yxgzjl.jbfzr, 3, 3);
+                ex.SetCellValue(yxgzjl.jbry, 3, 7);
+                ex.SetCellValue(yxgzjl.jbfzry, 4, 3);
+                ex.SetCellValue(yxgzjl.jbryy, 4, 7);
+            }
+
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(j);
+                //ex.ReNameWorkSheet(j, "Sheet" + (j));
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * 15 + 1;
+                int endrow = j * 15;
+
+                if (nrList.Count > endrow)
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Hour.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Minute.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].nr, row + 5 + i, 3);
+                        //ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+
+                    }
+                }
+                else if (nrList.Count <= endrow && nrList.Count >= starow)
+                {
+                    for (int i = 0; i < nrList.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Hour.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Minute.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].nr, row + 5 + i, 3);
+                    }
+                }
+
+            }
+            ex.ActiveSheet(1);
+            ex.ShowExcel();
+            #endregion
+        }
+
+        /// <summary>
         /// 获得星期几
         /// </summary>
         /// <param name="dayweek">枚举英文</param>
