@@ -13,6 +13,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -20,6 +21,7 @@ namespace Ebada.Scgl.Sbgl
     public partial class Ucm_sbjxjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<bdjl_sbjxjl> gridViewOperation;
+        private bool issearch = false;
         public Ucm_sbjxjl()
         {
             InitializeComponent();
@@ -58,8 +60,34 @@ namespace Ebada.Scgl.Sbgl
                     this.parentID = value;
                     sql = "where OrgCode='"+parentID+"'";
                     RefreshGridData(sql);
+                    Loadlkue();
                 }
             }
+        }
+        private void Loadlkue()
+        {
+            string sqlsbmc = "select distinct a2 from BD_SBTZ where OrgCode='" + parentID + "' and rtrim(ltrim(a2))!=''";
+            IList<string> ls = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
+            List<DicType> sbmcList = new List<DicType>();
+            foreach (string mc in ls)
+            {
+                sbmcList.Add(new DicType(mc, mc));
+            }
+            SetComboBoxData(lkuesbmc, "Value", "Key", "请选择", "设备名称", sbmcList);
+
+        }
+
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
@@ -128,7 +156,45 @@ namespace Ebada.Scgl.Sbgl
 
         private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!issearch)
+            {
+                MsgBox.ShowWarningMessageBox("请先选择一个设备名称!");
+                return;
+            }
+            IList<bdjl_sbjxjl> sbjxList = new List<bdjl_sbjxjl>();
 
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_sbjxjl)
+                    sbjxList.Add(row as bdjl_sbjxjl);
+
+            }
+            ExportBdjl.ExportExcelSbjxjl(sbjxList);
+        }
+
+        private void lkuesbmc_EditValueChanged(object sender, EventArgs e)
+        {
+            string sqlwhere = "";
+            if (lkuesbmc.EditValue == null)
+            {
+                sqlwhere = "where OrgCode='" + parentID + "'";
+                issearch = false;
+            }
+            else
+            {
+                sqlwhere = "where OrgCode='" + parentID + "' and sbmc='" + lkuesbmc.EditValue.ToString() + "'";
+
+                issearch = true;
+            }
+            RefreshGridData(sqlwhere);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            this.lkuesbmc.EditValue = null;
+            issearch = false;
+            RefreshGridData("");
         }
 
     }
