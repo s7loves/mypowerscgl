@@ -131,5 +131,37 @@ namespace Ebada.Scgl.Sbgl
             RefreshGridData("");
         }
 
+        private void datesj_EditValueChanged(object sender, EventArgs e)
+        {
+            if (datesj.EditValue == null)
+                return;
+            string searchtime = Convert.ToDateTime(datesj.EditValue).ToString("yyyy-M");
+            string sqlwhere = "where Convert(varchar,Year(sj)) + '-' + Convert(varchar,Month(sj))='" + searchtime + "' and OrgCode='"+parentID+"'";
+            RefreshGridData(sqlwhere);
+        }
+
+        private void btnResets_Click(object sender, EventArgs e)
+        {
+            this.datesj.EditValue = null;
+            RefreshGridData("");
+        }
+
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (datesj.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择时间!");
+                return;
+            }
+            IList<bdjl_xdctzjlb> xdcList = new List<bdjl_xdctzjlb>();
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_xdctzjlb)
+                    xdcList.Add(row as bdjl_xdctzjlb);
+            }
+            ExportBdjl.ExprotExcelXdcdzjlb(xdcList);
+        }
+
     }
 }

@@ -70,9 +70,12 @@ namespace Ebada.Scgl.Sbgl
         private void InitGridviewColumn()
         {
             gridView1.Columns["OrgCode"].Visible = false;
-            gridView1.Columns["c1"].Visible = false;
-            gridView1.Columns["c2"].Visible = false;
-            gridView1.Columns["c3"].Visible = false;
+            gridView1.Columns["c1"].VisibleIndex = 4;
+            gridView1.Columns["c1"].Caption = "A项累计动作次数";
+            gridView1.Columns["c2"].Caption = "B项累计动作次数";
+            gridView1.Columns["c2"].VisibleIndex = 6;
+            gridView1.Columns["c3"].Caption = "C项累计动作次数";
+            gridView1.Columns["c3"].VisibleIndex = 8;
             gridView1.Columns["dzsj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             gridView1.Columns["dzsj"].DisplayFormat.FormatString = "HH:mm:ss";
         }
@@ -125,6 +128,20 @@ namespace Ebada.Scgl.Sbgl
         private void btRefreshs_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RefreshGridData("");
+        }
+
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<bdjl_blqdzjlcs> blqList = new List<bdjl_blqdzjlcs>();
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_blqdzjlcs)
+                {
+                    blqList.Add(row as bdjl_blqdzjlcs);
+                }
+            }
+            ExportBdjl.ExportExcelBlqdzjlb(blqList);
         }
 
     }
