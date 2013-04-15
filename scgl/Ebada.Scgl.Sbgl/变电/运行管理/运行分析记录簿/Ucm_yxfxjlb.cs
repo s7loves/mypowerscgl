@@ -126,5 +126,17 @@ namespace Ebada.Scgl.Sbgl
             RefreshGridData("");
         }
 
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.GetFocusedRow() == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择要导出的记录!");
+                return;
+            }
+            IList<bdjl_yxfxjlb> yxfxList = new List<bdjl_yxfxjlb>();
+            yxfxList.Add(gridView1.GetFocusedRow() as bdjl_yxfxjlb);
+            ExportBdjl.ExportExcelYxfxjlb(yxfxList);          
+        }
+
     }
 }
