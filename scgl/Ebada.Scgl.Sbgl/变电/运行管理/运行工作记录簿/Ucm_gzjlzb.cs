@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Sbgl
             {
                 if (string.IsNullOrEmpty(parentID))
                     return;
-                sqlwhere = "where OrgCode='" + parentID + "'";
+                sqlwhere = "where ParentID='" + parentID + "'";
             }
             gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_gzjlzb>(sqlwhere);
         }
@@ -53,12 +53,12 @@ namespace Ebada.Scgl.Sbgl
                 return this.parentID;
             }
             set {
-                if (!string.IsNullOrEmpty(value))
-                {
+                //if (!string.IsNullOrEmpty(value))
+                //{
                     this.parentID = value;
                     sql = "where ParentID='" + parentID + "'";
                     RefreshGridData(sql);
-                }
+                //}
             }
         }
 
