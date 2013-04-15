@@ -182,6 +182,11 @@ namespace Ebada.Scgl.Sbgl
 
         private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!issearch)
+            {
+                MsgBox.ShowWarningMessageBox("请先选择一个设备名称!");
+                return;
+            }
             IList<bdjl_jdbhjl> jdbhList = new List<bdjl_jdbhjl>();
             for (int i = 0; i < gridView1.RowCount; i++)
             {
