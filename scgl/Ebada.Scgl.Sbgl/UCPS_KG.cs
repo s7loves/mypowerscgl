@@ -70,15 +70,18 @@ namespace Ebada.Scgl.Sbgl {
             InitColumns();//初始列
             //InitData();//初始数据
             if (this.Site != null) return;
-            btGdsList.Edit = DicTypeHelper.GdsDic;
-            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
-            btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
-            btGtList.EditValueChanged += new EventHandler(btGtList_EditValueChanged);
-            if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
-                btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
-                btGdsList.Edit.ReadOnly = true;
-            } else {
-                btGdsList.EditValue = "201";
+            if (btGdsList.Visibility != BarItemVisibility.Never) {
+                btGdsList.Edit = DicTypeHelper.GdsDic;
+                btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+                btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
+                btGtList.EditValueChanged += new EventHandler(btGtList_EditValueChanged);
+
+                if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1") {//如果是供电所人员，则锁定
+                    btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
+                    btGdsList.Edit.ReadOnly = true;
+                } else {
+                    btGdsList.EditValue = "201";
+                }
             }
             //btGdsList_EditValueChanged(null, null);
         }
