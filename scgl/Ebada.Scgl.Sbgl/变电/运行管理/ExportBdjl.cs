@@ -166,6 +166,7 @@ namespace Ebada.Scgl.Sbgl
             ex.ShowExcel();
 
         }
+
         /// <summary>
         /// 开关跳闸记录簿
         /// </summary>
