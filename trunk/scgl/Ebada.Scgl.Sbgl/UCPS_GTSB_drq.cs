@@ -40,12 +40,13 @@ namespace Ebada.Scgl.Sbgl {
         public UCPS_GTSB_drq() {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<PS_gtsb>(gridControl1, gridView1, barManager1, frm);
+            gridViewOperation = new GridViewOperation<PS_gtsb>(gridControl1, gridView1, barManager1, true);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_gtsb>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_gtsb>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<PS_gtsb> e) {
@@ -148,6 +149,11 @@ namespace Ebada.Scgl.Sbgl {
             RepositoryItemComboBox box1 = new RepositoryItemComboBox();
             box1.Items.AddRange(new string[] { "静态", "动态" });
             gridView1.Columns["C2"].ColumnEdit = box1;
+            box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select xh from ps_sbcs where  parentid ='{0}'", "16001")));
+            gridView1.Columns["sbModle"].ColumnEdit = box1;
+
+
         }
         /// <summary>
         /// 刷新数据
@@ -171,7 +177,10 @@ namespace Ebada.Scgl.Sbgl {
         void gridViewOperation_CreatingObjectEvent(PS_gtsb newobj) {
             if (parentID == null) return;
             newobj.gtID = parentID;
-
+            newobj.sbNumber = 1;
+            newobj.sbType = "16001";
+            newobj.sbName = "电容器";
+            newobj.sbCode = gridView1.RowCount.ToString("000");
         }
         /// <summary>
         /// 父表ID
