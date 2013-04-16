@@ -38,6 +38,8 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.ucpS_GTSB1 = new Ebada.Scgl.Sbgl.UCPS_GTSB();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitCC1)).BeginInit();
             this.splitCC1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -71,7 +73,7 @@
             this.ucpS_GT1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_GT1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_GT1.Name = "ucpS_GT1";
-            this.ucpS_GT1.Size = new System.Drawing.Size(594, 214);
+            this.ucpS_GT1.Size = new System.Drawing.Size(594, 212);
             this.ucpS_GT1.TabIndex = 0;
             // 
             // xtraTabControl1
@@ -86,13 +88,15 @@
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage5,
+            this.xtraTabPage6});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.ucpS_TQ1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage1.Size = new System.Drawing.Size(583, 164);
             this.xtraTabPage1.Text = "台区";
             // 
             // ucpS_TQ1
@@ -100,14 +104,14 @@
             this.ucpS_TQ1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_TQ1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_TQ1.Name = "ucpS_TQ1";
-            this.ucpS_TQ1.Size = new System.Drawing.Size(585, 167);
+            this.ucpS_TQ1.Size = new System.Drawing.Size(583, 164);
             this.ucpS_TQ1.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.ucpS_KG1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage2.Size = new System.Drawing.Size(583, 164);
             this.xtraTabPage2.Text = "开关";
             // 
             // ucpS_KG1
@@ -115,14 +119,14 @@
             this.ucpS_KG1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_KG1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_KG1.Name = "ucpS_KG1";
-            this.ucpS_KG1.Size = new System.Drawing.Size(585, 167);
+            this.ucpS_KG1.Size = new System.Drawing.Size(583, 164);
             this.ucpS_KG1.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.ucpS_GTSB1);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage3.Size = new System.Drawing.Size(583, 164);
             this.xtraTabPage3.Text = "其它设备";
             // 
             // ucpS_GTSB1
@@ -130,14 +134,26 @@
             this.ucpS_GTSB1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucpS_GTSB1.Location = new System.Drawing.Point(0, 0);
             this.ucpS_GTSB1.Name = "ucpS_GTSB1";
-            this.ucpS_GTSB1.Size = new System.Drawing.Size(585, 167);
+            this.ucpS_GTSB1.Size = new System.Drawing.Size(583, 164);
             this.ucpS_GTSB1.TabIndex = 0;
             // 
             // xtraTabPage4
             // 
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(585, 167);
+            this.xtraTabPage4.Size = new System.Drawing.Size(583, 164);
             this.xtraTabPage4.Text = "交叉跨越";
+            // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(583, 164);
+            this.xtraTabPage5.Text = "电容器";
+            // 
+            // xtraTabPage6
+            // 
+            this.xtraTabPage6.Name = "xtraTabPage6";
+            this.xtraTabPage6.Size = new System.Drawing.Size(583, 164);
+            this.xtraTabPage6.Text = "表箱";
             // 
             // UCPS_gtM
             // 
@@ -169,5 +185,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private UCPS_GTSB ucpS_GTSB1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
     }
 }

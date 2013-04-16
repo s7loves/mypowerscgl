@@ -48,16 +48,27 @@ namespace Ebada.Scgl.Sbgl
         }
         UCxlTreeSelector xltree;
         UCPS_jcky ucps_jcky;
+        UCPS_GTSB_drq ucps_drq;
         Ebada.Scgl.Model.PS_gt mgt;
         void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {
             if (e.Page == xtraTabPage4) {
                 if (ucps_jcky == null) {
                     ucps_jcky = new UCPS_jcky();
                     ucps_jcky.Dock = DockStyle.Fill;
-                    xtraTabPage4.Controls.Add(ucps_jcky);
+                    e.Page.Controls.Add(ucps_jcky);
                     ucps_jcky.HideList();
                 }
                 ucps_jcky.ParentObj = mgt;
+            } else if (e.Page == xtraTabPage5) {
+                if (ucps_drq == null) {
+                    ucps_drq = new UCPS_GTSB_drq();
+                    ucps_drq.Dock = DockStyle.Fill;
+                    e.Page.Controls.Add(ucps_drq);
+                    ucps_drq.HideList();
+                }
+                ucps_drq.ParentObj = mgt;
+            } else if (e.Page == xtraTabPage6) {
+
             }
         }
 
