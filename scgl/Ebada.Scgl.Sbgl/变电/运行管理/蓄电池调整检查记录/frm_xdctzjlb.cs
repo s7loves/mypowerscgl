@@ -54,22 +54,21 @@ namespace Ebada.Scgl.Sbgl
             this.txtdl.DataBindings.Add("EditValue", rowData, "dl");
             this.txttrdcgs.DataBindings.Add("EditValue", rowData, "trdcgs");
             this.txtbzdcdy.DataBindings.Add("EditValue", rowData, "bzdcdy");
-            this.txtjcr.DataBindings.Add("EditValue", rowData, "jcr");
+            this.lkuejcr.DataBindings.Add("EditValue", rowData, "jcr");
 
         }
 
         private void Initlkue()
         {
-            ////10代表避雷器
-            //string sqlsbmc = "select distinct a2 from BD_SBTZ where OrgCode='" + rowData.OrgCode + "' and rtrim(ltrim(a2))!='' and sbtype='16'";
-            //IList<string> ls = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
-            //List<DicType> sbmcList = new List<DicType>();
-            //foreach (string mc in ls)
-            //{
-            //    sbmcList.Add(new DicType(mc, mc));
-            //}
-            ////SetComboBoxData(lkueblqmc, "Value", "Key", "请选择", "避雷器名称", sbmcList);
-
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            SetComboBoxData(this.lkuejcr, "Value", "Key", "请选择", "检测人", userTypeList);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);

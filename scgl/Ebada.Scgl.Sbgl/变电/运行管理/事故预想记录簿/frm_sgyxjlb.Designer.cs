@@ -31,9 +31,7 @@
             this.lblrq = new DevExpress.XtraEditors.LabelControl();
             this.daterq = new DevExpress.XtraEditors.DateEdit();
             this.lbltq = new DevExpress.XtraEditors.LabelControl();
-            this.txttq = new DevExpress.XtraEditors.TextEdit();
             this.lblcjry = new DevExpress.XtraEditors.LabelControl();
-            this.txtcjry = new DevExpress.XtraEditors.TextEdit();
             this.lbldsyxfs = new DevExpress.XtraEditors.LabelControl();
             this.txtdsyxfs = new DevExpress.XtraEditors.TextEdit();
             this.lblyxtm = new DevExpress.XtraEditors.LabelControl();
@@ -46,15 +44,17 @@
             this.txtshyj = new DevExpress.XtraEditors.TextEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.cmbxcjry = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.lkuetq = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtcjry.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memosgxx.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclbz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxcjry.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuetq.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblrq
@@ -79,37 +79,23 @@
             // 
             // lbltq
             // 
-            this.lbltq.Location = new System.Drawing.Point(38, 70);
+            this.lbltq.Location = new System.Drawing.Point(38, 63);
             this.lbltq.Name = "lbltq";
             this.lbltq.Size = new System.Drawing.Size(24, 14);
             this.lbltq.TabIndex = 2;
             this.lbltq.Text = "天气";
             // 
-            // txttq
-            // 
-            this.txttq.Location = new System.Drawing.Point(120, 67);
-            this.txttq.Name = "txttq";
-            this.txttq.Size = new System.Drawing.Size(408, 21);
-            this.txttq.TabIndex = 3;
-            // 
             // lblcjry
             // 
-            this.lblcjry.Location = new System.Drawing.Point(38, 108);
+            this.lblcjry.Location = new System.Drawing.Point(38, 94);
             this.lblcjry.Name = "lblcjry";
             this.lblcjry.Size = new System.Drawing.Size(48, 14);
             this.lblcjry.TabIndex = 4;
             this.lblcjry.Text = "参加人员";
             // 
-            // txtcjry
-            // 
-            this.txtcjry.Location = new System.Drawing.Point(120, 105);
-            this.txtcjry.Name = "txtcjry";
-            this.txtcjry.Size = new System.Drawing.Size(408, 21);
-            this.txtcjry.TabIndex = 5;
-            // 
             // lbldsyxfs
             // 
-            this.lbldsyxfs.Location = new System.Drawing.Point(38, 146);
+            this.lbldsyxfs.Location = new System.Drawing.Point(38, 125);
             this.lbldsyxfs.Name = "lbldsyxfs";
             this.lbldsyxfs.Size = new System.Drawing.Size(72, 14);
             this.lbldsyxfs.TabIndex = 6;
@@ -117,14 +103,14 @@
             // 
             // txtdsyxfs
             // 
-            this.txtdsyxfs.Location = new System.Drawing.Point(120, 143);
+            this.txtdsyxfs.Location = new System.Drawing.Point(120, 122);
             this.txtdsyxfs.Name = "txtdsyxfs";
             this.txtdsyxfs.Size = new System.Drawing.Size(408, 21);
             this.txtdsyxfs.TabIndex = 7;
             // 
             // lblyxtm
             // 
-            this.lblyxtm.Location = new System.Drawing.Point(38, 184);
+            this.lblyxtm.Location = new System.Drawing.Point(38, 156);
             this.lblyxtm.Name = "lblyxtm";
             this.lblyxtm.Size = new System.Drawing.Size(48, 14);
             this.lblyxtm.TabIndex = 8;
@@ -132,14 +118,14 @@
             // 
             // txtyxtm
             // 
-            this.txtyxtm.Location = new System.Drawing.Point(120, 181);
+            this.txtyxtm.Location = new System.Drawing.Point(120, 153);
             this.txtyxtm.Name = "txtyxtm";
             this.txtyxtm.Size = new System.Drawing.Size(408, 21);
             this.txtyxtm.TabIndex = 9;
             // 
             // lblsgxx
             // 
-            this.lblsgxx.Location = new System.Drawing.Point(38, 219);
+            this.lblsgxx.Location = new System.Drawing.Point(38, 184);
             this.lblsgxx.Name = "lblsgxx";
             this.lblsgxx.Size = new System.Drawing.Size(48, 14);
             this.lblsgxx.TabIndex = 10;
@@ -147,14 +133,14 @@
             // 
             // memosgxx
             // 
-            this.memosgxx.Location = new System.Drawing.Point(120, 219);
+            this.memosgxx.Location = new System.Drawing.Point(120, 184);
             this.memosgxx.Name = "memosgxx";
             this.memosgxx.Size = new System.Drawing.Size(408, 68);
             this.memosgxx.TabIndex = 11;
             // 
             // lblclbz
             // 
-            this.lblclbz.Location = new System.Drawing.Point(38, 304);
+            this.lblclbz.Location = new System.Drawing.Point(38, 262);
             this.lblclbz.Name = "lblclbz";
             this.lblclbz.Size = new System.Drawing.Size(48, 14);
             this.lblclbz.TabIndex = 12;
@@ -162,14 +148,14 @@
             // 
             // memoclbz
             // 
-            this.memoclbz.Location = new System.Drawing.Point(120, 304);
+            this.memoclbz.Location = new System.Drawing.Point(120, 262);
             this.memoclbz.Name = "memoclbz";
             this.memoclbz.Size = new System.Drawing.Size(408, 73);
             this.memoclbz.TabIndex = 13;
             // 
             // lblshyj
             // 
-            this.lblshyj.Location = new System.Drawing.Point(38, 397);
+            this.lblshyj.Location = new System.Drawing.Point(38, 348);
             this.lblshyj.Name = "lblshyj";
             this.lblshyj.Size = new System.Drawing.Size(48, 14);
             this.lblshyj.TabIndex = 14;
@@ -177,14 +163,14 @@
             // 
             // txtshyj
             // 
-            this.txtshyj.Location = new System.Drawing.Point(120, 394);
+            this.txtshyj.Location = new System.Drawing.Point(120, 345);
             this.txtshyj.Name = "txtshyj";
             this.txtshyj.Size = new System.Drawing.Size(408, 21);
             this.txtshyj.TabIndex = 15;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(312, 437);
+            this.btnOk.Location = new System.Drawing.Point(312, 381);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 16;
@@ -193,18 +179,38 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(429, 437);
+            this.btnCancel.Location = new System.Drawing.Point(426, 381);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cmbxcjry
+            // 
+            this.cmbxcjry.Location = new System.Drawing.Point(120, 91);
+            this.cmbxcjry.Name = "cmbxcjry";
+            this.cmbxcjry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbxcjry.Size = new System.Drawing.Size(408, 21);
+            this.cmbxcjry.TabIndex = 18;
+            // 
+            // lkuetq
+            // 
+            this.lkuetq.Location = new System.Drawing.Point(120, 60);
+            this.lkuetq.Name = "lkuetq";
+            this.lkuetq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkuetq.Size = new System.Drawing.Size(408, 21);
+            this.lkuetq.TabIndex = 19;
+            // 
             // frm_sgyxjlb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 485);
+            this.ClientSize = new System.Drawing.Size(556, 423);
+            this.Controls.Add(this.lkuetq);
+            this.Controls.Add(this.cmbxcjry);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtshyj);
@@ -217,9 +223,7 @@
             this.Controls.Add(this.lblyxtm);
             this.Controls.Add(this.txtdsyxfs);
             this.Controls.Add(this.lbldsyxfs);
-            this.Controls.Add(this.txtcjry);
             this.Controls.Add(this.lblcjry);
-            this.Controls.Add(this.txttq);
             this.Controls.Add(this.lbltq);
             this.Controls.Add(this.daterq);
             this.Controls.Add(this.lblrq);
@@ -229,13 +233,13 @@
             this.Text = "事故预想记录";
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtcjry.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memosgxx.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclbz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxcjry.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuetq.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,9 +250,7 @@
         private DevExpress.XtraEditors.LabelControl lblrq;
         private DevExpress.XtraEditors.DateEdit daterq;
         private DevExpress.XtraEditors.LabelControl lbltq;
-        private DevExpress.XtraEditors.TextEdit txttq;
         private DevExpress.XtraEditors.LabelControl lblcjry;
-        private DevExpress.XtraEditors.TextEdit txtcjry;
         private DevExpress.XtraEditors.LabelControl lbldsyxfs;
         private DevExpress.XtraEditors.TextEdit txtdsyxfs;
         private DevExpress.XtraEditors.LabelControl lblyxtm;
@@ -261,5 +263,7 @@
         private DevExpress.XtraEditors.TextEdit txtshyj;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cmbxcjry;
+        private DevExpress.XtraEditors.LookUpEdit lkuetq;
     }
 }

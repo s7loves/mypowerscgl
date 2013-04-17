@@ -40,7 +40,7 @@
             // 
             // lblsj
             // 
-            this.lblsj.Location = new System.Drawing.Point(39, 45);
+            this.lblsj.Location = new System.Drawing.Point(38, 20);
             this.lblsj.Name = "lblsj";
             this.lblsj.Size = new System.Drawing.Size(24, 14);
             this.lblsj.TabIndex = 0;
@@ -49,7 +49,7 @@
             // timesj
             // 
             this.timesj.EditValue = new System.DateTime(2013, 4, 10, 0, 0, 0, 0);
-            this.timesj.Location = new System.Drawing.Point(89, 45);
+            this.timesj.Location = new System.Drawing.Point(88, 20);
             this.timesj.Name = "timesj";
             this.timesj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -59,7 +59,7 @@
             // 
             // lblnr
             // 
-            this.lblnr.Location = new System.Drawing.Point(39, 97);
+            this.lblnr.Location = new System.Drawing.Point(38, 56);
             this.lblnr.Name = "lblnr";
             this.lblnr.Size = new System.Drawing.Size(24, 14);
             this.lblnr.TabIndex = 2;
@@ -67,14 +67,14 @@
             // 
             // memonr
             // 
-            this.memonr.Location = new System.Drawing.Point(89, 82);
+            this.memonr.Location = new System.Drawing.Point(88, 56);
             this.memonr.Name = "memonr";
             this.memonr.Size = new System.Drawing.Size(356, 129);
             this.memonr.TabIndex = 3;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(247, 240);
+            this.btnOk.Location = new System.Drawing.Point(246, 201);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -83,7 +83,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(357, 240);
+            this.btnCancel.Location = new System.Drawing.Point(354, 201);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 275);
+            this.ClientSize = new System.Drawing.Size(471, 244);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.memonr);
