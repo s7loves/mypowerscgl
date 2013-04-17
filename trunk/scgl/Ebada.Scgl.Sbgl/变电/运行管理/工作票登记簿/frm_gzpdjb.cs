@@ -37,7 +37,7 @@ namespace Ebada.Scgl.Sbgl
                 if (rowData == null)
                 {
                     this.rowData = value as bdjl_gzpdjb;
-
+                    Initlkue();
                     dataBind();
                 }
                 else
@@ -47,17 +47,44 @@ namespace Ebada.Scgl.Sbgl
             }
         }
 
+        private void Initlkue()
+        {
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            SetComboBoxData(this.lkuegzfpr, "Value", "Key", "请选择", "工作票签发人", userTypeList);
+            SetComboBoxData(this.lkuegzfzr, "Value", "Key", "请选择", "工作负责人", userTypeList);
+            SetComboBoxData(this.lkuegzxkr, "Value", "Key", "请选择", "工作许可人", userTypeList);
+            SetComboBoxData(this.lkuezbz, "Value", "Key", "请选择", "值班长", userTypeList);
+        }
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
         private void dataBind()
         {
             this.txtOrgName.DataBindings.Add("EditValue", rowData, "c1");
             this.txtgzpbh.DataBindings.Add("EditValue", rowData, "gzpbh");
             this.txtgzpzl.DataBindings.Add("EditValue", rowData, "gzpzl");
-            this.txtgzfzr.DataBindings.Add("EditValue", rowData, "gzpfzr");
+            this.lkuegzfzr.DataBindings.Add("EditValue", rowData, "gzpfzr");
             this.dateStartTime.DataBindings.Add("EditValue", rowData, "gzkssj");
             this.dateEndTime.DataBindings.Add("EditValue", rowData, "gzjssj");
-            this.txtgzxkr.DataBindings.Add("EditValue", rowData, "gzxkr");
-            this.txtzbz.DataBindings.Add("EditValue", rowData, "zbz");
-            this.txtgzpqfr.DataBindings.Add("EditValue", rowData, "gzpqfr");
+            this.lkuegzxkr.DataBindings.Add("EditValue", rowData, "gzxkr");
+            this.lkuezbz.DataBindings.Add("EditValue", rowData, "zbz");
+            this.lkuegzfpr.DataBindings.Add("EditValue", rowData, "gzpqfr");
             this.meogzddjnr.DataBindings.Add("EditValue", rowData, "gzddjnr");
         }
 
