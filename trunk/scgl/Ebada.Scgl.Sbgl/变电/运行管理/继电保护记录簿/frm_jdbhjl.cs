@@ -51,8 +51,8 @@ namespace Ebada.Scgl.Sbgl
         {
             this.lkuesbmc.DataBindings.Add("EditValue", rowData, "sbmc");
             this.daterq.DataBindings.Add("EditValue", rowData, "rq");
-            this.txtjdfzr.DataBindings.Add("EditValue", rowData, "jdfzr");
-            this.txtzbrjsz.DataBindings.Add("EditValue", rowData, "zbrjsz");
+            this.lkuejdfzr.DataBindings.Add("EditValue", rowData, "jdfzr");
+            this.lkuezbrjsz.DataBindings.Add("EditValue", rowData, "zbrjsz");
             this.memotsnrjjl.DataBindings.Add("EditValue", rowData, "tsnrjjl");
         }
 
@@ -68,6 +68,17 @@ namespace Ebada.Scgl.Sbgl
             }
             SetComboBoxData(lkuesbmc, "Value", "Key", "请选择", "设备名称", sbmcList);
 
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+
+            SetComboBoxData(this.lkuejdfzr, "Value", "Key", "请选择", "继电负责人", userTypeList);
+            SetComboBoxData(this.lkuezbrjsz, "Value", "Key", "请选择", "值班人及所长", userTypeList);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
