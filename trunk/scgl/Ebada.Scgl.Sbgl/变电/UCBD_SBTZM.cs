@@ -14,12 +14,13 @@ namespace Ebada.Scgl.Sbgl
     [ToolboxItem(false)]
     public partial class UCBD_SBTZM : DevExpress.XtraEditors.XtraUserControl
     {
-        UCBD_SBTZ_FSSB ucbd_Fssb;
+        //UCBD_SBTZ_FSSB ucbd_Fssb;
         public UCBD_SBTZM()
         {
             InitializeComponent();
             //ucpS_GTSB1.HideList();
             xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControl1_SelectedPageChanged);
+            splitCC1.PanelVisibility = SplitPanelVisibility.Panel1;
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
@@ -28,9 +29,9 @@ namespace Ebada.Scgl.Sbgl
         }
         private void init() {
             ucpS_GT1.HideList();
-            ucbd_Fssb = new UCBD_SBTZ_FSSB();
-            ucbd_Fssb.Dock = DockStyle.Fill;
-            xtraTabPage3.Controls.Add(ucbd_Fssb);
+            //ucbd_Fssb = new UCBD_SBTZ_FSSB();
+            //ucbd_Fssb.Dock = DockStyle.Fill;
+            //xtraTabPage3.Controls.Add(ucbd_Fssb);
             xltree = new UCmOrgBds();
             xltree.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.mOrg>(xltree_FocusedRowChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "2") {//如果是供电所人员，则锁定
@@ -49,8 +50,8 @@ namespace Ebada.Scgl.Sbgl
 
         void ucpS_GT1_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ obj)
         {
-            if(obj!=null)
-            ucbd_Fssb.ParentObj = obj;
+            //if(obj!=null)
+            //ucbd_Fssb.ParentObj = obj;
         }
 
         void zl_FocusedRowChanged(object sender, Ebada.Scgl.Model.BD_SBTZ_ZL obj) {
