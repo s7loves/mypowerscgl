@@ -42,18 +42,20 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnReset = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSearchs = new DevExpress.XtraEditors.SimpleButton();
+            this.lkueqxlb = new DevExpress.XtraEditors.LookUpEdit();
+            this.lblqxlb = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.lblqxlb = new DevExpress.XtraEditors.LabelControl();
-            this.lkueqxlb = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnSearchs = new DevExpress.XtraEditors.SimpleButton();
-            this.btnReset = new DevExpress.XtraEditors.SimpleButton();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -71,8 +73,10 @@
             this.btDeletes,
             this.btRefresh,
             this.btExports,
-            this.btRefreshs});
-            this.barManager1.MaxItemId = 6;
+            this.btRefreshs,
+            this.btFind,
+            this.btClose});
+            this.barManager1.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -85,7 +89,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdits),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExports)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExports),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -181,6 +187,42 @@
             this.splitContainerControl1.TabIndex = 5;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(309, 4);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "重置";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSearchs
+            // 
+            this.btnSearchs.Location = new System.Drawing.Point(217, 4);
+            this.btnSearchs.Name = "btnSearchs";
+            this.btnSearchs.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchs.TabIndex = 2;
+            this.btnSearchs.Text = "查询";
+            this.btnSearchs.Click += new System.EventHandler(this.btnSearchs_Click);
+            // 
+            // lkueqxlb
+            // 
+            this.lkueqxlb.Location = new System.Drawing.Point(69, 3);
+            this.lkueqxlb.MenuManager = this.barManager1;
+            this.lkueqxlb.Name = "lkueqxlb";
+            this.lkueqxlb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkueqxlb.Size = new System.Drawing.Size(130, 21);
+            this.lkueqxlb.TabIndex = 1;
+            // 
+            // lblqxlb
+            // 
+            this.lblqxlb.Location = new System.Drawing.Point(15, 7);
+            this.lblqxlb.Name = "lblqxlb";
+            this.lblqxlb.Size = new System.Drawing.Size(48, 14);
+            this.lblqxlb.TabIndex = 0;
+            this.lblqxlb.Text = "缺陷类别";
+            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -200,41 +242,21 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // lblqxlb
+            // btFind
             // 
-            this.lblqxlb.Location = new System.Drawing.Point(15, 7);
-            this.lblqxlb.Name = "lblqxlb";
-            this.lblqxlb.Size = new System.Drawing.Size(48, 14);
-            this.lblqxlb.TabIndex = 0;
-            this.lblqxlb.Text = "缺陷类别";
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 6;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // lkueqxlb
+            // btClose
             // 
-            this.lkueqxlb.Location = new System.Drawing.Point(69, 3);
-            this.lkueqxlb.MenuManager = this.barManager1;
-            this.lkueqxlb.Name = "lkueqxlb";
-            this.lkueqxlb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkueqxlb.Size = new System.Drawing.Size(130, 21);
-            this.lkueqxlb.TabIndex = 1;
-            // 
-            // btnSearchs
-            // 
-            this.btnSearchs.Location = new System.Drawing.Point(217, 4);
-            this.btnSearchs.Name = "btnSearchs";
-            this.btnSearchs.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchs.TabIndex = 2;
-            this.btnSearchs.Text = "查询";
-            this.btnSearchs.Click += new System.EventHandler(this.btnSearchs_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(309, 4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "重置";
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 7;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // Ucm_sbqxjl
             // 
@@ -251,9 +273,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,5 +301,7 @@
         private DevExpress.XtraEditors.LabelControl lblqxlb;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraBars.BarButtonItem btClose;
     }
 }

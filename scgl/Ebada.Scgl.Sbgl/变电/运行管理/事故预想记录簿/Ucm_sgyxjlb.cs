@@ -71,6 +71,10 @@ namespace Ebada.Scgl.Sbgl
         {
             gridView1.Columns["c1"].VisibleIndex = 0;
             gridView1.Columns["c1"].Caption = "日期";
+            DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dte = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            dte.Mask.EditMask = "yyyy-MM-dd";
+            dte.Mask.UseMaskAsDisplayFormat = true;
+            gridView1.Columns["c1"].ColumnEdit = dte;
             gridView1.Columns["OrgCode"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
             gridView1.Columns["c3"].Visible = false;

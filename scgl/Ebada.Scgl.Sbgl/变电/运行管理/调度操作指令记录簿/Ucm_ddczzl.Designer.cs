@@ -48,6 +48,8 @@
             this.lbltime = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -72,8 +74,10 @@
             this.btDeletes,
             this.btRefresh,
             this.btExports,
-            this.btRefreshs});
-            this.barManager1.MaxItemId = 6;
+            this.btRefreshs,
+            this.btFind,
+            this.btClose});
+            this.barManager1.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -86,7 +90,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdits),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExports)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExports),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -246,6 +252,22 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 6;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 7;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // Ucm_ddczzl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -290,5 +312,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton btnReset;
         private DevExpress.XtraEditors.SimpleButton btnSearchs;
+        private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraBars.BarButtonItem btClose;
     }
 }
