@@ -37,7 +37,7 @@ namespace Ebada.Scgl.Sbgl
                 if (rowData == null)
                 {
                     this.rowData = value as bdjl_czpdjb;
-                    
+                    Initlkue();
                     dataBind();
                 }
                 else
@@ -47,14 +47,41 @@ namespace Ebada.Scgl.Sbgl
             }
         }
 
+        private void Initlkue()
+        {
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            SetComboBoxData(lkueczr, "Value", "Key", "请选择", "操作人", userTypeList);
+            SetComboBoxData(lkuejhr, "Value", "Key", "请选择", "监护人", userTypeList);
+            SetComboBoxData(lkuezbr, "Value", "Key", "请选择", "值班人", userTypeList);
+        }
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
+
         private void dataBind()
         {
             this.txtOrgName.DataBindings.Add("EditValue", rowData, "c1");
             this.daterq.DataBindings.Add("EditValue", rowData, "dDate");
             this.txtczpsybh.DataBindings.Add("EditValue", rowData, "czpsybh");
-            this.txtczr.DataBindings.Add("EditValue", rowData, "czr");
-            this.txtjhr.DataBindings.Add("EditValue", rowData, "jhr");
-            this.txtzbr.DataBindings.Add("EditValue", rowData, "zbr");
+            this.lkueczr.DataBindings.Add("EditValue", rowData, "czr");
+            this.lkuejhr.DataBindings.Add("EditValue", rowData, "jhr");
+            this.lkuezbr.DataBindings.Add("EditValue", rowData, "zbr");
             this.meoczrw.DataBindings.Add("EditValue", rowData, "czrw");
 
         }
