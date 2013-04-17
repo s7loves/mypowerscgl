@@ -38,11 +38,13 @@
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefreshs = new DevExpress.XtraBars.BarButtonItem();
             this.btExports = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -82,8 +84,10 @@
             this.btDeletes,
             this.btRefresh,
             this.btExports,
-            this.btRefreshs});
-            this.barManager1.MaxItemId = 6;
+            this.btRefreshs,
+            this.btClose,
+            this.btFind});
+            this.barManager1.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -96,7 +100,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdits),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExports)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExports),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -144,6 +150,14 @@
             this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btExports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExports_ItemClick);
             // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 6;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -173,6 +187,14 @@
             this.btRefresh.Caption = "刷新";
             this.btRefresh.Id = 3;
             this.btRefresh.Name = "btRefresh";
+            // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 7;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // Ucm_aqhdjlb
             // 
@@ -209,5 +231,7 @@
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btExports;
         private DevExpress.XtraBars.BarButtonItem btRefreshs;
+        private DevExpress.XtraBars.BarButtonItem btClose;
+        private DevExpress.XtraBars.BarButtonItem btFind;
     }
 }
