@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Sbgl
             this.txtyxtm.DataBindings.Add("EditValue", rowData, "yxtm");
             this.timeyxkssj.DataBindings.Add("EditValue", rowData, "yxkssj");
             this.timeyxjssj.DataBindings.Add("EditValue", rowData, "yxjssj");
-            this.txtcjry.DataBindings.Add("EditValue", rowData, "cjry");
+            this.cmbxcjry.DataBindings.Add("EditValue", rowData, "cjry");
             this.memocljg.DataBindings.Add("EditValue", rowData, "cljg");
             this.memowtjcs.DataBindings.Add("EditValue", rowData, "wtjcs");
             this.memojljpj.DataBindings.Add("EditValue", rowData, "jljpj");
@@ -62,15 +62,17 @@ namespace Ebada.Scgl.Sbgl
 
         private void Initlkue()
         {
-            ////10代表避雷器
-            //string sqlsbmc = "select distinct a2 from BD_SBTZ where OrgCode='" + rowData.OrgCode + "' and rtrim(ltrim(a2))!='' and sbtype='16'";
-            //IList<string> ls = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
-            //List<DicType> sbmcList = new List<DicType>();
-            //foreach (string mc in ls)
-            //{
-            //    sbmcList.Add(new DicType(mc, mc));
-            //}
-            ////SetComboBoxData(lkueblqmc, "Value", "Key", "请选择", "避雷器名称", sbmcList);
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            cmbxcjry.Properties.DataSource = userTypeList;
+            cmbxcjry.Properties.DisplayMember = "Value";
+            cmbxcjry.Properties.ValueMember = "Key";
 
         }
 
