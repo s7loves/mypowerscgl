@@ -43,6 +43,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -82,8 +84,10 @@
             this.btDeletes,
             this.btRefresh,
             this.btExports,
-            this.btRefreshs});
-            this.barManager1.MaxItemId = 6;
+            this.btRefreshs,
+            this.btFind,
+            this.btClose});
+            this.barManager1.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -96,7 +100,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdits),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExports)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExports),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -173,7 +179,23 @@
             this.btRefresh.Id = 3;
             this.btRefresh.Name = "btRefresh";
             // 
-            // Ucm_czpdjb
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 6;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 7;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // Ucm_gzpdjb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -182,7 +204,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "Ucm_czpdjb";
+            this.Name = "Ucm_gzpdjb";
             this.Size = new System.Drawing.Size(564, 408);
             this.Load += new System.EventHandler(this.Ucm_czpdjb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -208,5 +230,7 @@
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btExports;
         private DevExpress.XtraBars.BarButtonItem btRefreshs;
+        private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraBars.BarButtonItem btClose;
     }
 }
