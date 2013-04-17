@@ -58,7 +58,17 @@ namespace Ebada.Scgl.Sbgl
                 sbmcList.Add(new DicType(mc, mc));
             }
             SetComboBoxData(lkuesbmc, "Value", "Key", "请选择", "设备名称", sbmcList);
-           
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            SetComboBoxData(this.lkuefxr, "Value", "Key", "请选择", "发现人", userTypeList);
+            SetComboBoxData(this.lkuexcr, "Value", "Key", "请选择", "消除人", userTypeList);
+            SetComboBoxData(this.lkueysr, "Value", "Key", "请选择", "验收人", userTypeList);
         }
 
         private void dataBind()
@@ -66,12 +76,12 @@ namespace Ebada.Scgl.Sbgl
             this.lkuesbmc.DataBindings.Add("EditValue", rowData, "sbmc");
             this.txtqxbh.DataBindings.Add("EditValue", rowData, "qxbh");
             this.datefxrq.DataBindings.Add("EditValue", rowData, "fxrq");
-            this.txtfxr.DataBindings.Add("EditValue", rowData, "fxr");
+            this.lkuefxr.DataBindings.Add("EditValue", rowData, "fxr");
             this.lkueqxlb.DataBindings.Add("EditValue", rowData, "qxlb");
             this.meoqxnr.DataBindings.Add("EditValue", rowData, "qxnr");
             this.datexcrq.DataBindings.Add("EditValue", rowData, "c1");
-            this.txtxcr.DataBindings.Add("EditValue", rowData, "c2");
-            this.txtysr.DataBindings.Add("EditValue", rowData, "c3");
+            this.lkuexcr.DataBindings.Add("EditValue", rowData, "c2");
+            this.lkueysr.DataBindings.Add("EditValue", rowData, "c3");
         }
 
         #endregion

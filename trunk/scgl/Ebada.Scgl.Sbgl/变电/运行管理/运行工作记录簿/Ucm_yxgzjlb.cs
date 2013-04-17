@@ -84,7 +84,10 @@ namespace Ebada.Scgl.Sbgl
             gridView1.Columns["c1"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
             gridView1.Columns["c3"].Visible = false;
-            
+            DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dte = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            dte.Mask.EditMask = "yyyy-MM-dd";
+            dte.Mask.UseMaskAsDisplayFormat = true;
+            gridView1.Columns["rq"].ColumnEdit = dte;
         }
 
         private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

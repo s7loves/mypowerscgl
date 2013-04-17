@@ -83,7 +83,7 @@
             // 
             // lblxz
             // 
-            this.lblxz.Location = new System.Drawing.Point(38, 77);
+            this.lblxz.Location = new System.Drawing.Point(38, 74);
             this.lblxz.Name = "lblxz";
             this.lblxz.Size = new System.Drawing.Size(24, 14);
             this.lblxz.TabIndex = 2;
@@ -91,14 +91,14 @@
             // 
             // txtxz
             // 
-            this.txtxz.Location = new System.Drawing.Point(144, 74);
+            this.txtxz.Location = new System.Drawing.Point(144, 71);
             this.txtxz.Name = "txtxz";
             this.txtxz.Size = new System.Drawing.Size(449, 21);
             this.txtxz.TabIndex = 3;
             // 
             // lbljt
             // 
-            this.lbljt.Location = new System.Drawing.Point(38, 118);
+            this.lbljt.Location = new System.Drawing.Point(38, 112);
             this.lbljt.Name = "lbljt";
             this.lbljt.Size = new System.Drawing.Size(24, 14);
             this.lbljt.TabIndex = 4;
@@ -106,14 +106,14 @@
             // 
             // txtjt
             // 
-            this.txtjt.Location = new System.Drawing.Point(144, 115);
+            this.txtjt.Location = new System.Drawing.Point(144, 109);
             this.txtjt.Name = "txtjt";
             this.txtjt.Size = new System.Drawing.Size(449, 21);
             this.txtjt.TabIndex = 5;
             // 
             // lblfsjg
             // 
-            this.lblfsjg.Location = new System.Drawing.Point(38, 156);
+            this.lblfsjg.Location = new System.Drawing.Point(38, 185);
             this.lblfsjg.Name = "lblfsjg";
             this.lblfsjg.Size = new System.Drawing.Size(48, 14);
             this.lblfsjg.TabIndex = 6;
@@ -121,14 +121,14 @@
             // 
             // memofsjg
             // 
-            this.memofsjg.Location = new System.Drawing.Point(144, 156);
+            this.memofsjg.Location = new System.Drawing.Point(144, 185);
             this.memofsjg.Name = "memofsjg";
             this.memofsjg.Size = new System.Drawing.Size(449, 96);
             this.memofsjg.TabIndex = 7;
             // 
             // lblsgssqk
             // 
-            this.lblsgssqk.Location = new System.Drawing.Point(38, 272);
+            this.lblsgssqk.Location = new System.Drawing.Point(38, 147);
             this.lblsgssqk.Name = "lblsgssqk";
             this.lblsgssqk.Size = new System.Drawing.Size(72, 28);
             this.lblsgssqk.TabIndex = 8;
@@ -136,14 +136,14 @@
             // 
             // txtsgssqk
             // 
-            this.txtsgssqk.Location = new System.Drawing.Point(144, 272);
+            this.txtsgssqk.Location = new System.Drawing.Point(144, 147);
             this.txtsgssqk.Name = "txtsgssqk";
             this.txtsgssqk.Size = new System.Drawing.Size(449, 21);
             this.txtsgssqk.TabIndex = 9;
             // 
             // lbldc
             // 
-            this.lbldc.Location = new System.Drawing.Point(38, 429);
+            this.lbldc.Location = new System.Drawing.Point(38, 411);
             this.lbldc.Name = "lbldc";
             this.lbldc.Size = new System.Drawing.Size(24, 14);
             this.lbldc.TabIndex = 10;
@@ -151,14 +151,14 @@
             // 
             // memodc
             // 
-            this.memodc.Location = new System.Drawing.Point(144, 429);
+            this.memodc.Location = new System.Drawing.Point(144, 411);
             this.memodc.Name = "memodc";
             this.memodc.Size = new System.Drawing.Size(449, 96);
             this.memodc.TabIndex = 11;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(334, 552);
+            this.btnOK.Location = new System.Drawing.Point(337, 522);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 12;
@@ -167,7 +167,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(455, 552);
+            this.btnCancel.Location = new System.Drawing.Point(456, 522);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 13;
@@ -176,7 +176,7 @@
             // 
             // lblyyjzfx
             // 
-            this.lblyyjzfx.Location = new System.Drawing.Point(40, 313);
+            this.lblyyjzfx.Location = new System.Drawing.Point(40, 298);
             this.lblyyjzfx.Name = "lblyyjzfx";
             this.lblyyjzfx.Size = new System.Drawing.Size(84, 14);
             this.lblyyjzfx.TabIndex = 14;
@@ -184,7 +184,7 @@
             // 
             // memoyyjzrfx
             // 
-            this.memoyyjzrfx.Location = new System.Drawing.Point(144, 313);
+            this.memoyyjzrfx.Location = new System.Drawing.Point(144, 298);
             this.memoyyjzrfx.Name = "memoyyjzrfx";
             this.memoyyjzrfx.Size = new System.Drawing.Size(449, 96);
             this.memoyyjzrfx.TabIndex = 15;
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 611);
+            this.ClientSize = new System.Drawing.Size(616, 566);
             this.Controls.Add(this.memoyyjzrfx);
             this.Controls.Add(this.lblyyjzfx);
             this.Controls.Add(this.btnCancel);

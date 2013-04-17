@@ -50,8 +50,8 @@ namespace Ebada.Scgl.Sbgl
         private void dataBind()
         {
             this.daterq.DataBindings.Add("EditValue", rowData, "c1");
-            this.txttq.DataBindings.Add("EditValue", rowData, "tq");
-            this.txtcjry.DataBindings.Add("EditValue", rowData, "cjry");
+            this.lkuetq.DataBindings.Add("EditValue", rowData, "tq");
+            this.cmbxcjry.DataBindings.Add("EditValue", rowData, "cjry");
             this.txtdsyxfs.DataBindings.Add("EditValue", rowData, "dsyxfs");
             this.txtyxtm.DataBindings.Add("EditValue", rowData, "yxtm");
             this.memosgxx.DataBindings.Add("EditValue", rowData, "sgxx");
@@ -62,16 +62,34 @@ namespace Ebada.Scgl.Sbgl
 
         private void Initlkue()
         {
-            ////10代表避雷器
-            //string sqlsbmc = "select distinct a2 from BD_SBTZ where OrgCode='" + rowData.OrgCode + "' and rtrim(ltrim(a2))!='' and sbtype='16'";
-            //IList<string> ls = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
-            //List<DicType> sbmcList = new List<DicType>();
-            //foreach (string mc in ls)
-            //{
-            //    sbmcList.Add(new DicType(mc, mc));
-            //}
-            ////SetComboBoxData(lkueblqmc, "Value", "Key", "请选择", "避雷器名称", sbmcList);
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            this.cmbxcjry.Properties.DataSource = userTypeList;
+            this.cmbxcjry.Properties.DisplayMember = "Value";
+            this.cmbxcjry.Properties.ValueMember = "Key";
 
+            List<DicType> dicTypetqList = new List<DicType>();
+            dicTypetqList.Add(new DicType("晴", "晴"));
+            dicTypetqList.Add(new DicType("多云", "多云"));
+            dicTypetqList.Add(new DicType("阴", "阴"));
+            dicTypetqList.Add(new DicType("阵雨", "阵雨"));
+            dicTypetqList.Add(new DicType("小雨", "小雨"));
+            dicTypetqList.Add(new DicType("中雨", "中雨"));
+            dicTypetqList.Add(new DicType("大雨", "大雨"));
+            dicTypetqList.Add(new DicType("暴雨", "暴雨"));
+            dicTypetqList.Add(new DicType("阵雪", "阵雪"));
+            dicTypetqList.Add(new DicType("小雪", "小雪"));
+            dicTypetqList.Add(new DicType("中雪", "中雪"));
+            dicTypetqList.Add(new DicType("大雪", "大雪"));
+            dicTypetqList.Add(new DicType("暴雪", "暴雪"));
+            dicTypetqList.Add(new DicType("雨夹雪", "雨夹雪"));
+            SetComboBoxData(this.lkuetq, "Value", "Key", "请选择", "天气", dicTypetqList);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);

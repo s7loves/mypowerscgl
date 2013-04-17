@@ -37,7 +37,7 @@ namespace Ebada.Scgl.Sbgl
                 if (rowData == null)
                 {
                     this.rowData = value as bdjl_yxfxjlb;
-
+                    Initlkue();
                     dataBind();
                 }
                 else
@@ -47,10 +47,25 @@ namespace Ebada.Scgl.Sbgl
             }
         }
 
+        private void Initlkue()
+        {
+            IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
+            if (userList == null)
+                return;
+            List<DicType> userTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                userTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            this.cmbxcjry.Properties.DataSource = userTypeList;
+            this.cmbxcjry.Properties.ValueMember = "Key";
+            this.cmbxcjry.Properties.DisplayMember = "Value";
+        }
+
         private void dataBind()
         {
             this.daterq.DataBindings.Add("EditValue", rowData, "sj");
-            this.memocjry.DataBindings.Add("EditValue", rowData, "cjry");
+            this.cmbxcjry.DataBindings.Add("EditValue", rowData, "cjry");
             this.memonr.DataBindings.Add("EditValue", rowData, "nr");
             this.memojl.DataBindings.Add("EditValue", rowData, "jl");
 
