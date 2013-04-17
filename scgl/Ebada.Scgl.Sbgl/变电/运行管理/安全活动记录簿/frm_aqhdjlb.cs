@@ -134,11 +134,15 @@ namespace Ebada.Scgl.Sbgl
                     qxr += str + ",";
                 }
             }
-            qxr = qxr.Substring(0, qxr.Length - 1);
-            rowData.qxry = qxr;
-            combxqxry.EditValue = qxr;
-            combxqxry.Text = qxr;
-            combxqxry.RefreshEditValue();
+            if (qxr.Length > 1)
+            {
+                qxr = qxr.Substring(0, qxr.Length - 1);
+                rowData.qxry = qxr;
+                combxqxry.EditValue = qxr;
+                combxqxry.Text = qxr;
+                combxqxry.RefreshEditValue();
+            }
+            
             
         }
 
@@ -149,6 +153,7 @@ namespace Ebada.Scgl.Sbgl
             combxqxry.Properties.DataSource = GetList(this.combxCxry.EditValue.ToString());
             combxqxry.Properties.ValueMember = "Key";
             combxqxry.Properties.DisplayMember = "Value";
+            
 
         }
         private List<DicType> GetList(string eidtValue)
