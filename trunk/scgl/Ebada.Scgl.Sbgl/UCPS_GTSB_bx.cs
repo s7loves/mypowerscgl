@@ -26,10 +26,10 @@ using DevExpress.XtraEditors.Repository;
 
 namespace Ebada.Scgl.Sbgl {
     /// <summary>
-    /// 电容器
+    /// 表箱
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPS_GTSB_drq : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCPS_GTSB_bx : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<PS_gtsb> gridViewOperation;
 
         public event SendDataEventHandler<PS_gtsb> FocusedRowChanged;
@@ -37,7 +37,7 @@ namespace Ebada.Scgl.Sbgl {
         frmgtsbEdit frm = new frmgtsbEdit();
         private string parentID = null;
         private PS_gt parentObj;
-        public UCPS_GTSB_drq() {
+        public UCPS_GTSB_bx() {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<PS_gtsb>(gridControl1, gridView1, barManager1, true);
@@ -140,17 +140,23 @@ namespace Ebada.Scgl.Sbgl {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-            hideColumn("C3");
-            hideColumn("C4");
-            hideColumn("C5");
-            gridView1.Columns["C1"].Caption = "容量";
-            gridView1.Columns["C2"].Caption = "补偿方式";
+            //hideColumn("C3");
+            //hideColumn("C4");
+            //hideColumn("C5");
+            gridView1.Columns["C1"].Caption = "类型";
+            gridView1.Columns["C2"].Caption = "相别";
+            gridView1.Columns["C3"].Caption = "接户线型号";
+            gridView1.Columns["C4"].Caption = "接户线根数";
+            gridView1.Columns["C5"].Caption = "接户线长度";
             gridView1.Columns["sbType"].OptionsColumn.AllowEdit = false;
             RepositoryItemComboBox box1 = new RepositoryItemComboBox();
-            box1.Items.AddRange(new string[] { "静态", "动态" });
+            box1.Items.AddRange(new string[] { "照明","动力","混合" });
+            gridView1.Columns["C1"].ColumnEdit = box1;
+            box1 = new RepositoryItemComboBox();
+            box1.Items.AddRange(new string[] {"A","B","C","三相"});
             gridView1.Columns["C2"].ColumnEdit = box1;
             box1 = new RepositoryItemComboBox();
-            box1.Items.AddRange(Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select xh from ps_sbcs where  parentid ='{0}'", "16001")));
+            box1.Items.AddRange(Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select distinct xh from ps_sbcs where  parentid like '{0}%'", "17")));
             gridView1.Columns["sbModle"].ColumnEdit = box1;
 
 
@@ -178,10 +184,9 @@ namespace Ebada.Scgl.Sbgl {
             if (parentID == null) return;
             newobj.gtID = parentID;
             newobj.sbNumber = 1;
-            newobj.sbType = "16001";
-            newobj.sbName = "电容器";
+            newobj.sbType = "17001";
+            newobj.sbName = "表箱";
             newobj.sbCode = (gridView1.RowCount+1).ToString("000");
-            newobj.C2 = "静态";
         }
         /// <summary>
         /// 父表ID
@@ -194,7 +199,7 @@ namespace Ebada.Scgl.Sbgl {
             set {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value)) {//补偿电容器
-                    RefreshData(" where sbtype='16001' and   gtID='" + value + "' order by sbCode");
+                    RefreshData(" where sbtype like '17%' and   gtID='" + value + "' order by sbCode");
                 } else {
                     RefreshData(" where 1>1");
                 }

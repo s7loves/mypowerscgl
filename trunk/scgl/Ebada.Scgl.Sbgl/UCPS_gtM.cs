@@ -49,6 +49,7 @@ namespace Ebada.Scgl.Sbgl
         UCxlTreeSelector xltree;
         UCPS_jcky ucps_jcky;
         UCPS_GTSB_drq ucps_drq;
+        UCPS_GTSB_bx ucps_bx;
         Ebada.Scgl.Model.PS_gt mgt;
         void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e) {
             if (e.Page == xtraTabPage4) {
@@ -68,7 +69,13 @@ namespace Ebada.Scgl.Sbgl
                 }
                 ucps_drq.ParentObj = mgt;
             } else if (e.Page == xtraTabPage6) {
-
+                if (ucps_bx == null) {
+                    ucps_bx = new UCPS_GTSB_bx();
+                    ucps_bx.Dock = DockStyle.Fill;
+                    e.Page.Controls.Add(ucps_bx);
+                    ucps_bx.HideList();
+                }
+                ucps_bx.ParentObj = mgt;
             }
         }
 
@@ -90,6 +97,12 @@ namespace Ebada.Scgl.Sbgl
             }
             if (xtraTabControl1.SelectedTabPage == xtraTabPage4)
                 ucps_jcky.ParentObj = mgt;
+            else if (xtraTabControl1.SelectedTabPage == xtraTabPage5)
+                ucps_drq.ParentObj = mgt;
+            else if (xtraTabControl1.SelectedTabPage == xtraTabPage6)
+                ucps_bx.ParentObj = mgt;
+            
+
 
             splitCC1.Panel2.Text = "杆塔编号：" + (obj != null ? obj.gtCode : "");
         }
