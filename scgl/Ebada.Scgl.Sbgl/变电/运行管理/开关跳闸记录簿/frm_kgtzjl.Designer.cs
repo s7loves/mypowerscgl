@@ -43,13 +43,13 @@
             this.lblsdfzcs = new DevExpress.XtraEditors.LabelControl();
             this.spesdfzcs = new DevExpress.XtraEditors.SpinEdit();
             this.lbljlr = new DevExpress.XtraEditors.LabelControl();
-            this.txtjlr = new DevExpress.XtraEditors.TextEdit();
             this.lbldz = new DevExpress.XtraEditors.LabelControl();
             this.memotzdz = new DevExpress.XtraEditors.MemoEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.lblscjtjxrq = new DevExpress.XtraEditors.LabelControl();
             this.datejtrq = new DevExpress.XtraEditors.DateEdit();
+            this.lkuejlr = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuekgmc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datetzrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datetzrq.Properties)).BeginInit();
@@ -58,15 +58,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.spedlqtzcs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesgtzcs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesdfzcs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjlr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memotzdz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejtrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejtrq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuejlr.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblkgmc
             // 
-            this.lblkgmc.Location = new System.Drawing.Point(31, 37);
+            this.lblkgmc.Location = new System.Drawing.Point(31, 22);
             this.lblkgmc.Name = "lblkgmc";
             this.lblkgmc.Size = new System.Drawing.Size(48, 14);
             this.lblkgmc.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             // lkuekgmc
             // 
-            this.lkuekgmc.Location = new System.Drawing.Point(147, 34);
+            this.lkuekgmc.Location = new System.Drawing.Point(147, 19);
             this.lkuekgmc.Name = "lkuekgmc";
             this.lkuekgmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -83,7 +83,7 @@
             // 
             // lbltzrq
             // 
-            this.lbltzrq.Location = new System.Drawing.Point(31, 80);
+            this.lbltzrq.Location = new System.Drawing.Point(31, 55);
             this.lbltzrq.Name = "lbltzrq";
             this.lbltzrq.Size = new System.Drawing.Size(48, 14);
             this.lbltzrq.TabIndex = 2;
@@ -92,7 +92,7 @@
             // datetzrq
             // 
             this.datetzrq.EditValue = null;
-            this.datetzrq.Location = new System.Drawing.Point(147, 77);
+            this.datetzrq.Location = new System.Drawing.Point(147, 52);
             this.datetzrq.Name = "datetzrq";
             this.datetzrq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -103,7 +103,7 @@
             // 
             // lbltzsj
             // 
-            this.lbltzsj.Location = new System.Drawing.Point(31, 123);
+            this.lbltzsj.Location = new System.Drawing.Point(31, 88);
             this.lbltzsj.Name = "lbltzsj";
             this.lbltzsj.Size = new System.Drawing.Size(48, 14);
             this.lbltzsj.TabIndex = 4;
@@ -112,7 +112,7 @@
             // timetzsj
             // 
             this.timetzsj.EditValue = new System.DateTime(2013, 4, 8, 0, 0, 0, 0);
-            this.timetzsj.Location = new System.Drawing.Point(147, 120);
+            this.timetzsj.Location = new System.Drawing.Point(147, 85);
             this.timetzsj.Name = "timetzsj";
             this.timetzsj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -121,7 +121,7 @@
             // 
             // lblkgxs
             // 
-            this.lblkgxs.Location = new System.Drawing.Point(31, 209);
+            this.lblkgxs.Location = new System.Drawing.Point(31, 154);
             this.lblkgxs.Name = "lblkgxs";
             this.lblkgxs.Size = new System.Drawing.Size(48, 14);
             this.lblkgxs.TabIndex = 6;
@@ -129,14 +129,14 @@
             // 
             // txtkgms
             // 
-            this.txtkgms.Location = new System.Drawing.Point(147, 206);
+            this.txtkgms.Location = new System.Drawing.Point(147, 151);
             this.txtkgms.Name = "txtkgms";
             this.txtkgms.Size = new System.Drawing.Size(363, 21);
             this.txtkgms.TabIndex = 7;
             // 
             // lbldlqgz
             // 
-            this.lbldlqgz.Location = new System.Drawing.Point(31, 249);
+            this.lbldlqgz.Location = new System.Drawing.Point(31, 279);
             this.lbldlqgz.Name = "lbldlqgz";
             this.lbldlqgz.Size = new System.Drawing.Size(72, 28);
             this.lbldlqgz.TabIndex = 8;
@@ -149,7 +149,7 @@
             0,
             0,
             0});
-            this.spedlqtzcs.Location = new System.Drawing.Point(147, 249);
+            this.spedlqtzcs.Location = new System.Drawing.Point(147, 283);
             this.spedlqtzcs.Name = "spedlqtzcs";
             this.spedlqtzcs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -158,11 +158,11 @@
             // 
             // lblsgtzcs
             // 
-            this.lblsgtzcs.Location = new System.Drawing.Point(31, 295);
+            this.lblsgtzcs.Location = new System.Drawing.Point(31, 187);
             this.lblsgtzcs.Name = "lblsgtzcs";
-            this.lblsgtzcs.Size = new System.Drawing.Size(76, 14);
+            this.lblsgtzcs.Size = new System.Drawing.Size(72, 14);
             this.lblsgtzcs.TabIndex = 10;
-            this.lblsgtzcs.Text = " 事故跳闸次数";
+            this.lblsgtzcs.Text = "事故跳闸次数";
             // 
             // spesgtzcs
             // 
@@ -171,7 +171,7 @@
             0,
             0,
             0});
-            this.spesgtzcs.Location = new System.Drawing.Point(147, 292);
+            this.spesgtzcs.Location = new System.Drawing.Point(147, 184);
             this.spesgtzcs.Name = "spesgtzcs";
             this.spesgtzcs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -180,7 +180,7 @@
             // 
             // lblsdfzcs
             // 
-            this.lblsdfzcs.Location = new System.Drawing.Point(31, 338);
+            this.lblsdfzcs.Location = new System.Drawing.Point(31, 220);
             this.lblsdfzcs.Name = "lblsdfzcs";
             this.lblsdfzcs.Size = new System.Drawing.Size(72, 14);
             this.lblsdfzcs.TabIndex = 12;
@@ -194,7 +194,7 @@
             0,
             0,
             0});
-            this.spesdfzcs.Location = new System.Drawing.Point(147, 335);
+            this.spesdfzcs.Location = new System.Drawing.Point(147, 217);
             this.spesdfzcs.Name = "spesdfzcs";
             this.spesdfzcs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -203,22 +203,15 @@
             // 
             // lbljlr
             // 
-            this.lbljlr.Location = new System.Drawing.Point(31, 381);
+            this.lbljlr.Location = new System.Drawing.Point(31, 253);
             this.lbljlr.Name = "lbljlr";
             this.lbljlr.Size = new System.Drawing.Size(36, 14);
             this.lbljlr.TabIndex = 14;
             this.lbljlr.Text = "记录人";
             // 
-            // txtjlr
-            // 
-            this.txtjlr.Location = new System.Drawing.Point(147, 378);
-            this.txtjlr.Name = "txtjlr";
-            this.txtjlr.Size = new System.Drawing.Size(363, 21);
-            this.txtjlr.TabIndex = 15;
-            // 
             // lbldz
             // 
-            this.lbldz.Location = new System.Drawing.Point(31, 421);
+            this.lbldz.Location = new System.Drawing.Point(31, 324);
             this.lbldz.Name = "lbldz";
             this.lbldz.Size = new System.Drawing.Size(60, 42);
             this.lbldz.TabIndex = 16;
@@ -226,14 +219,14 @@
             // 
             // memotzdz
             // 
-            this.memotzdz.Location = new System.Drawing.Point(147, 421);
+            this.memotzdz.Location = new System.Drawing.Point(147, 316);
             this.memotzdz.Name = "memotzdz";
             this.memotzdz.Size = new System.Drawing.Size(363, 58);
             this.memotzdz.TabIndex = 17;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(311, 507);
+            this.btnOk.Location = new System.Drawing.Point(312, 389);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 18;
@@ -242,7 +235,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(415, 507);
+            this.btnCancel.Location = new System.Drawing.Point(407, 389);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 19;
@@ -251,7 +244,7 @@
             // 
             // lblscjtjxrq
             // 
-            this.lblscjtjxrq.Location = new System.Drawing.Point(31, 166);
+            this.lblscjtjxrq.Location = new System.Drawing.Point(31, 121);
             this.lblscjtjxrq.Name = "lblscjtjxrq";
             this.lblscjtjxrq.Size = new System.Drawing.Size(96, 14);
             this.lblscjtjxrq.TabIndex = 20;
@@ -260,7 +253,7 @@
             // datejtrq
             // 
             this.datejtrq.EditValue = null;
-            this.datejtrq.Location = new System.Drawing.Point(147, 163);
+            this.datejtrq.Location = new System.Drawing.Point(147, 118);
             this.datejtrq.Name = "datejtrq";
             this.datejtrq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -270,18 +263,27 @@
             this.datejtrq.Size = new System.Drawing.Size(363, 21);
             this.datejtrq.TabIndex = 21;
             // 
+            // lkuejlr
+            // 
+            this.lkuejlr.Location = new System.Drawing.Point(147, 250);
+            this.lkuejlr.Name = "lkuejlr";
+            this.lkuejlr.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkuejlr.Size = new System.Drawing.Size(363, 21);
+            this.lkuejlr.TabIndex = 22;
+            // 
             // frm_kgtzjl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 545);
+            this.ClientSize = new System.Drawing.Size(544, 430);
+            this.Controls.Add(this.lkuejlr);
             this.Controls.Add(this.datejtrq);
             this.Controls.Add(this.lblscjtjxrq);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.memotzdz);
             this.Controls.Add(this.lbldz);
-            this.Controls.Add(this.txtjlr);
             this.Controls.Add(this.lbljlr);
             this.Controls.Add(this.spesdfzcs);
             this.Controls.Add(this.lblsdfzcs);
@@ -309,10 +311,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.spedlqtzcs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesgtzcs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spesdfzcs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjlr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memotzdz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejtrq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejtrq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuejlr.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,12 +337,12 @@
         private DevExpress.XtraEditors.LabelControl lblsdfzcs;
         private DevExpress.XtraEditors.SpinEdit spesdfzcs;
         private DevExpress.XtraEditors.LabelControl lbljlr;
-        private DevExpress.XtraEditors.TextEdit txtjlr;
         private DevExpress.XtraEditors.LabelControl lbldz;
         private DevExpress.XtraEditors.MemoEdit memotzdz;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LabelControl lblscjtjxrq;
         private DevExpress.XtraEditors.DateEdit datejtrq;
+        private DevExpress.XtraEditors.LookUpEdit lkuejlr;
     }
 }
