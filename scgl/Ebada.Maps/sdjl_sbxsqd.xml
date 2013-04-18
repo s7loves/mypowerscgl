@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_sbxsqd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_sbxsqd"  type="Ebada.Scgl.Model.sdjl_sbxsqd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_sbxsqd_AllColumns" class="sdjl_sbxsqd">
+        <result property="LineCode" column="LineCode" />
+        <result property="XsqdName" column="XsqdName" />
+        <result property="XSR1" column="XSR1" />
+        <result property="XSR2" column="XSR2" />
+        <result property="ID" column="ID" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_sbxsqdList" resultMap="sdjl_sbxsqd_AllColumns" parameterClass="string">
+        SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_sbxsqd
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_sbxsqdByHash" parameterClass="Hashtable">
+         SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_sbxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="XsqdName">[XsqdName]='$XsqdName$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR1">[XSR1]='$XSR1$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR2">[XSR2]='$XSR2$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_sbxsqdByKey" resultMap="sdjl_sbxsqd_AllColumns" parameterClass="sdjl_sbxsqd">
+         SELECT 
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_sbxsqd
+         WHERE 
+           LineCode = #LineCode#
+
+   </select>
+ 
+   <delete id="Deletesdjl_sbxsqd" parameterClass="sdjl_sbxsqd">
+        DELETE FROM 
+         sdjl_sbxsqd
+           WHERE
+         LineCode = #LineCode#
+
+   </delete>
+   
+   <delete id="Deletesdjl_sbxsqdByWhere" parameterClass="string">
+     delete from sdjl_sbxsqd $value$
+   </delete>
+   
+   <delete id="Deletesdjl_sbxsqdByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_sbxsqd
+           WHERE
+         LineCode = #LineCode#
+    
+   </delete>
+   
+   <update id="Updatesdjl_sbxsqd" parameterClass="sdjl_sbxsqd" resultClass="int">
+          UPDATE sdjl_sbxsqd
+           SET
+             [XsqdName]=#XsqdName#,
+             [XSR1]=#XSR1#,
+             [XSR2]=#XSR2#,
+             [ID]=#ID#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              LineCode = #LineCode#
+
+   </update>
+  
+   <insert id="Insertsdjl_sbxsqd" parameterClass="sdjl_sbxsqd">
+        INSERT INTO sdjl_sbxsqd
+         (
+         [LineCode],
+         [XsqdName],
+         [XSR1],
+         [XSR2],
+         [ID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #LineCode#,
+         #XsqdName#,
+         #XSR1#,
+         #XSR2#,
+         #ID#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_sbxsqdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_sbxsqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="XsqdName">[XsqdName]='$XsqdName$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR1">[XSR1]='$XSR1$'</isNotNull>
+       <isNotNull prepend="AND" property="XSR2">[XSR2]='$XSR2$'</isNotNull>
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_sbxsqdRowCount" parameterClass="string">
+    select count(*) from sdjl_sbxsqd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

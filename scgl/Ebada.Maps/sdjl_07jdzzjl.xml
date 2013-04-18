@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_07jdzzjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_07jdzzjl"  type="Ebada.Scgl.Model.sdjl_07jdzzjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_07jdzzjl_AllColumns" class="sdjl_07jdzzjl">
+        <result property="ID" column="ID" />
+        <result property="jdzzID" column="jdzzID" />
+        <result property="clrq" column="clrq" />
+        <result property="tq" column="tq" />
+        <result property="scz" column="scz" />
+        <result property="hsz" column="hsz" />
+        <result property="jcqk" column="jcqk" />
+        <result property="jr" column="jr" />
+        <result property="jcr" column="jcr" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+        <result property="xlid" column="xlid" />
+        <result property="byqid" column="byqid" />
+        <result property="tqid" column="tqid" />
+        <result property="kgid" column="kgid" />
+        <result property="xlname" column="xlname" />
+        <result property="byqname" column="byqname" />
+        <result property="tqname" column="tqname" />
+        <result property="kgname" column="kgname" />
+        <result property="gdstemp" column="gdstemp" />
+        <result property="linetemp" column="linetemp" />
+        <result property="othertemp" column="othertemp" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_07jdzzjlList" resultMap="sdjl_07jdzzjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [jdzzID],
+         [clrq],
+         [tq],
+         [scz],
+         [hsz],
+         [jcqk],
+         [jr],
+         [jcr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+          FROM sdjl_07jdzzjl
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_07jdzzjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [jdzzID],
+         [clrq],
+         [tq],
+         [scz],
+         [hsz],
+         [jcqk],
+         [jr],
+         [jcr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+          FROM sdjl_07jdzzjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="jdzzID">[jdzzID]='$jdzzID$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="tq">[tq]='$tq$'</isNotNull>
+       <isNotNull prepend="AND" property="scz">[scz]='$scz$'</isNotNull>
+       <isNotNull prepend="AND" property="hsz">[hsz]='$hsz$'</isNotNull>
+       <isNotNull prepend="AND" property="jcqk">[jcqk]='$jcqk$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="gdstemp">[gdstemp]='$gdstemp$'</isNotNull>
+       <isNotNull prepend="AND" property="linetemp">[linetemp]='$linetemp$'</isNotNull>
+       <isNotNull prepend="AND" property="othertemp">[othertemp]='$othertemp$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_07jdzzjlByKey" resultMap="sdjl_07jdzzjl_AllColumns" parameterClass="sdjl_07jdzzjl">
+         SELECT 
+         [ID],
+         [jdzzID],
+         [clrq],
+         [tq],
+         [scz],
+         [hsz],
+         [jcqk],
+         [jr],
+         [jcr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+         FROM sdjl_07jdzzjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_07jdzzjl" parameterClass="sdjl_07jdzzjl">
+        DELETE FROM 
+         sdjl_07jdzzjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_07jdzzjlByWhere" parameterClass="string">
+     delete from sdjl_07jdzzjl $value$
+   </delete>
+   
+   <delete id="Deletesdjl_07jdzzjlByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_07jdzzjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_07jdzzjl" parameterClass="sdjl_07jdzzjl" resultClass="int">
+          UPDATE sdjl_07jdzzjl
+           SET
+             [jdzzID]=#jdzzID#,
+             [clrq]=#clrq#,
+             [tq]=#tq#,
+             [scz]=#scz#,
+             [hsz]=#hsz#,
+             [jcqk]=#jcqk#,
+             [jr]=#jr#,
+             [jcr]=#jcr#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [gzrjID]=#gzrjID#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#,
+             [xlid]=#xlid#,
+             [byqid]=#byqid#,
+             [tqid]=#tqid#,
+             [kgid]=#kgid#,
+             [xlname]=#xlname#,
+             [byqname]=#byqname#,
+             [tqname]=#tqname#,
+             [kgname]=#kgname#,
+             [gdstemp]=#gdstemp#,
+             [linetemp]=#linetemp#,
+             [othertemp]=#othertemp#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjl_07jdzzjl" parameterClass="sdjl_07jdzzjl">
+        INSERT INTO sdjl_07jdzzjl
+         (
+         [ID],
+         [jdzzID],
+         [clrq],
+         [tq],
+         [scz],
+         [hsz],
+         [jcqk],
+         [jr],
+         [jcr],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+         )
+       VALUES
+         (
+         #ID#,
+         #jdzzID#,
+         #clrq#,
+         #tq#,
+         #scz#,
+         #hsz#,
+         #jcqk#,
+         #jr#,
+         #jcr#,
+         #CreateMan#,
+         #CreateDate#,
+         #gzrjID#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#,
+         #xlid#,
+         #byqid#,
+         #tqid#,
+         #kgid#,
+         #xlname#,
+         #byqname#,
+         #tqname#,
+         #kgname#,
+         #gdstemp#,
+         #linetemp#,
+         #othertemp#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_07jdzzjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_07jdzzjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="jdzzID">[jdzzID]='$jdzzID$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="tq">[tq]='$tq$'</isNotNull>
+       <isNotNull prepend="AND" property="scz">[scz]='$scz$'</isNotNull>
+       <isNotNull prepend="AND" property="hsz">[hsz]='$hsz$'</isNotNull>
+       <isNotNull prepend="AND" property="jcqk">[jcqk]='$jcqk$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="gdstemp">[gdstemp]='$gdstemp$'</isNotNull>
+       <isNotNull prepend="AND" property="linetemp">[linetemp]='$linetemp$'</isNotNull>
+       <isNotNull prepend="AND" property="othertemp">[othertemp]='$othertemp$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_07jdzzjlRowCount" parameterClass="string">
+    select count(*) from sdjl_07jdzzjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

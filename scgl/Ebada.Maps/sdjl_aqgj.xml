@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_aqgj" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_aqgj"  type="Ebada.Scgl.Model.sdjl_aqgj,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_aqgj_AllColumns" class="sdjl_aqgj">
+        <result property="sbID" column="sbID" />
+        <result property="OrgID" column="OrgID" />
+        <result property="sbCode" column="sbCode" />
+        <result property="sbName" column="sbName" />
+        <result property="syzq" column="syzq" />
+        <result property="syxm" column="syxm" />
+        <result property="syrq" column="syrq" />
+        <result property="syrq2" column="syrq2" />
+        <result property="sbType" column="sbType" />
+        <result property="sbModle" column="sbModle" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_aqgjList" resultMap="sdjl_aqgj_AllColumns" parameterClass="string">
+        SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [syzq],
+         [syxm],
+         [syrq],
+         [syrq2],
+         [sbType],
+         [sbModle],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_aqgj
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_aqgjByHash" parameterClass="Hashtable">
+         SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [syzq],
+         [syxm],
+         [syrq],
+         [syrq2],
+         [sbType],
+         [sbModle],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_aqgj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="syzq">[syzq]='$syzq$'</isNotNull>
+       <isNotNull prepend="AND" property="syxm">[syxm]='$syxm$'</isNotNull>
+       <isNotNull prepend="AND" property="syrq">[syrq]='$syrq$'</isNotNull>
+       <isNotNull prepend="AND" property="syrq2">[syrq2]='$syrq2$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_aqgjByKey" resultMap="sdjl_aqgj_AllColumns" parameterClass="sdjl_aqgj">
+         SELECT 
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [syzq],
+         [syxm],
+         [syrq],
+         [syrq2],
+         [sbType],
+         [sbModle],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_aqgj
+         WHERE 
+           sbID = #sbID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_aqgj" parameterClass="sdjl_aqgj">
+        DELETE FROM 
+         sdjl_aqgj
+           WHERE
+         sbID = #sbID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_aqgjByWhere" parameterClass="string">
+     delete from sdjl_aqgj $value$
+   </delete>
+   
+   <delete id="Deletesdjl_aqgjByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_aqgj
+           WHERE
+         sbID = #sbID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_aqgj" parameterClass="sdjl_aqgj" resultClass="int">
+          UPDATE sdjl_aqgj
+           SET
+             [OrgID]=#OrgID#,
+             [sbCode]=#sbCode#,
+             [sbName]=#sbName#,
+             [syzq]=#syzq#,
+             [syxm]=#syxm#,
+             [syrq]=#syrq#,
+             [syrq2]=#syrq2#,
+             [sbType]=#sbType#,
+             [sbModle]=#sbModle#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              sbID = #sbID#
+
+   </update>
+  
+   <insert id="Insertsdjl_aqgj" parameterClass="sdjl_aqgj">
+        INSERT INTO sdjl_aqgj
+         (
+         [sbID],
+         [OrgID],
+         [sbCode],
+         [sbName],
+         [syzq],
+         [syxm],
+         [syrq],
+         [syrq2],
+         [sbType],
+         [sbModle],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #sbID#,
+         #OrgID#,
+         #sbCode#,
+         #sbName#,
+         #syzq#,
+         #syxm#,
+         #syrq#,
+         #syrq2#,
+         #sbType#,
+         #sbModle#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_aqgjRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_aqgj
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+       <isNotNull prepend="AND" property="syzq">[syzq]='$syzq$'</isNotNull>
+       <isNotNull prepend="AND" property="syxm">[syxm]='$syxm$'</isNotNull>
+       <isNotNull prepend="AND" property="syrq">[syrq]='$syrq$'</isNotNull>
+       <isNotNull prepend="AND" property="syrq2">[syrq2]='$syrq2$'</isNotNull>
+       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_aqgjRowCount" parameterClass="string">
+    select count(*) from sdjl_aqgj $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

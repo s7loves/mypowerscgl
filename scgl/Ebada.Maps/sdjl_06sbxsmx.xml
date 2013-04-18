@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_06sbxsmx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_06sbxsmx"  type="Ebada.Scgl.Model.sdjl_06sbxsmx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_06sbxsmx_AllColumns" class="sdjl_06sbxsmx">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineID" column="LineID" />
+        <result property="LineName" column="LineName" />
+        <result property="xlqd" column="xlqd" />
+        <result property="xssj" column="xssj" />
+        <result property="xsr" column="xsr" />
+        <result property="qxnr" column="qxnr" />
+        <result property="qxlb" column="qxlb" />
+        <result property="xcr" column="xcr" />
+        <result property="xcrq" column="xcrq" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="xcqx" column="xcqx" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+        <result property="xlid" column="xlid" />
+        <result property="byqid" column="byqid" />
+        <result property="tqid" column="tqid" />
+        <result property="kgid" column="kgid" />
+        <result property="xlname" column="xlname" />
+        <result property="byqname" column="byqname" />
+        <result property="tqname" column="tqname" />
+        <result property="kgname" column="kgname" />
+        <result property="gdstemp" column="gdstemp" />
+        <result property="linetemp" column="linetemp" />
+        <result property="othertemp" column="othertemp" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_06sbxsmxList" resultMap="sdjl_06sbxsmx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xssj],
+         [xsr],
+         [qxnr],
+         [qxlb],
+         [xcr],
+         [xcrq],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [xcqx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+          FROM sdjl_06sbxsmx
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_06sbxsmxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xssj],
+         [xsr],
+         [qxnr],
+         [qxlb],
+         [xcr],
+         [xcrq],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [xcqx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+          FROM sdjl_06sbxsmx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="xlqd">[xlqd]='$xlqd$'</isNotNull>
+       <isNotNull prepend="AND" property="xssj">[xssj]='$xssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xsr">[xsr]='$xsr$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="qxlb">[qxlb]='$qxlb$'</isNotNull>
+       <isNotNull prepend="AND" property="xcr">[xcr]='$xcr$'</isNotNull>
+       <isNotNull prepend="AND" property="xcrq">[xcrq]='$xcrq$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="xcqx">[xcqx]='$xcqx$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="gdstemp">[gdstemp]='$gdstemp$'</isNotNull>
+       <isNotNull prepend="AND" property="linetemp">[linetemp]='$linetemp$'</isNotNull>
+       <isNotNull prepend="AND" property="othertemp">[othertemp]='$othertemp$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_06sbxsmxByKey" resultMap="sdjl_06sbxsmx_AllColumns" parameterClass="sdjl_06sbxsmx">
+         SELECT 
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xssj],
+         [xsr],
+         [qxnr],
+         [qxlb],
+         [xcr],
+         [xcrq],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [xcqx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+         FROM sdjl_06sbxsmx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_06sbxsmx" parameterClass="sdjl_06sbxsmx">
+        DELETE FROM 
+         sdjl_06sbxsmx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_06sbxsmxByWhere" parameterClass="string">
+     delete from sdjl_06sbxsmx $value$
+   </delete>
+   
+   <delete id="Deletesdjl_06sbxsmxByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_06sbxsmx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_06sbxsmx" parameterClass="sdjl_06sbxsmx" resultClass="int">
+          UPDATE sdjl_06sbxsmx
+           SET
+             [ParentID]=#ParentID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineID]=#LineID#,
+             [LineName]=#LineName#,
+             [xlqd]=#xlqd#,
+             [xssj]=#xssj#,
+             [xsr]=#xsr#,
+             [qxnr]=#qxnr#,
+             [qxlb]=#qxlb#,
+             [xcr]=#xcr#,
+             [xcrq]=#xcrq#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [gzrjID]=#gzrjID#,
+             [xcqx]=#xcqx#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#,
+             [xlid]=#xlid#,
+             [byqid]=#byqid#,
+             [tqid]=#tqid#,
+             [kgid]=#kgid#,
+             [xlname]=#xlname#,
+             [byqname]=#byqname#,
+             [tqname]=#tqname#,
+             [kgname]=#kgname#,
+             [gdstemp]=#gdstemp#,
+             [linetemp]=#linetemp#,
+             [othertemp]=#othertemp#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjl_06sbxsmx" parameterClass="sdjl_06sbxsmx">
+        INSERT INTO sdjl_06sbxsmx
+         (
+         [ID],
+         [ParentID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [xlqd],
+         [xssj],
+         [xsr],
+         [qxnr],
+         [qxlb],
+         [xcr],
+         [xcrq],
+         [CreateMan],
+         [CreateDate],
+         [gzrjID],
+         [xcqx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [xlid],
+         [byqid],
+         [tqid],
+         [kgid],
+         [xlname],
+         [byqname],
+         [tqname],
+         [kgname],
+         [gdstemp],
+         [linetemp],
+         [othertemp]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineID#,
+         #LineName#,
+         #xlqd#,
+         #xssj#,
+         #xsr#,
+         #qxnr#,
+         #qxlb#,
+         #xcr#,
+         #xcrq#,
+         #CreateMan#,
+         #CreateDate#,
+         #gzrjID#,
+         #xcqx#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#,
+         #xlid#,
+         #byqid#,
+         #tqid#,
+         #kgid#,
+         #xlname#,
+         #byqname#,
+         #tqname#,
+         #kgname#,
+         #gdstemp#,
+         #linetemp#,
+         #othertemp#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_06sbxsmxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_06sbxsmx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="xlqd">[xlqd]='$xlqd$'</isNotNull>
+       <isNotNull prepend="AND" property="xssj">[xssj]='$xssj$'</isNotNull>
+       <isNotNull prepend="AND" property="xsr">[xsr]='$xsr$'</isNotNull>
+       <isNotNull prepend="AND" property="qxnr">[qxnr]='$qxnr$'</isNotNull>
+       <isNotNull prepend="AND" property="qxlb">[qxlb]='$qxlb$'</isNotNull>
+       <isNotNull prepend="AND" property="xcr">[xcr]='$xcr$'</isNotNull>
+       <isNotNull prepend="AND" property="xcrq">[xcrq]='$xcrq$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="xcqx">[xcqx]='$xcqx$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="xlid">[xlid]='$xlid$'</isNotNull>
+       <isNotNull prepend="AND" property="byqid">[byqid]='$byqid$'</isNotNull>
+       <isNotNull prepend="AND" property="tqid">[tqid]='$tqid$'</isNotNull>
+       <isNotNull prepend="AND" property="kgid">[kgid]='$kgid$'</isNotNull>
+       <isNotNull prepend="AND" property="xlname">[xlname]='$xlname$'</isNotNull>
+       <isNotNull prepend="AND" property="byqname">[byqname]='$byqname$'</isNotNull>
+       <isNotNull prepend="AND" property="tqname">[tqname]='$tqname$'</isNotNull>
+       <isNotNull prepend="AND" property="kgname">[kgname]='$kgname$'</isNotNull>
+       <isNotNull prepend="AND" property="gdstemp">[gdstemp]='$gdstemp$'</isNotNull>
+       <isNotNull prepend="AND" property="linetemp">[linetemp]='$linetemp$'</isNotNull>
+       <isNotNull prepend="AND" property="othertemp">[othertemp]='$othertemp$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_06sbxsmxRowCount" parameterClass="string">
+    select count(*) from sdjl_06sbxsmx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
