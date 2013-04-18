@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_14aqgjsy" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_14aqgjsy"  type="Ebada.Scgl.Model.sdjl_14aqgjsy,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_14aqgjsy_AllColumns" class="sdjl_14aqgjsy">
+        <result property="ID" column="ID" />
+        <result property="sbID" column="sbID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="rq" column="rq" />
+        <result property="jr" column="jr" />
+        <result property="sjr" column="sjr" />
+        <result property="syr" column="syr" />
+        <result property="ajqz" column="ajqz" />
+        <result property="xcsyrq" column="xcsyrq" />
+        <result property="gznrID" column="gznrID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_14aqgjsyList" resultMap="sdjl_14aqgjsy_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [sbID],
+         [OrgCode],
+         [OrgName],
+         [rq],
+         [jr],
+         [sjr],
+         [syr],
+         [ajqz],
+         [xcsyrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_14aqgjsy
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_14aqgjsyByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [sbID],
+         [OrgCode],
+         [OrgName],
+         [rq],
+         [jr],
+         [sjr],
+         [syr],
+         [ajqz],
+         [xcsyrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_14aqgjsy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="sjr">[sjr]='$sjr$'</isNotNull>
+       <isNotNull prepend="AND" property="syr">[syr]='$syr$'</isNotNull>
+       <isNotNull prepend="AND" property="ajqz">[ajqz]='$ajqz$'</isNotNull>
+       <isNotNull prepend="AND" property="xcsyrq">[xcsyrq]='$xcsyrq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_14aqgjsyByKey" resultMap="sdjl_14aqgjsy_AllColumns" parameterClass="sdjl_14aqgjsy">
+         SELECT 
+         [ID],
+         [sbID],
+         [OrgCode],
+         [OrgName],
+         [rq],
+         [jr],
+         [sjr],
+         [syr],
+         [ajqz],
+         [xcsyrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_14aqgjsy
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_14aqgjsy" parameterClass="sdjl_14aqgjsy">
+        DELETE FROM 
+         sdjl_14aqgjsy
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_14aqgjsyByWhere" parameterClass="string">
+     delete from sdjl_14aqgjsy $value$
+   </delete>
+   
+   <delete id="Deletesdjl_14aqgjsyByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_14aqgjsy
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_14aqgjsy" parameterClass="sdjl_14aqgjsy" resultClass="int">
+          UPDATE sdjl_14aqgjsy
+           SET
+             [sbID]=#sbID#,
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [rq]=#rq#,
+             [jr]=#jr#,
+             [sjr]=#sjr#,
+             [syr]=#syr#,
+             [ajqz]=#ajqz#,
+             [xcsyrq]=#xcsyrq#,
+             [gznrID]=#gznrID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjl_14aqgjsy" parameterClass="sdjl_14aqgjsy">
+        INSERT INTO sdjl_14aqgjsy
+         (
+         [ID],
+         [sbID],
+         [OrgCode],
+         [OrgName],
+         [rq],
+         [jr],
+         [sjr],
+         [syr],
+         [ajqz],
+         [xcsyrq],
+         [gznrID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #sbID#,
+         #OrgCode#,
+         #OrgName#,
+         #rq#,
+         #jr#,
+         #sjr#,
+         #syr#,
+         #ajqz#,
+         #xcsyrq#,
+         #gznrID#,
+         #CreateMan#,
+         #CreateDate#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_14aqgjsyRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_14aqgjsy
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="rq">[rq]='$rq$'</isNotNull>
+       <isNotNull prepend="AND" property="jr">[jr]='$jr$'</isNotNull>
+       <isNotNull prepend="AND" property="sjr">[sjr]='$sjr$'</isNotNull>
+       <isNotNull prepend="AND" property="syr">[syr]='$syr$'</isNotNull>
+       <isNotNull prepend="AND" property="ajqz">[ajqz]='$ajqz$'</isNotNull>
+       <isNotNull prepend="AND" property="xcsyrq">[xcsyrq]='$xcsyrq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_14aqgjsyRowCount" parameterClass="string">
+    select count(*) from sdjl_14aqgjsy $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

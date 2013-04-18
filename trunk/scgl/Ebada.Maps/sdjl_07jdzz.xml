@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_07jdzz" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_07jdzz"  type="Ebada.Scgl.Model.sdjl_07jdzz,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_07jdzz_AllColumns" class="sdjl_07jdzz">
+        <result property="jdzzID" column="jdzzID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineID" column="LineID" />
+        <result property="LineName" column="LineName" />
+        <result property="gth" column="gth" />
+        <result property="gzwz" column="gzwz" />
+        <result property="sbmc" column="sbmc" />
+        <result property="xhgg" column="xhgg" />
+        <result property="jddz" column="jddz" />
+        <result property="tz" column="tz" />
+        <result property="trdzr" column="trdzr" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="sbID" column="sbID" />
+        <result property="fzxl" column="fzxl" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_07jdzzList" resultMap="sdjl_07jdzz_AllColumns" parameterClass="string">
+        SELECT 
+         [jdzzID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [gth],
+         [gzwz],
+         [sbmc],
+         [xhgg],
+         [jddz],
+         [tz],
+         [trdzr],
+         [CreateMan],
+         [CreateDate],
+         [sbID],
+         [fzxl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_07jdzz
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_07jdzzByHash" parameterClass="Hashtable">
+         SELECT 
+         [jdzzID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [gth],
+         [gzwz],
+         [sbmc],
+         [xhgg],
+         [jddz],
+         [tz],
+         [trdzr],
+         [CreateMan],
+         [CreateDate],
+         [sbID],
+         [fzxl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_07jdzz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="jdzzID">[jdzzID]='$jdzzID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="gzwz">[gzwz]='$gzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="xhgg">[xhgg]='$xhgg$'</isNotNull>
+       <isNotNull prepend="AND" property="jddz">[jddz]='$jddz$'</isNotNull>
+       <isNotNull prepend="AND" property="tz">[tz]='$tz$'</isNotNull>
+       <isNotNull prepend="AND" property="trdzr">[trdzr]='$trdzr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="fzxl">[fzxl]='$fzxl$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_07jdzzByKey" resultMap="sdjl_07jdzz_AllColumns" parameterClass="sdjl_07jdzz">
+         SELECT 
+         [jdzzID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [gth],
+         [gzwz],
+         [sbmc],
+         [xhgg],
+         [jddz],
+         [tz],
+         [trdzr],
+         [CreateMan],
+         [CreateDate],
+         [sbID],
+         [fzxl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_07jdzz
+         WHERE 
+           jdzzID = #jdzzID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_07jdzz" parameterClass="sdjl_07jdzz">
+        DELETE FROM 
+         sdjl_07jdzz
+           WHERE
+         jdzzID = #jdzzID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_07jdzzByWhere" parameterClass="string">
+     delete from sdjl_07jdzz $value$
+   </delete>
+   
+   <delete id="Deletesdjl_07jdzzByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_07jdzz
+           WHERE
+         jdzzID = #jdzzID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_07jdzz" parameterClass="sdjl_07jdzz" resultClass="int">
+          UPDATE sdjl_07jdzz
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineID]=#LineID#,
+             [LineName]=#LineName#,
+             [gth]=#gth#,
+             [gzwz]=#gzwz#,
+             [sbmc]=#sbmc#,
+             [xhgg]=#xhgg#,
+             [jddz]=#jddz#,
+             [tz]=#tz#,
+             [trdzr]=#trdzr#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [sbID]=#sbID#,
+             [fzxl]=#fzxl#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              jdzzID = #jdzzID#
+
+   </update>
+  
+   <insert id="Insertsdjl_07jdzz" parameterClass="sdjl_07jdzz">
+        INSERT INTO sdjl_07jdzz
+         (
+         [jdzzID],
+         [OrgCode],
+         [OrgName],
+         [LineID],
+         [LineName],
+         [gth],
+         [gzwz],
+         [sbmc],
+         [xhgg],
+         [jddz],
+         [tz],
+         [trdzr],
+         [CreateMan],
+         [CreateDate],
+         [sbID],
+         [fzxl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #jdzzID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineID#,
+         #LineName#,
+         #gth#,
+         #gzwz#,
+         #sbmc#,
+         #xhgg#,
+         #jddz#,
+         #tz#,
+         #trdzr#,
+         #CreateMan#,
+         #CreateDate#,
+         #sbID#,
+         #fzxl#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_07jdzzRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_07jdzz
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="jdzzID">[jdzzID]='$jdzzID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="gzwz">[gzwz]='$gzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="sbmc">[sbmc]='$sbmc$'</isNotNull>
+       <isNotNull prepend="AND" property="xhgg">[xhgg]='$xhgg$'</isNotNull>
+       <isNotNull prepend="AND" property="jddz">[jddz]='$jddz$'</isNotNull>
+       <isNotNull prepend="AND" property="tz">[tz]='$tz$'</isNotNull>
+       <isNotNull prepend="AND" property="trdzr">[trdzr]='$trdzr$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+       <isNotNull prepend="AND" property="fzxl">[fzxl]='$fzxl$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_07jdzzRowCount" parameterClass="string">
+    select count(*) from sdjl_07jdzz $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

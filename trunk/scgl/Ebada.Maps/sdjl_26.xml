@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_26" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_26"  type="Ebada.Scgl.Model.sdjl_26,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_26_AllColumns" class="sdjl_26">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="tzdw" column="tzdw" />
+        <result property="tzrq" column="tzrq" />
+        <result property="Remark" column="Remark" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="BigData" column="BigData" />
+        <result property="xybh" column="xybh" />
+        <result property="lineVol" column="lineVol" />
+        <result property="fxwt" column="fxwt" />
+        <result property="clcs" column="clcs" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_26List" resultMap="sdjl_26_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [tzdw],
+         [tzrq],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [xybh],
+         [lineVol],
+         [fxwt],
+         [clcs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_26
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_26ByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [tzdw],
+         [tzrq],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [xybh],
+         [lineVol],
+         [fxwt],
+         [clcs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_26
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="tzdw">[tzdw]='$tzdw$'</isNotNull>
+       <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
+       <isNotNull prepend="AND" property="lineVol">[lineVol]='$lineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwt">[fxwt]='$fxwt$'</isNotNull>
+       <isNotNull prepend="AND" property="clcs">[clcs]='$clcs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_26ByKey" resultMap="sdjl_26_AllColumns" parameterClass="sdjl_26">
+         SELECT 
+         [ID],
+         [ParentID],
+         [tzdw],
+         [tzrq],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [xybh],
+         [lineVol],
+         [fxwt],
+         [clcs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_26
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_26" parameterClass="sdjl_26">
+        DELETE FROM 
+         sdjl_26
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_26ByWhere" parameterClass="string">
+     delete from sdjl_26 $value$
+   </delete>
+   
+   <delete id="Deletesdjl_26ByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_26
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_26" parameterClass="sdjl_26" resultClass="int">
+          UPDATE sdjl_26
+           SET
+             [ParentID]=#ParentID#,
+             [tzdw]=#tzdw#,
+             [tzrq]=#tzrq#,
+             [Remark]=#Remark#,
+             [gzrjID]=#gzrjID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [BigData]=#BigData#,
+             [xybh]=#xybh#,
+             [lineVol]=#lineVol#,
+             [fxwt]=#fxwt#,
+             [clcs]=#clcs#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjl_26" parameterClass="sdjl_26">
+        INSERT INTO sdjl_26
+         (
+         [ID],
+         [ParentID],
+         [tzdw],
+         [tzrq],
+         [Remark],
+         [gzrjID],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [xybh],
+         [lineVol],
+         [fxwt],
+         [clcs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #tzdw#,
+         #tzrq#,
+         #Remark#,
+         #gzrjID#,
+         #CreateMan#,
+         #CreateDate#,
+         #BigData#,
+         #xybh#,
+         #lineVol#,
+         #fxwt#,
+         #clcs#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_26RowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_26
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="tzdw">[tzdw]='$tzdw$'</isNotNull>
+       <isNotNull prepend="AND" property="tzrq">[tzrq]='$tzrq$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="xybh">[xybh]='$xybh$'</isNotNull>
+       <isNotNull prepend="AND" property="lineVol">[lineVol]='$lineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwt">[fxwt]='$fxwt$'</isNotNull>
+       <isNotNull prepend="AND" property="clcs">[clcs]='$clcs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_26RowCount" parameterClass="string">
+    select count(*) from sdjl_26 $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

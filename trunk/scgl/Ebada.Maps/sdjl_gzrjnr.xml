@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_gzrjnr" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_gzrjnr"  type="Ebada.Scgl.Model.sdjl_gzrjnr,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_gzrjnr_AllColumns" class="sdjl_gzrjnr">
+        <result property="gznrID" column="gznrID" />
+        <result property="gzrjID" column="gzrjID" />
+        <result property="fssj" column="fssj" />
+        <result property="seq" column="seq" />
+        <result property="gznr" column="gznr" />
+        <result property="fzr" column="fzr" />
+        <result property="cjry" column="cjry" />
+        <result property="ParentID" column="ParentID" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_gzrjnrList" resultMap="sdjl_gzrjnr_AllColumns" parameterClass="string">
+        SELECT 
+         [gznrID],
+         [gzrjID],
+         [fssj],
+         [seq],
+         [gznr],
+         [fzr],
+         [cjry],
+         [ParentID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_gzrjnr
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_gzrjnrByHash" parameterClass="Hashtable">
+         SELECT 
+         [gznrID],
+         [gzrjID],
+         [fssj],
+         [seq],
+         [gznr],
+         [fzr],
+         [cjry],
+         [ParentID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_gzrjnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="fssj">[fssj]='$fssj$'</isNotNull>
+       <isNotNull prepend="AND" property="seq">[seq]='$seq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznr">[gznr]='$gznr$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_gzrjnrByKey" resultMap="sdjl_gzrjnr_AllColumns" parameterClass="sdjl_gzrjnr">
+         SELECT 
+         [gznrID],
+         [gzrjID],
+         [fssj],
+         [seq],
+         [gznr],
+         [fzr],
+         [cjry],
+         [ParentID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_gzrjnr
+         WHERE 
+           gznrID = #gznrID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_gzrjnr" parameterClass="sdjl_gzrjnr">
+        DELETE FROM 
+         sdjl_gzrjnr
+           WHERE
+         gznrID = #gznrID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_gzrjnrByWhere" parameterClass="string">
+     delete from sdjl_gzrjnr $value$
+   </delete>
+   
+   <delete id="Deletesdjl_gzrjnrByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_gzrjnr
+           WHERE
+         gznrID = #gznrID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_gzrjnr" parameterClass="sdjl_gzrjnr" resultClass="int">
+          UPDATE sdjl_gzrjnr
+           SET
+             [gzrjID]=#gzrjID#,
+             [fssj]=#fssj#,
+             [seq]=#seq#,
+             [gznr]=#gznr#,
+             [fzr]=#fzr#,
+             [cjry]=#cjry#,
+             [ParentID]=#ParentID#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              gznrID = #gznrID#
+
+   </update>
+  
+   <insert id="Insertsdjl_gzrjnr" parameterClass="sdjl_gzrjnr">
+        INSERT INTO sdjl_gzrjnr
+         (
+         [gznrID],
+         [gzrjID],
+         [fssj],
+         [seq],
+         [gznr],
+         [fzr],
+         [cjry],
+         [ParentID],
+         [CreateMan],
+         [CreateDate],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #gznrID#,
+         #gzrjID#,
+         #fssj#,
+         #seq#,
+         #gznr#,
+         #fzr#,
+         #cjry#,
+         #ParentID#,
+         #CreateMan#,
+         #CreateDate#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_gzrjnrRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_gzrjnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="gznrID">[gznrID]='$gznrID$'</isNotNull>
+       <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
+       <isNotNull prepend="AND" property="fssj">[fssj]='$fssj$'</isNotNull>
+       <isNotNull prepend="AND" property="seq">[seq]='$seq$'</isNotNull>
+       <isNotNull prepend="AND" property="gznr">[gznr]='$gznr$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="cjry">[cjry]='$cjry$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_gzrjnrRowCount" parameterClass="string">
+    select count(*) from sdjl_gzrjnr $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

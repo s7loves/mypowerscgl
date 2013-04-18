@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjl_dyk" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjl_dyk"  type="Ebada.Scgl.Model.sdjl_dyk,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjl_dyk_AllColumns" class="sdjl_dyk">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="dx" column="dx" />
+        <result property="sx" column="sx" />
+        <result property="bh" column="bh" />
+        <result property="zjm" column="zjm" />
+        <result property="nr4" column="nr4" />
+        <result property="nr" column="nr" />
+        <result property="nr2" column="nr2" />
+        <result property="nr3" column="nr3" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjl_dykList" resultMap="sdjl_dyk_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [dx],
+         [sx],
+         [bh],
+         [zjm],
+         [nr4],
+         [nr],
+         [nr2],
+         [nr3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_dyk
+          $value$
+   </select>
+   
+   <select id="Selectsdjl_dykByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [dx],
+         [sx],
+         [bh],
+         [zjm],
+         [nr4],
+         [nr],
+         [nr2],
+         [nr3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjl_dyk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
+       <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjm">[zjm]='$zjm$'</isNotNull>
+       <isNotNull prepend="AND" property="nr4">[nr4]='$nr4$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="nr2">[nr2]='$nr2$'</isNotNull>
+       <isNotNull prepend="AND" property="nr3">[nr3]='$nr3$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjl_dykByKey" resultMap="sdjl_dyk_AllColumns" parameterClass="sdjl_dyk">
+         SELECT 
+         [ID],
+         [ParentID],
+         [dx],
+         [sx],
+         [bh],
+         [zjm],
+         [nr4],
+         [nr],
+         [nr2],
+         [nr3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjl_dyk
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjl_dyk" parameterClass="sdjl_dyk">
+        DELETE FROM 
+         sdjl_dyk
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjl_dykByWhere" parameterClass="string">
+     delete from sdjl_dyk $value$
+   </delete>
+   
+   <delete id="Deletesdjl_dykByKey" parameterClass="string">
+        DELETE FROM 
+         sdjl_dyk
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjl_dyk" parameterClass="sdjl_dyk" resultClass="int">
+          UPDATE sdjl_dyk
+           SET
+             [ParentID]=#ParentID#,
+             [dx]=#dx#,
+             [sx]=#sx#,
+             [bh]=#bh#,
+             [zjm]=#zjm#,
+             [nr4]=#nr4#,
+             [nr]=#nr#,
+             [nr2]=#nr2#,
+             [nr3]=#nr3#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjl_dyk" parameterClass="sdjl_dyk">
+        INSERT INTO sdjl_dyk
+         (
+         [ID],
+         [ParentID],
+         [dx],
+         [sx],
+         [bh],
+         [zjm],
+         [nr4],
+         [nr],
+         [nr2],
+         [nr3],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #dx#,
+         #sx#,
+         #bh#,
+         #zjm#,
+         #nr4#,
+         #nr#,
+         #nr2#,
+         #nr3#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjl_dykRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjl_dyk
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="dx">[dx]='$dx$'</isNotNull>
+       <isNotNull prepend="AND" property="sx">[sx]='$sx$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjm">[zjm]='$zjm$'</isNotNull>
+       <isNotNull prepend="AND" property="nr4">[nr4]='$nr4$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="nr2">[nr2]='$nr2$'</isNotNull>
+       <isNotNull prepend="AND" property="nr3">[nr3]='$nr3$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjl_dykRowCount" parameterClass="string">
+    select count(*) from sdjl_dyk $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
