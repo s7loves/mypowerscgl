@@ -24,7 +24,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.ucpJ_dykSelector1 = new Ebada.Scgl.Core.UCPJ_dykSelector();
+            this.ucpJ_dykSelector1 = new Ebada.Scgl.Core.UCSD_dykSelector();
             this.SuspendLayout();
             // 
             // ucpJ_dykSelector1
@@ -53,7 +53,7 @@
 
         #endregion
 
-        public UCPJ_dykSelector ucpJ_dykSelector1;
+        public UCSD_dykSelector ucpJ_dykSelector1;
 
     }
 }
