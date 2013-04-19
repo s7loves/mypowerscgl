@@ -23,6 +23,7 @@
         <result property="gtZj" column="gtZj" />
         <result property="gtJg" column="gtJg" />
         <result property="ImageID" column="ImageID" />
+        <result property="gtNode" column="gtNode" />
       </resultMap>
   </resultMaps>
 
@@ -46,7 +47,8 @@
      [gtZjfx],
      [gtZj],
      [gtJg],
-     [ImageID]
+     [ImageID],
+     [gtNode]
      FROM PS_gt
      $value$
    </select>
@@ -70,7 +72,8 @@
      [gtZjfx],
      [gtZj],
      [gtJg],
-     [ImageID]
+     [ImageID],
+     [gtNode]
      FROM PS_gt
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
@@ -112,7 +115,8 @@
      [gtZjfx],
      [gtZj],
      [gtJg],
-     [ImageID]
+     [ImageID],
+     [gtNode]
      FROM PS_gt
      WHERE
      gtID = #gtID#
@@ -154,7 +158,8 @@
      [gtZjfx]=#gtZjfx#,
      [gtZj]=#gtZj#,
      [gtJg]=#gtJg#,
-     [ImageID]=#ImageID#
+     [ImageID]=#ImageID#,
+     [gtNode]=#gtNode#
      WHERE
      gtID = #gtID#
 
@@ -187,7 +192,8 @@
      [gtZjfx],
      [gtZj],
      [gtJg],
-     [ImageID]
+     [ImageID],
+     [gtNode]
      )
      VALUES
      (
@@ -208,7 +214,8 @@
      #gtZjfx#,
      #gtZj#,
      #gtJg#,
-     #ImageID#
+     #ImageID#,
+     #gtNode#
      )
 
    </insert>   

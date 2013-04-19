@@ -30,6 +30,9 @@
         <result property="byqState" column="byqState" />
         <result property="byqkind" column="byqkind" />
         <result property="InDate" column="InDate" />
+        <result property="jlType" column="jlType" />
+        <result property="azType" column="azType" />
+        <result property="isCount" column="isCount" />
       </resultMap>
     <resultMap id="PS_SheetTemp_AllColumns" class="PS_sheetTemp">
       <result property="Col1" column="Col1" />
@@ -71,7 +74,10 @@
      [byqInstallAdress],
      [byqState],
      [byqkind],
-     [InDate]
+     [InDate],
+     [jlType],
+     [azType],
+     [isCount]
      FROM PS_tqbyq
      $value$
    </select>
@@ -100,7 +106,10 @@
       d.[byqInstallAdress],
       d.[byqState],
       d.[byqkind],
-      d.[InDate]
+      d.[InDate],
+      [jlType],
+      [azType],
+      [isCount]
       FROM
       dbo.mOrg a, dbo.PS_xl b, dbo.PS_tq c,dbo.PS_tqbyq d
       where a.OrgCode=b.OrgCode and b.LineCode=c.xlCode and c.tqID=d.tqID and a.OrgCode=$value$
@@ -146,7 +155,10 @@
      [byqInstallAdress],
      [byqState],
      [byqkind],
-     [InDate]
+     [InDate],
+     [jlType],
+     [azType],
+     [isCount]
      FROM PS_tqbyq
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
@@ -200,7 +212,10 @@
      [byqInstallAdress],
      [byqState],
      [byqkind],
-     [InDate]
+     [InDate],
+     [jlType],
+     [azType],
+     [isCount]
      FROM PS_tqbyq
      WHERE
      byqID = #byqID#
@@ -252,7 +267,10 @@
      [byqInstallAdress]=#byqInstallAdress#,
      [byqState]=#byqState#,
      [byqkind]=#byqkind#,
-     [InDate]=#InDate#
+     [InDate]=#InDate#,
+     [jlType]=#jlType#,
+     [azType]=#azType#,
+     [isCount]=#isCount#
      WHERE
      byqID = #byqID#
 
@@ -284,7 +302,10 @@
      [byqInstallAdress],
      [byqState],
      [byqkind],
-     [InDate]
+     [InDate],
+     [jlType],
+     [azType],
+     [isCount]
      )
      VALUES
      (
@@ -311,7 +332,10 @@
      #byqInstallAdress#,
      #byqState#,
      #byqkind#,
-     #InDate#
+     #InDate#,
+     #jlType#,
+     #azType#,
+     #isCount#
      )
 
    </insert>

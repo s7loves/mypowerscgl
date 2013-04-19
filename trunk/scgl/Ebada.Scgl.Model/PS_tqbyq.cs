@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-5-26 20:54:00
+生成时间:2013-4-19 8:51:30
 ***********************************************/
 
 using System;
@@ -38,13 +38,16 @@ namespace Ebada.Scgl.Model
         private string _byqcycle=String.Empty; 
         private decimal _byqvolone=0; 
         private decimal _byqvoltwo=0; 
-        private decimal _byqcurrentone=0;
-        private decimal _byqcurrenttwo = 0;
-        private string _byqkind = String.Empty; 
+        private decimal _byqcurrentone=0; 
+        private decimal _byqcurrenttwo=0; 
         private DateTime _byqinstalldate=new DateTime(1900,1,1); 
         private string _byqinstalladress=String.Empty; 
         private string _byqstate=String.Empty; 
-        private DateTime _indate=new DateTime(1900,1,1);   
+        private DateTime _indate=new DateTime(1900,1,1); 
+        private string _byqkind=(""); 
+        private string _jltype=("是"); 
+        private string _aztype=("台架式"); 
+        private string _iscount=("是");   
         #endregion
   
   
@@ -55,7 +58,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：台区ID
         /// 字段信息：[tqID],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("台区ID")]
         public string tqID
         {
@@ -276,24 +278,7 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-
-        /// <summary>
-        /// 属性名称：byqKind
-        /// 属性描述：完好类型
-        /// 字段信息：[bttype],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("完好类型")]
-        public string byqkind
-        {
-            get { return _byqkind; }
-            set
-            {
-                if (_byqkind as object == null || !_byqkind.Equals(value))
-                {
-                    _byqkind = value;
-                }
-            }
-        }
+  
         /// <summary>
         /// 属性名称：byqFactory
         /// 属性描述：制造厂
@@ -525,15 +510,99 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：byqkind
+        /// 属性描述：完好类型
+        /// 字段信息：[byqkind],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("完好类型")]
+        public string byqkind
+        {
+            get { return _byqkind; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[完好类型]长度不能大于50!");
+                if (_byqkind as object == null || !_byqkind.Equals(value))
+                {
+                    _byqkind = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：jlType
+        /// 属性描述：高压侧计量
+        /// 字段信息：[jlType],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("高压侧计量")]
+        public string jlType
+        {
+            get { return _jltype; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[高压侧计量]长度不能大于10!");
+                if (_jltype as object == null || !_jltype.Equals(value))
+                {
+                    _jltype = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：azType
+        /// 属性描述：安装方式
+        /// 字段信息：[azType],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("安装方式")]
+        public string azType
+        {
+            get { return _aztype; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[安装方式]长度不能大于50!");
+                if (_aztype as object == null || !_aztype.Equals(value))
+                {
+                    _aztype = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：isCount
+        /// 属性描述：是否计数
+        /// 字段信息：[isCount],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("是否计数")]
+        public string isCount
+        {
+            get { return _iscount; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[是否计数]长度不能大于10!");
+                if (_iscount as object == null || !_iscount.Equals(value))
+                {
+                    _iscount = value;
+                }
+            }			 
+        }
+  
         #endregion 
   
         #region 方法
         public static string Newid(){
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         public string CreateID(){
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion		
     }	

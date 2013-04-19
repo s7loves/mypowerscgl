@@ -1,10 +1,10 @@
 /**********************************************
 这是代码自动生成的，如果重新生成，所做的改动将会丢失
-系统:Ebada物流企业ERP
+系统:Ebada农电局生产管理
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2012/3/25 8:20:25
+生成时间:2013-4-19 8:51:30
 ***********************************************/
 
 using System;
@@ -30,9 +30,9 @@ namespace Ebada.Scgl.Model
         private string _linevol=String.Empty; 
         private string _orgcode=String.Empty; 
         private string _orgcode2=String.Empty; 
-        private string _owner=String.Empty; 
+        private string _owner=("局属"); 
         private string _contractor=String.Empty; 
-        private string _runstate=String.Empty; 
+        private string _runstate=("运行"); 
         private DateTime _indate=new DateTime(1900,1,1); 
         private string _linegtbegin=String.Empty; 
         private string _linegtend=String.Empty; 
@@ -42,15 +42,17 @@ namespace Ebada.Scgl.Model
         private int _gdbj=0; 
         private decimal _theoryloss=0; 
         private decimal _actualloss=0; 
-        private string _parentgt=String.Empty; 
+        private string _parentgt=(""); 
         private decimal _linep=0; 
         private decimal _lineq=0; 
         private decimal _k=0; 
-        private string _linekind=String.Empty; 
-        private string _linenum=String.Empty; 
+        private string _linekind=(""); 
+        private string _linenum=(""); 
         private decimal _totalt=0; 
-        private string _sectionalizedmessage=String.Empty; 
-        private string _xlpy=String.Empty;   
+        private string _sectionalizedmessage=(""); 
+        private string _xlpy=(""); 
+        private int _linecount=0; 
+        private string _leadwire=String.Empty;   
         #endregion
   
   
@@ -487,7 +489,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[ParentGT],nvarchar
         /// </summary>
-        [DisplayNameAttribute("")]
+        [DisplayNameAttribute("ParentGT")]
         public string ParentGT
         {
             get { return _parentgt; }
@@ -495,7 +497,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[]长度不能大于50!");
+                throw new Exception("[ParentGT]长度不能大于50!");
                 if (_parentgt as object == null || !_parentgt.Equals(value))
                 {
                     _parentgt = value;
@@ -505,10 +507,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：LineP
-        /// 属性描述：线路有功
+        /// 属性描述：
         /// 字段信息：[LineP],decimal
         /// </summary>
-        [DisplayNameAttribute("线路有功")]
+        [DisplayNameAttribute("LineP")]
         public decimal LineP
         {
             get { return _linep; }
@@ -523,10 +525,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：LineQ
-        /// 属性描述：线路无功 
+        /// 属性描述：
         /// 字段信息：[LineQ],decimal
         /// </summary>
-        [DisplayNameAttribute("线路无功")]
+        [DisplayNameAttribute("LineQ")]
         public decimal LineQ
         {
             get { return _lineq; }
@@ -541,10 +543,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：K
-        /// 属性描述：负荷形状系数
+        /// 属性描述：
         /// 字段信息：[K],decimal
         /// </summary>
-        [DisplayNameAttribute("负荷形状系数")]
+        [DisplayNameAttribute("K")]
         public decimal K
         {
             get { return _k; }
@@ -629,8 +631,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[线路分段信息]长度不能大于200!");
+                if( value.ToString().Length > 1000)
+                throw new Exception("[线路分段信息]长度不能大于1000!");
                 if (_sectionalizedmessage as object == null || !_sectionalizedmessage.Equals(value))
                 {
                     _sectionalizedmessage = value;
@@ -659,15 +661,54 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：lineCount
+        /// 属性描述：根数
+        /// 字段信息：[lineCount],int
+        /// </summary>
+        [DisplayNameAttribute("根数")]
+        public int lineCount
+        {
+            get { return _linecount; }
+            set
+            {			
+                if (_linecount as object == null || !_linecount.Equals(value))
+                {
+                    _linecount = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：leadwire
+        /// 属性描述：线制
+        /// 字段信息：[leadwire],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("线制")]
+        public string leadwire
+        {
+            get { return _leadwire; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[线制]长度不能大于50!");
+                if (_leadwire as object == null || !_leadwire.Equals(value))
+                {
+                    _leadwire = value;
+                }
+            }			 
+        }
+  
         #endregion 
   
         #region 方法
         public static string Newid(){
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         public string CreateID(){
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion		
     }	
