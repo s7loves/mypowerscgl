@@ -1238,6 +1238,18 @@
       <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\运行分析记录\frmSDyxfxEdit.resx">
+      <DependentUpon>frmSDyxfxEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\运行分析记录\UCSD_03yxfx.resx">
+      <DependentUpon>UCSD_03yxfx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\运行分析记录\UCSD_03YXFXForm.resx">
+      <DependentUpon>UCSD_03YXFXForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -1450,6 +1462,25 @@
     </Compile>
     <Compile Include="送电记录簿\工作日记\UCSD_gzrjnr.Designer.cs">
       <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\ExportSD03.cs" />
+    <Compile Include="送电记录簿\运行分析记录\frmSDyxfxEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\frmSDyxfxEdit.Designer.cs">
+      <DependentUpon>frmSDyxfxEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\UCSD_03yxfx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\UCSD_03yxfx.Designer.cs">
+      <DependentUpon>UCSD_03yxfx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\UCSD_03YXFXForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\运行分析记录\UCSD_03YXFXForm.Designer.cs">
+      <DependentUpon>UCSD_03YXFXForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2059,6 +2090,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电01工作日志.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\送电03运行分析记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
