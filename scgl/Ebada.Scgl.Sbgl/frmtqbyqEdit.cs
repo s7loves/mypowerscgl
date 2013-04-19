@@ -45,7 +45,10 @@ namespace Ebada.Scgl.Sbgl
             this.comboBoxEdit13.DataBindings.Add("EditValue", rowData, "byqState");
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "InDate");
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "tqID");
-            this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "byqkind");  
+            this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "byqkind");
+            this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "jlType");
+            this.comboBoxEdit15.DataBindings.Add("EditValue", rowData, "azType");
+            this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "isCount");  
 
             this.lookUpEdit1.EditValueChanged += new EventHandler(lookUpEdit1_EditValueChanged);
 

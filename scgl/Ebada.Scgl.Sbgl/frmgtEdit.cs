@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Sbgl
             this.spinEdit6.DataBindings.Add("EditValue", rowData, "gtZj");
             this.spinEdit7.DataBindings.Add("EditValue", rowData, "gtSpan");
             this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gtJg");
- 
+            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "gtNode");
 
         }
         #region IPopupFormEdit Members
