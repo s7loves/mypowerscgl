@@ -21,11 +21,11 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _linecode=Newid(); 
+        private string _linecode = String.Empty; 
         private string _xsqdname=String.Empty; 
         private string _xsr1=String.Empty; 
-        private string _xsr2=String.Empty; 
-        private string _id=String.Empty; 
+        private string _xsr2=String.Empty;
+        private string _id = Newid(); 
         private string _c1=String.Empty; 
         private string _c2=String.Empty; 
         private string _c3=String.Empty; 
@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：线路编号
         /// 字段信息：[LineCode],nvarchar
         /// </summary>
-        [Browsable(false)]
+        
         [DisplayNameAttribute("线路编号")]
         public string LineCode
         {
@@ -126,6 +126,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[ID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("ID")]
         public string ID
         {
