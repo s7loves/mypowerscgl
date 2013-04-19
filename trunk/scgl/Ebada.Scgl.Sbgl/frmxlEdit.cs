@@ -80,6 +80,8 @@ namespace Ebada.Scgl.Sbgl {
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//完好类型
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路类型
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "xlpy");//线路类型
+            this.comboBoxEdit19.DataBindings.Add("EditValue", rowData, "leadwire");//线路线制
+            this.spinEdit9.DataBindings.Add("EditValue", rowData, "lineCount");//根数
 
         }
         #region IPopupFormEdit Members
@@ -293,6 +295,10 @@ namespace Ebada.Scgl.Sbgl {
             //    comboBoxEdit3.Properties.Items.Clear();
             //    comboBoxEdit3.Properties.Items.AddRange(list);
             //}
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e) {
+
         }
 
     }
