@@ -147,6 +147,12 @@
     <Compile Include="UCPS_GTSB_bx.Designer.cs">
       <DependentUpon>UCPS_GTSB_bx.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCSD_xlTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCSD_xlTree.Designer.cs">
+      <DependentUpon>UCSD_xlTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\frmSBTZ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1291,6 +1297,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_GTSB_bx.resx">
       <DependentUpon>UCPS_GTSB_bx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCSD_xlTree.resx">
+      <DependentUpon>UCSD_xlTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\frmSBTZ.resx">
