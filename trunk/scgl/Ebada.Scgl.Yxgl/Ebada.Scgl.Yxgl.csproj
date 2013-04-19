@@ -1218,6 +1218,26 @@
       <DependentUpon>UCSD_02aqhd.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\工作日记\frmSDgzrjEdit.resx">
+      <DependentUpon>frmSDgzrjEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\工作日记\frmSDgzrjnrEdit.resx">
+      <DependentUpon>frmSDgzrjnrEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\工作日记\UCSD_gzrj.resx">
+      <DependentUpon>UCSD_gzrj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\工作日记\UCSD_gzrjM.resx">
+      <DependentUpon>UCSD_gzrjM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\工作日记\UCSD_gzrjnr.resx">
+      <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -1399,6 +1419,37 @@
     </Compile>
     <Compile Include="送电记录簿\安全活动记录\UCSD_02aqhd.Designer.cs">
       <DependentUpon>UCSD_02aqhd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\ExportSD01.cs" />
+    <Compile Include="送电记录簿\工作日记\frmSDgzrjEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\frmSDgzrjEdit.Designer.cs">
+      <DependentUpon>frmSDgzrjEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\frmSDgzrjnrEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\frmSDgzrjnrEdit.Designer.cs">
+      <DependentUpon>frmSDgzrjnrEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrj.Designer.cs">
+      <DependentUpon>UCSD_gzrj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrjM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrjM.Designer.cs">
+      <DependentUpon>UCSD_gzrjM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrjnr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\工作日记\UCSD_gzrjnr.Designer.cs">
+      <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2005,6 +2056,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="00记录模板\送电02安全活动记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\送电01工作日志.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
