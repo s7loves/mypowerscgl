@@ -405,6 +405,15 @@ namespace TLMapPlatform {
             contextMenu.MenuItems[6].Enabled = !flag;
             contextMenu.MenuItems[7].Enabled = flag;
             //contextMenu.MenuItems[8].Enabled = !flag;
+            bool flag2 = code.Substring(3, 1) == "3";
+
+            contextMenu.MenuItems[2].Visible = !flag;
+            contextMenu.MenuItems[3].Visible = !flag;
+            contextMenu.MenuItems[4].Visible = !flag;
+            contextMenu.MenuItems[5].Visible = !flag;
+            contextMenu.MenuItems[6].Visible = !flag;
+            contextMenu.MenuItems[7].Visible = !flag;
+
             contextMenu.Tag = code;
             contextMenu.Show(treeList1, p);
         }
