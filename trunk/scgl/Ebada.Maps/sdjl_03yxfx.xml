@@ -135,7 +135,7 @@
          [c5]
          FROM sdjl_03yxfx
          WHERE 
-           OrgCode = #OrgCode#
+           ID = #ID#
 
    </select>
  
@@ -143,7 +143,7 @@
         DELETE FROM 
          sdjl_03yxfx
            WHERE
-         OrgCode = #OrgCode#
+         ID = #ID#
 
    </delete>
    
@@ -155,7 +155,7 @@
         DELETE FROM 
          sdjl_03yxfx
            WHERE
-         OrgCode = #OrgCode#
+         ID = #ID#
     
    </delete>
    
@@ -184,7 +184,7 @@
              [c4]=#c4#,
              [c5]=#c5#
             WHERE 
-              OrgCode = #OrgCode#
+              ID = #ID#
 
    </update>
   
