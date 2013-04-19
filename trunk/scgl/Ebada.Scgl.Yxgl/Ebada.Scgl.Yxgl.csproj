@@ -1210,6 +1210,14 @@
       <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\事故、障碍、异常运行记录\frmSDsgzaycEdit.resx">
+      <DependentUpon>frmSDsgzaycEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\事故、障碍、异常运行记录\UCSD_04sgzayc.resx">
+      <DependentUpon>UCSD_04sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\安全活动记录\frmsdaqhdEdit.resx">
       <DependentUpon>frmsdaqhdEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1418,6 +1426,19 @@
     </Compile>
     <Compile Include="线损分析\UCPS_LineLoss.Designer.cs">
       <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\事故、障碍、异常运行记录\ExportSD04.cs" />
+    <Compile Include="送电记录簿\事故、障碍、异常运行记录\frmSDsgzaycEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\事故、障碍、异常运行记录\frmSDsgzaycEdit.Designer.cs">
+      <DependentUpon>frmSDsgzaycEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\事故、障碍、异常运行记录\UCSD_04sgzayc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\事故、障碍、异常运行记录\UCSD_04sgzayc.Designer.cs">
+      <DependentUpon>UCSD_04sgzayc.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\安全活动记录\ExportSD02.cs" />
     <Compile Include="送电记录簿\安全活动记录\frmsdaqhdEdit.cs">
