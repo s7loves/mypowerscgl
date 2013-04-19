@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-7-29 22:15:46
+生成时间:2013-4-19 8:51:29
 ***********************************************/
 
 using System;
@@ -26,8 +26,7 @@ namespace Ebada.Scgl.Model
         private string _gtcode=String.Empty; 
         private string _gth=String.Empty; 
         private string _gttype=String.Empty; 
-        private string _gtmodle=String.Empty;
-        private string _dxplfs = String.Empty; 
+        private string _gtmodle=String.Empty; 
         private decimal _gtheight=0; 
         private decimal _gtlon=0; 
         private decimal _gtlat=0; 
@@ -39,7 +38,14 @@ namespace Ebada.Scgl.Model
         private string _gtzjfx=(""); 
         private string _gtzj=(""); 
         private string _gtjg=("否"); 
-        private string _imageid=("");   
+        private string _imageid=(""); 
+        private string _dxplfs=(""); 
+        private string _gtnode=String.Empty; 
+        private string _c1=String.Empty; 
+        private string _c2=String.Empty; 
+        private string _c3=String.Empty; 
+        private string _c4=String.Empty; 
+        private string _c5=String.Empty;   
         #endregion
   
   
@@ -174,27 +180,6 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：dxplfs
-        /// 属性描述：导线排列方式
-        /// 字段信息：[gtModle],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("导线排列方式")]
-        public string dxplfs
-        {
-            get { return _dxplfs; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[型号]长度不能大于50!");
-                if (_dxplfs as object == null || !_dxplfs.Equals(value))
-                {
-                    _dxplfs = value;
-                }
-            }			 
-        }
-     
-        /// <summary>
         /// 属性名称：gtHeight
         /// 属性描述：杆高
         /// 字段信息：[gtHeight],decimal
@@ -322,10 +307,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gtMs
-        /// 属性描述：埋深
+        /// 属性描述：
         /// 字段信息：[gtMs],decimal
         /// </summary>
-        [DisplayNameAttribute("埋深")]
+        [DisplayNameAttribute("gtMs")]
         public decimal gtMs
         {
             get { return _gtms; }
@@ -340,10 +325,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gtZjfx
-        /// 属性描述：转角方向
+        /// 属性描述：
         /// 字段信息：[gtZjfx],nvarchar
         /// </summary>
-        [DisplayNameAttribute("转角方向")]
+        [DisplayNameAttribute("gtZjfx")]
         public string gtZjfx
         {
             get { return _gtzjfx; }
@@ -351,7 +336,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 10)
-                throw new Exception("[转角方向]长度不能大于10!");
+                throw new Exception("[gtZjfx]长度不能大于10!");
                 if (_gtzjfx as object == null || !_gtzjfx.Equals(value))
                 {
                     _gtzjfx = value;
@@ -361,10 +346,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gtZj
-        /// 属性描述：转角
+        /// 属性描述：
         /// 字段信息：[gtZj],nvarchar
         /// </summary>
-        [DisplayNameAttribute("转角")]
+        [DisplayNameAttribute("gtZj")]
         public string gtZj
         {
             get { return _gtzj; }
@@ -372,7 +357,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 10)
-                throw new Exception("[转角]长度不能大于10!");
+                throw new Exception("[gtZj]长度不能大于10!");
                 if (_gtzj as object == null || !_gtzj.Equals(value))
                 {
                     _gtzj = value;
@@ -382,10 +367,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gtJg
-        /// 属性描述：借杆
+        /// 属性描述：
         /// 字段信息：[gtJg],nvarchar
         /// </summary>
-        [DisplayNameAttribute("借杆")]
+        [DisplayNameAttribute("gtJg")]
         public string gtJg
         {
             get { return _gtjg; }
@@ -393,7 +378,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 1)
-                throw new Exception("[借杆]长度不能大于1!");
+                throw new Exception("[gtJg]长度不能大于1!");
                 if (_gtjg as object == null || !_gtjg.Equals(value))
                 {
                     _gtjg = value;
@@ -403,10 +388,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：ImageID
-        /// 属性描述：图片ID
+        /// 属性描述：
         /// 字段信息：[ImageID],nvarchar
         /// </summary>
-        [DisplayNameAttribute("图片ID")]
+        [DisplayNameAttribute("ImageID")]
         public string ImageID
         {
             get { return _imageid; }
@@ -414,10 +399,162 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 150)
-                throw new Exception("[图片ID]长度不能大于150!");
+                throw new Exception("[ImageID]长度不能大于150!");
                 if (_imageid as object == null || !_imageid.Equals(value))
                 {
                     _imageid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：dxplfs
+        /// 属性描述：导线排列方式
+        /// 字段信息：[dxplfs],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("导线排列方式")]
+        public string dxplfs
+        {
+            get { return _dxplfs; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[导线排列方式]长度不能大于50!");
+                if (_dxplfs as object == null || !_dxplfs.Equals(value))
+                {
+                    _dxplfs = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：gtNode
+        /// 属性描述：节点,(是、否）
+        /// 字段信息：[gtNode],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("节点")]
+        public string gtNode
+        {
+            get { return _gtnode; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 10)
+                throw new Exception("[节点]长度不能大于10!");
+                if (_gtnode as object == null || !_gtnode.Equals(value))
+                {
+                    _gtnode = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c1
+        /// 属性描述：备
+        /// 字段信息：[c1],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c1
+        {
+            get { return _c1; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c1 as object == null || !_c1.Equals(value))
+                {
+                    _c1 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c2
+        /// 属性描述：备
+        /// 字段信息：[c2],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c2
+        {
+            get { return _c2; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c2 as object == null || !_c2.Equals(value))
+                {
+                    _c2 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c3
+        /// 属性描述：备
+        /// 字段信息：[c3],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c3
+        {
+            get { return _c3; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c3 as object == null || !_c3.Equals(value))
+                {
+                    _c3 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c4
+        /// 属性描述：备
+        /// 字段信息：[c4],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c4
+        {
+            get { return _c4; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c4 as object == null || !_c4.Equals(value))
+                {
+                    _c4 = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：c5
+        /// 属性描述：备
+        /// 字段信息：[c5],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("备")]
+        public string c5
+        {
+            get { return _c5; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[备]长度不能大于50!");
+                if (_c5 as object == null || !_c5.Equals(value))
+                {
+                    _c5 = value;
                 }
             }			 
         }
@@ -426,11 +563,11 @@ namespace Ebada.Scgl.Model
   
         #region 方法
         public static string Newid(){
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         public string CreateID(){
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion		
     }	
