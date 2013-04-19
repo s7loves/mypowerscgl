@@ -75,7 +75,7 @@
          [c5]
          FROM sdjl_sbxsqd
          WHERE 
-           LineCode = #LineCode#
+           ID = #ID#
 
    </select>
  
@@ -83,7 +83,7 @@
         DELETE FROM 
          sdjl_sbxsqd
            WHERE
-         LineCode = #LineCode#
+         ID = #ID#
 
    </delete>
    
@@ -95,7 +95,7 @@
         DELETE FROM 
          sdjl_sbxsqd
            WHERE
-         LineCode = #LineCode#
+         ID = #ID#
     
    </delete>
    
@@ -112,7 +112,7 @@
              [c4]=#c4#,
              [c5]=#c5#
             WHERE 
-              LineCode = #LineCode#
+              ID = #ID#
 
    </update>
   
