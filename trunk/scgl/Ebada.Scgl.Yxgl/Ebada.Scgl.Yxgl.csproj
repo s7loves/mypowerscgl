@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -1210,6 +1210,14 @@
       <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\安全活动记录\frmsdaqhdEdit.resx">
+      <DependentUpon>frmsdaqhdEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\安全活动记录\UCSD_02aqhd.resx">
+      <DependentUpon>UCSD_02aqhd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -1378,6 +1386,19 @@
     </Compile>
     <Compile Include="线损分析\UCPS_LineLoss.Designer.cs">
       <DependentUpon>UCPS_LineLoss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\安全活动记录\ExportSD02.cs" />
+    <Compile Include="送电记录簿\安全活动记录\frmsdaqhdEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\安全活动记录\frmsdaqhdEdit.Designer.cs">
+      <DependentUpon>frmsdaqhdEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\安全活动记录\UCSD_02aqhd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\安全活动记录\UCSD_02aqhd.Designer.cs">
+      <DependentUpon>UCSD_02aqhd.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1983,6 +2004,9 @@
     <None Include="00记录模板\供电所材料出入库明细.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="00记录模板\送电02安全活动记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="00记录模板\医疗农电局.xls" />
     <None Include="00记录模板\医疗农电电工.xls" />
     <None Include="00记录模板\反事故措施计划表.xls">
