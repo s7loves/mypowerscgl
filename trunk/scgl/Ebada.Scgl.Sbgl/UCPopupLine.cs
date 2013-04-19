@@ -72,12 +72,24 @@ namespace Ebada.Scgl.Sbgl {
                 if (value is DataTable) {
                     xlselector.DataSource = (DataTable)value;
                 } else {
-                    xlselector.DataSource = ConvertHelper.ToDataTable((IList)value);
+                    if (value != null)
+                    {
+                        if (value is IList && ((IList)value).Count > 0)
+                        {
+                            xlselector.DataSource = ConvertHelper.ToDataTable((IList)value);
+                        }
+                    }
                 }
-                DataTable dt = xlselector.DataSource as DataTable;
-                createFilterColumn(dt);
-                xlselector.SetColumnsVisible(DisplayField);
-                xlselector.SetFilterColumns(filterField);
+                if (value != null)
+                {
+                    if (value is IList && ((IList)value).Count > 0)
+                    {
+                        DataTable dt = xlselector.DataSource as DataTable;
+                        createFilterColumn(dt);
+                        xlselector.SetColumnsVisible(DisplayField);
+                        xlselector.SetFilterColumns(filterField);
+                    }
+                }
                 
             }
         }
