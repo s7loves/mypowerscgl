@@ -146,7 +146,7 @@ namespace Ebada.Scgl.Sbgl
         public bool ShowTab2 {
             get { return showTab2; }
             set {
-                //showTab2 = value;
+                showTab2 = value;
             }
         }
         protected override void OnShown(EventArgs e) {
