@@ -31,6 +31,7 @@ namespace Ebada.Scgl.Yxgl
             this.memoEdit1.DataBindings.Add("EditValue", rowData, "Remark");
             this.memoEdit2.DataBindings.Add("EditValue", rowData, "fxwt");
             this.memoEdit3.DataBindings.Add("EditValue", rowData, "clcs");
+            this.lkuexlmc.DataBindings.Add("EditValue", rowData, "c1");
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
             //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
@@ -69,6 +70,13 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+           IList<sd_xl> xsList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>("where orgcode='" + rowData.ParentID + "'");
+           List<DicType> dicxlList = new List<DicType>();
+           foreach (sd_xl xl in xsList)
+           {
+               dicxlList.Add(new DicType(xl.LineName, xl.LineName));
+           }
+           SetComboBoxData(this.lkuexlmc, "Value", "Key", "请选择", "线路名称", dicxlList);
         }
 
         /// <summary>

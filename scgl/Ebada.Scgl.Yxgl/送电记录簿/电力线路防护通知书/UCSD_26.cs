@@ -64,6 +64,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null)
                 e.Cancel = true;
+            
         }
         protected override void OnLoad(EventArgs e)
         {
