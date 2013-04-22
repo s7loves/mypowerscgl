@@ -1266,6 +1266,26 @@
       <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\接地装置检测记录\frmSD07JDZZEdit.resx">
+      <DependentUpon>frmSD07JDZZEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\接地装置检测记录\frmSD07JDZZJlEdit.resx">
+      <DependentUpon>frmSD07JDZZJlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\接地装置检测记录\UCSD_07jdzz.resx">
+      <DependentUpon>UCSD_07jdzz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\接地装置检测记录\UCSD_07jdzzjl.resx">
+      <DependentUpon>UCSD_07jdzzjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\接地装置检测记录\UCSD_07jdzzM.resx">
+      <DependentUpon>UCSD_07jdzzM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\设备巡视及缺陷消除记录\frmSD06sbxsEdit.resx">
       <DependentUpon>frmSD06sbxsEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1570,6 +1590,37 @@
     </Compile>
     <Compile Include="送电记录簿\工作日记\UCSD_gzrjnr.Designer.cs">
       <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\ExportSD07.cs" />
+    <Compile Include="送电记录簿\接地装置检测记录\frmSD07JDZZEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\frmSD07JDZZEdit.Designer.cs">
+      <DependentUpon>frmSD07JDZZEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\frmSD07JDZZJlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\frmSD07JDZZJlEdit.Designer.cs">
+      <DependentUpon>frmSD07JDZZJlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzz.Designer.cs">
+      <DependentUpon>UCSD_07jdzz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzzjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzzjl.Designer.cs">
+      <DependentUpon>UCSD_07jdzzjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzzM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\接地装置检测记录\UCSD_07jdzzM.Designer.cs">
+      <DependentUpon>UCSD_07jdzzM.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\设备巡视及缺陷消除记录\ExportSD06.cs" />
     <Compile Include="送电记录簿\设备巡视及缺陷消除记录\frmSD06sbxsEdit.cs">
@@ -2259,6 +2310,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电05交叉跨越及对地距离测量记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\送电07接地装置检测记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
