@@ -1238,6 +1238,14 @@
       <DependentUpon>UCSD_05jckyM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\培训记录\frmSD09pxjlEdit.resx">
+      <DependentUpon>frmSD09pxjlEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\培训记录\UCSD_09pxjl.resx">
+      <DependentUpon>UCSD_09pxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\安全活动记录\frmsdaqhdEdit.resx">
       <DependentUpon>frmsdaqhdEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1594,6 +1602,19 @@
     </Compile>
     <Compile Include="送电记录簿\交叉跨越及对地距离测量记录\UCSD_05jckyM.Designer.cs">
       <DependentUpon>UCSD_05jckyM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\培训记录\ExportSD09.cs" />
+    <Compile Include="送电记录簿\培训记录\frmSD09pxjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\培训记录\frmSD09pxjlEdit.Designer.cs">
+      <DependentUpon>frmSD09pxjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\培训记录\UCSD_09pxjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\培训记录\UCSD_09pxjl.Designer.cs">
+      <DependentUpon>UCSD_09pxjl.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\安全活动记录\ExportSD02.cs" />
     <Compile Include="送电记录簿\安全活动记录\frmsdaqhdEdit.cs">
@@ -2449,6 +2470,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电26防护通知书.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\送电09培训记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
