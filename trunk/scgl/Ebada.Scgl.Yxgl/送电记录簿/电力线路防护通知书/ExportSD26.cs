@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.ActiveSheet(1);
             ex.SetCellValue(obj.tzdw, 5, 1);
             ex.SetCellValue(obj.lineVol, 6, 11);
+            ex.SetCellValue(obj.c1, 7, 3);
             ex.SetCellValue(obj.fxwt, 8, 2);
             ex.SetCellValue(obj.clcs, 14, 2);
 
