@@ -1314,6 +1314,18 @@
       <DependentUpon>UCSD_aqgjsy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Edit.resx">
+      <DependentUpon>frmSD23Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Template.resx">
+      <DependentUpon>frmSD23Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\电力设备产权、维护范围协议书\UCSD_23.resx">
+      <DependentUpon>UCSD_23.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\设备巡视及缺陷消除记录\frmSD06sbxsEdit.resx">
       <DependentUpon>frmSD06sbxsEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1693,6 +1705,25 @@
     </Compile>
     <Compile Include="送电记录簿\电力安全工器具检测试验记录\UCSD_aqgjsy.Designer.cs">
       <DependentUpon>UCSD_aqgjsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\ExportSD23.cs" />
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Edit.Designer.cs">
+      <DependentUpon>frmSD23Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\frmSD23Template.Designer.cs">
+      <DependentUpon>frmSD23Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\UCSD_23.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\电力设备产权、维护范围协议书\UCSD_23.Designer.cs">
+      <DependentUpon>UCSD_23.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\设备巡视及缺陷消除记录\ExportSD06.cs" />
     <Compile Include="送电记录簿\设备巡视及缺陷消除记录\frmSD06sbxsEdit.cs">
@@ -2391,6 +2422,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电15工具仪表台账.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="00记录模板\电力设备产权、维护范围协议书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
