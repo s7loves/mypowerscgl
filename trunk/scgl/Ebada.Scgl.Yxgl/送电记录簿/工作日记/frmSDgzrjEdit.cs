@@ -111,7 +111,7 @@ namespace Ebada.Scgl.Yxgl {
 
             }
             comboBoxEdit21.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit21);
+            ComboBoxHelper.FillCBoxBySDDyk("公用属性", "签字人", comboBoxEdit21.Properties);
             //comboBoxEdit21.Properties.Items.AddRange(ryList);
         }
         
@@ -124,12 +124,12 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            SelectorHelper.SelectDyk("01工作日记", "记事", memoEdit1);
+            SelectorHelper.SelectSDDyk("01工作日记", "记事", memoEdit1);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("01工作日记", "领导检查评语", memoEdit2);
+            SelectorHelper.SelectSDDyk("01工作日记", "领导检查评语", memoEdit2);
         }
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)
