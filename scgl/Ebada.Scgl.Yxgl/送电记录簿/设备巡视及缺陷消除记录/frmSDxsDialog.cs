@@ -41,6 +41,7 @@ namespace Ebada.Scgl.Yxgl {
 
         void dataBind() {
             this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
+            
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xsqdName");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "XSR1");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
@@ -89,7 +90,7 @@ namespace Ebada.Scgl.Yxgl {
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
-            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + orgcode + "' and linevol='10' ");
+            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + orgcode + "'");
             popLine.DataSource = xllit;
             SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
             //createXlSeach();
