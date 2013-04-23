@@ -20,7 +20,7 @@ namespace Ebada.Scgl.Yxgl
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\04事故障碍异常运行记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电04事故障碍异常运行记录.xls";
 
             ex.Open(fname);
             //与会人员之间的间隔符号
