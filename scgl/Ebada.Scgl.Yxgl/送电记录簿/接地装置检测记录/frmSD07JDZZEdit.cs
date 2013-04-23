@@ -80,12 +80,12 @@ namespace Ebada.Scgl.Yxgl {
         private DataTable lineTable = new DataTable();
         private void InitComboBoxData() {
 
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "设备名称", comboBoxEdit4);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器规格", comboBoxEdit9);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "设备名称", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "变压器规格", comboBoxEdit9.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "土质", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8.Properties);
 
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
             lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(sd_xl));

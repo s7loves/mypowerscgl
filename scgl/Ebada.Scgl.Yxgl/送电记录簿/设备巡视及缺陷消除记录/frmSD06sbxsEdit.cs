@@ -124,7 +124,7 @@ namespace Ebada.Scgl.Yxgl
 
                 //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
                 //缺陷类别GetQxlb
-                ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+                ComboBoxHelper.FillCBoxBySDDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
 
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
