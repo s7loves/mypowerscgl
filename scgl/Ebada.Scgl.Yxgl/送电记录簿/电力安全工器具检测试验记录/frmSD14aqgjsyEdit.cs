@@ -65,7 +65,7 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit4.Properties.Items.Clear();
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit1.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxByDyk("公用属性","检查人",comboBoxEdit3);
+            ComboBoxHelper.FillCBoxBySDDyk("公用属性","检查人",comboBoxEdit3.Properties);
             //comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit4.Properties.Items.AddRange(ryList);
         }
@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("14电力安全工具试验记录", "结论", memoEdit1);
+            SelectorHelper.SelectSDDyk("14电力安全工具试验记录", "结论", memoEdit1);
 
         }
     }
