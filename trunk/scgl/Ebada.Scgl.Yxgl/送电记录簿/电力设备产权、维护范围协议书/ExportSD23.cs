@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Yxgl
         {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\电力设备产权、维护范围协议书.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电电力设备产权、维护范围协议书.xls";
             if (obj.BigData.Length > 10) {
                 fname = Path.GetTempPath() + "电力设备产权、维护范围协议书.xls";
                 //MemoryStream ms = new MemoryStream(obj.BigData);
