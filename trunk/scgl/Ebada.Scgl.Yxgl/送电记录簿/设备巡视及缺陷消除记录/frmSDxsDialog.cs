@@ -40,7 +40,7 @@ namespace Ebada.Scgl.Yxgl {
         //}
 
         void dataBind() {
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
+            this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "LineCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "xsqdName");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "XSR1");
             //this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "xsr");
@@ -91,7 +91,7 @@ namespace Ebada.Scgl.Yxgl {
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
             IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + orgcode + "' and linevol='10' ");
             popLine.DataSource = xllit;
-            //SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
+            SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
             //createXlSeach();
             //xlselector.DataSource = Ebada.Core.ConvertHelper.ToDataTable((IList)xllit, typeof(PS_xl));
             //xlselector.SetColumnsVisible("LineName");
@@ -108,7 +108,7 @@ namespace Ebada.Scgl.Yxgl {
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_xl> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<sd_xl> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;

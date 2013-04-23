@@ -122,6 +122,11 @@ namespace Ebada.Scgl.Yxgl {
 
             //需要隐藏列时在这写代码
             gridView1.Columns["LineCode"].Caption = "线路编号";
+            hideColumn("c1");
+            hideColumn("c2");
+            hideColumn("c3");
+            hideColumn("c4");
+            hideColumn("c5");
             //hideColumn("OrgCode");
             //hideColumn("LineCode");
             //Init_linecode();
@@ -138,7 +143,7 @@ namespace Ebada.Scgl.Yxgl {
                 comboBox.DisplayMember = "LineName";
                 comboBox.ValueMember = "LineID";
             }
-            IList<sd_xl> xl_list = ClientHelper.PlatformSqlMap.GetList<sd_xl>(string.Format(" where orgcode='{0}' and  linevol='10'", parentObj.OrgCode));
+            IList<sd_xl> xl_list = ClientHelper.PlatformSqlMap.GetList<sd_xl>(string.Format(" where orgcode='{0}' and  linevol='35'", parentObj.OrgCode));
             comboBox.DataSource = xl_list;
 
         }
@@ -182,7 +187,7 @@ namespace Ebada.Scgl.Yxgl {
             set {
                 parentID = value;
                 if (!string.IsNullOrEmpty(value)) {
-                    RefreshData(" where LineCode in(select lineid from ps_xl where OrgCode='" + value + "')");
+                    RefreshData(" where LineCode in(select lineid from sd_xl where OrgCode='" + value + "')");
                 }
             }
         }
