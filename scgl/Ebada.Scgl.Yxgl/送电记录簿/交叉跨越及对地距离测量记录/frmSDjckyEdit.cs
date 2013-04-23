@@ -76,10 +76,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData() {
          
-            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "规定距离不小于(m)",spinEdit1);
-            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5);
-            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
-            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
+            ComboBoxHelper.FillCBoxBySDDyk("05交叉跨越及对地距离测量记录", "规定距离不小于(m)",spinEdit1.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7.Properties);
             comboBoxEdit3.Properties.Items.Clear();
             comboBoxEdit3.Properties.Items.Add("上方");
             comboBoxEdit3.Properties.Items.Add("下方");
