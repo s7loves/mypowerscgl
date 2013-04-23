@@ -32,6 +32,8 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lkuexlmc = new DevExpress.XtraEditors.LookUpEdit();
+            this.lblxlmc = new DevExpress.XtraEditors.LabelControl();
             this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
@@ -47,11 +49,10 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.lblxlmc = new DevExpress.XtraEditors.LabelControl();
-            this.lkuexlmc = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuexlmc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
@@ -59,7 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuexlmc.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -120,6 +120,23 @@
             this.groupBox1.Text = "电力线路防护通知书";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // lkuexlmc
+            // 
+            this.lkuexlmc.Location = new System.Drawing.Point(122, 100);
+            this.lkuexlmc.Name = "lkuexlmc";
+            this.lkuexlmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkuexlmc.Size = new System.Drawing.Size(308, 21);
+            this.lkuexlmc.TabIndex = 20;
+            // 
+            // lblxlmc
+            // 
+            this.lblxlmc.Location = new System.Drawing.Point(38, 103);
+            this.lblxlmc.Name = "lblxlmc";
+            this.lblxlmc.Size = new System.Drawing.Size(48, 14);
+            this.lblxlmc.TabIndex = 19;
+            this.lblxlmc.Text = "线路名称";
+            // 
             // memoEdit3
             // 
             this.memoEdit3.Location = new System.Drawing.Point(122, 200);
@@ -161,7 +178,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(181, 60);
+            this.labelControl3.Location = new System.Drawing.Point(181, 68);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(13, 14);
             this.labelControl3.TabIndex = 8;
@@ -247,23 +264,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // lblxlmc
-            // 
-            this.lblxlmc.Location = new System.Drawing.Point(38, 103);
-            this.lblxlmc.Name = "lblxlmc";
-            this.lblxlmc.Size = new System.Drawing.Size(48, 14);
-            this.lblxlmc.TabIndex = 19;
-            this.lblxlmc.Text = "线路名称";
-            // 
-            // lkuexlmc
-            // 
-            this.lkuexlmc.Location = new System.Drawing.Point(122, 100);
-            this.lkuexlmc.Name = "lkuexlmc";
-            this.lkuexlmc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkuexlmc.Size = new System.Drawing.Size(308, 21);
-            this.lkuexlmc.TabIndex = 20;
-            // 
             // frmSD26Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -280,6 +280,7 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuexlmc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
@@ -287,7 +288,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuexlmc.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
