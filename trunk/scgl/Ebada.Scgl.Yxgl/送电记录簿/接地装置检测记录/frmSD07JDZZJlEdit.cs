@@ -90,9 +90,9 @@ namespace Ebada.Scgl.Yxgl
             rowData.jcr = str;
         }
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "天气", comboBoxEdit1);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "检查情况", comboBoxEdit4);
-            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "结论", comboBoxEdit6);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "天气", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "检查情况", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "结论", comboBoxEdit6.Properties);
             sdjl_07jdzz pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sdjl_07jdzz>(rowData.jdzzID);
             this.comboBoxEdit2.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
             this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
