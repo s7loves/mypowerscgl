@@ -90,9 +90,9 @@ namespace Ebada.Scgl.Yxgl
               this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
             comboBoxEdit4.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
-            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
-            foreach (PS_xl pl in xlList)
+            ComboBoxHelper.FillCBoxBySDDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
+            foreach (sd_xl pl in xlList)
             {
                 comboBoxEdit6.Properties.Items.Add(pl.LineName);
             }
@@ -190,7 +190,7 @@ namespace Ebada.Scgl.Yxgl
             if (rowData.BigData.Length == 0)
             {
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                string fname = Application.StartupPath + "\\00记录模板\\电力设备产权、维护范围协议书.xls";
+                string fname = Application.StartupPath + "\\00记录模板\\送电电力设备产权、维护范围协议书.xls";
                 string bhname = org.OrgName.Replace("供电所", "");
                 DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
                 dsoFramerControl1.FileOpen(fname);
