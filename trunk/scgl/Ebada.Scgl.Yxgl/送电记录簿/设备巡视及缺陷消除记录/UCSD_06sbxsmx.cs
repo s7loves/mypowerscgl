@@ -134,6 +134,17 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            hideColumn("xlid");
+            hideColumn("byqid");
+            hideColumn("tqid");
+            hideColumn("kgid");
+            hideColumn("xlname");
+            hideColumn("byqname");
+            hideColumn("tqname");
+            hideColumn("kgname");
+            hideColumn("gdstemp");
+
+            hideColumn("othertemp");
             //hideColumn("xcqx");
         }
         /// <summary>
