@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Yxgl
         {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
+            InitColumns();//初始列
            // InitData();//初始数据
             //if (this.Site != null) return;
             //btGdsList.Edit = DicTypeHelper.GdsDic;
@@ -129,6 +129,11 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("OrgCode");
             hideColumn("LineID");
             hideColumn("gzrjID");
+            hideColumn("c1");
+            hideColumn("c2");
+            hideColumn("c3");
+            hideColumn("c4");
+            hideColumn("c5");
             //hideColumn("xcqx");
         }
         /// <summary>
