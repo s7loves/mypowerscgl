@@ -57,7 +57,12 @@ string xtdm="jhgl";
                 timer1.Start();
             }
         }
-        
+        public Control showYGGZ() {
+            xtdm = "yggz";
+            this.Text=MainHelper.UserCompany + "员工工作写实管理系统";
+            topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.员工工作;
+            return this;
+        }
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
             if (pictureEdit1.Width > topbarWidth) {
@@ -115,7 +120,7 @@ string xtdm="jhgl";
             nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
             nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
 
-            string sqlwhere = "where  Description='jhgl'  order by Sequence";
+            string sqlwhere = string.Format("where  Description='{0}'  order by Sequence",xtdm);
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
 
             DataTable table = progtable = Ebada.Core.ConvertHelper.ToDataTable((IList)mlist);
@@ -158,7 +163,7 @@ string xtdm="jhgl";
             mModule mdule = e.Group.Tag as mModule;
             //string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
             //IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
-            DataRow[] rows = progtable.Select("Description = 'jhgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
+            DataRow[] rows = progtable.Select("Description = '"+xtdm+"' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);
                 ListViewItem listItem = new ListViewItem();
@@ -251,7 +256,7 @@ string xtdm="jhgl";
                 return;
             listView1.Items.Clear();
             listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
-            DataRow[] rows = progtable.Select("Description = 'jhgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
+            DataRow[] rows = progtable.Select("Description = '"+xtdm+"' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);
                 ListViewItem listItem = new ListViewItem();
