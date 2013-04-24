@@ -235,6 +235,7 @@ namespace Ebada.Scgl.Sbgl
             if (parentID == null) return;
             newobj.LineCode = parentID;
             if (gtInsert) {
+                gtInsert = false;
                 newobj.gth = getInsertGh();
             } else {
                 newobj.gth = getGgh();
