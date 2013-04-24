@@ -205,6 +205,9 @@ namespace Ebada.Scgl.Sbgl
             //需要隐藏列时在这写代码
             //hideColumn("ParentID");
             //hideColumn("gzrjID");
+            gridView1.Columns["c1"].VisibleIndex = 2;
+            gridView1.Columns["gth"].Caption = "序号";
+            gridView1.SortInfo.Add(gridView1.Columns["gth"], DevExpress.Data.ColumnSortOrder.Ascending);
         }
         /// <summary>
         /// 刷新数据
@@ -231,10 +234,13 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentID == null) return;
             newobj.LineCode = parentID;
-
-            newobj.gth = getGgh();
-            
+            if (gtInsert) {
+                newobj.gth = getInsertGh();
+            } else {
+                newobj.gth = getGgh();
+            }
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
+            newobj.c1 = newobj.gth;
             newobj.gtID = newobj.gtCode;
             newobj.gtID += mRandom.Next(10, 99);
             newobj.gtSpan = 50;
@@ -242,6 +248,27 @@ namespace Ebada.Scgl.Sbgl
             newobj.gtHeight = 10m;
             newobj.gtModle = "直线杆";
             newobj.gtType = "混凝土拔梢杆";
+        }
+
+        private string getInsertGh() {
+            var row = gridView1.GetFocusedRow();
+            if (row == null) {
+                return getGgh();
+            }
+            PS_gt gt = row as PS_gt;
+            int index = gridView1.FocusedRowHandle;
+            int n1 = 0;
+            int n2 = int.Parse(gt.gth);
+            
+            if (index > 0) {
+                n1 = int.Parse((gridView1.GetRow(index - 1) as PS_gt).gth);
+            }
+            int n3 = (n1 + n2) / 2;
+            if (n3 > n1 && n3 < n2) {
+                return n3.ToString("0000");
+            } else {
+                return getGgh();
+            }
         }
         /// <summary>
         /// 父表ID
@@ -370,6 +397,11 @@ namespace Ebada.Scgl.Sbgl
             frmgtsbEditM dlg = new frmgtsbEditM();
             dlg.SetGt(gridViewOperation.BindingList);
             dlg.ShowDialog(this);
+        }
+        bool gtInsert = false;
+        private void btAddIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            gtInsert = true;
+            btAdd.PerformClick();
         }
       
     }
