@@ -50,10 +50,11 @@ namespace Ebada.Kcgl {
                 labTime.Hide();
                 labdate.Hide();
                 labdate2.Hide();
-                labshow.Hide();
+                //labshow.Hide();
             } else {
                 timer1.Start();
             }
+            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
         }
         
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
@@ -81,17 +82,19 @@ namespace Ebada.Kcgl {
             
             this.WindowState = FormWindowState.Maximized;
             this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
-            frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) {
-                if (MainHelper.User.LoginID == "rabbit") {
-                    labSet.Visible = true;
+            if (string.IsNullOrEmpty(MainHelper.LoginName)) {
+                frmLogin dlg = new frmLogin();
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    if (MainHelper.User.LoginID == "rabbit") {
+                        labSet.Visible = true;
+                    } else {
+                        labSet.Visible = false;
+                        InitFunction(MainHelper.User.UserID);
+                    }
                 } else {
-                    labSet.Visible = false;
-                    InitFunction(MainHelper.User.UserID);
+                    allowClose = true;
+                    this.Close();
                 }
-            } else {
-                allowClose = true;
-                this.Close();
             }
         }
         void InitFunction(string userID) {
@@ -153,7 +156,7 @@ namespace Ebada.Kcgl {
         private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e) {
             listView1.Items.Clear();
             secondmenu = "";
-            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+            
             mModule mdule = e.Group.Tag as mModule;
             //string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
             //IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
@@ -249,7 +252,7 @@ namespace Ebada.Kcgl {
             if (mdule == null)
                 return;
             listView1.Items.Clear();
-            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+            //listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
             DataRow[] rows = progtable.Select("Description = 'kcgl' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);
