@@ -46,7 +46,7 @@ namespace Ebada.SCGL {
             labSet.Parent = pictureEdit1;
             labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
-            labshow.Parent = panelControl1;
+            //labshow.Parent = panelControl1;
             labSet.Hide();
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
