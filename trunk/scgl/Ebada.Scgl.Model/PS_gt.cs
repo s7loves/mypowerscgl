@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：杆塔号
         /// 字段信息：[gth],nvarchar
         /// </summary>
-        [DisplayNameAttribute("杆塔号")]
+        [DisplayNameAttribute("杆塔序号")]
         public string gth
         {
             get { return _gth; }
@@ -129,7 +129,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 10)
-                throw new Exception("[杆塔号]长度不能大于10!");
+                    throw new Exception("[杆塔序号]长度不能大于10!");
                 if (_gth as object == null || !_gth.Equals(value))
                 {
                     _gth = value;
@@ -454,8 +454,8 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备
         /// 字段信息：[c1],nvarchar
         /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("备")]
+        [Browsable(true)]
+        [DisplayNameAttribute("杆号")]
         public string c1
         {
             get { return _c1; }
