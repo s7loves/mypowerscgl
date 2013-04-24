@@ -17,6 +17,7 @@ using Ebada.Scgl.Resource;
 using System.Globalization;
 using System.Reflection;
 using Ebada.Core;
+using DevExpress.XtraNavBar;
 namespace Ebada.jhgl {
     //public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
     public partial class FrmSystem : Form {
@@ -43,19 +44,20 @@ string xtdm="jhgl";
             labSet.Parent = pictureEdit1;
             labExit.Parent = pictureEdit1;
             labdate2.Text = GetCNDate();
-            labshow.Parent = panelControl1;
+            //labshow.Parent = panelControl1;
             labSet.Text = "      设置";
-
+            labshow.Text = "";
             //labshow.Parent = pictureEdit2;
             labdate.Text = DateTime.Now.ToString("m") + "" + DateTime.Now.ToString("dddd");
             if (!STAThread) {
                 labTime.Hide();
                 labdate.Hide();
                 labdate2.Hide();
-                labshow.Hide();
+                //labshow.Hide();
             } else {
                 timer1.Start();
             }
+            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
         }
         public Control showYGGZ() {
             xtdm = "yggz";
@@ -88,17 +90,20 @@ string xtdm="jhgl";
             
             this.WindowState = FormWindowState.Maximized;
             //this.BeginInvoke((MethodInvoker)delegate() { ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null); });
-            frmLogin dlg = new frmLogin();
-            if (dlg.ShowDialog() == DialogResult.OK) {
-                if (MainHelper.User.LoginID == "rabbit") {
-                      labSet.Show();
+            if (string.IsNullOrEmpty(MainHelper.LoginName)) {
+                frmLogin dlg = new frmLogin();
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    if (MainHelper.User.LoginID == "rabbit") {
+                        labSet.Show();
+                    } else {
+                        InitFunction(MainHelper.User.UserID);
+                    }
                 } else {
-                    InitFunction(MainHelper.User.UserID);
+                    allowClose = true;
+                    this.Close();
                 }
-            } else {
-                allowClose = true;
-                this.Close();
             }
+            //navBarControl1_ActiveGroupChanged(null, new NavBarGroupEventArgs(nbctSystem.ActiveGroup));
         }
         void InitFunction(string userID) {
             try {
@@ -159,7 +164,7 @@ string xtdm="jhgl";
         private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e) {
             listView1.Items.Clear();
             secondmenu = "";
-            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+            
             mModule mdule = e.Group.Tag as mModule;
             //string slqwhrer2 = "where Description = 'system' and ParentID='" + mdule.Modu_ID + "'  order by Sequence";
             //IList<mModule> mlist2 = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(slqwhrer2);
@@ -174,6 +179,7 @@ string xtdm="jhgl";
             }
             //显示上部位置名称
             labshow.Text = ">>" + mdule.ModuName;
+            //labshow.Refresh();
             //显示下部说明
             labbuttom.Text = mdule.IsCores;
         }
@@ -255,7 +261,7 @@ string xtdm="jhgl";
             if (mdule == null)
                 return;
             listView1.Items.Clear();
-            listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
+            //listView1.LargeImageList = ImageListRes.GetimageListAll(60, "");
             DataRow[] rows = progtable.Select("Description = '"+xtdm+"' and ParentID='" + mdule.Modu_ID + "'", "Sequence");
             foreach (var item in rows) {
                 mModule obj = ConvertHelper.RowToObject<mModule>(item);

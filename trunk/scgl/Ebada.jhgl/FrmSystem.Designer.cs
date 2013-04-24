@@ -135,12 +135,12 @@
             this.labshow.Appearance.Options.UseFont = true;
             this.labshow.Appearance.Options.UseForeColor = true;
             this.labshow.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.labshow.Location = new System.Drawing.Point(12, 8);
+            this.labshow.Location = new System.Drawing.Point(8, 7);
             this.labshow.LookAndFeel.UseDefaultLookAndFeel = false;
             this.labshow.Name = "labshow";
-            this.labshow.Size = new System.Drawing.Size(84, 12);
+            this.labshow.Size = new System.Drawing.Size(28, 12);
             this.labshow.TabIndex = 22;
-            this.labshow.Text = "            ";
+            this.labshow.Text = "aaaa";
             // 
             // listView1
             // 
