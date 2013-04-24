@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Sbgl
 
 
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "gtCode");
-            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "gth");
+            this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "c1");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "gtType");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "gtModle");
             this.spinEdit1.DataBindings.Add("EditValue", rowData, "gtHeight");
