@@ -900,11 +900,11 @@ namespace Ebada.Scgl.Core {
         /// <param name="sx"></param>
         /// <param name="txt">最多4级</param>
         /// <returns></returns>
-        public static sdjl_dyk SelectSDDyk(string dx, string sx, params TextEdit[] txt)
+        public static PJ_dyk SelectSDDyk(string dx, string sx, params TextEdit[] txt)
         {
-            frmSDDykSelector dlg = new frmSDDykSelector();
-            sdjl_dyk dyk = null;
-            sdjl_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<sdjl_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
@@ -940,8 +940,8 @@ namespace Ebada.Scgl.Core {
         {
             //2011.06.20 rabbit edit 
             //2011.10.23 胡建林 edit 
-            frmSDDykSelector dlg = new frmSDDykSelector();
-            sdjl_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<sdjl_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;

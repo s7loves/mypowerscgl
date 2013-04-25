@@ -183,24 +183,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="sdjl\frmSDDykSelector.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sdjl\frmSDDykSelector.Designer.cs">
-      <DependentUpon>frmSDDykSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="sdjl\UCSD_dykSelector.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="sdjl\UCSD_dykSelector.Designer.cs">
-      <DependentUpon>UCSD_dykSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="sdjl\UCSD_dykFind.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="sdjl\UCSD_dykFind.Designer.cs">
-      <DependentUpon>UCSD_dykFind.cs</DependentUpon>
-    </Compile>
     <Compile Include="SelectorHelper.cs" />
     <Compile Include="SqliteHelper.cs" />
     <Compile Include="Tween.cs" />
@@ -260,18 +242,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="sdjl\frmSDDykSelector.resx">
-      <DependentUpon>frmSDDykSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sdjl\UCSD_dykSelector.resx">
-      <DependentUpon>UCSD_dykSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sdjl\UCSD_dykFind.resx">
-      <DependentUpon>UCSD_dykFind.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="UCPJ_dykFind.resx">
       <DependentUpon>UCPJ_dykFind.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -301,6 +271,9 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sdjl\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
