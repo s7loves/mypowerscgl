@@ -84,9 +84,8 @@
       [c1],
       [c2],
       [c3],
-      b.num,
-      b.ynum
-      FROM JH_weekmant a ,v_jhsumscore b where a.parentid=b.y $value$
+      cast(b.num as varchar(10)) num,cast(b.ynum as varchar(10)) ynum
+      FROM JH_weekmant a join v_jhsumscore b on substring(a.parentid,1,6)=b.ym and a.姓名=b.xm  $value$
     </select>
    <select id="SelectJH_weekmantByHash" parameterClass="Hashtable">
          SELECT 
