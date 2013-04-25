@@ -392,7 +392,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            sdjl_dyk dyk = SelectorHelper.SelectSDDyk("03运行分析记录", "分析记录内容", memoEdit5, memoEdit1, memoEdit2);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5, memoEdit1, memoEdit2);
             if (dyk != null)
             {
                 rowData.zt = dyk.nr;

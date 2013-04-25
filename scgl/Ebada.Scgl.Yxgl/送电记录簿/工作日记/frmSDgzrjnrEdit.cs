@@ -95,7 +95,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectSDDyk("01工作日记", "工作地址及项目", memoEdit1);
+            SelectorHelper.SelectDyk("01工作日记", "工作地址及项目", memoEdit1);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

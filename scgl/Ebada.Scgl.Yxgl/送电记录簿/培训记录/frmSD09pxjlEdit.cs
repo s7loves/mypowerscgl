@@ -69,7 +69,7 @@ namespace Ebada.Scgl.Yxgl
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             comboBoxEdit3.Properties.Items.AddRange(ryList);
             comboBoxEdit4.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxBySDDyk("公用属性", "签字人", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit5.Properties);
             //comboBoxEdit5.Properties.Items.AddRange(ryList);
             for (int i = 1; i < 24; i++)
             {
@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit2.Properties.Items.Add(k);
 
             }
-            ComboBoxHelper.FillCBoxBySDDyk("09培训记录", "地点", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("09培训记录", "地点", comboBoxEdit7.Properties);
          
         }
         void setxxss()
@@ -169,7 +169,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectSDDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
+            SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
 
         }
     }

@@ -71,11 +71,11 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
-            ComboBoxHelper.FillCBoxBySDDyk("15工具仪表台账", "规格精度", comboBoxEdit2.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("15工具仪表台账", "名称",comboBoxEdit1.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("15工具仪表台账", "制造厂家",comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "规格精度", comboBoxEdit2.Properties);
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "名称",comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "制造厂家",comboBoxEdit4.Properties);
            // ComboBoxHelper.FillCBoxByDyk("15工具仪表台账", "编号",comboBoxEdit5.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("公用属性", "单位", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "单位", comboBoxEdit3.Properties);
         }
 
         /// <summary>

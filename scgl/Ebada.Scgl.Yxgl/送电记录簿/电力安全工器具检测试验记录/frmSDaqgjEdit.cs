@@ -75,18 +75,18 @@ namespace Ebada.Scgl.Yxgl
            // ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "编号", comboBoxEdit3.Properties);
             ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验周期", comboBoxEdit7.Properties);
            // ComboBoxHelper.FillCBoxByDyk("14电力安全工具试验记录", "试验项目", comboBoxEdit4.Properties);
-            IList<sdjl_dyk> dic = new List<sdjl_dyk>();
-            sdjl_dyk di = new sdjl_dyk();
+            IList<PJ_dyk> dic = new List<PJ_dyk>();
+            PJ_dyk di = new PJ_dyk();
             di.nr = "工频耐压";
             
             dic.Add(di);
-            di = new sdjl_dyk();
+            di = new PJ_dyk();
             di.nr = "绝缘电阻";
             dic.Add(di);
-            di = new sdjl_dyk();
+            di = new PJ_dyk();
             di.nr = "成组绝缘电阻";
             dic.Add(di);
-            di = new sdjl_dyk();
+            di = new PJ_dyk();
             di.nr = "直流电阻";
             dic.Add(di);
 
