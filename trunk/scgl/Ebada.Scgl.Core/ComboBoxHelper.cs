@@ -415,7 +415,7 @@ namespace Ebada.Scgl.Core {
             }
             else
             {
-                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from sdjl_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
+                list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
                 if (list.Count > 0)
                     mCache.Add(key, list);
             }
@@ -433,17 +433,7 @@ namespace Ebada.Scgl.Core {
             cBox.Items.AddRange(GetDykList(dx, sx));
         }
 
-        /// <summary>
-        /// 获取短语库属性列表填充下拉列表框
-        /// </summary>
-        /// <param name="dx">对象中文名</param>
-        /// <param name="sx">属性中文名</param>
-        /// <param name="cBox">列表对象</param>
-        public static void FillCBoxBySDDyk(string dx, string sx, RepositoryItemComboBox cBox)
-        {
-            cBox.Items.Clear();
-            cBox.Items.AddRange(GetSDDykList(dx, sx));
-        }
+        
 
         /// <summary>
         /// 获取短语库属性列表填充下拉列表框
