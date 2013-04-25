@@ -36,7 +36,12 @@ namespace Ebada.Scgl.Model
         private string _考核时间=String.Empty; 
         private string _c1=String.Empty; 
         private string _c2=String.Empty; 
-        private string _c3=String.Empty;   
+        private string _c3=String.Empty;
+        private string _月合计;
+
+
+        private string _年合计;
+
         #endregion
   
   
@@ -309,7 +314,14 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+        public string 月总分 {
+            get { return _月合计; }
+            set { _月合计 = value; }
+        }
+        public string 年总分 {
+            get { return _年合计; }
+            set { _年合计 = value; }
+        }
         /// <summary>
         /// 属性名称：c1
         /// 属性描述：
