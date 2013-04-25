@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_xlwhjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_xlwhjl"  type="Ebada.Scgl.Model.sdjls_xlwhjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_xlwhjl_AllColumns" class="sdjls_xlwhjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="LineVol" column="LineVol" />
+        <result property="whqd" column="whqd" />
+        <result property="wyxz" column="wyxz" />
+        <result property="whdj" column="whdj" />
+        <result property="gx" column="gx" />
+        <result property="jyzxh" column="jyzxh" />
+        <result property="xlbj" column="xlbj" />
+        <result property="bz" column="bz" />
+        <result property="zhfs" column="zhfs" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_xlwhjlList" resultMap="sdjls_xlwhjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [whqd],
+         [wyxz],
+         [whdj],
+         [gx],
+         [jyzxh],
+         [xlbj],
+         [bz],
+         [zhfs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_xlwhjl
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_xlwhjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [whqd],
+         [wyxz],
+         [whdj],
+         [gx],
+         [jyzxh],
+         [xlbj],
+         [bz],
+         [zhfs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_xlwhjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="whqd">[whqd]='$whqd$'</isNotNull>
+       <isNotNull prepend="AND" property="wyxz">[wyxz]='$wyxz$'</isNotNull>
+       <isNotNull prepend="AND" property="whdj">[whdj]='$whdj$'</isNotNull>
+       <isNotNull prepend="AND" property="gx">[gx]='$gx$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzxh">[jyzxh]='$jyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="xlbj">[xlbj]='$xlbj$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="zhfs">[zhfs]='$zhfs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_xlwhjlByKey" resultMap="sdjls_xlwhjl_AllColumns" parameterClass="sdjls_xlwhjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [whqd],
+         [wyxz],
+         [whdj],
+         [gx],
+         [jyzxh],
+         [xlbj],
+         [bz],
+         [zhfs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_xlwhjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_xlwhjl" parameterClass="sdjls_xlwhjl">
+        DELETE FROM 
+         sdjls_xlwhjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_xlwhjlByWhere" parameterClass="string">
+     delete from sdjls_xlwhjl $value$
+   </delete>
+   
+   <delete id="Deletesdjls_xlwhjlByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_xlwhjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_xlwhjl" parameterClass="sdjls_xlwhjl" resultClass="int">
+          UPDATE sdjls_xlwhjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [LineVol]=#LineVol#,
+             [whqd]=#whqd#,
+             [wyxz]=#wyxz#,
+             [whdj]=#whdj#,
+             [gx]=#gx#,
+             [jyzxh]=#jyzxh#,
+             [xlbj]=#xlbj#,
+             [bz]=#bz#,
+             [zhfs]=#zhfs#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_xlwhjl" parameterClass="sdjls_xlwhjl">
+        INSERT INTO sdjls_xlwhjl
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [whqd],
+         [wyxz],
+         [whdj],
+         [gx],
+         [jyzxh],
+         [xlbj],
+         [bz],
+         [zhfs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineCode#,
+         #LineName#,
+         #LineVol#,
+         #whqd#,
+         #wyxz#,
+         #whdj#,
+         #gx#,
+         #jyzxh#,
+         #xlbj#,
+         #bz#,
+         #zhfs#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_xlwhjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_xlwhjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="whqd">[whqd]='$whqd$'</isNotNull>
+       <isNotNull prepend="AND" property="wyxz">[wyxz]='$wyxz$'</isNotNull>
+       <isNotNull prepend="AND" property="whdj">[whdj]='$whdj$'</isNotNull>
+       <isNotNull prepend="AND" property="gx">[gx]='$gx$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzxh">[jyzxh]='$jyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="xlbj">[xlbj]='$xlbj$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="zhfs">[zhfs]='$zhfs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_xlwhjlRowCount" parameterClass="string">
+    select count(*) from sdjls_xlwhjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

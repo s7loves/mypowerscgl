@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_fsgyxjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_fsgyxjl"  type="Ebada.Scgl.Model.sdjls_fsgyxjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_fsgyxjl_AllColumns" class="sdjls_fsgyxjl">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="yxrq" column="yxrq" />
+        <result property="kssj" column="kssj" />
+        <result property="jssj" column="jssj" />
+        <result property="yxdw" column="yxdw" />
+        <result property="yxdd" column="yxdd" />
+        <result property="yxtmID" column="yxtmID" />
+        <result property="yxtm" column="yxtm" />
+        <result property="ldr" column="ldr" />
+        <result property="jhr" column="jhr" />
+        <result property="jljpj" column="jljpj" />
+        <result property="ndcs" column="ndcs" />
+        <result property="zxr" column="zxr" />
+        <result property="zgxq" column="zgxq" />
+        <result property="qzldr" column="qzldr" />
+        <result property="qzjhr" column="qzjhr" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_fsgyxjlList" resultMap="sdjls_fsgyxjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [yxrq],
+         [kssj],
+         [jssj],
+         [yxdw],
+         [yxdd],
+         [yxtmID],
+         [yxtm],
+         [ldr],
+         [jhr],
+         [jljpj],
+         [ndcs],
+         [zxr],
+         [zgxq],
+         [qzldr],
+         [qzjhr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_fsgyxjl
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_fsgyxjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [yxrq],
+         [kssj],
+         [jssj],
+         [yxdw],
+         [yxdd],
+         [yxtmID],
+         [yxtm],
+         [ldr],
+         [jhr],
+         [jljpj],
+         [ndcs],
+         [zxr],
+         [zgxq],
+         [qzldr],
+         [qzjhr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_fsgyxjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="yxrq">[yxrq]='$yxrq$'</isNotNull>
+       <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
+       <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdw">[yxdw]='$yxdw$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdd">[yxdd]='$yxdd$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtmID">[yxtmID]='$yxtmID$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtm">[yxtm]='$yxtm$'</isNotNull>
+       <isNotNull prepend="AND" property="ldr">[ldr]='$ldr$'</isNotNull>
+       <isNotNull prepend="AND" property="jhr">[jhr]='$jhr$'</isNotNull>
+       <isNotNull prepend="AND" property="jljpj">[jljpj]='$jljpj$'</isNotNull>
+       <isNotNull prepend="AND" property="ndcs">[ndcs]='$ndcs$'</isNotNull>
+       <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
+       <isNotNull prepend="AND" property="zgxq">[zgxq]='$zgxq$'</isNotNull>
+       <isNotNull prepend="AND" property="qzldr">[qzldr]='$qzldr$'</isNotNull>
+       <isNotNull prepend="AND" property="qzjhr">[qzjhr]='$qzjhr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_fsgyxjlByKey" resultMap="sdjls_fsgyxjl_AllColumns" parameterClass="sdjls_fsgyxjl">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [yxrq],
+         [kssj],
+         [jssj],
+         [yxdw],
+         [yxdd],
+         [yxtmID],
+         [yxtm],
+         [ldr],
+         [jhr],
+         [jljpj],
+         [ndcs],
+         [zxr],
+         [zgxq],
+         [qzldr],
+         [qzjhr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_fsgyxjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_fsgyxjl" parameterClass="sdjls_fsgyxjl">
+        DELETE FROM 
+         sdjls_fsgyxjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_fsgyxjlByWhere" parameterClass="string">
+     delete from sdjls_fsgyxjl $value$
+   </delete>
+   
+   <delete id="Deletesdjls_fsgyxjlByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_fsgyxjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_fsgyxjl" parameterClass="sdjls_fsgyxjl" resultClass="int">
+          UPDATE sdjls_fsgyxjl
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [yxrq]=#yxrq#,
+             [kssj]=#kssj#,
+             [jssj]=#jssj#,
+             [yxdw]=#yxdw#,
+             [yxdd]=#yxdd#,
+             [yxtmID]=#yxtmID#,
+             [yxtm]=#yxtm#,
+             [ldr]=#ldr#,
+             [jhr]=#jhr#,
+             [jljpj]=#jljpj#,
+             [ndcs]=#ndcs#,
+             [zxr]=#zxr#,
+             [zgxq]=#zgxq#,
+             [qzldr]=#qzldr#,
+             [qzjhr]=#qzjhr#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_fsgyxjl" parameterClass="sdjls_fsgyxjl">
+        INSERT INTO sdjls_fsgyxjl
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [yxrq],
+         [kssj],
+         [jssj],
+         [yxdw],
+         [yxdd],
+         [yxtmID],
+         [yxtm],
+         [ldr],
+         [jhr],
+         [jljpj],
+         [ndcs],
+         [zxr],
+         [zgxq],
+         [qzldr],
+         [qzjhr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #yxrq#,
+         #kssj#,
+         #jssj#,
+         #yxdw#,
+         #yxdd#,
+         #yxtmID#,
+         #yxtm#,
+         #ldr#,
+         #jhr#,
+         #jljpj#,
+         #ndcs#,
+         #zxr#,
+         #zgxq#,
+         #qzldr#,
+         #qzjhr#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_fsgyxjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_fsgyxjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="yxrq">[yxrq]='$yxrq$'</isNotNull>
+       <isNotNull prepend="AND" property="kssj">[kssj]='$kssj$'</isNotNull>
+       <isNotNull prepend="AND" property="jssj">[jssj]='$jssj$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdw">[yxdw]='$yxdw$'</isNotNull>
+       <isNotNull prepend="AND" property="yxdd">[yxdd]='$yxdd$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtmID">[yxtmID]='$yxtmID$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtm">[yxtm]='$yxtm$'</isNotNull>
+       <isNotNull prepend="AND" property="ldr">[ldr]='$ldr$'</isNotNull>
+       <isNotNull prepend="AND" property="jhr">[jhr]='$jhr$'</isNotNull>
+       <isNotNull prepend="AND" property="jljpj">[jljpj]='$jljpj$'</isNotNull>
+       <isNotNull prepend="AND" property="ndcs">[ndcs]='$ndcs$'</isNotNull>
+       <isNotNull prepend="AND" property="zxr">[zxr]='$zxr$'</isNotNull>
+       <isNotNull prepend="AND" property="zgxq">[zgxq]='$zgxq$'</isNotNull>
+       <isNotNull prepend="AND" property="qzldr">[qzldr]='$qzldr$'</isNotNull>
+       <isNotNull prepend="AND" property="qzjhr">[qzjhr]='$qzjhr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_fsgyxjlRowCount" parameterClass="string">
+    select count(*) from sdjls_fsgyxjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

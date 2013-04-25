@@ -479,6 +479,22 @@
     <EmbeddedResource Include="sdjl_tbsj.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="sdjls_ddxcd.xml" />
+    <EmbeddedResource Include="sdjls_ddxljq.xml" />
+    <EmbeddedResource Include="sdjls_ddxljqnr.xml" />
+    <EmbeddedResource Include="sdjls_dgjcjl.xml" />
+    <EmbeddedResource Include="sdjls_dgjcjlnr.xml" />
+    <EmbeddedResource Include="sdjls_fsgyxfa.xml" />
+    <EmbeddedResource Include="sdjls_fsgyxjl.xml" />
+    <EmbeddedResource Include="sdjls_jyzcs.xml" />
+    <EmbeddedResource Include="sdjls_jyzcsjl.xml" />
+    <EmbeddedResource Include="sdjls_jyzwhdj.xml" />
+    <EmbeddedResource Include="sdjls_jyzylcl.xml" />
+    <EmbeddedResource Include="sdjls_sgbp.xml" />
+    <EmbeddedResource Include="sdjls_xlwhjl.xml" />
+    <EmbeddedResource Include="sdjls_xlwhqd.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

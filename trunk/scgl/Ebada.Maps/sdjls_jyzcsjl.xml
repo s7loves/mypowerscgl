@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_jyzcsjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_jyzcsjl"  type="Ebada.Scgl.Model.sdjls_jyzcsjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_jyzcsjl_AllColumns" class="sdjls_jyzcsjl">
+        <result property="ID" column="ID" />
+        <result property="LineID" column="LineID" />
+        <result property="LineName" column="LineName" />
+        <result property="ParentID" column="ParentID" />
+        <result property="cssj" column="cssj" />
+        <result property="gh" column="gh" />
+        <result property="gx" column="gx" />
+        <result property="jyzxh" column="jyzxh" />
+        <result property="lzjyzwz" column="lzjyzwz" />
+        <result property="syfzr" column="syfzr" />
+        <result property="clsj" column="clsj" />
+        <result property="bz" column="bz" />
+        <result property="cb" column="cb" />
+        <result property="xb" column="xb" />
+        <result property="zyc" column="zyc" />
+        <result property="jyzzzc" column="jyzzzc" />
+        <result property="lhpwchdsq" column="lhpwchdsq" />
+        <result property="lhps" column="lhps" />
+        <result property="ghrq" column="ghrq" />
+        <result property="fzr" column="fzr" />
+        <result property="xghjyzxh" column="xghjyzxh" />
+        <result property="xghjyzzzc" column="xghjyzzzc" />
+        <result property="lhjyzccrq" column="lhjyzccrq" />
+        <result property="lhjyzyxnx" column="lhjyzyxnx" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_jyzcsjlList" resultMap="sdjls_jyzcsjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [LineID],
+         [LineName],
+         [ParentID],
+         [cssj],
+         [gh],
+         [gx],
+         [jyzxh],
+         [lzjyzwz],
+         [syfzr],
+         [clsj],
+         [bz],
+         [cb],
+         [xb],
+         [zyc],
+         [jyzzzc],
+         [lhpwchdsq],
+         [lhps],
+         [ghrq],
+         [fzr],
+         [xghjyzxh],
+         [xghjyzzzc],
+         [lhjyzccrq],
+         [lhjyzyxnx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_jyzcsjl
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_jyzcsjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [LineID],
+         [LineName],
+         [ParentID],
+         [cssj],
+         [gh],
+         [gx],
+         [jyzxh],
+         [lzjyzwz],
+         [syfzr],
+         [clsj],
+         [bz],
+         [cb],
+         [xb],
+         [zyc],
+         [jyzzzc],
+         [lhpwchdsq],
+         [lhps],
+         [ghrq],
+         [fzr],
+         [xghjyzxh],
+         [xghjyzzzc],
+         [lhjyzccrq],
+         [lhjyzyxnx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_jyzcsjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="cssj">[cssj]='$cssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gh">[gh]='$gh$'</isNotNull>
+       <isNotNull prepend="AND" property="gx">[gx]='$gx$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzxh">[jyzxh]='$jyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="lzjyzwz">[lzjyzwz]='$lzjyzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="syfzr">[syfzr]='$syfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="clsj">[clsj]='$clsj$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="cb">[cb]='$cb$'</isNotNull>
+       <isNotNull prepend="AND" property="xb">[xb]='$xb$'</isNotNull>
+       <isNotNull prepend="AND" property="zyc">[zyc]='$zyc$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzzzc">[jyzzzc]='$jyzzzc$'</isNotNull>
+       <isNotNull prepend="AND" property="lhpwchdsq">[lhpwchdsq]='$lhpwchdsq$'</isNotNull>
+       <isNotNull prepend="AND" property="lhps">[lhps]='$lhps$'</isNotNull>
+       <isNotNull prepend="AND" property="ghrq">[ghrq]='$ghrq$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xghjyzxh">[xghjyzxh]='$xghjyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="xghjyzzzc">[xghjyzzzc]='$xghjyzzzc$'</isNotNull>
+       <isNotNull prepend="AND" property="lhjyzccrq">[lhjyzccrq]='$lhjyzccrq$'</isNotNull>
+       <isNotNull prepend="AND" property="lhjyzyxnx">[lhjyzyxnx]='$lhjyzyxnx$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_jyzcsjlByKey" resultMap="sdjls_jyzcsjl_AllColumns" parameterClass="sdjls_jyzcsjl">
+         SELECT 
+         [ID],
+         [LineID],
+         [LineName],
+         [ParentID],
+         [cssj],
+         [gh],
+         [gx],
+         [jyzxh],
+         [lzjyzwz],
+         [syfzr],
+         [clsj],
+         [bz],
+         [cb],
+         [xb],
+         [zyc],
+         [jyzzzc],
+         [lhpwchdsq],
+         [lhps],
+         [ghrq],
+         [fzr],
+         [xghjyzxh],
+         [xghjyzzzc],
+         [lhjyzccrq],
+         [lhjyzyxnx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_jyzcsjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_jyzcsjl" parameterClass="sdjls_jyzcsjl">
+        DELETE FROM 
+         sdjls_jyzcsjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_jyzcsjlByWhere" parameterClass="string">
+     delete from sdjls_jyzcsjl $value$
+   </delete>
+   
+   <delete id="Deletesdjls_jyzcsjlByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_jyzcsjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_jyzcsjl" parameterClass="sdjls_jyzcsjl" resultClass="int">
+          UPDATE sdjls_jyzcsjl
+           SET
+             [LineID]=#LineID#,
+             [LineName]=#LineName#,
+             [ParentID]=#ParentID#,
+             [cssj]=#cssj#,
+             [gh]=#gh#,
+             [gx]=#gx#,
+             [jyzxh]=#jyzxh#,
+             [lzjyzwz]=#lzjyzwz#,
+             [syfzr]=#syfzr#,
+             [clsj]=#clsj#,
+             [bz]=#bz#,
+             [cb]=#cb#,
+             [xb]=#xb#,
+             [zyc]=#zyc#,
+             [jyzzzc]=#jyzzzc#,
+             [lhpwchdsq]=#lhpwchdsq#,
+             [lhps]=#lhps#,
+             [ghrq]=#ghrq#,
+             [fzr]=#fzr#,
+             [xghjyzxh]=#xghjyzxh#,
+             [xghjyzzzc]=#xghjyzzzc#,
+             [lhjyzccrq]=#lhjyzccrq#,
+             [lhjyzyxnx]=#lhjyzyxnx#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_jyzcsjl" parameterClass="sdjls_jyzcsjl">
+        INSERT INTO sdjls_jyzcsjl
+         (
+         [ID],
+         [LineID],
+         [LineName],
+         [ParentID],
+         [cssj],
+         [gh],
+         [gx],
+         [jyzxh],
+         [lzjyzwz],
+         [syfzr],
+         [clsj],
+         [bz],
+         [cb],
+         [xb],
+         [zyc],
+         [jyzzzc],
+         [lhpwchdsq],
+         [lhps],
+         [ghrq],
+         [fzr],
+         [xghjyzxh],
+         [xghjyzzzc],
+         [lhjyzccrq],
+         [lhjyzyxnx],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #LineID#,
+         #LineName#,
+         #ParentID#,
+         #cssj#,
+         #gh#,
+         #gx#,
+         #jyzxh#,
+         #lzjyzwz#,
+         #syfzr#,
+         #clsj#,
+         #bz#,
+         #cb#,
+         #xb#,
+         #zyc#,
+         #jyzzzc#,
+         #lhpwchdsq#,
+         #lhps#,
+         #ghrq#,
+         #fzr#,
+         #xghjyzxh#,
+         #xghjyzzzc#,
+         #lhjyzccrq#,
+         #lhjyzyxnx#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_jyzcsjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_jyzcsjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="cssj">[cssj]='$cssj$'</isNotNull>
+       <isNotNull prepend="AND" property="gh">[gh]='$gh$'</isNotNull>
+       <isNotNull prepend="AND" property="gx">[gx]='$gx$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzxh">[jyzxh]='$jyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="lzjyzwz">[lzjyzwz]='$lzjyzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="syfzr">[syfzr]='$syfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="clsj">[clsj]='$clsj$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="cb">[cb]='$cb$'</isNotNull>
+       <isNotNull prepend="AND" property="xb">[xb]='$xb$'</isNotNull>
+       <isNotNull prepend="AND" property="zyc">[zyc]='$zyc$'</isNotNull>
+       <isNotNull prepend="AND" property="jyzzzc">[jyzzzc]='$jyzzzc$'</isNotNull>
+       <isNotNull prepend="AND" property="lhpwchdsq">[lhpwchdsq]='$lhpwchdsq$'</isNotNull>
+       <isNotNull prepend="AND" property="lhps">[lhps]='$lhps$'</isNotNull>
+       <isNotNull prepend="AND" property="ghrq">[ghrq]='$ghrq$'</isNotNull>
+       <isNotNull prepend="AND" property="fzr">[fzr]='$fzr$'</isNotNull>
+       <isNotNull prepend="AND" property="xghjyzxh">[xghjyzxh]='$xghjyzxh$'</isNotNull>
+       <isNotNull prepend="AND" property="xghjyzzzc">[xghjyzzzc]='$xghjyzzzc$'</isNotNull>
+       <isNotNull prepend="AND" property="lhjyzccrq">[lhjyzccrq]='$lhjyzccrq$'</isNotNull>
+       <isNotNull prepend="AND" property="lhjyzyxnx">[lhjyzyxnx]='$lhjyzyxnx$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_jyzcsjlRowCount" parameterClass="string">
+    select count(*) from sdjls_jyzcsjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
