@@ -86,7 +86,7 @@
       [c3],
       b.num,
       b.ynum
-      FROM JH_weekmant a ,v_jhsumscore b where a.parentid=b.y and a.parentid=#value#
+      FROM JH_weekmant a ,v_jhsumscore b where a.parentid=b.y $value$
     </select>
    <select id="SelectJH_weekmantByHash" parameterClass="Hashtable">
          SELECT 
