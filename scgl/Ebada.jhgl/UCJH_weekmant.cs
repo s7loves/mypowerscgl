@@ -262,6 +262,8 @@ namespace Ebada.jhgl {
             gridView1.Columns["考核人"].Visible = false;
             gridView1.Columns["考核时间"].Visible = false;
             gridView1.Columns["年月周"].Visible = false;
+            gridView1.Columns["月总分"].Visible = false;
+            gridView1.Columns["年总分"].Visible = false;
             RepositoryItemComboBox box1 = new RepositoryItemComboBox();
             box1.Items.AddRange(new string[] { "A", "B","C","D" });
             gridView1.Columns["考核结果"].ColumnEdit = box1;

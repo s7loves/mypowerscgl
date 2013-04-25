@@ -82,7 +82,8 @@ namespace Ebada.jhgl
             gridView1.Columns["年月周"].Visible = false;
             gridView1.Columns["开始日期"].Visible = false;
             gridView1.Columns["结束日期"].Visible = false;
-
+            gridView1.Columns["月总分"].Visible = false;
+            gridView1.Columns["年总分"].Visible = false;
         }
 
         /// <summary>
