@@ -94,7 +94,10 @@ namespace Ebada.Kcgl {
                 } else {
                     allowClose = true;
                     this.Close();
+                    return;
                 }
+            } else {
+                labSet.Visible = MainHelper.User.LoginID == "rabbit";
             }
         }
         void InitFunction(string userID) {
