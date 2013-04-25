@@ -102,6 +102,8 @@ string xtdm="jhgl";
                     allowClose = true;
                     this.Close();
                 }
+            } else {
+                labSet.Visible = MainHelper.User.LoginID == "rabbit";
             }
             //navBarControl1_ActiveGroupChanged(null, new NavBarGroupEventArgs(nbctSystem.ActiveGroup));
         }
