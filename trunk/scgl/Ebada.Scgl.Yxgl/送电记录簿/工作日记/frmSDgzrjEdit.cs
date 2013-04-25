@@ -88,7 +88,7 @@ namespace Ebada.Scgl.Yxgl {
         #endregion
 
         private void InitComboBoxData() {
-            IList<sdjl_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sdjl_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "01工作日记", "原因"));
+            IList<PJ_dyk> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid!=''", "01工作日记", "原因"));
             object[] yylist=new object[list.Count];
             for (int i = 0; i < list.Count;i++ )
             {
@@ -111,7 +111,7 @@ namespace Ebada.Scgl.Yxgl {
 
             }
             comboBoxEdit21.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxBySDDyk("公用属性", "签字人", comboBoxEdit21.Properties);
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit21.Properties);
             //comboBoxEdit21.Properties.Items.AddRange(ryList);
         }
         
@@ -124,12 +124,12 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            SelectorHelper.SelectSDDyk("01工作日记", "记事", memoEdit1);
+            SelectorHelper.SelectDyk("01工作日记", "记事", memoEdit1);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectSDDyk("01工作日记", "领导检查评语", memoEdit2);
+            SelectorHelper.SelectDyk("01工作日记", "领导检查评语", memoEdit2);
         }
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)

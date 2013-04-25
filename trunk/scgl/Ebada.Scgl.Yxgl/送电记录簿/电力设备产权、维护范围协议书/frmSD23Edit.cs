@@ -90,7 +90,7 @@ namespace Ebada.Scgl.Yxgl
               this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
 
             comboBoxEdit4.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxBySDDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (sd_xl pl in xlList)
             {
@@ -166,9 +166,9 @@ namespace Ebada.Scgl.Yxgl
 
         private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
         {
-            frmSDDykSelector dlg = new frmSDDykSelector();
-            sdjl_dyk dyk = null;
-            sdjl_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<sdjl_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
+            frmDykSelector dlg = new frmDykSelector();
+            PJ_dyk dyk = null;
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='23配电线路产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;

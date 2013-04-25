@@ -124,7 +124,7 @@ namespace Ebada.Scgl.Yxgl
 
                 //ICollection qxlist = ComboBoxHelper.GetQxlb();//获取缺陷类别
                 //缺陷类别GetQxlb
-                ComboBoxHelper.FillCBoxBySDDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+                ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
 
             //ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "巡视人", comboBoxEdit3.Properties);
 
@@ -237,7 +237,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectSDDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
+            SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
 
         }
 
@@ -297,7 +297,7 @@ namespace Ebada.Scgl.Yxgl
             dx = "06设备巡视及缺陷消除记录";
             sx = "缺陷类别";
             nr = "紧急缺陷";
-            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from sdjl_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx,nr));
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx,nr));
             if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
             {
                 dayspan1 = Convert.ToInt32(list[0]);
@@ -305,14 +305,14 @@ namespace Ebada.Scgl.Yxgl
 
             sx = "缺陷类别";
             nr = "重大缺陷";
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from sdjl_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx, nr));
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx, nr));
             if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
             {
                 dayspan2 = Convert.ToInt32(list[0]);
             }
             sx = "缺陷类别";
             nr = "一般缺陷";
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from sdjl_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx, nr));
+            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx, nr));
             if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
             {
                 dayspan3 = Convert.ToInt32(list[0]);

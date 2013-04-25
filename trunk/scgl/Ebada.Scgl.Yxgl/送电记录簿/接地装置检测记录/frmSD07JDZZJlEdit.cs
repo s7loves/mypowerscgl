@@ -90,9 +90,9 @@ namespace Ebada.Scgl.Yxgl
             rowData.jcr = str;
         }
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "天气", comboBoxEdit1.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "检查情况", comboBoxEdit4.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "结论", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "天气", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "检查情况", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "结论", comboBoxEdit6.Properties);
             sdjl_07jdzz pj = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sdjl_07jdzz>(rowData.jdzzID);
             this.comboBoxEdit2.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
             this.comboBoxEdit7.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Yxgl
                 string sx = "季节系数";
                 string nr = dt.Month.ToString();
                 double dtemp = dcoe[dt.Month - 1], d1 = 0;
-                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from sdjl_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}月' ", dx, sx, nr));
+                IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}月' ", dx, sx, nr));
                 if (list.Count > 0 && list[0] != null && list[0].ToString() != "")
                 {
                     dtemp = Convert.ToDouble(list[0]);

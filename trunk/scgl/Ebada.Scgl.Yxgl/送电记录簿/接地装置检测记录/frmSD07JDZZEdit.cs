@@ -80,12 +80,12 @@ namespace Ebada.Scgl.Yxgl {
         private DataTable lineTable = new DataTable();
         private void InitComboBoxData() {
 
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "设备名称", comboBoxEdit4.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "变压器规格", comboBoxEdit9.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "土质", comboBoxEdit7.Properties);
-            ComboBoxHelper.FillCBoxBySDDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "设备名称", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器型号", comboBoxEdit5.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "变压器规格", comboBoxEdit9.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "接地电阻", comboBoxEdit6.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8.Properties);
 
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
             lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(sd_xl));
@@ -218,18 +218,18 @@ namespace Ebada.Scgl.Yxgl {
                 string sbmc = comboBoxEdit4.EditValue.ToString();
                 ICollection list = new ArrayList();
                 comboBoxEdit5.Properties.Items.Clear();
-                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from sdjl_dyk where parentid in(select ID from sdjl_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from PJ_dyk where parentid in(select ID from PJ_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
                 list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from sdjl_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "型号"));
+                string.Format("select nr from PJ_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "型号"));
                 if (list.Count > 0)
                     comboBoxEdit5.Properties.Items.AddRange(list);
 
 
 
                 comboBoxEdit9.Properties.Items.Clear();
-                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from sdjl_dyk where parentid in(select ID from sdjl_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
+                //list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from PJ_dyk where parentid in(select ID from PJ_dyk where len(parentid)=0 and sx like '%{0}%')", sbmc + "型号"));
                 list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                string.Format("select nr from sdjl_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "规格"));
+                string.Format("select nr from PJ_dyk where  dx='07接地装置检测记录' and sx like '%{0}%' and nr!=''", sbmc + "规格"));
                 if (list.Count > 0)
                     comboBoxEdit9.Properties.Items.AddRange(list);
             }

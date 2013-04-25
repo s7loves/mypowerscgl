@@ -178,7 +178,7 @@ namespace Ebada.Scgl.Yxgl
             //string zhi = "领导";
             // ICollection   list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select UserName from mUser where Type like'%" + zhi + "%'");
             //((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties.Items.AddRange(list);
-            ComboBoxHelper.FillCBoxBySDDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties);
+            ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 6]).Properties);
 
             //填充下拉列表数据
         }
@@ -217,7 +217,7 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             //SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1,memoEdit2, memoEdit5);
-            sdjl_dyk dyk = SelectorHelper.SelectSDDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
             if (dyk != null)
             {
                 rowData.hdnr = dyk.nr2+dyk.nr;
