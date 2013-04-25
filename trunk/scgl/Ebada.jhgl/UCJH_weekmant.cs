@@ -186,7 +186,7 @@ namespace Ebada.jhgl {
         void barEditItem1_EditValueChanged(object sender, EventArgs e) {
             string year = barEditItem1.EditValue.ToString();
             parentID = null;
-            RefreshData("where 1>2");
+            RefreshData(" and 1>2");
             inittree(year);
 
             //ucjh_year.showread(全局 ? "0" : "", "");      
@@ -306,7 +306,10 @@ namespace Ebada.jhgl {
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
-            gridViewOperation.RefreshData(slqwhere);
+            //gridViewOperation.RefreshData(slqwhere);
+            gridViewOperation.BindingList.Clear();
+            gridViewOperation.BindingList.Add(ClientHelper.PlatformSqlMap.GetList<JH_weekmant>("SelectJH_weekmantList2", slqwhere));
+
         }
         /// <summary>
         /// 封装了数据操作的对象
@@ -345,15 +348,14 @@ namespace Ebada.jhgl {
             set {
                 if (value == null) return;
                 parentID = value;
-                string where = "where parentid = '" + value + "' ";
+                string where = "  and a.parentid = '" + value + "' ";
                 if (全局) {
-                    where += string.Format(" and 单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}')) ",MainHelper.User.UserID);
+                    where += string.Format(" and a.单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}')) ",MainHelper.User.UserID);
                 }else if (部门) {
-                    where += " and 单位代码='" + MainHelper.UserOrg.OrgCode + "'";
+                    where += " and a.单位代码='" + MainHelper.UserOrg.OrgCode + "'";
                 } else {
-                    where += " and 姓名='" + MainHelper.User.UserName + "'";
+                    where += " and a.姓名='" + MainHelper.User.UserName + "'";
                 }
-
                 RefreshData(where);
             }
         }
