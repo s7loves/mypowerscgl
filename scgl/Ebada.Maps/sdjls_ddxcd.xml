@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_ddxcd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_ddxcd"  type="Ebada.Scgl.Model.sdjls_ddxcd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_ddxcd_AllColumns" class="sdjls_ddxcd">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="LineVol" column="LineVol" />
+        <result property="nzdgh" column="nzdgh" />
+        <result property="cldgh" column="cldgh" />
+        <result property="clrq" column="clrq" />
+        <result property="wd" column="wd" />
+        <result property="dxscz" column="dxscz" />
+        <result property="dxsczz" column="dxsczz" />
+        <result property="dxsczy" column="dxsczy" />
+        <result property="dxbzz" column="dxbzz" />
+        <result property="dxwcz" column="dxwcz" />
+        <result property="dxwczz" column="dxwczz" />
+        <result property="dxwcy" column="dxwcy" />
+        <result property="dxxh" column="dxxh" />
+        <result property="ddxxh" column="ddxxh" />
+        <result property="ddxscz" column="ddxscz" />
+        <result property="ddxsczy" column="ddxsczy" />
+        <result property="ddxbzz" column="ddxbzz" />
+        <result property="ddwcz" column="ddwcz" />
+        <result property="ddwcy" column="ddwcy" />
+        <result property="dxjl" column="dxjl" />
+        <result property="ddxjl" column="ddxjl" />
+        <result property="clr" column="clr" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_ddxcdList" resultMap="sdjls_ddxcd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [nzdgh],
+         [cldgh],
+         [clrq],
+         [wd],
+         [dxscz],
+         [dxsczz],
+         [dxsczy],
+         [dxbzz],
+         [dxwcz],
+         [dxwczz],
+         [dxwcy],
+         [dxxh],
+         [ddxxh],
+         [ddxscz],
+         [ddxsczy],
+         [ddxbzz],
+         [ddwcz],
+         [ddwcy],
+         [dxjl],
+         [ddxjl],
+         [clr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_ddxcd
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_ddxcdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [nzdgh],
+         [cldgh],
+         [clrq],
+         [wd],
+         [dxscz],
+         [dxsczz],
+         [dxsczy],
+         [dxbzz],
+         [dxwcz],
+         [dxwczz],
+         [dxwcy],
+         [dxxh],
+         [ddxxh],
+         [ddxscz],
+         [ddxsczy],
+         [ddxbzz],
+         [ddwcz],
+         [ddwcy],
+         [dxjl],
+         [ddxjl],
+         [clr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_ddxcd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="nzdgh">[nzdgh]='$nzdgh$'</isNotNull>
+       <isNotNull prepend="AND" property="cldgh">[cldgh]='$cldgh$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+       <isNotNull prepend="AND" property="dxscz">[dxscz]='$dxscz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxsczz">[dxsczz]='$dxsczz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxsczy">[dxsczy]='$dxsczy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxbzz">[dxbzz]='$dxbzz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwcz">[dxwcz]='$dxwcz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwczz">[dxwczz]='$dxwczz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwcy">[dxwcy]='$dxwcy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxxh">[dxxh]='$dxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxxh">[ddxxh]='$ddxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxscz">[ddxscz]='$ddxscz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxsczy">[ddxsczy]='$ddxsczy$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxbzz">[ddxbzz]='$ddxbzz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddwcz">[ddwcz]='$ddwcz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddwcy">[ddwcy]='$ddwcy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxjl">[dxjl]='$dxjl$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxjl">[ddxjl]='$ddxjl$'</isNotNull>
+       <isNotNull prepend="AND" property="clr">[clr]='$clr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_ddxcdByKey" resultMap="sdjls_ddxcd_AllColumns" parameterClass="sdjls_ddxcd">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [nzdgh],
+         [cldgh],
+         [clrq],
+         [wd],
+         [dxscz],
+         [dxsczz],
+         [dxsczy],
+         [dxbzz],
+         [dxwcz],
+         [dxwczz],
+         [dxwcy],
+         [dxxh],
+         [ddxxh],
+         [ddxscz],
+         [ddxsczy],
+         [ddxbzz],
+         [ddwcz],
+         [ddwcy],
+         [dxjl],
+         [ddxjl],
+         [clr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_ddxcd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_ddxcd" parameterClass="sdjls_ddxcd">
+        DELETE FROM 
+         sdjls_ddxcd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_ddxcdByWhere" parameterClass="string">
+     delete from sdjls_ddxcd $value$
+   </delete>
+   
+   <delete id="Deletesdjls_ddxcdByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_ddxcd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_ddxcd" parameterClass="sdjls_ddxcd" resultClass="int">
+          UPDATE sdjls_ddxcd
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [LineVol]=#LineVol#,
+             [nzdgh]=#nzdgh#,
+             [cldgh]=#cldgh#,
+             [clrq]=#clrq#,
+             [wd]=#wd#,
+             [dxscz]=#dxscz#,
+             [dxsczz]=#dxsczz#,
+             [dxsczy]=#dxsczy#,
+             [dxbzz]=#dxbzz#,
+             [dxwcz]=#dxwcz#,
+             [dxwczz]=#dxwczz#,
+             [dxwcy]=#dxwcy#,
+             [dxxh]=#dxxh#,
+             [ddxxh]=#ddxxh#,
+             [ddxscz]=#ddxscz#,
+             [ddxsczy]=#ddxsczy#,
+             [ddxbzz]=#ddxbzz#,
+             [ddwcz]=#ddwcz#,
+             [ddwcy]=#ddwcy#,
+             [dxjl]=#dxjl#,
+             [ddxjl]=#ddxjl#,
+             [clr]=#clr#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_ddxcd" parameterClass="sdjls_ddxcd">
+        INSERT INTO sdjls_ddxcd
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [LineVol],
+         [nzdgh],
+         [cldgh],
+         [clrq],
+         [wd],
+         [dxscz],
+         [dxsczz],
+         [dxsczy],
+         [dxbzz],
+         [dxwcz],
+         [dxwczz],
+         [dxwcy],
+         [dxxh],
+         [ddxxh],
+         [ddxscz],
+         [ddxsczy],
+         [ddxbzz],
+         [ddwcz],
+         [ddwcy],
+         [dxjl],
+         [ddxjl],
+         [clr],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineCode#,
+         #LineName#,
+         #LineVol#,
+         #nzdgh#,
+         #cldgh#,
+         #clrq#,
+         #wd#,
+         #dxscz#,
+         #dxsczz#,
+         #dxsczy#,
+         #dxbzz#,
+         #dxwcz#,
+         #dxwczz#,
+         #dxwcy#,
+         #dxxh#,
+         #ddxxh#,
+         #ddxscz#,
+         #ddxsczy#,
+         #ddxbzz#,
+         #ddwcz#,
+         #ddwcy#,
+         #dxjl#,
+         #ddxjl#,
+         #clr#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_ddxcdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_ddxcd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineVol">[LineVol]='$LineVol$'</isNotNull>
+       <isNotNull prepend="AND" property="nzdgh">[nzdgh]='$nzdgh$'</isNotNull>
+       <isNotNull prepend="AND" property="cldgh">[cldgh]='$cldgh$'</isNotNull>
+       <isNotNull prepend="AND" property="clrq">[clrq]='$clrq$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+       <isNotNull prepend="AND" property="dxscz">[dxscz]='$dxscz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxsczz">[dxsczz]='$dxsczz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxsczy">[dxsczy]='$dxsczy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxbzz">[dxbzz]='$dxbzz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwcz">[dxwcz]='$dxwcz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwczz">[dxwczz]='$dxwczz$'</isNotNull>
+       <isNotNull prepend="AND" property="dxwcy">[dxwcy]='$dxwcy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxxh">[dxxh]='$dxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxxh">[ddxxh]='$ddxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxscz">[ddxscz]='$ddxscz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxsczy">[ddxsczy]='$ddxsczy$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxbzz">[ddxbzz]='$ddxbzz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddwcz">[ddwcz]='$ddwcz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddwcy">[ddwcy]='$ddwcy$'</isNotNull>
+       <isNotNull prepend="AND" property="dxjl">[dxjl]='$dxjl$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxjl">[ddxjl]='$ddxjl$'</isNotNull>
+       <isNotNull prepend="AND" property="clr">[clr]='$clr$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_ddxcdRowCount" parameterClass="string">
+    select count(*) from sdjls_ddxcd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

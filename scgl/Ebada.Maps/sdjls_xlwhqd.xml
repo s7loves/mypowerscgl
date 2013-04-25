@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_xlwhqd" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_xlwhqd"  type="Ebada.Scgl.Model.sdjls_xlwhqd,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_xlwhqd_AllColumns" class="sdjls_xlwhqd">
+        <result property="ID" column="ID" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="whqd" column="whqd" />
+        <result property="qdxx" column="qdxx" />
+        <result property="whxz" column="whxz" />
+        <result property="whdj" column="whdj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_xlwhqdList" resultMap="sdjls_xlwhqd_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [LineCode],
+         [LineName],
+         [whqd],
+         [qdxx],
+         [whxz],
+         [whdj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_xlwhqd
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_xlwhqdByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [LineCode],
+         [LineName],
+         [whqd],
+         [qdxx],
+         [whxz],
+         [whdj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_xlwhqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="whqd">[whqd]='$whqd$'</isNotNull>
+       <isNotNull prepend="AND" property="qdxx">[qdxx]='$qdxx$'</isNotNull>
+       <isNotNull prepend="AND" property="whxz">[whxz]='$whxz$'</isNotNull>
+       <isNotNull prepend="AND" property="whdj">[whdj]='$whdj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_xlwhqdByKey" resultMap="sdjls_xlwhqd_AllColumns" parameterClass="sdjls_xlwhqd">
+         SELECT 
+         [ID],
+         [LineCode],
+         [LineName],
+         [whqd],
+         [qdxx],
+         [whxz],
+         [whdj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_xlwhqd
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_xlwhqd" parameterClass="sdjls_xlwhqd">
+        DELETE FROM 
+         sdjls_xlwhqd
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_xlwhqdByWhere" parameterClass="string">
+     delete from sdjls_xlwhqd $value$
+   </delete>
+   
+   <delete id="Deletesdjls_xlwhqdByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_xlwhqd
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_xlwhqd" parameterClass="sdjls_xlwhqd" resultClass="int">
+          UPDATE sdjls_xlwhqd
+           SET
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [whqd]=#whqd#,
+             [qdxx]=#qdxx#,
+             [whxz]=#whxz#,
+             [whdj]=#whdj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_xlwhqd" parameterClass="sdjls_xlwhqd">
+        INSERT INTO sdjls_xlwhqd
+         (
+         [ID],
+         [LineCode],
+         [LineName],
+         [whqd],
+         [qdxx],
+         [whxz],
+         [whdj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #LineCode#,
+         #LineName#,
+         #whqd#,
+         #qdxx#,
+         #whxz#,
+         #whdj#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_xlwhqdRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_xlwhqd
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="whqd">[whqd]='$whqd$'</isNotNull>
+       <isNotNull prepend="AND" property="qdxx">[qdxx]='$qdxx$'</isNotNull>
+       <isNotNull prepend="AND" property="whxz">[whxz]='$whxz$'</isNotNull>
+       <isNotNull prepend="AND" property="whdj">[whdj]='$whdj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_xlwhqdRowCount" parameterClass="string">
+    select count(*) from sdjls_xlwhqd $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

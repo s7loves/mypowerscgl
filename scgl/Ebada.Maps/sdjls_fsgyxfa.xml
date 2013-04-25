@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_fsgyxfa" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_fsgyxfa"  type="Ebada.Scgl.Model.sdjls_fsgyxfa,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_fsgyxfa_AllColumns" class="sdjls_fsgyxfa">
+        <result property="ID" column="ID" />
+        <result property="yxtm" column="yxtm" />
+        <result property="yxfa" column="yxfa" />
+        <result property="fasj" column="fasj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_fsgyxfaList" resultMap="sdjls_fsgyxfa_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [yxtm],
+         [yxfa],
+         [fasj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_fsgyxfa
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_fsgyxfaByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [yxtm],
+         [yxfa],
+         [fasj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_fsgyxfa
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtm">[yxtm]='$yxtm$'</isNotNull>
+       <isNotNull prepend="AND" property="yxfa">[yxfa]='$yxfa$'</isNotNull>
+       <isNotNull prepend="AND" property="fasj">[fasj]='$fasj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_fsgyxfaByKey" resultMap="sdjls_fsgyxfa_AllColumns" parameterClass="sdjls_fsgyxfa">
+         SELECT 
+         [ID],
+         [yxtm],
+         [yxfa],
+         [fasj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_fsgyxfa
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_fsgyxfa" parameterClass="sdjls_fsgyxfa">
+        DELETE FROM 
+         sdjls_fsgyxfa
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_fsgyxfaByWhere" parameterClass="string">
+     delete from sdjls_fsgyxfa $value$
+   </delete>
+   
+   <delete id="Deletesdjls_fsgyxfaByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_fsgyxfa
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_fsgyxfa" parameterClass="sdjls_fsgyxfa" resultClass="int">
+          UPDATE sdjls_fsgyxfa
+           SET
+             [yxtm]=#yxtm#,
+             [yxfa]=#yxfa#,
+             [fasj]=#fasj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_fsgyxfa" parameterClass="sdjls_fsgyxfa">
+        INSERT INTO sdjls_fsgyxfa
+         (
+         [ID],
+         [yxtm],
+         [yxfa],
+         [fasj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #yxtm#,
+         #yxfa#,
+         #fasj#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_fsgyxfaRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_fsgyxfa
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="yxtm">[yxtm]='$yxtm$'</isNotNull>
+       <isNotNull prepend="AND" property="yxfa">[yxfa]='$yxfa$'</isNotNull>
+       <isNotNull prepend="AND" property="fasj">[fasj]='$fasj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_fsgyxfaRowCount" parameterClass="string">
+    select count(*) from sdjls_fsgyxfa $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

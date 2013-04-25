@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_ddxljqnr" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_ddxljqnr"  type="Ebada.Scgl.Model.sdjls_ddxljqnr,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_ddxljqnr_AllColumns" class="sdjls_ddxljqnr">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="gth" column="gth" />
+        <result property="dj" column="dj" />
+        <result property="xb" column="xb" />
+        <result property="ljxs" column="ljxs" />
+        <result property="djzwz" column="djzwz" />
+        <result property="ddxxh" column="ddxxh" />
+        <result property="ljqxh" column="ljqxh" />
+        <result property="sccj" column="sccj" />
+        <result property="qw" column="qw" />
+        <result property="bz" column="bz" />
+        <result property="cwsssdl" column="cwsssdl" />
+        <result property="jcr" column="jcr" />
+        <result property="jl" column="jl" />
+        <result property="gw" column="gw" />
+        <result property="xw" column="xw" />
+        <result property="dzx" column="dzx" />
+        <result property="dzg" column="dzg" />
+        <result property="dzb" column="dzb" />
+        <result property="bdzq" column="bdzq" />
+        <result property="bdzh" column="bdzh" />
+        <result property="bdzb" column="bdzb" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_ddxljqnrList" resultMap="sdjls_ddxljqnr_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [gth],
+         [dj],
+         [xb],
+         [ljxs],
+         [djzwz],
+         [ddxxh],
+         [ljqxh],
+         [sccj],
+         [qw],
+         [bz],
+         [cwsssdl],
+         [jcr],
+         [jl],
+         [gw],
+         [xw],
+         [dzx],
+         [dzg],
+         [dzb],
+         [bdzq],
+         [bdzh],
+         [bdzb],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_ddxljqnr
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_ddxljqnrByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gth],
+         [dj],
+         [xb],
+         [ljxs],
+         [djzwz],
+         [ddxxh],
+         [ljqxh],
+         [sccj],
+         [qw],
+         [bz],
+         [cwsssdl],
+         [jcr],
+         [jl],
+         [gw],
+         [xw],
+         [dzx],
+         [dzg],
+         [dzb],
+         [bdzq],
+         [bdzh],
+         [bdzb],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_ddxljqnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="dj">[dj]='$dj$'</isNotNull>
+       <isNotNull prepend="AND" property="xb">[xb]='$xb$'</isNotNull>
+       <isNotNull prepend="AND" property="ljxs">[ljxs]='$ljxs$'</isNotNull>
+       <isNotNull prepend="AND" property="djzwz">[djzwz]='$djzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxxh">[ddxxh]='$ddxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ljqxh">[ljqxh]='$ljqxh$'</isNotNull>
+       <isNotNull prepend="AND" property="sccj">[sccj]='$sccj$'</isNotNull>
+       <isNotNull prepend="AND" property="qw">[qw]='$qw$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="cwsssdl">[cwsssdl]='$cwsssdl$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="jl">[jl]='$jl$'</isNotNull>
+       <isNotNull prepend="AND" property="gw">[gw]='$gw$'</isNotNull>
+       <isNotNull prepend="AND" property="xw">[xw]='$xw$'</isNotNull>
+       <isNotNull prepend="AND" property="dzx">[dzx]='$dzx$'</isNotNull>
+       <isNotNull prepend="AND" property="dzg">[dzg]='$dzg$'</isNotNull>
+       <isNotNull prepend="AND" property="dzb">[dzb]='$dzb$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzq">[bdzq]='$bdzq$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzh">[bdzh]='$bdzh$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzb">[bdzb]='$bdzb$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_ddxljqnrByKey" resultMap="sdjls_ddxljqnr_AllColumns" parameterClass="sdjls_ddxljqnr">
+         SELECT 
+         [ID],
+         [ParentID],
+         [gth],
+         [dj],
+         [xb],
+         [ljxs],
+         [djzwz],
+         [ddxxh],
+         [ljqxh],
+         [sccj],
+         [qw],
+         [bz],
+         [cwsssdl],
+         [jcr],
+         [jl],
+         [gw],
+         [xw],
+         [dzx],
+         [dzg],
+         [dzb],
+         [bdzq],
+         [bdzh],
+         [bdzb],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_ddxljqnr
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_ddxljqnr" parameterClass="sdjls_ddxljqnr">
+        DELETE FROM 
+         sdjls_ddxljqnr
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_ddxljqnrByWhere" parameterClass="string">
+     delete from sdjls_ddxljqnr $value$
+   </delete>
+   
+   <delete id="Deletesdjls_ddxljqnrByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_ddxljqnr
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_ddxljqnr" parameterClass="sdjls_ddxljqnr" resultClass="int">
+          UPDATE sdjls_ddxljqnr
+           SET
+             [ParentID]=#ParentID#,
+             [gth]=#gth#,
+             [dj]=#dj#,
+             [xb]=#xb#,
+             [ljxs]=#ljxs#,
+             [djzwz]=#djzwz#,
+             [ddxxh]=#ddxxh#,
+             [ljqxh]=#ljqxh#,
+             [sccj]=#sccj#,
+             [qw]=#qw#,
+             [bz]=#bz#,
+             [cwsssdl]=#cwsssdl#,
+             [jcr]=#jcr#,
+             [jl]=#jl#,
+             [gw]=#gw#,
+             [xw]=#xw#,
+             [dzx]=#dzx#,
+             [dzg]=#dzg#,
+             [dzb]=#dzb#,
+             [bdzq]=#bdzq#,
+             [bdzh]=#bdzh#,
+             [bdzb]=#bdzb#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_ddxljqnr" parameterClass="sdjls_ddxljqnr">
+        INSERT INTO sdjls_ddxljqnr
+         (
+         [ID],
+         [ParentID],
+         [gth],
+         [dj],
+         [xb],
+         [ljxs],
+         [djzwz],
+         [ddxxh],
+         [ljqxh],
+         [sccj],
+         [qw],
+         [bz],
+         [cwsssdl],
+         [jcr],
+         [jl],
+         [gw],
+         [xw],
+         [dzx],
+         [dzg],
+         [dzb],
+         [bdzq],
+         [bdzh],
+         [bdzb],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #gth#,
+         #dj#,
+         #xb#,
+         #ljxs#,
+         #djzwz#,
+         #ddxxh#,
+         #ljqxh#,
+         #sccj#,
+         #qw#,
+         #bz#,
+         #cwsssdl#,
+         #jcr#,
+         #jl#,
+         #gw#,
+         #xw#,
+         #dzx#,
+         #dzg#,
+         #dzb#,
+         #bdzq#,
+         #bdzh#,
+         #bdzb#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_ddxljqnrRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_ddxljqnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="gth">[gth]='$gth$'</isNotNull>
+       <isNotNull prepend="AND" property="dj">[dj]='$dj$'</isNotNull>
+       <isNotNull prepend="AND" property="xb">[xb]='$xb$'</isNotNull>
+       <isNotNull prepend="AND" property="ljxs">[ljxs]='$ljxs$'</isNotNull>
+       <isNotNull prepend="AND" property="djzwz">[djzwz]='$djzwz$'</isNotNull>
+       <isNotNull prepend="AND" property="ddxxh">[ddxxh]='$ddxxh$'</isNotNull>
+       <isNotNull prepend="AND" property="ljqxh">[ljqxh]='$ljqxh$'</isNotNull>
+       <isNotNull prepend="AND" property="sccj">[sccj]='$sccj$'</isNotNull>
+       <isNotNull prepend="AND" property="qw">[qw]='$qw$'</isNotNull>
+       <isNotNull prepend="AND" property="bz">[bz]='$bz$'</isNotNull>
+       <isNotNull prepend="AND" property="cwsssdl">[cwsssdl]='$cwsssdl$'</isNotNull>
+       <isNotNull prepend="AND" property="jcr">[jcr]='$jcr$'</isNotNull>
+       <isNotNull prepend="AND" property="jl">[jl]='$jl$'</isNotNull>
+       <isNotNull prepend="AND" property="gw">[gw]='$gw$'</isNotNull>
+       <isNotNull prepend="AND" property="xw">[xw]='$xw$'</isNotNull>
+       <isNotNull prepend="AND" property="dzx">[dzx]='$dzx$'</isNotNull>
+       <isNotNull prepend="AND" property="dzg">[dzg]='$dzg$'</isNotNull>
+       <isNotNull prepend="AND" property="dzb">[dzb]='$dzb$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzq">[bdzq]='$bdzq$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzh">[bdzh]='$bdzh$'</isNotNull>
+       <isNotNull prepend="AND" property="bdzb">[bdzb]='$bdzb$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_ddxljqnrRowCount" parameterClass="string">
+    select count(*) from sdjls_ddxljqnr $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -22,6 +22,26 @@
         <result property="c2" column="c2" />
         <result property="c3" column="c3" />
       </resultMap>
+      <resultMap id="JH_weekmant_AllColumns2" class="JH_weekmant">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="单位代码" column="单位代码" />
+        <result property="单位名称" column="单位名称" />
+        <result property="开始日期" column="开始日期" />
+        <result property="结束日期" column="结束日期" />
+        <result property="标题" column="标题" />
+        <result property="年月周" column="年月周" />
+        <result property="姓名" column="姓名" />
+        <result property="职务" column="职务" />
+        <result property="考核人" column="考核人" />
+        <result property="考核结果" column="考核结果" />
+        <result property="考核时间" column="考核时间" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="月总分" column="num" />
+        <result property="年总分" column="ynum" />
+      </resultMap>
   </resultMaps>
 
   <statements>
@@ -46,7 +66,28 @@
           FROM JH_weekmant
           $value$
    </select>
-   
+    <select id="SelectJH_weekmantList2" resultMap="JH_weekmant_AllColumns2" parameterClass="string">
+      SELECT
+      [ID],
+      [ParentID],
+      a.[单位代码],
+      a.[单位名称],
+      [开始日期],
+      [结束日期],
+      [标题],
+      [年月周],
+      [姓名],
+      [职务],
+      [考核人],
+      [考核结果],
+      [考核时间],
+      [c1],
+      [c2],
+      [c3],
+      b.num,
+      b.ynum
+      FROM JH_weekmant a ,v_jhsumscore b where a.parentid=b.y and a.parentid=#value#
+    </select>
    <select id="SelectJH_weekmantByHash" parameterClass="Hashtable">
          SELECT 
          [ID],

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_jyzcs" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_jyzcs"  type="Ebada.Scgl.Model.sdjls_jyzcs,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_jyzcs_AllColumns" class="sdjls_jyzcs">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="qsgh" column="qsgh" />
+        <result property="tzgh" column="tzgh" />
+        <result property="zjs" column="zjs" />
+        <result property="nzglzs" column="nzglzs" />
+        <result property="zxglzs" column="zxglzs" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_jyzcsList" resultMap="sdjls_jyzcs_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [qsgh],
+         [tzgh],
+         [zjs],
+         [nzglzs],
+         [zxglzs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_jyzcs
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_jyzcsByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [qsgh],
+         [tzgh],
+         [zjs],
+         [nzglzs],
+         [zxglzs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_jyzcs
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="qsgh">[qsgh]='$qsgh$'</isNotNull>
+       <isNotNull prepend="AND" property="tzgh">[tzgh]='$tzgh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjs">[zjs]='$zjs$'</isNotNull>
+       <isNotNull prepend="AND" property="nzglzs">[nzglzs]='$nzglzs$'</isNotNull>
+       <isNotNull prepend="AND" property="zxglzs">[zxglzs]='$zxglzs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_jyzcsByKey" resultMap="sdjls_jyzcs_AllColumns" parameterClass="sdjls_jyzcs">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [qsgh],
+         [tzgh],
+         [zjs],
+         [nzglzs],
+         [zxglzs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_jyzcs
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_jyzcs" parameterClass="sdjls_jyzcs">
+        DELETE FROM 
+         sdjls_jyzcs
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_jyzcsByWhere" parameterClass="string">
+     delete from sdjls_jyzcs $value$
+   </delete>
+   
+   <delete id="Deletesdjls_jyzcsByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_jyzcs
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_jyzcs" parameterClass="sdjls_jyzcs" resultClass="int">
+          UPDATE sdjls_jyzcs
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [qsgh]=#qsgh#,
+             [tzgh]=#tzgh#,
+             [zjs]=#zjs#,
+             [nzglzs]=#nzglzs#,
+             [zxglzs]=#zxglzs#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_jyzcs" parameterClass="sdjls_jyzcs">
+        INSERT INTO sdjls_jyzcs
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [qsgh],
+         [tzgh],
+         [zjs],
+         [nzglzs],
+         [zxglzs],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineCode#,
+         #LineName#,
+         #qsgh#,
+         #tzgh#,
+         #zjs#,
+         #nzglzs#,
+         #zxglzs#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_jyzcsRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_jyzcs
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="qsgh">[qsgh]='$qsgh$'</isNotNull>
+       <isNotNull prepend="AND" property="tzgh">[tzgh]='$tzgh$'</isNotNull>
+       <isNotNull prepend="AND" property="zjs">[zjs]='$zjs$'</isNotNull>
+       <isNotNull prepend="AND" property="nzglzs">[nzglzs]='$nzglzs$'</isNotNull>
+       <isNotNull prepend="AND" property="zxglzs">[zxglzs]='$zxglzs$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_jyzcsRowCount" parameterClass="string">
+    select count(*) from sdjls_jyzcs $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
