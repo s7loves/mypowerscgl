@@ -754,7 +754,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.memoEdit2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage2.Size = new System.Drawing.Size(386, 179);
             this.xtraTabPage2.Text = "活动小结";
             // 
             // memoEdit2
@@ -762,7 +762,7 @@
             this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit2.Location = new System.Drawing.Point(0, 0);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(386, 180);
+            this.memoEdit2.Size = new System.Drawing.Size(386, 179);
             this.memoEdit2.TabIndex = 0;
             // 
             // xtraTabPage3
@@ -796,7 +796,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmaqhdEdit
+            // frmsdaqhdEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -804,7 +804,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmaqhdEdit";
+            this.Name = "frmsdaqhdEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "安全运行记录";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();
