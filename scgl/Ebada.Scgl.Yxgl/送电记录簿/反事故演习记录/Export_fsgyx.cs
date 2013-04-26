@@ -78,6 +78,7 @@ namespace Ebada.Scgl.Yxgl
             //根据演习结果拟定的措施
 
             int cszs = 23;
+            
             for (int i = 0; i < 4; i++)
             {
                 string tempstr = "";
@@ -94,7 +95,15 @@ namespace Ebada.Scgl.Yxgl
                 }
                 if (!ISempty)
                 {
-                    tempstr = obj.ndcs.Substring(startnum, endnum - startnum);
+                    if (i == 0)
+                    {
+                        tempstr = obj.ndcs.Substring(startnum, endnum - startnum - 2);
+                    }
+                    else
+                    {
+                        tempstr = obj.ndcs.Substring(startnum-2, endnum - startnum);
+                    }
+                    
                 }
                 ex.SetCellValue(tempstr, 18 + i, 1);
             }
