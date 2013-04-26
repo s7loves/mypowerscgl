@@ -25,7 +25,8 @@ namespace Ebada.Kcgl
     {
         //list.Sort(delegate(ListItem a, ListItem b) { return string.Compare(a.DisplayMember, b.DisplayMember); });
         List<string> storeList = new List<string>();
-        DataTable dt = new DataTable();
+        DataTable Initdt = new DataTable();
+        DataTable finalTable = new DataTable();
         private string sqlwhere = "";
         public UC材料明细分类账()
         {
@@ -38,8 +39,28 @@ namespace Ebada.Kcgl
             repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
             repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
             InitDtColumns();
-            gridControl1.DataSource = dt;
+            InitFinalColumns();
+            gridControl1.DataSource = finalTable;
+            
             InitGridViewColumns();
+        }
+
+        private void InitFinalColumns()
+        {
+            finalTable.Columns.Add(new DataColumn("Year",typeof(string)));
+            finalTable.Columns.Add(new DataColumn("Month", typeof(string)));
+            finalTable.Columns.Add(new DataColumn("Day", typeof(string)));
+            finalTable.Columns.Add(new DataColumn("summary", typeof(string)));
+            finalTable.Columns.Add(new DataColumn("incount", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("inprice", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("inmoney", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("outcount", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("outprice", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("outmoney", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("stockcount", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("stockprice", typeof(float)));
+            finalTable.Columns.Add(new DataColumn("stockmoney", typeof(float)));
+
         }
 
         private void InitGridViewColumns()
@@ -49,15 +70,15 @@ namespace Ebada.Kcgl
 
         private void InitDtColumns()
         {
-            dt.Columns.Add(new DataColumn("工程类别", typeof(string)));
-            dt.Columns.Add(new DataColumn("材料名称", typeof(string)));
-            dt.Columns.Add(new DataColumn("规格及型号", typeof(string)));
-            dt.Columns.Add(new DataColumn("类型", typeof(string)));//出库、入库
-            dt.Columns.Add(new DataColumn("计量单位", typeof(string)));
-            dt.Columns.Add(new DataColumn("单价", typeof(float)));
-            dt.Columns.Add(new DataColumn("数量", typeof(float)));
-            dt.Columns.Add(new DataColumn("合计",typeof(float)));
-            dt.Columns.Add(new DataColumn("日期", typeof(DateTime)));
+            Initdt.Columns.Add(new DataColumn("工程类别", typeof(string)));
+            Initdt.Columns.Add(new DataColumn("材料名称", typeof(string)));
+            Initdt.Columns.Add(new DataColumn("规格及型号", typeof(string)));
+            Initdt.Columns.Add(new DataColumn("类型", typeof(string)));//出库、入库
+            Initdt.Columns.Add(new DataColumn("计量单位", typeof(string)));
+            Initdt.Columns.Add(new DataColumn("单价", typeof(float)));
+            Initdt.Columns.Add(new DataColumn("数量", typeof(float)));
+            Initdt.Columns.Add(new DataColumn("合计",typeof(float)));
+            Initdt.Columns.Add(new DataColumn("日期", typeof(DateTime)));
         }
         private void InitStoreList()
         {
@@ -97,7 +118,7 @@ namespace Ebada.Kcgl
         /// </summary>
         private void InitDtData()
         {
-            dt.Rows.Clear();
+            Initdt.Rows.Clear();
             //入库明细表
             string wherein = " where 工程类别='"+barEditItem1.EditValue.ToString()+
                 "' and 材料名称='" + barEditItem2.EditValue.ToString() + "' and 规格及型号= '" + barEditItem3.EditValue.ToString() +
@@ -114,7 +135,7 @@ namespace Ebada.Kcgl
                 {
                     if (dateStr == kcin.入库日期.ToString("yyyy-MM-dd"))
                     {
-                        DataRow dr = dt.NewRow();
+                        DataRow dr = Initdt.NewRow();
                         dr["工程类别"] = kcin.工程类别;
                         dr["材料名称"] = kcin.材料名称;
                         dr["规格及型号"] = kcin.规格及型号;
@@ -124,14 +145,14 @@ namespace Ebada.Kcgl
                         dr["数量"] = kcin.数量;
                         dr["合计"] = kcin.总计;
                         dr["日期"] = kcin.入库日期;
-                        dt.Rows.Add(dr);
+                        Initdt.Rows.Add(dr);
                     }
                 }
                 foreach (kc_出库明细表 kcout in outList)
                 {
                     if (dateStr == kcout.出库日期.ToString("yyyy-MM-dd"))
                     {
-                        DataRow dr = dt.NewRow();
+                        DataRow dr = Initdt.NewRow();
                         dr["工程类别"] = kcout.工程类别;
                         dr["材料名称"] = kcout.材料名称;
                         dr["规格及型号"] = kcout.规格及型号;
@@ -141,13 +162,63 @@ namespace Ebada.Kcgl
                         dr["数量"] = kcout.数量;
                         dr["合计"] = kcout.总计;
                         dr["日期"] = kcout.出库日期;
-                        dt.Rows.Add(dr);
+                        Initdt.Rows.Add(dr);
                     }
                 }
                 
             }
-            gridControl1.DataSource = dt;
+            InitFinalTable();
             
+            
+        }
+
+        private void InitFinalTable()
+        {
+            finalTable.Rows.Clear();
+            int inCount = 0;
+            
+            int outCount = 0;
+            
+            //结存数量
+            int stockCount = 0;
+            //结存金额
+            decimal stockMoney = 0;
+            foreach (DataRow rw in Initdt.Rows)
+            {
+                DataRow finalrow = finalTable.NewRow();
+                finalrow["Year"] = Convert.ToDateTime(rw["日期"]).Year.ToString();
+                finalrow["Month"] = Convert.ToDateTime(rw["日期"]).Month.ToString();
+                finalrow["Day"] = Convert.ToDateTime(rw["日期"]).Day.ToString();
+                if (rw["类型"].ToString() == "入库")
+                {
+                    finalrow["summary"] = "入库";
+                    finalrow["inprice"] = Convert.ToDecimal(rw["单价"]);
+                    finalrow["stockprice"] = Convert.ToDecimal(rw["单价"]);
+                    finalrow["incount"] = Convert.ToInt32(rw["数量"]);
+                    inCount = inCount + Convert.ToInt32(rw["数量"]);
+                    stockCount = stockCount + inCount;
+                    finalrow["stockcount"] = stockCount;
+                    finalrow["inmoney"] = Convert.ToInt32(finalrow["incount"]) * Convert.ToDecimal(finalrow["inprice"]);
+                    finalrow["stockmoney"] = stockMoney + Convert.ToDecimal(finalrow["inmoney"]);
+                    stockMoney = Convert.ToDecimal(finalrow["stockmoney"]);
+                    
+                }
+                else if (rw["类型"].ToString() == "出库")
+                {
+                    finalrow["summary"] = "出库";
+                    finalrow["outprice"] = Convert.ToDecimal(rw["单价"]);
+                    finalrow["stockprice"] = Convert.ToDecimal(rw["单价"]);
+                    finalrow["outcount"] = Convert.ToInt32(rw["数量"]);
+                    outCount = outCount + Convert.ToInt32(rw["数量"]);
+                    stockCount = stockCount - outCount;
+                    finalrow["stockcount"] = stockCount;
+                    finalrow["outmoney"] = Convert.ToInt32(finalrow["outcount"]) * Convert.ToDecimal(finalrow["outprice"]);
+                    finalrow["stockmoney"] = stockMoney - Convert.ToDecimal(finalrow["outmoney"]);
+                    stockMoney = Convert.ToDecimal(finalrow["stockmoney"]);
+                }
+                finalTable.Rows.Add(finalrow);
+            }
+            gridControl1.DataSource = finalTable;
         }
 
         private bool CheckIsSelectALL()
@@ -184,7 +255,7 @@ namespace Ebada.Kcgl
 
         private void btnExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ExportPDCA.ExportOutInDetail(dt);
+            ExportPDCA.ExportOutInDetail(Initdt);
         }        
     }
 }
