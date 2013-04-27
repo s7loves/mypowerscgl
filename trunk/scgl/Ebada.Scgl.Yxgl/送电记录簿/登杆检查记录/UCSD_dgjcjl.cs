@@ -24,10 +24,8 @@ using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Yxgl
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    
+   
+    [ToolboxItem(false)]
     public partial class UCSD_dgjcjl : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<sdjls_dgjcjlnr> gridViewOperation;
