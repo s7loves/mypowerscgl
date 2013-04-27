@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 
 namespace Ebada.Scgl.Yxgl
 {
+    [ToolboxItem(false)]
     public partial class UCSD_dgjcM : DevExpress.XtraEditors.XtraUserControl
     {
         public UCSD_dgjcM()
