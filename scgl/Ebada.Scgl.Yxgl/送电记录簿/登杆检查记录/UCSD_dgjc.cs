@@ -24,10 +24,7 @@ using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Yxgl
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    
+    [ToolboxItem(false)]
     public partial class UCSD_dgjc : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<sdjls_dgjcjl> gridViewOperation;
@@ -119,11 +116,17 @@ namespace Ebada.Scgl.Yxgl
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
-        
+        /// <summary>
+        /// 导出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
-           
+            if (gridView1.GetFocusedRow() == null)
+                return;
+            sdjls_dgjcjl dgjcjl = gridView1.GetFocusedRow() as sdjls_dgjcjl;
+            IList<sdjls_dgjcjlnr> dgjcnrList=Client.ClientHelper.PlatformSqlMap.GetListByWhere<sdjls_dgjcjlnr>("where ParentID='"+dgjcjl.ID+"'");
         }
 
     }
