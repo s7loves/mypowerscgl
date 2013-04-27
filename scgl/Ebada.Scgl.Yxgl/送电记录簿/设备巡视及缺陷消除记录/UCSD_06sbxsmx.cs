@@ -128,6 +128,7 @@ namespace Ebada.Scgl.Yxgl
 
             hideColumn("OrgCode");
             hideColumn("LineID");
+            hideColumn("ParentID");
             hideColumn("gzrjID");
             hideColumn("c1");
             hideColumn("c2");
@@ -143,7 +144,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("tqname");
             hideColumn("kgname");
             hideColumn("gdstemp");
-
+            hideColumn("linetemp");
             hideColumn("othertemp");
             //hideColumn("xcqx");
         }
