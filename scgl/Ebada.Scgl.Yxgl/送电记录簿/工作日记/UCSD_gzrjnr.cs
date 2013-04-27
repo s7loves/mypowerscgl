@@ -102,8 +102,10 @@ namespace Ebada.Scgl.Yxgl {
 
             //需要隐藏列时在这写代码
 
-            //hideColumn("gzrjID");
-            //hideColumn("ParentID");
+            gridView1.Columns["seq"].VisibleIndex = 0;
+
+            hideColumn("gzrjID");
+            hideColumn("ParentID");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");

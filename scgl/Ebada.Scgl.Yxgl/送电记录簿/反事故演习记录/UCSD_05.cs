@@ -108,6 +108,11 @@ namespace Ebada.Scgl.Yxgl
         {
 
             //需要隐藏列时在这写代码
+            gridView1.Columns["kssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            gridView1.Columns["kssj"].DisplayFormat.FormatString = "HH:mm:ss";
+            gridView1.Columns["jssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            gridView1.Columns["jssj"].DisplayFormat.FormatString = "HH:mm:ss";
+
             hideColumn("OrgCode");
             hideColumn("OrgName");
             hideColumn("yxtmID");

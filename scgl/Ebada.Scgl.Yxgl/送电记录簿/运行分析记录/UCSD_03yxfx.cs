@@ -187,6 +187,12 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("qzrq");
             hideColumn("OrgCode");
             hideColumn("gznrID");
+            hideColumn("ID");
+            hideColumn("c1");
+            hideColumn("c2");
+            hideColumn("c3");
+            hideColumn("c4");
+            hideColumn("c5");
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             if (picview == null)
