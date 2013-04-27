@@ -96,11 +96,24 @@ namespace Ebada.Scgl.Yxgl {
 
             //gridView1.Columns[7].Visible = false;
             hideColumn("gzrjID");
+            hideColumn("CreateMan");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            hideColumn("xlid");
+            hideColumn("byqid");
+            hideColumn("tqid");
+            hideColumn("kgid");
+            hideColumn("xlname");
+            hideColumn("byqname");
+            hideColumn("tqname");
+            hideColumn("kgname");
+            hideColumn("gdstemp");
+            hideColumn("linetemp");
+            hideColumn("othertemp");
+            hideColumn("jckyID");
         }
         /// <summary>
         /// 刷新数据

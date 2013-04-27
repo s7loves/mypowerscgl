@@ -247,7 +247,6 @@
             this.dateEdit3.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit3.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit3.Properties.ShowWeekNumbers = true;
             this.dateEdit3.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
@@ -268,10 +267,9 @@
             this.dateEdit2.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEdit2.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-
             this.dateEdit2.Properties.ShowWeekNumbers = true;
             this.dateEdit2.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateEdit3.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit2.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
             this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dateEdit2.Size = new System.Drawing.Size(156, 21);
@@ -359,7 +357,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // frmsgzaycEdit
+            // frmSDsgzaycEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -367,7 +365,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmsgzaycEdit";
+            this.Name = "frmSDsgzaycEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "事故障碍异常记录";
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).EndInit();

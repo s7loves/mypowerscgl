@@ -153,6 +153,8 @@ namespace Ebada.Scgl.Yxgl {
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
+            newobj.tdsj = DateTime.Now;
+            newobj.sdsj = DateTime.Now;
 
 
         }

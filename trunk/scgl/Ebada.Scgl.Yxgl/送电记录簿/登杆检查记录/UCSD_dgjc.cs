@@ -127,6 +127,7 @@ namespace Ebada.Scgl.Yxgl
                 return;
             sdjls_dgjcjl dgjcjl = gridView1.GetFocusedRow() as sdjls_dgjcjl;
             IList<sdjls_dgjcjlnr> dgjcnrList=Client.ClientHelper.PlatformSqlMap.GetListByWhere<sdjls_dgjcjlnr>("where ParentID='"+dgjcjl.ID+"'");
+            Exportdgjcjl.ExportExcel(dgjcjl, dgjcnrList);
         }
 
     }

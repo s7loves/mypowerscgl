@@ -101,6 +101,7 @@ namespace Ebada.Scgl.Yxgl
             //gridView1.Columns[9].Visible = false;
             hideColumn("gzrjID");
             hideColumn("c1");
+            hideColumn("jdzzID");
             hideColumn("c2");
             hideColumn("c3");
             hideColumn("c4");

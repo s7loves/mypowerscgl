@@ -127,7 +127,7 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             //hideColumn("sbID");
-            //hideColumn("OrgID");
+            hideColumn("OrgID");
             //hideColumn("gzrjID");
             hideColumn("c1");
             hideColumn("c2");

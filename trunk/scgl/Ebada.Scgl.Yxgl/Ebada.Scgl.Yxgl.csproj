@@ -1832,6 +1832,7 @@
     <Compile Include="送电记录簿\电力设备产权、维护范围协议书\UCSD_23.Designer.cs">
       <DependentUpon>UCSD_23.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电记录簿\登杆检查记录\Exportdgjcjl.cs" />
     <Compile Include="送电记录簿\登杆检查记录\frm_Dgjc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2702,6 +2703,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\电容器试验记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\登杆检查记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\百安活动落实情况记录.xls">
