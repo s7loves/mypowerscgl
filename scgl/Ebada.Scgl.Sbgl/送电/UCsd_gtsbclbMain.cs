@@ -119,9 +119,9 @@ namespace Ebada.Scgl.Sbgl {
             hideColumn("bh");
             hideColumn("mc");
             hideColumn("xh");
-            hideColumn("S1");
-            hideColumn("S2");
-            hideColumn("S3");
+            //hideColumn("S1");
+            //hideColumn("S2");
+            //hideColumn("S3");
             
           
         }
