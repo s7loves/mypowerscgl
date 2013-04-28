@@ -43,13 +43,13 @@ namespace Ebada.Scgl.Sbgl {
             }
             int nlen = code.Length;
 
-            if (nlen <10) {
+            if (nlen !=10) {
                 flag = true;
             } 
 
             Label1:
             if (flag) {
-                MsgBox.ShowWarningMessageBox("代码只能输入数字,并且长度不能小于10");
+                MsgBox.ShowWarningMessageBox("代码只能输入数字,并且长度等于10");
                 return;
             }
             var obj = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='" + code + "'");
