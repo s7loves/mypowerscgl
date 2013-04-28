@@ -52,7 +52,7 @@ namespace Ebada.Scgl.Sbgl
             try {
                 gridView1.Columns["dxplfs"].VisibleIndex=-1;//导线排列方式
             } catch { }
-            btAddM2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btAddM2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         public UCsd_GT(sd_xl xl):this() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;

@@ -118,7 +118,7 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="nullTest"></param>
         /// <param name="cnStr"></param>
         /// <param name="post"></param>
-        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_sbcs> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<sd_sbcs> post) {
             comboBox.Properties.Columns.Clear();
             comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -129,7 +129,7 @@ namespace Ebada.Scgl.Sbgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-        public void SetComboBoxData(DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<PS_sbcs> post) {
+        public void SetComboBoxData(DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<sd_sbcs> post) {
             comboBox.Properties.Columns.Clear();
             //comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBox.Properties.DataSource = post;
@@ -236,7 +236,7 @@ namespace Ebada.Scgl.Sbgl
             if (comboBoxEdit3.Text == "")
             {
                 comboBoxEdit3.Properties.Items.Clear();
-                IList<PS_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>(" where mc='" + comboBoxEdit4.Text  + "' order by ID");
+                IList<sd_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetList<sd_sbcs>(" where mc='" + comboBoxEdit4.Text + "' order by ID");
                 for (int i = 0; i < list.Count; i++)
                 {
 
@@ -275,7 +275,7 @@ namespace Ebada.Scgl.Sbgl
             comboBoxEdit12.Properties.Items.AddRange(mclist);
 
             IList strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select  mc from PS_sbcs where len(bh)=5  order by mc"));
+            string.Format("select  mc from sd_sbcs where len(bh)=5  order by mc"));
             if (strlist.Count > 0)
                 repositoryItemComboBox1.Properties.Items.AddRange(strlist);
         }
@@ -304,13 +304,13 @@ namespace Ebada.Scgl.Sbgl
             DataRow dr = gridView1.GetFocusedDataRow(); 
             repositoryItemComboBox2.Properties.Items.Clear();
             dr["name"] = ((ComboBoxEdit)sender).EditValue;
-            object obj = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 bh from ps_sbcs where mc='" + dr["name"] + "' and len(bh)=5");
+            object obj = ClientHelper.PlatformSqlMap.GetObject("SelectOneStr", "select top 1 bh from sd_sbcs where mc='" + dr["name"] + "' and len(bh)=5");
             if (obj != null) {
                 dr["type"] = obj;
                 dr["code"] = obj;
                 dr["sbgg"] = "";
             }
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + ((ComboBoxEdit)sender).EditValue  + "' and xh is not null ");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from sd_sbcs where   mc='" + ((ComboBoxEdit)sender).EditValue + "' and xh is not null ");
             if (mclist.Count > 0)
                 repositoryItemComboBox2.Properties.Items.AddRange(mclist);
             else
@@ -329,7 +329,7 @@ namespace Ebada.Scgl.Sbgl
         {
             DataRow dr = gridView1.GetFocusedDataRow();
             dr["sbgg"] = ((ComboBoxEdit)sender).EditValue;
-            PS_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<PS_sbcs>(" where mc='" + dr["name"] + "' and xh='" + dr["sbgg"] + "'");
+            sd_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<sd_sbcs>(" where mc='" + dr["name"] + "' and xh='" + dr["sbgg"] + "'");
             if (sbcs != null)
             {
 
