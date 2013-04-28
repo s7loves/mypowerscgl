@@ -78,7 +78,7 @@ namespace Ebada.Scgl.Sbgl
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxEdit2.Properties.Items.Clear();
-            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from PS_sbcs where   mc='" + comboBoxEdit1.Text + "' and xh is not null ");
+            System.Collections.IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh  from sd_sbcs where   mc='" + comboBoxEdit1.Text + "' and xh is not null ");
             if (mclist.Count > 0)
                 comboBoxEdit2.Properties.Items.AddRange(mclist);
             else
@@ -88,9 +88,9 @@ namespace Ebada.Scgl.Sbgl
                     comboBoxEdit2.Properties.Items.AddRange(mclist);
                 else
                 {
-                    mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                "select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
-                    comboBoxEdit2.Properties.Items.AddRange(mclist);
+                //    mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                //"select distinct wpgg  from PJ_clcrkd where  wpmc='" + comboBoxEdit1.Text + "' and ssxm!='' ");
+                //    comboBoxEdit2.Properties.Items.AddRange(mclist);
                 }
             }
 
@@ -99,14 +99,14 @@ namespace Ebada.Scgl.Sbgl
         private void frmsd_gtsbclbclEdit_Load(object sender, EventArgs e)
         {
             IList  strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-            string.Format("select distinct mc from PS_sbcs"));
+            string.Format("select distinct mc from sd_sbcs"));
             if (strlist.Count > 0)
                 comboBoxEdit1.Properties.Items.AddRange(strlist);
         }
 
         private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PS_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<PS_sbcs>(" where mc='" + comboBoxEdit1.Text + "' and xh='" + comboBoxEdit2.Text + "'");
+            sd_sbcs sbcs = MainHelper.PlatformSqlMap.GetOne<sd_sbcs>(" where mc='" + comboBoxEdit1.Text + "' and xh='" + comboBoxEdit2.Text + "'");
             if (sbcs != null)
             {
                 rowData.bh = sbcs.bh + "001";
