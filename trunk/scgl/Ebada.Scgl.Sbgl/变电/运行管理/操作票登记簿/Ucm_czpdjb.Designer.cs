@@ -38,13 +38,13 @@
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefreshs = new DevExpress.XtraBars.BarButtonItem();
             this.btExports = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
-            this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -53,10 +53,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 21);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(564, 384);
+            this.gridControl1.Size = new System.Drawing.Size(564, 387);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -148,36 +148,7 @@
             this.btExports.ImageIndex = 7;
             this.btExports.Name = "btExports";
             this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(564, 24);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 408);
-            this.barDockControlBottom.Size = new System.Drawing.Size(564, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 384);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(564, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 384);
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Caption = "刷新";
-            this.btRefresh.Id = 3;
-            this.btRefresh.Name = "btRefresh";
+            this.btExports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExports_ItemClick);
             // 
             // btFind
             // 
@@ -194,6 +165,36 @@
             this.btClose.ImageIndex = 13;
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(564, 21);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 408);
+            this.barDockControlBottom.Size = new System.Drawing.Size(564, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 21);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 387);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(564, 21);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 387);
+            // 
+            // btRefresh
+            // 
+            this.btRefresh.Caption = "刷新";
+            this.btRefresh.Id = 3;
+            this.btRefresh.Name = "btRefresh";
             // 
             // Ucm_czpdjb
             // 

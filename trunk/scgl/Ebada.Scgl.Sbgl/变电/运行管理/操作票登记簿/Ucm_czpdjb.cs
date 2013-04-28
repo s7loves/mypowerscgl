@@ -134,5 +134,17 @@ namespace Ebada.Scgl.Sbgl
             RefreshGridData("");
         }
 
+        private void btExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IList<bdjl_czpdjb> jdbhList = new List<bdjl_czpdjb>();
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                var row = gridView1.GetRow(gridView1.GetVisibleRowHandle(i));
+                if (row is bdjl_czpdjb)
+                    jdbhList.Add(row as bdjl_czpdjb);
+            }
+            ExportBdjl.ExprotExcelCzpdjb(jdbhList);
+        }
+
     }
 }
