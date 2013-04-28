@@ -183,7 +183,22 @@ namespace Ebada.Scgl.Sbgl
         {
             if (parentID == null) return;
             newobj.gtID = parentID;
+            newobj.sbCode = getCode();
    
+        }
+
+        private string getCode() {
+            string code = "001";
+            if (gridView1.RowCount > 0) {
+                PS_gtsb sb = gridView1.GetRow(gridView1.RowCount - 1) as PS_gtsb;
+                if (sb != null) {
+                    int n = 0;
+                    if (int.TryParse(sb.sbCode, out n)) {
+                        code = (n + 1).ToString("000");
+                    } 
+                }
+            }
+            return code;
         }
         /// <summary>
         /// 父表ID
