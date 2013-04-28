@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Sbgl
 
             //需要隐藏列时在这写代码
             //hideColumn("ParentID");
-            //hideColumn("gzrjID");
+            hideColumn("sbID");
         }
         /// <summary>
         /// 刷新数据

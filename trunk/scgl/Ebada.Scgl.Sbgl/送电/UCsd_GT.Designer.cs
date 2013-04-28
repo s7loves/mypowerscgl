@@ -50,6 +50,7 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -81,8 +82,9 @@
             this.btXlList,
             this.btAddM,
             this.barSubItem1,
-            this.btAddM2});
-            this.barManager1.MaxItemId = 20;
+            this.btAddM2,
+            this.btAdd2});
+            this.barManager1.MaxItemId = 21;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
@@ -99,6 +101,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btGdsList, "", false, true, true, 98),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.btXlList, "", false, true, true, 99),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAdd2),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
@@ -163,14 +166,14 @@
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
-            this.barSubItem1.Name = "btAdd2";
+            this.barSubItem1.Name = "barSubItem1";
             // 
             // btAddM
             // 
             this.btAddM.Caption = "杆塔";
             this.btAddM.Id = 17;
             this.btAddM.ImageIndex = 8;
-            this.btAddM.Name = "btAdd21";
+            this.btAddM.Name = "btAddM";
             this.btAddM.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btAddM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM_ItemClick);
             // 
@@ -178,7 +181,7 @@
             // 
             this.btAddM2.Caption = "其它设备";
             this.btAddM2.Id = 19;
-            this.btAddM2.Name = "btAdd22";
+            this.btAddM2.Name = "btAddM2";
             this.btAddM2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM2_ItemClick);
             // 
             // btEdit
@@ -315,7 +318,16 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCPS_GT
+            // btAdd2
+            // 
+            this.btAdd2.Caption = "插杆";
+            this.btAdd2.Id = 20;
+            this.btAdd2.ImageIndex = 6;
+            this.btAdd2.Name = "btAdd2";
+            this.btAdd2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd2_ItemClick);
+            // 
+            // UCsd_GT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -324,7 +336,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPS_GT";
+            this.Name = "UCsd_GT";
             this.Size = new System.Drawing.Size(685, 377);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -362,5 +374,6 @@
         private DevExpress.XtraBars.BarButtonItem btAddM;
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem btAddM2;
+        private DevExpress.XtraBars.BarButtonItem btAdd2;
     }
 }

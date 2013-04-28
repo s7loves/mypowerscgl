@@ -224,6 +224,7 @@ namespace Ebada.Scgl.Sbgl
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
+        bool gtInsert = false;
         /// <summary>
         /// 新建对象设置Key值
         /// </summary>
@@ -233,7 +234,12 @@ namespace Ebada.Scgl.Sbgl
             if (parentID == null) return;
             newobj.LineCode = parentID;
 
-            newobj.gth = getGgh();
+            if (gtInsert) {
+                gtInsert = false;
+                newobj.gth = getInsertGh();
+            } else {
+                newobj.gth = getGgh();
+            }
             
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
             newobj.gtID = newobj.gtCode;
@@ -244,6 +250,26 @@ namespace Ebada.Scgl.Sbgl
             newobj.gtModle = "直线杆";
             newobj.gtType = "水泥杆";
             newobj.gtJg = "否";
+        }
+        private string getInsertGh() {
+            var row = gridView1.GetFocusedRow();
+            if (row == null) {
+                return getGgh();
+            }
+            sd_gt gt = row as sd_gt;
+            int index = gridView1.FocusedRowHandle;
+            int n1 = 0;
+            int n2 = int.Parse(gt.gth);
+
+            if (index > 0) {
+                n1 = int.Parse((gridView1.GetRow(index - 1) as sd_gt).gth);
+            }
+            int n3 = (n1 + n2) / 2;
+            if (n3 > n1 && n3 < n2) {
+                return n3.ToString("0000");
+            } else {
+                return getGgh();
+            }
         }
         /// <summary>
         /// 父表ID
@@ -373,6 +399,11 @@ namespace Ebada.Scgl.Sbgl
             frmsdgtsbEditM dlg = new frmsdgtsbEditM();
             dlg.SetGt(gridViewOperation.BindingList);
             dlg.ShowDialog(this);
+        }
+
+        private void btAdd2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            gtInsert = true;
+            btAdd.PerformClick();
         }
       
     }
