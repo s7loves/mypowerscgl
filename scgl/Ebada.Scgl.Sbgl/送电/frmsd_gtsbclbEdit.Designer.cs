@@ -62,7 +62,7 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(72, 14);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "台区材料类型";
+            this.labelControl1.Text = "杆塔材料类型";
             this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
             // 
             // labelControl2
