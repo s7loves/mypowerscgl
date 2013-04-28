@@ -1010,6 +1010,82 @@ namespace Ebada.Scgl.Sbgl
         }
 
         /// <summary>
+        /// 继电保护记录
+        /// </summary>
+        /// <param name="nrList">导出列表</param>
+        public static void ExprotExcelCzpdjb(IList<bdjl_czpdjb> nrList)
+        {
+            #region 继电保护记录
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\操作票登记簿.xls";
+            ex.Open(fname);
+            int row = 1;
+            //加页
+            int pageindex = 1;
+            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 17))
+            {
+                pageindex = Ecommonjh.GetPagecount(nrList.Count, 17);
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(1);
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+                mOrg org = Client.ClientHelper.PlatformSqlMap.GetOne<mOrg>("where orgcode='" + nrList[0].OrgCode + "'");
+                if (org != null)
+                {
+                    ex.SetCellValue(org.OrgName, 2, 4);
+                }
+            }
+
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(j);
+                //ex.ReNameWorkSheet(j, "Sheet" + (j));
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * 17 + 1;
+                int endrow = j * 17;
+
+                if (nrList.Count > endrow)
+                {
+                    for (int i = 0; i < 17; i++)
+                    {
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Year.ToString(),row+3+i,1);
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Month.ToString(), row + 3 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Day.ToString(),row + 3 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].czpsybh, row + 3 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].czr, row + 3 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].jhr, row + 3 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].zbr, row + 3 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].czrw, row + 3 + i, 8);
+                    }
+                }
+                else if (nrList.Count <= endrow && nrList.Count >= starow)
+                {
+                    for (int i = 0; i < nrList.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Year.ToString(), row + 3 + i, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Month.ToString(), row + 3 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].dDate.Day.ToString(), row + 3 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].czpsybh, row + 3 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].czr, row + 3 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].jhr, row + 3 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].zbr, row + 3 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].czrw, row + 3 + i, 8);
+                    }
+                }
+
+            }
+            ex.ActiveSheet(1);
+            ex.ShowExcel();
+            #endregion
+        }
+
+        /// <summary>
         /// 获得星期几
         /// </summary>
         /// <param name="dayweek">枚举英文</param>
