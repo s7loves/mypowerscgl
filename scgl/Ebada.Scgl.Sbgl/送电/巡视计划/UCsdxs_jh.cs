@@ -173,6 +173,7 @@ namespace Ebada.Scgl.Sbgl
         private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             sd_xsjh xsjh = new sd_xsjh();
+            xsjh.cjr = MainHelper.User.UserName;
             frmsdxs_jh frm = new frmsdxs_jh();
             frm.RowData = xsjh;
             if (frm.ShowDialog() == DialogResult.OK)
