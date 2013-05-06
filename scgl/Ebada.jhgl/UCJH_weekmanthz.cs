@@ -37,7 +37,41 @@ namespace Ebada.jhgl
         {
             
            IList<JH_weekmant> weekmantList=Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekmant>(where);
-           gridControl1.DataSource = weekmantList;
+
+           List<JH_weekmant> exportList = new List<JH_weekmant>();
+           List<string> weeknameList = new List<string>();
+           foreach (JH_weekmant weekmant in weekmantList)
+           {
+               if (!weeknameList.Contains(weekmant.姓名))
+               {
+                   weeknameList.Add(weekmant.姓名);
+               }
+           }
+           foreach (string name in weeknameList)
+           {
+               JH_weekmant newWeekMant = new JH_weekmant();
+               int score = 0;
+               string detail = "";
+               foreach (JH_weekmant weekmant in weekmantList)
+               {
+                   if (weekmant.姓名 == name)
+                   {
+                       detail = detail + weekmant.考核结果 + "|";
+                       score = score + GetScore(weekmant.考核结果);
+                       if (newWeekMant.单位名称 == "")
+                       {
+                           newWeekMant.单位名称 = weekmant.单位名称;
+                       }
+                   }
+               }
+               newWeekMant.考核结果 = detail;
+               newWeekMant.c3 = score.ToString();
+               newWeekMant.姓名 = name;
+               exportList.Add(newWeekMant);
+           }
+
+
+           gridControl1.DataSource = exportList;
         }
         
 
@@ -78,12 +112,13 @@ namespace Ebada.jhgl
             gridView1.Columns["单位代码"].Visible = false;
             gridView1.Columns["c1"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
-            gridView1.Columns["c3"].Visible = false;
             gridView1.Columns["年月周"].Visible = false;
             gridView1.Columns["开始日期"].Visible = false;
             gridView1.Columns["结束日期"].Visible = false;
             gridView1.Columns["月总分"].Visible = false;
             gridView1.Columns["年总分"].Visible = false;
+
+            gridView1.Columns["c3"].Caption = "总分";
         }
 
         /// <summary>
@@ -249,37 +284,42 @@ namespace Ebada.jhgl
             }
             string title = "";
             List<JH_weekmant> weekmantList = (List<JH_weekmant>)gridControl1.DataSource;
-            List<JH_weekmant> exportList = new List<JH_weekmant>();
-            List<string> weeknameList = new List<string>();
-            foreach (JH_weekmant weekmant in weekmantList)
-            {
-                if (!weeknameList.Contains(weekmant.姓名))
-                {
-                    weeknameList.Add(weekmant.姓名);
-                }
-            }
-            foreach (string name in weeknameList)
-            {
-                JH_weekmant newWeekMant = new JH_weekmant();
-                int score = 0;
-                string detail = "";
-                foreach (JH_weekmant weekmant in weekmantList)
-                {
-                    if (weekmant.姓名 == name)
-                    {
-                        detail = detail + weekmant.考核结果+"|";
-                        score = score + GetScore(weekmant.考核结果);
-                        if (newWeekMant.单位名称 == "")
-                        {
-                            newWeekMant.单位名称 = weekmant.单位名称;
-                        }
-                    }
-                }
-                newWeekMant.考核结果 = detail;
-                newWeekMant.c3 = score.ToString();
-                newWeekMant.姓名 = name;
-                exportList.Add(newWeekMant);
-            }
+
+            #region 注释的代码
+
+            //List<JH_weekmant> exportList = new List<JH_weekmant>();
+            //List<string> weeknameList = new List<string>();
+            //foreach (JH_weekmant weekmant in weekmantList)
+            //{
+            //    if (!weeknameList.Contains(weekmant.姓名))
+            //    {
+            //        weeknameList.Add(weekmant.姓名);
+            //    }
+            //}
+            //foreach (string name in weeknameList)
+            //{
+            //    JH_weekmant newWeekMant = new JH_weekmant();
+            //    int score = 0;
+            //    string detail = "";
+            //    foreach (JH_weekmant weekmant in weekmantList)
+            //    {
+            //        if (weekmant.姓名 == name)
+            //        {
+            //            detail = detail + weekmant.考核结果 + "|";
+            //            score = score + GetScore(weekmant.考核结果);
+            //            if (newWeekMant.单位名称 == "")
+            //            {
+            //                newWeekMant.单位名称 = weekmant.单位名称;
+            //            }
+            //        }
+            //    }
+            //    newWeekMant.考核结果 = detail;
+            //    newWeekMant.c3 = score.ToString();
+            //    newWeekMant.姓名 = name;
+            //    exportList.Add(newWeekMant);
+            //}
+            #endregion
+            
 
             //"员工工作写实年终总分"
             title = barEditItem1.EditValue.ToString() + "年";
@@ -292,7 +332,7 @@ namespace Ebada.jhgl
                 title = title + barEditItem3.EditValue.ToString();
             }
             title = title + "员工工作写实总分";
-            ExportPDCA.ExportExcelMantthz(title, exportList);
+            ExportPDCA.ExportExcelMantthz(title, weekmantList);
 
         }
 
