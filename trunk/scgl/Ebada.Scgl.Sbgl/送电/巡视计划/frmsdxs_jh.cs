@@ -77,6 +77,8 @@ namespace Ebada.Scgl.Sbgl
             flagDictypeList.Add(new DicType("完成", "完成"));
             SetComboBoxData(lkueflag, "Value", "Key", "请选择", "任务状态", flagDictypeList);
 
+            
+
         }
         public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
         {
@@ -98,16 +100,17 @@ namespace Ebada.Scgl.Sbgl
             this.txtVol.DataBindings.Add("EditValue", rowData, "vol");
             this.txtxslb.DataBindings.Add("EditValue", rowData, "xslb");
             this.txtxsnr.DataBindings.Add("EditValue", rowData, "xsnr");
-            this.txtsxr.DataBindings.Add("EditValue", rowData, "sxr");
             this.datejhsj.DataBindings.Add("EditValue", rowData, "jhsj");
             this.datexskssj.DataBindings.Add("EditValue", rowData, "xskssj");
             this.datexswcsj.DataBindings.Add("EditValue", rowData, "xswcsj");
             this.lkuewcbj.DataBindings.Add("EditValue", rowData, "wcbj");
             this.memoqxnr.DataBindings.Add("EditValue", rowData, "qxnr");
             this.lkueflag.DataBindings.Add("EditValue", rowData, "flag");
-            this.txtcjr.DataBindings.Add("EditValue", rowData, "cjr");
+            //this.txtcjr.DataBindings.Add("EditValue", rowData, "cjr");
             this.txtfbr.DataBindings.Add("EditValue", rowData, "fbr");
             this.datefbsj.DataBindings.Add("EditValue", rowData, "fbsj");
+            try { this.txtsxr.DataBindings.Add("EditValue", rowData, "sxr"); } catch { }
+
             if (!isupdate)
             {
                 this.datejhsj.EditValue = DateTime.Now;
@@ -127,6 +130,7 @@ namespace Ebada.Scgl.Sbgl
         {
             
         }
+
         /// <summary>
         /// 单位变化
         /// </summary>
@@ -140,10 +144,19 @@ namespace Ebada.Scgl.Sbgl
             List<DicType> xlDictypeList = new List<DicType>();
             foreach (sd_xl xl in xlList)
             {
-                xlDictypeList.Add(new DicType(xl.LineCode, xl.LineName));
+                dydjdic.Add(xl.LineID, xl.LineVol);
+                xlDictypeList.Add(new DicType(xl.LineID, xl.LineName));
             }
             SetComboBoxData(lkueLine, "Value", "Key", "请选择", "线路", xlDictypeList);
+            txtsxr.Properties.Items.Clear();
+            ICollection ic = Ebada.Scgl.Core.ComboBoxHelper.GetGdsRy(lkueOrg.EditValue.ToString());
+            string xsr = rowData.sxr;
+            foreach (string sr in ic) {
+                txtsxr.Properties.Items.Add(sr, CheckState.Unchecked, true);
+            }
+            txtsxr.EditValue = xsr;
         }
+        private Dictionary<string, string> dydjdic = new Dictionary<string, string>();
         /// <summary>
         /// 线路变化
         /// </summary>
@@ -154,6 +167,7 @@ namespace Ebada.Scgl.Sbgl
             if (this.lkueLine.EditValue == null)
                 return;
             rowData.LineName = lkueLine.Text;
+            try { rowData.vol = txtVol.Text = dydjdic[lkueLine.EditValue.ToString()]; } catch { }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -170,7 +184,6 @@ namespace Ebada.Scgl.Sbgl
         private void frmsdxs_jh_FormClosing(object sender, FormClosingEventArgs e)
         {
             rowData.LineName = lkueLine.Text;
-            this.DialogResult = DialogResult.Cancel;
         }
 
        
