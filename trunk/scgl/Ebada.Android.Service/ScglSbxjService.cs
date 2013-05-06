@@ -254,7 +254,7 @@ namespace Ebada.Android.Service {
        
         public string GetPlanList(string username) {
             List<sbxj_jh> jhlist = new List<sbxj_jh>();
-            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>("where sxr like '%"+username+"%' and wcbj=''");
+            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>("where sxr like '%"+username+"%' and wcbj<>'完成'");
             foreach (var jh in list1) {
 
 
@@ -276,6 +276,7 @@ namespace Ebada.Android.Service {
                     xmlist = getxmlist(jh.ID)
                 });
             }
+            Console.WriteLine(string.Format("{0},调用方法:{1}({2})",DateTime.Now.ToString(),"GetPlanList",username));
             return Newtonsoft.Json.JsonConvert.SerializeObject(jhlist);
         }
         List<sbxj_rw> getrwlist(string pid) {
@@ -302,7 +303,23 @@ namespace Ebada.Android.Service {
         public string UpdatePlanList(string data) {
 
              IList<sbxj_jh> list= Newtonsoft.Json.JsonConvert.DeserializeObject<List<sbxj_jh>>(data);
+             List<sd_xsjh> list2 = new List<sd_xsjh>();
              Console.Write(data);
+             foreach (sbxj_jh jh in list) {
+                 sd_xsjh sjh = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_xsjh>(jh.id);
+                 if (sjh != null) {
+                     sjh.xskssj = jh.kssj;
+                     sjh.xswcsj = jh.wcsj;
+                     sjh.qxnr = jh.qxnr;
+                     sjh.wcbj = jh.wcbj;
+                     list2.Add(sjh);
+                 }
+
+             }
+             if (list2.Count > 0) {
+                 Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list2.ToArray(), null);
+                 Console.WriteLine(string.Format("{0},调用方法:{1},共更新{2}条计划。", DateTime.Now.ToString(), "UpdatePlanList", list2.Count));
+             }
             return "ok";
         }
         #endregion
