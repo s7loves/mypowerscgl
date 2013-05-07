@@ -1218,6 +1218,14 @@
       <DependentUpon>UCSD_04sgzayc.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\事故备品备件清册\frmSDSgbpEdit.resx">
+      <DependentUpon>frmSDSgbpEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\事故备品备件清册\UCSD_sgbp.resx">
+      <DependentUpon>UCSD_sgbp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\交叉跨越及对地距离测量记录\frmSDjckyEdit.resx">
       <DependentUpon>frmSDjckyEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1636,6 +1644,19 @@
     </Compile>
     <Compile Include="送电记录簿\事故、障碍、异常运行记录\UCSD_04sgzayc.Designer.cs">
       <DependentUpon>UCSD_04sgzayc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\事故备品备件清册\ExportSDsgbp.cs" />
+    <Compile Include="送电记录簿\事故备品备件清册\frmSDSgbpEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\事故备品备件清册\frmSDSgbpEdit.Designer.cs">
+      <DependentUpon>frmSDSgbpEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\事故备品备件清册\UCSD_sgbp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\事故备品备件清册\UCSD_sgbp.Designer.cs">
+      <DependentUpon>UCSD_sgbp.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\交叉跨越及对地距离测量记录\ExportSD05.cs" />
     <Compile Include="送电记录簿\交叉跨越及对地距离测量记录\frmSDjckyEdit.cs">
@@ -2595,6 +2616,9 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\送电15事故备品备件清册.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\事故抢修调度通知.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2644,10 +2668,10 @@
     <Content Include="00记录模板\送电07接地装置检测记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电14电力安全工具试验记录.xls">
+    <Content Include="00记录模板\送电13电力安全工具试验记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电15工具仪表台账.xls">
+    <Content Include="00记录模板\送电14工具仪表台账.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\电力设备产权、维护范围协议书.xls">

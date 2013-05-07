@@ -20,7 +20,7 @@ namespace Ebada.Scgl.Yxgl {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\送电14电力安全工具试验记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电13电力安全工具试验记录.xls";
 
             ex.Open(fname);
             //计算页码
