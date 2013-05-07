@@ -1288,6 +1288,13 @@
     <EmbeddedResource Include="送电记录簿\导地线连接器检测记录\UCSD_ddxljqM.resx">
       <DependentUpon>UCSD_ddxljqM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\导地线驰度测量记录\frm_ddxcd.resx">
+      <DependentUpon>frm_ddxcd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\导地线驰度测量记录\UCSD_ddxcd.resx">
+      <DependentUpon>UCSD_ddxcd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\工作日记\frmSDgzrjEdit.resx">
       <DependentUpon>frmSDgzrjEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1748,6 +1755,19 @@
     </Compile>
     <Compile Include="送电记录簿\导地线连接器检测记录\UCSD_ddxljqM.Designer.cs">
       <DependentUpon>UCSD_ddxljqM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\导地线驰度测量记录\ExportDdcd.cs" />
+    <Compile Include="送电记录簿\导地线驰度测量记录\frm_ddxcd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\导地线驰度测量记录\frm_ddxcd.Designer.cs">
+      <DependentUpon>frm_ddxcd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\导地线驰度测量记录\UCSD_ddxcd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\导地线驰度测量记录\UCSD_ddxcd.Designer.cs">
+      <DependentUpon>UCSD_ddxcd.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\工作日记\ExportSD01.cs" />
     <Compile Include="送电记录簿\工作日记\frmSDgzrjEdit.cs">
@@ -2697,6 +2717,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\实现工作目标采取的措施.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\送电12导%28地%29线驰度测量记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\局安全工器具入库单.xls">
