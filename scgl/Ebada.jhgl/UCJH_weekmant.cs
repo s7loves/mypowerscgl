@@ -372,7 +372,7 @@ namespace Ebada.jhgl {
         {
             if (ucjh_year.ParentObj == null) return;
             IList<JH_weekman> list1 = ChildView.BindingList;
-            ExportPDCA.ExportExcelWeekMan(ucjh_year.ParentObj, list1);
+            ExportPDCA.ExportExcelWeekMan1(ucjh_year.ParentObj, list1);
         }
 
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
