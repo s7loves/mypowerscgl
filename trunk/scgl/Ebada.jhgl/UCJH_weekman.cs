@@ -312,6 +312,11 @@ namespace Ebada.jhgl {
             IList<JH_weekman> list1 = gridView1.DataSource as IList<JH_weekman>;
             ExportPDCA.ExportExcelWeekMan(ParentObj, list1);
         }
+        /// <summary>
+        /// 导出周计划
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btExport1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (ParentObj == null) return;

@@ -25,7 +25,7 @@ namespace Ebada.jhgl
         {
             InitializeComponent();
         }
-
+        private bool isYear;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -88,7 +88,7 @@ namespace Ebada.jhgl
         /// <returns></returns>
         public Control showM()
         {
-           
+            isYear = false;
             return this;
         }
 
@@ -98,6 +98,7 @@ namespace Ebada.jhgl
         /// <returns></returns>
         public Control showY()
         {
+            isYear = true;
             this.barEditItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barStaticItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             return this;
@@ -323,16 +324,25 @@ namespace Ebada.jhgl
 
             //"员工工作写实年终总分"
             title = barEditItem1.EditValue.ToString() + "年";
-            if (barEditItem2.EditValue != null)
+            //if (barEditItem2.EditValue != null)
+            //{
+            //    title = title + barEditItem2.EditValue.ToString() + "月";
+            //}
+            //if (barEditItem3.EditValue != null)
+            //{
+            //    title = title + barEditItem3.EditValue.ToString();
+            //}
+            if (!isYear)
             {
-                title = title + barEditItem2.EditValue.ToString() + "月";
+                title = title + "员工总分汇总表(月)";
+                ExportPDCA.ExportExcelMantthMonth(title, weekmantList);
             }
-            if (barEditItem3.EditValue != null)
+            else
             {
-                title = title + barEditItem3.EditValue.ToString();
+                title = title + "员工总分汇总表(年)";
+                ExportPDCA.ExportExcelMantthYear(title, weekmantList); 
             }
-            title = title + "员工工作写实总分";
-            ExportPDCA.ExportExcelMantthz(title, weekmantList);
+            
 
         }
 
