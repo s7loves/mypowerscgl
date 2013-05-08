@@ -349,7 +349,7 @@ namespace Ebada.jhgl {
                 {
                     if ((bool)dt.Rows[i]["IsSelect"] == true)
                     {
-                        IList<JH_weekman> weekmanList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>("where c5='" + dt.Rows[i]["ID"] + "'");
+                        IList<JH_weekman> weekmanList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<JH_weekman>("where c5='" + dt.Rows[i]["ID"] + "' and parentid='"+ParentID+"'");
                         if (weekmanList.Count==0)
                         {
                             //newobj.预计时间 = parentObj.开始日期;
