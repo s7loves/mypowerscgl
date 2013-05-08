@@ -61,6 +61,7 @@ namespace Ebada.Scgl.Yxgl
         {
             this.cmbgh.DataBindings.Add("EditValue", rowData, "gh");
             this.cmbxh.DataBindings.Add("EditValue", rowData, "xh");
+            this.spewd.DataBindings.Add("EditValue", rowData, "wd");
             this.spebmj.DataBindings.Add("EditValue", rowData, "bmj");
             this.memowz.DataBindings.Add("EditValue", rowData, "wz");
             this.spedzhyl.DataBindings.Add("EditValue", rowData, "dzhyl");

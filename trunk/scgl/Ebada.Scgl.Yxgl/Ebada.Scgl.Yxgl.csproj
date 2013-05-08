@@ -1966,6 +1966,7 @@
     <Compile Include="送电记录簿\登杆检查记录\frm_Dgjcjl.Designer.cs">
       <DependentUpon>frm_Dgjcjl.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电记录簿\绝缘子含盐测量记录\ExportSDJyzylcl.cs" />
     <Compile Include="送电记录簿\绝缘子含盐测量记录\frm_jyzylcl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2635,6 +2636,9 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\送电19线路绝缘子等值含盐量测量记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\送电15事故备品备件清册.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
