@@ -1415,6 +1415,23 @@
       <DependentUpon>UCSD_jyzylcl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_xlwhdd.resx">
+      <DependentUpon>frm_xlwhdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\线路污秽地段记录\UCSD_xlwhdd.resx">
+      <DependentUpon>UCSD_xlwhdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\线路污秽地段记录\UCSD_whdd.resx">
+      <DependentUpon>UCSD_whdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_whdd.resx">
+      <DependentUpon>frm_whdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_WhddSelect.resx">
+      <DependentUpon>frm_WhddSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\绝缘子测试记录\frm_jyzjcjl.resx">
       <DependentUpon>frm_jyzjcjl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1978,6 +1995,37 @@
     </Compile>
     <Compile Include="送电记录簿\绝缘子含盐测量记录\UCSD_jyzylcl.Designer.cs">
       <DependentUpon>UCSD_jyzylcl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\ExportSDxlwh.cs" />
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_xlwhdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_xlwhdd.Designer.cs">
+      <DependentUpon>frm_xlwhdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\UCSD_xlwhdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\UCSD_xlwhdd.Designer.cs">
+      <DependentUpon>UCSD_xlwhdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\UCSD_whdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\UCSD_whdd.Designer.cs">
+      <DependentUpon>UCSD_whdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_whdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_whdd.Designer.cs">
+      <DependentUpon>frm_whdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_WhddSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\线路污秽地段记录\frm_WhddSelect.Designer.cs">
+      <DependentUpon>frm_WhddSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="送电记录簿\绝缘子测试记录\Exportjyzcsjl.cs" />
     <Compile Include="送电记录簿\绝缘子测试记录\frm_jyzjcjl.cs">
@@ -2636,6 +2684,9 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\送电20线路污秽地段记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\送电19线路绝缘子等值含盐量测量记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
