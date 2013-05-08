@@ -244,6 +244,8 @@ namespace Ebada.Scgl.Sbgl
             newobj.tqID = parentID;
             newobj.byqCode =  getcode();
             newobj.byqID = newobj.byqCode + new Random().Next(10, 99);
+            newobj.isCount = "否";
+            newobj.jlType = "否";
         }
         string getcode() {
             string code = "";

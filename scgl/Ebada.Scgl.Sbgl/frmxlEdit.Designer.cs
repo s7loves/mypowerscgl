@@ -866,6 +866,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit19.Properties.Items.AddRange(new object[] {
             "三相四线",
+            "三相三线",
             "三相二线"});
             this.comboBoxEdit19.Size = new System.Drawing.Size(198, 21);
             this.comboBoxEdit19.TabIndex = 17;
