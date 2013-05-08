@@ -133,9 +133,10 @@ namespace Ebada.Scgl.Yxgl {
             //hideColumn("qzrq");
 
             hideColumn("LineName");
-            hideColumn("LineID");
+            hideColumn("LineCode");
             hideColumn("OrgCode");
             hideColumn("OrgName");
+            hideColumn("hdwhdj");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
@@ -215,7 +216,7 @@ namespace Ebada.Scgl.Yxgl {
                         jyzList.Add(row as sdjls_jyzylcl);
                     }
                 }
-                //Exportjyzcsjl.ExportExcel(jyzList);
+                ExportSDJyzylcl.ExportExcel(jyzList);
             }
         }
     }
