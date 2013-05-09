@@ -17,7 +17,7 @@ namespace Ebada.Scgl.Model
     ///对应表名:sdjl_17
     /// </summary>
     [Serializable]
-    public class sdjl_17
+    public class sdjl_21
     {
         
         #region Private 成员
