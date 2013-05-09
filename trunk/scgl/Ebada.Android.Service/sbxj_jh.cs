@@ -23,11 +23,11 @@ namespace Ebada.Android.Service {
         [DataMember]
         public string xsr;//巡视人
         [DataMember]
-        public DateTime jhsj;//计划时间
+        public string jhsj;//计划时间
         [DataMember]
-        public DateTime kssj;//开始时间
+        public string kssj;//开始时间
         [DataMember]
-        public DateTime wcsj;//完成时间
+        public string wcsj;//完成时间
         [DataMember]
         public string wcbj;//是否完成
         [DataMember]
