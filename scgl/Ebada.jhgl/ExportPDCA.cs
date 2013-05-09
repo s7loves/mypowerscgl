@@ -676,7 +676,8 @@ namespace Ebada.jhgl
                ex.SetCellValue(nrList[i].工作内容, 5 + i, 3);
                ex.SetCellValue(nrList[i].协作人员, 5 + i, 4);
                ex.SetCellValue(nrList[i].完成标记, 5 + i, 5);
-               ex.SetCellValue(nrList[i].完成时间.ToString(), 5 + i, 6);
+               if (nrList[i].完成时间.Year > Convert.ToDateTime("2000-10-10").Year)
+                   ex.SetCellValue(nrList[i].完成时间.ToShortDateString(), 5 + i, 6);
                ex.SetCellValue(nrList[i].未完成原因, 5 + i, 7);
                ex.SetCellValue(nrList[i].总结提升, 5 + i, 8);
 
