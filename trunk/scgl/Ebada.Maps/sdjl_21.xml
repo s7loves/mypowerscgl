@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="sdjl_17" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="sdjl_21" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="sdjl_17"  type="Ebada.Scgl.Model.sdjl_17,Ebada.Scgl.Model" />
+  <typeAlias alias="sdjl_21"  type="Ebada.Scgl.Model.sdjl_21,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="sdjl_17_AllColumns" class="sdjl_17">
+      <resultMap id="sdjl_21_AllColumns" class="sdjl_21">
         <result property="ID" column="ID" />
         <result property="ParentID" column="ParentID" />
         <result property="OrgCode" column="OrgCode" />
@@ -25,7 +25,7 @@
   </resultMaps>
 
   <statements>
-   <select id="Selectsdjl_17List" resultMap="sdjl_17_AllColumns" parameterClass="string">
+   <select id="Selectsdjl_21List" resultMap="sdjl_21_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [ParentID],
@@ -43,11 +43,11 @@
          [c3],
          [c4],
          [c5]
-          FROM sdjl_17
+          FROM sdjl_21
           $value$
    </select>
    
-   <select id="Selectsdjl_17ByHash" parameterClass="Hashtable">
+   <select id="Selectsdjl_21ByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
          [ParentID],
@@ -65,7 +65,7 @@
          [c3],
          [c4],
          [c5]
-          FROM sdjl_17
+          FROM sdjl_21
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
@@ -85,7 +85,7 @@
        <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
      </dynamic>
    </select>
-   <select id="Selectsdjl_17ByKey" resultMap="sdjl_17_AllColumns" parameterClass="sdjl_17">
+   <select id="Selectsdjl_21ByKey" resultMap="sdjl_21_AllColumns" parameterClass="sdjl_21">
          SELECT 
          [ID],
          [ParentID],
@@ -103,34 +103,34 @@
          [c3],
          [c4],
          [c5]
-         FROM sdjl_17
+         FROM sdjl_21
          WHERE 
            ID = #ID#
 
    </select>
  
-   <delete id="Deletesdjl_17" parameterClass="sdjl_17">
+   <delete id="Deletesdjl_21" parameterClass="sdjl_21">
         DELETE FROM 
-         sdjl_17
+         sdjl_21
            WHERE
          ID = #ID#
 
    </delete>
    
-   <delete id="Deletesdjl_17ByWhere" parameterClass="string">
-     delete from sdjl_17 $value$
+   <delete id="Deletesdjl_21ByWhere" parameterClass="string">
+     delete from sdjl_21 $value$
    </delete>
    
-   <delete id="Deletesdjl_17ByKey" parameterClass="string">
+   <delete id="Deletesdjl_21ByKey" parameterClass="string">
         DELETE FROM 
-         sdjl_17
+         sdjl_21
            WHERE
          ID = #ID#
     
    </delete>
    
-   <update id="Updatesdjl_17" parameterClass="sdjl_17" resultClass="int">
-          UPDATE sdjl_17
+   <update id="Updatesdjl_21" parameterClass="sdjl_21" resultClass="int">
+          UPDATE sdjl_21
            SET
              [ParentID]=#ParentID#,
              [OrgCode]=#OrgCode#,
@@ -152,8 +152,8 @@
 
    </update>
   
-   <insert id="Insertsdjl_17" parameterClass="sdjl_17">
-        INSERT INTO sdjl_17
+   <insert id="Insertsdjl_21" parameterClass="sdjl_21">
+        INSERT INTO sdjl_21
          (
          [ID],
          [ParentID],
@@ -194,9 +194,9 @@
 
    </insert>
    
-   <select id="Getsdjl_17RowCountByHash" parameterClass="Hashtable">
+   <select id="Getsdjl_21RowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM sdjl_17
+          FROM sdjl_21
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
@@ -218,8 +218,8 @@
 
    </select>
    
-   <select id="Getsdjl_17RowCount" parameterClass="string">
-    select count(*) from sdjl_17 $value$
+   <select id="Getsdjl_21RowCount" parameterClass="string">
+    select count(*) from sdjl_21 $value$
    </select>
   </statements>
 </sqlMap>
