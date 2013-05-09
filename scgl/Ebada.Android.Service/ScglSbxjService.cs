@@ -261,11 +261,11 @@ namespace Ebada.Android.Service {
                 jhlist.Add(new sbxj_jh() {
                     id = jh.ID, LineName = jh.LineName, xslb = jh.xslb, xsnr = jh.xsnr, wcbj = jh.wcbj, vol = jh.vol
                         ,
-                    jhsj = jh.jhsj
+                    jhsj = jh.jhsj.ToString("yyyy-MM-dd HH:mm:ss")
                         ,
-                    wcsj = jh.xswcsj
+                    wcsj = jh.xswcsj.ToString("yyyy-MM-dd HH:mm:ss")
                         ,
-                    kssj = jh.xskssj
+                    kssj = jh.xskssj.ToString("yyyy-MM-dd HH:mm:ss")
                     ,
                     qxnr = jh.qxnr
                     ,
@@ -299,17 +299,26 @@ namespace Ebada.Android.Service {
             }
             return rwlist;
         }
-        
+        public string UpdatePlanListstr(string data) {
+            Console.WriteLine(data);
+            return null;
+        }
         public string UpdatePlanList(string data) {
-
-             IList<sbxj_jh> list= Newtonsoft.Json.JsonConvert.DeserializeObject<List<sbxj_jh>>(data);
+            Console.WriteLine(data);
+            IList<sbxj_jh> list = new List<sbxj_jh>();
+            try {
+                list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<sbxj_jh>>(data);
+            } catch(Exception er) {
+                Console.WriteLine(er.Message);
+                return "json数据有问题："+er.Message;
+            }
              List<sd_xsjh> list2 = new List<sd_xsjh>();
              Console.Write(data);
              foreach (sbxj_jh jh in list) {
                  sd_xsjh sjh = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_xsjh>(jh.id);
                  if (sjh != null) {
-                     sjh.xskssj = jh.kssj;
-                     sjh.xswcsj = jh.wcsj;
+                     sjh.xskssj = DateTime.Parse(jh.kssj);
+                     sjh.xswcsj = DateTime.Parse(jh.wcsj);
                      sjh.qxnr = jh.qxnr;
                      sjh.wcbj = jh.wcbj;
                      list2.Add(sjh);

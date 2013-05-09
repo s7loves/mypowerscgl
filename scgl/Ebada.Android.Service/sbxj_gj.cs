@@ -15,7 +15,7 @@ namespace Ebada.Android.Service {
         [DataMember]
         public double wd;//纬度
         [DataMember]
-        public DateTime dt;//记录时间
+        public string dt;//记录时间
         
     }
 }
