@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DataConvert.cs" />
     <Compile Include="Ecommonjh.cs" />
     <Compile Include="ExportPDCA.cs" />
     <Compile Include="frmJH_weekmanEdit.cs">

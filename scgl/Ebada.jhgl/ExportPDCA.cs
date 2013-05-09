@@ -145,7 +145,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].考核时间).Year.ToString(), row + 2 + i, 2);
                        ex.SetCellValue(nrList[starow - 1 + i].姓名, row + 2 + i, 3);
                        ex.SetCellValue(nrList[starow - 1 + i].职务, row + 2 + i, 4);
-                       ex.SetCellValue(nrList[starow - 1 + i].考核结果 + "总分" + nrList[starow - 1 + i].c3, row + 2 + i, 5);
+                       ex.SetCellValue("总分" + nrList[starow - 1 + i].c3, row + 2 + i, 5);
                        ex.SetCellValue(nrList[starow - 1 + i].考核人, row + 2 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].考核时间, row + 2 + i, 7);
                    }
@@ -162,7 +162,7 @@ namespace Ebada.jhgl
                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].考核时间).Year.ToString(), row + 2 + i, 2);
                        ex.SetCellValue(nrList[starow - 1 + i].姓名, row + 2 + i, 3);
                        ex.SetCellValue(nrList[starow - 1 + i].职务, row + 2 + i, 4);
-                       ex.SetCellValue(nrList[starow - 1 + i].考核结果 + "总分" + nrList[starow - 1 + i].c3, row + 2 + i, 5);
+                       ex.SetCellValue("总分" + nrList[starow - 1 + i].c3, row + 2 + i, 5);
                        ex.SetCellValue(nrList[starow - 1 + i].考核人, row + 2 + i, 6);
                        ex.SetCellValue(nrList[starow - 1 + i].考核时间, row + 2 + i, 7);
                    }
