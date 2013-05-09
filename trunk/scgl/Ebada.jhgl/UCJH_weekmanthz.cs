@@ -151,7 +151,9 @@ namespace Ebada.jhgl
         /// <param name="e"></param>
         private void barEditItem1_EditValueChanged(object sender, EventArgs e)
         {
-            RefershData();
+            if (isYear||barEditItem2.EditValue!=null)
+                RefershData();
+            
         }
         /// <summary>
         /// 刷新数据
