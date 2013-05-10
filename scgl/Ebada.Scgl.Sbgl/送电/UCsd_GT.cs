@@ -89,7 +89,7 @@ namespace Ebada.Scgl.Sbgl
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sd_gt> e) {
             e.Cancel = true;
             try {
-                frmgtEdit frm = gridViewOperation.EditForm as frmgtEdit;
+                frmsdgtEdit frm = gridViewOperation.EditForm as frmsdgtEdit;
                 PS_Image image = null;
                 if (frm.GetImage() != null) {
                     image = new PS_Image();
@@ -204,8 +204,9 @@ namespace Ebada.Scgl.Sbgl
         {
 
             //需要隐藏列时在这写代码
-            //hideColumn("ParentID");
-            //hideColumn("gzrjID");
+            gridView1.Columns["c1"].VisibleIndex = 2;
+            gridView1.Columns["gth"].Caption = "序号";
+            gridView1.SortInfo.Add(gridView1.Columns["gth"], DevExpress.Data.ColumnSortOrder.Ascending);
         }
         /// <summary>
         /// 刷新数据
@@ -243,6 +244,7 @@ namespace Ebada.Scgl.Sbgl
             
             newobj.gtCode = ParentObj.LineCode + newobj.gth;
             newobj.gtID = newobj.gtCode;
+            newobj.c1 = newobj.gth;
             newobj.gtID += mRandom.Next(10, 99);
             newobj.gtSpan = 50;
             newobj.gtMs = 1.7m;
