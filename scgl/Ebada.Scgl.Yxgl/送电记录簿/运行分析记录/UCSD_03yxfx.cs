@@ -281,6 +281,7 @@ namespace Ebada.Scgl.Yxgl
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             newobj.rq = DateTime.Now;
+            newobj.qzrq = DateTime.Now;
         }
         /// <summary>
         /// 父表ID
