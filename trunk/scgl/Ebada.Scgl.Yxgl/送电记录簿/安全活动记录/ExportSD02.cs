@@ -39,30 +39,18 @@ namespace Ebada.Scgl.Yxgl {
 
             string hdstr =Ecommon.Comparestring(obj.hdnr,"活动内容")?"" :"活动内容：";
             List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 8);
-            //if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
-            //{
-            //    pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
-            //}
+           
             //活动小结
             string hdxjstr = Ecommon.Comparestring(obj.hdxj,"活动小结")?"":"活动小结：";
             List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 5);
-            //if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
-            //{
-            //    pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
-            //}
+            
             //发言简要记录
             //领导评语
             string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
             List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
-            //if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count,15) > pagecount)
-            //{
-            //    pagecount = Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15);
-            //}
+            
             List<string> fyjyjllist = Ecommon.ResultStrListByPage("", obj.fyjyjl, zc, 21);
-            //if (Ecommon.GetPagecount(fyjyjllist.Count,21)>pagecount)
-            //{
-            //    pagecount = Ecommon.GetPagecount(fyjyjllist.Count, 21);
-            //}
+            
            
             //复制空模版
             if (pagecount > 1)

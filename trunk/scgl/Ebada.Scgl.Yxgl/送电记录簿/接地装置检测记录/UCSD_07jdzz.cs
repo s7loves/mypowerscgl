@@ -126,6 +126,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("OrgCode");
             hideColumn("gzwz");
             hideColumn("sbID");
+            hideColumn("LineID");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");

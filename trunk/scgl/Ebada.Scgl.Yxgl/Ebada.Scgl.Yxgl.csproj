@@ -1487,6 +1487,14 @@
       <DependentUpon>UCSD_03YXFXForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\送电线路条图\frm21Template.resx">
+      <DependentUpon>frm21Template.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\送电线路条图\UCSD_21.resx">
+      <DependentUpon>UCSD_21.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -2113,6 +2121,18 @@
     </Compile>
     <Compile Include="送电记录簿\运行分析记录\UCSD_03YXFXForm.Designer.cs">
       <DependentUpon>UCSD_03YXFXForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路条图\frm21Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路条图\frm21Template.Designer.cs">
+      <DependentUpon>frm21Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路条图\UCSD_21.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路条图\UCSD_21.Designer.cs">
+      <DependentUpon>UCSD_21.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -2928,6 +2948,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\送电反事故演习记录.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\送电21线路条图.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\避雷器试验完成情况报表.xls">

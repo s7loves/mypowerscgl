@@ -167,7 +167,9 @@ namespace Ebada.Scgl.Yxgl {
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            gridView1.Columns["kssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             gridView1.Columns["kssj"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            gridView1.Columns["jssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             gridView1.Columns["jssj"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
         }
         /// <summary>
@@ -199,6 +201,7 @@ namespace Ebada.Scgl.Yxgl {
             newobj.CreateMan = m_UserBase.RealName;
             newobj.kssj = DateTime.Now;
             newobj.jssj = DateTime.Now;
+            newobj.qzrq = DateTime.Now;
         }
         /// <summary>
         /// 父表ID
