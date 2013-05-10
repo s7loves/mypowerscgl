@@ -323,7 +323,9 @@ namespace Ebada.Android.Service {
                      sjh.wcbj = jh.wcbj;
                      list2.Add(sjh);
                  }
-
+                 if (jh.gjlist != null && jh.gjlist.Count > 0) {
+                     updateGjlist(jh.id, jh.gjlist);
+                 }
              }
              if (list2.Count > 0) {
                  Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, list2.ToArray(), null);
@@ -331,6 +333,17 @@ namespace Ebada.Android.Service {
              }
             return "ok";
         }
+
+        private void updateGjlist(string rwid, List<sbxj_gj> list) {
+            List<sd_xsgj> gjlist = new List<sd_xsgj>();
+            foreach (sbxj_gj gj in list) {
+                gjlist.Add(new sd_xsgj() {
+                    rwID = rwid, jd = gj.jd, wd = gj.wd, sj = DateTime.Parse(gj.dt)
+                });
+            }
+            Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gjlist.ToArray(), null, null);
+        }
+
         #endregion
     }
    
