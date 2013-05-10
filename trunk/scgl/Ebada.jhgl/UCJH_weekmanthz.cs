@@ -34,6 +34,11 @@ namespace Ebada.jhgl
                       + " WHERE (mUser.UserCode <> mUser.OrgCode + '001') AND (mUser_1.UserCode = mUser_1.OrgCode + '001')";
 
         string sqlorder = " order by mOrg.OrgName";
+
+        string orgBaseSql = "SELECT mOrg.OrgCode"
+                          + " FROM mOrg INNER JOIN rRoleOrg ON mOrg.OrgID = rRoleOrg.OrgID INNER JOIN"
+                          + " rUserRole ON rRoleOrg.RoleID = rUserRole.RoleID INNER JOIN mUser ON rUserRole.UserID = mUser.UserID";
+
         public UCJH_weekmanthz()
         {
             InitializeComponent();
@@ -163,8 +168,9 @@ namespace Ebada.jhgl
             listMonth.AddRange(new string[] {"1","2","3","4","5","6","7","8","9","10","11","12" });
             this.repositoryItemComboBox3.Items.AddRange(listMonth);
 
-            IList<mOrg> listorg = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where 1>0 order by OrgCode,OrgType");
-
+            string where = "where orgcode in(" + orgBaseSql + " where mUser.UserID='" + MainHelper.User.UserID + "') order by OrgCode,OrgType";
+            IList<mOrg> listorg = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(where);
+            
             foreach (mOrg org in listorg)
             {
                 this.repositoryItemCheckedComboBoxEdit1.Items.Add(org.OrgName, CheckState.Unchecked, true);
@@ -186,7 +192,11 @@ namespace Ebada.jhgl
         /// </summary>
         private void RefershData()
         {
-           
+            if (barEditItem1.EditValue == null)
+                return;
+            if (barEditItem2.EditValue == null&&!isYear)
+                return;
+
             string where = "";
 
             if (barEditItem1.EditValue != null)
