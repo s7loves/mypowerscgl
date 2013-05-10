@@ -216,6 +216,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
+            newobj.qzrq = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             newobj.rq = DateTime.Now;

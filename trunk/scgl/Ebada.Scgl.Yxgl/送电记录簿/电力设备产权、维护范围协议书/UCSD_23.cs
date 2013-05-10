@@ -41,7 +41,7 @@ namespace Ebada.Scgl.Yxgl
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<sdjl_23>(gridControl1, gridView1, barManager1, new frm23Edit());
+            gridViewOperation = new GridViewOperation<sdjl_23>(gridControl1, gridView1, barManager1, new frmSD23Edit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<sdjl_23>(gridViewOperation_BeforeAdd);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<sdjl_23>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
@@ -269,6 +269,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
+            newobj.qdrq = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
             string bhname = ParentObj.OrgName.Replace("供电所", "");

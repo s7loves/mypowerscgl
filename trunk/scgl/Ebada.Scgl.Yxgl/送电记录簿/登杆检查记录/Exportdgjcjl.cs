@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Yxgl {
             #region 开关跳闸记录
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\登杆检查记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电09登杆检查记录.xls";
             ex.Open(fname);
             int row = 1;
             //加页
