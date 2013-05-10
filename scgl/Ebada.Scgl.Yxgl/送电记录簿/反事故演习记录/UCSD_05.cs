@@ -262,6 +262,7 @@ namespace Ebada.Scgl.Yxgl
             fsgyx.OrgCode = parentID;
             fsgyx.OrgName = ParentObj.OrgName;
             fsgyx.yxdw = ParentObj.OrgName;
+            fsgyx.zgxq = DateTime.Now;
             frm.RowData = fsgyx;
             if (frm.ShowDialog() == DialogResult.OK)
             {

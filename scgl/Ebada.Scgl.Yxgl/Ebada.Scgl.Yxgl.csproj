@@ -2704,6 +2704,7 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\送电10绝缘子测试记录.xls" />
     <None Include="00记录模板\送电20线路污秽地段记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
