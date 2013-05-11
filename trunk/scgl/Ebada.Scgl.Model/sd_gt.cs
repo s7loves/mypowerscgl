@@ -493,7 +493,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：高低腿
         /// 字段信息：[c1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("高低腿")]
+        [DisplayNameAttribute("杆号")]
         public string c1
         {
             get { return _c1; }
@@ -501,7 +501,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[高低腿]长度不能大于50!");
+                    throw new Exception("[杆号]长度不能大于50!");
                 if (_c1 as object == null || !_c1.Equals(value))
                 {
                     _c1 = value;
@@ -536,7 +536,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[c3],nvarchar
         /// </summary>
         [Browsable(false)]
-        [DisplayNameAttribute("备")]
+        [DisplayNameAttribute("高低腿")]
         public string c3
         {
             get { return _c3; }
@@ -544,7 +544,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[备]长度不能大于50!");
+                    throw new Exception("[高低腿]长度不能大于50!");
                 if (_c3 as object == null || !_c3.Equals(value))
                 {
                     _c3 = value;
