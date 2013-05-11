@@ -352,9 +352,9 @@ namespace Ebada.jhgl {
                 parentID = value;
                 string where = "  and a.parentid = '" + value + "' ";
                 if (全局) {
-                    where += string.Format(" and a.单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}')) ",MainHelper.User.UserID);
+                    where += string.Format(" and (a.单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}'))) and ( a.职务 like '%部长' or a.职务 like '%主任' or a.职务 like '%所长') ",MainHelper.User.UserID);
                 }else if (部门) {
-                    where += " and a.单位代码='" + MainHelper.UserOrg.OrgCode + "'";
+                    where += string.Format(" and a.单位代码 in (select orgcode from vroleorg where orgid in (select orgid from ruserrole where userid='{0}')) ", MainHelper.User.UserID);
                 } else {
                     where += " and a.姓名='" + MainHelper.User.UserName + "'";
                 }
