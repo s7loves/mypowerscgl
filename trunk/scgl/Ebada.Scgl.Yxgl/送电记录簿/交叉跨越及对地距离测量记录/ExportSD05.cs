@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Yxgl {
             }
             // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
-            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
+            sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + jl.LineID + "'");
             if (xl != null)
             {
                 string sublinename = "";
@@ -156,7 +156,7 @@ namespace Ebada.Scgl.Yxgl {
             }
            // PS_xl xlobject = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_xl>(jl.LineID);
             ex.ActiveSheet(1);
-            PS_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linecode='" + jl.LineID + "'");
+            sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + jl.LineID + "'");
             if (xl != null)
             {
                 string sublinename = "";
@@ -209,7 +209,12 @@ namespace Ebada.Scgl.Yxgl {
                     for (int i = 0; i < 15; i++) {
 
                         string str = list[starow - 1 + i].clrqz;
-                        string[] mans = str.Split(new char[1] { ';' });
+                        string[] man = str.Split(new char[1] { ';' });
+                        string[] mans = new string[3]{"","",""};
+                        for (int k = 0; k < man.Length; k++)
+                        {
+                            mans[i] = man[i];
+                        }
                         ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
                         ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
                         ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
@@ -223,7 +228,12 @@ namespace Ebada.Scgl.Yxgl {
                 } else if (list.Count <= endrow && list.Count >= starow) {
                     for (int i = 0; i < list.Count - starow + 1; i++) {
                         string str = list[starow - 1 + i].clrqz;
-                        string[] mans = str.Split(new char[1] { ';' });
+                        string[] man = str.Split(new char[1] { ';' });
+                        string[] mans = new string[3] { "", "", "" };
+                        for (int k = 0; k < man.Length; k++)
+                        {
+                            mans[i] = man[i];
+                        }
                         ex.SetCellValue(list[starow - 1 + i].clrq.Year.ToString(), rowcount + i, col);
                         ex.SetCellValue(list[starow - 1 + i].clrq.Month.ToString(), rowcount + i, col + 1);
                         ex.SetCellValue(list[starow - 1 + i].clrq.Day.ToString(), rowcount + i, col + 2);
@@ -244,10 +254,10 @@ namespace Ebada.Scgl.Yxgl {
 
         }
 
-      private static string andparentlinename(PS_xl xl)
+      private static string andparentlinename(sd_xl xl)
         {
             string linename = "";
-            PS_xl xl1 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where lineid='" + xl.ParentID + "'");
+            sd_xl xl1 = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where lineid='" + xl.ParentID + "'");
           if (xl1==null)
           {
            linename=xl.LineName;
