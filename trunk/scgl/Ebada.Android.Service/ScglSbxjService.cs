@@ -299,9 +299,23 @@ namespace Ebada.Android.Service {
             }
             return rwlist;
         }
-        public string UpdatePlanListstr(string data) {
-            Console.WriteLine(data);
-            return null;
+        public string UpdatePlanList2(sbxj_jh data) {
+            
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(data));
+            sbxj_jh jh = data;
+            sd_xsjh sjh = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_xsjh>(jh.id);
+            if (sjh != null) {
+                sjh.xskssj = DateTime.Parse(jh.kssj);
+                sjh.xswcsj = DateTime.Parse(jh.wcsj);
+                sjh.qxnr = jh.qxnr;
+                sjh.wcbj = jh.wcbj;
+            }
+            if (jh.gjlist != null && jh.gjlist.Count > 0) {
+                updateGjlist(jh.id, jh.gjlist);
+            }
+            Client.ClientHelper.PlatformSqlMap.Update<sd_xsjh>(sjh);
+            Console.WriteLine(string.Format("{0},调用方法:{1},共更新{2}条计划。", DateTime.Now.ToString(), "UpdatePlanList", 1));
+            return "ok";
         }
         public string UpdatePlanList(string data) {
             Console.WriteLine(data);
@@ -336,12 +350,21 @@ namespace Ebada.Android.Service {
 
         private void updateGjlist(string rwid, List<sbxj_gj> list) {
             List<sd_xsgj> gjlist = new List<sd_xsgj>();
+            List<SqlQueryObject> sqllist = new List<SqlQueryObject>();
+            int n = Client.ClientHelper.PlatformSqlMap.GetRowCount<sd_xsgj>(string.Format(" where rwid='{0}' and sj='{1}'", rwid, list[0].dt));
+            SqlQueryObject sqo = null;
+            if (n >0) {
+                sqo = new SqlQueryObject(SqlQueryType.Delete, "Delete", "delete from sd_xsgj where rwID='" + rwid + "'");
+                sqllist.Add(sqo);
+            }
             foreach (sbxj_gj gj in list) {
-                gjlist.Add(new sd_xsgj() {
+                sqo = new SqlQueryObject(SqlQueryType.Insert, new sd_xsgj() {
                     rwID = rwid, jd = gj.jd, wd = gj.wd, sj = DateTime.Parse(gj.dt)
                 });
+                sqllist.Add(sqo);
             }
             Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gjlist.ToArray(), null, null);
+            Console.WriteLine("{0},调用方法:{1},共插入{2}个巡视轨迹点。", DateTime.Now.ToString(), "updateGjlist", list.Count);
         }
 
         #endregion
