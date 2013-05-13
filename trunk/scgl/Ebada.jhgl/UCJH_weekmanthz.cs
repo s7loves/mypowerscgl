@@ -16,6 +16,7 @@ using Ebada.Scgl.Model;
 using System.Collections;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Core;
+using Ebada.Scgl.Core;
 
 
 namespace Ebada.jhgl
@@ -64,6 +65,10 @@ namespace Ebada.jhgl
 
         private void RefreshGrid(string where)
         {
+            if (this.barEditItem3.EditValue == null)
+                return;
+            if (string.IsNullOrEmpty(barEditItem3.EditValue.ToString()))
+                return;
             this.gridControl1.DataSource = null;
            IList datalist = Client.ClientHelper.PlatformSqlMap.GetList("Select", where);
            DataTable dt = DataConvert.HashTablesToDataTable(datalist);
@@ -171,10 +176,18 @@ namespace Ebada.jhgl
             string where = "where orgcode in(" + orgBaseSql + " where mUser.UserID='" + MainHelper.User.UserID + "') order by OrgCode,OrgType";
             IList<mOrg> listorg = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(where);
             
+            List<DicType> dic = new List<DicType>();
+            
             foreach (mOrg org in listorg)
             {
-                this.repositoryItemCheckedComboBoxEdit1.Items.Add(org.OrgName, CheckState.Unchecked, true);
+                dic.Add(new DicType(org.OrgCode, org.OrgName));
+                
             }
+            this.repositoryItemCheckedComboBoxEdit1.DataSource = dic;
+            
+            this.repositoryItemCheckedComboBoxEdit1.DisplayMember = "Value";
+            this.repositoryItemCheckedComboBoxEdit1.ValueMember = "Key";
+            
         }
         /// <summary>
         /// 年改变
@@ -196,7 +209,8 @@ namespace Ebada.jhgl
                 return;
             if (barEditItem2.EditValue == null&&!isYear)
                 return;
-
+            if (barEditItem3.EditValue == null)
+                return;
             string where = "";
 
             if (barEditItem1.EditValue != null)
@@ -226,8 +240,8 @@ namespace Ebada.jhgl
                 string[] orgName = barEditItem3.EditValue.ToString().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 if (orgName.Length > 0)
                 {
-                    
-                    where = where + " and 单位名称 in(";                 
+
+                    where = where + " and 单位代码 in(";                 
                     for (int i = 0; i < orgName.Length; i++)
                     {
                         if (i == orgName.Length - 1)
