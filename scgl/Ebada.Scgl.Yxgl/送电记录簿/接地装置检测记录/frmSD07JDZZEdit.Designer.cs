@@ -39,15 +39,15 @@
             this.comboBoxEdit6 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtjdxs = new DevExpress.XtraEditors.TextEdit();
             this.comboBoxEdit9 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.lbljdxs = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.comboBoxEdit4 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -57,8 +57,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.lbljdxs = new DevExpress.XtraEditors.LabelControl();
-            this.txtjdxs = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,16 +64,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit8.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -197,6 +193,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "设备信息";
             // 
+            // txtjdxs
+            // 
+            this.txtjdxs.Location = new System.Drawing.Point(113, 109);
+            this.txtjdxs.Name = "txtjdxs";
+            this.txtjdxs.Size = new System.Drawing.Size(100, 21);
+            this.txtjdxs.TabIndex = 15;
+            // 
             // comboBoxEdit9
             // 
             this.comboBoxEdit9.Location = new System.Drawing.Point(113, 82);
@@ -205,6 +208,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit9.Size = new System.Drawing.Size(100, 21);
             this.comboBoxEdit9.TabIndex = 18;
+            // 
+            // lbljdxs
+            // 
+            this.lbljdxs.Location = new System.Drawing.Point(13, 112);
+            this.lbljdxs.Name = "lbljdxs";
+            this.lbljdxs.Size = new System.Drawing.Size(48, 14);
+            this.lbljdxs.TabIndex = 14;
+            this.lbljdxs.Text = "接地形式";
             // 
             // comboBoxEdit5
             // 
@@ -251,8 +262,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lookUpEdit1);
-            this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.labelControl11);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.labelControl3);
@@ -265,43 +274,6 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "接地装置检测记录";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // lookUpEdit1
-            // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(413, 98);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "Name1", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("xlpy", "拼音码")});
-            this.lookUpEdit1.Properties.DisplayMember = "LineName";
-            this.lookUpEdit1.Properties.NullText = "";
-            this.lookUpEdit1.Properties.ValueMember = "LineName";
-            this.lookUpEdit1.Size = new System.Drawing.Size(83, 21);
-            this.lookUpEdit1.TabIndex = 13;
-            this.lookUpEdit1.Visible = false;
-            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(413, 89);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineCode", "线路代码"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("LineName", "线路名称"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("xlpy", "拼音码")});
-            this.comboBoxEdit1.Properties.DisplayMember = "LineName";
-            this.comboBoxEdit1.Properties.NullText = "";
-            this.comboBoxEdit1.Properties.ValueMember = "LineCode";
-            this.comboBoxEdit1.Size = new System.Drawing.Size(83, 21);
-            this.comboBoxEdit1.TabIndex = 13;
-            this.comboBoxEdit1.Visible = false;
-            this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
             // labelControl11
             // 
@@ -352,7 +324,7 @@
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(429, 21);
             this.comboBoxEdit2.TabIndex = 12;
             // 
             // labelControl1
@@ -378,21 +350,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // lbljdxs
-            // 
-            this.lbljdxs.Location = new System.Drawing.Point(13, 112);
-            this.lbljdxs.Name = "lbljdxs";
-            this.lbljdxs.Size = new System.Drawing.Size(48, 14);
-            this.lbljdxs.TabIndex = 14;
-            this.lbljdxs.Text = "接地形式";
-            // 
-            // txtjdxs
-            // 
-            this.txtjdxs.Location = new System.Drawing.Point(113, 109);
-            this.txtjdxs.Name = "txtjdxs";
-            this.txtjdxs.Size = new System.Drawing.Size(100, 21);
-            this.txtjdxs.TabIndex = 15;
-            // 
             // frmSD07JDZZEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -414,17 +371,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit6.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit4.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit11.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -454,9 +409,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit9;
         private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LookUpEdit comboBoxEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit11;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit10;
