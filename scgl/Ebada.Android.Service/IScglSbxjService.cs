@@ -42,8 +42,8 @@ namespace Ebada.Android.Service {
         [WebInvoke(UriTemplate = "UpdatePlanList", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpdatePlanList(string data);
         [OperationContract]
-        [WebInvoke(UriTemplate = "UpdatePlanListstr", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Xml)]
-        string UpdatePlanListstr(string data);
+        [WebInvoke(UriTemplate = "UpdatePlanList2", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        string UpdatePlanList2(sbxj_jh data);
         [OperationContract]
         [WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         string UploadFile(string id,string type, Stream fileContents);
