@@ -289,7 +289,7 @@ namespace Ebada.jhgl
                 string[] orgName = barEditItem3.EditValue.ToString().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 if (orgName.Length > 0)
                 {
-                    where = where + " and 单位名称 in(";
+                    where = where + " and 单位代码 in(";
                     for (int i = 0; i < orgName.Length; i++)
                     {
                         if (i == orgName.Length - 1)
