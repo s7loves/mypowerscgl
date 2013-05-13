@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Yxgl
         {
             get
             {
-                getxsr();
+                
                 getxcr();
                 return rowData;
             }
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Yxgl
                    this.InitComboBoxData();
                    ConvertHelper.CopyTo<sdjl_06sbxs>(value as sdjl_06sbxs, rowData);
                 }
-                setxsr();
+                
                 setxcr();
             }
         }
@@ -152,34 +152,7 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-        void setxsr()
-        {
-            string str = rowData.xsr;
-            comboBoxEdit3.EditValue = "";
-            comboBoxEdit6.EditValue = "";
-            string[] mans = str.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            if (mans.Length >= 1)
-            {
-                comboBoxEdit3.EditValue = mans[0];
-            }
-            if (mans.Length >= 2)
-            {
-                comboBoxEdit6.EditValue = mans[1];
-            }
-        }
-        void getxsr()
-        {
-            string str = "";
-            string yy1 = "";
-            yy1 = comboBoxEdit3.EditValue.ToString();
-            if (!string.IsNullOrEmpty(yy1.Trim()))
-                str += yy1 + ";";
-            string yy2 = "";
-            yy2 = comboBoxEdit6.EditValue.ToString();
-            if (!string.IsNullOrEmpty(yy1.Trim()))
-                str += yy2 + ";";
-            rowData.xsr = str;
-        }
+       
         void setxcr()
         {
             string str = rowData.xcr;
@@ -209,78 +182,10 @@ namespace Ebada.Scgl.Yxgl
             rowData.xcr = str;
         }
 
-        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(lookUpEdit1.Text))
-            {
-                rowData.LineID = lookUpEdit1.EditValue.ToString();
-                rowData.LineName = lookUpEdit1.Text;
-                comboBoxEdit2.Properties.Items.Clear();
-                comboBoxEdit3.Properties.Items.Clear();
-                comboBoxEdit6.Properties.Items.Clear();
-
-                sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + rowData.LineID + "'");
-                if (xl != null)
-                {
-                    IList<sdjl_sbxsqd> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sdjl_sbxsqd>(" where LineCode='" + xl.LineID + "'");
-                    foreach (sdjl_sbxsqd xsqd in xllit)
-                    {
-                        comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
-                        comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                        comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
-                    }
-                }
-               
-            }
-
-        }
-
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
 
-        }
-
-
-
-        private void comboBoxEdit3_Properties_SelectedValueChanged(object sender, EventArgs e)
-        {
-            //string xsry = comboBoxEdit3.Properties.GetDisplayText(null);
-            ////comboBoxEdit3.EditValue = "";
-            //comboBoxEdit6.EditValue = "";
-            //string[] mans = xsry.Split(new char[1] { ';' }, 10, StringSplitOptions.RemoveEmptyEntries);
-            //if (mans.Length >= 1)
-            //{
-            //    comboBoxEdit3.EditValue = mans[0];
-            //}
-            //if (mans.Length >= 2)
-            //{
-            //    comboBoxEdit6.EditValue = mans[1];
-            //}
-
-        }
-
-        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
-        {
-           
-           sdjl_sbxsqd ps = Client.ClientHelper.PlatformSqlMap.GetOne<sdjl_sbxsqd>("where XsqdName='"+ comboBoxEdit2.EditValue+"'and LineCode='"+rowData.LineID+"' ");
-            if (ps!=null)
-            {
-                comboBoxEdit3.EditValue = ps.XSR1;
-                comboBoxEdit6.EditValue = ps.XSR2;
-            }
-        }
-
-        private void comboBoxEdit2_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR1 from sdjl_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
-            comboBoxEdit3.Properties.Items.Clear();
-            comboBoxEdit3.Properties.Items.AddRange(list);
-
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select XSR2 from sdjl_sbxsqd where XsqdName='{0}' ", comboBoxEdit2.EditValue));
-            comboBoxEdit6.Properties.Items.Clear();
-            comboBoxEdit6.Properties.Items.AddRange(list); 
         }
 
         private void dateEdit1_EditValueChanged(object sender, EventArgs e)
@@ -336,25 +241,8 @@ namespace Ebada.Scgl.Yxgl
 
         }
 
-        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //PS_xl xl = null;
-            //xl = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>(" where linename='"+comboBoxEdit1.Text+"'");
-            //if (xl != null)
-            //{
-            //    rowData.LineID = xl.LineID;
-            //    rowData.LineName = xl.LineName;
-            //}
-            //else
-            //{
-            //    rowData.LineName = comboBoxEdit1.Text;
-            //}
             if(rowData.CreateDate.Year==1900)
             rowData.CreateDate = rowData.xssj;
         }
@@ -368,8 +256,7 @@ namespace Ebada.Scgl.Yxgl
 
                 rowData.LineName = popLine.GetDisplayText();
                 comboBoxEdit2.Properties.Items.Clear();
-                comboBoxEdit3.Properties.Items.Clear();
-                comboBoxEdit6.Properties.Items.Clear();
+                
                 if (xl != null)
                 {
                     //rowData.LineID = xl.LineID;
@@ -377,8 +264,7 @@ namespace Ebada.Scgl.Yxgl
                     foreach (sdjl_sbxsqd xsqd in xllit)
                     {
                         comboBoxEdit2.Properties.Items.Add(xsqd.XsqdName);
-                        comboBoxEdit3.Properties.Items.Add(xsqd.XSR1);
-                        comboBoxEdit6.Properties.Items.Add(xsqd.XSR2);
+                       
                     }
                 }
 
