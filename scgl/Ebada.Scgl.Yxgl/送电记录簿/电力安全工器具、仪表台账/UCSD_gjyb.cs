@@ -163,6 +163,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null) return;
             newobj.OrgID = parentID;
+            newobj.lqsj = DateTime.Now;
             //newobj.OrgName = parentObj.OrgName;
             //newobj.CreateDate = DateTime.Now;
             //newobj.CreateMan = MainHelper.LoginName;
