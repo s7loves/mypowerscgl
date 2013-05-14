@@ -95,6 +95,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void dataBind()
         {
+            
             this.lkueOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
             this.lkueLine.DataBindings.Add("EditValue", rowData, "LineID");
             this.txtVol.DataBindings.Add("EditValue", rowData, "vol");
@@ -172,6 +173,16 @@ namespace Ebada.Scgl.Sbgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (lkueOrg.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择单位!");
+                return;
+            }
+            if (lkueLine.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择线路!");
+                return;
+            }
             rowData.LineName = lkueLine.Text;
             this.DialogResult = DialogResult.OK;
         }
