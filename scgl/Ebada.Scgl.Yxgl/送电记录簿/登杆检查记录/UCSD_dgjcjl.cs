@@ -133,6 +133,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.ParentID = parentID;
             newobj.c1 = parentObj.LineCode;
             newobj.c2 = parentObj.OrgCode;
+            newobj.jcrq = DateTime.Now;
         }
         /// <summary>
         /// 父表ID

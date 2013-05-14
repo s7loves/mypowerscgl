@@ -40,7 +40,23 @@ namespace Ebada.Scgl.Yxgl
             initImageList();
             gridViewOperation = new GridViewOperation<sdjls_dgjcjl>(gridControl1, gridView1, barManager1,new frm_Dgjc());
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<sdjls_dgjcjl>(gridViewOperation_BeforeInsert);
+           
+
         }
+
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sdjls_dgjcjl> e)
+        {
+            sdjls_dgjcjl dgjcjl = e.Value;
+            IList<sdjls_dgjcjl> dgjcList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sdjls_dgjcjl>("where orgcode='" + dgjcjl.OrgCode + "' and linecode='" + dgjcjl.LineCode + "' and linevol='" + dgjcjl.LineVol + "'");
+            if (dgjcList.Count > 0)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+       
         
        
         protected override void OnLoad(EventArgs e)

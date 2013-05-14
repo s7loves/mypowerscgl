@@ -58,7 +58,7 @@
             this.ucxsqd1.Size = new System.Drawing.Size(536, 330);
             this.ucxsqd1.TabIndex = 0;
             // 
-            // frmXSQD
+            // frmSDXSQD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -66,7 +66,7 @@
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.ucxsqd1);
-            this.Name = "frmXSQD";
+            this.Name = "frmSDXSQD";
             this.Text = "巡视区段";
             this.Load += new System.EventHandler(this.frmXSQD_Load);
             this.ResumeLayout(false);

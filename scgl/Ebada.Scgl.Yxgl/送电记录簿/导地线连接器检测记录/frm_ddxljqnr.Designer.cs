@@ -31,6 +31,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.grpddxxx = new System.Windows.Forms.GroupBox();
+            this.txtbz = new DevExpress.XtraEditors.TextEdit();
             this.lblbz = new DevExpress.XtraEditors.LabelControl();
             this.cmbsccj = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblsccj = new DevExpress.XtraEditors.LabelControl();
@@ -48,8 +49,8 @@
             this.lbldj = new DevExpress.XtraEditors.LabelControl();
             this.cmbgh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblgh = new DevExpress.XtraEditors.LabelControl();
-            this.txtbz = new DevExpress.XtraEditors.TextEdit();
             this.grpddxxx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtbz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbsccj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljqxh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbddxxh.Properties)).BeginInit();
@@ -58,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbxb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbz.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -105,6 +105,13 @@
             this.grpddxxx.TabIndex = 20;
             this.grpddxxx.TabStop = false;
             this.grpddxxx.Text = "导地线连接器记录信息";
+            // 
+            // txtbz
+            // 
+            this.txtbz.Location = new System.Drawing.Point(102, 260);
+            this.txtbz.Name = "txtbz";
+            this.txtbz.Size = new System.Drawing.Size(349, 21);
+            this.txtbz.TabIndex = 35;
             // 
             // lblbz
             // 
@@ -247,13 +254,6 @@
             this.lblgh.TabIndex = 18;
             this.lblgh.Text = "杆号";
             // 
-            // txtbz
-            // 
-            this.txtbz.Location = new System.Drawing.Point(102, 260);
-            this.txtbz.Name = "txtbz";
-            this.txtbz.Size = new System.Drawing.Size(349, 21);
-            this.txtbz.TabIndex = 35;
-            // 
             // frm_ddxljqnr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -270,6 +270,7 @@
             this.Text = "导地线检测内容";
             this.grpddxxx.ResumeLayout(false);
             this.grpddxxx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtbz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbsccj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljqxh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbddxxh.Properties)).EndInit();
@@ -278,7 +279,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbxb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbz.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
