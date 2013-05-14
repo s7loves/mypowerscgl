@@ -58,7 +58,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(39, 54);
+            this.labelControl1.Location = new System.Drawing.Point(39, 25);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(36, 14);
             this.labelControl1.TabIndex = 0;
@@ -66,14 +66,14 @@
             // 
             // txtgtid
             // 
-            this.txtgtid.Location = new System.Drawing.Point(111, 51);
+            this.txtgtid.Location = new System.Drawing.Point(111, 22);
             this.txtgtid.Name = "txtgtid";
             this.txtgtid.Size = new System.Drawing.Size(447, 21);
             this.txtgtid.TabIndex = 1;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(39, 99);
+            this.labelControl2.Location = new System.Drawing.Point(39, 60);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 2;
@@ -81,14 +81,14 @@
             // 
             // txtgtbh
             // 
-            this.txtgtbh.Location = new System.Drawing.Point(111, 96);
+            this.txtgtbh.Location = new System.Drawing.Point(111, 57);
             this.txtgtbh.Name = "txtgtbh";
             this.txtgtbh.Size = new System.Drawing.Size(447, 21);
             this.txtgtbh.TabIndex = 3;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(39, 144);
+            this.labelControl3.Location = new System.Drawing.Point(39, 95);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(52, 14);
             this.labelControl3.TabIndex = 4;
@@ -96,14 +96,14 @@
             // 
             // txtflag1
             // 
-            this.txtflag1.Location = new System.Drawing.Point(111, 141);
+            this.txtflag1.Location = new System.Drawing.Point(111, 92);
             this.txtflag1.Name = "txtflag1";
             this.txtflag1.Size = new System.Drawing.Size(447, 21);
             this.txtflag1.TabIndex = 5;
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(39, 189);
+            this.labelControl4.Location = new System.Drawing.Point(39, 130);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(24, 14);
             this.labelControl4.TabIndex = 6;
@@ -111,14 +111,14 @@
             // 
             // txtlng
             // 
-            this.txtlng.Location = new System.Drawing.Point(111, 186);
+            this.txtlng.Location = new System.Drawing.Point(111, 127);
             this.txtlng.Name = "txtlng";
             this.txtlng.Size = new System.Drawing.Size(447, 21);
             this.txtlng.TabIndex = 7;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(39, 234);
+            this.labelControl5.Location = new System.Drawing.Point(39, 165);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(24, 14);
             this.labelControl5.TabIndex = 8;
@@ -126,14 +126,14 @@
             // 
             // txtlat
             // 
-            this.txtlat.Location = new System.Drawing.Point(111, 231);
+            this.txtlat.Location = new System.Drawing.Point(111, 162);
             this.txtlat.Name = "txtlat";
             this.txtlat.Size = new System.Drawing.Size(447, 21);
             this.txtlat.TabIndex = 9;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(39, 279);
+            this.labelControl6.Location = new System.Drawing.Point(39, 200);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(48, 14);
             this.labelControl6.TabIndex = 10;
@@ -142,14 +142,14 @@
             // txtflag2
             // 
             this.txtflag2.AllowDrop = true;
-            this.txtflag2.Location = new System.Drawing.Point(111, 276);
+            this.txtflag2.Location = new System.Drawing.Point(111, 197);
             this.txtflag2.Name = "txtflag2";
             this.txtflag2.Size = new System.Drawing.Size(447, 21);
             this.txtflag2.TabIndex = 11;
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(39, 324);
+            this.labelControl7.Location = new System.Drawing.Point(39, 235);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(48, 14);
             this.labelControl7.TabIndex = 12;
@@ -157,14 +157,14 @@
             // 
             // txtxssj
             // 
-            this.txtxssj.Location = new System.Drawing.Point(111, 321);
+            this.txtxssj.Location = new System.Drawing.Point(111, 232);
             this.txtxssj.Name = "txtxssj";
             this.txtxssj.Size = new System.Drawing.Size(447, 21);
             this.txtxssj.TabIndex = 13;
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(39, 369);
+            this.labelControl8.Location = new System.Drawing.Point(39, 270);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(48, 14);
             this.labelControl8.TabIndex = 14;
@@ -172,14 +172,14 @@
             // 
             // txtqxnr
             // 
-            this.txtqxnr.Location = new System.Drawing.Point(111, 366);
+            this.txtqxnr.Location = new System.Drawing.Point(111, 267);
             this.txtqxnr.Name = "txtqxnr";
             this.txtqxnr.Size = new System.Drawing.Size(447, 21);
             this.txtqxnr.TabIndex = 15;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(378, 419);
+            this.btnOK.Location = new System.Drawing.Point(349, 304);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 16;
@@ -188,7 +188,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(476, 418);
+            this.btnCancel.Location = new System.Drawing.Point(457, 304);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -199,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 465);
+            this.ClientSize = new System.Drawing.Size(576, 348);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtqxnr);
@@ -218,8 +218,13 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.txtgtid);
             this.Controls.Add(this.labelControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmsd_xsjhnrEdit";
-            this.Text = "frmsd_xsjhnrEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "巡视计划内容";
+            this.Load += new System.EventHandler(this.frmsd_xsjhnrEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).EndInit();

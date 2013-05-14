@@ -36,6 +36,7 @@
             this.btAdds = new DevExpress.XtraBars.BarButtonItem();
             this.btUpdates = new DevExpress.XtraBars.BarButtonItem();
             this.btnDeletes = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -52,7 +53,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(582, 459);
+            this.gridControl1.Size = new System.Drawing.Size(582, 460);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -78,8 +79,9 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btAdds,
             this.btUpdates,
-            this.btnDeletes});
-            this.barManager1.MaxItemId = 3;
+            this.btnDeletes,
+            this.btFind});
+            this.barManager1.MaxItemId = 5;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -91,7 +93,8 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdds),
             new DevExpress.XtraBars.LinkPersistInfo(this.btUpdates),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnDeletes)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDeletes),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -121,6 +124,14 @@
             this.btnDeletes.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeletes_ItemClick);
             // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 3;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -142,20 +153,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 483);
-            this.barDockControlBottom.Size = new System.Drawing.Size(582, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 484);
+            this.barDockControlBottom.Size = new System.Drawing.Size(582, 21);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 459);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 460);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(582, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 459);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 460);
             // 
             // UCsdxs_jhnr
             // 
@@ -189,5 +200,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btnDeletes;
+        private DevExpress.XtraBars.BarButtonItem btFind;
     }
 }
