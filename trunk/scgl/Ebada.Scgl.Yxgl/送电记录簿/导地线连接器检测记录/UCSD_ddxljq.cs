@@ -139,7 +139,7 @@ namespace Ebada.Scgl.Yxgl {
             if (parentID == null) return;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
-
+            newobj.jcrq = DateTime.Now;
            
         }
         /// <summary>
