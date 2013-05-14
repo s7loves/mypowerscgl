@@ -214,7 +214,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(631, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(631, 23);
             // 
             // barDockControlBottom
             // 
@@ -225,14 +225,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 354);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 355);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(631, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 354);
+            this.barDockControlRight.Location = new System.Drawing.Point(631, 23);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 355);
             // 
             // repositoryItemComboBox1
             // 
@@ -254,7 +254,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(631, 354);
+            this.gridControl1.Size = new System.Drawing.Size(631, 355);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -271,13 +271,13 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 23);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
-            this.splitContainerControl1.Size = new System.Drawing.Size(631, 354);
+            this.splitContainerControl1.Size = new System.Drawing.Size(631, 355);
             this.splitContainerControl1.SplitterPosition = 159;
             this.splitContainerControl1.TabIndex = 10;
             this.splitContainerControl1.Text = "splitContainerControl1";
