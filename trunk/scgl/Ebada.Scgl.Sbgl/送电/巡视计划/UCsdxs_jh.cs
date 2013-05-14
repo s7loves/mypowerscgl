@@ -20,6 +20,7 @@ namespace Ebada.Scgl.Sbgl
     {
         private GridViewOperation<sd_xsjh> gridViewOperation;
         public event SendDataEventHandler<sd_xsjh> FocusedRowChanged;
+        public event SendDataEventHandler<sd_xsjh> DeleteEvent;
         public bool isSearch = false;
         private string checkState="";
         public string CheckState
@@ -38,6 +39,7 @@ namespace Ebada.Scgl.Sbgl
         {
             InitializeComponent();
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+           
             initImageList();
             gridViewOperation = new GridViewOperation<sd_xsjh>(gridControl1, gridView1, barManager1, false);
            
@@ -219,8 +221,11 @@ namespace Ebada.Scgl.Sbgl
                 return;
             sd_xsjh xsjh = gridView1.GetFocusedRow() as sd_xsjh;
             Client.ClientHelper.PlatformSqlMap.DeleteByWhere<sd_xsjhnr>("where ParentID='" + xsjh.ID + "'");
+            Client.ClientHelper.PlatformSqlMap.DeleteByWhere<sd_xsxm>("where ParentID='" + xsjh.ID + "'");
             Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjh>(xsjh);
             RefreshData();
+            if (DeleteEvent != null)
+                DeleteEvent(this, null);
         }
 
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)

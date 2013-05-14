@@ -161,9 +161,10 @@ namespace Ebada.Scgl.Sbgl
             }
             set
             {
+               
+                this.parentobj = value;
                 if (value == null)
                     return;
-                this.parentobj = value;
                 this.ParentID = value.ID;
             }
         }

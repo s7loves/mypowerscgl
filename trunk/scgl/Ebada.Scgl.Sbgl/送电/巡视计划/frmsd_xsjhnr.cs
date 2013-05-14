@@ -278,6 +278,7 @@ namespace Ebada.Scgl.Sbgl
 
         void btnOk_Click(object sender, EventArgs e)
         {
+            List<sd_xsjhnr> list = rowData;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -320,9 +321,11 @@ namespace Ebada.Scgl.Sbgl
             if (gtList.Count == 0)
                 return;
             List<sd_xsjhnr> xsjhnrList = new List<sd_xsjhnr>();
+            Random rn = new Random();
             foreach (sd_gt gt in gtList)
             {
                 sd_xsjhnr xsjhnr = new sd_xsjhnr();
+                xsjhnr.ID += rn.Next(1, 1000);
                 xsjhnr.ParentID = sdxsjh.ID;
                 xsjhnr.gtid = gt.gtID;
                 xsjhnr.gtbh = gt.gtCode;

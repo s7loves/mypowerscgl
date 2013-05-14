@@ -41,6 +41,17 @@ namespace Ebada.Scgl.Sbgl
         {
             
             uCsdxs_jh1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xsjh>(uCsdxs_jh1_FocusedRowChanged);
+            uCsdxs_jh1.DeleteEvent += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.sd_xsjh>(uCsdxs_jh1_DeleteEvent);
+
+        }
+
+        void uCsdxs_jh1_DeleteEvent(object sender, Ebada.Scgl.Model.sd_xsjh obj)
+        {
+            uCsdxs_jhnr1.RefreshData();
+            uCsdxs_jhnr1.ParentObj=null;
+
+            uCsd_xsxm1.RefreshData();
+            uCsd_xsxm1.ParentObj=null;
             
         }
 

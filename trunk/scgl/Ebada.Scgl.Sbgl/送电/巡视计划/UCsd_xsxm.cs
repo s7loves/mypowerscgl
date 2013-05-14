@@ -147,9 +147,10 @@ namespace Ebada.Scgl.Sbgl
             }
             set
             {
+               
+                this.parentobj = value;
                 if (value == null)
                     return;
-                this.parentobj = value;
                 this.ParentID = value.ID;
             }
         }
@@ -161,6 +162,8 @@ namespace Ebada.Scgl.Sbgl
         private void btAdds_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (string.IsNullOrEmpty(parentid))
+                return;
+            if (parentobj == null)
                 return;
             frmsd_xsxm frm = new frmsd_xsxm();
             sd_xsxm sdxsxm = new sd_xsxm();
