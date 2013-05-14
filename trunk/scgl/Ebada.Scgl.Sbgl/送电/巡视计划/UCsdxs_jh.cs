@@ -180,6 +180,11 @@ namespace Ebada.Scgl.Sbgl
                 xsjh.wcbj = "未完成";
                 xsjh.flag = "新建";
             }
+            else if (checkState == "02")
+            {
+                xsjh.wcbj = "完成";
+                xsjh.flag = "发布";
+            }
             
             frmsdxs_jh frm = new frmsdxs_jh();
             frm.RowData = xsjh;
