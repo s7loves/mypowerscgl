@@ -25,13 +25,14 @@ namespace Ebada.Scgl.Sbgl
             uCsdxs_jh1.isSearch = true;
             uCsdxs_jhnr1.issearch = true;
             uCsd_xsxm1.issearch = true;
+            Init();
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             InitLkue();
-            Init();
+            
 
         }
 
