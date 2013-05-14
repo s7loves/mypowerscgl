@@ -110,7 +110,8 @@ namespace Ebada.Scgl.Sbgl.变电
             {
                 widthArr[i] = GetMaxLblWidth(i, sbsxList);
             }
-
+            if (widthArr[0] == 0)
+                widthArr[0] = 48;
             if (pageNumber == 1)
             {
                 XtraPage = new DevExpress.XtraTab.XtraTabPage();
@@ -199,41 +200,42 @@ namespace Ebada.Scgl.Sbgl.变电
                         starttexth += 33;
                         i++;
                     }
-                    XtraPage = new DevExpress.XtraTab.XtraTabPage();
-                    XtraPage.Name = "xtrPagePicture";
-                    XtraPage.Text = "特殊区域照片";
-                    this.xtraTabControl1.TabPages.Add(XtraPage);
-                    GroupBox grpbox = new GroupBox();
-                    grpbox.Location = new Point(0, 0);
-                    grpbox.Text = "照片";
-                    grpbox.Name = "grppicture";
-                    grpbox.Dock = DockStyle.Top;
-                    grpbox.Size = new Size(565, 386);
-                    XtraPage.Controls.Add(grpbox);
-
-                    pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-                    pictureEdit1.Dock = DockStyle.Fill;
-                    pictureEdit1.Name = "pictureEdit1";
-                    grpbox.Controls.Add(pictureEdit1);
-                    pictureEdit1.EditValueChanged += new EventHandler(pictureEdit1_EditValueChanged);
-
-
-                    DevExpress.XtraEditors.SimpleButton btnOk = new DevExpress.XtraEditors.SimpleButton();
-                    btnOk.Name = "btnOk";
-                    btnOk.Text = "确定";
-                    btnOk.Location = new Point(357, 9);
-                    btnOk.Click += new EventHandler(btnOk_Click);
-                    btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-                    DevExpress.XtraEditors.SimpleButton btnCancel = new DevExpress.XtraEditors.SimpleButton();
-                    btnCancel.Name = "btnCancel";
-                    btnCancel.Text = "取消";
-                    btnCancel.Location = new Point(461, 9);
-                    btnCancel.Click += new EventHandler(btnCancel_Click);
-                    btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-                    this.splitContainerControl1.Panel2.Controls.Add(btnOk);
-                    this.splitContainerControl1.Panel2.Controls.Add(btnCancel);
+                    
 
                 }
+                XtraPage = new DevExpress.XtraTab.XtraTabPage();
+                XtraPage.Name = "xtrPagePicture";
+                XtraPage.Text = "特殊区域照片";
+                this.xtraTabControl1.TabPages.Add(XtraPage);
+                GroupBox grpbox = new GroupBox();
+                grpbox.Location = new Point(0, 0);
+                grpbox.Text = "照片";
+                grpbox.Name = "grppicture";
+                grpbox.Dock = DockStyle.Top;
+                grpbox.Size = new Size(565, 386);
+                XtraPage.Controls.Add(grpbox);
+
+                pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+                pictureEdit1.Dock = DockStyle.Fill;
+                pictureEdit1.Name = "pictureEdit1";
+                grpbox.Controls.Add(pictureEdit1);
+                pictureEdit1.EditValueChanged += new EventHandler(pictureEdit1_EditValueChanged);
+
+
+                DevExpress.XtraEditors.SimpleButton btnOk = new DevExpress.XtraEditors.SimpleButton();
+                btnOk.Name = "btnOk";
+                btnOk.Text = "确定";
+                btnOk.Location = new Point(357, 9);
+                btnOk.Click += new EventHandler(btnOk_Click);
+                btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                DevExpress.XtraEditors.SimpleButton btnCancel = new DevExpress.XtraEditors.SimpleButton();
+                btnCancel.Name = "btnCancel";
+                btnCancel.Text = "取消";
+                btnCancel.Location = new Point(461, 9);
+                btnCancel.Click += new EventHandler(btnCancel_Click);
+                btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                this.splitContainerControl1.Panel2.Controls.Add(btnOk);
+                this.splitContainerControl1.Panel2.Controls.Add(btnCancel);
             setImage();
 
         }
