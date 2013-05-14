@@ -33,6 +33,12 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetPlanList/{username}", BodyStyle = WebMessageBodyStyle.Bare)]
         string GetPlanList(string username);
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetPlanList2/{username}", BodyStyle = WebMessageBodyStyle.Bare)]
+        List<sbxj_jh> GetPlanList2(string username);
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetPlan/{id}", BodyStyle = WebMessageBodyStyle.Bare)]
+        sbxj_jh GetPlan(string id);
         /// <summary>
         /// 上传计划
         /// </summary>
