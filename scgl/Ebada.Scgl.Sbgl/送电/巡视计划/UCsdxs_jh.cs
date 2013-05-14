@@ -37,9 +37,10 @@ namespace Ebada.Scgl.Sbgl
         public UCsdxs_jh()
         {
             InitializeComponent();
+            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             initImageList();
             gridViewOperation = new GridViewOperation<sd_xsjh>(gridControl1, gridView1, barManager1, false);
-            gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+           
            
            
         }
@@ -222,6 +223,11 @@ namespace Ebada.Scgl.Sbgl
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as sd_xsjh);
 
+        }
+
+        private void gridControl1_Load(object sender, EventArgs e)
+        {
+            
         }
 
        

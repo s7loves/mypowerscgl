@@ -14,11 +14,12 @@ namespace Ebada.Scgl.Sbgl
         public UCsdxs_jhM()
         {
             InitializeComponent();
+            Init();
         }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Init();
+            
             
         }
         private string state;
