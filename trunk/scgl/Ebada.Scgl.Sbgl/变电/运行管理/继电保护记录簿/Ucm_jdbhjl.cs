@@ -121,6 +121,7 @@ namespace Ebada.Scgl.Sbgl
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Create<bdjl_jdbhjl>(frm.RowData);
+                btnReset_Click(this,null);
                 RefreshGridData("");
             }
         }
