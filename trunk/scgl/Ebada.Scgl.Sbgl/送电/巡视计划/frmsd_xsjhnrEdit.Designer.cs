@@ -224,7 +224,7 @@
             this.Name = "frmsd_xsjhnrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "巡视计划内容";
-            this.Load += new System.EventHandler(this.frmsd_xsjhnrEdit_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).EndInit();

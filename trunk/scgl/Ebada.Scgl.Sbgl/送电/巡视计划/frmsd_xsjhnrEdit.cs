@@ -69,9 +69,6 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.Cancel;
         }
 
-        private void frmsd_xsjhnrEdit_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
