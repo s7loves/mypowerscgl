@@ -145,6 +145,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            hideColumn("xybh");
 
         }
         /// <summary>
@@ -177,6 +178,7 @@ namespace Ebada.Scgl.Yxgl
             newobj.CreateDate = DateTime.Now;
             Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
             newobj.CreateMan = m_UserBase.RealName;
+
         }
         /// <summary>
         /// 父表ID

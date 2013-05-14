@@ -164,7 +164,7 @@
             this.comboBoxEdit3.Name = "comboBoxEdit3";
             this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(53, 21);
+            this.comboBoxEdit3.Size = new System.Drawing.Size(99, 21);
             this.comboBoxEdit3.TabIndex = 15;
             // 
             // comboBoxEdit1
@@ -178,7 +178,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(181, 68);
+            this.labelControl3.Location = new System.Drawing.Point(227, 72);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(13, 14);
             this.labelControl3.TabIndex = 8;
