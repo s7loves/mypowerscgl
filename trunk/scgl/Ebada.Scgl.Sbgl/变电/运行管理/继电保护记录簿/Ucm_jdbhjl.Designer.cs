@@ -36,6 +36,8 @@
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefreshs = new DevExpress.XtraBars.BarButtonItem();
             this.btExports = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -47,8 +49,6 @@
             this.lblsbmc = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -138,11 +138,27 @@
             this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btExports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btExports_ItemClick);
             // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 6;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 7;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(564, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(564, 23);
             // 
             // barDockControlBottom
             // 
@@ -153,14 +169,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 384);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 385);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(564, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 384);
+            this.barDockControlRight.Location = new System.Drawing.Point(564, 23);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
             // btRefresh
             // 
@@ -172,7 +188,7 @@
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Horizontal = false;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 23);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.btnReset);
             this.splitContainerControl1.Panel1.Controls.Add(this.lkuesbmc);
@@ -180,7 +196,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(564, 384);
+            this.splitContainerControl1.Size = new System.Drawing.Size(564, 385);
             this.splitContainerControl1.SplitterPosition = 32;
             this.splitContainerControl1.TabIndex = 5;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -219,7 +235,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(564, 346);
+            this.gridControl1.Size = new System.Drawing.Size(564, 349);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -231,22 +247,6 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btFind
-            // 
-            this.btFind.Caption = "查询";
-            this.btFind.Id = 6;
-            this.btFind.ImageIndex = 5;
-            this.btFind.Name = "btFind";
-            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // btClose
-            // 
-            this.btClose.Caption = "关闭";
-            this.btClose.Id = 7;
-            this.btClose.ImageIndex = 13;
-            this.btClose.Name = "btClose";
-            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // Ucm_jdbhjl
             // 
