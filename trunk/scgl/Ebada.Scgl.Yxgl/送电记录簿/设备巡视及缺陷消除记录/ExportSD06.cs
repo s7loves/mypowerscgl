@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Yxgl {
            
         }
         /// <summary>
-        /// 文档格式预定义好的，只填写内容
+        /// 文档格式预定义好的，只填写内容(缺陷内容为空时，不填写消除人)
         /// </summary>
         /// <param name="obj"></param>
         public static void ExportExcel(IList<sdjl_06sbxs> objlist,bool xsmxflag) 
