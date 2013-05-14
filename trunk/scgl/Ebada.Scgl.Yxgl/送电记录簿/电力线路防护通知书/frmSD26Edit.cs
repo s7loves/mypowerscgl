@@ -144,5 +144,7 @@ namespace Ebada.Scgl.Yxgl
         {
             //Client.ClientHelper.PlatformSqlMap.Create<sdjl_26>(rowData);
         }
+
+      
     }
 }
