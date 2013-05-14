@@ -104,8 +104,15 @@ namespace Ebada.jhgl
                            newWeekMant.考核时间 = Convert.ToDateTime(rw["考核时间"]).ToShortDateString();
                    }
                }
+               if (isYear)
+               {
+                   gridView1.Columns["考核结果"].Visible = false;
+               }
+               else
+               {
+                   newWeekMant.考核结果 = detail;
+               }
                
-               newWeekMant.考核结果 = detail;
                newWeekMant.c3 = score.ToString();
                newWeekMant.姓名 = name;
                exportList.Add(newWeekMant);
