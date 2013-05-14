@@ -47,6 +47,8 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
@@ -71,8 +73,10 @@
             this.btUpdates,
             this.btDeletes,
             this.btRefresh,
-            this.barEditItem1});
-            this.barManager1.MaxItemId = 11;
+            this.barEditItem1,
+            this.btClose,
+            this.btFind});
+            this.barManager1.MaxItemId = 13;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckedComboBoxEdit1,
             this.repositoryItemCheckedComboBoxEdit2,
@@ -90,7 +94,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdds),
             new DevExpress.XtraBars.LinkPersistInfo(this.btUpdates),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -217,6 +223,22 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭";
+            this.btClose.Id = 11;
+            this.btClose.ImageIndex = 13;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 12;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // UCsdxs_jh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -259,5 +281,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.BarButtonItem btClose;
+        private DevExpress.XtraBars.BarButtonItem btFind;
     }
 }

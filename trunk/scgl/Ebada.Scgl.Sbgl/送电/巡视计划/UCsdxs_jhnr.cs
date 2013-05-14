@@ -191,6 +191,8 @@ namespace Ebada.Scgl.Sbgl
         {
             if (this.gridView1.GetFocusedRow() == null)
                 return;
+            if (MsgBox.ShowAskMessageBox("改数据删除后不能恢复，确定删除吗?") != DialogResult.OK)
+                return;
             sd_xsjhnr jhnr = this.gridView1.GetFocusedRow() as sd_xsjhnr;
             Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(jhnr);
             RefreshData();

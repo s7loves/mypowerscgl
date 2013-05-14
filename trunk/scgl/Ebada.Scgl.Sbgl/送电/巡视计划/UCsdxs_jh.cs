@@ -174,6 +174,12 @@ namespace Ebada.Scgl.Sbgl
         {
             sd_xsjh xsjh = new sd_xsjh();
             xsjh.cjr = MainHelper.User.UserName;
+            if (checkState == "01")
+            {
+                xsjh.wcbj = "未完成";
+                xsjh.flag = "新建";
+            }
+            
             frmsdxs_jh frm = new frmsdxs_jh();
             frm.RowData = xsjh;
             if (frm.ShowDialog() == DialogResult.OK)
@@ -202,6 +208,8 @@ namespace Ebada.Scgl.Sbgl
         private void btDeletes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (this.gridView1.GetFocusedRow() == null)
+                return;
+            if (MsgBox.ShowAskMessageBox("改数据删除不可恢复，确定删除吗?") != DialogResult.OK)
                 return;
             sd_xsjh xsjh = gridView1.GetFocusedRow() as sd_xsjh;
             Client.ClientHelper.PlatformSqlMap.DeleteByWhere<sd_xsjhnr>("where ParentID='" + xsjh.ID + "'");

@@ -145,7 +145,7 @@ namespace Ebada.Scgl.Sbgl
             foreach (sd_xl xl in xlList)
             {
                 dydjdic.Add(xl.LineID, xl.LineVol);
-                xlDictypeList.Add(new DicType(xl.LineID, xl.LineName));
+                xlDictypeList.Add(new DicType(xl.LineCode, xl.LineName));
             }
             SetComboBoxData(lkueLine, "Value", "Key", "请选择", "线路", xlDictypeList);
             txtsxr.Properties.Items.Clear();
