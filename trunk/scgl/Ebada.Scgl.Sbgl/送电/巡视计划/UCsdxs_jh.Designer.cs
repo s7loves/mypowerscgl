@@ -95,7 +95,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btUpdates),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btFind),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.Text = "Tools";
             // 
@@ -166,7 +165,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(920, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(920, 23);
             // 
             // barDockControlBottom
             // 
@@ -177,14 +176,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 422);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 423);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(920, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
+            this.barDockControlRight.Location = new System.Drawing.Point(920, 23);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 423);
             // 
             // barEditItem1
             // 
@@ -221,11 +220,11 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(920, 422);
+            this.gridControl1.Size = new System.Drawing.Size(920, 423);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
