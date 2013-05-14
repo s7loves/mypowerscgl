@@ -191,28 +191,7 @@ namespace Ebada.Scgl.Yxgl
                 sdjls_fsgyxjl OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as sdjls_fsgyxjl;
                 if (OBJECT!= null)
                 {
-                    #region 注释的部分
-                    //if (OBJECT.BigData.Length != 0)
-                    //{
-                    //    DSOFramerControl ds1 = new DSOFramerControl();
-                    //    ds1.FileData = OBJECT.BigData;
-                    //    string fname = ds1.FileName;
-                    //    ds1.FileClose();
-                    //    // ds1.FileOpen(ds1.FileName);
-                    //    ExcelAccess ex = new ExcelAccess();
-
-
-                    //    ex.Open(fname);
-                    //    //此处写填充内容代码
-
-                    //    ex.ShowExcel();
-                    //}
-                    //else
-                    //{
-                    //    Export26.ExportExcel(OBJECT);
-                    //}
-
-                    #endregion
+                    
                     //ExportSD26.ExportExcel(OBJECT);
                 }
 
@@ -226,28 +205,7 @@ namespace Ebada.Scgl.Yxgl
                 sdjls_fsgyxjl OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as sdjls_fsgyxjl;
                 if (OBJECT != null)
                 {
-                    #region 注释的部分
-                    //if (OBJECT.BigData.Length != 0)
-                    //{
-                    //    DSOFramerControl ds1 = new DSOFramerControl();
-                    //    ds1.FileData = OBJECT.BigData;
-                    //    string fname = ds1.FileName;
-                    //    ds1.FileClose();
-                    //    // ds1.FileOpen(ds1.FileName);
-                    //    ExcelAccess ex = new ExcelAccess();
-
-
-                    //    ex.Open(fname);
-                    //    //此处写填充内容代码
-
-                    //    ex.ShowExcel();
-                    //}
-                    //else
-                    //{
-                    //    Export26.ExportExcel(OBJECT);
-                    //}
-
-                    #endregion
+                    
                     Export_fsgyx.ExportExcel(OBJECT);
                 }
             }
@@ -260,6 +218,7 @@ namespace Ebada.Scgl.Yxgl
             frmSD_fsyyxjl frm = new frmSD_fsyyxjl();
             sdjls_fsgyxjl fsgyx = new sdjls_fsgyxjl();
             fsgyx.OrgCode = parentID;
+            fsgyx.yxrq = DateTime.Now;
             fsgyx.OrgName = ParentObj.OrgName;
             fsgyx.yxdw = ParentObj.OrgName;
             fsgyx.zgxq = DateTime.Now;

@@ -78,7 +78,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(26, 42);
+            this.labelControl10.Location = new System.Drawing.Point(26, 41);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(36, 14);
             this.labelControl10.TabIndex = 16;
@@ -106,7 +106,7 @@
             this.groupControlOrg.Size = new System.Drawing.Size(271, 115);
             this.groupControlOrg.TabIndex = 9;
             // 
-            // frm06sbxsLine
+            // frmSD06sbxsLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,7 +114,7 @@
             this.Controls.Add(this.groupControlOrg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frm06sbxsLine";
+            this.Name = "frmSD06sbxsLine";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导出线路选择";
             this.Load += new System.EventHandler(this.frm06sbxsLine_Load);
