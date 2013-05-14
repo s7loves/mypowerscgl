@@ -101,7 +101,7 @@
          #jd#,
          #wd#
          )
-     <selectKey resultClass="int"  type="post" property="ID">
+     <selectKey resultClass="long"  type="post" property="ID">
      <![CDATA[select @@IDENTITY as value ]]>
      </selectKey>
 
