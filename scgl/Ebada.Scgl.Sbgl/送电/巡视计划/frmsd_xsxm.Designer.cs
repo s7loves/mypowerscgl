@@ -62,7 +62,7 @@
             // 
             // lblmc
             // 
-            this.lblmc.Location = new System.Drawing.Point(25, 68);
+            this.lblmc.Location = new System.Drawing.Point(25, 56);
             this.lblmc.Name = "lblmc";
             this.lblmc.Size = new System.Drawing.Size(48, 14);
             this.lblmc.TabIndex = 2;
@@ -70,14 +70,14 @@
             // 
             // txtmc
             // 
-            this.txtmc.Location = new System.Drawing.Point(89, 65);
+            this.txtmc.Location = new System.Drawing.Point(89, 53);
             this.txtmc.Name = "txtmc";
             this.txtmc.Size = new System.Drawing.Size(315, 21);
             this.txtmc.TabIndex = 3;
             // 
             // lblflag
             // 
-            this.lblflag.Location = new System.Drawing.Point(25, 113);
+            this.lblflag.Location = new System.Drawing.Point(25, 89);
             this.lblflag.Name = "lblflag";
             this.lblflag.Size = new System.Drawing.Size(48, 14);
             this.lblflag.TabIndex = 4;
@@ -85,14 +85,14 @@
             // 
             // txtflag
             // 
-            this.txtflag.Location = new System.Drawing.Point(89, 110);
+            this.txtflag.Location = new System.Drawing.Point(89, 86);
             this.txtflag.Name = "txtflag";
             this.txtflag.Size = new System.Drawing.Size(315, 21);
             this.txtflag.TabIndex = 5;
             // 
             // lblxssj
             // 
-            this.lblxssj.Location = new System.Drawing.Point(25, 158);
+            this.lblxssj.Location = new System.Drawing.Point(25, 122);
             this.lblxssj.Name = "lblxssj";
             this.lblxssj.Size = new System.Drawing.Size(48, 14);
             this.lblxssj.TabIndex = 6;
@@ -101,7 +101,7 @@
             // datexssj
             // 
             this.datexssj.EditValue = null;
-            this.datexssj.Location = new System.Drawing.Point(89, 155);
+            this.datexssj.Location = new System.Drawing.Point(89, 119);
             this.datexssj.Name = "datexssj";
             this.datexssj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -112,7 +112,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(247, 261);
+            this.btnOK.Location = new System.Drawing.Point(238, 146);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 8;
@@ -121,7 +121,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(342, 261);
+            this.btnCancel.Location = new System.Drawing.Point(319, 146);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 296);
+            this.ClientSize = new System.Drawing.Size(426, 192);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.datexssj);
