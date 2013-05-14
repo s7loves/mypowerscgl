@@ -279,6 +279,42 @@ namespace Ebada.Android.Service {
             Console.WriteLine(string.Format("{0},调用方法:{1}({2})",DateTime.Now.ToString(),"GetPlanList",username));
             return Newtonsoft.Json.JsonConvert.SerializeObject(jhlist);
         }
+        public sbxj_jh GetPlan(string pid) {
+            sbxj_jh xsjh = new sbxj_jh();
+            sd_xsjh jh = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_xsjh>(pid);
+            if (jh == null) return null;
+            xsjh = new sbxj_jh() {
+                id = jh.ID, LineName = jh.LineName, xslb = jh.xslb, xsnr = jh.xsnr, wcbj = jh.wcbj, vol = jh.vol
+                        ,
+                jhsj = jh.jhsj.ToString("yyyy-MM-dd HH:mm:ss")
+                        ,
+                wcsj = jh.xswcsj.ToString("yyyy-MM-dd HH:mm:ss")
+                        ,
+                kssj = jh.xskssj.ToString("yyyy-MM-dd HH:mm:ss")
+                    ,
+                qxnr = jh.qxnr
+                    ,
+                xsr = jh.sxr
+                    ,
+                rwlist = getrwlist(jh.ID)
+                    ,
+                xmlist = getxmlist(jh.ID)
+            };
+            Console.WriteLine(string.Format("{0},调用方法:{1}({2})", DateTime.Now.ToString(), "GetPlan", pid));
+            return xsjh;
+        }
+        public List<sbxj_jh> GetPlanList2(string username) {
+            List<sbxj_jh> jhlist = new List<sbxj_jh>();
+            IList<sd_xsjh> list1 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjh>("where sxr like '%" + username + "%' and wcbj<>'完成'");
+            foreach (var jh in list1) {
+                jhlist.Add(new sbxj_jh() {
+                    id = jh.ID, LineName = jh.LineName, xslb = jh.xslb, wcbj = jh.wcbj, vol = jh.vol
+                       
+                });
+            }
+            Console.WriteLine(string.Format("{0},调用方法:{1}({2}),返回记录数：{3}", DateTime.Now.ToString(), "GetPlanList2", username,jhlist.Count));
+            return jhlist;
+        }
         List<sbxj_rw> getrwlist(string pid) {
             List<sbxj_rw> rwlist = new List<sbxj_rw>();
             IList<sd_xsjhnr> list2 = Client.ClientHelper.PlatformSqlMap.GetList<sd_xsjhnr>("where parentid='" + pid + "'");

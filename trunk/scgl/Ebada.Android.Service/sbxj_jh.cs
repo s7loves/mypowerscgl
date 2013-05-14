@@ -34,7 +34,7 @@ namespace Ebada.Android.Service {
         public string qxnr;//缺陷内容
         [DataMember]
         public List<sbxj_rw> rwlist;//详细任务列表
-        //[DataMember]
+        [DataMember]
         public List<sbxj_xm> xmlist;//巡视项目列表
         [DataMember]
         public List<sbxj_gj> gjlist;//巡视规迹
