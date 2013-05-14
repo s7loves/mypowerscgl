@@ -359,7 +359,6 @@
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "确定";
-            
             // 
             // btnCancel
             // 
@@ -402,7 +401,7 @@
             // 
             this.xtrPageJl.Controls.Add(this.memojlpj);
             this.xtrPageJl.Name = "xtrPageJl";
-            this.xtrPageJl.Size = new System.Drawing.Size(308, 201);
+            this.xtrPageJl.Size = new System.Drawing.Size(310, 204);
             this.xtrPageJl.Text = "结论及评价";
             // 
             // memojlpj
@@ -410,7 +409,7 @@
             this.memojlpj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memojlpj.Location = new System.Drawing.Point(0, 0);
             this.memojlpj.Name = "memojlpj";
-            this.memojlpj.Size = new System.Drawing.Size(308, 201);
+            this.memojlpj.Size = new System.Drawing.Size(310, 204);
             this.memojlpj.TabIndex = 0;
             // 
             // xtrPagecs
