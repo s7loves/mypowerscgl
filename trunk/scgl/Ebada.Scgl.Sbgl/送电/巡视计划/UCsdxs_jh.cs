@@ -185,7 +185,7 @@ namespace Ebada.Scgl.Sbgl
                 xsjh.wcbj = "完成";
                 xsjh.flag = "发布";
             }
-            
+            xsjh.fbr = MainHelper.User.UserName;
             frmsdxs_jh frm = new frmsdxs_jh();
             frm.RowData = xsjh;
             if (frm.ShowDialog() == DialogResult.OK)

@@ -155,7 +155,7 @@ namespace Ebada.Scgl.Sbgl
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "flag2", "flag2", ref starttexth, 48, XtraPage, pageNumber - 2);
 
                 AddLable(startlblw, "xssj", "巡视时间", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "xssj", "xssj", ref starttexth, 48, XtraPage, pageNumber - 2);
+                AddOtherControl(new DevExpress.XtraEditors.DateEdit(), "xssj", "xssj", ref starttexth, 48, XtraPage, pageNumber - 2);
 
                 AddLable(startlblw, "qxnr", "缺陷内容", ref startlblh, XtraPage);
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "qxnr", "qxnr", ref starttexth, 48, XtraPage, pageNumber - 2);
