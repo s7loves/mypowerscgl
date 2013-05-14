@@ -42,6 +42,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -86,8 +87,9 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btAdds,
             this.btUpdates,
-            this.btDeletes});
-            this.barManager1.MaxItemId = 3;
+            this.btDeletes,
+            this.btRefresh});
+            this.barManager1.MaxItemId = 4;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -99,7 +101,8 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdds),
             new DevExpress.XtraBars.LinkPersistInfo(this.btUpdates),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -165,6 +168,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(590, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 464);
             // 
+            // btRefresh
+            // 
+            this.btRefresh.Caption = "刷新";
+            this.btRefresh.Id = 3;
+            this.btRefresh.ImageIndex = 9;
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // UCsd_xsxm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -199,5 +210,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem btRefresh;
     }
 }
