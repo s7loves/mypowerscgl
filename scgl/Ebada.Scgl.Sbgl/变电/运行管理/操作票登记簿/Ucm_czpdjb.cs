@@ -43,6 +43,7 @@ namespace Ebada.Scgl.Sbgl
                 sqlwhere = "where OrgCode='" + parentID + "'";
             }
             gridControl1.DataSource=Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_czpdjb>(sqlwhere);
+            gridView1.BestFitColumns();
         }
 
         private string parentID;
@@ -64,6 +65,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
+            gridView1.BestFitColumns();
             InitGridviewColumn();
         }
 

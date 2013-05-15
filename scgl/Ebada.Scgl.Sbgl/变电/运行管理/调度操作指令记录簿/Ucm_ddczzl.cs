@@ -42,10 +42,12 @@ namespace Ebada.Scgl.Sbgl
                 sqlwhere = "where 1>0";
             }
             gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_ddzczl>(sqlwhere);
+            gridView1.BestFitColumns();
         }
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
+            gridView1.BestFitColumns();
             this.datesj.EditValue = DateTime.Now.ToString("yyyy-MM");
             RefreshGridData("");
             InitGridviewColumn();
