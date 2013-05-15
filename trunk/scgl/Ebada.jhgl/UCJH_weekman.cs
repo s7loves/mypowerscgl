@@ -64,7 +64,8 @@ namespace Ebada.jhgl {
             gridViewOperation.AfterDelete += new ObjectEventHandler<JH_weekman>(gridViewOperation_AfterDelete);
             createcontrol();
             btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            //btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
             
         }
