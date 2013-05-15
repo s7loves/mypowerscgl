@@ -37,12 +37,13 @@
             this.btEdits = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefreshs = new DevExpress.XtraBars.BarButtonItem();
-            this.btExports = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btExports = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -51,10 +52,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 21);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(564, 384);
+            this.gridControl1.Size = new System.Drawing.Size(564, 387);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -65,6 +66,7 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // barManager1
@@ -82,8 +84,9 @@
             this.btDeletes,
             this.btRefresh,
             this.btExports,
-            this.btRefreshs});
-            this.barManager1.MaxItemId = 6;
+            this.btRefreshs,
+            this.btFind});
+            this.barManager1.MaxItemId = 7;
             // 
             // bar1
             // 
@@ -95,7 +98,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdds),
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdits),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btRefreshs),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btFind)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -134,19 +138,19 @@
             this.btRefreshs.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btRefreshs.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefreshs_ItemClick);
             // 
-            // btExports
+            // btFind
             // 
-            this.btExports.Caption = "导出";
-            this.btExports.Id = 4;
-            this.btExports.ImageIndex = 7;
-            this.btExports.Name = "btExports";
-            this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 6;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(564, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(564, 21);
             // 
             // barDockControlBottom
             // 
@@ -157,20 +161,28 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 384);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 21);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 387);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(564, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 384);
+            this.barDockControlRight.Location = new System.Drawing.Point(564, 21);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 387);
             // 
             // btRefresh
             // 
             this.btRefresh.Caption = "刷新";
             this.btRefresh.Id = 3;
             this.btRefresh.Name = "btRefresh";
+            // 
+            // btExports
+            // 
+            this.btExports.Caption = "导出";
+            this.btExports.Id = 4;
+            this.btExports.ImageIndex = 7;
+            this.btExports.Name = "btExports";
+            this.btExports.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // Ucm_gzjlzb
             // 
@@ -207,5 +219,6 @@
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btExports;
         private DevExpress.XtraBars.BarButtonItem btRefreshs;
+        private DevExpress.XtraBars.BarButtonItem btFind;
     }
 }

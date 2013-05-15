@@ -44,6 +44,7 @@ namespace Ebada.Scgl.Sbgl
                 sqlwhere = "where OrgCode='" + parentID + "'";
             }
             gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_sbqxjl>(sqlwhere);
+            gridView1.BestFitColumns();
         }
 
         private string parentID;
@@ -65,6 +66,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
+            gridView1.BestFitColumns();
             InitGridviewColumn();
             List<DicType> qxlbList = new List<DicType>();
             qxlbList.Add(new DicType("一般", "一般"));

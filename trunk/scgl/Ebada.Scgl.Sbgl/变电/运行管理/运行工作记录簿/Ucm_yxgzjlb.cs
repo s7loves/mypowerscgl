@@ -52,7 +52,9 @@ namespace Ebada.Scgl.Sbgl
                 sqlwhere = "where OrgCode='" + parentID + "'";
             }
             gridControl1.DataSource = Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_yxgzjlb>(sqlwhere);
+            gridView1.BestFitColumns();
         }
+
 
         private string parentID;
         private string sql = "";
@@ -73,6 +75,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
+            gridView1.BestFitColumns();
             InitGridviewColumn();
             if (gridView1.RowCount > 0)
                 gridView1.SelectRow(0);
