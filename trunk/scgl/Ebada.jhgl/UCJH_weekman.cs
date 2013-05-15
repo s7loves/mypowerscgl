@@ -53,6 +53,7 @@ namespace Ebada.jhgl {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<JH_weekman>(gridViewOperation_BeforeAdd);
             gridView1.IndicatorWidth = 40;//设置显示行号的列宽
             gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(gridView1_CustomDrawRowIndicator);
+            
             //treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(treeList1_FocusedNodeChanged);
             //treeList1.OptionsBehavior.Editable = false;
             //treeList1.OptionsSelection.EnableAppearanceFocusedCell = true;
