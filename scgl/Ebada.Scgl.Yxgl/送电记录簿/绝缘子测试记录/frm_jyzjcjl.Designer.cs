@@ -31,6 +31,7 @@
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.grpjyzxx = new System.Windows.Forms.GroupBox();
+            this.btnjyzwz = new DevExpress.XtraEditors.SimpleButton();
             this.memobz = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.memoclqk = new DevExpress.XtraEditors.MemoEdit();
@@ -53,7 +54,6 @@
             this.txtdwmc = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnjyzwz = new DevExpress.XtraEditors.SimpleButton();
             this.grpjyzxx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memobz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclqk.Properties)).BeginInit();
@@ -121,6 +121,15 @@
             this.grpjyzxx.TabIndex = 5;
             this.grpjyzxx.TabStop = false;
             this.grpjyzxx.Text = "绝缘子信息";
+            // 
+            // btnjyzwz
+            // 
+            this.btnjyzwz.Location = new System.Drawing.Point(470, 142);
+            this.btnjyzwz.Name = "btnjyzwz";
+            this.btnjyzwz.Size = new System.Drawing.Size(29, 28);
+            this.btnjyzwz.TabIndex = 49;
+            this.btnjyzwz.Text = "...";
+            this.btnjyzwz.Click += new System.EventHandler(this.btnjyzwz_Click);
             // 
             // memobz
             // 
@@ -277,6 +286,7 @@
             // 
             // txtlineName
             // 
+            this.txtlineName.Enabled = false;
             this.txtlineName.Location = new System.Drawing.Point(336, 25);
             this.txtlineName.Name = "txtlineName";
             this.txtlineName.Size = new System.Drawing.Size(164, 21);
@@ -284,6 +294,7 @@
             // 
             // txtdwmc
             // 
+            this.txtdwmc.Enabled = false;
             this.txtdwmc.Location = new System.Drawing.Point(80, 25);
             this.txtdwmc.Name = "txtdwmc";
             this.txtdwmc.Size = new System.Drawing.Size(164, 21);
@@ -304,15 +315,6 @@
             this.labelControl1.Size = new System.Drawing.Size(48, 14);
             this.labelControl1.TabIndex = 27;
             this.labelControl1.Text = "线路名称";
-            // 
-            // btnjyzwz
-            // 
-            this.btnjyzwz.Location = new System.Drawing.Point(470, 142);
-            this.btnjyzwz.Name = "btnjyzwz";
-            this.btnjyzwz.Size = new System.Drawing.Size(29, 28);
-            this.btnjyzwz.TabIndex = 49;
-            this.btnjyzwz.Text = "...";
-            this.btnjyzwz.Click += new System.EventHandler(this.btnjyzwz_Click);
             // 
             // frm_jyzjcjl
             // 
