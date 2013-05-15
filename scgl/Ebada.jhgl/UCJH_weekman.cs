@@ -64,8 +64,8 @@ namespace Ebada.jhgl {
             gridViewOperation.AfterDelete += new ObjectEventHandler<JH_weekman>(gridViewOperation_AfterDelete);
             createcontrol();
             btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            //btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-            btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            //btExport1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
             
         }
@@ -322,7 +322,8 @@ namespace Ebada.jhgl {
         {
             if (ParentObj == null) return;
             IList<JH_weekman> list1 = gridView1.DataSource as IList<JH_weekman>;
-            ExportPDCA.ExportExcelWeekMan(ParentObj, list1);
+            //ExportPDCA.ExportExcelWeekMan(ParentObj, list1);
+            ExportPDCA.ExportExcelWeekMan1(ParentObj, list1);
         }
 
         private void btJZ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
