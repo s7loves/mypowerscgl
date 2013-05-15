@@ -275,6 +275,8 @@ namespace Ebada.jhgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(JH_weekman newobj) {
+            if (parentObj == null)
+                return;
             newobj.ParentID = parentID;
             if (org != null) {
                 newobj.单位代码 = org.OrgCode;
