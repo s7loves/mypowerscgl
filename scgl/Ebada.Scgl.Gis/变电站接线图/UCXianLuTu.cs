@@ -14,11 +14,20 @@ using Ebada.Client;
 using System.Collections;
 using Ebada.Client.Platform;
 using System.Text;
+using ScglShapesLib;
+using Ebada.Scgl.Sbgl.变电;
+using Ebada.Scgl.Model;
 
 namespace Ebada.Scgl.Gis.变电站接线图
 {
     public partial class UCXianLuTu : DevExpress.XtraEditors.XtraUserControl
     {
+        #region Form
+        private frmChooseBD_SBTZ chooseForm;
+        private frmSBTZ frmsbtz;
+
+        #endregion
+
         PropertyGrid propertyGrid;
         GraphShapesView shapesView;
         public event Netron.GraphLib.FileInfo OnSaved;
@@ -409,6 +418,96 @@ namespace Ebada.Scgl.Gis.变电站接线图
         }
         #endregion
 
+        #endregion
+
+        #region 右键菜单
+        private void graphControl1_OnShapeMenuItemClick(object sender, Shape shape)
+        {
+            MenuItem menu = sender as MenuItem;
+            switch (menu.Text)
+            {
+                case "设备参数":
+                    ShowData(shape);
+                    break;
+                case "重置设备":
+                    ResetData(shape);
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
+
+        #region 显示设备属性
+        /// <summary>
+        /// 显示设备属性
+        /// </summary>
+        /// <param name="shape"></param>
+        private void ShowData(Shape shape)
+        {
+            if (shape is BaseShape)
+            {
+                BaseShape bs = shape as BaseShape;
+
+                if (string.IsNullOrEmpty(bs.DeviceID))
+                {
+                    if (chooseForm == null || chooseForm.IsDisposed)
+                    {
+                        chooseForm = new frmChooseBD_SBTZ();
+                    }
+                    chooseForm.OrgCode = orgCode;
+                    chooseForm.MC = bs.DeviceType;
+                    if (chooseForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // 选择的设备sb_id
+                        string sb_id = chooseForm.sb_id;
+
+                        if (frmsbtz == null || frmsbtz.IsDisposed)
+                        {
+                            frmsbtz = new frmSBTZ();
+                        }
+
+                        BD_SBTZ rowData = ClientHelper.PlatformSqlMap.GetOne<BD_SBTZ>(" where sb_id='" + sb_id + "'");
+                        if (rowData != null)
+                        {
+                            frmsbtz.RowData = rowData;
+                            if (frmsbtz.ShowDialog() == DialogResult.OK)
+                            {
+                                rowData = frmsbtz.RowData as BD_SBTZ;
+                                bs.DeviceID = rowData.sb_id;
+                            }
+                        }
+                    }
+                }
+                else if (bs.DeviceID != null)
+                {
+                    BD_SBTZ rowData = ClientHelper.PlatformSqlMap.GetOne<BD_SBTZ>(" where sb_id='" + bs.DeviceID + "'");
+                    if (rowData != null)
+                    {
+                        frmsbtz.RowData = rowData;
+                        if (frmsbtz.ShowDialog() == DialogResult.OK)
+                        {
+                            rowData = frmsbtz.RowData as BD_SBTZ;
+                        }
+                    }
+                }
+            }
+        } 
+        #endregion
+
+        #region 重置设备
+        /// <summary>
+        /// 重置设备
+        /// </summary>
+        /// <param name="shape"></param>
+        private void ResetData(Shape shape)
+        {
+            if (shape is BaseShape)
+            {
+                BaseShape bs = shape as BaseShape;
+                bs.DeviceID = null;
+            }
+        }
         #endregion
     }
 

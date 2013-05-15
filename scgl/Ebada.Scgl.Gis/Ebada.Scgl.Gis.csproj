@@ -342,6 +342,12 @@
     </Compile>
     <Compile Include="变电站接线图\Desiger\LabelTextEditor.cs" />
     <Compile Include="变电站接线图\Desiger\ModalEditor.cs" />
+    <Compile Include="变电站接线图\frmChooseBD_SBTZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电站接线图\frmChooseBD_SBTZ.Designer.cs">
+      <DependentUpon>frmChooseBD_SBTZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电站接线图\frmJieXianTu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电站接线图\frmChooseBD_SBTZ.resx">
+      <DependentUpon>frmChooseBD_SBTZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\frmJieXianTu.resx">
       <DependentUpon>frmJieXianTu.cs</DependentUpon>

@@ -65,9 +65,6 @@
             this.mShowGrid = new DevExpress.XtraBars.BarCheckItem();
             this.mToBig = new DevExpress.XtraBars.BarButtonItem();
             this.mToSmall = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -79,6 +76,9 @@
             this.保存 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -435,24 +435,6 @@
             this.mToSmall.Id = 51;
             this.mToSmall.Name = "mToSmall";
             // 
-            // barButtonItem24
-            // 
-            this.barButtonItem24.Caption = "选项(&O)";
-            this.barButtonItem24.Id = 32;
-            this.barButtonItem24.Name = "barButtonItem24";
-            // 
-            // barButtonItem25
-            // 
-            this.barButtonItem25.Caption = "窗口";
-            this.barButtonItem25.Id = 34;
-            this.barButtonItem25.Name = "barButtonItem25";
-            // 
-            // barButtonItem26
-            // 
-            this.barButtonItem26.Caption = "窗口列表";
-            this.barButtonItem26.Id = 35;
-            this.barButtonItem26.Name = "barButtonItem26";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -528,6 +510,7 @@
             this.graphControl1.Text = "graphControl1";
             this.graphControl1.Zoom = 1F;
             this.graphControl1.OnShowProperties += new Netron.GraphLib.PropertiesInfo(this.graphControl1_OnShowProperties);
+            this.graphControl1.OnShapeMenuItemClick += new Netron.GraphLib.ShapeInfo(this.graphControl1_OnShapeMenuItemClick);
             // 
             // barButtonItem1
             // 
@@ -558,6 +541,24 @@
             this.barButtonItem23.Caption = "缩放";
             this.barButtonItem23.Id = 29;
             this.barButtonItem23.Name = "barButtonItem23";
+            // 
+            // barButtonItem24
+            // 
+            this.barButtonItem24.Caption = "选项(&O)";
+            this.barButtonItem24.Id = 32;
+            this.barButtonItem24.Name = "barButtonItem24";
+            // 
+            // barButtonItem25
+            // 
+            this.barButtonItem25.Caption = "窗口";
+            this.barButtonItem25.Id = 34;
+            this.barButtonItem25.Name = "barButtonItem25";
+            // 
+            // barButtonItem26
+            // 
+            this.barButtonItem26.Caption = "窗口列表";
+            this.barButtonItem26.Id = 35;
+            this.barButtonItem26.Name = "barButtonItem26";
             // 
             // repositoryItemTextEdit1
             // 
