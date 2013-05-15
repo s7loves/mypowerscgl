@@ -51,6 +51,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Db4objects.Db4o.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar, Version=5.9.0.0, Culture=neutral, PublicKeyToken=6d649f5e9b3afca5" />
     <Reference Include="DevExpress.Xpo.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Ebada.SCGL.CADLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GMap.NET.Core, Version=1.5.5.5, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
@@ -72,6 +73,10 @@
     <Reference Include="ScglShapesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\ScglShapesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ShapesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\图形\lib\ShapesLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -330,6 +335,28 @@
     </Compile>
     <Compile Include="PloyLineOverLay.cs" />
     <Compile Include="PointPolygon.cs" />
+    <Compile Include="变电站接线图\Desiger\BaseEditor.cs" />
+    <Compile Include="变电站接线图\Desiger\FilenameUIEditor.cs" />
+    <Compile Include="变电站接线图\Desiger\InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电站接线图\Desiger\LabelTextEditor.cs" />
+    <Compile Include="变电站接线图\Desiger\ModalEditor.cs" />
+    <Compile Include="变电站接线图\frmJieXianTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电站接线图\frmJieXianTu.Designer.cs">
+      <DependentUpon>frmJieXianTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电站接线图\Property\BaseProperty.cs" />
+    <Compile Include="变电站接线图\Property\ImageShapeProperty.cs" />
+    <Compile Include="变电站接线图\Property\TaskProperty.cs" />
+    <Compile Include="变电站接线图\UCXianLuTu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电站接线图\UCXianLuTu.Designer.cs">
+      <DependentUpon>UCXianLuTu.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
@@ -372,6 +399,7 @@
       <DependentUpon>frmText.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -420,6 +448,15 @@
     <EmbeddedResource Include="UCSharpeDyt.resx">
       <DependentUpon>UCSharpeDyt.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电站接线图\frmJieXianTu.resx">
+      <DependentUpon>frmJieXianTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电站接线图\UCXianLuTu.resx">
+      <DependentUpon>UCXianLuTu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
