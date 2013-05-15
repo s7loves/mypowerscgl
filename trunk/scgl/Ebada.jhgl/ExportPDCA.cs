@@ -663,7 +663,7 @@ namespace Ebada.jhgl
 
            ex.ActiveSheet(1);
            string Title = year.标题.Substring(0, 11) + "员工工作写实";
-           ex.SetCellValue(Title, 2, 2);
+           ex.SetCellValue(Title, 1, 2);
            ex.SetCellValue(year.姓名, 3, 2);
            ex.SetCellValue(year.考核结果, 3, 9);
            int count = 7;
