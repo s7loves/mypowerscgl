@@ -400,7 +400,7 @@ namespace Ebada.Scgl.Xtgl
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            IList<PJ_dyk> list = MainHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(" where 1=1");
+            IList<PJ_dyk> list = MainHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(" where parentid!=''");
             //IList<PJ_dyk> list = MainHelper.PlatformSqlMap.GetListByWhere<PJ_dyk>(" where zjm='' or zjm is null");
             IList<PJ_dyk> listout = new List<PJ_dyk>();
             WaitDialogForm wdf = new WaitDialogForm("", "正在生成数据...");
