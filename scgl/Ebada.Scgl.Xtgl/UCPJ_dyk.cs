@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Xtgl
     public partial class UCPJ_dyk : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PJ_dyk> gridViewOperation;
-
+        public string zjm = "";
         public event SendDataEventHandler<PJ_dyk> FocusedRowChanged;
         private string parentID = "";
         private PJ_dyk parentObj;
@@ -173,7 +173,10 @@ namespace Ebada.Scgl.Xtgl
         {
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
-            RefreshData(" where parentid=''");
+            string sql = " where parentid=''";
+            if (!string.IsNullOrEmpty(zjm))
+                sql += " and zjm='" + zjm + "'";
+            RefreshData(sql);
         }
         /// <summary>
         /// 初始化列,
@@ -239,6 +242,19 @@ namespace Ebada.Scgl.Xtgl
                     }
                     newobj.bh = str_bh + bh;
                 }
+                else
+                {
+                    var bh1 = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where len(bh)=6");
+                    string str_bh = "";
+                    for (int i = 0; i < 6 - bh1.ToString().Length; i++)
+                    {
+                        str_bh += "0";
+                    }
+                    newobj.bh = str_bh + bh1;
+                }
+                if (!string.IsNullOrEmpty(zjm))
+                    newobj.zjm = zjm;
+                
             }
         }
         /// <summary>
