@@ -94,7 +94,7 @@
             this.groupBox1.Controls.Add(this.lblPlanPro);
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(528, 419);
+            this.groupBox1.Size = new System.Drawing.Size(542, 419);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "周计划信息";
@@ -291,7 +291,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(308, 427);
+            this.btnOk.Location = new System.Drawing.Point(346, 427);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 1;
@@ -300,7 +300,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(408, 427);
+            this.btnCancel.Location = new System.Drawing.Point(449, 427);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -311,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 468);
+            this.ClientSize = new System.Drawing.Size(567, 468);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupBox1);
