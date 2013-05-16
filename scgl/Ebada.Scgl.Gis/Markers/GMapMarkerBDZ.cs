@@ -78,9 +78,18 @@ namespace Ebada.Scgl.Gis.Markers {
                 Client.ClientHelper.PlatformSqlMap.Update<mOrg>(dlg.RowData);
             }
         }
+
+        frmMapXlt mapxltForm;
         void 一次系统图_Click(object sender, EventArgs e) {
 
             //显示一次系统图
+            mOrg org = this.Tag as mOrg;
+            if (mapxltForm == null || mapxltForm.IsDisposed)
+            {
+                mapxltForm = new frmMapXlt();
+            }
+            mapxltForm.OrgCode = org.OrgCode;
+            mapxltForm.ShowDialog();
         }
     }
 }
