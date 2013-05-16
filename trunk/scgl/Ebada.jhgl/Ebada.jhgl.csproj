@@ -114,6 +114,12 @@
     <Compile Include="frmJH_WeeksMore.Designer.cs">
       <DependentUpon>frmJH_WeeksMore.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmJH_WorkContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJH_WorkContent.Designer.cs">
+      <DependentUpon>frmJH_WorkContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmJH_yearksEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,12 @@
     </Compile>
     <Compile Include="UCJH_weekmanthz.Designer.cs">
       <DependentUpon>UCJH_weekmanthz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCJH_WorkContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCJH_WorkContent.Designer.cs">
+      <DependentUpon>UCJH_WorkContent.cs</DependentUpon>
     </Compile>
     <Compile Include="UCJH_yearkst.cs">
       <SubType>UserControl</SubType>
@@ -198,6 +210,10 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.Xtgl\Ebada.Scgl.Xtgl.csproj">
+      <Project>{BDBE45E2-0DB8-4C7C-8177-0F1FBB5831C8}</Project>
+      <Name>Ebada.Scgl.Xtgl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmJH_weekmanEdit.resx">
@@ -205,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmJH_WeeksMore.resx">
       <DependentUpon>frmJH_WeeksMore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmJH_WorkContent.resx">
+      <DependentUpon>frmJH_WorkContent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmJH_yearksEdit.resx">
       <DependentUpon>frmJH_yearksEdit.cs</DependentUpon>
@@ -230,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCJH_weekmanthz.resx">
       <DependentUpon>UCJH_weekmanthz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCJH_WorkContent.resx">
+      <DependentUpon>UCJH_WorkContent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCJH_yearkst.resx">
       <DependentUpon>UCJH_yearkst.cs</DependentUpon>

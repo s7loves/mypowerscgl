@@ -206,6 +206,7 @@ namespace Ebada.jhgl {
         /// </summary>
         public void InitColumns() {
             //需要隐藏列时在这写代码
+            gridView1.Columns["评语考核人"].Visible = false;
             gridView1.Columns["c1"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
             gridView1.Columns["预计时间"].Caption = "开始日期";
