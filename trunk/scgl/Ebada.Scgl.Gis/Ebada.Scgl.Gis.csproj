@@ -51,7 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\Db4objects.Db4o.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar, Version=5.9.0.0, Culture=neutral, PublicKeyToken=6d649f5e9b3afca5" />
+    <Reference Include="DevComponents.DotNetBar, Version=5.9.0.0, Culture=neutral, PublicKeyToken=6d649f5e9b3afca5">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\DevComponents.DotNetBar.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Xpo.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Ebada.SCGL.CADLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GMap.NET.Core, Version=1.5.5.5, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
@@ -76,7 +79,7 @@
     </Reference>
     <Reference Include="ShapesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\图形\lib\ShapesLib.dll</HintPath>
+      <HintPath>..\Library\ShapesLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
