@@ -62,6 +62,10 @@ namespace Ebada.Scgl.Gis.Markers {
             item.Text = "变电所属性";
             item.Click += new EventHandler(属性_Click);
             contextMenu.MenuItems.Add(item);
+            item = new MenuItem();
+            item.Text = "变电所一次系统图";
+            item.Click += new EventHandler(一次系统图_Click);
+            contextMenu.MenuItems.Add(item);
             return contextMenu;
         }
 
@@ -73,6 +77,10 @@ namespace Ebada.Scgl.Gis.Markers {
             if (dlg.ShowDialog() == DialogResult.OK) {
                 Client.ClientHelper.PlatformSqlMap.Update<mOrg>(dlg.RowData);
             }
+        }
+        void 一次系统图_Click(object sender, EventArgs e) {
+
+            //显示一次系统图
         }
     }
 }
