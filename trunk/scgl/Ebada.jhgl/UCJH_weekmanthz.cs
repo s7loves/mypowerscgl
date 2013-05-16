@@ -336,7 +336,8 @@ namespace Ebada.jhgl
             }
             string title = "";
             List<JH_weekmant> weekmantList = (List<JH_weekmant>)gridControl1.DataSource;
-
+            if (weekmantList == null)
+                return;
             //"员工工作写实年终总分"
             title = barEditItem1.EditValue.ToString() + "年";
            
