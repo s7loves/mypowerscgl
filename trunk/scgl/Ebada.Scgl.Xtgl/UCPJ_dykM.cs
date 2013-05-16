@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Xtgl {
     /// </summary>
     [ToolboxItem(false)]
     public partial class UCPJ_dykM : DevExpress.XtraEditors.XtraUserControl {
+        public string zjm = "";
         /// <summary>
         /// 
         /// </summary>
@@ -32,6 +33,11 @@ namespace Ebada.Scgl.Xtgl {
             ucTop.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<PJ_dyk>(ucTop_FocusedRowChanged);
         }
 
+        public Control Show(string paradx)
+        {
+            zjm = paradx;
+            return this;
+        }
         void ucTop_FocusedRowChanged(object sender, PJ_dyk obj) {
             ucBottom.ParentObj = obj;
             splitCC1.Panel2.Text = "内容所在类别：" + (obj != null ? obj.dx : "");
@@ -51,6 +57,7 @@ namespace Ebada.Scgl.Xtgl {
             ucBottom.barCopy.Visibility = BarItemVisibility.Always;
             ucBottom.InitColumns();
             ucTop.barCopy.Visibility = BarItemVisibility.Never;
+            ucTop.zjm = zjm;
             ucTop.InitColumns();
             ucTop.InitData();
            ucTop.ChildView = ucBottom.GridViewOperation;
