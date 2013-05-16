@@ -12,6 +12,7 @@ using Ebada.Client.Platform;
 using Ebada.Core;
 using Ebada.Scgl.Model;
 using System.Collections;
+using Ebada.Scgl.Core;
 
 namespace Ebada.jhgl
 {
@@ -58,7 +59,15 @@ namespace Ebada.jhgl
         {
             this.cbxCompleteStatus.Properties.Items.Add("完成");
             this.cbxCompleteStatus.Properties.Items.Add("未完成");
-           
+            IList<mUser> userList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where orgcode='" + rowData.单位代码 + "'");
+            List<DicType> dicTypeList = new List<DicType>();
+            foreach (mUser user in userList)
+            {
+                dicTypeList.Add(new DicType(user.UserName, user.UserName));
+            }
+            this.cmbCooperationMan.Properties.DataSource = dicTypeList;
+            this.cmbCooperationMan.Properties.DisplayMember = "Value";
+            this.cmbCooperationMan.Properties.ValueMember = "Key";
         }
 
         void dataBind()
@@ -70,14 +79,14 @@ namespace Ebada.jhgl
             rowData.单位名称 = MainHelper.User.OrgName;
             this.mePlanPro.DataBindings.Add("EditValue", rowData, "计划项目");
             this.meWorkContent.DataBindings.Add("EditValue", rowData, "工作内容");
-            this.meCooperationMan.DataBindings.Add("EditValue", rowData, "协作人员");
+            this.cmbCooperationMan.DataBindings.Add("EditValue", rowData, "协作人员");
             this.dateStartDate.DataBindings.Add("EditValue", rowData, "预计时间");
             this.dateEndDate.DataBindings.Add("EditValue", rowData, "预计时间2");
             this.cbxCompleteStatus.DataBindings.Add("EditValue", rowData, "完成标记");
             this.dateCompleteDate.DataBindings.Add("EditValue", rowData, "完成时间");
             this.meSummryUp.DataBindings.Add("EditValue", rowData, "总结提升");
             this.meUnCompleteReason.DataBindings.Add("EditValue", rowData, "未完成原因");
-            this.txtCommentMan.DataBindings.Add("EditValue", rowData, "评语考核人");
+           
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -89,5 +98,39 @@ namespace Ebada.jhgl
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void btnPlanPro_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("周工作计划", "计划项目", mePlanPro);
+            rowData.计划项目 = mePlanPro.EditValue.ToString();
+        }
+
+        private void btnSummryUp_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("周工作计划", "总结提升", meSummryUp);
+            rowData.总结提升 = meSummryUp.EditValue.ToString();
+        }
+
+        private void btnUnCompleteReason_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("周工作计划", "未完成原因", meUnCompleteReason);
+            rowData.未完成原因 = meUnCompleteReason.EditValue.ToString();
+        }
+
+        private void btnWrokContent_Click(object sender, EventArgs e)
+        {
+            JH_weekmant weekmant= Client.ClientHelper.PlatformSqlMap.GetOne<JH_weekmant>("where id='" + rowData.ParentID + "'");
+            if (weekmant == null)
+                return;
+            frmJH_WorkContent frm = new frmJH_WorkContent();
+            frm.year = weekmant.年月周.Substring(0, 4);
+            frm.orgcode = rowData.单位代码;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                meWorkContent.EditValue = frm.content;
+                rowData.工作内容 = frm.content;
+            }
+        }
+
     }
 }
