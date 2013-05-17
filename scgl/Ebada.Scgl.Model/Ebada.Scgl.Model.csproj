@@ -75,6 +75,10 @@
     <Compile Include="BD_SBTZ_SX.cs" />
     <Compile Include="BD_SBTZ_ZL.cs" />
     <Compile Include="Empolyees.cs" />
+    <Compile Include="gps_carrier.cs" />
+    <Compile Include="gps_device.cs" />
+    <Compile Include="gps_position.cs" />
+    <Compile Include="gps_position_now.cs" />
     <Compile Include="JH_monthks.cs" />
     <Compile Include="JH_monthkst.cs" />
     <Compile Include="JH_weekks.cs" />
