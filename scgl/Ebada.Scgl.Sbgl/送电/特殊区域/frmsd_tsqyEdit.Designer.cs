@@ -50,7 +50,6 @@
             this.splitContainerControl1.SplitterPosition = 48;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
-           
             // 
             // xtraTabControl1
             // 
@@ -66,7 +65,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 424);
             this.Controls.Add(this.splitContainerControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmsd_tsqyEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "特殊区域信息";
