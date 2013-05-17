@@ -395,8 +395,8 @@ namespace Ebada.Scgl.Sbgl.变电
         
         private void splitContainerControl1_Panel2_Resize(object sender, EventArgs e)
         {
-            //this.splitContainerControl1.Panel2.MinSize = 50;
-            //this.splitContainerControl1.Panel1.MinSize = this.splitContainerControl1.Size.Height - this.splitContainerControl1.Panel2.Height;
+            this.splitContainerControl1.Panel2.MinSize = 50;
+            this.splitContainerControl1.Panel1.MinSize = this.splitContainerControl1.Size.Height - this.splitContainerControl1.Panel2.Height;
 
 
         }
