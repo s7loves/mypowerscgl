@@ -229,7 +229,7 @@
          #c2#,
          #c3#
          )
-     <selectKey resultClass="int"  type="post" property="id">
+     <selectKey resultClass="long"  type="post" property="id">
      <![CDATA[select @@IDENTITY as value ]]>
      </selectKey>
 

@@ -185,7 +185,6 @@
    <insert id="Insertgps_position_now" parameterClass="gps_position_now">
         INSERT INTO gps_position_now
          (
-         [id],
          [device_id],
          [date],
          [lng],
@@ -209,7 +208,6 @@
          )
        VALUES
          (
-         #id#,
          #device_id#,
          #date#,
          #lng#,
@@ -231,7 +229,9 @@
          #c2#,
          #c3#
          )
-
+<selectKey resultClass="long"  type="post" property="id">
+     <![CDATA[select @@IDENTITY as value ]]>
+   </selectKey>
    </insert>
    
    <select id="Getgps_position_nowRowCountByHash" parameterClass="Hashtable">
