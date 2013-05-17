@@ -91,15 +91,16 @@ namespace Ebada.Scgl.Sbgl.变电
                     int i = 1;
                     foreach (BD_SBTZ_SX sbsx in sbsxList)
                     {
-                        if (i > 10 || XtraPage == null)
+                        if (i > 100 || XtraPage == null)
                         {
                             XtraPage = new DevExpress.XtraTab.XtraTabPage();
                             XtraPage.Name = "xtrpage" + pageNumber;
                             XtraPage.Text = string.Format("变电设备第{0}页", pageNumber);
                             this.xtraTabControl1.TabPages.Add(XtraPage);
+                            XtraPage.AutoScroll = true;
                             pageNumber++;
                         }
-                        if (i > 10)
+                        if (i > 100)
                         {
                             i = 1;
                             startlblw = 11;
@@ -150,12 +151,14 @@ namespace Ebada.Scgl.Sbgl.变电
                     btnOk.Text = "确定";
                     btnOk.Location = new Point(357, 9);
                     btnOk.Click += new EventHandler(btnOk_Click);
+                    btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
                     DevExpress.XtraEditors.SimpleButton btnCancel = new DevExpress.XtraEditors.SimpleButton();
                     btnCancel.Name = "btnCancel";
                     btnCancel.Text = "取消";
                     btnCancel.Location = new Point(461, 9);
                     btnCancel.Click += new EventHandler(btnCancel_Click);
+                    btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
                     this.splitContainerControl1.Panel2.Controls.Add(btnOk);
                     this.splitContainerControl1.Panel2.Controls.Add(btnCancel);
