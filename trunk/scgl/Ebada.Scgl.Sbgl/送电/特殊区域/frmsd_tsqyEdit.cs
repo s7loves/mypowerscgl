@@ -211,7 +211,8 @@ namespace Ebada.Scgl.Sbgl.变电
                 grpbox.Location = new Point(0, 0);
                 grpbox.Text = "照片";
                 grpbox.Name = "grppicture";
-                grpbox.Dock = DockStyle.Top;
+                //grpbox.Dock = DockStyle.Top;
+                grpbox.Dock = DockStyle.Fill;
                 grpbox.Size = new Size(565, 386);
                 XtraPage.Controls.Add(grpbox);
 
@@ -389,6 +390,15 @@ namespace Ebada.Scgl.Sbgl.变电
             if (image != null && imageData != null)
                 image.data = (byte[])imageData;
             return image;
+        }
+
+        
+        private void splitContainerControl1_Panel2_Resize(object sender, EventArgs e)
+        {
+            this.splitContainerControl1.Panel2.MinSize = 50;
+            this.splitContainerControl1.Panel1.MinSize = this.splitContainerControl1.Size.Height - this.splitContainerControl1.Panel2.Height;
+
+
         }
     }
 }
