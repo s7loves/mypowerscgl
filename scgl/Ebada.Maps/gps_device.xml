@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="gps_device" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="gps_device"  type="Ebada.Scgl.Model.gps_device,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="gps_device_AllColumns" class="gps_device">
+        <result property="device_id" column="device_id" />
+        <result property="device_serial" column="device_serial" />
+        <result property="device_type" column="device_type" />
+        <result property="device_model" column="device_model" />
+        <result property="device_expire" column="device_expire" />
+        <result property="device_desc" column="device_desc" />
+        <result property="device_made_date" column="device_made_date" />
+        <result property="software_version" column="software_version" />
+        <result property="system_version" column="system_version" />
+        <result property="last_modify" column="last_modify" />
+        <result property="rowversion" column="rowversion" />
+        <result property="device_owner" column="device_owner" />
+        <result property="phone_number" column="phone_number" />
+        <result property="sim_id" column="sim_id" />
+        <result property="carrier_id" column="carrier_id" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectgps_deviceList" resultMap="gps_device_AllColumns" parameterClass="string">
+        SELECT 
+         [device_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_made_date],
+         [software_version],
+         [system_version],
+         [last_modify],
+         [rowversion],
+         [device_owner],
+         [phone_number],
+         [sim_id],
+         [carrier_id],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_device
+          $value$
+   </select>
+   
+   <select id="Selectgps_deviceByHash" parameterClass="Hashtable">
+         SELECT 
+         [device_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_made_date],
+         [software_version],
+         [system_version],
+         [last_modify],
+         [rowversion],
+         [device_owner],
+         [phone_number],
+         [sim_id],
+         [carrier_id],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_device
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="device_id">[device_id]='$device_id$'</isNotNull>
+       <isNotNull prepend="AND" property="device_serial">[device_serial]='$device_serial$'</isNotNull>
+       <isNotNull prepend="AND" property="device_type">[device_type]='$device_type$'</isNotNull>
+       <isNotNull prepend="AND" property="device_model">[device_model]='$device_model$'</isNotNull>
+       <isNotNull prepend="AND" property="device_expire">[device_expire]='$device_expire$'</isNotNull>
+       <isNotNull prepend="AND" property="device_desc">[device_desc]='$device_desc$'</isNotNull>
+       <isNotNull prepend="AND" property="device_made_date">[device_made_date]='$device_made_date$'</isNotNull>
+       <isNotNull prepend="AND" property="software_version">[software_version]='$software_version$'</isNotNull>
+       <isNotNull prepend="AND" property="system_version">[system_version]='$system_version$'</isNotNull>
+       <isNotNull prepend="AND" property="last_modify">[last_modify]='$last_modify$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+       <isNotNull prepend="AND" property="device_owner">[device_owner]='$device_owner$'</isNotNull>
+       <isNotNull prepend="AND" property="phone_number">[phone_number]='$phone_number$'</isNotNull>
+       <isNotNull prepend="AND" property="sim_id">[sim_id]='$sim_id$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_id">[carrier_id]='$carrier_id$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectgps_deviceByKey" resultMap="gps_device_AllColumns" parameterClass="gps_device">
+         SELECT 
+         [device_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_made_date],
+         [software_version],
+         [system_version],
+         [last_modify],
+         [rowversion],
+         [device_owner],
+         [phone_number],
+         [sim_id],
+         [carrier_id],
+         [c1],
+         [c2],
+         [c3]
+         FROM gps_device
+         WHERE 
+           device_id = #device_id#
+
+   </select>
+ 
+   <delete id="Deletegps_device" parameterClass="gps_device">
+        DELETE FROM 
+         gps_device
+           WHERE
+         device_id = #device_id#
+
+   </delete>
+   
+   <delete id="Deletegps_deviceByWhere" parameterClass="string">
+     delete from gps_device $value$
+   </delete>
+   
+   <delete id="Deletegps_deviceByKey" parameterClass="string">
+        DELETE FROM 
+         gps_device
+           WHERE
+         device_id = #device_id#
+    
+   </delete>
+   
+   <update id="Updategps_device" parameterClass="gps_device" resultClass="int">
+          UPDATE gps_device
+           SET
+             [device_serial]=#device_serial#,
+             [device_type]=#device_type#,
+             [device_model]=#device_model#,
+             [device_expire]=#device_expire#,
+             [device_desc]=#device_desc#,
+             [device_made_date]=#device_made_date#,
+             [software_version]=#software_version#,
+             [system_version]=#system_version#,
+             [last_modify]=#last_modify#,
+             [device_owner]=#device_owner#,
+             [phone_number]=#phone_number#,
+             [sim_id]=#sim_id#,
+             [carrier_id]=#carrier_id#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              device_id = #device_id#
+
+   </update>
+  
+   <insert id="Insertgps_device" parameterClass="gps_device">
+        INSERT INTO gps_device
+         (
+         [device_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_made_date],
+         [software_version],
+         [system_version],
+         [last_modify],
+         [device_owner],
+         [phone_number],
+         [sim_id],
+         [carrier_id],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #device_id#,
+         #device_serial#,
+         #device_type#,
+         #device_model#,
+         #device_expire#,
+         #device_desc#,
+         #device_made_date#,
+         #software_version#,
+         #system_version#,
+         #last_modify#,
+         #device_owner#,
+         #phone_number#,
+         #sim_id#,
+         #carrier_id#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getgps_deviceRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM gps_device
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="device_id">[device_id]='$device_id$'</isNotNull>
+       <isNotNull prepend="AND" property="device_serial">[device_serial]='$device_serial$'</isNotNull>
+       <isNotNull prepend="AND" property="device_type">[device_type]='$device_type$'</isNotNull>
+       <isNotNull prepend="AND" property="device_model">[device_model]='$device_model$'</isNotNull>
+       <isNotNull prepend="AND" property="device_expire">[device_expire]='$device_expire$'</isNotNull>
+       <isNotNull prepend="AND" property="device_desc">[device_desc]='$device_desc$'</isNotNull>
+       <isNotNull prepend="AND" property="device_made_date">[device_made_date]='$device_made_date$'</isNotNull>
+       <isNotNull prepend="AND" property="software_version">[software_version]='$software_version$'</isNotNull>
+       <isNotNull prepend="AND" property="system_version">[system_version]='$system_version$'</isNotNull>
+       <isNotNull prepend="AND" property="last_modify">[last_modify]='$last_modify$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+       <isNotNull prepend="AND" property="device_owner">[device_owner]='$device_owner$'</isNotNull>
+       <isNotNull prepend="AND" property="phone_number">[phone_number]='$phone_number$'</isNotNull>
+       <isNotNull prepend="AND" property="sim_id">[sim_id]='$sim_id$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_id">[carrier_id]='$carrier_id$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getgps_deviceRowCount" parameterClass="string">
+    select count(*) from gps_device $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

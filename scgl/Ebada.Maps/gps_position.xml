@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="gps_position" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="gps_position"  type="Ebada.Scgl.Model.gps_position,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="gps_position_AllColumns" class="gps_position">
+        <result property="id" column="id" />
+        <result property="device_id" column="device_id" />
+        <result property="date" column="date" />
+        <result property="lng" column="lng" />
+        <result property="lat" column="lat" />
+        <result property="lng2" column="lng2" />
+        <result property="lat2" column="lat2" />
+        <result property="altitude" column="altitude" />
+        <result property="speed" column="speed" />
+        <result property="direction" column="direction" />
+        <result property="position_type" column="position_type" />
+        <result property="gps_realtime_position" column="gps_realtime_position" />
+        <result property="lbs_info" column="lbs_info" />
+        <result property="g_force" column="g_force" />
+        <result property="distance_from_last_gps" column="distance_from_last_gps" />
+        <result property="carrier_acc" column="carrier_acc" />
+        <result property="status_byte" column="status_byte" />
+        <result property="status_string" column="status_string" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectgps_positionList" resultMap="gps_position_AllColumns" parameterClass="string">
+        SELECT 
+         [id],
+         [device_id],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [altitude],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [lbs_info],
+         [g_force],
+         [distance_from_last_gps],
+         [carrier_acc],
+         [status_byte],
+         [status_string],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_position
+          $value$
+   </select>
+   
+   <select id="Selectgps_positionByHash" parameterClass="Hashtable">
+         SELECT 
+         [id],
+         [device_id],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [altitude],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [lbs_info],
+         [g_force],
+         [distance_from_last_gps],
+         [carrier_acc],
+         [status_byte],
+         [status_string],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_position
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="device_id">[device_id]='$device_id$'</isNotNull>
+       <isNotNull prepend="AND" property="date">[date]='$date$'</isNotNull>
+       <isNotNull prepend="AND" property="lng">[lng]='$lng$'</isNotNull>
+       <isNotNull prepend="AND" property="lat">[lat]='$lat$'</isNotNull>
+       <isNotNull prepend="AND" property="lng2">[lng2]='$lng2$'</isNotNull>
+       <isNotNull prepend="AND" property="lat2">[lat2]='$lat2$'</isNotNull>
+       <isNotNull prepend="AND" property="altitude">[altitude]='$altitude$'</isNotNull>
+       <isNotNull prepend="AND" property="speed">[speed]='$speed$'</isNotNull>
+       <isNotNull prepend="AND" property="direction">[direction]='$direction$'</isNotNull>
+       <isNotNull prepend="AND" property="position_type">[position_type]='$position_type$'</isNotNull>
+       <isNotNull prepend="AND" property="gps_realtime_position">[gps_realtime_position]='$gps_realtime_position$'</isNotNull>
+       <isNotNull prepend="AND" property="lbs_info">[lbs_info]='$lbs_info$'</isNotNull>
+       <isNotNull prepend="AND" property="g_force">[g_force]='$g_force$'</isNotNull>
+       <isNotNull prepend="AND" property="distance_from_last_gps">[distance_from_last_gps]='$distance_from_last_gps$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_acc">[carrier_acc]='$carrier_acc$'</isNotNull>
+       <isNotNull prepend="AND" property="status_byte">[status_byte]='$status_byte$'</isNotNull>
+       <isNotNull prepend="AND" property="status_string">[status_string]='$status_string$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectgps_positionByKey" resultMap="gps_position_AllColumns" parameterClass="gps_position">
+         SELECT 
+         [id],
+         [device_id],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [altitude],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [lbs_info],
+         [g_force],
+         [distance_from_last_gps],
+         [carrier_acc],
+         [status_byte],
+         [status_string],
+         [c1],
+         [c2],
+         [c3]
+         FROM gps_position
+         WHERE 
+           id = #id#
+
+   </select>
+ 
+   <delete id="Deletegps_position" parameterClass="gps_position">
+        DELETE FROM 
+         gps_position
+           WHERE
+         id = #id#
+
+   </delete>
+   
+   <delete id="Deletegps_positionByWhere" parameterClass="string">
+     delete from gps_position $value$
+   </delete>
+   
+   <delete id="Deletegps_positionByKey" parameterClass="long">
+        DELETE FROM 
+         gps_position
+           WHERE
+         id = #id#
+    
+   </delete>
+   
+   <update id="Updategps_position" parameterClass="gps_position" resultClass="int">
+          UPDATE gps_position
+           SET
+             [device_id]=#device_id#,
+             [date]=#date#,
+             [lng]=#lng#,
+             [lat]=#lat#,
+             [lng2]=#lng2#,
+             [lat2]=#lat2#,
+             [altitude]=#altitude#,
+             [speed]=#speed#,
+             [direction]=#direction#,
+             [position_type]=#position_type#,
+             [gps_realtime_position]=#gps_realtime_position#,
+             [lbs_info]=#lbs_info#,
+             [g_force]=#g_force#,
+             [distance_from_last_gps]=#distance_from_last_gps#,
+             [carrier_acc]=#carrier_acc#,
+             [status_byte]=#status_byte#,
+             [status_string]=#status_string#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              id = #id#
+
+   </update>
+  
+   <insert id="Insertgps_position" parameterClass="gps_position">
+        INSERT INTO gps_position
+         (
+         [device_id],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [altitude],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [lbs_info],
+         [g_force],
+         [distance_from_last_gps],
+         [carrier_acc],
+         [status_byte],
+         [status_string],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #device_id#,
+         #date#,
+         #lng#,
+         #lat#,
+         #lng2#,
+         #lat2#,
+         #altitude#,
+         #speed#,
+         #direction#,
+         #position_type#,
+         #gps_realtime_position#,
+         #lbs_info#,
+         #g_force#,
+         #distance_from_last_gps#,
+         #carrier_acc#,
+         #status_byte#,
+         #status_string#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+     <selectKey resultClass="int"  type="post" property="id">
+     <![CDATA[select @@IDENTITY as value ]]>
+     </selectKey>
+
+   </insert>
+   
+   <select id="Getgps_positionRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM gps_position
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="device_id">[device_id]='$device_id$'</isNotNull>
+       <isNotNull prepend="AND" property="date">[date]='$date$'</isNotNull>
+       <isNotNull prepend="AND" property="lng">[lng]='$lng$'</isNotNull>
+       <isNotNull prepend="AND" property="lat">[lat]='$lat$'</isNotNull>
+       <isNotNull prepend="AND" property="lng2">[lng2]='$lng2$'</isNotNull>
+       <isNotNull prepend="AND" property="lat2">[lat2]='$lat2$'</isNotNull>
+       <isNotNull prepend="AND" property="altitude">[altitude]='$altitude$'</isNotNull>
+       <isNotNull prepend="AND" property="speed">[speed]='$speed$'</isNotNull>
+       <isNotNull prepend="AND" property="direction">[direction]='$direction$'</isNotNull>
+       <isNotNull prepend="AND" property="position_type">[position_type]='$position_type$'</isNotNull>
+       <isNotNull prepend="AND" property="gps_realtime_position">[gps_realtime_position]='$gps_realtime_position$'</isNotNull>
+       <isNotNull prepend="AND" property="lbs_info">[lbs_info]='$lbs_info$'</isNotNull>
+       <isNotNull prepend="AND" property="g_force">[g_force]='$g_force$'</isNotNull>
+       <isNotNull prepend="AND" property="distance_from_last_gps">[distance_from_last_gps]='$distance_from_last_gps$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_acc">[carrier_acc]='$carrier_acc$'</isNotNull>
+       <isNotNull prepend="AND" property="status_byte">[status_byte]='$status_byte$'</isNotNull>
+       <isNotNull prepend="AND" property="status_string">[status_string]='$status_string$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getgps_positionRowCount" parameterClass="string">
+    select count(*) from gps_position $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

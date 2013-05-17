@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="gps_carrier" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="gps_carrier"  type="Ebada.Scgl.Model.gps_carrier,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="gps_carrier_AllColumns" class="gps_carrier">
+        <result property="carrier_id" column="carrier_id" />
+        <result property="carrier_type" column="carrier_type" />
+        <result property="model" column="model" />
+        <result property="year" column="year" />
+        <result property="color" column="color" />
+        <result property="plate" column="plate" />
+        <result property="owner" column="owner" />
+        <result property="driver" column="driver" />
+        <result property="phone" column="phone" />
+        <result property="last_modify" column="last_modify" />
+        <result property="rowversion" column="rowversion" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectgps_carrierList" resultMap="gps_carrier_AllColumns" parameterClass="string">
+        SELECT 
+         [carrier_id],
+         [carrier_type],
+         [model],
+         [year],
+         [color],
+         [plate],
+         [owner],
+         [driver],
+         [phone],
+         [last_modify],
+         [rowversion],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_carrier
+          $value$
+   </select>
+   
+   <select id="Selectgps_carrierByHash" parameterClass="Hashtable">
+         SELECT 
+         [carrier_id],
+         [carrier_type],
+         [model],
+         [year],
+         [color],
+         [plate],
+         [owner],
+         [driver],
+         [phone],
+         [last_modify],
+         [rowversion],
+         [c1],
+         [c2],
+         [c3]
+          FROM gps_carrier
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="carrier_id">[carrier_id]='$carrier_id$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_type">[carrier_type]='$carrier_type$'</isNotNull>
+       <isNotNull prepend="AND" property="model">[model]='$model$'</isNotNull>
+       <isNotNull prepend="AND" property="year">[year]='$year$'</isNotNull>
+       <isNotNull prepend="AND" property="color">[color]='$color$'</isNotNull>
+       <isNotNull prepend="AND" property="plate">[plate]='$plate$'</isNotNull>
+       <isNotNull prepend="AND" property="owner">[owner]='$owner$'</isNotNull>
+       <isNotNull prepend="AND" property="driver">[driver]='$driver$'</isNotNull>
+       <isNotNull prepend="AND" property="phone">[phone]='$phone$'</isNotNull>
+       <isNotNull prepend="AND" property="last_modify">[last_modify]='$last_modify$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectgps_carrierByKey" resultMap="gps_carrier_AllColumns" parameterClass="gps_carrier">
+         SELECT 
+         [carrier_id],
+         [carrier_type],
+         [model],
+         [year],
+         [color],
+         [plate],
+         [owner],
+         [driver],
+         [phone],
+         [last_modify],
+         [rowversion],
+         [c1],
+         [c2],
+         [c3]
+         FROM gps_carrier
+         WHERE 
+           carrier_id = #carrier_id#
+
+   </select>
+ 
+   <delete id="Deletegps_carrier" parameterClass="gps_carrier">
+        DELETE FROM 
+         gps_carrier
+           WHERE
+         carrier_id = #carrier_id#
+
+   </delete>
+   
+   <delete id="Deletegps_carrierByWhere" parameterClass="string">
+     delete from gps_carrier $value$
+   </delete>
+   
+   <delete id="Deletegps_carrierByKey" parameterClass="string">
+        DELETE FROM 
+         gps_carrier
+           WHERE
+         carrier_id = #carrier_id#
+    
+   </delete>
+   
+   <update id="Updategps_carrier" parameterClass="gps_carrier" resultClass="int">
+          UPDATE gps_carrier
+           SET
+             [carrier_type]=#carrier_type#,
+             [model]=#model#,
+             [year]=#year#,
+             [color]=#color#,
+             [plate]=#plate#,
+             [owner]=#owner#,
+             [driver]=#driver#,
+             [phone]=#phone#,
+             [last_modify]=#last_modify#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              carrier_id = #carrier_id#
+
+   </update>
+  
+   <insert id="Insertgps_carrier" parameterClass="gps_carrier">
+        INSERT INTO gps_carrier
+         (
+         [carrier_id],
+         [carrier_type],
+         [model],
+         [year],
+         [color],
+         [plate],
+         [owner],
+         [driver],
+         [phone],
+         [last_modify],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #carrier_id#,
+         #carrier_type#,
+         #model#,
+         #year#,
+         #color#,
+         #plate#,
+         #owner#,
+         #driver#,
+         #phone#,
+         #last_modify#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getgps_carrierRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM gps_carrier
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="carrier_id">[carrier_id]='$carrier_id$'</isNotNull>
+       <isNotNull prepend="AND" property="carrier_type">[carrier_type]='$carrier_type$'</isNotNull>
+       <isNotNull prepend="AND" property="model">[model]='$model$'</isNotNull>
+       <isNotNull prepend="AND" property="year">[year]='$year$'</isNotNull>
+       <isNotNull prepend="AND" property="color">[color]='$color$'</isNotNull>
+       <isNotNull prepend="AND" property="plate">[plate]='$plate$'</isNotNull>
+       <isNotNull prepend="AND" property="owner">[owner]='$owner$'</isNotNull>
+       <isNotNull prepend="AND" property="driver">[driver]='$driver$'</isNotNull>
+       <isNotNull prepend="AND" property="phone">[phone]='$phone$'</isNotNull>
+       <isNotNull prepend="AND" property="last_modify">[last_modify]='$last_modify$'</isNotNull>
+       <isNotNull prepend="AND" property="rowversion">[rowversion]='$rowversion$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getgps_carrierRowCount" parameterClass="string">
+    select count(*) from gps_carrier $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
