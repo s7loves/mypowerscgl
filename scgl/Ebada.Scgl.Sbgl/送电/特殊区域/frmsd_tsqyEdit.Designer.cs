@@ -45,10 +45,12 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Panel2.Resize += new System.EventHandler(this.splitContainerControl1_Panel2_Resize);
             this.splitContainerControl1.Size = new System.Drawing.Size(572, 424);
             this.splitContainerControl1.SplitterPosition = 48;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+           
             // 
             // xtraTabControl1
             // 
