@@ -45,6 +45,7 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Panel2.Resize += new System.EventHandler(this.splitContainerControl1_Panel2_Resize);
             this.splitContainerControl1.Size = new System.Drawing.Size(572, 424);
             this.splitContainerControl1.SplitterPosition = 42;
             this.splitContainerControl1.TabIndex = 0;
@@ -64,7 +65,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 424);
             this.Controls.Add(this.splitContainerControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmSBTZ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变电设备信息";
