@@ -122,6 +122,10 @@
     <Compile Include="sbxj_xm.cs" />
     <Compile Include="sbxj_gj.cs" />
     <Compile Include="ScglSbxjService.cs" />
+    <Compile Include="IGpsService.cs" />
+    <Compile Include="GpsService.cs" />
+    <Compile Include="g_position.cs" />
+    <Compile Include="g_device.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
