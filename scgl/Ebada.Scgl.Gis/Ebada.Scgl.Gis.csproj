@@ -164,6 +164,24 @@
     <Compile Include="frmDxtSetup.Designer.cs">
       <DependentUpon>frmDxtSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gps\UCgps_carrier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gps\UCgps_carrier.Designer.cs">
+      <DependentUpon>UCgps_carrier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\UCgps_device.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gps\UCgps_device.Designer.cs">
+      <DependentUpon>UCgps_device.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\UCgps_map.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gps\UCgps_map.Designer.cs">
+      <DependentUpon>UCgps_map.cs</DependentUpon>
+    </Compile>
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="Provider\GoogleChinaTerrainMap.cs" />
