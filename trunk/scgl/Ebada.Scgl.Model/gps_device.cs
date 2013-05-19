@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2013-5-17 14:04:11
+生成时间:2013-5-19 15:36:43
 ***********************************************/
 
 using System;
@@ -21,12 +21,13 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _device_id=Newid(); 
+        private int _device_id=0; 
         private string _device_serial=String.Empty; 
         private string _device_type=String.Empty; 
         private string _device_model=String.Empty; 
         private DateTime _device_expire=new DateTime(1900,1,1); 
         private string _device_desc=String.Empty; 
+        private string _device_state=String.Empty; 
         private DateTime _device_made_date=new DateTime(1900,1,1); 
         private string _software_version=String.Empty; 
         private string _system_version=String.Empty; 
@@ -47,18 +48,15 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：device_id
         /// 属性描述：
-        /// 字段信息：[device_id],nvarchar
+        /// 字段信息：[device_id],int
         /// </summary>
         [Browsable(false)]
         [DisplayNameAttribute("device_id")]
-        public string device_id
+        public int device_id
         {
             get { return _device_id; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[device_id]长度不能大于50!");
                 if (_device_id as object == null || !_device_id.Equals(value))
                 {
                     _device_id = value;
@@ -68,10 +66,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：device_serial
-        /// 属性描述：设备代码
+        /// 属性描述：设备标识(IMEI)
         /// 字段信息：[device_serial],nvarchar
         /// </summary>
-        [DisplayNameAttribute("设备代码")]
+        [DisplayNameAttribute("设备标识(IMEI)")]
         public string device_serial
         {
             get { return _device_serial; }
@@ -79,7 +77,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[设备代码]长度不能大于50!");
+                throw new Exception("[设备标识(IMEI)]长度不能大于50!");
                 if (_device_serial as object == null || !_device_serial.Equals(value))
                 {
                     _device_serial = value;
@@ -164,6 +162,27 @@ namespace Ebada.Scgl.Model
                 if (_device_desc as object == null || !_device_desc.Equals(value))
                 {
                     _device_desc = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：device_state
+        /// 属性描述：设备状态,0-未启用,1-启用
+        /// 字段信息：[device_state],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("设备状态")]
+        public string device_state
+        {
+            get { return _device_state; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[设备状态]长度不能大于50!");
+                if (_device_state as object == null || !_device_state.Equals(value))
+                {
+                    _device_state = value;
                 }
             }			 
         }
