@@ -11,6 +11,7 @@
         <result property="device_model" column="device_model" />
         <result property="device_expire" column="device_expire" />
         <result property="device_desc" column="device_desc" />
+        <result property="device_state" column="device_state" />
         <result property="device_made_date" column="device_made_date" />
         <result property="software_version" column="software_version" />
         <result property="system_version" column="system_version" />
@@ -35,6 +36,7 @@
          [device_model],
          [device_expire],
          [device_desc],
+         [device_state],
          [device_made_date],
          [software_version],
          [system_version],
@@ -59,6 +61,7 @@
          [device_model],
          [device_expire],
          [device_desc],
+         [device_state],
          [device_made_date],
          [software_version],
          [system_version],
@@ -79,6 +82,7 @@
        <isNotNull prepend="AND" property="device_model">[device_model]='$device_model$'</isNotNull>
        <isNotNull prepend="AND" property="device_expire">[device_expire]='$device_expire$'</isNotNull>
        <isNotNull prepend="AND" property="device_desc">[device_desc]='$device_desc$'</isNotNull>
+       <isNotNull prepend="AND" property="device_state">[device_state]='$device_state$'</isNotNull>
        <isNotNull prepend="AND" property="device_made_date">[device_made_date]='$device_made_date$'</isNotNull>
        <isNotNull prepend="AND" property="software_version">[software_version]='$software_version$'</isNotNull>
        <isNotNull prepend="AND" property="system_version">[system_version]='$system_version$'</isNotNull>
@@ -101,6 +105,7 @@
          [device_model],
          [device_expire],
          [device_desc],
+         [device_state],
          [device_made_date],
          [software_version],
          [system_version],
@@ -131,7 +136,7 @@
      delete from gps_device $value$
    </delete>
    
-   <delete id="Deletegps_deviceByKey" parameterClass="string">
+   <delete id="Deletegps_deviceByKey" parameterClass="int">
         DELETE FROM 
          gps_device
            WHERE
@@ -147,6 +152,7 @@
              [device_model]=#device_model#,
              [device_expire]=#device_expire#,
              [device_desc]=#device_desc#,
+             [device_state]=#device_state#,
              [device_made_date]=#device_made_date#,
              [software_version]=#software_version#,
              [system_version]=#system_version#,
@@ -166,12 +172,12 @@
    <insert id="Insertgps_device" parameterClass="gps_device">
         INSERT INTO gps_device
          (
-         [device_id],
          [device_serial],
          [device_type],
          [device_model],
          [device_expire],
          [device_desc],
+         [device_state],
          [device_made_date],
          [software_version],
          [system_version],
@@ -186,12 +192,12 @@
          )
        VALUES
          (
-         #device_id#,
          #device_serial#,
          #device_type#,
          #device_model#,
          #device_expire#,
          #device_desc#,
+         #device_state#,
          #device_made_date#,
          #software_version#,
          #system_version#,
@@ -204,6 +210,9 @@
          #c2#,
          #c3#
          )
+     <selectKey resultClass="int"  type="post" property="device_id">
+     <![CDATA[select @@IDENTITY as value ]]>
+     </selectKey>
 
    </insert>
    
@@ -217,6 +226,7 @@
        <isNotNull prepend="AND" property="device_model">[device_model]='$device_model$'</isNotNull>
        <isNotNull prepend="AND" property="device_expire">[device_expire]='$device_expire$'</isNotNull>
        <isNotNull prepend="AND" property="device_desc">[device_desc]='$device_desc$'</isNotNull>
+       <isNotNull prepend="AND" property="device_state">[device_state]='$device_state$'</isNotNull>
        <isNotNull prepend="AND" property="device_made_date">[device_made_date]='$device_made_date$'</isNotNull>
        <isNotNull prepend="AND" property="software_version">[software_version]='$software_version$'</isNotNull>
        <isNotNull prepend="AND" property="system_version">[system_version]='$system_version$'</isNotNull>
