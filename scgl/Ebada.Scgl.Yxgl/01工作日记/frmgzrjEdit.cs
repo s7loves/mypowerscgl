@@ -107,7 +107,7 @@ namespace Ebada.Scgl.Yxgl {
             for (int i = 0; i < 10; i++) {
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.Clear();
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + (i + 1)]).Properties.Items.AddRange(ryList);
-
+                
             }
             comboBoxEdit21.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", comboBoxEdit21);
