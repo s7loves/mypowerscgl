@@ -60,6 +60,13 @@ namespace Ebada.jhgl.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap gps监控管理 {
+            get {
+                object obj = ResourceManager.GetObject("gps监控管理", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap 员工工作 {
             get {
                 object obj = ResourceManager.GetObject("员工工作", resourceCulture);

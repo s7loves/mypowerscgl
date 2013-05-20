@@ -309,6 +309,7 @@
     <None Include="绥化农电计划管理.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="gps监控管理.jpg" />
     <Content Include="员工工作.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
