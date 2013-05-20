@@ -95,6 +95,7 @@ namespace Ebada.Scgl.Yxgl
             foreach (sd_xl pl in xlList)
             {
                 comboBoxEdit6.Properties.Items.Add(pl.LineName);
+                
             }
             comboBoxEdit9.Properties.Items.Clear();
             comboBoxEdit9.Properties.Items.Add(MainHelper.UserCompany);

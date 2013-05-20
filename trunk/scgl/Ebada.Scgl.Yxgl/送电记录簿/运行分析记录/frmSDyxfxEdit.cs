@@ -433,6 +433,7 @@ namespace Ebada.Scgl.Yxgl
         {
             for (int i = 1; i <= 15; i++)
             {
+                
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = string.Empty;
             }
         }
