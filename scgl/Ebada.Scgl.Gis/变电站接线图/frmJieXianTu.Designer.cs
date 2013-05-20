@@ -49,6 +49,7 @@
             this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
+            this.treeList1.OptionsSelection.InvertSelection = true;
             this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.Size = new System.Drawing.Size(239, 351);
             this.treeList1.TabIndex = 1;

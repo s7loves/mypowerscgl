@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCXianLuTu));
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
@@ -39,7 +40,7 @@
             this.tNew = new DevExpress.XtraBars.BarButtonItem();
             this.tOpen = new DevExpress.XtraBars.BarButtonItem();
             this.tSave = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.tCopy = new DevExpress.XtraBars.BarButtonItem();
             this.tCut = new DevExpress.XtraBars.BarButtonItem();
             this.tPast = new DevExpress.XtraBars.BarButtonItem();
@@ -71,6 +72,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.graphControl1 = new Netron.GraphLib.UI.GraphControl();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.保存 = new DevExpress.XtraBars.BarButtonItem();
@@ -163,6 +165,7 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.DockManager = this.dockManager1;
             this.barManager1.Form = this.groupControl1;
+            this.barManager1.Images = this.imageList1;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barSubItem1,
             this.barButtonItem1,
@@ -190,7 +193,7 @@
             this.tNew,
             this.tOpen,
             this.tSave,
-            this.barButtonItem32,
+            this.btClose,
             this.tCopy,
             this.tCut,
             this.tPast,
@@ -212,15 +215,16 @@
             this.bar1.DockCol = 0;
             this.bar1.DockRow = 1;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.FloatLocation = new System.Drawing.Point(451, 249);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.tNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.tOpen),
             new DevExpress.XtraBars.LinkPersistInfo(this.tSave),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem32),
             new DevExpress.XtraBars.LinkPersistInfo(this.tCopy),
             new DevExpress.XtraBars.LinkPersistInfo(this.tCut),
             new DevExpress.XtraBars.LinkPersistInfo(this.tPast),
-            new DevExpress.XtraBars.LinkPersistInfo(this.tDelete)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.tDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
@@ -229,49 +233,65 @@
             // 
             this.tNew.Caption = "新建(&N)";
             this.tNew.Id = 41;
+            this.tNew.ImageIndex = 11;
             this.tNew.Name = "tNew";
+            this.tNew.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tOpen
             // 
             this.tOpen.Caption = "打开(&O)";
             this.tOpen.Id = 42;
+            this.tOpen.ImageIndex = 2;
             this.tOpen.Name = "tOpen";
+            this.tOpen.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tSave
             // 
             this.tSave.Caption = "保存(&S)";
             this.tSave.Id = 43;
+            this.tSave.ImageIndex = 5;
             this.tSave.Name = "tSave";
+            this.tSave.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // barButtonItem32
+            // btClose
             // 
-            this.barButtonItem32.Caption = "关闭(&C)";
-            this.barButtonItem32.Id = 44;
-            this.barButtonItem32.Name = "barButtonItem32";
+            this.btClose.Caption = "关闭(&C)";
+            this.btClose.Id = 44;
+            this.btClose.ImageIndex = 6;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tCopy
             // 
             this.tCopy.Caption = "复制(&C)";
             this.tCopy.Id = 45;
+            this.tCopy.ImageIndex = 10;
             this.tCopy.Name = "tCopy";
+            this.tCopy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tCut
             // 
             this.tCut.Caption = "剪切(&X)";
             this.tCut.Id = 46;
+            this.tCut.ImageIndex = 9;
             this.tCut.Name = "tCut";
+            this.tCut.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tPast
             // 
             this.tPast.Caption = "粘贴(&V)";
             this.tPast.Id = 47;
+            this.tPast.ImageIndex = 8;
             this.tPast.Name = "tPast";
+            this.tPast.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // tDelete
             // 
             this.tDelete.Caption = "删除(&D)";
             this.tDelete.Id = 48;
+            this.tDelete.ImageIndex = 7;
             this.tDelete.Name = "tDelete";
+            this.tDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // bar3
             // 
@@ -300,6 +320,7 @@
             this.bar2.DockCol = 0;
             this.bar2.DockRow = 0;
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.FloatLocation = new System.Drawing.Point(428, 220);
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem2),
@@ -325,25 +346,33 @@
             // 
             this.mNew.Caption = "新建(&N)";
             this.mNew.Id = 5;
+            this.mNew.ImageIndex = 11;
             this.mNew.Name = "mNew";
+            this.mNew.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mOpen
             // 
             this.mOpen.Caption = "打开(&O)";
             this.mOpen.Id = 6;
+            this.mOpen.ImageIndex = 2;
             this.mOpen.Name = "mOpen";
+            this.mOpen.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mSave
             // 
             this.mSave.Caption = "保存(&S)";
             this.mSave.Id = 4;
+            this.mSave.ImageIndex = 5;
             this.mSave.Name = "mSave";
+            this.mSave.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barButtonItem6
             // 
             this.barButtonItem6.Caption = "另存为(&A)";
             this.barButtonItem6.Id = 7;
+            this.barButtonItem6.ImageIndex = 4;
             this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mSaveAsImg
             // 
@@ -374,25 +403,33 @@
             // 
             this.mCopy.Caption = "复制(&C)";
             this.mCopy.Id = 15;
+            this.mCopy.ImageIndex = 10;
             this.mCopy.Name = "mCopy";
+            this.mCopy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mCut
             // 
             this.mCut.Caption = "剪切(&X)";
             this.mCut.Id = 16;
+            this.mCut.ImageIndex = 9;
             this.mCut.Name = "mCut";
+            this.mCut.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mPast
             // 
             this.mPast.Caption = "粘贴(&V)";
             this.mPast.Id = 18;
+            this.mPast.ImageIndex = 8;
             this.mPast.Name = "mPast";
+            this.mPast.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mDelete
             // 
             this.mDelete.Caption = "删除(&D)";
             this.mDelete.Id = 19;
+            this.mDelete.ImageIndex = 7;
             this.mDelete.Name = "mDelete";
+            this.mDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mSelectAll
             // 
@@ -427,18 +464,22 @@
             // 
             this.mToBig.Caption = "放大";
             this.mToBig.Id = 50;
+            this.mToBig.ImageIndex = 13;
             this.mToBig.Name = "mToBig";
+            this.mToBig.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // mToSmall
             // 
             this.mToSmall.Caption = "缩小";
             this.mToSmall.Id = 51;
+            this.mToSmall.ImageIndex = 12;
             this.mToSmall.Name = "mToSmall";
+            this.mToSmall.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barDockControlTop
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(2, 23);
+            this.barDockControlTop.Location = new System.Drawing.Point(2, 2);
             this.barDockControlTop.Size = new System.Drawing.Size(700, 53);
             // 
             // barDockControlBottom
@@ -450,14 +491,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(2, 76);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 329);
+            this.barDockControlLeft.Location = new System.Drawing.Point(2, 55);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 350);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(702, 76);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 329);
+            this.barDockControlRight.Location = new System.Drawing.Point(702, 55);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 350);
             // 
             // groupControl1
             // 
@@ -469,6 +510,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(20, 0);
             this.groupControl1.Name = "groupControl1";
+            this.groupControl1.ShowCaption = false;
             this.groupControl1.Size = new System.Drawing.Size(704, 437);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "线路图";
@@ -499,18 +541,37 @@
             this.graphControl1.GradientTop = System.Drawing.Color.LightSteelBlue;
             this.graphControl1.GraphLayoutAlgorithm = Netron.GraphLib.GraphLayoutAlgorithms.SpringEmbedder;
             this.graphControl1.GridSize = 20;
-            this.graphControl1.Location = new System.Drawing.Point(2, 76);
+            this.graphControl1.Location = new System.Drawing.Point(2, 55);
             this.graphControl1.Name = "graphControl1";
             this.graphControl1.RestrictToCanvas = true;
             this.graphControl1.ShowAutomataController = false;
             this.graphControl1.ShowGrid = true;
-            this.graphControl1.Size = new System.Drawing.Size(700, 329);
+            this.graphControl1.Size = new System.Drawing.Size(700, 350);
             this.graphControl1.Snap = false;
             this.graphControl1.TabIndex = 5;
             this.graphControl1.Text = "graphControl1";
             this.graphControl1.Zoom = 1F;
             this.graphControl1.OnShowProperties += new Netron.GraphLib.PropertiesInfo(this.graphControl1_OnShowProperties);
             this.graphControl1.OnShapeMenuItemClick += new Netron.GraphLib.ShapeInfo(this.graphControl1_OnShapeMenuItemClick);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Edit_RedoHS.png");
+            this.imageList1.Images.SetKeyName(1, "Edit_UndoHS.png");
+            this.imageList1.Images.SetKeyName(2, "open.png");
+            this.imageList1.Images.SetKeyName(3, "RepeatHS.png");
+            this.imageList1.Images.SetKeyName(4, "SaveAllHS.png");
+            this.imageList1.Images.SetKeyName(5, "saveHS.png");
+            this.imageList1.Images.SetKeyName(6, "Exit2.png");
+            this.imageList1.Images.SetKeyName(7, "shell32.dll(240).png");
+            this.imageList1.Images.SetKeyName(8, "PasteHS.png");
+            this.imageList1.Images.SetKeyName(9, "CutHS.png");
+            this.imageList1.Images.SetKeyName(10, "CopyHS.png");
+            this.imageList1.Images.SetKeyName(11, "NewFolderHS.png");
+            this.imageList1.Images.SetKeyName(12, "缩小.png");
+            this.imageList1.Images.SetKeyName(13, "放大.png");
             // 
             // barButtonItem1
             // 
@@ -632,7 +693,7 @@
         private DevExpress.XtraBars.BarButtonItem tNew;
         private DevExpress.XtraBars.BarButtonItem tOpen;
         private DevExpress.XtraBars.BarButtonItem tSave;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem32;
+        private DevExpress.XtraBars.BarButtonItem btClose;
         private DevExpress.XtraBars.BarButtonItem tCopy;
         private DevExpress.XtraBars.BarButtonItem tCut;
         private DevExpress.XtraBars.BarButtonItem tPast;
@@ -647,9 +708,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private DevExpress.XtraBars.BarStaticItem barInfo;
-        private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
         private DevExpress.XtraBars.BarButtonItem mToBig;
         private DevExpress.XtraBars.BarButtonItem mToSmall;
         private DevExpress.XtraBars.BarCheckItem mShowGrid;
+        private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
