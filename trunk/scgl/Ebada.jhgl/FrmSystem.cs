@@ -65,6 +65,12 @@ string xtdm="jhgl";
             topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.员工工作;
             return this;
         }
+        public Control showGPS() {
+            xtdm = "gpscar";
+            this.Text = MainHelper.UserCompany + "GPS监控系统";
+            topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.gps监控管理;
+            return this;
+        }
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
             if (pictureEdit1.Width > topbarWidth) {
