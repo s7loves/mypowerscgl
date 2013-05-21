@@ -130,7 +130,7 @@ namespace Ebada.Scgl.Gis.Gps
         void linkEdit_Click(object sender, EventArgs e)
         {
             gps_device device = gridView1.GetFocusedRow() as gps_device;
-            if (string.IsNullOrEmpty(device.carrier_id))
+            if (string.IsNullOrEmpty(device.carrier_id)||Client.ClientHelper.PlatformSqlMap.GetOne<gps_carrier>("where carrier_id='"+device.carrier_id+"'")==null)
             {
                 MsgBox.ShowWarningMessageBox("该设备还没有绑定车辆信息!");
                 return;
