@@ -164,6 +164,30 @@
     <Compile Include="frmDxtSetup.Designer.cs">
       <DependentUpon>frmDxtSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gps\frm_carrierEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gps\frm_carrierEdit.Designer.cs">
+      <DependentUpon>frm_carrierEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\frm_carrierselect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gps\frm_carrierselect.Designer.cs">
+      <DependentUpon>frm_carrierselect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\frm_SeeCarrier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gps\frm_SeeCarrier.Designer.cs">
+      <DependentUpon>frm_SeeCarrier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\UCgps_map.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gps\UCgps_map.Designer.cs">
+      <DependentUpon>UCgps_map.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gps\UCgps_carrier.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -176,11 +200,17 @@
     <Compile Include="Gps\UCgps_device.Designer.cs">
       <DependentUpon>UCgps_device.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gps\UCgps_map.cs">
+    <Compile Include="Gps\frm_deviceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gps\frm_deviceEdit.Designer.cs">
+      <DependentUpon>frm_deviceEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gps\UCgps_SeeCarrier.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Gps\UCgps_map.Designer.cs">
-      <DependentUpon>UCgps_map.cs</DependentUpon>
+    <Compile Include="Gps\UCgps_SeeCarrier.Designer.cs">
+      <DependentUpon>UCgps_SeeCarrier.cs</DependentUpon>
     </Compile>
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
@@ -426,6 +456,32 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmText.resx">
       <DependentUpon>frmText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\frm_carrierEdit.resx">
+      <DependentUpon>frm_carrierEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\frm_carrierselect.resx">
+      <DependentUpon>frm_carrierselect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\frm_SeeCarrier.resx">
+      <DependentUpon>frm_SeeCarrier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\UCgps_carrier.resx">
+      <DependentUpon>UCgps_carrier.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\UCgps_device.resx">
+      <DependentUpon>UCgps_device.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\frm_deviceEdit.resx">
+      <DependentUpon>frm_deviceEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gps\UCgps_SeeCarrier.resx">
+      <DependentUpon>UCgps_SeeCarrier.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
