@@ -74,14 +74,14 @@ namespace Ebada.Scgl.Gis.Gps
 
 
 
-         // 验证电话号码的主要代码如下：
+         
 
         public bool IsTelephone(string str_telephone)
         {
             return System.Text.RegularExpressions.Regex.IsMatch(str_telephone, @"^(\d{3,4}-)?\d{6,8}$");
         }
 
-        //验证手机号码的主要代码如下：
+        
 
         public bool IsHandset(string str_handset)
         {
