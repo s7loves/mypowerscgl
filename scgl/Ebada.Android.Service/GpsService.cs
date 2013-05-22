@@ -9,6 +9,7 @@ using System.ComponentModel;
 using Ebada.Components;
 using System.IO;
 using System.ServiceModel.Activation;
+using System.Web;
 
 namespace Ebada.Android.Service {
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]  
@@ -201,18 +202,53 @@ namespace Ebada.Android.Service {
             } catch { }
             return ver;
         }
+        string ak = "BC6aa1ebfad0839ce2cccfeeea579d3a";
+        string url = "http://api.map.baidu.com/geocoder/v2/?ak={0}&location={1}&output=json";
         public string UpPosition(g_position pos){
-
-            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition");
+            if (pos.id > 0) {
+                gps_position_now gp = new gps_position_now() {
+                     date=DateTime.Now, lat=pos.lat, lng=pos.lng, speed=pos.s, altitude=pos.h
+                     ,
+                     gps_realtime_position = DateTime.Parse(pos.dt), device_id=pos.id, position_type= pos.locType, c1= pos.addr
+                     , distance_from_last_gps=pos.dis
+                };
+                try {
+                    Client.ClientHelper.PlatformSqlMap.Update<gps_position_now>(gp);
+                } catch (Exception err) { Console.WriteLine(err.Message); }
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string loc=string.Format("{0},{1}",pos.lat, pos.lng);
+                string surl = string.Format(url, ak, HttpUtility.UrlEncode(loc));
+                try {
+                    wc.Headers.Add("content-type", "application/json;charset=utf-8");
+                    string adrress = wc.DownloadString(surl);
+                    Console.WriteLine(adrress);
+                } catch { }
+            }
+            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition/"+pos.toString());
             return "ok";
         }
         public g_device GetDevice(string IMEI) {
             g_device device = null;
             if (IMEI == "0") {
                 device = new g_device() {
-                    id=0,IMEI="0", state="0"
+                    id = 0, IMEI = "0", state = "0"
                 };
+            } else if(IMEI.Length>10) {
+                gps_device gpsdevice = Client.ClientHelper.PlatformSqlMap.GetOne<gps_device>("where device_serial='" + IMEI + "'");
+                if (gpsdevice == null) {
+                    gpsdevice = new gps_device() {
+                        device_serial = IMEI, device_state = "1", device_type = "phone", device_expire = DateTime.Now, device_desc = "程序自动注册"
+                    };
+                    Client.ClientHelper.PlatformSqlMap.Create<gps_device>(gpsdevice);
+                }
+                if (gpsdevice.device_id > 0) {
+                    device = new g_device();
+                    device.id = gpsdevice.device_id;
+                    device.state = gpsdevice.device_state;
+                    device.IMEI = IMEI;
+                }
             }
+
             Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/GetDevice/"+IMEI);
             return device;
         }
