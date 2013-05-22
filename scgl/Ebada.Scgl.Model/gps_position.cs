@@ -22,7 +22,7 @@ namespace Ebada.Scgl.Model
         
         #region Private 成员
         private long _id=0; 
-        private string _device_id=String.Empty; 
+        private int _device_id=0; 
         private DateTime _date=new DateTime(1900,1,1); 
         private double _lng=0; 
         private double _lat=0; 
@@ -72,7 +72,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[device_id],nvarchar
         /// </summary>
         [DisplayNameAttribute("device_id")]
-        public string device_id
+        public int device_id
         {
             get { return _device_id; }
             set
