@@ -28,7 +28,7 @@ namespace Ebada.jhgl
 
         private void frmJH_WorkContent_Load(object sender, EventArgs e)
         {
-            this.Text = year + "年周计划项目";
+            this.Text = year + "年计划项目";
             UCJH_PlanPro ucworkcontent = new UCJH_PlanPro();
             ucworkcontent.Dock = DockStyle.Fill;
             ucworkcontent.year = year;

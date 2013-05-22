@@ -33,8 +33,8 @@ namespace Ebada.jhgl
 
         private void UCJH_WorkContent_Load(object sender, EventArgs e)
         {
-            string sql = "select distinct 工作内容 from JH_weekman where parentID in( select ID from JH_weekmant where 年月周 like '"
-                + year + "%' and 单位代码='"+orgcode+"' and 工作内容!='')";
+            string sql = "select distinct 实施内容 from JH_yearks where parentID ='"
+                + year + "' and 单位代码='" + orgcode + "' and 实施内容!=''";
 
             IList<string> list = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sql);
             gridControl1.DataSource = list;

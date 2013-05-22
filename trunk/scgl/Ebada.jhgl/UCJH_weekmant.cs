@@ -23,6 +23,7 @@ using Ebada.Scgl.Model;
 using System.Collections;
 using DevExpress.XtraEditors.Repository;
 using Ebada.Core;
+using System.IO;
 
 namespace Ebada.jhgl {
     /// <summary>
