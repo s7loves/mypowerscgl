@@ -21,6 +21,18 @@ namespace Ebada.Android.Service {
         [DataMember]
         public double s;//速度
         [DataMember]
-        public int id;//设备id        
+        public int id;//设备id       
+        [DataMember]
+        public String addr;//位置信息
+        [DataMember]
+        public int locType;//定位类型
+        //[DataMember]
+        //public double radius;//定位精度(米)
+        [DataMember]
+        public double dis;//和上一点距离
+	public  String toString() {
+		return "g_position [lng=" + lng + ", lat=" + lat + ", dt=" + dt
+                + ", h=" + h + ", addr=" + addr + ", s=" + s + ", id=" + id + "]";
+	}
     }
 }
