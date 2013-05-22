@@ -101,8 +101,19 @@ namespace Ebada.jhgl
 
         private void btnPlanPro_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("周工作计划", "计划项目", mePlanPro);
-            rowData.计划项目 = mePlanPro.EditValue.ToString();
+            //SelectorHelper.SelectDyk("周工作计划", "计划项目", mePlanPro);
+            //rowData.计划项目 = mePlanPro.EditValue.ToString();
+            JH_weekmant weekmant = Client.ClientHelper.PlatformSqlMap.GetOne<JH_weekmant>("where id='"+rowData.ParentID+"'");
+            if (weekmant == null)
+                return;
+            frmJH_PlanPro frm = new frmJH_PlanPro();
+            frm.year = weekmant.年月周.Substring(0, 4);
+            frm.orgcode = rowData.单位代码;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.mePlanPro.EditValue = frm.planPro;
+                rowData.计划项目 = frm.planPro;
+            }
         }
 
         private void btnSummryUp_Click(object sender, EventArgs e)
