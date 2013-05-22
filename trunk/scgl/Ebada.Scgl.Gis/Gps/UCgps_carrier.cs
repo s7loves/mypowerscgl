@@ -39,15 +39,11 @@ namespace Ebada.Scgl.Gis.Gps
 
         public bool isbarvisible = true;
         
-        
-        
         public UCgps_carrier()
         {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<gps_carrier>(gridControl1, gridView1, barManager1, new frm_carrierEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<gps_carrier>(gridViewOperation_BeforeAdd);
-            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridView1.DoubleClick += new EventHandler(gridView1_DoubleClick);
             gridViewOperation.AfterAdd += new ObjectEventHandler<gps_carrier>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<gps_carrier>(gridViewOperation_AfterEdit);
@@ -72,12 +68,6 @@ namespace Ebada.Scgl.Gis.Gps
             gridView1.BestFitColumns();
         }
         
-        
-
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<gps_carrier> e)
-        {
-           
-        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -88,8 +78,6 @@ namespace Ebada.Scgl.Gis.Gps
                 this.bar1.Visible = false;
             if (this.Site != null) return;
         }
-
-        
         private void initImageList()
         {
             ImageList imagelist = new ImageList();
@@ -123,6 +111,7 @@ namespace Ebada.Scgl.Gis.Gps
             //需要隐藏列时在这写代码
             DevExpress.XtraEditors.Repository.RepositoryItemColorEdit colorEdit = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
             gridView1.Columns["color"].ColumnEdit = colorEdit;
+            
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
@@ -145,17 +134,5 @@ namespace Ebada.Scgl.Gis.Gps
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
-        /// <summary>
-        /// 新建对象设置Key值
-        /// </summary>
-        /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(gps_carrier newobj)
-        {
-            
-           
-        }
-      
-
-        
     }
 }
