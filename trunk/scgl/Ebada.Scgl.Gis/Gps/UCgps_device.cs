@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Gis.Gps
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<gps_device>(gridControl1, gridView1, barManager1, new frm_deviceEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<gps_device>(gridViewOperation_BeforeAdd);
+            
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.AfterAdd += new ObjectEventHandler<gps_device>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<gps_device>(gridViewOperation_AfterEdit);
@@ -55,13 +55,7 @@ namespace Ebada.Scgl.Gis.Gps
         {
             gridView1.BestFitColumns();
         }
-        
-        
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<gps_device> e)
-        {
-           
-        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
