@@ -155,30 +155,29 @@
    </delete>
    
    <update id="Updategps_position_now" parameterClass="gps_position_now" resultClass="int">
-          UPDATE gps_position_now
-           SET
-             [device_id]=#device_id#,
-             [date]=#date#,
-             [lng]=#lng#,
-             [lat]=#lat#,
-             [lng2]=#lng2#,
-             [lat2]=#lat2#,
-             [altitude]=#altitude#,
-             [speed]=#speed#,
-             [direction]=#direction#,
-             [position_type]=#position_type#,
-             [gps_realtime_position]=#gps_realtime_position#,
-             [lbs_info]=#lbs_info#,
-             [g_force]=#g_force#,
-             [distance_from_last_gps]=#distance_from_last_gps#,
-             [carrier_acc]=#carrier_acc#,
-             [status_byte]=#status_byte#,
-             [status_string]=#status_string#,
-             [c1]=#c1#,
-             [c2]=#c2#,
-             [c3]=#c3#
-            WHERE 
-              id = #id#
+     UPDATE gps_position_now
+     SET
+     [date]=#date#,
+     [lng]=#lng#,
+     [lat]=#lat#,
+     [lng2]=#lng2#,
+     [lat2]=#lat2#,
+     [altitude]=#altitude#,
+     [speed]=#speed#,
+     [direction]=#direction#,
+     [position_type]=#position_type#,
+     [gps_realtime_position]=#gps_realtime_position#,
+     [lbs_info]=#lbs_info#,
+     [g_force]=#g_force#,
+     [distance_from_last_gps]=#distance_from_last_gps#,
+     [carrier_acc]=#carrier_acc#,
+     [status_byte]=#status_byte#,
+     [status_string]=#status_string#,
+     [c1]=#c1#,
+     [c2]=#c2#,
+     [c3]=#c3#
+     WHERE
+     device_id = #device_id#
 
    </update>
   
