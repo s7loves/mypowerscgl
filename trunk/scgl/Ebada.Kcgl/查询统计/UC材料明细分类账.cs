@@ -284,6 +284,8 @@ namespace Ebada.Kcgl
                 gclb = string.Empty;
                 return;
             }
+            repositoryItemComboBox2.Items.Clear();
+            barEditItem2.EditValue = null;
             repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 材料名称 from kc_工程计划明细表 where 工程类别='{0}'", barEditItem1.EditValue.ToString())));
             gclb = " and 工程类别='" + barEditItem1.EditValue.ToString() + "'";
         }
@@ -298,6 +300,8 @@ namespace Ebada.Kcgl
                 
             if (string.IsNullOrEmpty(barEditItem1.EditValue.ToString()))
                 return;
+            repositoryItemComboBox3.Items.Clear();
+            barEditItem3.EditValue = null;
             repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", barEditItem1.EditValue.ToString(),barEditItem2.EditValue.ToString())));
             clmc = " and 材料名称='"+barEditItem2.EditValue.ToString()+"'";
 
