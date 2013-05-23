@@ -51,24 +51,24 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.bandedGridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -138,6 +138,7 @@
             this.barEditItem1.Edit = this.repositoryItemComboBox1;
             this.barEditItem1.Id = 1;
             this.barEditItem1.Name = "barEditItem1";
+            this.barEditItem1.EditValueChanged += new System.EventHandler(this.barEditItem1_EditValueChanged);
             // 
             // repositoryItemComboBox1
             // 
@@ -160,6 +161,7 @@
             this.barEditItem2.Edit = this.repositoryItemComboBox2;
             this.barEditItem2.Id = 3;
             this.barEditItem2.Name = "barEditItem2";
+            this.barEditItem2.EditValueChanged += new System.EventHandler(this.barEditItem2_EditValueChanged);
             // 
             // repositoryItemComboBox2
             // 
@@ -182,6 +184,7 @@
             this.barEditItem3.Edit = this.repositoryItemComboBox3;
             this.barEditItem3.Id = 5;
             this.barEditItem3.Name = "barEditItem3";
+            this.barEditItem3.EditValueChanged += new System.EventHandler(this.barEditItem3_EditValueChanged);
             // 
             // repositoryItemComboBox3
             // 
@@ -293,6 +296,17 @@
             this.bandedGridView1.OptionsBehavior.Editable = false;
             this.bandedGridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // gridBand1
+            // 
+            this.gridBand1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridBand1.Caption = "时间";
+            this.gridBand1.Columns.Add(this.bandedGridColumn1);
+            this.gridBand1.Columns.Add(this.bandedGridColumn2);
+            this.gridBand1.Columns.Add(this.bandedGridColumn3);
+            this.gridBand1.Name = "gridBand1";
+            this.gridBand1.Width = 130;
+            // 
             // bandedGridColumn1
             // 
             this.bandedGridColumn1.Caption = "年";
@@ -317,6 +331,13 @@
             this.bandedGridColumn3.Visible = true;
             this.bandedGridColumn3.Width = 40;
             // 
+            // gridBand2
+            // 
+            this.gridBand2.Caption = "摘要";
+            this.gridBand2.Columns.Add(this.bandedGridColumn4);
+            this.gridBand2.Name = "gridBand2";
+            this.gridBand2.Width = 71;
+            // 
             // bandedGridColumn4
             // 
             this.bandedGridColumn4.Caption = "摘要";
@@ -324,6 +345,17 @@
             this.bandedGridColumn4.Name = "bandedGridColumn4";
             this.bandedGridColumn4.Visible = true;
             this.bandedGridColumn4.Width = 71;
+            // 
+            // gridBand3
+            // 
+            this.gridBand3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridBand3.Caption = "收入";
+            this.gridBand3.Columns.Add(this.bandedGridColumn6);
+            this.gridBand3.Columns.Add(this.bandedGridColumn5);
+            this.gridBand3.Columns.Add(this.bandedGridColumn7);
+            this.gridBand3.Name = "gridBand3";
+            this.gridBand3.Width = 218;
             // 
             // bandedGridColumn6
             // 
@@ -333,6 +365,14 @@
             this.bandedGridColumn6.Visible = true;
             this.bandedGridColumn6.Width = 71;
             // 
+            // bandedGridColumn5
+            // 
+            this.bandedGridColumn5.Caption = "数量";
+            this.bandedGridColumn5.FieldName = "incount";
+            this.bandedGridColumn5.Name = "bandedGridColumn5";
+            this.bandedGridColumn5.Visible = true;
+            this.bandedGridColumn5.Width = 71;
+            // 
             // bandedGridColumn7
             // 
             this.bandedGridColumn7.Caption = "金额";
@@ -341,13 +381,16 @@
             this.bandedGridColumn7.Visible = true;
             this.bandedGridColumn7.Width = 76;
             // 
-            // bandedGridColumn5
+            // gridBand4
             // 
-            this.bandedGridColumn5.Caption = "数量";
-            this.bandedGridColumn5.FieldName = "incount";
-            this.bandedGridColumn5.Name = "bandedGridColumn5";
-            this.bandedGridColumn5.Visible = true;
-            this.bandedGridColumn5.Width = 71;
+            this.gridBand4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridBand4.Caption = "发出";
+            this.gridBand4.Columns.Add(this.bandedGridColumn9);
+            this.gridBand4.Columns.Add(this.bandedGridColumn8);
+            this.gridBand4.Columns.Add(this.bandedGridColumn10);
+            this.gridBand4.Name = "gridBand4";
+            this.gridBand4.Width = 218;
             // 
             // bandedGridColumn9
             // 
@@ -373,6 +416,15 @@
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.Width = 76;
             // 
+            // gridBand5
+            // 
+            this.gridBand5.Caption = "结存";
+            this.gridBand5.Columns.Add(this.bandedGridColumn12);
+            this.gridBand5.Columns.Add(this.bandedGridColumn11);
+            this.gridBand5.Columns.Add(this.bandedGridColumn13);
+            this.gridBand5.Name = "gridBand5";
+            this.gridBand5.Width = 228;
+            // 
             // bandedGridColumn12
             // 
             this.bandedGridColumn12.Caption = "单价";
@@ -396,55 +448,6 @@
             this.bandedGridColumn13.Name = "bandedGridColumn13";
             this.bandedGridColumn13.Visible = true;
             this.bandedGridColumn13.Width = 80;
-            // 
-            // gridBand1
-            // 
-            this.gridBand1.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand1.Caption = "时间";
-            this.gridBand1.Columns.Add(this.bandedGridColumn1);
-            this.gridBand1.Columns.Add(this.bandedGridColumn2);
-            this.gridBand1.Columns.Add(this.bandedGridColumn3);
-            this.gridBand1.Name = "gridBand1";
-            this.gridBand1.Width = 130;
-            // 
-            // gridBand2
-            // 
-            this.gridBand2.Caption = "摘要";
-            this.gridBand2.Columns.Add(this.bandedGridColumn4);
-            this.gridBand2.Name = "gridBand2";
-            this.gridBand2.Width = 71;
-            // 
-            // gridBand3
-            // 
-            this.gridBand3.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand3.Caption = "收入";
-            this.gridBand3.Columns.Add(this.bandedGridColumn6);
-            this.gridBand3.Columns.Add(this.bandedGridColumn5);
-            this.gridBand3.Columns.Add(this.bandedGridColumn7);
-            this.gridBand3.Name = "gridBand3";
-            this.gridBand3.Width = 218;
-            // 
-            // gridBand4
-            // 
-            this.gridBand4.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand4.Caption = "发出";
-            this.gridBand4.Columns.Add(this.bandedGridColumn9);
-            this.gridBand4.Columns.Add(this.bandedGridColumn8);
-            this.gridBand4.Columns.Add(this.bandedGridColumn10);
-            this.gridBand4.Name = "gridBand4";
-            this.gridBand4.Width = 218;
-            // 
-            // gridBand5
-            // 
-            this.gridBand5.Caption = "结存";
-            this.gridBand5.Columns.Add(this.bandedGridColumn12);
-            this.gridBand5.Columns.Add(this.bandedGridColumn11);
-            this.gridBand5.Columns.Add(this.bandedGridColumn13);
-            this.gridBand5.Name = "gridBand5";
-            this.gridBand5.Width = 228;
             // 
             // UC材料明细分类账
             // 
