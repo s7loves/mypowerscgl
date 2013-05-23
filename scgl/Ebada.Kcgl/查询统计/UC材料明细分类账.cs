@@ -28,6 +28,10 @@ namespace Ebada.Kcgl
         DataTable Initdt = new DataTable();
         DataTable finalTable = new DataTable();
         private string sqlwhere = "";
+        string gclb = "";
+        string clmc = "";
+        string clgg = "";
+        string rkrq = "";
         public UC材料明细分类账()
         {
             InitializeComponent();
@@ -35,9 +39,9 @@ namespace Ebada.Kcgl
 
         private void UC材料明细分类账_Load(object sender, EventArgs e)
         {
-            repositoryItemComboBox1.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
-            repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
-            repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
+            repositoryItemComboBox1.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "SELECT DISTINCT 工程类别 FROM [ebadakcgl].[dbo].[kc_工程类别] where id in (select distinct 工程类别_ID from [ebadakcgl].[dbo].[kc_工程计划明细表])"));
+            //repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
+            //repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
             InitDtColumns();
             InitFinalColumns();
             gridControl1.DataSource = finalTable;
@@ -82,14 +86,24 @@ namespace Ebada.Kcgl
         }
         private void InitStoreList()
         {
+            if (barEditItem4.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择年份");
+                return;
+            }
+            if (string.IsNullOrEmpty(barEditItem4.EditValue.ToString()))
+            {
+                MsgBox.ShowWarningMessageBox("请选择年份");
+                return;
+            }
             //入库明细
-            string wherein = "select distinct convert(char(10),入库日期,23) from kc_入库明细表 where 工程类别='"+barEditItem1.EditValue.ToString()+
-                "' and 材料名称='" + barEditItem2.EditValue.ToString() + "' and 规格及型号= '" + barEditItem3.EditValue.ToString() +
-                "' and year(入库日期)='"+Convert.ToDateTime(barEditItem4.EditValue).Year+"'";
+            string sql = GetSql();
+            string wherein = "select distinct convert(char(10),入库日期,23) from kc_入库明细表 where year(入库日期)='"+sql;
+            
+                //"' and year(入库日期)='"+Convert.ToDateTime(barEditItem4.EditValue).Year+"'";
             //出库明细
-            string whereout = "select distinct convert(char(10),出库日期,23) from kc_出库明细表 where 工程类别='"+barEditItem1.EditValue.ToString()+
-                "' and 材料名称='" + barEditItem2.EditValue.ToString() + "' and 规格及型号='" + barEditItem3.EditValue.ToString() +
-                "' and year(出库日期)='"+Convert.ToDateTime(barEditItem4.EditValue).Year+"'";
+            string whereout = "select distinct convert(char(10),出库日期,23) from kc_出库明细表 where year(出库日期)='"+sql;
+                
             //入库时间列表
             IList inList = Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", wherein);
             //出库时间列表
@@ -120,13 +134,9 @@ namespace Ebada.Kcgl
         {
             Initdt.Rows.Clear();
             //入库明细表
-            string wherein = " where 工程类别='"+barEditItem1.EditValue.ToString()+
-                "' and 材料名称='" + barEditItem2.EditValue.ToString() + "' and 规格及型号= '" + barEditItem3.EditValue.ToString() +
-                "' and year(入库日期)='"+Convert.ToDateTime(barEditItem4.EditValue).Year+"'";
+            string wherein = " where year(入库日期)='" + GetSql();
             //出库明细表
-            string whereout=" where 工程类别='"+barEditItem1.EditValue.ToString()+
-                "' and 材料名称='" + barEditItem2.EditValue.ToString() + "' and 规格及型号='" + barEditItem3.EditValue.ToString() +
-                "' and year(出库日期)='"+Convert.ToDateTime(barEditItem4.EditValue).Year+"'";
+            string whereout = "where year(出库日期)='" + GetSql();
             IList <kc_入库明细表 > inList = Client.ClientHelper.TransportSqlMap.GetListByWhere<kc_入库明细表>(wherein);
             IList<kc_出库明细表> outList =Client.ClientHelper.TransportSqlMap.GetListByWhere<kc_出库明细表>(whereout);
             foreach (string dateStr in storeList)
@@ -170,6 +180,19 @@ namespace Ebada.Kcgl
             InitFinalTable();
             
             
+        }
+
+        private string GetSql()
+        {
+            string retstr = Convert.ToDateTime(barEditItem4.EditValue).Year.ToString()+"' ";
+            if (!string.IsNullOrEmpty(gclb))
+                retstr += gclb;
+            if (!string.IsNullOrEmpty(clmc))
+                retstr += clmc;
+            if (!string.IsNullOrEmpty(clgg))
+                retstr += clgg;
+
+            return retstr;
         }
 
         private void InitFinalTable()
@@ -221,28 +244,7 @@ namespace Ebada.Kcgl
             gridControl1.DataSource = finalTable;
         }
 
-        private bool CheckIsSelectALL()
-        {
-            bool retbool=true;
-            if (barEditItem1.EditValue == null)
-            {
-                retbool=false;
-            }
-            if (barEditItem2.EditValue == null)
-            {
-                retbool = false;
-            }
-            if (barEditItem3.EditValue == null)
-            {
-                retbool = false;
-            }
-            if (barEditItem4.EditValue == null)
-            {
-                retbool = false;
-            }
-            
-            return retbool;
-        }
+        
         /// <summary>
         /// 查询
         /// </summary>
@@ -255,7 +257,62 @@ namespace Ebada.Kcgl
 
         private void btnExports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (barEditItem1.EditValue == null)
+            { 
+                MsgBox.ShowWarningMessageBox("请选择工程类别!");
+                    return;
+            }
+            if (barEditItem2.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择材料名称!");
+                    return;
+            }
+            if (barEditItem3.EditValue == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择材料规格!");
+                return;
+            }
+            
+
             ExportPDCA.ExportOutInDetail(Initdt);
-        }        
+        }
+
+        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(barEditItem1.EditValue.ToString()))
+            {
+                gclb = string.Empty;
+                return;
+            }
+            repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 材料名称 from kc_工程计划明细表 where 工程类别='{0}'", barEditItem1.EditValue.ToString())));
+            gclb = " and 工程类别='" + barEditItem1.EditValue.ToString() + "'";
+        }
+
+        private void barEditItem2_EditValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(barEditItem2.EditValue.ToString()))
+            {
+                clmc = string.Empty;
+                return;
+            }
+                
+            if (string.IsNullOrEmpty(barEditItem1.EditValue.ToString()))
+                return;
+            repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", barEditItem1.EditValue.ToString(),barEditItem2.EditValue.ToString())));
+            clmc = " and 材料名称='"+barEditItem2.EditValue.ToString()+"'";
+
+        }
+
+        private void barEditItem3_EditValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(barEditItem3.EditValue.ToString()))
+            {
+                clgg = string.Empty;
+                return;
+            }
+            clgg = " and 规格及型号='"+barEditItem3.EditValue.ToString()+"'";
+        }
+
+             
     }
 }
