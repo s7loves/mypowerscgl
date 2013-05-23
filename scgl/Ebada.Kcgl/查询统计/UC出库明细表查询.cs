@@ -23,8 +23,8 @@ namespace Ebada.Kcgl {
         void init() {
             //初始查询列表
             comboBoxEdit1.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 工程类别 from kc_工程类别"));
-            comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
-            comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
+            //comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 材料名称 from kc_材料名称表"));
+            //comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 规格及型号 from kc_材料名称表"));
             comboBoxEdit4.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", "select distinct 单位名称 from kc_出库单位"));
             dateEdit1.EditValue = null;
             splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel1;
@@ -64,6 +64,29 @@ namespace Ebada.Kcgl {
         }
         private void simpleButton2_Click(object sender, EventArgs e) {
             query();
+        }
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit2.Properties.Items.Clear();
+            comboBoxEdit2.EditValue = null;
+            if (comboBoxEdit1.EditValue == null)
+                return;
+            
+            comboBoxEdit2.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 材料名称 from kc_工程计划明细表 where 工程类别='{0}'", comboBoxEdit1.EditValue.ToString())));
+        }
+
+        private void comboBoxEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            comboBoxEdit3.EditValue = null;
+            comboBoxEdit3.Properties.Items.Clear();
+            if (comboBoxEdit1.EditValue == null)
+                return;
+            if (comboBoxEdit2.EditValue == null)
+                return;
+            
+            comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", comboBoxEdit1.EditValue.ToString(), comboBoxEdit2.EditValue.ToString())));
+ 
         }
        
     }
