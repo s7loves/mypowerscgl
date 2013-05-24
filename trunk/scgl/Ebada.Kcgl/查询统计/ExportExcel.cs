@@ -556,13 +556,15 @@ namespace Ebada.Kcgl
                 {
                     for (int i = 0; i < 12; i++)
                     {
-                        ex.SetCellValue(nrList2[starow - 1 + i].工程项目名称, row + 21 + i, 1);
-                        ex.SetCellValue(nrList2[starow - 1 + i].材料名称, row + 21 + i, 2);
-                        ex.SetCellValue(nrList2[starow - 1 + i].规格及型号, row + 21 + i, 3);
-                        ex.SetCellValue(nrList2[starow - 1 + i].计量单位, row + 21 + i, 4);
-                        ex.SetCellValue(nrList2[starow - 1 + i].单价.ToString(), row + 21 + i, 5);
-                        ex.SetCellValue(nrList2[starow - 1 + i].数量.ToString(), row + 21 + i, 6);
-                        ex.SetCellValue(nrList2[starow - 1 + i].总价.ToString(), row + 21 + i, 6);
+                        ex.SetCellValue(nrList1[starow - 1 + i].工程类别, row + 4 + i, 1);
+                        ex.SetCellValue(nrList1[starow - 1 + i].材料名称, row + 4 + i, 2);
+                        ex.SetCellValue(nrList1[starow - 1 + i].规格及型号, row + 4 + i, 3);
+                        ex.SetCellValue(nrList1[starow - 1 + i].计量单位, row + 4 + i, 4);
+                        ex.SetCellValue(nrList1[starow - 1 + i].单价.ToString(), row + 4 + i, 5);
+                        ex.SetCellValue(nrList1[starow - 1 + i].到货数量.ToString(), row + 4 + i, 6);
+                        ex.SetCellValue(nrList1[starow - 1 + i].使用数量.ToString(), row + 4 + i, 7);
+                        ex.SetCellValue(nrList1[starow - 1 + i].结余数量.ToString(), row + 4 + i, 8);
+                        ex.SetCellValue(nrList1[starow - 1 + i].总价.ToString(), row + 4 + i, 9);
                     }
                 }
                 else if (nrList2.Count <= endrow && nrList1.Count >= starow)
@@ -575,7 +577,7 @@ namespace Ebada.Kcgl
                         ex.SetCellValue(nrList2[starow - 1 + i].计量单位, row + 21 + i, 4);
                         ex.SetCellValue(nrList2[starow - 1 + i].单价.ToString(), row + 21 + i, 5);
                         ex.SetCellValue(nrList2[starow - 1 + i].数量.ToString(), row + 21 + i, 6);
-                        ex.SetCellValue(nrList2[starow - 1 + i].总价.ToString(), row + 21 + i, 6);
+                        ex.SetCellValue(nrList2[starow - 1 + i].总价.ToString(), row + 21 + i, 7);
                     }
                 }
                 
