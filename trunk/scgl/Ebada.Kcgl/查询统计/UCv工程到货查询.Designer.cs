@@ -48,6 +48,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
@@ -68,6 +69,7 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.btExport);
             this.splitContainerControl1.Panel1.Controls.Add(this.dateEdit1);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton2);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton1);
@@ -285,6 +287,15 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // btExport
+            // 
+            this.btExport.Location = new System.Drawing.Point(337, 58);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(75, 23);
+            this.btExport.TabIndex = 5;
+            this.btExport.Text = "导出";
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
+            // 
             // UCv工程到货查询
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -337,5 +348,6 @@
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btExport;
     }
 }

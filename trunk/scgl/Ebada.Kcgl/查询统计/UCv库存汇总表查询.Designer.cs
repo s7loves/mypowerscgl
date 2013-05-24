@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btExport = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -61,6 +62,7 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.btExport);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton2);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton1);
             this.splitContainerControl1.Panel1.Controls.Add(this.comboBoxEdit3);
@@ -78,6 +80,15 @@
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "库存汇总表查询表";
             // 
+            // btExport
+            // 
+            this.btExport.Location = new System.Drawing.Point(573, 22);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(75, 23);
+            this.btExport.TabIndex = 4;
+            this.btExport.Text = "导出";
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
+            // 
             // simpleButton2
             // 
             this.simpleButton2.Location = new System.Drawing.Point(478, 22);
@@ -89,7 +100,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(564, 22);
+            this.simpleButton1.Location = new System.Drawing.Point(663, 22);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(80, 23);
             this.simpleButton1.TabIndex = 3;
@@ -279,5 +290,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btExport;
     }
 }

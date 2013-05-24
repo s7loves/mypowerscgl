@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     [ToolboxItem(false)]
@@ -54,6 +55,20 @@ namespace Ebada.Kcgl {
             
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where  材料名称='{0}'", comboBoxEdit2.EditValue.ToString())));
 
+        }
+
+        private void btExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt = gridControl1.DataSource as DataTable;
+            if (dt == null)
+                return;
+            List<v库存汇总表> kchzList = new List<v库存汇总表>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                v库存汇总表 kchz= DataConvert.RowToObject<v库存汇总表>(dr);
+                kchzList.Add(kchz);
+            }
+            ExportExcel.ExportKCHZCX(kchzList);
         }
        
     }

@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -71,6 +72,7 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.btnExport);
             this.splitContainerControl1.Panel1.Controls.Add(this.dateEdit1);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton2);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton1);
@@ -93,6 +95,15 @@
             this.splitContainerControl1.SplitterPosition = 101;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "入库明细表查询";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(563, 58);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 5;
+            this.btnExport.Text = "导出";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // dateEdit1
             // 
@@ -362,5 +373,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.SimpleButton btnExport;
     }
 }
