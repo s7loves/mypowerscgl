@@ -17,6 +17,9 @@ namespace Ebada.Android.Service {
         [DataMember]
         public string jsonData;//设备系统版本
         [DataMember]
-        public int id;//设备id        
+        public int id;//设备id     
+        public override string ToString() {
+            return string.Format("[IMEI:{0},state:{1},jsonData:{2},id:{3}]",IMEI,state,jsonData,id);
+        }
     }
 }
