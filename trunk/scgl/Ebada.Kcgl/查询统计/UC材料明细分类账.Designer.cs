@@ -207,6 +207,7 @@
             this.barEditItem4.Edit = this.repositoryItemDateEdit1;
             this.barEditItem4.Id = 8;
             this.barEditItem4.Name = "barEditItem4";
+            this.barEditItem4.EditValueChanged += new System.EventHandler(this.barEditItem4_EditValueChanged);
             // 
             // repositoryItemDateEdit1
             // 
