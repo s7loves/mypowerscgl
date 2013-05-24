@@ -476,5 +476,112 @@ namespace Ebada.Kcgl
             ex.ActiveSheet(1);
             ex.ShowExcel();
         }
+
+        /// <summary>
+        /// 工程结算查询
+        /// </summary>
+        /// <param name="nrList"></param>
+        internal static void ExportGCJSCX(IList<v工程结算查询> nrList1,IList<v出库汇总表_项目除返库> nrList2)
+        {
+            ExcelAccess ex = new ExcelAccess();
+            string filename = Application.StartupPath + "\\00记录模板\\工程结算表.xls";
+            if (!File.Exists(filename))
+            {
+                MsgBox.ShowWarningMessageBox("导出模板不存在，导出失败!");
+                return;
+            }
+            ex.Open(filename);
+            int row = 1;
+            //加页
+            int pageindex = 1;
+            if (pageindex < Ecommonjh.GetPagecount(nrList1.Count, 12))
+            {
+                pageindex = Ecommonjh.GetPagecount(nrList1.Count, 12);
+            }
+            if (pageindex < Ecommonjh.GetPagecount(nrList2.Count, 12))
+            {
+                pageindex = Ecommonjh.GetPagecount(nrList2.Count, 12);
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(1);
+
+                if (j > 1)
+                {
+                    ex.CopySheet(1, 1);
+                }
+
+            }
+            for (int j = 1; j <= pageindex; j++)
+            {
+                ex.ActiveSheet(j);
+                //ex.ReNameWorkSheet(j, "Sheet" + (j));
+                int prepageindex = j - 1;
+                //主题
+                int starow = prepageindex * 12 + 1;
+                int endrow = j * 12;
+
+                if (nrList1.Count > endrow)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        ex.SetCellValue(nrList1[starow - 1 + i].工程类别, row + 4 + i, 1);
+                        ex.SetCellValue(nrList1[starow - 1 + i].材料名称, row + 4 + i, 2);
+                        ex.SetCellValue(nrList1[starow - 1 + i].规格及型号, row + 4 + i, 3);
+                        ex.SetCellValue(nrList1[starow - 1 + i].计量单位, row + 4 + i, 4);
+                        ex.SetCellValue(nrList1[starow - 1 + i].单价.ToString(), row + 4 + i, 5);
+                        ex.SetCellValue(nrList1[starow - 1 + i].到货数量.ToString(), row + 4 + i, 6);
+                        ex.SetCellValue(nrList1[starow - 1 + i].使用数量.ToString(), row + 4 + i, 7);
+                        ex.SetCellValue(nrList1[starow - 1 + i].结余数量.ToString(), row + 4 + i, 8);
+                        ex.SetCellValue(nrList1[starow - 1 + i].总价.ToString(), row + 4 + i, 9);
+                    }
+                }
+                else if (nrList1.Count <= endrow && nrList1.Count >= starow)
+                {
+                    for (int i = 0; i < nrList1.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(nrList1[starow - 1 + i].工程类别, row + 4 + i, 1);
+                        ex.SetCellValue(nrList1[starow - 1 + i].材料名称, row + 4 + i, 2);
+                        ex.SetCellValue(nrList1[starow - 1 + i].规格及型号, row + 4 + i, 3);
+                        ex.SetCellValue(nrList1[starow - 1 + i].计量单位, row + 4 + i, 4);
+                        ex.SetCellValue(nrList1[starow - 1 + i].单价.ToString(), row + 4 + i, 5);
+                        ex.SetCellValue(nrList1[starow - 1 + i].到货数量.ToString(), row + 4 + i, 6);
+                        ex.SetCellValue(nrList1[starow - 1 + i].使用数量.ToString(), row + 4 + i, 7);
+                        ex.SetCellValue(nrList1[starow - 1 + i].结余数量.ToString(), row + 4 + i, 8);
+                        ex.SetCellValue(nrList1[starow - 1 + i].总价.ToString(), row + 4 + i, 9);
+                    }
+                }
+
+                if (nrList2.Count > endrow)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        ex.SetCellValue(nrList2[starow - 1 + i].工程项目名称, row + 21 + i, 1);
+                        ex.SetCellValue(nrList2[starow - 1 + i].材料名称, row + 21 + i, 2);
+                        ex.SetCellValue(nrList2[starow - 1 + i].规格及型号, row + 21 + i, 3);
+                        ex.SetCellValue(nrList2[starow - 1 + i].计量单位, row + 21 + i, 4);
+                        ex.SetCellValue(nrList2[starow - 1 + i].单价.ToString(), row + 21 + i, 5);
+                        ex.SetCellValue(nrList2[starow - 1 + i].数量.ToString(), row + 21 + i, 6);
+                        ex.SetCellValue(nrList2[starow - 1 + i].总价.ToString(), row + 21 + i, 6);
+                    }
+                }
+                else if (nrList2.Count <= endrow && nrList1.Count >= starow)
+                {
+                    for (int i = 0; i < nrList2.Count - starow + 1; i++)
+                    {
+                        ex.SetCellValue(nrList2[starow - 1 + i].工程项目名称, row + 21 + i, 1);
+                        ex.SetCellValue(nrList2[starow - 1 + i].材料名称, row + 21 + i, 2);
+                        ex.SetCellValue(nrList2[starow - 1 + i].规格及型号, row + 21 + i, 3);
+                        ex.SetCellValue(nrList2[starow - 1 + i].计量单位, row + 21 + i, 4);
+                        ex.SetCellValue(nrList2[starow - 1 + i].单价.ToString(), row + 21 + i, 5);
+                        ex.SetCellValue(nrList2[starow - 1 + i].数量.ToString(), row + 21 + i, 6);
+                        ex.SetCellValue(nrList2[starow - 1 + i].总价.ToString(), row + 21 + i, 6);
+                    }
+                }
+                
+            }
+            ex.ActiveSheet(1);
+            ex.ShowExcel();
+        }
     }
 }

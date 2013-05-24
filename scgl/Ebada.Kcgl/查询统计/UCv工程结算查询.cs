@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using DevExpress.XtraGrid.Columns;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     [ToolboxItem(false)]
@@ -111,6 +112,31 @@ namespace Ebada.Kcgl {
             
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", comboBoxEdit4.EditValue.ToString(), comboBoxEdit2.EditValue.ToString())));
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt1 = gridControl1.DataSource as DataTable;
+            IList<v工程结算查询> gcjsList = new List<v工程结算查询>();
+            if (dt1 != null)
+            {
+                foreach (DataRow dr in dt1.Rows)
+                {
+                    v工程结算查询 gcjs= DataConvert.RowToObject<v工程结算查询>(dr);
+                    gcjsList.Add(gcjs);
+                }
+            }
+            DataTable dt2 = gridControl2.DataSource as DataTable;
+            IList<v出库汇总表_项目除返库> ckhzList = new List<v出库汇总表_项目除返库>();
+            if (dt2 != null)
+            {
+                foreach (DataRow dr in dt2.Rows)
+                {
+                    v出库汇总表_项目除返库 ckhz = DataConvert.RowToObject<v出库汇总表_项目除返库>(dr);
+                    ckhzList.Add(ckhz);
+                }
+            }
+            ExportExcel.ExportGCJSCX(gcjsList, ckhzList);
         }        
        
     }
