@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using DevExpress.XtraGrid.Columns;
+using Ebada.Kcgl.Model;
 
 namespace Ebada.Kcgl {
     [ToolboxItem(false)]
@@ -85,6 +86,13 @@ namespace Ebada.Kcgl {
             
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", comboBoxEdit1.EditValue.ToString(), comboBoxEdit2.EditValue.ToString())));
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (gridControl1.DataSource == null)
+                return;
+            ExportExcel.ExportTHMX(gridControl1.DataSource as List<kc_退货明细表>);
         }
        
     }

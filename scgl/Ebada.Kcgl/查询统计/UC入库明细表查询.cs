@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using DevExpress.XtraGrid.Columns;
+using Ebada.Kcgl.Model;
 
 
 namespace Ebada.Kcgl {
@@ -58,7 +59,7 @@ namespace Ebada.Kcgl {
                 sql += string.Format("  and  供货厂家='{0}'", comboBoxEdit4.EditValue);
             if (dateEdit1.EditValue != null)
                 sql += string.Format("  and  入库日期='{0}'", dateEdit1.EditValue);
-
+            sql += " order by 工程类别,供货厂家,材料名称,规格及型号";//xjq add
 
             var list = Client.ClientHelper.TransportSqlMap.GetList<Model.kc_入库明细表>(sql);
 
@@ -88,6 +89,13 @@ namespace Ebada.Kcgl {
                 return;
            
             comboBoxEdit3.Properties.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", comboBoxEdit1.EditValue.ToString(), comboBoxEdit2.EditValue.ToString())));
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (gridControl1.DataSource == null)
+                return;
+            ExportExcel.ExportRKMX(gridControl1.DataSource as List<kc_入库明细表>);
         }   
        
     }
