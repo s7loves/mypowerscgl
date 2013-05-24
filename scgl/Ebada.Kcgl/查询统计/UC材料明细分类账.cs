@@ -288,6 +288,7 @@ namespace Ebada.Kcgl
             barEditItem2.EditValue = null;
             repositoryItemComboBox2.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 材料名称 from kc_工程计划明细表 where 工程类别='{0}'", barEditItem1.EditValue.ToString())));
             gclb = " and 工程类别='" + barEditItem1.EditValue.ToString() + "'";
+            InitStoreList();
         }
 
         private void barEditItem2_EditValueChanged(object sender, EventArgs e)
@@ -304,7 +305,7 @@ namespace Ebada.Kcgl
             barEditItem3.EditValue = null;
             repositoryItemComboBox3.Items.AddRange(Client.ClientHelper.TransportSqlMap.GetList("SelectOneStr", string.Format("select distinct 规格及型号 from kc_工程计划明细表 where 工程类别='{0}' and 材料名称='{1}'", barEditItem1.EditValue.ToString(),barEditItem2.EditValue.ToString())));
             clmc = " and 材料名称='"+barEditItem2.EditValue.ToString()+"'";
-
+            InitStoreList();
         }
 
         private void barEditItem3_EditValueChanged(object sender, EventArgs e)
@@ -315,6 +316,12 @@ namespace Ebada.Kcgl
                 return;
             }
             clgg = " and 规格及型号='"+barEditItem3.EditValue.ToString()+"'";
+            InitStoreList();
+        }
+
+        private void barEditItem4_EditValueChanged(object sender, EventArgs e)
+        {
+            InitStoreList();
         }
 
              
