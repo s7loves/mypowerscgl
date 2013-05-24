@@ -215,20 +215,21 @@ namespace Ebada.Android.Service {
                 try {
                     Client.ClientHelper.PlatformSqlMap.Update<gps_position_now>(gp);
                 } catch (Exception err) { Console.WriteLine(err.Message); }
-                System.Net.WebClient wc = new System.Net.WebClient();
-                string loc=string.Format("{0},{1}",pos.lat, pos.lng);
-                string surl = string.Format(url, ak, HttpUtility.UrlEncode(loc));
-                try {
-                    wc.Headers.Add("content-type", "application/json;charset=utf-8");
-                    string adrress = wc.DownloadString(surl);
-                    Console.WriteLine(adrress);
-                } catch { }
+                //System.Net.WebClient wc = new System.Net.WebClient();
+                //string loc=string.Format("{0},{1}",pos.lat, pos.lng);
+                //string surl = string.Format(url, ak, HttpUtility.UrlEncode(loc));
+                //try {
+                //    wc.Headers.Add("content-type", "application/json;charset=utf-8");
+                //    string adrress = wc.DownloadString(surl);
+                //    Console.WriteLine(adrress);
+                //} catch { }
             }
             Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition/"+pos.toString());
             return "ok";
         }
-        public g_device GetDevice(string IMEI) {
+        public g_device GetDevice(g_device dev) {
             g_device device = null;
+            string IMEI = dev.IMEI;
             if (IMEI == "0") {
                 device = new g_device() {
                     id = 0, IMEI = "0", state = "0"
@@ -237,7 +238,7 @@ namespace Ebada.Android.Service {
                 gps_device gpsdevice = Client.ClientHelper.PlatformSqlMap.GetOne<gps_device>("where device_serial='" + IMEI + "'");
                 if (gpsdevice == null) {
                     gpsdevice = new gps_device() {
-                        device_serial = IMEI, device_state = "1", device_type = "phone", device_expire = DateTime.Now, device_desc = "程序自动注册"
+                        device_serial = IMEI,phone_number=dev.jsonData, device_state = "1", device_type = "phone", device_expire = DateTime.Now, device_desc = "程序自动注册"
                     };
                     Client.ClientHelper.PlatformSqlMap.Create<gps_device>(gpsdevice);
                 }
@@ -249,7 +250,7 @@ namespace Ebada.Android.Service {
                 }
             }
 
-            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/GetDevice/"+IMEI);
+            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/GetDevice/"+dev.ToString());
             return device;
         }
         #endregion

@@ -31,8 +31,8 @@ namespace Ebada.Android.Service {
         /// <param name="gdscode"></param>
         /// <returns></returns>
         [OperationContract]
-        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetDevice/{IMEI}", BodyStyle = WebMessageBodyStyle.Bare)]
-        g_device GetDevice(string IMEI);
+        [WebInvoke(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, Method = "POST", UriTemplate = "GetDevice")]
+        g_device GetDevice(g_device dev);
         
         [OperationContract]
         [WebInvoke(UriTemplate = "UpPosition", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
