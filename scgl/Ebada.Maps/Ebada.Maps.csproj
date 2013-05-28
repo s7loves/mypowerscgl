@@ -505,6 +505,9 @@
     <EmbeddedResource Include="gps_position_now.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="v_position_now.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
