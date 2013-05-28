@@ -213,6 +213,7 @@
       <DependentUpon>UCgps_SeeCarrier.cs</DependentUpon>
     </Compile>
     <Compile Include="Markers\GMapMarkerPoint.cs" />
+    <Compile Include="Markers\GMapMarkerCar.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="Provider\GoogleChinaTerrainMap.cs" />
     <Compile Include="ShapeHelper.cs" />
@@ -382,6 +383,18 @@
     </Compile>
     <Compile Include="PloyLineOverLay.cs" />
     <Compile Include="PointPolygon.cs" />
+    <Compile Include="frmMapCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMapCar.Designer.cs">
+      <DependentUpon>frmMapCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCLayerCar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLayerCar.Designer.cs">
+      <DependentUpon>UCLayerCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电站接线图\Desiger\BaseEditor.cs" />
     <Compile Include="变电站接线图\Desiger\FilenameUIEditor.cs" />
     <Compile Include="变电站接线图\Desiger\InputDialog.cs">
@@ -534,6 +547,14 @@
       <DependentUpon>UCSharpeDyt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMapCar.resx">
+      <DependentUpon>frmMapCar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCLayerCar.resx">
+      <DependentUpon>UCLayerCar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +584,15 @@
       <Project>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</Project>
       <Name>Ebada.Scgl.Sbgl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green_n_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red_e_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow_n_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
