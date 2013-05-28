@@ -59,5 +59,26 @@ namespace Ebada.Scgl.Gis.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap green_n_1 {
+            get {
+                object obj = ResourceManager.GetObject("green_n_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap red_e_1 {
+            get {
+                object obj = ResourceManager.GetObject("red_e_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap yellow_n_1 {
+            get {
+                object obj = ResourceManager.GetObject("yellow_n_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
