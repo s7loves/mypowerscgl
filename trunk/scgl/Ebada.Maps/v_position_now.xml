@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="v_position_now" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="v_position_now"  type="Ebada.Scgl.Model.v_position_now,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="v_position_now_AllColumns" class="v_position_now">
+        <result property="device_id" column="device_id" />
+        <result property="carrier_id" column="carrier_id" />
+        <result property="device_serial" column="device_serial" />
+        <result property="device_type" column="device_type" />
+        <result property="device_model" column="device_model" />
+        <result property="device_expire" column="device_expire" />
+        <result property="device_desc" column="device_desc" />
+        <result property="device_state" column="device_state" />
+        <result property="phone_number" column="phone_number" />
+        <result property="device_owner" column="device_owner" />
+        <result property="device_name" column="device_name" />
+        <result property="date" column="date" />
+        <result property="lng" column="lng" />
+        <result property="lat" column="lat" />
+        <result property="lng2" column="lng2" />
+        <result property="lat2" column="lat2" />
+        <result property="speed" column="speed" />
+        <result property="direction" column="direction" />
+        <result property="position_type" column="position_type" />
+        <result property="gps_realtime_position" column="gps_realtime_position" />
+        <result property="distance_from_last_gps" column="distance_from_last_gps" />
+        <result property="adress" column="adress" />
+        <result property="carrier_type" column="carrier_type" />
+        <result property="model" column="model" />
+        <result property="color" column="color" />
+        <result property="year" column="year" />
+        <result property="owner" column="owner" />
+        <result property="driver" column="driver" />
+        <result property="phone" column="phone" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectv_position_nowList" resultMap="v_position_now_AllColumns" parameterClass="string">
+        SELECT 
+         [device_id],
+         [carrier_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_state],
+         [phone_number],
+         [device_owner],
+         [device_name],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [distance_from_last_gps],
+         [adress],
+         [carrier_type],
+         [model],
+         [color],
+         [year],
+         [owner],
+         [driver],
+         [phone]
+          FROM v_position_now
+          $value$
+   </select>
+   <select id="Getv_position_nowRowCount" parameterClass="string">
+    select count(*) from v_position_now $value$
+   </select>
+  
+   <insert id="Insertv_position_now" parameterClass="v_position_now">
+        INSERT INTO v_position_now
+         (
+         [device_id],
+         [carrier_id],
+         [device_serial],
+         [device_type],
+         [device_model],
+         [device_expire],
+         [device_desc],
+         [device_state],
+         [phone_number],
+         [device_owner],
+         [device_name],
+         [date],
+         [lng],
+         [lat],
+         [lng2],
+         [lat2],
+         [speed],
+         [direction],
+         [position_type],
+         [gps_realtime_position],
+         [distance_from_last_gps],
+         [adress],
+         [carrier_type],
+         [model],
+         [color],
+         [year],
+         [owner],
+         [driver],
+         [phone]
+         )
+       VALUES
+         (
+         #device_id#,
+         #carrier_id#,
+         #device_serial#,
+         #device_type#,
+         #device_model#,
+         #device_expire#,
+         #device_desc#,
+         #device_state#,
+         #phone_number#,
+         #device_owner#,
+         #device_name#,
+         #date#,
+         #lng#,
+         #lat#,
+         #lng2#,
+         #lat2#,
+         #speed#,
+         #direction#,
+         #position_type#,
+         #gps_realtime_position#,
+         #distance_from_last_gps#,
+         #adress#,
+         #carrier_type#,
+         #model#,
+         #color#,
+         #year#,
+         #owner#,
+         #driver#,
+         #phone#
+         )
+
+   </insert>
+   <update id="Updatev_position_now" parameterClass="v_position_now" resultClass="int">
+          UPDATE v_position_now
+           SET
+             [device_id]=#device_id#,
+             [carrier_id]=#carrier_id#,
+             [device_serial]=#device_serial#,
+             [device_type]=#device_type#,
+             [device_model]=#device_model#,
+             [device_expire]=#device_expire#,
+             [device_desc]=#device_desc#,
+             [device_state]=#device_state#,
+             [phone_number]=#phone_number#,
+             [device_owner]=#device_owner#,
+             [device_name]=#device_name#,
+             [date]=#date#,
+             [lng]=#lng#,
+             [lat]=#lat#,
+             [lng2]=#lng2#,
+             [lat2]=#lat2#,
+             [speed]=#speed#,
+             [direction]=#direction#,
+             [position_type]=#position_type#,
+             [gps_realtime_position]=#gps_realtime_position#,
+             [distance_from_last_gps]=#distance_from_last_gps#,
+             [adress]=#adress#,
+             [carrier_type]=#carrier_type#,
+             [model]=#model#,
+             [color]=#color#,
+             [year]=#year#,
+             [owner]=#owner#,
+             [driver]=#driver#,
+             [phone]=#phone#
+   </update>
+   <delete id="Deletev_position_now" parameterClass="v_position_now">
+        DELETE FROM 
+         v_position_now
+
+   </delete>
+  </statements>
+</sqlMap>
+ 
