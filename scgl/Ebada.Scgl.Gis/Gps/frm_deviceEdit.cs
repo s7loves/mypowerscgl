@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Gis.Gps
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString()))
+            if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString())||string.IsNullOrEmpty(txtphone_number.EditValue.ToString()))
             {
                 rowData.c1 = "查看车辆信息";
                 this.DialogResult = DialogResult.OK;
