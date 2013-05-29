@@ -45,7 +45,6 @@
             this.lblsoftware_version = new DevExpress.XtraEditors.LabelControl();
             this.datedevice_made_date = new DevExpress.XtraEditors.DateEdit();
             this.lbldevice_made_date = new DevExpress.XtraEditors.LabelControl();
-            this.cmbdevice_state = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lbldevice_state = new DevExpress.XtraEditors.LabelControl();
             this.memodevice_desc = new DevExpress.XtraEditors.MemoEdit();
             this.lbldevice_desc = new DevExpress.XtraEditors.LabelControl();
@@ -59,6 +58,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.cmbdevice_state = new DevExpress.XtraEditors.LookUpEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btncarrier_id.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsim_id.Properties)).BeginInit();
@@ -68,13 +68,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtsoftware_version.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_made_date.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_made_date.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memodevice_desc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_expire.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_expire.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_model.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_type.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdevice_serial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // bar1
@@ -95,6 +95,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbdevice_state);
             this.groupBox1.Controls.Add(this.btncarrier_id);
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.txtsim_id);
@@ -109,7 +110,6 @@
             this.groupBox1.Controls.Add(this.lblsoftware_version);
             this.groupBox1.Controls.Add(this.datedevice_made_date);
             this.groupBox1.Controls.Add(this.lbldevice_made_date);
-            this.groupBox1.Controls.Add(this.cmbdevice_state);
             this.groupBox1.Controls.Add(this.lbldevice_state);
             this.groupBox1.Controls.Add(this.memodevice_desc);
             this.groupBox1.Controls.Add(this.lbldevice_desc);
@@ -241,15 +241,6 @@
             this.lbldevice_made_date.TabIndex = 12;
             this.lbldevice_made_date.Text = "生产时间";
             // 
-            // cmbdevice_state
-            // 
-            this.cmbdevice_state.Location = new System.Drawing.Point(365, 94);
-            this.cmbdevice_state.Name = "cmbdevice_state";
-            this.cmbdevice_state.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbdevice_state.Size = new System.Drawing.Size(194, 21);
-            this.cmbdevice_state.TabIndex = 11;
-            // 
             // lbldevice_state
             // 
             this.lbldevice_state.Location = new System.Drawing.Point(301, 97);
@@ -361,6 +352,15 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
+            // cmbdevice_state
+            // 
+            this.cmbdevice_state.Location = new System.Drawing.Point(365, 93);
+            this.cmbdevice_state.Name = "cmbdevice_state";
+            this.cmbdevice_state.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbdevice_state.Size = new System.Drawing.Size(194, 21);
+            this.cmbdevice_state.TabIndex = 26;
+            // 
             // frm_deviceEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -374,6 +374,7 @@
             this.Name = "frm_deviceEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "监控设备";
+            this.Load += new System.EventHandler(this.frm_deviceEdit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btncarrier_id.Properties)).EndInit();
@@ -384,13 +385,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtsoftware_version.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_made_date.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_made_date.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memodevice_desc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_expire.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedevice_expire.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_model.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_type.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdevice_serial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -410,7 +411,6 @@
         private DevExpress.XtraEditors.LabelControl lbldevice_expire;
         private DevExpress.XtraEditors.MemoEdit memodevice_desc;
         private DevExpress.XtraEditors.LabelControl lbldevice_desc;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbdevice_state;
         private DevExpress.XtraEditors.LabelControl lbldevice_state;
         private DevExpress.XtraEditors.DateEdit datedevice_made_date;
         private DevExpress.XtraEditors.LabelControl lbldevice_made_date;
@@ -428,6 +428,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.LookUpEdit cmbdevice_state;
 
     }
 }

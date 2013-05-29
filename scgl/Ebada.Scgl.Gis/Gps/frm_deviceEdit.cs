@@ -50,13 +50,13 @@ namespace Ebada.Scgl.Gis.Gps
                 if (value == null) return;
                 if (rowData == null) {
                     this.rowData = value as gps_device;
-                    this.InitComboBoxData();
+                    
                     if (MainHelper.User != null)
                         rowData.last_modify = MainHelper.User.UserName;
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<gps_device>(value as gps_device, rowData);
-                    InitComboBoxData();
+                    
                 }
                
             }
@@ -65,15 +65,30 @@ namespace Ebada.Scgl.Gis.Gps
         #endregion
 
         private void InitComboBoxData() {
-
+           
             ComboBoxHelper.FillCBoxByDyk("监控设备", "设备类型", cmbdevice_type);
-            ComboBoxHelper.FillCBoxByDyk("监控设备", "设备型号", cmbdevice_model);                                                        
+            ComboBoxHelper.FillCBoxByDyk("监控设备", "设备型号", cmbdevice_model);
+            List<DicType> dicList = new List<DicType>();
+            dicList.Add(new DicType("0", "未注册"));
+            dicList.Add(new DicType("1", "已注册"));
+            SetComboBoxData(this.cmbdevice_state, "Value", "Key", "请选择", "设备状态", dicList);      
         }
 
-        
 
 
 
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
          
 
         public bool IsTelephone(string str_telephone)
@@ -110,6 +125,11 @@ namespace Ebada.Scgl.Gis.Gps
                 MsgBox.ShowWarningMessageBox("请填写正确的联系方式!");
                 return;
             }
+        }
+
+        private void frm_deviceEdit_Load(object sender, EventArgs e)
+        {
+            InitComboBoxData();
         }
 
         
