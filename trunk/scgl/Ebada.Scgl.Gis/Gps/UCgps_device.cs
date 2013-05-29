@@ -101,6 +101,13 @@ namespace Ebada.Scgl.Gis.Gps
             linkEdit.SingleClick = true;
             linkEdit.Click += new EventHandler(linkEdit_Click);
 
+            DevExpress.XtraEditors.Repository.RepositoryItem colEditState;
+            List<DicType> dicList = new List<DicType>();
+            dicList.Add(new DicType("0", "未注册"));
+            dicList.Add(new DicType("1", "已注册"));
+            colEditState = new LookUpDicType(dicList);
+
+
             gridView1.Columns["c1"].Caption = "查看";
             gridView1.Columns["c1"].ColumnEdit = linkEdit;
             gridView1.Columns["device_serial"].OptionsColumn.AllowEdit = false;
@@ -109,6 +116,7 @@ namespace Ebada.Scgl.Gis.Gps
             gridView1.Columns["device_expire"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["device_desc"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["device_state"].OptionsColumn.AllowEdit = false;
+            gridView1.Columns["device_state"].ColumnEdit = colEditState;
             gridView1.Columns["device_made_date"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["software_version"].OptionsColumn.AllowEdit = false;
             gridView1.Columns["system_version"].OptionsColumn.AllowEdit = false;
