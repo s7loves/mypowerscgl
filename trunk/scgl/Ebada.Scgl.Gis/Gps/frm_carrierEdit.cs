@@ -71,7 +71,7 @@ namespace Ebada.Scgl.Gis.Gps
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (IsTelephone(txtphone.EditValue.ToString()) || IsHandset(txtphone.EditValue.ToString()))
+            if (IsTelephone(txtphone.EditValue.ToString()) || IsHandset(txtphone.EditValue.ToString())||string.IsNullOrEmpty(txtphone.EditValue.ToString()))
             {
                 this.DialogResult = DialogResult.OK;
             }
