@@ -29,22 +29,19 @@ namespace Ebada.Scgl.Gis {
         WaitDialogForm waitdlg;
         DrawingDxt dxt;
         PS_xl _xl;
+        Queue<gps_position> queuePos;
+        PlaybackHelper playback;
         public UCLayerCar() {
             
             InitializeComponent();
             InitTree();
-            createCheckGroup();
             groupControl1.Hide();
+            queuePos = new Queue<gps_position>();
+            dateEdit1.EditValue = DateTime.Now.AddDays(-1);
+            dateEdit2.EditValue = DateTime.Now;
+            btEnd.Enabled = false;
         }
-        
-        private void createCheckGroup() {
-            checkxlmc.CheckedChanged += checkxlmc_CheckedChanged;
-            checkgth.CheckedChanged += checkgth_CheckedChanged;
-            checkbyqrl.CheckedChanged += checkbyqrl_CheckedChanged;
-            checkkg.CheckedChanged += checkkg_CheckedChanged;
-            checkbyq.CheckedChanged += checkbyq_CheckedChanged;
-            checkgt.CheckedChanged += checkgt_CheckedChanged;
-        }
+       
         void Overlays_CollectionChanged(object sender, GMap.NET.ObjectModel.NotifyCollectionChangedEventArgs e) {
             
         }
@@ -109,7 +106,6 @@ namespace Ebada.Scgl.Gis {
         public bool ShowToolbar {
             get { return showToolbar; }
             set { showToolbar = value;
-            controlNavigator1.Visible = showToolbar;
             }
         }
         private RMap mRMap;
@@ -121,7 +117,7 @@ namespace Ebada.Scgl.Gis {
             set {
                 if (value == mRMap) return;
                 mRMap = value;
-                dxt = new DrawingDxt(value);
+                playback = new PlaybackHelper(mRMap,this.Container);
             }
         }
         public void InitLayer()
@@ -280,30 +276,39 @@ namespace Ebada.Scgl.Gis {
         private void treeList1_NodeChanged(object sender, NodeChangedEventArgs e) {
 
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            if (btStart.Text == "开始") {
+                
+                if (playback.PlayState != PlaybackHelper.PlayBackType.Pause) {
+                    if (treeList1.FocusedNode == null) return;
+                    playback.SetDevice(int.Parse(treeList1.FocusedNode["ID"].ToString()));
+
+                    playback.StartTime = dateEdit1.DateTime;
+                    playback.EndTime = dateEdit2.DateTime;
+                }
+                try {
+                   playback.Speed=int.Parse(  comboBoxEdit1.EditValue.ToString());
+                } catch { }
+                btStart.Text = "暂停";
+                btEnd.Enabled = true;
+                playback.Start();
+            } else {
+                btStart.Text = "开始";
+                btEnd.Enabled = false;
+                playback.Pause();
+            }
+        }
+
+        private void btEnd_Click(object sender, EventArgs e) {
+            btEnd.Enabled = false;
+            btStart.Text = "开始";
+            btStart.Enabled = true;
+            playback.End();
+        }
         #region 图层信息
 
-        private void checkgt_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showgt = checkgt.Checked;
-            checkgth.Enabled = checkgt.Checked;
-        }
-
-
-        private void checkgth_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showgth = checkgth.Checked;
-        }
-        private void checkbyq_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showbyq = checkbyq.Checked;
-            checkbyqrl.Enabled = checkbyq.Checked;
-        }
-        private void checkbyqrl_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showbyqrl = checkbyqrl.Checked;
-        }
-        private void checkkg_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showkg = checkkg.Checked;
-        }
-        private void checkxlmc_CheckedChanged(object sender, EventArgs e) {
-            mRMap.Showxlmc = checkxlmc.Checked;
-        }
+       
         #endregion
     }
 }

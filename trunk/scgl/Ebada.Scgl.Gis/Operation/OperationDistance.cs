@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Gis {
 
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = true;
-                if (currentMarker == null) {
+                if (CurrentMarker == null) {
                     GMapMarker marker = createMarker(rMap1.FromLocalToLatLng(e.X, e.Y));
                 }
             }

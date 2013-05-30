@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCSharpeDxt));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCLayerCar));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.层 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.显示 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -39,14 +39,16 @@
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.Layer = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.controlNavigator1 = new DevExpress.XtraEditors.ControlNavigator();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.checkxlmc = new DevExpress.XtraEditors.CheckEdit();
-            this.checkgth = new DevExpress.XtraEditors.CheckEdit();
-            this.checkbyqrl = new DevExpress.XtraEditors.CheckEdit();
-            this.checkkg = new DevExpress.XtraEditors.CheckEdit();
-            this.checkbyq = new DevExpress.XtraEditors.CheckEdit();
-            this.checkgt = new DevExpress.XtraEditors.CheckEdit();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.btEnd = new DevExpress.XtraEditors.SimpleButton();
+            this.btStart = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
@@ -54,12 +56,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkxlmc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkgth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkbyqrl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkkg.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkbyq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkgt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // treeList1
@@ -72,7 +73,7 @@
             this.Layer});
             this.treeList1.ColumnsImageList = this.imageCollection1;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(0, 25);
+            this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.ImmediateEditor = false;
             this.treeList1.OptionsSelection.InvertSelection = true;
@@ -81,7 +82,7 @@
             this.repositoryItemImageComboBox1,
             this.repositoryItemImageComboBox2,
             this.repositoryItemImageComboBox3});
-            this.treeList1.Size = new System.Drawing.Size(198, 152);
+            this.treeList1.Size = new System.Drawing.Size(198, 145);
             this.treeList1.TabIndex = 0;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
@@ -193,112 +194,138 @@
             this.repositoryItemImageComboBox3.Name = "repositoryItemImageComboBox3";
             this.repositoryItemImageComboBox3.SmallImages = this.imageCollection1;
             // 
-            // controlNavigator1
-            // 
-            this.controlNavigator1.Buttons.Append.Hint = "增加";
-            this.controlNavigator1.Buttons.Append.Tag = "Add";
-            this.controlNavigator1.Buttons.CancelEdit.Visible = false;
-            this.controlNavigator1.Buttons.Edit.Hint = "修改";
-            this.controlNavigator1.Buttons.Edit.Tag = "Edit";
-            this.controlNavigator1.Buttons.EndEdit.Hint = "确认";
-            this.controlNavigator1.Buttons.First.Visible = false;
-            this.controlNavigator1.Buttons.Last.Visible = false;
-            this.controlNavigator1.Buttons.Next.Visible = false;
-            this.controlNavigator1.Buttons.NextPage.Visible = false;
-            this.controlNavigator1.Buttons.Prev.Visible = false;
-            this.controlNavigator1.Buttons.PrevPage.Visible = false;
-            this.controlNavigator1.Buttons.Remove.Hint = "删除";
-            this.controlNavigator1.Buttons.Remove.Tag = "Del2";
-            this.controlNavigator1.Buttons.Remove.Visible = false;
-            this.controlNavigator1.CustomButtons.AddRange(new DevExpress.XtraEditors.NavigatorCustomButton[] {
-            new DevExpress.XtraEditors.NavigatorCustomButton(-1, 10, true, true, "删除", "Del"),
-            new DevExpress.XtraEditors.NavigatorCustomButton(-1, 14, true, true, "上移", "Up"),
-            new DevExpress.XtraEditors.NavigatorCustomButton(-1, 17, true, true, "下移", "Down")});
-            this.controlNavigator1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlNavigator1.Location = new System.Drawing.Point(0, 0);
-            this.controlNavigator1.Name = "controlNavigator1";
-            this.controlNavigator1.NavigatableControl = this.treeList1;
-            this.controlNavigator1.ShowToolTips = true;
-            this.controlNavigator1.Size = new System.Drawing.Size(198, 25);
-            this.controlNavigator1.TabIndex = 3;
-            this.controlNavigator1.Text = "controlNavigator1";
-            this.controlNavigator1.Click += new System.EventHandler(this.controlNavigator1_Click);
-            this.controlNavigator1.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.controlNavigator1_ButtonClick);
-            // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.checkxlmc);
-            this.groupControl1.Controls.Add(this.checkgth);
-            this.groupControl1.Controls.Add(this.checkbyqrl);
-            this.groupControl1.Controls.Add(this.checkkg);
-            this.groupControl1.Controls.Add(this.checkbyq);
-            this.groupControl1.Controls.Add(this.checkgt);
+            this.groupControl1.Controls.Add(this.comboBoxEdit1);
+            this.groupControl1.Controls.Add(this.btEnd);
+            this.groupControl1.Controls.Add(this.btStart);
+            this.groupControl1.Controls.Add(this.labelControl4);
+            this.groupControl1.Controls.Add(this.labelControl3);
+            this.groupControl1.Controls.Add(this.labelControl2);
+            this.groupControl1.Controls.Add(this.labelControl1);
+            this.groupControl1.Controls.Add(this.dateEdit1);
+            this.groupControl1.Controls.Add(this.dateEdit2);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 177);
+            this.groupControl1.Location = new System.Drawing.Point(0, 145);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(198, 116);
+            this.groupControl1.Size = new System.Drawing.Size(198, 148);
             this.groupControl1.TabIndex = 5;
-            this.groupControl1.Text = "图层信息";
+            this.groupControl1.Text = "轨迹回放";
             // 
-            // checkxlmc
+            // comboBoxEdit1
             // 
-            this.checkxlmc.Location = new System.Drawing.Point(24, 88);
-            this.checkxlmc.Name = "checkxlmc";
-            this.checkxlmc.Properties.Caption = "线路名称";
-            this.checkxlmc.Size = new System.Drawing.Size(86, 19);
-            this.checkxlmc.TabIndex = 2;
+            this.comboBoxEdit1.EditValue = "1";
+            this.comboBoxEdit1.Location = new System.Drawing.Point(45, 80);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "5",
+            "10"});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxEdit1.TabIndex = 15;
             // 
-            // checkgth
+            // btEnd
             // 
-            this.checkgth.Location = new System.Drawing.Point(91, 34);
-            this.checkgth.Name = "checkgth";
-            this.checkgth.Properties.Caption = "杆塔号";
-            this.checkgth.Size = new System.Drawing.Size(65, 19);
-            this.checkgth.TabIndex = 1;
+            this.btEnd.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btEnd.Appearance.Options.UseFont = true;
+            this.btEnd.Location = new System.Drawing.Point(124, 107);
+            this.btEnd.Name = "btEnd";
+            this.btEnd.Size = new System.Drawing.Size(60, 23);
+            this.btEnd.TabIndex = 14;
+            this.btEnd.Text = "结束";
+            this.btEnd.Click += new System.EventHandler(this.btEnd_Click);
             // 
-            // checkbyqrl
+            // btStart
             // 
-            this.checkbyqrl.EditValue = true;
-            this.checkbyqrl.Location = new System.Drawing.Point(91, 51);
-            this.checkbyqrl.Name = "checkbyqrl";
-            this.checkbyqrl.Properties.Caption = "变压器容器";
-            this.checkbyqrl.Size = new System.Drawing.Size(83, 19);
-            this.checkbyqrl.TabIndex = 0;
+            this.btStart.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btStart.Appearance.Options.UseFont = true;
+            this.btStart.Location = new System.Drawing.Point(45, 107);
+            this.btStart.Name = "btStart";
+            this.btStart.Size = new System.Drawing.Size(62, 23);
+            this.btStart.TabIndex = 14;
+            this.btStart.Text = "开始";
+            this.btStart.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
-            // checkkg
+            // labelControl4
             // 
-            this.checkkg.Location = new System.Drawing.Point(24, 68);
-            this.checkkg.Name = "checkkg";
-            this.checkkg.Properties.Caption = "开关";
-            this.checkkg.Size = new System.Drawing.Size(61, 19);
-            this.checkkg.TabIndex = 0;
+            this.labelControl4.Location = new System.Drawing.Point(151, 84);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(24, 14);
+            this.labelControl4.TabIndex = 13;
+            this.labelControl4.Text = "每秒";
             // 
-            // checkbyq
+            // labelControl3
             // 
-            this.checkbyq.EditValue = true;
-            this.checkbyq.Location = new System.Drawing.Point(24, 50);
-            this.checkbyq.Name = "checkbyq";
-            this.checkbyq.Properties.Caption = "变压器";
-            this.checkbyq.Size = new System.Drawing.Size(61, 19);
-            this.checkbyq.TabIndex = 0;
+            this.labelControl3.Location = new System.Drawing.Point(15, 83);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(24, 14);
+            this.labelControl3.TabIndex = 13;
+            this.labelControl3.Text = "频率";
             // 
-            // checkgt
+            // labelControl2
             // 
-            this.checkgt.EditValue = true;
-            this.checkgt.Location = new System.Drawing.Point(24, 34);
-            this.checkgt.Name = "checkgt";
-            this.checkgt.Properties.Caption = "杆塔";
-            this.checkgt.Size = new System.Drawing.Size(61, 19);
-            this.checkgt.TabIndex = 0;
+            this.labelControl2.Location = new System.Drawing.Point(15, 56);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(24, 14);
+            this.labelControl2.TabIndex = 13;
+            this.labelControl2.Text = "终止";
             // 
-            // UCSharpeDxt
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(15, 29);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 13;
+            this.labelControl1.Text = "起始";
+            // 
+            // dateEdit1
+            // 
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(45, 26);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit1.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit1.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit1.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateEdit1.Size = new System.Drawing.Size(139, 21);
+            this.dateEdit1.TabIndex = 12;
+            // 
+            // dateEdit2
+            // 
+            this.dateEdit2.EditValue = null;
+            this.dateEdit2.Location = new System.Drawing.Point(45, 53);
+            this.dateEdit2.Name = "dateEdit2";
+            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit2.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
+            this.dateEdit2.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit2.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateEdit2.Size = new System.Drawing.Size(139, 21);
+            this.dateEdit2.TabIndex = 12;
+            // 
+            // UCLayerCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.controlNavigator1);
-            this.Name = "UCSharpeDxt";
+            this.Name = "UCLayerCar";
             this.Size = new System.Drawing.Size(198, 293);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
@@ -307,12 +334,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkxlmc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkgth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkbyqrl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkkg.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkbyq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkgt.Properties)).EndInit();
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,7 +348,6 @@
 
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.Utils.ImageCollection imageCollection1;
-        private DevExpress.XtraEditors.ControlNavigator controlNavigator1;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox2;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox3;
@@ -329,12 +355,15 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn 显示;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 编辑;
         private DevExpress.XtraTreeList.Columns.TreeListColumn Layer;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.CheckEdit checkxlmc;
-        private DevExpress.XtraEditors.CheckEdit checkgth;
-        private DevExpress.XtraEditors.CheckEdit checkbyqrl;
-        private DevExpress.XtraEditors.CheckEdit checkkg;
-        private DevExpress.XtraEditors.CheckEdit checkbyq;
-        private DevExpress.XtraEditors.CheckEdit checkgt;
+        public DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SimpleButton btStart;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.SimpleButton btEnd;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }
