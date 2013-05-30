@@ -56,7 +56,32 @@
           FROM gps_position
           $value$
    </select>
-   
+    <select id="Selectgps_positionPage" resultMap="gps_position_AllColumns" parameterClass="Hashtable">
+      SELECT top $limit$
+      [id],
+      [device_id],
+      [date],
+      [lng],
+      [lat],
+      [lng2],
+      [lat2],
+      [altitude],
+      [speed],
+      [direction],
+      [position_type],
+      [gps_realtime_position],
+      [lbs_info],
+      [g_force],
+      [distance_from_last_gps],
+      [carrier_acc],
+      [status_byte],
+      [status_string],
+      [c1],
+      [c2],
+      [c3]
+      FROM gps_position
+      $where$
+    </select>
    <select id="Selectgps_positionByHash" parameterClass="Hashtable">
          SELECT 
          [id],
