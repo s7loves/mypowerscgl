@@ -19,7 +19,7 @@ namespace Ebada.Scgl.Gis {
 
             if (e.Button == MouseButtons.Left) {
                 isMouseDown = true;
-                if (currentMarker == null && CurOverlay!=null) {
+                if (CurrentMarker == null && CurOverlay!=null) {
                     GMapMarker marker = createMarker(rMap1.FromLocalToLatLng(e.X, e.Y));
                     CurOverlay.Markers.Add(marker);
                 }

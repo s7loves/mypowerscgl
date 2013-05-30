@@ -10,7 +10,8 @@ using GMap.NET;
 namespace Ebada.Scgl.Gis {
     internal class OperationBase {
         protected RMap rMap1;
-        protected GMapMarker currentMarker;
+        private GMapMarker currentMarker;
+
         protected Boolean isMouseDown;
         protected GMapMarker selectedMarker;
         protected Point beginPoint;
@@ -28,6 +29,11 @@ namespace Ebada.Scgl.Gis {
             canEditMarker = true;
         }
         #region 属性
+
+        public GMapMarker CurrentMarker {
+            get { return currentMarker; }
+            set { currentMarker = value; }
+        }
         protected GMapOverlay CurOverlay {
             get { return curOverlay; }
             set { curOverlay = value; }

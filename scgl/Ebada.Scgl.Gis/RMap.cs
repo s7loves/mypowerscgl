@@ -93,11 +93,15 @@ namespace Ebada.Scgl.Gis {
         #region IMapView 成员
 
         public void Zoomin() {
+            this.MouseWheelZoomType = MouseWheelZoomType.ViewCenter;
             Zoom -= 1;
+            this.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
         }
 
         public void Zoomout() {
+            this.MouseWheelZoomType = MouseWheelZoomType.ViewCenter;
             Zoom += 1;
+            this.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
         }
 
         public void Roam() {

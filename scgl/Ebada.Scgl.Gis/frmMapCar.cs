@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Gis {
         internal GMapOverlay objects;//杆塔
         internal GMapOverlay routes;//线路
         OperationBase curOperation;
-
+        bool isPlayback = false;
         internal OperationBase CurOperation {
             get { return curOperation; }
             set {
@@ -50,6 +50,7 @@ namespace Ebada.Scgl.Gis {
         public frmMapCar() {
             InitializeComponent();
             btFullScrean.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             rMap1 = new RMap();
 
             rMap1.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
@@ -99,7 +100,11 @@ namespace Ebada.Scgl.Gis {
             dockPanel1_Container.Controls.Add(ucLayerCar);
         }
 
-
+        public Control showGJHF() {
+            ucLayerCar.groupControl1.Show();
+            isPlayback = true;
+            return this;
+        }
         void 测距_DownChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (barButtonItem4.Down)
                 CurOperation = oInstances.DistanceOperation;
@@ -131,20 +136,25 @@ namespace Ebada.Scgl.Gis {
         DateTime lastDatetime;
         Dictionary<int, Markers.GMapMarkerCar> carDic = new Dictionary<int, Ebada.Scgl.Gis.Markers.GMapMarkerCar>();
         GMapOverlay carLay;
+        
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
-            timer1 = new Timer();
-            timer1.Interval = 10 * 1000;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            lastDatetime = new DateTime(2013, 5, 1);
-            carLay = new GMapOverlay(rMap1, "car");
-            rMap1.Overlays.Add(carLay);
-            freshPosition();
-            timer1.Start();
+            
             ucLayerCar.MapControl = rMap1;
             ucLayerCar.ShowToolbar = false;
             ucLayerCar.InitLayer();
+            if (!isPlayback) {
+                lastDatetime = new DateTime(2013, 5, 1);
+                carLay = new GMapOverlay(rMap1, "car");
+                rMap1.Overlays.Add(carLay);
+                freshPosition();
+
+                timer1 = new Timer();
+                timer1.Interval = 10 * 1000;
+                timer1.Tick += new EventHandler(timer1_Tick);
+                timer1.Start();
+            }
         }
         void timer1_Tick(object sender, EventArgs e) {
             timer1.Stop();
@@ -177,19 +187,24 @@ namespace Ebada.Scgl.Gis {
                 car.ShowText = true;
                 car.Text = pos.device_name;
                 car.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                try {
-                    car.ToolTip.Format.LineAlignment = StringAlignment.Near;
-                } catch {
-
-                }
-                car.ToolTipText = string.Format("时间:{0}\n位置：{1}\n经度：{2}\n纬度:{3}", pos.date, pos.adress, pos.lng, pos.lat);
+                
+                car.ToolTipText = string.Format("时间：{0}\n位置：{1}\n电话：{4}\n", pos.date, pos.adress, pos.lng, pos.lat,pos.phone_number);
+                //car.ToolTip.Format.LineAlignment = StringAlignment.Near;
+                car.ToolTip.Format.Alignment = StringAlignment.Near;
             }
 
         }
+        private GMapMarkerCar showinfoMarker;
         public void LocationMarker(string id) {
             if (carDic.ContainsKey(int.Parse(id))) {
                 GMapMarkerCar car = carDic[int.Parse(id)];
-                rMap1.Position = car.Position;
+                
+                if (showinfoMarker != null) showinfoMarker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                showinfoMarker = car;
+                car.ToolTipMode = MarkerTooltipMode.Always;
+                if(!rMap1.CurrentViewArea.Contains(car.Position))
+                    rMap1.Position = car.Position;
+                rMap1.Refresh();
             }
         }
         public void FullScrean() {
@@ -278,6 +293,7 @@ namespace Ebada.Scgl.Gis {
 
         void MainMap_MouseUp(object sender, MouseEventArgs e) {
             curOperation.MouseUp(sender, e);
+            
         }
         GMapMarker createMarker(PointLatLng pos) {
             GMapMarkerVector marker = new GMapMarkerVector(pos);
@@ -295,7 +311,12 @@ namespace Ebada.Scgl.Gis {
         }
         void MainMap_MouseDown(object sender, MouseEventArgs e) {
             curOperation.MouseDown(sender, e);
-            
+            if (showinfoMarker != null) showinfoMarker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+            if (curOperation.CurrentMarker != null) {
+                showinfoMarker = curOperation.CurrentMarker as GMapMarkerCar;
+                if (showinfoMarker != null)
+                    showinfoMarker.ToolTipMode = MarkerTooltipMode.Always;
+            }
         }
 
         // move current marker with left holding

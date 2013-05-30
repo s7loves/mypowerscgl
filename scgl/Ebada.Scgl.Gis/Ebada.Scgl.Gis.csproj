@@ -215,6 +215,7 @@
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Markers\GMapMarkerCar.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
+    <Compile Include="PlaybackHelper.cs" />
     <Compile Include="Provider\GoogleChinaTerrainMap.cs" />
     <Compile Include="ShapeHelper.cs" />
     <Compile Include="TjOverlay.cs" />
