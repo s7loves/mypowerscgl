@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Markers\GMapMarkerCar.cs" />
+    <Compile Include="Markers\GMapMarkerGif.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="PlaybackHelper.cs" />
     <Compile Include="Provider\GoogleChinaTerrainMap.cs" />

@@ -21,7 +21,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Gis {
     /// <summary>
-    /// 配电图形-单线图
+    /// 监控设备
     /// </summary>
     [ToolboxItem(false)]
     public partial class UCLayerCar : UserControl, IUCLayer {
@@ -118,7 +118,12 @@ namespace Ebada.Scgl.Gis {
                 if (value == mRMap) return;
                 mRMap = value;
                 playback = new PlaybackHelper(mRMap,this.Container);
+                playback.OnCompleted += new EventHandler(playback_OnCompleted);
             }
+        }
+
+        void playback_OnCompleted(object sender, EventArgs e) {
+            this.btEnd.PerformClick();
         }
         public void InitLayer()
         {
