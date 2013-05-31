@@ -26,6 +26,7 @@ namespace Ebada.Scgl.Gis {
         int nStart=0,
             nLimit=50, 
             nTotal;
+        public event EventHandler OnCompleted;
         public DateTime StartTime {
             get { return startTime; }
             set { startTime = value; }
@@ -89,7 +90,12 @@ namespace Ebada.Scgl.Gis {
                     _map.UpdateMarkerLocalPosition(car);
                     _map.Refresh();
                 }
+            } else if(startTime== endTime) {
+                
+                if (OnCompleted != null)
+                    OnCompleted(this, null);
             }
+            
         }
 
         void dataTimer_Tick(object sender, EventArgs e) {

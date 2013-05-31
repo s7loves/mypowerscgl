@@ -61,6 +61,9 @@ namespace Ebada.Scgl.Gis.Gps
         private void InitComboBoxData() {
 
             ComboBoxHelper.FillCBoxByDyk("车辆登记", "载体类型", cmbcarrier_type);
+            if (cmbcarrier_type.Properties.Items.Count == 0) {
+                cmbcarrier_type.Properties.Items.AddRange(new string[] { "车辆", "人员" });
+            }
             ComboBoxHelper.FillCBoxByDyk("车辆登记", "型号", cmbmodel);
             int year = DateTime.Now.Year;
             for (int i = year - 20; i <= year; i++)
