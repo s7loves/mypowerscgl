@@ -98,6 +98,7 @@ namespace Ebada.Scgl.Gis {
             ucLayerCar = new UCLayerCar();
             ucLayerCar.Dock = DockStyle.Fill;
             dockPanel1_Container.Controls.Add(ucLayerCar);
+            this.WindowState = FormWindowState.Maximized;
         }
 
         public Control showGJHF() {
