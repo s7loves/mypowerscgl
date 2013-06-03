@@ -34,7 +34,10 @@ namespace Ebada.Scgl.Gis {
             }
         }
         public override GMap.NET.PureImage GetTileImage(GMap.NET.GPoint pos, int zoom) {
-            return GetTileImageUsingHttp(pos, zoom);
+            PureImage image=GetTileImageUsingHttp(pos, zoom);
+            if(image==null)
+                image=base.GetTileImage(pos,zoom);
+            return image;
         }
         public event TileImageEventHandler OnNeedTileImage;
         public  PureImage GetTileImageUsingHttp(GMap.NET.GPoint pos, int zoom) {
