@@ -38,16 +38,25 @@ namespace Ebada.Scgl.Gis.Gps
         public event SendDataEventHandler<gps_carrier> FocusedRowChanged;
 
         public bool isbarvisible = true;
-        
+        private string ctype = "车辆";
         public UCgps_carrier()
         {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<gps_carrier>(gridControl1, gridView1, barManager1, new frm_carrierEdit());
             gridView1.DoubleClick += new EventHandler(gridView1_DoubleClick);
+            gridViewOperation.CreatingObjectEvent += new ObjectEventHandler<gps_carrier>(gridViewOperation_CreatingObjectEvent);
             gridViewOperation.AfterAdd += new ObjectEventHandler<gps_carrier>(gridViewOperation_AfterAdd);
             gridViewOperation.AfterEdit += new ObjectEventHandler<gps_carrier>(gridViewOperation_AfterEdit);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+        public Control showman() {
+            ctype = "人员";
+            gridViewOperation.EditForm = new frm_carrierEditMan();
+            return this;
+        }
+        void gridViewOperation_CreatingObjectEvent(gps_carrier obj) {
+            obj.carrier_type = ctype;
         }
 
         void gridView1_DoubleClick(object sender, EventArgs e)
@@ -115,6 +124,14 @@ namespace Ebada.Scgl.Gis.Gps
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
+            if (ctype == "人员") {
+                foreach (GridColumn gc in gridView1.Columns) {
+                    gc.Visible = false;
+                }
+                gridView1.Columns["plate"].Caption = "姓名";
+                gridView1.Columns["phone"].Visible = true;
+                gridView1.Columns["plate"].Visible = true;
+            }
         }
         /// <summary>
         /// 刷新数据
@@ -122,7 +139,7 @@ namespace Ebada.Scgl.Gis.Gps
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData()
         {
-            gridViewOperation.RefreshData("");
+            gridViewOperation.RefreshData(" where carrier_type='"+ctype+"'");
             this.gridView1.BestFitColumns();
         }
         /// <summary>
