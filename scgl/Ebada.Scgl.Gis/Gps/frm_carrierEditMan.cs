@@ -15,22 +15,17 @@ using Ebada.Scgl.Core;
 using System.Collections;
 namespace Ebada.Scgl.Gis.Gps
 {
-    public partial class frm_carrierEdit : FormBase, IPopupFormEdit {
-        
-        public frm_carrierEdit()
+    public partial class frm_carrierEditMan : FormBase, IPopupFormEdit {
+
+        public frm_carrierEditMan()
         {
             InitializeComponent();
             
         }
         void dataBind() {
 
-            this.cmbcarrier_type.DataBindings.Add("EditValue", rowData, "carrier_type");
-            this.cmbmodel.DataBindings.Add("EditValue", rowData, "model");
-            this.dateyear.DataBindings.Add("EditValue", rowData, "year");
-            this.clcolor.DataBindings.Add("EditValue", rowData, "color");
+            
             this.txtplate.DataBindings.Add("EditValue", rowData, "plate");
-            this.txtdriver.DataBindings.Add("EditValue", rowData, "driver");
-            this.txtowner.DataBindings.Add("EditValue", rowData, "owner");
             this.txtphone.DataBindings.Add("EditValue", rowData, "phone");
         }
         #region IPopupFormEdit Members
@@ -59,17 +54,7 @@ namespace Ebada.Scgl.Gis.Gps
         #endregion
 
         private void InitComboBoxData() {
-            cmbcarrier_type.Properties.ReadOnly = true;
-            ComboBoxHelper.FillCBoxByDyk("车辆登记", "载体类型", cmbcarrier_type);
-            if (cmbcarrier_type.Properties.Items.Count == 0) {
-                cmbcarrier_type.Properties.Items.AddRange(new string[] { "车辆", "人员" });
-            }
-            ComboBoxHelper.FillCBoxByDyk("车辆登记", "型号", cmbmodel);
-            int year = DateTime.Now.Year;
-            for (int i = year - 20; i <= year; i++)
-            {
-                this.dateyear.Properties.Items.Add(i);
-            }
+           
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -97,9 +82,6 @@ namespace Ebada.Scgl.Gis.Gps
 
         private void dateyear_EditValueChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(dateyear.EditValue.ToString()))
-                return;
-            rowData.year = Convert.ToDateTime(dateyear.EditValue).Year.ToString();
         }
 
 
