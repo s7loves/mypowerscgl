@@ -38,7 +38,7 @@ namespace Ebada.Scgl.Gis.Gps
         public event SendDataEventHandler<gps_carrier> FocusedRowChanged;
 
         public bool isbarvisible = true;
-        private string ctype = "车辆";
+        public string ctype = "车辆";
         public UCgps_carrier()
         {
             InitializeComponent();
