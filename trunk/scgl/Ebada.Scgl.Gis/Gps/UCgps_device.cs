@@ -134,11 +134,12 @@ namespace Ebada.Scgl.Gis.Gps
             gps_device device = gridView1.GetFocusedRow() as gps_device;
             if (string.IsNullOrEmpty(device.carrier_id)||Client.ClientHelper.PlatformSqlMap.GetOne<gps_carrier>("where carrier_id='"+device.carrier_id+"'")==null)
             {
-                MsgBox.ShowWarningMessageBox("该设备还没有绑定车辆信息!");
+                //MsgBox.ShowWarningMessageBox("该设备还没有绑定载体信息!");
                 return;
             }
             frm_SeeCarrier frm = new frm_SeeCarrier();
             frm.carrier_id = device.carrier_id;
+            frm.ctype = device.c2;
             frm.ShowDialog();
         }
         /// <summary>

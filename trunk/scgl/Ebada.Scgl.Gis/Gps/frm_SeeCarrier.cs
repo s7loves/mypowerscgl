@@ -14,7 +14,7 @@ namespace Ebada.Scgl.Gis.Gps
     public partial class frm_SeeCarrier : FormBase
     {
         public string carrier_id;
-
+        public string ctype;
         public frm_SeeCarrier()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace Ebada.Scgl.Gis.Gps
         {
             UCgps_SeeCarrier seeCarrier = new UCgps_SeeCarrier();
             seeCarrier.carrier_id = carrier_id;
+            seeCarrier.ctype = ctype;
             seeCarrier.Dock = DockStyle.Fill;
             this.Controls.Clear();
             this.Controls.Add(seeCarrier);

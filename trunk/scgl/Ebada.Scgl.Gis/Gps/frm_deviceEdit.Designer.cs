@@ -31,6 +31,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbdevice_state = new DevExpress.XtraEditors.LookUpEdit();
             this.btncarrier_id = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtsim_id = new DevExpress.XtraEditors.TextEdit();
@@ -58,8 +59,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.cmbdevice_state = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lkuezttype = new DevExpress.XtraEditors.LookUpEdit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btncarrier_id.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsim_id.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtphone_number.Properties)).BeginInit();
@@ -74,7 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_model.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_type.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdevice_serial.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuezttype.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // bar1
@@ -95,6 +98,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lkuezttype);
+            this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.cmbdevice_state);
             this.groupBox1.Controls.Add(this.btncarrier_id);
             this.groupBox1.Controls.Add(this.labelControl4);
@@ -123,14 +128,23 @@
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(581, 257);
+            this.groupBox1.Size = new System.Drawing.Size(581, 276);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "监控设备信息";
             // 
+            // cmbdevice_state
+            // 
+            this.cmbdevice_state.Location = new System.Drawing.Point(365, 92);
+            this.cmbdevice_state.Name = "cmbdevice_state";
+            this.cmbdevice_state.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbdevice_state.Size = new System.Drawing.Size(194, 21);
+            this.cmbdevice_state.TabIndex = 26;
+            // 
             // btncarrier_id
             // 
-            this.btncarrier_id.Location = new System.Drawing.Point(365, 214);
+            this.btncarrier_id.Location = new System.Drawing.Point(365, 237);
             this.btncarrier_id.Name = "btncarrier_id";
             this.btncarrier_id.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -140,22 +154,22 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(301, 217);
+            this.labelControl4.Location = new System.Drawing.Point(301, 240);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 24;
-            this.labelControl4.Text = "车辆信息";
+            this.labelControl4.Text = "载体信息";
             // 
             // txtsim_id
             // 
-            this.txtsim_id.Location = new System.Drawing.Point(82, 214);
+            this.txtsim_id.Location = new System.Drawing.Point(82, 237);
             this.txtsim_id.Name = "txtsim_id";
             this.txtsim_id.Size = new System.Drawing.Size(194, 21);
             this.txtsim_id.TabIndex = 23;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(19, 217);
+            this.labelControl3.Location = new System.Drawing.Point(19, 240);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(33, 14);
             this.labelControl3.TabIndex = 22;
@@ -163,14 +177,14 @@
             // 
             // txtphone_number
             // 
-            this.txtphone_number.Location = new System.Drawing.Point(365, 184);
+            this.txtphone_number.Location = new System.Drawing.Point(365, 179);
             this.txtphone_number.Name = "txtphone_number";
             this.txtphone_number.Size = new System.Drawing.Size(194, 21);
             this.txtphone_number.TabIndex = 21;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(302, 187);
+            this.labelControl2.Location = new System.Drawing.Point(302, 182);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(48, 14);
             this.labelControl2.TabIndex = 20;
@@ -178,14 +192,14 @@
             // 
             // txtdevice_owner
             // 
-            this.txtdevice_owner.Location = new System.Drawing.Point(82, 184);
+            this.txtdevice_owner.Location = new System.Drawing.Point(82, 208);
             this.txtdevice_owner.Name = "txtdevice_owner";
             this.txtdevice_owner.Size = new System.Drawing.Size(194, 21);
             this.txtdevice_owner.TabIndex = 19;
             // 
             // lbldevice_owner
             // 
-            this.lbldevice_owner.Location = new System.Drawing.Point(19, 187);
+            this.lbldevice_owner.Location = new System.Drawing.Point(19, 211);
             this.lbldevice_owner.Name = "lbldevice_owner";
             this.lbldevice_owner.Size = new System.Drawing.Size(48, 14);
             this.lbldevice_owner.TabIndex = 18;
@@ -193,14 +207,14 @@
             // 
             // txtsystem_version
             // 
-            this.txtsystem_version.Location = new System.Drawing.Point(365, 154);
+            this.txtsystem_version.Location = new System.Drawing.Point(365, 150);
             this.txtsystem_version.Name = "txtsystem_version";
             this.txtsystem_version.Size = new System.Drawing.Size(194, 21);
             this.txtsystem_version.TabIndex = 17;
             // 
             // lblsystem_version
             // 
-            this.lblsystem_version.Location = new System.Drawing.Point(301, 157);
+            this.lblsystem_version.Location = new System.Drawing.Point(301, 153);
             this.lblsystem_version.Name = "lblsystem_version";
             this.lblsystem_version.Size = new System.Drawing.Size(48, 14);
             this.lblsystem_version.TabIndex = 16;
@@ -208,14 +222,14 @@
             // 
             // txtsoftware_version
             // 
-            this.txtsoftware_version.Location = new System.Drawing.Point(82, 154);
+            this.txtsoftware_version.Location = new System.Drawing.Point(82, 179);
             this.txtsoftware_version.Name = "txtsoftware_version";
             this.txtsoftware_version.Size = new System.Drawing.Size(194, 21);
             this.txtsoftware_version.TabIndex = 15;
             // 
             // lblsoftware_version
             // 
-            this.lblsoftware_version.Location = new System.Drawing.Point(19, 157);
+            this.lblsoftware_version.Location = new System.Drawing.Point(19, 182);
             this.lblsoftware_version.Name = "lblsoftware_version";
             this.lblsoftware_version.Size = new System.Drawing.Size(48, 14);
             this.lblsoftware_version.TabIndex = 14;
@@ -224,7 +238,7 @@
             // datedevice_made_date
             // 
             this.datedevice_made_date.EditValue = null;
-            this.datedevice_made_date.Location = new System.Drawing.Point(365, 124);
+            this.datedevice_made_date.Location = new System.Drawing.Point(365, 121);
             this.datedevice_made_date.Name = "datedevice_made_date";
             this.datedevice_made_date.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -235,7 +249,7 @@
             // 
             // lbldevice_made_date
             // 
-            this.lbldevice_made_date.Location = new System.Drawing.Point(301, 127);
+            this.lbldevice_made_date.Location = new System.Drawing.Point(301, 124);
             this.lbldevice_made_date.Name = "lbldevice_made_date";
             this.lbldevice_made_date.Size = new System.Drawing.Size(48, 14);
             this.lbldevice_made_date.TabIndex = 12;
@@ -243,7 +257,7 @@
             // 
             // lbldevice_state
             // 
-            this.lbldevice_state.Location = new System.Drawing.Point(301, 97);
+            this.lbldevice_state.Location = new System.Drawing.Point(301, 95);
             this.lbldevice_state.Name = "lbldevice_state";
             this.lbldevice_state.Size = new System.Drawing.Size(48, 14);
             this.lbldevice_state.TabIndex = 10;
@@ -251,10 +265,10 @@
             // 
             // memodevice_desc
             // 
-            this.memodevice_desc.Location = new System.Drawing.Point(82, 94);
+            this.memodevice_desc.Location = new System.Drawing.Point(82, 92);
             this.memodevice_desc.Name = "memodevice_desc";
             this.memodevice_desc.Properties.MaxLength = 50;
-            this.memodevice_desc.Size = new System.Drawing.Size(194, 51);
+            this.memodevice_desc.Size = new System.Drawing.Size(194, 79);
             this.memodevice_desc.TabIndex = 9;
             // 
             // lbldevice_desc
@@ -268,7 +282,7 @@
             // datedevice_expire
             // 
             this.datedevice_expire.EditValue = null;
-            this.datedevice_expire.Location = new System.Drawing.Point(365, 64);
+            this.datedevice_expire.Location = new System.Drawing.Point(365, 63);
             this.datedevice_expire.Name = "datedevice_expire";
             this.datedevice_expire.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -279,7 +293,7 @@
             // 
             // lbldevice_expire
             // 
-            this.lbldevice_expire.Location = new System.Drawing.Point(301, 67);
+            this.lbldevice_expire.Location = new System.Drawing.Point(301, 66);
             this.lbldevice_expire.Name = "lbldevice_expire";
             this.lbldevice_expire.Size = new System.Drawing.Size(48, 14);
             this.lbldevice_expire.TabIndex = 6;
@@ -336,7 +350,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(378, 276);
+            this.btnOk.Location = new System.Drawing.Point(378, 295);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 1;
@@ -346,26 +360,35 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(478, 276);
+            this.btnCancel.Location = new System.Drawing.Point(478, 295);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
-            // cmbdevice_state
+            // labelControl5
             // 
-            this.cmbdevice_state.Location = new System.Drawing.Point(365, 93);
-            this.cmbdevice_state.Name = "cmbdevice_state";
-            this.cmbdevice_state.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.labelControl5.Location = new System.Drawing.Point(301, 211);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(48, 14);
+            this.labelControl5.TabIndex = 27;
+            this.labelControl5.Text = "载体类型";
+            // 
+            // lkuezttype
+            // 
+            this.lkuezttype.Location = new System.Drawing.Point(365, 208);
+            this.lkuezttype.Name = "lkuezttype";
+            this.lkuezttype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbdevice_state.Size = new System.Drawing.Size(194, 21);
-            this.cmbdevice_state.TabIndex = 26;
+            this.lkuezttype.Size = new System.Drawing.Size(194, 21);
+            this.lkuezttype.TabIndex = 28;
+            this.lkuezttype.EditValueChanged += new System.EventHandler(this.lkuezttype_EditValueChanged);
             // 
             // frm_deviceEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 309);
+            this.ClientSize = new System.Drawing.Size(608, 334);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupBox1);
@@ -377,6 +400,7 @@
             this.Load += new System.EventHandler(this.frm_deviceEdit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btncarrier_id.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsim_id.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtphone_number.Properties)).EndInit();
@@ -391,7 +415,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_model.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_type.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdevice_serial.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbdevice_state.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuezttype.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -429,6 +453,8 @@
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LookUpEdit cmbdevice_state;
+        private DevExpress.XtraEditors.LookUpEdit lkuezttype;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
 
     }
 }

@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Gis.Gps
     [ToolboxItem(false)]
     public partial class UCgps_SeeCarrier : DevExpress.XtraEditors.XtraUserControl
     {
-      
+        public string ctype;
         public UCgps_SeeCarrier()
         {
             InitializeComponent();
@@ -70,7 +70,17 @@ namespace Ebada.Scgl.Gis.Gps
             hideColumn("c3");
             DevExpress.XtraEditors.Repository.RepositoryItemColorEdit colorEdit = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
             gridView1.Columns["color"].ColumnEdit = colorEdit;
-
+            
+            if (ctype == "人员")
+            {
+                foreach (GridColumn gc in gridView1.Columns)
+                {
+                    gc.Visible = false;
+                }
+                gridView1.Columns["plate"].Caption = "姓名";
+                gridView1.Columns["phone"].Visible = true;
+                gridView1.Columns["plate"].Visible = true;
+            }
         }
         /// <summary>
         /// 刷新数据

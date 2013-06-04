@@ -38,6 +38,7 @@
             this.Name = "frm_carrierselect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "车量选择";
+            this.Load += new System.EventHandler(this.frm_carrierselect_Load);
             this.ResumeLayout(false);
 
         }

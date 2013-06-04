@@ -17,6 +17,7 @@ namespace Ebada.Scgl.Gis.Gps
 {
     public partial class frm_deviceEdit : FormBase, IPopupFormEdit {
 
+        private string ztType = string.Empty;
         public frm_deviceEdit()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace Ebada.Scgl.Gis.Gps
             this.txtdevice_owner.DataBindings.Add("EditValue", rowData, "device_owner");
             this.txtphone_number.DataBindings.Add("EditValue", rowData, "phone_number");
             this.txtsim_id.DataBindings.Add("EditValue", rowData, "sim_id");
-            this.btncarrier_id.DataBindings.Add("EditValue", rowData, "carrier_id");
+            this.btncarrier_id.DataBindings.Add("EditValue", rowData, "c1");
             
         }
         #region IPopupFormEdit Members
@@ -71,7 +72,12 @@ namespace Ebada.Scgl.Gis.Gps
             List<DicType> dicList = new List<DicType>();
             dicList.Add(new DicType("0", "未注册"));
             dicList.Add(new DicType("1", "已注册"));
-            SetComboBoxData(this.cmbdevice_state, "Value", "Key", "请选择", "设备状态", dicList);      
+            SetComboBoxData(this.cmbdevice_state, "Value", "Key", "请选择", "设备状态", dicList);
+
+            List<DicType> dicztList = new List<DicType>();
+            dicztList.Add(new DicType("车辆", "车辆"));
+            dicztList.Add(new DicType("人员", "人员"));
+            SetComboBoxData(this.lkuezttype, "Value", "Key", "请选择", "载体类型", dicztList);
         }
 
 
@@ -105,19 +111,41 @@ namespace Ebada.Scgl.Gis.Gps
 
         private void btncarrier_id_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (string.IsNullOrEmpty(ztType))
+            {
+                MsgBox.ShowWarningMessageBox("请选择载体类型!");
+                return;
+            }
+            
             frm_carrierselect frm = new frm_carrierselect();
+            frm.ZtType = ztType;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                this.btncarrier_id.EditValue = frm.CarrierID;
-                rowData.carrier_id = frm.CarrierID;
+                this.btncarrier_id.EditValue = frm.Plate;
+                rowData.c1 = frm.Plate;
+                if (string.IsNullOrEmpty(rowData.c1))
+                {
+                    rowData.carrier_id = string.Empty;
+                }
+                else
+                {
+                    rowData.carrier_id = frm.CarrierID;
+                }
+                
             }
+            
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(rowData.c1))
+            {
+                rowData.carrier_id = string.Empty;
+            }
+            rowData.c2 = lkuezttype.EditValue.ToString();
             if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString())||string.IsNullOrEmpty(txtphone_number.EditValue.ToString()))
             {
-                rowData.c1 = "查看车辆信息";
+                
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -130,6 +158,15 @@ namespace Ebada.Scgl.Gis.Gps
         private void frm_deviceEdit_Load(object sender, EventArgs e)
         {
             InitComboBoxData();
+        }
+
+        private void lkuezttype_EditValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(lkuezttype.EditValue as string))
+            {
+                ztType = string.Empty;
+            }
+            ztType = lkuezttype.EditValue.ToString();
         }
 
         
