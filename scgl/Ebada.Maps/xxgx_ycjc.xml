@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="xxgx_ycjc" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="xxgx_ycjc"  type="Ebada.Scgl.Model.xxgx_ycjc,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="xxgx_ycjc_AllColumns" class="xxgx_ycjc">
+        <result property="id" column="id" />
+        <result property="sj" column="sj" />
+        <result property="xlmc" column="xlmc" />
+        <result property="jldmc" column="jldmc" />
+        <result property="bh" column="bh" />
+        <result property="zxygzdn" column="zxygzdn" />
+        <result property="fl1zxygdn" column="fl1zxygdn" />
+        <result property="fl2zxygdn" column="fl2zxygdn" />
+        <result property="fl3zxygdn" column="fl3zxygdn" />
+        <result property="fl4zxygdn" column="fl4zxygdn" />
+        <result property="fxygzdn" column="fxygzdn" />
+        <result property="fl1fxygdn" column="fl1fxygdn" />
+        <result property="fl2fxygdn" column="fl2fxygdn" />
+        <result property="fl3fxygdn" column="fl3fxygdn" />
+        <result property="fl4fxygdn" column="fl4fxygdn" />
+        <result property="zxwgzdn" column="zxwgzdn" />
+        <result property="fl1zxwgdn" column="fl1zxwgdn" />
+        <result property="fl2zxwgdn" column="fl2zxwgdn" />
+        <result property="fl3zxwgdn" column="fl3zxwgdn" />
+        <result property="fl4zxwgdn" column="fl4zxwgdn" />
+        <result property="fxwgzdn" column="fxwgzdn" />
+        <result property="fl1fxwgdn" column="fl1fxwgdn" />
+        <result property="fl2fxwgdn" column="fl2fxwgdn" />
+        <result property="fl3fxwgdn" column="fl3fxwgdn" />
+        <result property="fl4fxwgdn" column="fl4fxwgdn" />
+        <result property="wgdn" column="wgdn" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectxxgx_ycjcList" resultMap="xxgx_ycjc_AllColumns" parameterClass="string">
+        SELECT 
+         [id],
+         [sj],
+         [xlmc],
+         [jldmc],
+         [bh],
+         [zxygzdn],
+         [fl1zxygdn],
+         [fl2zxygdn],
+         [fl3zxygdn],
+         [fl4zxygdn],
+         [fxygzdn],
+         [fl1fxygdn],
+         [fl2fxygdn],
+         [fl3fxygdn],
+         [fl4fxygdn],
+         [zxwgzdn],
+         [fl1zxwgdn],
+         [fl2zxwgdn],
+         [fl3zxwgdn],
+         [fl4zxwgdn],
+         [fxwgzdn],
+         [fl1fxwgdn],
+         [fl2fxwgdn],
+         [fl3fxwgdn],
+         [fl4fxwgdn],
+         [wgdn],
+         [c1],
+         [c2],
+         [c3]
+          FROM xxgx_ycjc
+          $value$
+   </select>
+   
+   <select id="Selectxxgx_ycjcByHash" parameterClass="Hashtable">
+         SELECT 
+         [id],
+         [sj],
+         [xlmc],
+         [jldmc],
+         [bh],
+         [zxygzdn],
+         [fl1zxygdn],
+         [fl2zxygdn],
+         [fl3zxygdn],
+         [fl4zxygdn],
+         [fxygzdn],
+         [fl1fxygdn],
+         [fl2fxygdn],
+         [fl3fxygdn],
+         [fl4fxygdn],
+         [zxwgzdn],
+         [fl1zxwgdn],
+         [fl2zxwgdn],
+         [fl3zxwgdn],
+         [fl4zxwgdn],
+         [fxwgzdn],
+         [fl1fxwgdn],
+         [fl2fxwgdn],
+         [fl3fxwgdn],
+         [fl4fxwgdn],
+         [wgdn],
+         [c1],
+         [c2],
+         [c3]
+          FROM xxgx_ycjc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="xlmc">[xlmc]='$xlmc$'</isNotNull>
+       <isNotNull prepend="AND" property="jldmc">[jldmc]='$jldmc$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zxygzdn">[zxygzdn]='$zxygzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1zxygdn">[fl1zxygdn]='$fl1zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2zxygdn">[fl2zxygdn]='$fl2zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3zxygdn">[fl3zxygdn]='$fl3zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4zxygdn">[fl4zxygdn]='$fl4zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fxygzdn">[fxygzdn]='$fxygzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1fxygdn">[fl1fxygdn]='$fl1fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2fxygdn">[fl2fxygdn]='$fl2fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3fxygdn">[fl3fxygdn]='$fl3fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4fxygdn">[fl4fxygdn]='$fl4fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="zxwgzdn">[zxwgzdn]='$zxwgzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1zxwgdn">[fl1zxwgdn]='$fl1zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2zxwgdn">[fl2zxwgdn]='$fl2zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3zxwgdn">[fl3zxwgdn]='$fl3zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4zxwgdn">[fl4zxwgdn]='$fl4zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwgzdn">[fxwgzdn]='$fxwgzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1fxwgdn">[fl1fxwgdn]='$fl1fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2fxwgdn">[fl2fxwgdn]='$fl2fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3fxwgdn">[fl3fxwgdn]='$fl3fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4fxwgdn">[fl4fxwgdn]='$fl4fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="wgdn">[wgdn]='$wgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectxxgx_ycjcByKey" resultMap="xxgx_ycjc_AllColumns" parameterClass="xxgx_ycjc">
+         SELECT 
+         [id],
+         [sj],
+         [xlmc],
+         [jldmc],
+         [bh],
+         [zxygzdn],
+         [fl1zxygdn],
+         [fl2zxygdn],
+         [fl3zxygdn],
+         [fl4zxygdn],
+         [fxygzdn],
+         [fl1fxygdn],
+         [fl2fxygdn],
+         [fl3fxygdn],
+         [fl4fxygdn],
+         [zxwgzdn],
+         [fl1zxwgdn],
+         [fl2zxwgdn],
+         [fl3zxwgdn],
+         [fl4zxwgdn],
+         [fxwgzdn],
+         [fl1fxwgdn],
+         [fl2fxwgdn],
+         [fl3fxwgdn],
+         [fl4fxwgdn],
+         [wgdn],
+         [c1],
+         [c2],
+         [c3]
+         FROM xxgx_ycjc
+         WHERE 
+           id = #id#
+
+   </select>
+ 
+   <delete id="Deletexxgx_ycjc" parameterClass="xxgx_ycjc">
+        DELETE FROM 
+         xxgx_ycjc
+           WHERE
+         id = #id#
+
+   </delete>
+   
+   <delete id="Deletexxgx_ycjcByWhere" parameterClass="string">
+     delete from xxgx_ycjc $value$
+   </delete>
+   
+   <delete id="Deletexxgx_ycjcByKey" parameterClass="string">
+        DELETE FROM 
+         xxgx_ycjc
+           WHERE
+         id = #id#
+    
+   </delete>
+   
+   <update id="Updatexxgx_ycjc" parameterClass="xxgx_ycjc" resultClass="int">
+          UPDATE xxgx_ycjc
+           SET
+             [sj]=#sj#,
+             [xlmc]=#xlmc#,
+             [jldmc]=#jldmc#,
+             [bh]=#bh#,
+             [zxygzdn]=#zxygzdn#,
+             [fl1zxygdn]=#fl1zxygdn#,
+             [fl2zxygdn]=#fl2zxygdn#,
+             [fl3zxygdn]=#fl3zxygdn#,
+             [fl4zxygdn]=#fl4zxygdn#,
+             [fxygzdn]=#fxygzdn#,
+             [fl1fxygdn]=#fl1fxygdn#,
+             [fl2fxygdn]=#fl2fxygdn#,
+             [fl3fxygdn]=#fl3fxygdn#,
+             [fl4fxygdn]=#fl4fxygdn#,
+             [zxwgzdn]=#zxwgzdn#,
+             [fl1zxwgdn]=#fl1zxwgdn#,
+             [fl2zxwgdn]=#fl2zxwgdn#,
+             [fl3zxwgdn]=#fl3zxwgdn#,
+             [fl4zxwgdn]=#fl4zxwgdn#,
+             [fxwgzdn]=#fxwgzdn#,
+             [fl1fxwgdn]=#fl1fxwgdn#,
+             [fl2fxwgdn]=#fl2fxwgdn#,
+             [fl3fxwgdn]=#fl3fxwgdn#,
+             [fl4fxwgdn]=#fl4fxwgdn#,
+             [wgdn]=#wgdn#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#
+            WHERE 
+              id = #id#
+
+   </update>
+  
+   <insert id="Insertxxgx_ycjc" parameterClass="xxgx_ycjc">
+        INSERT INTO xxgx_ycjc
+         (
+         [id],
+         [sj],
+         [xlmc],
+         [jldmc],
+         [bh],
+         [zxygzdn],
+         [fl1zxygdn],
+         [fl2zxygdn],
+         [fl3zxygdn],
+         [fl4zxygdn],
+         [fxygzdn],
+         [fl1fxygdn],
+         [fl2fxygdn],
+         [fl3fxygdn],
+         [fl4fxygdn],
+         [zxwgzdn],
+         [fl1zxwgdn],
+         [fl2zxwgdn],
+         [fl3zxwgdn],
+         [fl4zxwgdn],
+         [fxwgzdn],
+         [fl1fxwgdn],
+         [fl2fxwgdn],
+         [fl3fxwgdn],
+         [fl4fxwgdn],
+         [wgdn],
+         [c1],
+         [c2],
+         [c3]
+         )
+       VALUES
+         (
+         #id#,
+         #sj#,
+         #xlmc#,
+         #jldmc#,
+         #bh#,
+         #zxygzdn#,
+         #fl1zxygdn#,
+         #fl2zxygdn#,
+         #fl3zxygdn#,
+         #fl4zxygdn#,
+         #fxygzdn#,
+         #fl1fxygdn#,
+         #fl2fxygdn#,
+         #fl3fxygdn#,
+         #fl4fxygdn#,
+         #zxwgzdn#,
+         #fl1zxwgdn#,
+         #fl2zxwgdn#,
+         #fl3zxwgdn#,
+         #fl4zxwgdn#,
+         #fxwgzdn#,
+         #fl1fxwgdn#,
+         #fl2fxwgdn#,
+         #fl3fxwgdn#,
+         #fl4fxwgdn#,
+         #wgdn#,
+         #c1#,
+         #c2#,
+         #c3#
+         )
+
+   </insert>
+   
+   <select id="Getxxgx_ycjcRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM xxgx_ycjc
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="id">[id]='$id$'</isNotNull>
+       <isNotNull prepend="AND" property="sj">[sj]='$sj$'</isNotNull>
+       <isNotNull prepend="AND" property="xlmc">[xlmc]='$xlmc$'</isNotNull>
+       <isNotNull prepend="AND" property="jldmc">[jldmc]='$jldmc$'</isNotNull>
+       <isNotNull prepend="AND" property="bh">[bh]='$bh$'</isNotNull>
+       <isNotNull prepend="AND" property="zxygzdn">[zxygzdn]='$zxygzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1zxygdn">[fl1zxygdn]='$fl1zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2zxygdn">[fl2zxygdn]='$fl2zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3zxygdn">[fl3zxygdn]='$fl3zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4zxygdn">[fl4zxygdn]='$fl4zxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fxygzdn">[fxygzdn]='$fxygzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1fxygdn">[fl1fxygdn]='$fl1fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2fxygdn">[fl2fxygdn]='$fl2fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3fxygdn">[fl3fxygdn]='$fl3fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4fxygdn">[fl4fxygdn]='$fl4fxygdn$'</isNotNull>
+       <isNotNull prepend="AND" property="zxwgzdn">[zxwgzdn]='$zxwgzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1zxwgdn">[fl1zxwgdn]='$fl1zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2zxwgdn">[fl2zxwgdn]='$fl2zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3zxwgdn">[fl3zxwgdn]='$fl3zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4zxwgdn">[fl4zxwgdn]='$fl4zxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fxwgzdn">[fxwgzdn]='$fxwgzdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl1fxwgdn">[fl1fxwgdn]='$fl1fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl2fxwgdn">[fl2fxwgdn]='$fl2fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl3fxwgdn">[fl3fxwgdn]='$fl3fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="fl4fxwgdn">[fl4fxwgdn]='$fl4fxwgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="wgdn">[wgdn]='$wgdn$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getxxgx_ycjcRowCount" parameterClass="string">
+    select count(*) from xxgx_ycjc $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
