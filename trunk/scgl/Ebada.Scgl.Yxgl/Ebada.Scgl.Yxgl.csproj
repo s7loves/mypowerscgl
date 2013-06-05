@@ -1206,6 +1206,18 @@
       <DependentUpon>UCBB_Aqxpj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="报表\设备年报\frmSbnbTemplate.resx">
+      <DependentUpon>frmSbnbTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="报表\设备年报\frmSbnb.resx">
+      <DependentUpon>frmSbnb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="报表\设备年报\UCSbnb.resx">
+      <DependentUpon>UCSbnb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="线损分析\UCmLine.resx">
       <DependentUpon>UCmLine.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1669,6 +1681,24 @@
     </Compile>
     <Compile Include="报表\安全性评价\UCBB_Aqxpj.Designer.cs">
       <DependentUpon>UCBB_Aqxpj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\设备年报\frmSbnbTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="报表\设备年报\frmSbnbTemplate.Designer.cs">
+      <DependentUpon>frmSbnbTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\设备年报\frmSbnb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="报表\设备年报\frmSbnb.Designer.cs">
+      <DependentUpon>frmSbnb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\设备年报\UCSbnb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="报表\设备年报\UCSbnb.Designer.cs">
+      <DependentUpon>UCSbnb.cs</DependentUpon>
     </Compile>
     <Compile Include="线损分析\UCmLine.cs">
       <SubType>UserControl</SubType>

@@ -124,7 +124,7 @@ namespace Ebada.Scgl.Yxgl
 
             DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             dEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            dEdit.Mask.EditMask = "yyyy-MM-dd";
+            dEdit.Mask.EditMask = "yyyy-MM-dd HH:mm";
             dEdit.Mask.UseMaskAsDisplayFormat = true;
             //hideColumn("sbID");
             hideColumn("OrgCode");
