@@ -52,6 +52,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btInPort11 = new DevExpress.XtraBars.BarButtonItem();
+            this.btInport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -87,8 +88,9 @@
             this.barStaticItem1,
             this.barStaticItem2,
             this.barEndTime,
-            this.btInPort11});
-            this.barManager1.MaxItemId = 24;
+            this.btInPort11,
+            this.btInport});
+            this.barManager1.MaxItemId = 25;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -115,7 +117,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btInport)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -334,6 +337,12 @@
             this.btInPort11.Id = 23;
             this.btInPort11.Name = "btInPort11";
             // 
+            // btInport
+            // 
+            this.btInport.Caption = "导入";
+            this.btInport.Id = 24;
+            this.btInport.Name = "btInport";
+            // 
             // UCYcjcb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -388,5 +397,6 @@
         private DevExpress.XtraBars.BarEditItem barEndTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraBars.BarButtonItem btInPort11;
+        private DevExpress.XtraBars.BarButtonItem btInport;
     }
 }
