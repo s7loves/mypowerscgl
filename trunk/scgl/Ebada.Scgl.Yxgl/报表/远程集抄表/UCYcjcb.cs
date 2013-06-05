@@ -55,7 +55,7 @@ namespace Ebada.Scgl.Yxgl
        
         private void hideColumn(string colname)
         {
-            gridView1.Columns[colname].Visible = false;
+            //gridView1.Columns[colname].Visible = false;
         }
         /// <summary>
         /// 初始化数据
@@ -77,13 +77,15 @@ namespace Ebada.Scgl.Yxgl
             DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             dEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             dEdit.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            
+
             dEdit.Mask.UseMaskAsDisplayFormat = true;
             //hideColumn("sbID");
-            hideColumn("OrgCode");
-            //hideColumn("gzrjID");
-            hideColumn("c1");
-            hideColumn("c2");
-            hideColumn("c3");
+            //hideColumn("OrgCode");
+            ////hideColumn("gzrjID");
+            //hideColumn("c1");
+            //hideColumn("c2");
+            //hideColumn("c3");
         }
       
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
