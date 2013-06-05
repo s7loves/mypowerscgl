@@ -69,7 +69,6 @@ namespace Ebada.Scgl.Yxgl
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
                 btGdsList.Edit.ReadOnly = true;
             }
-
             RepositoryItem reItem;
             IList<DicType> dictypeList = new List<DicType>();
             int year = DateTime.Now.Year;
@@ -79,8 +78,6 @@ namespace Ebada.Scgl.Yxgl
             }
             reItem = new LookUpDicType(dictypeList);
             barsj.Edit = reItem;
-            
-
         }
 
         void btGdsList_EditValueChanged(object sender, EventArgs e)
@@ -132,14 +129,7 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         public void InitColumns()
         {
-
-            //需要隐藏列时在这写代码
-
-            //DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            //dEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            //dEdit.Mask.EditMask = "yyyy-MM-dd";
-            //dEdit.Mask.UseMaskAsDisplayFormat = true;
-            //hideColumn("sbID");
+            //需要隐藏列时在这写代码          
             gridView1.Columns["orgcode"].ColumnEdit = DicTypeHelper.OrgDic;
             gridView1.Columns["orgcode"].Caption = "单位";
             gridView1.Columns["year"].Caption = "时间";
@@ -147,9 +137,6 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
-           
-            
-            
         }
         /// <summary>
         /// 刷新数据
