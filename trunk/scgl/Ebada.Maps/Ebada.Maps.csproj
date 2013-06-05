@@ -508,6 +508,11 @@
     <EmbeddedResource Include="v_position_now.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="xxgx_aqxpj.xml" />
+    <EmbeddedResource Include="xxgx_sbnb.xml" />
+    <EmbeddedResource Include="xxgx_ycjc.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
