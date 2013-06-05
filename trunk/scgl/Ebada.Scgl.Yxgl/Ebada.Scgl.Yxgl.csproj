@@ -1218,6 +1218,10 @@
       <DependentUpon>UCSbnb.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="报表\远程集抄表\UCYcjcb.resx">
+      <DependentUpon>UCYcjcb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="线损分析\UCmLine.resx">
       <DependentUpon>UCmLine.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1699,6 +1703,12 @@
     </Compile>
     <Compile Include="报表\设备年报\UCSbnb.Designer.cs">
       <DependentUpon>UCSbnb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\远程集抄表\UCYcjcb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="报表\远程集抄表\UCYcjcb.Designer.cs">
+      <DependentUpon>UCYcjcb.cs</DependentUpon>
     </Compile>
     <Compile Include="线损分析\UCmLine.cs">
       <SubType>UserControl</SubType>
