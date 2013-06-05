@@ -1194,6 +1194,18 @@
       <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="报表\安全性评价\frmAqTemplate.resx">
+      <DependentUpon>frmAqTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="报表\安全性评价\frmAqxpj.resx">
+      <DependentUpon>frmAqxpj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="报表\安全性评价\UCBB_Aqxpj.resx">
+      <DependentUpon>UCBB_Aqxpj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="线损分析\UCmLine.resx">
       <DependentUpon>UCmLine.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1639,6 +1651,24 @@
     </Compile>
     <Compile Include="09培训记录\UCPJ_09pxjl.Designer.cs">
       <DependentUpon>UCPJ_09pxjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\安全性评价\frmAqTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="报表\安全性评价\frmAqTemplate.Designer.cs">
+      <DependentUpon>frmAqTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\安全性评价\frmAqxpj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="报表\安全性评价\frmAqxpj.Designer.cs">
+      <DependentUpon>frmAqxpj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="报表\安全性评价\UCBB_Aqxpj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="报表\安全性评价\UCBB_Aqxpj.Designer.cs">
+      <DependentUpon>UCBB_Aqxpj.cs</DependentUpon>
     </Compile>
     <Compile Include="线损分析\UCmLine.cs">
       <SubType>UserControl</SubType>
