@@ -314,6 +314,9 @@
     <Compile Include="PJ_gdscrk.cs" />
     <Compile Include="sd_sbcs.cs" />
     <Compile Include="bd_sbcs.cs" />
+    <Compile Include="xxgx_aqxpj.cs" />
+    <Compile Include="xxgx_sbnb.cs" />
+    <Compile Include="xxgx_ycjc.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
