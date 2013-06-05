@@ -17,10 +17,10 @@ using DevExpress.XtraEditors.Repository;
 using System.IO;
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frmAqxpj : FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<xxgx_aqxpj> m_CityDic = new SortableSearchableBindingList<xxgx_aqxpj>();
+    public partial class frmSbnb : FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<xxgx_sbnb> m_CityDic = new SortableSearchableBindingList<xxgx_sbnb>();
 
-        public frmAqxpj()
+        public frmSbnb()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace Ebada.Scgl.Yxgl
             btnSelectFile.DataBindings.Add("EditValue", rowData, "filename");
         }
         #region IPopupFormEdit Members
-        private xxgx_aqxpj rowData = null;
+        private xxgx_sbnb rowData = null;
 
         public object RowData {
             get {
@@ -41,11 +41,11 @@ namespace Ebada.Scgl.Yxgl
             set {
                 if (value == null) return;
                 if (rowData == null) {
-                    this.rowData = value as xxgx_aqxpj;
+                    this.rowData = value as xxgx_sbnb;
                     this.InitComboBoxData();
                     dataBind();
                 } else {
-                    ConvertHelper.CopyTo<xxgx_aqxpj>(value as xxgx_aqxpj, rowData);
+                    ConvertHelper.CopyTo<xxgx_sbnb>(value as xxgx_sbnb, rowData);
                 }
                 
             }
@@ -162,7 +162,7 @@ namespace Ebada.Scgl.Yxgl
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 btnSelectFile.EditValue = Path.GetFileName(openFileDialog1.FileName);
-                
+
             }
         }
 

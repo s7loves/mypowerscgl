@@ -29,31 +29,21 @@ namespace Ebada.Scgl.Yxgl
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCBB_Aqxpj : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCSbnb : DevExpress.XtraEditors.XtraUserControl
     {
-        private GridViewOperation<xxgx_aqxpj> gridViewOperation;
+        private GridViewOperation<xxgx_sbnb> gridViewOperation;
         private string basesql = "where 1>0 ";
-        public event SendDataEventHandler<xxgx_aqxpj> FocusedRowChanged;
-        public event SendDataEventHandler<mOrg> SelectGdsChanged;
-        private string parentID = null;
-        private mOrg parentObj;
-        public UCBB_Aqxpj()
+        public event SendDataEventHandler<xxgx_sbnb> FocusedRowChanged;
+        
+        public UCSbnb()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<xxgx_aqxpj>(gridControl1, gridView1, barManager1, new frmAqxpj());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<xxgx_aqxpj>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<xxgx_sbnb>(gridControl1, gridView1, barManager1, new frmSbnb());
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
-
-
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<xxgx_aqxpj> e)
-        {
-            if (parentID == null)
-                e.Cancel = true;
-        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -105,7 +95,7 @@ namespace Ebada.Scgl.Yxgl
         void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as xxgx_aqxpj);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as xxgx_sbnb);
         }
         private void hideColumn(string colname)
         {
@@ -131,14 +121,14 @@ namespace Ebada.Scgl.Yxgl
         {
             RepositoryItemDateEdit dEdit = new RepositoryItemDateEdit();
             dEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            dEdit.Mask.EditMask = "yyyy-MM-dd HH:mm";
+            dEdit.Mask.EditMask = "yyyy-MM-dd";
             dEdit.Mask.UseMaskAsDisplayFormat = true;
             //需要隐藏列时在这写代码          
             gridView1.Columns["orgcode"].ColumnEdit = DicTypeHelper.OrgDic;
             gridView1.Columns["orgcode"].Caption = "单位";
             gridView1.Columns["year"].Caption = "时间";
             gridView1.Columns["scsj"].ColumnEdit = dEdit;
-            hideColumn("filedata");
+            gridView1.Columns["filedata"].Caption = "文件数据";
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
@@ -156,7 +146,7 @@ namespace Ebada.Scgl.Yxgl
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<xxgx_aqxpj> GridViewOperation
+        public GridViewOperation<xxgx_sbnb> GridViewOperation
         {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
@@ -165,7 +155,7 @@ namespace Ebada.Scgl.Yxgl
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(xxgx_aqxpj newobj)
+        void gridViewOperation_CreatingObjectEvent(xxgx_sbnb newobj)
         {
            
             if (!string.IsNullOrEmpty(btGdsList.EditValue as string))
@@ -187,15 +177,12 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.RowCount > 0)
             {
-                IList<xxgx_aqxpj> pjlist = new List<xxgx_aqxpj>();
+                IList<xxgx_sbnb> pjlist = new List<xxgx_sbnb>();
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
-                    xxgx_aqxpj _pj = gridView1.GetRow(i) as xxgx_aqxpj;
+                    xxgx_sbnb _pj = gridView1.GetRow(i) as xxgx_sbnb;
                     pjlist.Add(_pj);
-
-
                 }
-                
             }
             else
             {
@@ -227,19 +214,19 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.GetFocusedRow() == null)
                 return;
-            xxgx_aqxpj aqxpj = gridView1.GetFocusedRow() as xxgx_aqxpj;
-            frmAqTemplate frm = new frmAqTemplate();
+            xxgx_sbnb aqxpj = gridView1.GetFocusedRow() as xxgx_sbnb;
+            frmSbnbTemplate frm = new frmSbnbTemplate();
             frm.pjobject = aqxpj;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Client.ClientHelper.PlatformSqlMap.Update<xxgx_aqxpj>(frm.pjobject);
+                Client.ClientHelper.PlatformSqlMap.Update<xxgx_sbnb>(frm.pjobject);
                 //MessageBox.Show("保存成功");
             }
         }
 
         private void btReAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            xxgx_aqxpj aqxpj = new xxgx_aqxpj();
+            xxgx_sbnb aqxpj = new xxgx_sbnb();
             if (!string.IsNullOrEmpty(btGdsList.EditValue as string))
                 aqxpj.orgcode = btGdsList.EditValue.ToString();
             if (!string.IsNullOrEmpty(barsj.EditValue as string))
@@ -252,11 +239,11 @@ namespace Ebada.Scgl.Yxgl
             }
             aqxpj.scsj = DateTime.Now.ToString();
             aqxpj.scry = MainHelper.User.UserName;
-            frmAqxpj frm = new frmAqxpj();
+            frmSbnb frm = new frmSbnb();
             frm.RowData = aqxpj;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Client.ClientHelper.PlatformSqlMap.Create<xxgx_aqxpj>(frm.RowData as xxgx_aqxpj);
+                Client.ClientHelper.PlatformSqlMap.Create<xxgx_sbnb>(frm.RowData as xxgx_sbnb);
                 RefreshData(basesql);
             }
         }
@@ -265,7 +252,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (gridView1.GetFocusedRow() == null)
                 return;
-            xxgx_aqxpj obj = gridView1.GetFocusedRow() as xxgx_aqxpj;
+            xxgx_sbnb obj = gridView1.GetFocusedRow() as xxgx_sbnb;
             string fname = "";
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
