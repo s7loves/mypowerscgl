@@ -59,6 +59,11 @@ namespace Ebada.Scgl.Gis.Gps
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtplate.EditValue as string))
+            {
+                MsgBox.ShowWarningMessageBox("请填写人员姓名!");
+                return;
+            }
             if (IsTelephone(txtphone.EditValue.ToString()) || IsHandset(txtphone.EditValue.ToString())||string.IsNullOrEmpty(txtphone.EditValue.ToString()))
             {
                 this.DialogResult = DialogResult.OK;
