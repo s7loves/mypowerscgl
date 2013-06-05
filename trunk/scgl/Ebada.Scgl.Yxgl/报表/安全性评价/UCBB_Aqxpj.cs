@@ -239,11 +239,11 @@ namespace Ebada.Scgl.Yxgl
                 aqxpj.orgcode = btGdsList.EditValue.ToString();
             if (!string.IsNullOrEmpty(barsj.EditValue as string))
             {
-                aqxpj.scsj = barsj.EditValue.ToString();
+                aqxpj.year = barsj.EditValue.ToString();
             }
             else
             {
-                aqxpj.scsj = DateTime.Now.Year.ToString();
+                aqxpj.year = DateTime.Now.Year.ToString();
             }
             aqxpj.scsj = DateTime.Now.ToString();
             aqxpj.scry = MainHelper.User.UserName;
