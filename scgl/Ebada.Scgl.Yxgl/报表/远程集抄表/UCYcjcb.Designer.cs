@@ -35,24 +35,24 @@
             this.barStartTime = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
-            this.btDelete = new DevExpress.XtraBars.BarButtonItem();
-            this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
-            this.btFind = new DevExpress.XtraBars.BarButtonItem();
-            this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barEndTime = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
+            this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
+            this.btInport = new DevExpress.XtraBars.BarButtonItem();
+            this.btView = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btInPort11 = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btInPort11 = new DevExpress.XtraBars.BarButtonItem();
-            this.btInport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -76,7 +76,7 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btDelete,
+            this.btDeletes,
             this.btFind,
             this.btRefresh,
             this.btClose,
@@ -113,7 +113,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barStartTime, "", false, true, true, 162),
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem2),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 153),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btInport, true),
@@ -131,6 +131,7 @@
             this.barxl.Edit = this.repositoryItemLookUpEdit2;
             this.barxl.Id = 16;
             this.barxl.Name = "barxl";
+            this.barxl.EditValueChanged += new System.EventHandler(this.barxl_EditValueChanged);
             // 
             // repositoryItemLookUpEdit2
             // 
@@ -146,6 +147,7 @@
             this.barjldmc.Edit = this.repositoryItemLookUpEdit3;
             this.barjldmc.Id = 17;
             this.barjldmc.Name = "barjldmc";
+            this.barjldmc.EditValueChanged += new System.EventHandler(this.barjldmc_EditValueChanged);
             // 
             // repositoryItemLookUpEdit3
             // 
@@ -168,6 +170,7 @@
             this.barStartTime.Edit = this.repositoryItemDateEdit1;
             this.barStartTime.Id = 18;
             this.barStartTime.Name = "barStartTime";
+            this.barStartTime.EditValueChanged += new System.EventHandler(this.barStartTime_EditValueChanged);
             // 
             // repositoryItemDateEdit1
             // 
@@ -191,13 +194,37 @@
             this.barStaticItem2.Name = "barStaticItem2";
             this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
-            // btDelete
+            // barEndTime
             // 
-            this.btDelete.Caption = "删除";
-            this.btDelete.Id = 2;
-            this.btDelete.ImageIndex = 12;
-            this.btDelete.Name = "btDelete";
-            this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barEndTime.Caption = "结束时间";
+            this.barEndTime.Edit = this.repositoryItemDateEdit2;
+            this.barEndTime.Id = 21;
+            this.barEndTime.Name = "barEndTime";
+            this.barEndTime.EditValueChanged += new System.EventHandler(this.barEndTime_EditValueChanged);
+            // 
+            // repositoryItemDateEdit2
+            // 
+            this.repositoryItemDateEdit2.AutoHeight = false;
+            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.DisplayFormat.FormatString = "G";
+            this.repositoryItemDateEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit2.EditFormat.FormatString = "G";
+            this.repositoryItemDateEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
+            this.repositoryItemDateEdit2.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemDateEdit2.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemDateEdit2.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            // 
+            // btDeletes
+            // 
+            this.btDeletes.Caption = "删除";
+            this.btDeletes.Id = 2;
+            this.btDeletes.ImageIndex = 12;
+            this.btDeletes.Name = "btDeletes";
+            this.btDeletes.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDeletes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDeletes_ItemClick);
             // 
             // btRefresh
             // 
@@ -215,6 +242,13 @@
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // btInport
+            // 
+            this.btInport.Caption = "导入";
+            this.btInport.Id = 24;
+            this.btInport.Name = "btInport";
+            this.btInport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btInport_ItemClick);
+            // 
             // btView
             // 
             this.btView.Caption = "导出";
@@ -231,28 +265,6 @@
             this.btClose.ImageIndex = 13;
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // barEndTime
-            // 
-            this.barEndTime.Caption = "结束时间";
-            this.barEndTime.Edit = this.repositoryItemDateEdit2;
-            this.barEndTime.Id = 21;
-            this.barEndTime.Name = "barEndTime";
-            // 
-            // repositoryItemDateEdit2
-            // 
-            this.repositoryItemDateEdit2.AutoHeight = false;
-            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.DisplayFormat.FormatString = "G";
-            this.repositoryItemDateEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemDateEdit2.EditFormat.FormatString = "G";
-            this.repositoryItemDateEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
-            this.repositoryItemDateEdit2.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.repositoryItemDateEdit2.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
-            this.repositoryItemDateEdit2.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
             // bar3
             // 
@@ -298,6 +310,12 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1077, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 346);
             // 
+            // btInPort11
+            // 
+            this.btInPort11.Caption = "导入";
+            this.btInPort11.Id = 23;
+            this.btInPort11.Name = "btInPort11";
+            // 
             // repositoryItemLookUpEdit1
             // 
             this.repositoryItemLookUpEdit1.AutoHeight = false;
@@ -330,18 +348,6 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btInPort11
-            // 
-            this.btInPort11.Caption = "导入";
-            this.btInPort11.Id = 23;
-            this.btInPort11.Name = "btInPort11";
-            // 
-            // btInport
-            // 
-            this.btInport.Caption = "导入";
-            this.btInport.Id = 24;
-            this.btInport.Name = "btInport";
             // 
             // UCYcjcb
             // 
@@ -377,7 +383,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem btDelete;
+        private DevExpress.XtraBars.BarButtonItem btDeletes;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
         private DevExpress.XtraBars.BarButtonItem btClose;

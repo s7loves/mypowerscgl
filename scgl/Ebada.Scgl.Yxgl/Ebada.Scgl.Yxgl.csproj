@@ -1704,6 +1704,7 @@
     <Compile Include="报表\设备年报\UCSbnb.Designer.cs">
       <DependentUpon>UCSbnb.cs</DependentUpon>
     </Compile>
+    <Compile Include="报表\远程集抄表\ExportYcjcb.cs" />
     <Compile Include="报表\远程集抄表\UCYcjcb.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2774,6 +2775,9 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\远程集抄表.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\送电10绝缘子测试记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
