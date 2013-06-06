@@ -284,14 +284,17 @@ namespace Ebada.Scgl.Yxgl
         }
         private double? getDouble(string str)
         {
-            double? n;
+            double? n=null;
             if (string.IsNullOrEmpty(str))
             {
-                n = null;
+                
                 return n;
             }
             double retdouble = 0;
-            double.TryParse(str, out retdouble);
+            if (!double.TryParse(str, out retdouble))
+            {
+                return n;
+            }
             return retdouble;
         }
 
@@ -314,6 +317,11 @@ namespace Ebada.Scgl.Yxgl
             this.barjldmc.EditValue = null;
             this.barStartTime.EditValue = null;
             this.barEndTime.EditValue = null;
+            InitData(string.Empty);
+        }
+
+        private void btRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             InitData(string.Empty);
         }
     
