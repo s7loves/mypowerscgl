@@ -227,6 +227,16 @@ namespace Ebada.Android.Service {
             Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition/"+pos.toString());
             return "ok";
         }
+        public g_position_now GetPosition(int id) {
+            g_position_now gp = null;
+            gps_position_now gps_now = Client.ClientHelper.PlatformSqlMap.GetOne<gps_position_now>("where device_id=" + id);
+            if (gps_now != null) {
+                gp = new g_position_now() {
+                     addr=gps_now.c1,  dt=gps_now.date.ToString("yyyy-HH-dd HH:mm:ss"), lat=gps_now.lat,lng=gps_now.lng, s=gps_now.speed
+                };
+            }
+            return gp;
+        }
         public g_device GetDevice(g_device dev) {
             g_device device = null;
             string IMEI = dev.IMEI;
