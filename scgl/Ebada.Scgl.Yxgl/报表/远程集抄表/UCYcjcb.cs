@@ -52,8 +52,8 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitCombox()
         {
-            string sqlxl = "select distinct xlmc from xxgx_ycjc where rtrim(ltrim(xlmc))<>''";
-            string sqljhdmc = "select distinct jldmc from xxgx_ycjc where rtrim(ltrim(jldmc))<>''";
+            string sqlxl = "select distinct xlmc from xxgx_ycjc  where rtrim(ltrim(xlmc))<>'' order by xlmc";
+            string sqljhdmc = "select distinct jldmc from xxgx_ycjc  where rtrim(ltrim(jldmc))<>'' order by jldmc";
             IList<string> xlList= Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlxl);
             IList<string> jhdmcList = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqljhdmc);
 
@@ -116,6 +116,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
+            hideColumn("wgdn");
         }
       
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
