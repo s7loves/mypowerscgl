@@ -37,6 +37,7 @@
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.barEndTime = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.btnReset = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -53,7 +54,6 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnReset = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -220,6 +220,13 @@
             this.repositoryItemDateEdit2.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
+            // btnReset
+            // 
+            this.btnReset.Caption = "重置";
+            this.btnReset.Id = 25;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReset_ItemClick);
+            // 
             // btDeletes
             // 
             this.btDeletes.Caption = "删除";
@@ -236,6 +243,7 @@
             this.btRefresh.ImageIndex = 9;
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btRefresh_ItemClick);
             // 
             // btFind
             // 
@@ -351,13 +359,6 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Caption = "重置";
-            this.btnReset.Id = 25;
-            this.btnReset.Name = "btnReset";
-            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReset_ItemClick);
             // 
             // UCYcjcb
             // 
