@@ -403,6 +403,19 @@
     <Compile Include="UCLayerCar.Designer.cs">
       <DependentUpon>UCLayerCar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMapSbxj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMapSbxj.Designer.cs">
+      <DependentUpon>frmMapSbxj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCLayerSbxj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCLayerSbxj.Designer.cs">
+      <DependentUpon>UCLayerSbxj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaybackSbxjHelper.cs" />
     <Compile Include="变电站接线图\Desiger\BaseEditor.cs" />
     <Compile Include="变电站接线图\Desiger\FilenameUIEditor.cs" />
     <Compile Include="变电站接线图\Desiger\InputDialog.cs">
@@ -565,6 +578,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCLayerCar.resx">
       <DependentUpon>UCLayerCar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMapSbxj.resx">
+      <DependentUpon>frmMapSbxj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCLayerSbxj.resx">
+      <DependentUpon>UCLayerSbxj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
