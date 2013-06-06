@@ -33,6 +33,11 @@ namespace Ebada.Scgl.Gis {
             dlg.ShowDyt(tqCode);
 
         }
+        public void PlaybackXsgj(sd_xsjh jh) {
+            frmMapSbxj frm = new frmMapSbxj();
+            frm.xsjh = jh;
+            frm.ShowDialog();
+        }
         public static Bitmap GetDytqMap(string tqcode) {
             return GetDytqMap(tqcode, 800, 600);
         }
