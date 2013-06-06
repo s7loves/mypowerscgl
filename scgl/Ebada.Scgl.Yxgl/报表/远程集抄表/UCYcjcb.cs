@@ -280,8 +280,14 @@ namespace Ebada.Scgl.Yxgl
             return ycjcList;
             
         }
-        private double getDouble(string str)
+        private double? getDouble(string str)
         {
+            double? n;
+            if (string.IsNullOrEmpty(str))
+            {
+                n = null;
+                return n;
+            }
             double retdouble = 0;
             double.TryParse(str, out retdouble);
             return retdouble;
