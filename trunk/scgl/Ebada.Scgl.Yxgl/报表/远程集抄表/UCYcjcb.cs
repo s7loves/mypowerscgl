@@ -99,6 +99,7 @@ namespace Ebada.Scgl.Yxgl
                 sql = basesql;
             IList<xxgx_ycjc> ycjcList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<xxgx_ycjc>(sql);
             gridControl1.DataSource = ycjcList;
+            gridView1.BestFitColumns();
         }
         /// <summary>
         /// 初始化列,
