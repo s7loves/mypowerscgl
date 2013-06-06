@@ -171,25 +171,6 @@ namespace Ebada.Scgl.Yxgl
             newobj.scsj = DateTime.Now.ToString();
             newobj.scry = MainHelper.User.UserName;
         }
-       
-
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.RowCount > 0)
-            {
-                IList<xxgx_sbnb> pjlist = new List<xxgx_sbnb>();
-                for (int i = 0; i < gridView1.RowCount; i++)
-                {
-                    xxgx_sbnb _pj = gridView1.GetRow(i) as xxgx_sbnb;
-                    pjlist.Add(_pj);
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-
         private void barsj_EditValueChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(barsj.EditValue as string))
