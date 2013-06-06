@@ -40,7 +40,6 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<xxgx_sbnb>(gridControl1, gridView1, barManager1, new frmSbnb());
-            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
@@ -151,26 +150,7 @@ namespace Ebada.Scgl.Yxgl
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
-        /// <summary>
-        /// 新建对象设置Key值
-        /// </summary>
-        /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(xxgx_sbnb newobj)
-        {
-           
-            if (!string.IsNullOrEmpty(btGdsList.EditValue as string))
-                newobj.orgcode = btGdsList.EditValue.ToString();
-            if (!string.IsNullOrEmpty(barsj.EditValue as string))
-            {
-                newobj.scsj = barsj.EditValue.ToString();
-            }
-            else
-            {
-                newobj.scsj = DateTime.Now.Year.ToString();
-            }
-            newobj.scsj = DateTime.Now.ToString();
-            newobj.scry = MainHelper.User.UserName;
-        }
+        
         private void barsj_EditValueChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(barsj.EditValue as string))
