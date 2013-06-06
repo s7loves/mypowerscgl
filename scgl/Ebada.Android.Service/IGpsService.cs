@@ -17,12 +17,6 @@ namespace Ebada.Android.Service {
         /// <param name="pwd"></param>
         /// <returns></returns>
         [OperationContract]
-        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetUser/{id}/{pwd}", BodyStyle = WebMessageBodyStyle.Bare)]
-        User GetUserData(string id, string pwd);
-        [OperationContract]
-        [WebInvoke(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "SetUser", Method = "POST")]
-        User SetUserData(User user);
-        [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "GetVer", BodyStyle = WebMessageBodyStyle.Bare)]
         string GetVersion();
         /// <summary>
@@ -37,10 +31,14 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebInvoke(UriTemplate = "UpPosition", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         string UpPosition(g_position pos);
-        
+
         [OperationContract]
-        [WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        string UploadFile(string id,string type, Stream fileContents);
+        [WebInvoke(UriTemplate = "GetPosition", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        g_position_now GetPosition(int id);
+
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        //string UploadFile(string id,string type, Stream fileContents);
 
     }
 
