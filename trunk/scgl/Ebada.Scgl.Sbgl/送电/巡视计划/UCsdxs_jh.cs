@@ -240,6 +240,34 @@ namespace Ebada.Scgl.Sbgl
             
         }
 
-       
+
+
+        internal void Playback() {
+            if (gridView1.GetFocusedRow() == null) {
+                MsgBox.ShowWarningMessageBox("请先选择已完成巡视计划！");
+                return;
+            }
+            sd_xsjh jh = gridView1.GetFocusedRow() as sd_xsjh;
+            if (jh != null) {
+                int ncount = ClientHelper.PlatformSqlMap.GetRowCount<sd_xsgj>("where rwid='" + jh.ID + "'");
+                if (ncount == 0) {
+
+                    MsgBox.ShowTipMessageBox("无巡视轨迹信息，不能回放。");
+                    return;
+                }
+            }
+            GisHelper.Playback(jh);
+        }
+        class GisHelper {
+            const string gislib = "Ebada.Scgl.Gis.dll";
+            const string gisclass = "Ebada.Scgl.Gis.GMapHelper";
+            /// <summary>
+            /// 显示单线图
+            /// </summary>
+            /// <param name="lineCode">线路代码</param>
+            internal static void Playback(sd_xsjh jh) {
+                Ebada.Client.Platform.MainHelper.Execute(gislib, gisclass, "PlaybackXsgj", new object[] { jh });
+            }
+        }
     }
 }

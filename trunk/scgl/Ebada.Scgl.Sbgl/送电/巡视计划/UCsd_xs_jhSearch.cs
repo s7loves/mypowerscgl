@@ -137,5 +137,9 @@ namespace Ebada.Scgl.Sbgl
             uCsdxs_jh1.RefreshData(sql);
         }
 
+        private void btPlayback_Click(object sender, EventArgs e) {
+            uCsdxs_jh1.Playback();
+        }
+
     }
 }

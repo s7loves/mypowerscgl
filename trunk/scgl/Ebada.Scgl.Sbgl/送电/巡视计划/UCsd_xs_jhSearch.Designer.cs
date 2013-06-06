@@ -30,6 +30,7 @@
         {
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lkuewcbj = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.checkcomLine = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -44,11 +45,12 @@
             this.uCsdxs_jhnr1 = new Ebada.Scgl.Sbgl.UCsdxs_jhnr();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.uCsd_xsxm1 = new Ebada.Scgl.Sbgl.UCsd_xsxm();
-            this.lkuewcbj = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.btPlayback = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuewcbj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkcomLine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkcomOrg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -59,7 +61,6 @@
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuewcbj.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -80,6 +81,7 @@
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.lkuewcbj);
+            this.groupControl1.Controls.Add(this.btPlayback);
             this.groupControl1.Controls.Add(this.btnSearch);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.checkcomLine);
@@ -92,6 +94,15 @@
             this.groupControl1.Size = new System.Drawing.Size(779, 60);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "选择查询条件";
+            // 
+            // lkuewcbj
+            // 
+            this.lkuewcbj.Location = new System.Drawing.Point(419, 32);
+            this.lkuewcbj.Name = "lkuewcbj";
+            this.lkuewcbj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkuewcbj.Size = new System.Drawing.Size(100, 21);
+            this.lkuewcbj.TabIndex = 7;
             // 
             // btnSearch
             // 
@@ -225,14 +236,14 @@
             this.uCsd_xsxm1.Size = new System.Drawing.Size(772, 238);
             this.uCsd_xsxm1.TabIndex = 0;
             // 
-            // lkuewcbj
+            // btPlayback
             // 
-            this.lkuewcbj.Location = new System.Drawing.Point(419, 32);
-            this.lkuewcbj.Name = "lkuewcbj";
-            this.lkuewcbj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkuewcbj.Size = new System.Drawing.Size(100, 21);
-            this.lkuewcbj.TabIndex = 7;
+            this.btPlayback.Location = new System.Drawing.Point(646, 30);
+            this.btPlayback.Name = "btPlayback";
+            this.btPlayback.Size = new System.Drawing.Size(98, 23);
+            this.btPlayback.TabIndex = 6;
+            this.btPlayback.Text = "巡视轨迹回放";
+            this.btPlayback.Click += new System.EventHandler(this.btPlayback_Click);
             // 
             // UCsd_xs_jhSearch
             // 
@@ -246,6 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuewcbj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkcomLine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkcomOrg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
@@ -256,7 +268,6 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lkuewcbj.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -280,5 +291,6 @@
         private UCsdxs_jhnr uCsdxs_jhnr1;
         private UCsd_xsxm uCsd_xsxm1;
         private DevExpress.XtraEditors.CheckedComboBoxEdit lkuewcbj;
+        private DevExpress.XtraEditors.SimpleButton btPlayback;
     }
 }
