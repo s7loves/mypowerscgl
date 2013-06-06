@@ -34,26 +34,18 @@ namespace Ebada.Scgl.Yxgl
         private GridViewOperation<xxgx_aqxpj> gridViewOperation;
         private string basesql = "where 1>0 ";
         public event SendDataEventHandler<xxgx_aqxpj> FocusedRowChanged;
-        public event SendDataEventHandler<mOrg> SelectGdsChanged;
-        private string parentID = null;
-        private mOrg parentObj;
+        
         public UCBB_Aqxpj()
         {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<xxgx_aqxpj>(gridControl1, gridView1, barManager1, new frmAqxpj());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<xxgx_aqxpj>(gridViewOperation_BeforeAdd);
-            gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
 
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<xxgx_aqxpj> e)
-        {
-            if (parentID == null)
-                e.Cancel = true;
-        }
+       
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -161,48 +153,6 @@ namespace Ebada.Scgl.Yxgl
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
-        /// <summary>
-        /// 新建对象设置Key值
-        /// </summary>
-        /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(xxgx_aqxpj newobj)
-        {
-           
-            if (!string.IsNullOrEmpty(btGdsList.EditValue as string))
-                newobj.orgcode = btGdsList.EditValue.ToString();
-            if (!string.IsNullOrEmpty(barsj.EditValue as string))
-            {
-                newobj.scsj = barsj.EditValue.ToString();
-            }
-            else
-            {
-                newobj.scsj = DateTime.Now.Year.ToString();
-            }
-            newobj.scsj = DateTime.Now.ToString();
-            newobj.scry = MainHelper.User.UserName;
-        }
-       
-
-        private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.RowCount > 0)
-            {
-                IList<xxgx_aqxpj> pjlist = new List<xxgx_aqxpj>();
-                for (int i = 0; i < gridView1.RowCount; i++)
-                {
-                    xxgx_aqxpj _pj = gridView1.GetRow(i) as xxgx_aqxpj;
-                    pjlist.Add(_pj);
-
-
-                }
-                
-            }
-            else
-            {
-                return;
-            }
-        }
-
         private void barsj_EditValueChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(barsj.EditValue as string))
