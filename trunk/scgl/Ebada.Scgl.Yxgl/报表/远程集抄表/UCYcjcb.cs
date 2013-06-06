@@ -307,6 +307,15 @@ namespace Ebada.Scgl.Yxgl
             }
             
         }
+
+        private void btnReset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.barxl.EditValue = null;
+            this.barjldmc.EditValue = null;
+            this.barStartTime.EditValue = null;
+            this.barEndTime.EditValue = null;
+            InitData(string.Empty);
+        }
     
     }
 }

@@ -53,6 +53,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnReset = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
@@ -89,8 +90,9 @@
             this.barStaticItem2,
             this.barEndTime,
             this.btInPort11,
-            this.btInport});
-            this.barManager1.MaxItemId = 25;
+            this.btInport,
+            this.btnReset});
+            this.barManager1.MaxItemId = 26;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
@@ -113,6 +115,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barStartTime, "", false, true, true, 162),
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem2),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEndTime, "", false, true, true, 153),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnReset),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -349,6 +352,13 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // btnReset
+            // 
+            this.btnReset.Caption = "重置";
+            this.btnReset.Id = 25;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReset_ItemClick);
+            // 
             // UCYcjcb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -404,5 +414,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraBars.BarButtonItem btInPort11;
         private DevExpress.XtraBars.BarButtonItem btInport;
+        private DevExpress.XtraBars.BarButtonItem btnReset;
     }
 }
