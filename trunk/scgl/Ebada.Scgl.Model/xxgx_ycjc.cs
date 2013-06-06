@@ -26,27 +26,27 @@ namespace Ebada.Scgl.Model
         private string _xlmc=String.Empty; 
         private string _jldmc=String.Empty; 
         private string _bh=String.Empty; 
-        private double _zxygzdn=0; 
-        private double _fl1zxygdn=0; 
-        private double _fl2zxygdn=0; 
-        private double _fl3zxygdn=0; 
-        private double _fl4zxygdn=0; 
-        private double _fxygzdn=0; 
-        private double _fl1fxygdn=0; 
-        private double _fl2fxygdn=0; 
-        private double _fl3fxygdn=0; 
-        private double _fl4fxygdn=0; 
-        private double _zxwgzdn=0; 
-        private double _fl1zxwgdn=0; 
-        private double _fl2zxwgdn=0; 
-        private double _fl3zxwgdn=0; 
-        private double _fl4zxwgdn=0; 
-        private double _fxwgzdn=0; 
-        private double _fl1fxwgdn=0; 
-        private double _fl2fxwgdn=0; 
-        private double _fl3fxwgdn=0; 
-        private double _fl4fxwgdn=0; 
-        private double _wgdn=0; 
+        private double? _zxygzdn=0; 
+        private double? _fl1zxygdn=0; 
+        private double? _fl2zxygdn=0; 
+        private double? _fl3zxygdn=0; 
+        private double? _fl4zxygdn=0; 
+        private double? _fxygzdn=0; 
+        private double? _fl1fxygdn=0; 
+        private double? _fl2fxygdn=0; 
+        private double? _fl3fxygdn=0; 
+        private double? _fl4fxygdn=0; 
+        private double? _zxwgzdn=0; 
+        private double? _fl1zxwgdn=0; 
+        private double? _fl2zxwgdn=0; 
+        private double? _fl3zxwgdn=0; 
+        private double? _fl4zxwgdn=0; 
+        private double? _fxwgzdn=0; 
+        private double? _fl1fxwgdn=0; 
+        private double? _fl2fxwgdn=0; 
+        private double? _fl3fxwgdn=0; 
+        private double? _fl4fxwgdn=0; 
+        private double? _wgdn=0; 
         private string _c1=String.Empty; 
         private string _c2=String.Empty; 
         private string _c3=String.Empty;   
@@ -167,7 +167,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[zxygzdn],float
         /// </summary>
         [DisplayNameAttribute("正向有功总电能")]
-        public double zxygzdn
+        public double? zxygzdn
         {
             get { return _zxygzdn; }
             set
@@ -185,7 +185,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl1zxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率1正向有功电能")]
-        public double fl1zxygdn
+        public double? fl1zxygdn
         {
             get { return _fl1zxygdn; }
             set
@@ -203,7 +203,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl2zxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率2正向有功电能")]
-        public double fl2zxygdn
+        public double? fl2zxygdn
         {
             get { return _fl2zxygdn; }
             set
@@ -221,7 +221,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl3zxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率3正向有功电能")]
-        public double fl3zxygdn
+        public double? fl3zxygdn
         {
             get { return _fl3zxygdn; }
             set
@@ -239,7 +239,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl4zxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率4正向有功电能")]
-        public double fl4zxygdn
+        public double? fl4zxygdn
         {
             get { return _fl4zxygdn; }
             set
@@ -257,7 +257,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fxygzdn],float
         /// </summary>
         [DisplayNameAttribute("反向有功总电能")]
-        public double fxygzdn
+        public double? fxygzdn
         {
             get { return _fxygzdn; }
             set
@@ -275,7 +275,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl1fxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率1反向有功电能")]
-        public double fl1fxygdn
+        public double? fl1fxygdn
         {
             get { return _fl1fxygdn; }
             set
@@ -293,7 +293,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl2fxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率2反向有功电能")]
-        public double fl2fxygdn
+        public double? fl2fxygdn
         {
             get { return _fl2fxygdn; }
             set
@@ -311,7 +311,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl3fxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率3反向有功电能")]
-        public double fl3fxygdn
+        public double? fl3fxygdn
         {
             get { return _fl3fxygdn; }
             set
@@ -329,7 +329,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl4fxygdn],float
         /// </summary>
         [DisplayNameAttribute("费率4反向有功电能")]
-        public double fl4fxygdn
+        public double? fl4fxygdn
         {
             get { return _fl4fxygdn; }
             set
@@ -347,7 +347,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[zxwgzdn],float
         /// </summary>
         [DisplayNameAttribute("正向无功总电能")]
-        public double zxwgzdn
+        public double? zxwgzdn
         {
             get { return _zxwgzdn; }
             set
@@ -365,7 +365,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl1zxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率1正向无功电能")]
-        public double fl1zxwgdn
+        public double? fl1zxwgdn
         {
             get { return _fl1zxwgdn; }
             set
@@ -383,7 +383,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl2zxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率2正向无功电能")]
-        public double fl2zxwgdn
+        public double? fl2zxwgdn
         {
             get { return _fl2zxwgdn; }
             set
@@ -401,7 +401,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl3zxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率3正向无功电能")]
-        public double fl3zxwgdn
+        public double? fl3zxwgdn
         {
             get { return _fl3zxwgdn; }
             set
@@ -419,7 +419,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl4zxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率4正向无功电能")]
-        public double fl4zxwgdn
+        public double? fl4zxwgdn
         {
             get { return _fl4zxwgdn; }
             set
@@ -437,7 +437,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fxwgzdn],float
         /// </summary>
         [DisplayNameAttribute("反向无功总电能")]
-        public double fxwgzdn
+        public double? fxwgzdn
         {
             get { return _fxwgzdn; }
             set
@@ -455,7 +455,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl1fxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率1反向无功电能")]
-        public double fl1fxwgdn
+        public double? fl1fxwgdn
         {
             get { return _fl1fxwgdn; }
             set
@@ -473,7 +473,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl2fxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率2反向无功电能")]
-        public double fl2fxwgdn
+        public double? fl2fxwgdn
         {
             get { return _fl2fxwgdn; }
             set
@@ -491,7 +491,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl3fxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率3反向无功电能")]
-        public double fl3fxwgdn
+        public double? fl3fxwgdn
         {
             get { return _fl3fxwgdn; }
             set
@@ -509,7 +509,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[fl4fxwgdn],float
         /// </summary>
         [DisplayNameAttribute("费率4反向无功电能")]
-        public double fl4fxwgdn
+        public double? fl4fxwgdn
         {
             get { return _fl4fxwgdn; }
             set
@@ -527,7 +527,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[wgdn],float
         /// </summary>
         [DisplayNameAttribute("无功电能")]
-        public double wgdn
+        public double? wgdn
         {
             get { return _wgdn; }
             set
