@@ -42,9 +42,11 @@ namespace Ebada.Scgl.Gis.变电站接线图
 
             this.LoadShape(Application.StartupPath + "\\ScglShapesLib.dll");
             splitContainerControl1.Panel1.Controls.Add(shapesView);
+            
             shapesView.Dock = DockStyle.Fill;
             splitContainerControl1.Panel2.Controls.Add(propertyGrid);
             propertyGrid.Dock = DockStyle.Fill;
+            splitContainerControl1.SplitterPosition = 320;
         }
 
         public GraphControl GraphControl
@@ -133,7 +135,7 @@ namespace Ebada.Scgl.Gis.变电站接线图
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            splitContainerControl1.SplitterPosition = dockPanel1.Height / 2;
+            //splitContainerControl1.SplitterPosition = dockPanel1.Height / 2;
         }
         #endregion
 
@@ -509,6 +511,10 @@ namespace Ebada.Scgl.Gis.变电站接线图
             }
         }
         #endregion
+
+        private void btClose_ItemClick(object sender, ItemClickEventArgs e) {
+            FindForm().Close();
+        }
     }
 
     #region 线路接线图 - 实体类

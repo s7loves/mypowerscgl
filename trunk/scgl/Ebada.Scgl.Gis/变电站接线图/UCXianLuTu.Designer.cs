@@ -40,11 +40,11 @@
             this.tNew = new DevExpress.XtraBars.BarButtonItem();
             this.tOpen = new DevExpress.XtraBars.BarButtonItem();
             this.tSave = new DevExpress.XtraBars.BarButtonItem();
-            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.tCopy = new DevExpress.XtraBars.BarButtonItem();
             this.tCut = new DevExpress.XtraBars.BarButtonItem();
             this.tPast = new DevExpress.XtraBars.BarButtonItem();
             this.tDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barInfo = new DevExpress.XtraBars.BarStaticItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -149,7 +149,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(220, 409);
-            this.splitContainerControl1.SplitterPosition = 199;
+            this.splitContainerControl1.SplitterPosition = 312;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -253,14 +253,6 @@
             this.tSave.Name = "tSave";
             this.tSave.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btClose
-            // 
-            this.btClose.Caption = "关闭(&C)";
-            this.btClose.Id = 44;
-            this.btClose.ImageIndex = 6;
-            this.btClose.Name = "btClose";
-            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // tCopy
             // 
             this.tCopy.Caption = "复制(&C)";
@@ -292,6 +284,15 @@
             this.tDelete.ImageIndex = 7;
             this.tDelete.Name = "tDelete";
             this.tDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btClose
+            // 
+            this.btClose.Caption = "关闭(&C)";
+            this.btClose.Id = 44;
+            this.btClose.ImageIndex = 6;
+            this.btClose.Name = "btClose";
+            this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btClose_ItemClick);
             // 
             // bar3
             // 
@@ -480,25 +481,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(2, 2);
-            this.barDockControlTop.Size = new System.Drawing.Size(700, 53);
+            this.barDockControlTop.Size = new System.Drawing.Size(700, 51);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(2, 405);
-            this.barDockControlBottom.Size = new System.Drawing.Size(700, 30);
+            this.barDockControlBottom.Location = new System.Drawing.Point(2, 410);
+            this.barDockControlBottom.Size = new System.Drawing.Size(700, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(2, 55);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 350);
+            this.barDockControlLeft.Location = new System.Drawing.Point(2, 53);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 357);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(702, 55);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 350);
+            this.barDockControlRight.Location = new System.Drawing.Point(702, 53);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 357);
             // 
             // groupControl1
             // 
@@ -524,7 +525,7 @@
             this.graphControl1.AllowMoveShape = true;
             this.graphControl1.AutomataPulse = 10;
             this.graphControl1.AutoScroll = true;
-            this.graphControl1.AutoScrollMinSize = new System.Drawing.Size(702, 405);
+            this.graphControl1.AutoScrollMinSize = new System.Drawing.Size(702, 410);
             this.graphControl1.BackgroundColor = System.Drawing.Color.White;
             this.graphControl1.BackgroundImagePath = null;
             this.graphControl1.BackgroundType = Netron.GraphLib.CanvasBackgroundType.FlatColor;
@@ -541,12 +542,12 @@
             this.graphControl1.GradientTop = System.Drawing.Color.LightSteelBlue;
             this.graphControl1.GraphLayoutAlgorithm = Netron.GraphLib.GraphLayoutAlgorithms.SpringEmbedder;
             this.graphControl1.GridSize = 20;
-            this.graphControl1.Location = new System.Drawing.Point(2, 55);
+            this.graphControl1.Location = new System.Drawing.Point(2, 53);
             this.graphControl1.Name = "graphControl1";
             this.graphControl1.RestrictToCanvas = true;
             this.graphControl1.ShowAutomataController = false;
             this.graphControl1.ShowGrid = true;
-            this.graphControl1.Size = new System.Drawing.Size(700, 350);
+            this.graphControl1.Size = new System.Drawing.Size(700, 357);
             this.graphControl1.Snap = false;
             this.graphControl1.TabIndex = 5;
             this.graphControl1.Text = "graphControl1";
