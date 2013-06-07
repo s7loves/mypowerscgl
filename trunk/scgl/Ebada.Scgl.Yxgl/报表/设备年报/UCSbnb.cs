@@ -127,7 +127,8 @@ namespace Ebada.Scgl.Yxgl
             gridView1.Columns["orgcode"].Caption = "单位";
             gridView1.Columns["year"].Caption = "时间";
             gridView1.Columns["scsj"].ColumnEdit = dEdit;
-            gridView1.Columns["filedata"].Caption = "文件数据";
+            //gridView1.Columns["filedata"].Caption = "文件数据";
+            hideColumn("filedata");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
