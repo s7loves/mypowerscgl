@@ -323,7 +323,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void btRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            InitData(string.Empty);
+            InitData(GetSql());
             InitCombox();
         }
     
