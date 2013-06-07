@@ -150,6 +150,7 @@
     <Content Include="外部接口工程.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="仿真flash\frmFlashPlay.resx">
       <DependentUpon>frmFlashPlay.cs</DependentUpon>
     </EmbeddedResource>
