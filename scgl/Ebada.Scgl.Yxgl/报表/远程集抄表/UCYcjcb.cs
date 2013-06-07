@@ -225,6 +225,7 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
             InitData(string.Empty);
+            InitCombox();
 
         }
 
