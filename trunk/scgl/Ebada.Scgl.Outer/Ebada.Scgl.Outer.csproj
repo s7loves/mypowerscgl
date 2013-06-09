@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{865AA81D-02C6-4563-8562-6A77E93DAE73}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -153,6 +153,7 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="仿真flash\frmFlashPlay.resx">
       <DependentUpon>frmFlashPlay.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="智能开关\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

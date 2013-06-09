@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{890818B2-EE50-4CB2-9C85-BAA60730CAAB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -1284,6 +1284,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPS_GTSB_drq.resx">
       <DependentUpon>UCPS_GTSB_drq.cs</DependentUpon>
@@ -1295,6 +1296,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\frmSBTZ.resx">
       <DependentUpon>frmSBTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\frmbdsbEdit.resx">
       <DependentUpon>frmbdsbEdit.cs</DependentUpon>
@@ -1342,156 +1344,207 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故、障碍及异常记录簿\frm_sgzayc.resx">
       <DependentUpon>frm_sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故、障碍及异常记录簿\Ucm_sgzayc.resx">
       <DependentUpon>Ucm_sgzayc.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故、障碍及异常记录簿\Ucm_sgzaycM.resx">
       <DependentUpon>Ucm_sgzaycM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故预想记录簿\frm_sgyxjlb.resx">
       <DependentUpon>frm_sgyxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故预想记录簿\Ucm_sgyxjlb.resx">
       <DependentUpon>Ucm_sgyxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\事故预想记录簿\Ucm_sgyxjlbM.resx">
       <DependentUpon>Ucm_sgyxjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\反事故演习记录簿\frm_fsgyxjlb.resx">
       <DependentUpon>frm_fsgyxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\反事故演习记录簿\Ucm_fsgyxjlb.resx">
       <DependentUpon>Ucm_fsgyxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\反事故演习记录簿\Ucm_fsgyxjlbM.resx">
       <DependentUpon>Ucm_fsgyxjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\安全活动记录簿\frm_aqhdjlb.resx">
       <DependentUpon>frm_aqhdjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\安全活动记录簿\Ucm_aqhdjlb.resx">
       <DependentUpon>Ucm_aqhdjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\安全活动记录簿\Ucm_aqhdjlbM.resx">
       <DependentUpon>Ucm_aqhdjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\工作票登记簿\frm_gzpdjb.resx">
       <DependentUpon>frm_gzpdjb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\工作票登记簿\Ucm_gzpdjb.resx">
       <DependentUpon>Ucm_gzpdjb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\工作票登记簿\Ucm_gzpdjbM.resx">
       <DependentUpon>Ucm_gzpdjbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\frm_kgtzjl.resx">
       <DependentUpon>frm_kgtzjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjl.resx">
       <DependentUpon>Ucm_kgtzjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\开关跳闸记录簿\Ucm_kgtzjlM.resx">
       <DependentUpon>Ucm_kgtzjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\frm_czpdjb.resx">
       <DependentUpon>frm_czpdjb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\ucmOrg.resx">
       <DependentUpon>ucmOrg.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\Ucm_czpdjb.resx">
       <DependentUpon>Ucm_czpdjb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\操作票登记簿\Ucm_czpdjbM.resx">
       <DependentUpon>Ucm_czpdjbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\继电保护记录簿\frm_jdbhjl.resx">
       <DependentUpon>frm_jdbhjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjl.resx">
       <DependentUpon>Ucm_jdbhjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\继电保护记录簿\Ucm_jdbhjlM.resx">
       <DependentUpon>Ucm_jdbhjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\蓄电池调整检查记录\frm_xdctzjlb.resx">
       <DependentUpon>frm_xdctzjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\蓄电池调整检查记录\Ucm_xdctzjlb.resx">
       <DependentUpon>Ucm_xdctzjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\蓄电池调整检查记录\Ucm_xdctzjlbM.resx">
       <DependentUpon>Ucm_xdctzjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备检修记录\frm_sbjxjl.resx">
       <DependentUpon>frm_sbjxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备检修记录\Ucm_sbjxjl.resx">
       <DependentUpon>Ucm_sbjxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备检修记录\Ucm_sbjxjlM.resx">
       <DependentUpon>Ucm_sbjxjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\frm_sbqxjl.resx">
       <DependentUpon>frm_sbqxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjl.resx">
       <DependentUpon>Ucm_sbqxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\设备缺陷记录簿\Ucm_sbqxjlM.resx">
       <DependentUpon>Ucm_sbqxjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\调度操作指令记录簿\frm_ddczzl.resx">
       <DependentUpon>frm_ddczzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\调度操作指令记录簿\Ucm_ddczzl.resx">
       <DependentUpon>Ucm_ddczzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行分析记录簿\frm_yxfxjlb.resx">
       <DependentUpon>frm_yxfxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlb.resx">
       <DependentUpon>Ucm_yxfxjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行分析记录簿\Ucm_yxfxjlbM.resx">
       <DependentUpon>Ucm_yxfxjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行工作记录簿\frm_gzjlzb.resx">
       <DependentUpon>frm_gzjlzb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行工作记录簿\frm_yxgzjlb.resx">
       <DependentUpon>frm_yxgzjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlb.resx">
       <DependentUpon>Ucm_yxgzjlb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_yxgzjlbM.resx">
       <DependentUpon>Ucm_yxgzjlbM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\运行工作记录簿\Ucm_gzjlzb.resx">
       <DependentUpon>Ucm_gzjlzb.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\frm_blqdzjl.resx">
       <DependentUpon>frm_blqdzjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjl.resx">
       <DependentUpon>Ucm_blqdzjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\避雷器动作记录簿\Ucm_blqdzjlM.resx">
       <DependentUpon>Ucm_blqdzjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\限电记录\frm_xdjl.resx">
       <DependentUpon>frm_xdjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\限电记录\Ucm_xdjl.resx">
       <DependentUpon>Ucm_xdjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\限电记录\Ucm_xdjlM.resx">
       <DependentUpon>Ucm_xdjlM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLinewh.resx">
       <DependentUpon>frmLinewh.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPS_tqsbclbclEdit.resx">
       <DependentUpon>frmPS_tqsbclbclEdit.cs</DependentUpon>
@@ -1553,6 +1606,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="维护\frmLineTQwh.resx">
       <DependentUpon>frmLineTQwh.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\frmsdgtEdit.resx">
       <DependentUpon>frmsdgtEdit.cs</DependentUpon>
@@ -1624,33 +1678,43 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\frmsdxs_jh.resx">
       <DependentUpon>frmsdxs_jh.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\frmsd_xsjhnr.resx">
       <DependentUpon>frmsd_xsjhnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\frmsd_xsjhnrEdit.resx">
       <DependentUpon>frmsd_xsjhnrEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\frmsd_xsxm.resx">
       <DependentUpon>frmsd_xsxm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsdxs_jh.resx">
       <DependentUpon>UCsdxs_jh.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsdxs_jhM.resx">
       <DependentUpon>UCsdxs_jhM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsdxs_jhnr.resx">
       <DependentUpon>UCsdxs_jhnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsd_xsxm.resx">
       <DependentUpon>UCsd_xsxm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\巡视计划\UCsd_xs_jhSearch.resx">
       <DependentUpon>UCsd_xs_jhSearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\特殊区域\frmsd_tsqyEdit.resx">
       <DependentUpon>frmsd_tsqyEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电\特殊区域\UCsdxlTree.resx">
       <DependentUpon>UCsdxlTree.cs</DependentUpon>

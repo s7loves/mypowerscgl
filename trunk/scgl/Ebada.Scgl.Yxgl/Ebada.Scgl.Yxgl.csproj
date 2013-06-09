@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -1276,12 +1276,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\反事故演习记录\frmSDyxfa.resx">
       <DependentUpon>frmSDyxfa.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\反事故演习记录\frmSD_fsyyxjl.resx">
       <DependentUpon>frmSD_fsyyxjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\反事故演习记录\frmyxfa.resx">
       <DependentUpon>frmyxfa.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\反事故演习记录\UCSD_05.resx">
       <DependentUpon>UCSD_05.cs</DependentUpon>
@@ -1309,6 +1312,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线连接器检测记录\frm_ddxljq.resx">
       <DependentUpon>frm_ddxljq.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线连接器检测记录\UCSD_ddxljq.resx">
       <DependentUpon>UCSD_ddxljq.cs</DependentUpon>
@@ -1320,12 +1324,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线连接器检测记录\frm_ddxljqnr.resx">
       <DependentUpon>frm_ddxljqnr.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线连接器检测记录\UCSD_ddxljqM.resx">
       <DependentUpon>UCSD_ddxljqM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线驰度测量记录\frm_ddxcd.resx">
       <DependentUpon>frm_ddxcd.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\导地线驰度测量记录\UCSD_ddxcd.resx">
       <DependentUpon>UCSD_ddxcd.cs</DependentUpon>
@@ -1421,6 +1428,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\登杆检查记录\frm_Dgjc.resx">
       <DependentUpon>frm_Dgjc.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\登杆检查记录\UCSD_dgjcjl.resx">
       <DependentUpon>UCSD_dgjcjl.cs</DependentUpon>
@@ -1432,12 +1440,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\登杆检查记录\UCSD_dgjcM.resx">
       <DependentUpon>UCSD_dgjcM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\登杆检查记录\frm_Dgjcjl.resx">
       <DependentUpon>frm_Dgjcjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\绝缘子含盐测量记录\frm_jyzylcl.resx">
       <DependentUpon>frm_jyzylcl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\绝缘子含盐测量记录\UCSD_jyzylcl.resx">
       <DependentUpon>UCSD_jyzylcl.cs</DependentUpon>
@@ -1445,6 +1456,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_xlwhdd.resx">
       <DependentUpon>frm_xlwhdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\线路污秽地段记录\UCSD_xlwhdd.resx">
       <DependentUpon>UCSD_xlwhdd.cs</DependentUpon>
@@ -1456,12 +1468,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_whdd.resx">
       <DependentUpon>frm_whdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\线路污秽地段记录\frm_WhddSelect.resx">
       <DependentUpon>frm_WhddSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\绝缘子测试记录\frm_jyzjcjl.resx">
       <DependentUpon>frm_jyzjcjl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="送电记录簿\绝缘子测试记录\UCSD_jyzjcsjl.resx">
       <DependentUpon>UCSD_jyzjcsjl.cs</DependentUpon>

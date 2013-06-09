@@ -179,7 +179,7 @@ namespace Ebada.Scgl.Gis {
         private void showMark(v_position_now pos) {
             if (carDic.ContainsKey(pos.device_id)) {
                 GMapMarkerCar car = carDic[pos.device_id];
-                car.Position = new GMap.NET.PointLatLng(pos.lat, pos.lng);
+                car.Position = new GMap.NET.PointLatLng(pos.lat - .0080283, pos.lng - .0126086);
             } else {
                 GMapMarkerCar car = new GMapMarkerCar(new GMap.NET.PointLatLng(pos.lat-.0080283, pos.lng-.0126086));
                
@@ -190,7 +190,7 @@ namespace Ebada.Scgl.Gis {
                 car.Text = pos.device_name;
                 car.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                 
-                car.ToolTipText = string.Format("时间：{0}\n位置：{1}\n电话：{4}\n", pos.date, pos.adress, pos.lng, pos.lat,pos.phone_number);
+                car.ToolTipText = string.Format("时间：{0}\n位置：{1}\n电话：{4}\n", pos.gps_realtime_position, pos.adress, pos.lng, pos.lat,pos.phone_number);
                 //car.ToolTip.Format.LineAlignment = StringAlignment.Near;
                 car.ToolTip.Format.Alignment = StringAlignment.Near;
             }
