@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7E26EB37-5C5B-407A-B6CD-23FD55AE821E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -479,6 +479,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UC材料明细分类账.resx">
       <DependentUpon>UC材料明细分类账.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="查询统计\UCv工程结算查询.resx">
       <DependentUpon>UCv工程结算查询.cs</DependentUpon>
