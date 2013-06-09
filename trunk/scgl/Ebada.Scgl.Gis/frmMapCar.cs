@@ -181,7 +181,8 @@ namespace Ebada.Scgl.Gis {
                 GMapMarkerCar car = carDic[pos.device_id];
                 car.Position = new GMap.NET.PointLatLng(pos.lat, pos.lng);
             } else {
-                GMapMarkerCar car = new GMapMarkerCar(new GMap.NET.PointLatLng(pos.lat, pos.lng));
+                GMapMarkerCar car = new GMapMarkerCar(new GMap.NET.PointLatLng(pos.lat-.0080283, pos.lng-.0126086));
+               
                 car.Id = pos.device_id.ToString();
                 carLay.Markers.Add(car);
                 carDic.Add(pos.device_id, car);

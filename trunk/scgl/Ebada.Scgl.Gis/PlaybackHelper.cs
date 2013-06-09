@@ -80,7 +80,8 @@ namespace Ebada.Scgl.Gis {
 
             if (queue_pos.Count > 0) {
                 gps_position pos = queue_pos.Dequeue();
-                car.Position = new GMap.NET.PointLatLng(pos.lat, pos.lng);
+                
+                car.Position = new GMap.NET.PointLatLng(pos.lat-.0080283, pos.lng-.0126086);
                 car.ToolTipText = string.Format("时间：{0}\n位置：{1}", pos.date, pos.c1);
                 playRoute.Points.Add(car.Position);
                 if (!_map.CurrentViewArea.Contains(car.Position))
