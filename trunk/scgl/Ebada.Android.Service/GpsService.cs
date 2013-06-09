@@ -10,6 +10,8 @@ using Ebada.Components;
 using System.IO;
 using System.ServiceModel.Activation;
 using System.Web;
+using System.Threading;
+using System.Runtime.Serialization;
 
 namespace Ebada.Android.Service {
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]  
@@ -189,43 +191,95 @@ namespace Ebada.Android.Service {
         }
         string select_ver = "select value from msys where dm='androidver_gps'";
         public string GetVersion() {
+            Console.WriteLine("{0},开始调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/GetVer");
             string ver = "0";
             try {
                 object obj = null;
-                try { obj = Client.ClientHelper.PlatformSqlMap.GetObject("Select", select_ver); } catch { }
+                try { obj = Client.ClientHelper.PlatformSqlMap.GetObject("Select", select_ver); }
+                catch (Exception err) { Console.WriteLine(err.Message); }
                 int nver = 0;
                 if (obj != null) {
                     nver = int.Parse((obj as System.Collections.Hashtable)["value"].ToString());
                     ver = nver.ToString();
-                    Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name+"/GetVer");
+                    Console.WriteLine("{0},调用方法成功:{1}", DateTime.Now.ToString(), this.GetType().Name+"/GetVer");
                 }
-            } catch { }
+            }
+            catch (Exception err) { Console.WriteLine(err.Message); }
             return ver;
         }
         string ak = "BC6aa1ebfad0839ce2cccfeeea579d3a";
         string url = "http://api.map.baidu.com/geocoder/v2/?ak={0}&location={1}&output=json";
-        public string UpPosition(g_position pos){
-            if (pos.id > 0) {
-                gps_position_now gp = new gps_position_now() {
-                     date=DateTime.Now, lat=pos.lat, lng=pos.lng, speed=pos.s, altitude=pos.h
-                     ,
-                     gps_realtime_position = DateTime.Parse(pos.dt), device_id=pos.id, position_type= pos.locType, c1= pos.addr
-                     , distance_from_last_gps=pos.dis
+        public string UpPosition(g_position pos)
+        {
+            if (pos.id > 0)
+            {
+                gps_position_now gp = new gps_position_now()
+                {
+                    date = DateTime.Now,
+                    lat = pos.lat,
+                    lng = pos.lng,
+                    speed = pos.s,
+                    altitude = pos.h
+                    ,
+                    gps_realtime_position = Convert.ToDateTime(pos.dt),
+                    device_id = pos.id,
+                    position_type = pos.locType,
+                    c1 = pos.addr
+                    ,
+                    distance_from_last_gps = pos.dis
                 };
-                try {
-                    Client.ClientHelper.PlatformSqlMap.Update<gps_position_now>(gp);
-                } catch (Exception err) { Console.WriteLine(err.Message); }
-                //System.Net.WebClient wc = new System.Net.WebClient();
-                //string loc=string.Format("{0},{1}",pos.lat, pos.lng);
-                //string surl = string.Format(url, ak, HttpUtility.UrlEncode(loc));
-                //try {
-                //    wc.Headers.Add("content-type", "application/json;charset=utf-8");
-                //    string adrress = wc.DownloadString(surl);
-                //    Console.WriteLine(adrress);
-                //} catch { }
+                try
+                {
+                    Thread thread = new Thread(getdress);
+                    thread.IsBackground = true;
+                    thread.Start(gp);
+                }
+                catch (Exception err) { Console.WriteLine(err.Message); }
+
+
+
             }
-            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition/"+pos.toString());
+            Console.WriteLine("{0},调用方法:{1}", DateTime.Now.ToString(), this.GetType().Name + "/UpPosition/" + pos.toString());
             return "ok";
+        }
+        private void getdress(object obj){
+            gps_position_now pos = obj as gps_position_now;
+            if (string.IsNullOrEmpty(pos.c1))
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string loc = string.Format("{0},{1}", pos.lat, pos.lng);
+                string surl = string.Format(url, ak, HttpUtility.UrlEncode(loc));
+                try
+                {
+                    wc.Headers.Add("content-type", "application/json;charset=utf-8");
+                    string adrress = wc.DownloadString(surl);
+                    dressResult ret= Newtonsoft.Json.JsonConvert.DeserializeObject<dressResult>(adrress);
+                    if (ret != null && ret.status == "0")
+                    {
+                        pos.c1 = ret.result.formatted_address;
+                    }
+                    Console.WriteLine(adrress);
+                }
+                catch (Exception err) { Console.WriteLine(err.Message); }
+            }
+            try
+                {
+            Client.ClientHelper.PlatformSqlMap.Update<gps_position_now>(pos);
+                }
+            catch (Exception err) { Console.WriteLine(err.Message); }
+        }
+        [DataContract]
+        public class dressResult
+        {
+            [DataMember]
+            public string status;
+            [DataMember]
+            public dress result;
+        }
+        public class dress
+        {
+            [DataMember]
+            public string formatted_address;
         }
         public g_position_now GetPosition(int id) {
             g_position_now gp = null;
