@@ -209,6 +209,9 @@ namespace Ebada.Android.Service {
         }
         string ak = "BC6aa1ebfad0839ce2cccfeeea579d3a";
         string url = "http://api.map.baidu.com/geocoder/v2/?ak={0}&location={1}&output=json";
+        double lngdeviation = 1.0000568461567492425578691530827;//经度偏差
+
+        double latdeviation = 1.0002012762190961772159526495686;//纬度偏差
         public string UpPosition(g_position pos)
         {
             if (pos.id > 0)
