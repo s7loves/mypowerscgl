@@ -61,6 +61,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            rowData.xssj = Convert.ToDateTime(txtxssj.EditValue).ToShortDateString();
             this.DialogResult = DialogResult.OK;
         }
 
