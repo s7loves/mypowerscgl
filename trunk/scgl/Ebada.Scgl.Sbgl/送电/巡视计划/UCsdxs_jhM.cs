@@ -27,6 +27,11 @@ namespace Ebada.Scgl.Sbgl
         {
             this.state = parastate;
             uCsdxs_jh1.CheckState = state;
+            if (parastate == "02")
+            {
+                uCsdxs_jhnr1.ishidebtAdds = true;
+                this.uCsd_xsxm1.ishidebtAdds = true;
+            }
             if (parastate == "03")
             {
                 xtraTabControl1.TabPages.RemoveAt(1);
