@@ -41,19 +41,20 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtflag2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtxssj = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.txtqxnr = new DevExpress.XtraEditors.TextEdit();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.txtxssj = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlng.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtqxnr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -155,13 +156,6 @@
             this.labelControl7.TabIndex = 12;
             this.labelControl7.Text = "巡视时间";
             // 
-            // txtxssj
-            // 
-            this.txtxssj.Location = new System.Drawing.Point(111, 232);
-            this.txtxssj.Name = "txtxssj";
-            this.txtxssj.Size = new System.Drawing.Size(447, 21);
-            this.txtxssj.TabIndex = 13;
-            // 
             // labelControl8
             // 
             this.labelControl8.Location = new System.Drawing.Point(39, 270);
@@ -195,16 +189,28 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // txtxssj
+            // 
+            this.txtxssj.EditValue = null;
+            this.txtxssj.Location = new System.Drawing.Point(111, 235);
+            this.txtxssj.Name = "txtxssj";
+            this.txtxssj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtxssj.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtxssj.Size = new System.Drawing.Size(447, 21);
+            this.txtxssj.TabIndex = 18;
+            // 
             // frmsd_xsjhnrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 348);
+            this.Controls.Add(this.txtxssj);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtqxnr);
             this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.txtxssj);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.txtflag2);
             this.Controls.Add(this.labelControl6);
@@ -224,15 +230,15 @@
             this.Name = "frmsd_xsjhnrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "巡视计划内容";
-            
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlng.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtqxnr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,10 +259,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtflag2;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.TextEdit txtxssj;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.TextEdit txtqxnr;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.DateEdit txtxssj;
     }
 }
