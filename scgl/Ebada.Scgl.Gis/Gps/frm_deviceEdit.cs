@@ -142,7 +142,8 @@ namespace Ebada.Scgl.Gis.Gps
             {
                 rowData.carrier_id = string.Empty;
             }
-            rowData.c2 = lkuezttype.EditValue.ToString();
+            if (lkuezttype.EditValue != null)
+                rowData.c2 = lkuezttype.EditValue.ToString();
             if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString())||string.IsNullOrEmpty(txtphone_number.EditValue.ToString()))
             {
                 
