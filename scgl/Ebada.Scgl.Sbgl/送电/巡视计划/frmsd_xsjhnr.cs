@@ -178,11 +178,14 @@ namespace Ebada.Scgl.Sbgl
 
             child.Name = childname;
             child.DataBindings.Add("EditValue", rowData[pageNumber], bindName);
+            
             child.Size = new Size(337, 21);
             child.Location = new Point(width + 40, starttexth);
             starttexth += 33;
             Parent.Controls.Add(child);
         }
+
+        
 
        
 
@@ -278,7 +281,12 @@ namespace Ebada.Scgl.Sbgl
 
         void btnOk_Click(object sender, EventArgs e)
         {
+            
             List<sd_xsjhnr> list = rowData;
+            foreach (sd_xsjhnr jhnr in list)
+            {
+                jhnr.xssj = Convert.ToDateTime(jhnr.xssj).ToShortDateString();
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
