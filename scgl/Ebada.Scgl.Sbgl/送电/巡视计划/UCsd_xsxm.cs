@@ -24,6 +24,7 @@ namespace Ebada.Scgl.Sbgl
 
 
         public bool issearch = false;
+        public bool ishidebtAdds = false;
         private GridViewOperation<sd_xsxm> gridViewOperation;
         public event SendDataEventHandler<sd_xsxm> FocusedRowChanged;
         public UCsd_xsxm()
@@ -50,6 +51,10 @@ namespace Ebada.Scgl.Sbgl
             if (issearch)
             {
                 bar1.Visible = false;
+            }
+            if (ishidebtAdds)
+            {
+                this.btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
         }
         private void initImageList()

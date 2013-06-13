@@ -165,6 +165,7 @@ namespace Ebada.Scgl.Sbgl
             else if (checkState == "02")
             {
                 sql = "where wcbj='完成'";
+                btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
             else if(checkState=="03")
             {
