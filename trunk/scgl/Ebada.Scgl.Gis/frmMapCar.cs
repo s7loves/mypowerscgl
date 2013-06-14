@@ -183,7 +183,9 @@ namespace Ebada.Scgl.Gis {
                 car.Position = new GMap.NET.PointLatLng(pos.lat - .0080283, pos.lng - .0126086);
             } else {
                 GMapMarkerCar car = new GMapMarkerCar(new GMap.NET.PointLatLng(pos.lat-.0080283, pos.lng-.0126086));
-               
+                if (pos.carrier_type == "人员") {
+                    car.Image = Properties.Resources.Smile32;
+                }
                 car.Id = pos.device_id.ToString();
                 carLay.Markers.Add(car);
                 carDic.Add(pos.device_id, car);
