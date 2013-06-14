@@ -169,11 +169,12 @@ namespace Ebada.Scgl.Gis {
         }
         private void freshPosition() {
             IList<v_position_now> list = Client.ClientHelper.PlatformSqlMap.GetList<v_position_now>(string.Format("where date>'{0}'", lastDatetime.ToString("yyyy-MM-dd HH:mm:ss")));
-            lastDatetime = DateTime.Now;
+            //lastDatetime = DateTime.Now;
             foreach (v_position_now pos in list) {
                 if (pos.lat > 30 && pos.lng > 100) {
                     showMark(pos);
                 }
+                if (pos.date > lastDatetime) lastDatetime = pos.date;
             }
         }
         private void showMark(v_position_now pos) {
