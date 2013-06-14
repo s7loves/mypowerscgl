@@ -35,7 +35,7 @@ namespace Ebada.Scgl.Gis.Markers {
             g.ResetTransform();
 
             if (!Bearing.HasValue && Image != null) {
-                g.DrawImageUnscaled(Image, LocalPosition.X, LocalPosition.Y,25,25);
+                g.DrawImage(Image, LocalPosition.X, LocalPosition.Y,25,25);
             }
             if (Image == null) {
                 g.FillPolygon(Brushes.Lime, Arrow);
