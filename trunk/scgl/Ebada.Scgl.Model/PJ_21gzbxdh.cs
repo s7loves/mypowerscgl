@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2011-6-13 12:10:43
+生成时间:2013-6-16 11:40:05
 ***********************************************/
 
 using System;
@@ -32,7 +32,12 @@ namespace Ebada.Scgl.Model
         private string _clr=String.Empty; 
         private string _gzrjid=String.Empty; 
         private string _createman=String.Empty; 
-        private DateTime _createdate=new DateTime(1900,1,1);   
+        private DateTime _createdate=new DateTime(1900,1,1); 
+        private string _xcbj=("未消除"); 
+        private double _jd=0; 
+        private double _wd=0; 
+        private string _lineid=String.Empty; 
+        private string _tqid=String.Empty;   
         #endregion
   
   
@@ -272,7 +277,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：填写日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("填写日期")]
         public DateTime CreateDate
         {
@@ -286,15 +290,119 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
+        /// <summary>
+        /// 属性名称：xcbj
+        /// 属性描述：
+        /// 字段信息：[xcbj],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("消除标记")]
+        public string xcbj
+        {
+            get { return _xcbj; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[xcbj]长度不能大于50!");
+                if (_xcbj as object == null || !_xcbj.Equals(value))
+                {
+                    _xcbj = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：jd
+        /// 属性描述：
+        /// 字段信息：[jd],float
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("jd")]
+        public double jd
+        {
+            get { return _jd; }
+            set
+            {			
+                if (_jd as object == null || !_jd.Equals(value))
+                {
+                    _jd = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：wd
+        /// 属性描述：
+        /// 字段信息：[wd],float
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("wd")]
+        public double wd
+        {
+            get { return _wd; }
+            set
+            {			
+                if (_wd as object == null || !_wd.Equals(value))
+                {
+                    _wd = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：LineID
+        /// 属性描述：
+        /// 字段信息：[LineID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("LineID")]
+        public string LineID
+        {
+            get { return _lineid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[LineID]长度不能大于50!");
+                if (_lineid as object == null || !_lineid.Equals(value))
+                {
+                    _lineid = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：tqID
+        /// 属性描述：
+        /// 字段信息：[tqID],nvarchar
+        /// </summary>
+        /// 
+        [Browsable(false)]
+        [DisplayNameAttribute("tqID")]
+        public string tqID
+        {
+            get { return _tqid; }
+            set
+            {			
+                if(value==null)return;
+                if( value.ToString().Length > 50)
+                throw new Exception("[tqID]长度不能大于50!");
+                if (_tqid as object == null || !_tqid.Equals(value))
+                {
+                    _tqid = value;
+                }
+            }			 
+        }
+  
         #endregion 
   
         #region 方法
         public static string Newid(){
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         public string CreateID(){
             Thread.Sleep(new TimeSpan(100000));//0.1毫秒
-            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+            return DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion		
     }	
