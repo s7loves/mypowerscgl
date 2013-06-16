@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Gis.Markers {
                 MeasureRect();
             }
         }
-        internal override void Update() {
+        public override void Update() {
             if (Tag is TX_Point) {
                 TX_Point pt = Tag as TX_Point;
                 pt.x = this.Position.Lng.ToString();

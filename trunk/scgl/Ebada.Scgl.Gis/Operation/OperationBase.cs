@@ -61,8 +61,8 @@ namespace Ebada.Scgl.Gis {
         public virtual void MouseUp(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left && isMouseDown) {
                 isMouseDown = false;
-                if (updateMarker != null && updateMarker is GMapMarkerVector) {
-                    (updateMarker as GMapMarkerVector).Update();
+                if (updateMarker != null && updateMarker is IEditable) {
+                    (updateMarker as IEditable).Update();
                 }
             } else if (e.Button == MouseButtons.Right && isMoving) {
                 endPoint = e.Location;

@@ -46,7 +46,7 @@ namespace Ebada.Scgl.Gis.Markers {
             }
         }
 
-        internal override void Update() {
+        public override void Update() {
             PointOverLay lay = this.Overlay as PointOverLay;
             if (lay != null && lay.AllowEdit) {
                 mOrg org = this.Tag as mOrg;

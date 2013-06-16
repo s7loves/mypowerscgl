@@ -139,7 +139,7 @@ namespace Ebada.Scgl.Gis.Gps
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData()
         {
-            gridViewOperation.RefreshData(" where carrier_type='"+ctype+"'");
+            gridViewOperation.RefreshData(" where carrier_type like '%"+ctype+"%'");
             this.gridView1.BestFitColumns();
         }
         /// <summary>

@@ -225,7 +225,7 @@ namespace Ebada.Scgl.Gis {
             } 
         }
         private void locationMarker(string id) {
-            frmMapCar form= this.FindForm() as frmMapCar;
+            ILocationMarker form= this.FindForm() as ILocationMarker;
             if(form!=null){
                 form.LocationMarker(id);
             }
