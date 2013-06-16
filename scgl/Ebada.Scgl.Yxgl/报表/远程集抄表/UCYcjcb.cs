@@ -283,9 +283,9 @@ namespace Ebada.Scgl.Yxgl
             return ycjcList;
             
         }
-        private double? getDouble(string str)
+        private double getDouble(string str)
         {
-            double? n=null;
+            double n=0;
             if (string.IsNullOrEmpty(str))
             {
                 
