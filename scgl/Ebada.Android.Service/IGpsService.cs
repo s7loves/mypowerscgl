@@ -35,7 +35,9 @@ namespace Ebada.Android.Service {
         [OperationContract]
         [WebInvoke(UriTemplate = "GetPosition", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         g_position_now GetPosition(int id);
-
+        [OperationContract]
+        [WebInvoke(UriTemplate = "GetLocation/{address}", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        Ebada.Android.Service.GpsService.location GetLocation(string address);
         //[OperationContract]
         //[WebInvoke(UriTemplate = "UploadFile/{id}/{type}",Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         //string UploadFile(string id,string type, Stream fileContents);
