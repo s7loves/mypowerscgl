@@ -209,6 +209,7 @@ namespace Ebada.Android.Service {
         }
         string ak = "BC6aa1ebfad0839ce2cccfeeea579d3a";
         string url = "http://api.map.baidu.com/geocoder/v2/?ak={0}&location={1}&output=json";
+        string url2 = "http://api.map.baidu.com/geocoder/v2/?ak={0}&address={1}&output=json";
         double lngdeviation = 1.0000568461567492425578691530827;//经度偏差
 
         double latdeviation = 1.0002012762190961772159526495686;//纬度偏差
@@ -284,7 +285,33 @@ namespace Ebada.Android.Service {
             [DataMember]
             public string formatted_address;
         }
-        public g_position_now GetPosition(int id) {
+        [DataContract]
+        public class locationResult {
+            [DataMember]
+            public string status;
+            [DataMember]
+            public pos result;
+        }
+        [DataContract]
+        public class location {
+            [DataMember]
+            public double lng;
+            [DataMember]
+            public double lat;
+        }
+        [DataContract]
+        public class pos
+        {
+            [DataMember]
+            public location location;
+            [DataMember]
+            public int precise;
+            [DataMember]
+            public int confidence;
+            [DataMember]
+            public string level;
+        }
+         public g_position_now GetPosition(int id) {
             g_position_now gp = null;
             gps_position_now gps_now = Client.ClientHelper.PlatformSqlMap.GetOne<gps_position_now>("where device_id=" + id);
             if (gps_now != null) {
@@ -422,6 +449,30 @@ namespace Ebada.Android.Service {
             
             //Console.WriteLine("Service: Received file {0} with {1} bytes", id, totalBytesRead);
             return id;
+        }
+
+        #endregion
+
+        #region IGpsService 成员
+
+
+        public location GetLocation(string address) {
+            location ret = new location() { lat = 0, lng = 0 };
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string surl = string.Format(url2, ak, HttpUtility.UrlEncode(address));
+            try {
+                wc.Headers.Add("content-type", "application/json;charset=utf-8");
+                Console.WriteLine(surl +address);
+                string ss = wc.DownloadString(surl);
+                Console.WriteLine(ss);
+                //ss = "{\"status\":0,\"result\":{\"location\":{\"lng\":1,\"lat\":1}}}";
+                locationResult loc = Newtonsoft.Json.JsonConvert.DeserializeObject<locationResult>(ss);
+                if (loc != null && loc.status == "0") {
+                    ret = loc.result.location;
+                }
+                //Console.WriteLine(ss+","+ret);
+            } catch (Exception err) { Console.WriteLine(err.Message); }
+            return ret;
         }
 
         #endregion
