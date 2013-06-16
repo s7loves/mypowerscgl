@@ -17,6 +17,11 @@
         <result property="gzrjID" column="gzrjID" />
         <result property="CreateMan" column="CreateMan" />
         <result property="CreateDate" column="CreateDate" />
+        <result property="xcbj" column="xcbj" />
+        <result property="jd" column="jd" />
+        <result property="wd" column="wd" />
+        <result property="LineID" column="LineID" />
+        <result property="tqID" column="tqID" />
       </resultMap>
   </resultMaps>
 
@@ -34,7 +39,12 @@
          [clr],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [xcbj],
+         [jd],
+         [wd],
+         [LineID],
+         [tqID]
           FROM PJ_21gzbxdh
           $value$
    </select>
@@ -52,7 +62,12 @@
          [clr],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [xcbj],
+         [jd],
+         [wd],
+         [LineID],
+         [tqID]
           FROM PJ_21gzbxdh
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
@@ -67,6 +82,11 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="xcbj">[xcbj]='$xcbj$'</isNotNull>
+       <isNotNull prepend="AND" property="jd">[jd]='$jd$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
      </dynamic>
    </select>
    <select id="SelectPJ_21gzbxdhByKey" resultMap="PJ_21gzbxdh_AllColumns" parameterClass="PJ_21gzbxdh">
@@ -82,7 +102,12 @@
          [clr],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [xcbj],
+         [jd],
+         [wd],
+         [LineID],
+         [tqID]
          FROM PJ_21gzbxdh
          WHERE 
            ID = #ID#
@@ -122,7 +147,12 @@
              [clr]=#clr#,
              [gzrjID]=#gzrjID#,
              [CreateMan]=#CreateMan#,
-             [CreateDate]=#CreateDate#
+             [CreateDate]=#CreateDate#,
+             [xcbj]=#xcbj#,
+             [jd]=#jd#,
+             [wd]=#wd#,
+             [LineID]=#LineID#,
+             [tqID]=#tqID#
             WHERE 
               ID = #ID#
 
@@ -142,7 +172,12 @@
          [clr],
          [gzrjID],
          [CreateMan],
-         [CreateDate]
+         [CreateDate],
+         [xcbj],
+         [jd],
+         [wd],
+         [LineID],
+         [tqID]
          )
        VALUES
          (
@@ -157,7 +192,12 @@
          #clr#,
          #gzrjID#,
          #CreateMan#,
-         #CreateDate#
+         #CreateDate#,
+         #xcbj#,
+         #jd#,
+         #wd#,
+         #LineID#,
+         #tqID#
          )
 
    </insert>
@@ -178,6 +218,11 @@
        <isNotNull prepend="AND" property="gzrjID">[gzrjID]='$gzrjID$'</isNotNull>
        <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
        <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="xcbj">[xcbj]='$xcbj$'</isNotNull>
+       <isNotNull prepend="AND" property="jd">[jd]='$jd$'</isNotNull>
+       <isNotNull prepend="AND" property="wd">[wd]='$wd$'</isNotNull>
+       <isNotNull prepend="AND" property="LineID">[LineID]='$LineID$'</isNotNull>
+       <isNotNull prepend="AND" property="tqID">[tqID]='$tqID$'</isNotNull>
      </dynamic>
 
    </select>
