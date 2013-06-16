@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Ebada.Scgl.Gis.Markers {
 
     [Serializable]
-    public class GMapMarkerVector : GMapMarker,ICloneable, IText {
+    public class GMapMarkerVector : GMapMarker,ICloneable, IText, IEditable {
 
         public float? Bearing;
 
@@ -148,8 +148,8 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         
-        internal virtual void Update() {
-            if (this.Overlay is IUpdateable)
+        public virtual void Update() {
+            if (this.Overlay is IUpdateable && allowEdit)
                 (this.Overlay as IUpdateable).Update(this);
         }
 
@@ -160,5 +160,15 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         #endregion
+
+        private bool allowEdit = true;
+        public virtual bool AllowEdit {
+            get {
+                return allowEdit;
+            }
+            set {
+                allowEdit = value;
+            }
+        }
     }
 }

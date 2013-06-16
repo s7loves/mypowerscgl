@@ -18,7 +18,9 @@ namespace Ebada.Scgl.Gis.Markers {
         }
 
         static readonly Point[] Arrow = new Point[] { new Point(-7, -7), new Point(-7, 7), new Point(7, 7), new Point(7, -7) };
-
+        public override System.Windows.Forms.ContextMenu CreatePopuMenu() {
+            return new System.Windows.Forms.ContextMenu();
+        }
         public override void OnRender(Graphics g) {
             GraphicsUnit gu = g.PageUnit;
             g.PageUnit = GraphicsUnit.Pixel;

@@ -67,6 +67,13 @@ namespace Ebada.Scgl.Gis.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap marker {
+            get {
+                object obj = ResourceManager.GetObject("marker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Msn32 {
             get {
                 object obj = ResourceManager.GetObject("Msn32", resourceCulture);
@@ -77,6 +84,13 @@ namespace Ebada.Scgl.Gis.Properties {
         internal static System.Drawing.Bitmap red_e_1 {
             get {
                 object obj = ResourceManager.GetObject("red_e_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap shadow50 {
+            get {
+                object obj = ResourceManager.GetObject("shadow50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

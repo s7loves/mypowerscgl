@@ -39,5 +39,8 @@ namespace Ebada.Scgl.Gis.Markers {
                 g.FillPolygon(Brushes.Lime, Arrow);
             }
         }
+
+        public virtual void RefreshToolText() {
+        }
     }
 }

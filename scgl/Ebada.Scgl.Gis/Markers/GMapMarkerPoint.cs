@@ -24,7 +24,7 @@ namespace Ebada.Scgl.Gis.Markers {
         public override System.Windows.Forms.ContextMenu CreatePopuMenu() {
             return new System.Windows.Forms.ContextMenu();
         }
-        internal override void Update() {
+        public override void Update() {
             base.Update();
         }
     }

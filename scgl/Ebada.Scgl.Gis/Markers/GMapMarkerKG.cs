@@ -33,7 +33,7 @@ namespace Ebada.Scgl.Gis.Markers {
             }
         }
 
-        internal override void Update() {
+        public override void Update() {
             
         }
 

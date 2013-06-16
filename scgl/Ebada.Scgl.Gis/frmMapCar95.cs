@@ -23,9 +23,12 @@ using GMap.NET.WindowsForms.Markers;
 using Ebada.Scgl.Gis.Markers;
 using Ebada.Scgl.Gis.Device;
 using Ebada.Scgl.Model;
+using System.Collections;
+using System.Net;
+using Ebada.Scgl.Gis.Properties;
 
 namespace Ebada.Scgl.Gis {
-    public partial class frmMapCar : XtraForm, Ebada.Scgl.Gis.ILocationMarker {
+    public partial class frmMapCar95 : XtraForm,ILocationMarker {
         TONLI.MapCore.IMapServer mapServer;
         IMapView mapview;
         bool isMouseDown=false;
@@ -47,7 +50,8 @@ namespace Ebada.Scgl.Gis {
         OperationInstances oInstances;
         bool canAddMarker;
         UCLayerCar ucLayerCar;
-        public frmMapCar() {
+        UCPJ_21gzbxdh bxdh;
+        public frmMapCar95() {
             InitializeComponent();
             btFullScrean.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -76,7 +80,7 @@ namespace Ebada.Scgl.Gis {
             
             oInstances = new OperationInstances(rMap1);
             curOperation = oInstances.LineOperation;
-            curOperation.CanEditMarker = false;
+            curOperation.CanEditMarker = true;
             rMap1.OnMapZoomChanged += new MapZoomChanged(rMap1_OnMapZoomChanged);
             rMap1.MouseEnter += new EventHandler(rMap1_MouseEnter);
             rMap1.MouseMove += new MouseEventHandler(rMap1_MouseMove);
@@ -98,7 +102,78 @@ namespace Ebada.Scgl.Gis {
             ucLayerCar = new UCLayerCar();
             ucLayerCar.Dock = DockStyle.Fill;
             dockPanel1_Container.Controls.Add(ucLayerCar);
+            bxdh = new UCPJ_21gzbxdh();
+            bxdh.Dock = DockStyle.Fill;
+            dockPanel2_Container.Controls.Add(bxdh);
+            bxdh.OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(bxdh_OnBeginLocation);
             this.WindowState = FormWindowState.Maximized;
+            btGzdj.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+        string gpsUrl = "http://10.166.137.29:8305/GpsService";
+        class location {
+            public double lat;
+            public double lng;
+        }
+        void bxdh_OnBeginLocation(PJ_21gzbxdh obj) {
+
+            string url = gpsUrl + "/GetLocation/" + obj.yhdz;
+            try {
+                WebClient wc =new WebClient();
+               wc.Headers.Add("content-type", "application/json;charset=utf-8");
+                string loc =wc.UploadString(url,"POST","");
+                location loca=Newtonsoft.Json.JsonConvert.DeserializeObject<location>(loc);
+                if (loca != null && loca.lat > 0) {
+                    addgzMark(loca,obj);
+                    return;
+                }
+            } catch {
+                
+            }
+            MsgBox.ShowWarningMessageBox("地址定位失败，需手工设置位置。");
+            addgzMark(rMap1.Position, obj);
+        }
+
+        private void addgzMark(PointLatLng pointLatLng, PJ_21gzbxdh obj) {
+            if (obj.jd > 0) return;
+            obj.jd = pointLatLng.Lng; obj.wd = pointLatLng.Lat;
+            GMapMarkerImage mark = FindMark(obj.ID);
+            if (mark == null) {
+                mark = new GMapMarkerGzbx(pointLatLng);
+                gzwzLay.Markers.Add(mark);
+                mark.Tag = obj;
+                mark.Id = obj.ID;
+            } else {
+                mark.Position = pointLatLng;
+                mark.Tag = obj;
+            }
+            mark.RefreshToolText();
+           mark.ToolTipMode = MarkerTooltipMode.Always;
+            rMap1.Position = pointLatLng;
+
+        }
+        private void addgzMark(PJ_21gzbxdh obj) {
+            GMapMarkerImage mark = new GMapMarkerGzbx(new PointLatLng(obj.wd, obj.jd));
+            gzwzLay.Markers.Add(mark);
+            mark.Id = obj.ID;
+            mark.Tag = obj;
+            mark.RefreshToolText();
+
+        }
+        private GMapMarkerImage FindMark(string p) {
+            
+            foreach (GMapMarkerImage mark in gzwzLay.Markers) {
+
+                if (mark.Id == p) return mark;
+            }
+
+            return null;
+        }
+
+        private void addgzMark(location loca, PJ_21gzbxdh obj) {
+            //添加故障点
+            obj.jd = 0;
+            addgzMark(new PointLatLng(loca.lat, loca.lng), obj);
+            
         }
 
         public Control showGJHF() {
@@ -137,7 +212,7 @@ namespace Ebada.Scgl.Gis {
         DateTime lastDatetime;
         Dictionary<int, Markers.GMapMarkerCar> carDic = new Dictionary<int, Ebada.Scgl.Gis.Markers.GMapMarkerCar>();
         GMapOverlay carLay;
-        
+        GMapOverlay gzwzLay;//故障位置层
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
@@ -147,16 +222,36 @@ namespace Ebada.Scgl.Gis {
             ucLayerCar.InitLayer();
             if (!isPlayback) {
                 lastDatetime = new DateTime(2013, 5, 1);
-                carLay = new GMapOverlay(rMap1, "car");
+                carLay = new PointOverLay(rMap1, "car");
                 rMap1.Overlays.Add(carLay);
                 freshPosition();
+                gzwzLay = new PointOverLay(rMap1, "gzwz");
+                rMap1.Overlays.Add(gzwzLay);
+
+                freshGzwz();
 
                 timer1 = new Timer();
                 timer1.Interval = 10 * 1000;
                 timer1.Tick += new EventHandler(timer1_Tick);
                 timer1.Start();
             }
+            IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select value from msys where dm='gpsservice'");
+            if (list.Count > 0) {
+                gpsUrl = list[0].ToString();
+            }
         }
+
+        private void freshGzwz() {
+            //显示故障位置
+            IList<PJ_21gzbxdh> list = Client.ClientHelper.PlatformSqlMap.GetList<PJ_21gzbxdh>("where xcbj='未消除' ");
+            foreach (PJ_21gzbxdh obj in list) {
+                if (obj.jd > 0 && obj.wd > 0) {
+                    addgzMark(obj);
+                }
+            }
+
+        }
+
         void timer1_Tick(object sender, EventArgs e) {
             timer1.Stop();
             try {
@@ -193,7 +288,7 @@ namespace Ebada.Scgl.Gis {
                 car.Text = pos.device_name;
                 car.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                 
-                car.ToolTipText = string.Format("时间：{0}\n位置：{1}\n电话：{4}\n", pos.gps_realtime_position, pos.adress, pos.lng, pos.lat,pos.phone_number);
+                car.ToolTipText = string.Format("名称：{5}\n时间：{0}\n位置：{1}\n电话：{4}\n", pos.gps_realtime_position, pos.adress, pos.lng, pos.lat,pos.phone_number,pos.device_name);
                 //car.ToolTip.Format.LineAlignment = StringAlignment.Near;
                 car.ToolTip.Format.Alignment = StringAlignment.Near;
             }
@@ -499,6 +594,17 @@ namespace Ebada.Scgl.Gis {
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             this.Close();
+        }
+
+        private void btGzdj_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            frm21gzbxdhEdit dlg = new frm21gzbxdhEdit();
+            PJ_21gzbxdh obj = new PJ_21gzbxdh();
+            obj.OrgCode = Client.Platform.MainHelper.User.OrgCode;
+            obj.OrgName = Client.Platform.MainHelper.User.OrgName;
+            dlg.RowData = obj;
+            if (dlg.ShowDialog()== DialogResult.OK) {
+                Client.ClientHelper.PlatformSqlMap.Create<PJ_21gzbxdh>(dlg.RowData);
+            }
         }
 
     }

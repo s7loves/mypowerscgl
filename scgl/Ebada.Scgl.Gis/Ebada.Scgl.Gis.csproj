@@ -69,6 +69,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\NetronGraphLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json.Net20, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
     <Reference Include="ScglShapesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\ScglShapesLib.dll</HintPath>
@@ -157,6 +161,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="95598\Ecommon.cs" />
+    <Compile Include="95598\Export21.cs" />
+    <Compile Include="95598\frm21gzbxdhEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="95598\frm21gzbxdhEdit.Designer.cs">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="95598\UCPJ_21gzbxdh .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="95598\UCPJ_21gzbxdh .Designer.cs">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
+    </Compile>
     <Compile Include="Drawing\DrawingDxt2.cs" />
     <Compile Include="frmDxtSetup.cs">
       <SubType>Form</SubType>
@@ -218,9 +236,12 @@
     <Compile Include="Gps\frm_carrierEditMan.Designer.cs">
       <DependentUpon>frm_carrierEditMan.cs</DependentUpon>
     </Compile>
+    <Compile Include="ILocationMarker.cs" />
     <Compile Include="Markers\GMapMarkerPoint.cs" />
     <Compile Include="Markers\GMapMarkerCar.cs" />
     <Compile Include="Markers\GMapMarkerGif.cs" />
+    <Compile Include="Markers\IEditable.cs" />
+    <Compile Include="Markers\GMapMarkerGzbx.cs" />
     <Compile Include="Operation\OperationPloyLine.cs" />
     <Compile Include="PlaybackHelper.cs" />
     <Compile Include="Provider\GoogleChinaTerrainMap.cs" />
@@ -416,6 +437,12 @@
       <DependentUpon>UCLayerSbxj.cs</DependentUpon>
     </Compile>
     <Compile Include="PlaybackSbxjHelper.cs" />
+    <Compile Include="frmMapCar95.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMapCar95.Designer.cs">
+      <DependentUpon>frmMapCar95.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电站接线图\Desiger\BaseEditor.cs" />
     <Compile Include="变电站接线图\Desiger\FilenameUIEditor.cs" />
     <Compile Include="变电站接线图\Desiger\InputDialog.cs">
@@ -452,6 +479,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="95598\frm21gzbxdhEdit.resx">
+      <DependentUpon>frm21gzbxdhEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="95598\UCPJ_21gzbxdh .resx">
+      <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Device\frmBaseSelector.resx">
       <DependentUpon>frmBaseSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -588,6 +623,10 @@
       <DependentUpon>UCLayerSbxj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMapCar95.resx">
+      <DependentUpon>frmMapCar95.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -632,6 +671,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Msn32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadow50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marker.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
