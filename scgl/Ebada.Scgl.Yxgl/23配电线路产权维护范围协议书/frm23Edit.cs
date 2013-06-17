@@ -187,7 +187,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (rowData.BigData.Length == 0)
+            if (rowData.BigData==null || rowData.BigData.Length == 0)
             {
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
                 string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
@@ -238,7 +238,34 @@ namespace Ebada.Scgl.Yxgl
             dsoFramerControl2.Dispose();
             dsoFramerControl2 = null;
         }
+        public static void filldata(DSOFramerControl c ,PJ_23 data) {
 
+            Microsoft.Office.Interop.Excel.Workbook wb = c.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+            //PJ_23 obj = (PJ_23)MainHelper.PlatformSqlMap.GetObject("SelectPJ_23List", "where ParentID='" + rowData.ParentID + "' and xybh like '" + SelectorHelper.GetPysm(org.OrgName.Replace("供电所", ""), true) + "" + DateTime.Now.Year.ToString() + "%' order by xybh ASC");
+            //int icount = 1;
+            //if (obj != null && obj.xybh !="")
+            //{
+            //    icount = Convert.ToInt32(obj.xybh.Split('-')[2])+1;
+            //}
+            //string strname = SelectorHelper.GetPysm(bhname, true);
+            ExcelAccess ea = new ExcelAccess();
+            ea.MyWorkBook = wb;
+            ea.MyExcel = wb.Application;
+            ea.SetCellValue(data.xybh.ToUpper(), 4, 8);
+            //strname = DateTime.Now.Year.ToString();
+            //ea.SetCellValue(strname, 4, 9);
+            //strname = string.Format("{0:D3}", icount);
+            //ea.SetCellValue(strname, 4, 10);
+            ea.SetCellValue(data.linename, 10, 7);
+            ea.SetCellValue(data.fzlinename, 10, 10);
+            ea.SetCellValue("'" + data.gh, 10, 16);
+            ea.SetCellValue(data.cqfw, 11, 4);
+            ea.SetCellValue(data.cqdw, 13, 4);
+            ea.SetCellValue(data.qdrq.Year.ToString(), 21, 7);
+            ea.SetCellValue(data.qdrq.Month.ToString(), 21, 9);
+            ea.SetCellValue(data.qdrq.Day.ToString(), 21, 11);
+            
+        }
         private void comboBoxEdit5_Properties_EditValueChanged(object sender, EventArgs e)
         {
             if (comboBoxEdit5.EditValue == null) return;
