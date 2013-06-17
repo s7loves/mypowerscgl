@@ -129,6 +129,17 @@ namespace Ebada.Scgl.Yxgl {
             }
             filename = dsoFramerControl1.AxFramerControl.DocumentFullName;
         }
+        protected override void OnShown(EventArgs e) {
+            base.OnShown(e);
+            if (pjobject != null) {
+                Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+                
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                Export23.ExportExcel(pjobject, ea);
+            }
+        }
         private void initcomment() {
             IList<string> ilist = MainHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select picName from PJ_tbsj");
             repositoryItemLookUpEdit1.DataSource = ilist;

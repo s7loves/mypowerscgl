@@ -314,7 +314,7 @@ namespace Ebada.Scgl.Yxgl
         }
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            PJ_23 OBJECT = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+            PJ_23 OBJECT = gridView1.GetFocusedRow() as PJ_23;
             //if (OBJECT.BigData != null)
             //{
             //    if (OBJECT.BigData.Length != 0)
@@ -350,7 +350,7 @@ namespace Ebada.Scgl.Yxgl
             if (gridView1.FocusedRowHandle > -1)
             {
                 //修改模板
-                PJ_23 rowData = gridView1.GetRow(gridView1.FocusedRowHandle) as PJ_23;
+                PJ_23 rowData = gridView1.GetFocusedRow() as PJ_23;
                 //mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
                 //string fname = Application.StartupPath + "\\00记录模板\\23配电线路产权维护范围协议书.xls";
                 //string bhname = org.OrgName.Replace("供电所", "");
