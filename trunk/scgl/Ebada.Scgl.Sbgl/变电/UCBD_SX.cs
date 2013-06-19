@@ -73,10 +73,10 @@ namespace Ebada.Scgl.Sbgl {
                 "and zldm='" + parentID + "'");
             if (list.Count > 0)
             {
-                Client.ClientHelper.PlatformSqlMap.Delete<BD_SBTZ_SX>(list[0]);
-                int id=(int)Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value as BD_SBTZ_SX);
-                //MessageBox.Show("字段添加重复，添加数据失败！");
-                //e.Cancel = true;
+                //Client.ClientHelper.PlatformSqlMap.Delete<BD_SBTZ_SX>(list[0]);
+                //int id=(int)Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value as BD_SBTZ_SX);
+                MessageBox.Show("属性名重复，修改数据失败！");
+                e.Cancel = true;
                
             }
 
@@ -101,6 +101,10 @@ namespace Ebada.Scgl.Sbgl {
             }
             BD_SBTZ_SX sx = e.Value as BD_SBTZ_SX;
             sx.zldm = parentID;
+            int id = (int)Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value as BD_SBTZ_SX);
+            e.Value.id = id;
+            gridViewOperation.BindingList.Add(e.Value);
+            e.Cancel = true;
         }
         #endregion
         
