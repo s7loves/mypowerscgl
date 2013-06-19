@@ -40,11 +40,19 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation = new GridViewOperation<BD_SBTZ_SX>(gridControl1, gridView1, barManager1);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<BD_SBTZ_SX>(gridViewOperation_BeforeUpdate);
-            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<BD_SBTZ_SX>(gridViewOperation_BeforeInsert);
+            gridViewOperation.CreatingObjectEvent+=new ObjectEventHandler<BD_SBTZ_SX>(gridViewOperation_CreatingObjectEvent);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<BD_SBTZ_SX>(gridViewOperation_AfterAdd);
+            gridViewOperation.BeforeInsert+=new ObjectOperationEventHandler<BD_SBTZ_SX>(gridViewOperation_BeforeInsert);
+           
             gridView1.Click += new EventHandler(gridView1_Click);
             gridView1.CellValueChanged += new CellValueChangedEventHandler(gridView1_CellValueChanged);
             enableList.AddRange(new string[]{"a1","a2","a3","a4","a5","a6","a7","a8"});
             
+        }
+
+        void gridViewOperation_AfterAdd(BD_SBTZ_SX obj)
+        {
+            BD_SBTZ_SX ss = obj;
         }
 
         void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e) {
@@ -65,9 +73,13 @@ namespace Ebada.Scgl.Sbgl {
                 "and zldm='" + parentID + "'");
             if (list.Count > 0)
             {
-                MessageBox.Show("字段添加重复，添加数据失败！");
-                e.Cancel = true;
+                Client.ClientHelper.PlatformSqlMap.Delete<BD_SBTZ_SX>(list[0]);
+                int id=(int)Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value as BD_SBTZ_SX);
+                //MessageBox.Show("字段添加重复，添加数据失败！");
+                //e.Cancel = true;
+               
             }
+
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<BD_SBTZ_SX> e)
@@ -87,6 +99,8 @@ namespace Ebada.Scgl.Sbgl {
                 MessageBox.Show("字段添加重复，添加数据失败！");
                 e.Cancel = true;
             }
+            BD_SBTZ_SX sx = e.Value as BD_SBTZ_SX;
+            sx.zldm = parentID;
         }
         #endregion
         
@@ -195,7 +209,22 @@ namespace Ebada.Scgl.Sbgl {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(BD_SBTZ_SX newobj) {
-           
+            newobj = new BD_SBTZ_SX();
+            //int result=0;
+            //IList<string> list = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", "select Convert(nvarchar(50),max(id)) from BD_SBTZ_SX");
+            //if (list.Count > 0)
+            //{
+            //    if (!int.TryParse(list[0], out result))
+            //    {
+            //        MsgBox.ShowWarningMessageBox("数据库格式错误！");
+            //        return;
+            //    }
+            //}
+            //newobj.id = result + 1;    
+            newobj.zldm = parentID;
+
+            
+            
         }
         /// <summary>
         /// 父表ID
