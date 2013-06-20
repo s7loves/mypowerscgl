@@ -19,6 +19,7 @@ namespace Ebada.Scgl.Outer {
         public Control ShowFlash(string filename) {
 
             mfilename = filename;
+            this.Show();
             return this;
         }
     }
