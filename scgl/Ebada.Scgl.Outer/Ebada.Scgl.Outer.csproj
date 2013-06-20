@@ -147,6 +147,7 @@
     <Content Include="仿真变电站.swf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="仿真变电站35kv.swf" />
     <Content Include="外部接口工程.txt" />
   </ItemGroup>
   <ItemGroup>
