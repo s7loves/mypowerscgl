@@ -53,6 +53,7 @@ namespace Ebada.Scgl.Gis {
         UCPJ_21gzbxdh bxdh;
         public frmMapCar95() {
             InitializeComponent();
+            barButtonItem11.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             btFullScrean.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             rMap1 = new RMap();

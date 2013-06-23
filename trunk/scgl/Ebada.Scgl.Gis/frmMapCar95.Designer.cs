@@ -52,20 +52,20 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.hideContainerBottom = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.rMap1 = new Ebada.Scgl.Gis.RMap();
-            this.hideContainerBottom = new DevExpress.XtraBars.Docking.AutoHideContainer();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-            this.dockPanel1.SuspendLayout();
-            this.dockPanel2.SuspendLayout();
             this.hideContainerBottom.SuspendLayout();
+            this.dockPanel2.SuspendLayout();
+            this.dockPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager1
@@ -336,27 +336,14 @@
             "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
             "DevExpress.XtraBars.Ribbon.RibbonControl"});
             // 
-            // dockPanel1
+            // hideContainerBottom
             // 
-            this.dockPanel1.Controls.Add(this.dockPanel1_Container);
-            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
-            this.dockPanel1.ID = new System.Guid("389420df-3773-44e2-b42f-5958909cc825");
-            this.dockPanel1.Location = new System.Drawing.Point(541, 34);
-            this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.Options.AllowDockBottom = false;
-            this.dockPanel1.Options.AllowDockFill = false;
-            this.dockPanel1.Options.AllowDockTop = false;
-            this.dockPanel1.Options.ShowCloseButton = false;
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(253, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(253, 344);
-            this.dockPanel1.Text = "抢修车辆";
-            // 
-            // dockPanel1_Container
-            // 
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
-            this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(247, 316);
-            this.dockPanel1_Container.TabIndex = 0;
+            this.hideContainerBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(241)))));
+            this.hideContainerBottom.Controls.Add(this.dockPanel2);
+            this.hideContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.hideContainerBottom.Location = new System.Drawing.Point(0, 378);
+            this.hideContainerBottom.Name = "hideContainerBottom";
+            this.hideContainerBottom.Size = new System.Drawing.Size(794, 20);
             // 
             // dockPanel2
             // 
@@ -381,6 +368,28 @@
             this.dockPanel2_Container.Name = "dockPanel2_Container";
             this.dockPanel2_Container.Size = new System.Drawing.Size(788, 246);
             this.dockPanel2_Container.TabIndex = 0;
+            // 
+            // dockPanel1
+            // 
+            this.dockPanel1.Controls.Add(this.dockPanel1_Container);
+            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.dockPanel1.ID = new System.Guid("389420df-3773-44e2-b42f-5958909cc825");
+            this.dockPanel1.Location = new System.Drawing.Point(541, 34);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.Options.AllowDockBottom = false;
+            this.dockPanel1.Options.AllowDockFill = false;
+            this.dockPanel1.Options.AllowDockTop = false;
+            this.dockPanel1.Options.ShowCloseButton = false;
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(253, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(253, 344);
+            this.dockPanel1.Text = "抢修车辆";
+            // 
+            // dockPanel1_Container
+            // 
+            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(247, 316);
+            this.dockPanel1_Container.TabIndex = 0;
             // 
             // imageList1
             // 
@@ -425,15 +434,6 @@
             this.rMap1.TabIndex = 0;
             this.rMap1.Zoom = 0;
             // 
-            // hideContainerBottom
-            // 
-            this.hideContainerBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(241)))));
-            this.hideContainerBottom.Controls.Add(this.dockPanel2);
-            this.hideContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hideContainerBottom.Location = new System.Drawing.Point(0, 378);
-            this.hideContainerBottom.Name = "hideContainerBottom";
-            this.hideContainerBottom.Size = new System.Drawing.Size(794, 20);
-            // 
             // frmMapCar95
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -451,9 +451,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-            this.dockPanel1.ResumeLayout(false);
-            this.dockPanel2.ResumeLayout(false);
             this.hideContainerBottom.ResumeLayout(false);
+            this.dockPanel2.ResumeLayout(false);
+            this.dockPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
