@@ -52,6 +52,7 @@ namespace Ebada.Scgl.Sbgl
             try {
                 gridView1.Columns["dxplfs"].VisibleIndex=-1;//导线排列方式
             } catch { }
+btDelete2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
         public UCPS_GT(PS_xl xl):this() {
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -137,7 +138,9 @@ namespace Ebada.Scgl.Sbgl
                 btGdsList.Edit.ReadOnly = true;
             }
             //20110818改
-
+            if (!"rabbit赵建明".Contains(MainHelper.User.UserName)) {
+                btDeleteMenu.Enabled = false;
+            }
         }
 
         void btXlList_EditValueChanged(object sender, EventArgs e)
@@ -247,6 +250,7 @@ namespace Ebada.Scgl.Sbgl
             newobj.gtSpan = 50;
             newobj.gtMs = 1.7m;
             newobj.gtHeight = 10m;
+            newobj.gtNode = "否";
             newobj.gtModle = "直线杆";
             newobj.gtType = "混凝土拔梢杆";
         }
@@ -342,6 +346,7 @@ namespace Ebada.Scgl.Sbgl
             gt.gtSpan = 50;
             gt.gtMs = 1.7m;
             gt.gtHeight = 10m;
+            gt.gtNode = "否";
             gt.gtModle = "直线杆";
             gt.gtType = "混凝土拔梢杆";
             frmgtEdit frm = new frmgtEdit();
@@ -403,6 +408,22 @@ namespace Ebada.Scgl.Sbgl
         private void btAddIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             gtInsert = true;
             btAdd.PerformClick();
+        }
+
+        private void btDelete2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            frmGtDel dlg = new frmGtDel("杆塔");
+            dlg.SetGt(gridViewOperation.BindingList);
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                btRefresh.PerformClick();
+            }
+        }
+
+        private void btDelete3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            frmGtDel dlg = new frmGtDel("杆塔设备");
+            dlg.SetGt(gridViewOperation.BindingList);
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                btRefresh.PerformClick();
+            }
         }
       
     }
