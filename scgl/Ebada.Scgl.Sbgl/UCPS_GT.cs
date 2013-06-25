@@ -138,7 +138,7 @@ btDelete2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btGdsList.Edit.ReadOnly = true;
             }
             //20110818改
-            if (!"rabbit赵建明".Contains(MainHelper.User.UserName)) {
+            if (!"rabbit赵建明超级管理员".Contains(MainHelper.User.UserName)) {
                 btDeleteMenu.Enabled = false;
             }
         }
