@@ -239,8 +239,7 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[下拉列表数据集]长度不能大于50!");
+               
                 if (_boxvalue as object == null || !_boxvalue.Equals(value))
                 {
                     _boxvalue = value;
