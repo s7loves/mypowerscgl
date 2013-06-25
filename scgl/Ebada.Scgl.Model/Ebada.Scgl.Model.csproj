@@ -267,6 +267,8 @@
     <Compile Include="TX_Project.cs" />
     <Compile Include="ViewGds.cs" />
     <Compile Include="v_position_now.cs" />
+    <Compile Include="WarnRecord.cs" />
+    <Compile Include="WarnSet.cs" />
     <Compile Include="WFModul.cs" />
     <Compile Include="WFP_RecordWorkTaskIns.cs" />
     <Compile Include="WF_AccreditUser.cs" />

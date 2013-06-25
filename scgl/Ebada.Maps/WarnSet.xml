@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WarnSet" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WarnSet"  type="Ebada.Scgl.Model.WarnSet,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WarnSet_AllColumns" class="WarnSet">
+        <result property="ID" column="ID" />
+        <result property="Type" column="Type" />
+        <result property="TypeName" column="TypeName" />
+        <result property="Sequence" column="Sequence" />
+        <result property="TableName" column="TableName" />
+        <result property="TableCNName" column="TableCNName" />
+        <result property="FieldName" column="FieldName" />
+        <result property="FieldCNName" column="FieldCNName" />
+        <result property="WarnType" column="WarnType" />
+        <result property="WarnTypeName" column="WarnTypeName" />
+        <result property="OrderDays" column="OrderDays" />
+        <result property="SpaceDays" column="SpaceDays" />
+        <result property="BeforeDays" column="BeforeDays" />
+        <result property="AfterDays" column="AfterDays" />
+        <result property="WarnTimes" column="WarnTimes" />
+        <result property="OrgField" column="OrgField" />
+        <result property="SetUserID" column="SetUserID" />
+        <result property="SetTime" column="SetTime" />
+        <result property="Remark" column="Remark" />
+        <result property="IsUse" column="IsUse" />
+        <result property="LinkID" column="LinkID" />
+        <result property="LinkName" column="LinkName" />
+        <result property="BYScol1" column="BYScol1" />
+        <result property="BYScol2" column="BYScol2" />
+        <result property="BYScol3" column="BYScol3" />
+        <result property="BYScol4" column="BYScol4" />
+        <result property="BYScol5" column="BYScol5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWarnSetList" resultMap="WarnSet_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Type],
+         [TypeName],
+         [Sequence],
+         [TableName],
+         [TableCNName],
+         [FieldName],
+         [FieldCNName],
+         [WarnType],
+         [WarnTypeName],
+         [OrderDays],
+         [SpaceDays],
+         [BeforeDays],
+         [AfterDays],
+         [WarnTimes],
+         [OrgField],
+         [SetUserID],
+         [SetTime],
+         [Remark],
+         [IsUse],
+         [LinkID],
+         [LinkName],
+         [BYScol1],
+         [BYScol2],
+         [BYScol3],
+         [BYScol4],
+         [BYScol5]
+          FROM WarnSet
+          $value$
+   </select>
+   
+   <select id="SelectWarnSetByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Type],
+         [TypeName],
+         [Sequence],
+         [TableName],
+         [TableCNName],
+         [FieldName],
+         [FieldCNName],
+         [WarnType],
+         [WarnTypeName],
+         [OrderDays],
+         [SpaceDays],
+         [BeforeDays],
+         [AfterDays],
+         [WarnTimes],
+         [OrgField],
+         [SetUserID],
+         [SetTime],
+         [Remark],
+         [IsUse],
+         [LinkID],
+         [LinkName],
+         [BYScol1],
+         [BYScol2],
+         [BYScol3],
+         [BYScol4],
+         [BYScol5]
+          FROM WarnSet
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="TypeName">[TypeName]='$TypeName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableCNName">[TableCNName]='$TableCNName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldCNName">[FieldCNName]='$FieldCNName$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnType">[WarnType]='$WarnType$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnTypeName">[WarnTypeName]='$WarnTypeName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrderDays">[OrderDays]='$OrderDays$'</isNotNull>
+       <isNotNull prepend="AND" property="SpaceDays">[SpaceDays]='$SpaceDays$'</isNotNull>
+       <isNotNull prepend="AND" property="BeforeDays">[BeforeDays]='$BeforeDays$'</isNotNull>
+       <isNotNull prepend="AND" property="AfterDays">[AfterDays]='$AfterDays$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnTimes">[WarnTimes]='$WarnTimes$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgField">[OrgField]='$OrgField$'</isNotNull>
+       <isNotNull prepend="AND" property="SetUserID">[SetUserID]='$SetUserID$'</isNotNull>
+       <isNotNull prepend="AND" property="SetTime">[SetTime]='$SetTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="IsUse">[IsUse]='$IsUse$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkID">[LinkID]='$LinkID$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkName">[LinkName]='$LinkName$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol1">[BYScol1]='$BYScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol2">[BYScol2]='$BYScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol3">[BYScol3]='$BYScol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol4">[BYScol4]='$BYScol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol5">[BYScol5]='$BYScol5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWarnSetByKey" resultMap="WarnSet_AllColumns" parameterClass="WarnSet">
+         SELECT 
+         [ID],
+         [Type],
+         [TypeName],
+         [Sequence],
+         [TableName],
+         [TableCNName],
+         [FieldName],
+         [FieldCNName],
+         [WarnType],
+         [WarnTypeName],
+         [OrderDays],
+         [SpaceDays],
+         [BeforeDays],
+         [AfterDays],
+         [WarnTimes],
+         [OrgField],
+         [SetUserID],
+         [SetTime],
+         [Remark],
+         [IsUse],
+         [LinkID],
+         [LinkName],
+         [BYScol1],
+         [BYScol2],
+         [BYScol3],
+         [BYScol4],
+         [BYScol5]
+         FROM WarnSet
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWarnSet" parameterClass="WarnSet">
+        DELETE FROM 
+         WarnSet
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWarnSetByWhere" parameterClass="string">
+     delete from WarnSet $value$
+   </delete>
+   
+   <delete id="DeleteWarnSetByKey" parameterClass="string">
+        DELETE FROM 
+         WarnSet
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWarnSet" parameterClass="WarnSet" resultClass="int">
+          UPDATE WarnSet
+           SET
+             [Type]=#Type#,
+             [TypeName]=#TypeName#,
+             [Sequence]=#Sequence#,
+             [TableName]=#TableName#,
+             [TableCNName]=#TableCNName#,
+             [FieldName]=#FieldName#,
+             [FieldCNName]=#FieldCNName#,
+             [WarnType]=#WarnType#,
+             [WarnTypeName]=#WarnTypeName#,
+             [OrderDays]=#OrderDays#,
+             [SpaceDays]=#SpaceDays#,
+             [BeforeDays]=#BeforeDays#,
+             [AfterDays]=#AfterDays#,
+             [WarnTimes]=#WarnTimes#,
+             [OrgField]=#OrgField#,
+             [SetUserID]=#SetUserID#,
+             [SetTime]=#SetTime#,
+             [Remark]=#Remark#,
+             [IsUse]=#IsUse#,
+             [LinkID]=#LinkID#,
+             [LinkName]=#LinkName#,
+             [BYScol1]=#BYScol1#,
+             [BYScol2]=#BYScol2#,
+             [BYScol3]=#BYScol3#,
+             [BYScol4]=#BYScol4#,
+             [BYScol5]=#BYScol5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWarnSet" parameterClass="WarnSet">
+        INSERT INTO WarnSet
+         (
+         [ID],
+         [Type],
+         [TypeName],
+         [Sequence],
+         [TableName],
+         [TableCNName],
+         [FieldName],
+         [FieldCNName],
+         [WarnType],
+         [WarnTypeName],
+         [OrderDays],
+         [SpaceDays],
+         [BeforeDays],
+         [AfterDays],
+         [WarnTimes],
+         [OrgField],
+         [SetUserID],
+         [SetTime],
+         [Remark],
+         [IsUse],
+         [LinkID],
+         [LinkName],
+         [BYScol1],
+         [BYScol2],
+         [BYScol3],
+         [BYScol4],
+         [BYScol5]
+         )
+       VALUES
+         (
+         #ID#,
+         #Type#,
+         #TypeName#,
+         #Sequence#,
+         #TableName#,
+         #TableCNName#,
+         #FieldName#,
+         #FieldCNName#,
+         #WarnType#,
+         #WarnTypeName#,
+         #OrderDays#,
+         #SpaceDays#,
+         #BeforeDays#,
+         #AfterDays#,
+         #WarnTimes#,
+         #OrgField#,
+         #SetUserID#,
+         #SetTime#,
+         #Remark#,
+         #IsUse#,
+         #LinkID#,
+         #LinkName#,
+         #BYScol1#,
+         #BYScol2#,
+         #BYScol3#,
+         #BYScol4#,
+         #BYScol5#
+         )
+
+   </insert>
+   
+   <select id="GetWarnSetRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WarnSet
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="TypeName">[TypeName]='$TypeName$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="TableCNName">[TableCNName]='$TableCNName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldCNName">[FieldCNName]='$FieldCNName$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnType">[WarnType]='$WarnType$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnTypeName">[WarnTypeName]='$WarnTypeName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrderDays">[OrderDays]='$OrderDays$'</isNotNull>
+       <isNotNull prepend="AND" property="SpaceDays">[SpaceDays]='$SpaceDays$'</isNotNull>
+       <isNotNull prepend="AND" property="BeforeDays">[BeforeDays]='$BeforeDays$'</isNotNull>
+       <isNotNull prepend="AND" property="AfterDays">[AfterDays]='$AfterDays$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnTimes">[WarnTimes]='$WarnTimes$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgField">[OrgField]='$OrgField$'</isNotNull>
+       <isNotNull prepend="AND" property="SetUserID">[SetUserID]='$SetUserID$'</isNotNull>
+       <isNotNull prepend="AND" property="SetTime">[SetTime]='$SetTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="IsUse">[IsUse]='$IsUse$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkID">[LinkID]='$LinkID$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkName">[LinkName]='$LinkName$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol1">[BYScol1]='$BYScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol2">[BYScol2]='$BYScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol3">[BYScol3]='$BYScol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol4">[BYScol4]='$BYScol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BYScol5">[BYScol5]='$BYScol5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWarnSetRowCount" parameterClass="string">
+    select count(*) from WarnSet $value$
+   </select>
+    <select id="GetWarnResultBySqlWhere" parameterClass="string">
+       $value$
+    </select>
+  </statements>
+</sqlMap>
+ 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE5D1D78-6555-4A60-9261-463127722D1E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -1222,6 +1222,22 @@
       <DependentUpon>UCYcjcb.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="提醒\frmWarnSetEdit.resx">
+      <DependentUpon>frmWarnSetEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="提醒\UCWarnRecord.resx">
+      <DependentUpon>UCWarnRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="提醒\UCWarnSet.resx">
+      <DependentUpon>UCWarnSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="提醒\UCWarnRecordPage.resx">
+      <DependentUpon>UCWarnRecordPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="线损分析\UCmLine.resx">
       <DependentUpon>UCmLine.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1725,6 +1741,30 @@
     </Compile>
     <Compile Include="报表\远程集抄表\UCYcjcb.Designer.cs">
       <DependentUpon>UCYcjcb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="提醒\frmWarnSetEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="提醒\frmWarnSetEdit.Designer.cs">
+      <DependentUpon>frmWarnSetEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="提醒\UCWarnRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="提醒\UCWarnRecord.Designer.cs">
+      <DependentUpon>UCWarnRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="提醒\UCWarnSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="提醒\UCWarnSet.Designer.cs">
+      <DependentUpon>UCWarnSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="提醒\UCWarnRecordPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="提醒\UCWarnRecordPage.Designer.cs">
+      <DependentUpon>UCWarnRecordPage.cs</DependentUpon>
     </Compile>
     <Compile Include="线损分析\UCmLine.cs">
       <SubType>UserControl</SubType>

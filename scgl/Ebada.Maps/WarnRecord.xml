@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WarnRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="WarnRecord"  type="Ebada.Scgl.Model.WarnRecord,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="WarnRecord_AllColumns" class="WarnRecord">
+        <result property="ID" column="ID" />
+        <result property="Type" column="Type" />
+        <result property="Sequence" column="Sequence" />
+        <result property="TableName" column="TableName" />
+        <result property="FieldName" column="FieldName" />
+        <result property="WarnType" column="WarnType" />
+        <result property="Times" column="Times" />
+        <result property="WritTime" column="WritTime" />
+        <result property="LinkID" column="LinkID" />
+        <result property="Remark" column="Remark" />
+        <result property="Des" column="Des" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectWarnRecordList" resultMap="WarnRecord_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Type],
+         [Sequence],
+         [TableName],
+         [FieldName],
+         [WarnType],
+         [Times],
+         [WritTime],
+         [LinkID],
+         [Remark],
+         [Des]
+          FROM WarnRecord
+          $value$
+   </select>
+   
+   <select id="SelectWarnRecordByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Type],
+         [Sequence],
+         [TableName],
+         [FieldName],
+         [WarnType],
+         [Times],
+         [WritTime],
+         [LinkID],
+         [Remark],
+         [Des]
+          FROM WarnRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnType">[WarnType]='$WarnType$'</isNotNull>
+       <isNotNull prepend="AND" property="Times">[Times]='$Times$'</isNotNull>
+       <isNotNull prepend="AND" property="WritTime">[WritTime]='$WritTime$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkID">[LinkID]='$LinkID$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Des">[Des]='$Des$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectWarnRecordByKey" resultMap="WarnRecord_AllColumns" parameterClass="WarnRecord">
+         SELECT 
+         [ID],
+         [Type],
+         [Sequence],
+         [TableName],
+         [FieldName],
+         [WarnType],
+         [Times],
+         [WritTime],
+         [LinkID],
+         [Remark],
+         [Des]
+         FROM WarnRecord
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteWarnRecord" parameterClass="WarnRecord">
+        DELETE FROM 
+         WarnRecord
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteWarnRecordByWhere" parameterClass="string">
+     delete from WarnRecord $value$
+   </delete>
+   
+   <delete id="DeleteWarnRecordByKey" parameterClass="string">
+        DELETE FROM 
+         WarnRecord
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateWarnRecord" parameterClass="WarnRecord" resultClass="int">
+          UPDATE WarnRecord
+           SET
+             [Type]=#Type#,
+             [Sequence]=#Sequence#,
+             [TableName]=#TableName#,
+             [FieldName]=#FieldName#,
+             [WarnType]=#WarnType#,
+             [Times]=#Times#,
+             [WritTime]=#WritTime#,
+             [LinkID]=#LinkID#,
+             [Remark]=#Remark#,
+             [Des]=#Des#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertWarnRecord" parameterClass="WarnRecord">
+        INSERT INTO WarnRecord
+         (
+         [ID],
+         [Type],
+         [Sequence],
+         [TableName],
+         [FieldName],
+         [WarnType],
+         [Times],
+         [WritTime],
+         [LinkID],
+         [Remark],
+         [Des]
+         )
+       VALUES
+         (
+         #ID#,
+         #Type#,
+         #Sequence#,
+         #TableName#,
+         #FieldName#,
+         #WarnType#,
+         #Times#,
+         #WritTime#,
+         #LinkID#,
+         #Remark#,
+         #Des#
+         )
+
+   </insert>
+   
+   <select id="GetWarnRecordRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM WarnRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="TableName">[TableName]='$TableName$'</isNotNull>
+       <isNotNull prepend="AND" property="FieldName">[FieldName]='$FieldName$'</isNotNull>
+       <isNotNull prepend="AND" property="WarnType">[WarnType]='$WarnType$'</isNotNull>
+       <isNotNull prepend="AND" property="Times">[Times]='$Times$'</isNotNull>
+       <isNotNull prepend="AND" property="WritTime">[WritTime]='$WritTime$'</isNotNull>
+       <isNotNull prepend="AND" property="LinkID">[LinkID]='$LinkID$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="Des">[Des]='$Des$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetWarnRecordRowCount" parameterClass="string">
+    select count(*) from WarnRecord $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
