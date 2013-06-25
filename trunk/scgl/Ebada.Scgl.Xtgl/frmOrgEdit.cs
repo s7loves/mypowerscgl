@@ -127,6 +127,7 @@ namespace Ebada.Scgl.Xtgl
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            rowData.C1 = checkEdit1.Checked ? "是" : "否";
             newOrgCode = textEdit1.EditValue.ToString();
             int num;
             if (textEdit1.Text.Length == 3)
@@ -142,17 +143,7 @@ namespace Ebada.Scgl.Xtgl
                         }
                         else
                         {
-                            rowData.C1 = checkEdit1.Checked ? "是" : "否";
-                            //if (rowData.OrgType != "2") {
-                                //if (checkEdit1.Checked)
-                                //    rowData.C1 = "是";
-                                //else
-                                //    rowData.C1 = "否";
-                                //if (checkEdit2.Checked)
-                                //    rowData.C4 = "是";
-                                //else
-                                //    rowData.C4 = "否";
-                            //}
+                            
                             this.DialogResult = DialogResult.OK;
                         }
                     }
