@@ -99,7 +99,7 @@ namespace Ebada.Scgl.Gis {
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
             treeList1.Columns["层"].Caption = "图纸名称";
             treeList1.Columns["Layer"].Visible = false;
-            if (!"rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName))
+            if (!"rabbit赵建明管理员付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName))
             {
                 
             }
