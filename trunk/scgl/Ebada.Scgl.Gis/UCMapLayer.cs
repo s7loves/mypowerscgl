@@ -81,7 +81,8 @@ namespace TLMapPlatform {
             mTable.Rows.Add(visible, "0", "区界", "city", "0");
             treeList1.BeforeFocusNode += new BeforeFocusNodeEventHandler(treeList1_BeforeFocusNode);
             treeList1.BeforeExpand += new BeforeExpandEventHandler(treeList1_BeforeExpand);
-            if (!"rabbit赵建明付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName)) {
+            if (!"rabbit赵建明管理员付岩张发冯富玲刘振远赵忠田".Contains(Ebada.Client.Platform.MainHelper.User.UserName))
+            {
                 treeList1.Columns["编辑"].Visible = false;
                 this.treeList1.Columns["Layer"].Visible = false;
             }

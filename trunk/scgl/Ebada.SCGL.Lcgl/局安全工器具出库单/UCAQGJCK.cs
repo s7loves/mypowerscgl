@@ -169,7 +169,7 @@ namespace Ebada.Scgl.Lcgl {
             RefreshData(" where    type = '局安全工器具出库单' ");
         }
         bool canEdit {
-            get { return MainHelper.User.UserName == "赵建明"; }
+            get { return MainHelper.User.UserName == "管理员"; }
         }
         void gridViewOperation_AfterEdit(PJ_anqgjcrkd newobj) {
 
