@@ -513,6 +513,10 @@
     <EmbeddedResource Include="xxgx_ycjc.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WarnRecord.xml" />
+    <EmbeddedResource Include="WarnSet.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
