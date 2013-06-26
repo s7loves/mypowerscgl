@@ -135,6 +135,7 @@
             this.btnCancel.Location = new System.Drawing.Point(327, 135);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             // 
