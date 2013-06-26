@@ -41,8 +41,15 @@ namespace Ebada.Scgl.Yxgl
             gridViewOperation = new GridViewOperation<sdjls_dgjcjl>(gridControl1, gridView1, barManager1,new frm_Dgjc());
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<sdjls_dgjcjl>(gridViewOperation_BeforeInsert);
-           
 
+            gridViewOperation.CreatingObjectEvent += new ObjectEventHandler<sdjls_dgjcjl>(gridViewOperation_CreatingObjectEvent);
+        }
+
+        void gridViewOperation_CreatingObjectEvent(sdjls_dgjcjl obj) {
+
+            obj.OrgCode = MainHelper.User.OrgCode;
+            obj.OrgName = MainHelper.User.OrgName;
+            
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<sdjls_dgjcjl> e)
