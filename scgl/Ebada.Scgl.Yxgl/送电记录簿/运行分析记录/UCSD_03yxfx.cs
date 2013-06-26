@@ -81,38 +81,38 @@ namespace Ebada.Scgl.Yxgl
 
             InitColumns();//初始列
             InitData();//初始数据
-            List<WF_Operator> wflist2 = new List<WF_Operator>();
-            IList<WF_WorkFlow> list = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where FlowCaption like '%分析%'");
-            foreach (WF_WorkFlow wf in list)
-            {
-                IList<WF_WorkTask> list2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "' and  TaskTypeId!='2' order by TaskTypeId");
-                foreach (WF_WorkTask wt in list2)
-                {
-                    WF_Operator wfop = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", "where WorkFlowId='" + wt.WorkFlowId + "' and WorkTaskId='" + wt.WorkTaskId + "' and OperContent='all'");
-                    if (wfop == null)
-                    {
-                        wfop = new WF_Operator();
-                        wfop.OperatorId = Guid.NewGuid().ToString();
-                        wfop.OperContent = "all";
-                        wfop.Description = "所有人";
-                        wfop.OperDisplay = "所有人";
-                        wfop.WorkFlowId = wt.WorkFlowId;
-                        wfop.WorkTaskId = wt.WorkTaskId;
-                        wfop.OperType = 5;
-                        wfop.InorExclude = true;
-                        wflist2.Add(wfop);
+            //List<WF_Operator> wflist2 = new List<WF_Operator>();
+            //IList<WF_WorkFlow> list = MainHelper.PlatformSqlMap.GetList<WF_WorkFlow>("SelectWF_WorkFlowList", "where FlowCaption like '%分析%'");
+            //foreach (WF_WorkFlow wf in list)
+            //{
+            //    IList<WF_WorkTask> list2 = MainHelper.PlatformSqlMap.GetList<WF_WorkTask>("SelectWF_WorkTaskList", "where WorkFlowId='" + wf.WorkFlowId + "' and  TaskTypeId!='2' order by TaskTypeId");
+            //    foreach (WF_WorkTask wt in list2)
+            //    {
+            //        WF_Operator wfop = (WF_Operator)MainHelper.PlatformSqlMap.GetObject("SelectWF_OperatorList", "where WorkFlowId='" + wt.WorkFlowId + "' and WorkTaskId='" + wt.WorkTaskId + "' and OperContent='all'");
+            //        if (wfop == null)
+            //        {
+            //            wfop = new WF_Operator();
+            //            wfop.OperatorId = Guid.NewGuid().ToString();
+            //            wfop.OperContent = "all";
+            //            wfop.Description = "所有人";
+            //            wfop.OperDisplay = "所有人";
+            //            wfop.WorkFlowId = wt.WorkFlowId;
+            //            wfop.WorkTaskId = wt.WorkTaskId;
+            //            wfop.OperType = 5;
+            //            wfop.InorExclude = true;
+            //            wflist2.Add(wfop);
 
-                    }
-                }
+            //        }
+            //    }
             
-            }
-            if (wflist2.Count > 0) 
-            {
-                 List<SqlQueryObject> list3 = new List<SqlQueryObject>();
-                 SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
-                    list3.Add(wfobj3);
-                MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
-            }
+            //}
+            //if (wflist2.Count > 0) 
+            //{
+            //     List<SqlQueryObject> list3 = new List<SqlQueryObject>();
+            //     SqlQueryObject wfobj3 = new SqlQueryObject(SqlQueryType.Insert, wflist2.ToArray());
+            //        list3.Add(wfobj3);
+            //    MainHelper.PlatformSqlMap.ExecuteTransationUpdate(list3);
+            //}
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic;
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
@@ -193,6 +193,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            /*
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             if (picview == null)
@@ -226,7 +227,7 @@ namespace Ebada.Scgl.Yxgl
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
-           
+           */
         }
         /// <summary>
         /// 刷新数据

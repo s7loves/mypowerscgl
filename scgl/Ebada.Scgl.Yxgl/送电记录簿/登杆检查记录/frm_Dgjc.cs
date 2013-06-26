@@ -62,10 +62,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void dataBind()
         {
-            //this.cmbOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
-            //this.cmbline.DataBindings.Add("EditValue", rowData, "LineCode");
-            cmbOrg.EditValue = rowData.OrgName;
-            cmbline.EditValue = rowData.LineName;
+            this.cmbOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
+            this.cmbline.DataBindings.Add("EditValue", rowData, "LineCode");
+            //cmbOrg.EditValue = rowData.OrgName;
+            //cmbline.EditValue = rowData.LineName;
             this.cmbLineVol.DataBindings.Add("EditValue", rowData, "LineVol");
         }
 
@@ -76,14 +76,21 @@ namespace Ebada.Scgl.Yxgl
             
             if (string.IsNullOrEmpty(cmbOrg.EditValue.ToString()))
                 return;
-            string orgCode = ((Ebada.UI.Base.ListItem)(cmbOrg.EditValue)).ValueMember;
+            rowData.OrgName = cmbOrg.Text;
+            string orgCode = null;
+            if (cmbOrg.EditValue is ListItem) orgCode = ((Ebada.UI.Base.ListItem)(cmbOrg.EditValue)).ValueMember;
+            else orgCode = cmbOrg.EditValue.ToString();
+            cmbline.Properties.Items.Clear();
+            voldic.Clear();
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where OrgCode ='"+orgCode+"'");
             if (xlList == null)
                 return;
             if (xlList.Count == 0)
                 return;
+           
             foreach (sd_xl xl in xlList)
             {
+                voldic.Add(xl.LineCode, xl.LineVol);
                 ListItem item = new ListItem();
                 item.DisplayMember = xl.LineName;
                 item.ValueMember = xl.LineCode;
@@ -92,16 +99,12 @@ namespace Ebada.Scgl.Yxgl
             rowData.OrgCode = orgCode;
             rowData.OrgName = cmbOrg.Text;
         }
+        Dictionary<string, string> voldic = new Dictionary<string, string>();
         private void cmbline_EditValueChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbline.EditValue.ToString()))
-                return;
-            string lineCode = ((Ebada.UI.Base.ListItem)(this.cmbline.EditValue)).ValueMember;
-            ICollection list = new ArrayList();
-            list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select distinct lineVol from sd_xl where   LineCode='{0}' ", lineCode));
-            cmbLineVol.Properties.Items.AddRange(list);
-            rowData.LineCode = lineCode;
-            rowData.LineName = cmbline.Text;
+            if (cmbline.EditValue is ListItem) {
+                try { cmbLineVol.EditValue = voldic[((ListItem)cmbline.EditValue).ValueMember]; } catch { }
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)

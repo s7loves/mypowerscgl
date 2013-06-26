@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnnrcs_Click(object sender, EventArgs e)
         {
-            PJ_dyk dyk = SelectorHelper.SelectDyk("05反事故演习记录", "演习内容", memojlpj, memocs);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("05反事故演习记录", "结论和措施", memojlpj, memocs);
             if (dyk != null)
             {
                 rowData.jljpj = dyk.nr;
