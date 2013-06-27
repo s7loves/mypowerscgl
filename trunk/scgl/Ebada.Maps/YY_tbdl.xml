@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="YY_tbdl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="YY_tbdl"  type="Ebada.Scgl.Model.YY_tbdl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="YY_tbdl_AllColumns" class="YY_tbdl">
+        <result property="ID" column="ID" />
+        <result property="TqCode" column="TqCode" />
+        <result property="TqName" column="TqName" />
+        <result property="Month" column="Month" />
+        <result property="LastMonthValue" column="LastMonthValue" />
+        <result property="CurrtenMonthValue" column="CurrtenMonthValue" />
+        <result property="DL" column="DL" />
+        <result property="ByScol1" column="ByScol1" />
+        <result property="ByScol2" column="ByScol2" />
+        <result property="ByScol3" column="ByScol3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectYY_tbdlList" resultMap="YY_tbdl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [TqCode],
+         [TqName],
+         [Month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DL],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_tbdl
+          $value$
+   </select>
+   
+   <select id="SelectYY_tbdlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [TqCode],
+         [TqName],
+         [Month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DL],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_tbdl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TqCode">[TqCode]='$TqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="TqName">[TqName]='$TqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Month">[Month]='$Month$'</isNotNull>
+       <isNotNull prepend="AND" property="LastMonthValue">[LastMonthValue]='$LastMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenMonthValue">[CurrtenMonthValue]='$CurrtenMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="DL">[DL]='$DL$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectYY_tbdlByKey" resultMap="YY_tbdl_AllColumns" parameterClass="YY_tbdl">
+         SELECT 
+         [ID],
+         [TqCode],
+         [TqName],
+         [Month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DL],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         FROM YY_tbdl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteYY_tbdl" parameterClass="YY_tbdl">
+        DELETE FROM 
+         YY_tbdl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteYY_tbdlByWhere" parameterClass="string">
+     delete from YY_tbdl $value$
+   </delete>
+   
+   <delete id="DeleteYY_tbdlByKey" parameterClass="string">
+        DELETE FROM 
+         YY_tbdl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateYY_tbdl" parameterClass="YY_tbdl" resultClass="int">
+          UPDATE YY_tbdl
+           SET
+             [TqCode]=#TqCode#,
+             [TqName]=#TqName#,
+             [Month]=#Month#,
+             [LastMonthValue]=#LastMonthValue#,
+             [CurrtenMonthValue]=#CurrtenMonthValue#,
+             [DL]=#DL#,
+             [ByScol1]=#ByScol1#,
+             [ByScol2]=#ByScol2#,
+             [ByScol3]=#ByScol3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertYY_tbdl" parameterClass="YY_tbdl">
+        INSERT INTO YY_tbdl
+         (
+         [ID],
+         [TqCode],
+         [TqName],
+         [Month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DL],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         )
+       VALUES
+         (
+         #ID#,
+         #TqCode#,
+         #TqName#,
+         #Month#,
+         #LastMonthValue#,
+         #CurrtenMonthValue#,
+         #DL#,
+         #ByScol1#,
+         #ByScol2#,
+         #ByScol3#
+         )
+
+   </insert>
+   
+   <select id="GetYY_tbdlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM YY_tbdl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TqCode">[TqCode]='$TqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="TqName">[TqName]='$TqName$'</isNotNull>
+       <isNotNull prepend="AND" property="Month">[Month]='$Month$'</isNotNull>
+       <isNotNull prepend="AND" property="LastMonthValue">[LastMonthValue]='$LastMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenMonthValue">[CurrtenMonthValue]='$CurrtenMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="DL">[DL]='$DL$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetYY_tbdlRowCount" parameterClass="string">
+    select count(*) from YY_tbdl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

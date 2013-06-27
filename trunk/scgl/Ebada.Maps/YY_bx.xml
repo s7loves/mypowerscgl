@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="YY_bx" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="YY_bx"  type="Ebada.Scgl.Model.YY_bx,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="YY_bx_AllColumns" class="YY_bx">
+        <result property="ID" column="ID" />
+        <result property="TqCode" column="TqCode" />
+        <result property="BxCode" column="BxCode" />
+        <result property="Type" column="Type" />
+        <result property="XB" column="XB" />
+        <result property="Address" column="Address" />
+        <result property="ByScol1" column="ByScol1" />
+        <result property="ByScol2" column="ByScol2" />
+        <result property="ByScol3" column="ByScol3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectYY_bxList" resultMap="YY_bx_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [TqCode],
+         [BxCode],
+         [Type],
+         [XB],
+         [Address],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_bx
+          $value$
+   </select>
+   
+   <select id="SelectYY_bxByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [TqCode],
+         [BxCode],
+         [Type],
+         [XB],
+         [Address],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_bx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TqCode">[TqCode]='$TqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="BxCode">[BxCode]='$BxCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="XB">[XB]='$XB$'</isNotNull>
+       <isNotNull prepend="AND" property="Address">[Address]='$Address$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectYY_bxByKey" resultMap="YY_bx_AllColumns" parameterClass="YY_bx">
+         SELECT 
+         [ID],
+         [TqCode],
+         [BxCode],
+         [Type],
+         [XB],
+         [Address],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         FROM YY_bx
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteYY_bx" parameterClass="YY_bx">
+        DELETE FROM 
+         YY_bx
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteYY_bxByWhere" parameterClass="string">
+     delete from YY_bx $value$
+   </delete>
+   
+   <delete id="DeleteYY_bxByKey" parameterClass="string">
+        DELETE FROM 
+         YY_bx
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateYY_bx" parameterClass="YY_bx" resultClass="int">
+          UPDATE YY_bx
+           SET
+             [TqCode]=#TqCode#,
+             [BxCode]=#BxCode#,
+             [Type]=#Type#,
+             [XB]=#XB#,
+             [Address]=#Address#,
+             [ByScol1]=#ByScol1#,
+             [ByScol2]=#ByScol2#,
+             [ByScol3]=#ByScol3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertYY_bx" parameterClass="YY_bx">
+        INSERT INTO YY_bx
+         (
+         [ID],
+         [TqCode],
+         [BxCode],
+         [Type],
+         [XB],
+         [Address],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         )
+       VALUES
+         (
+         #ID#,
+         #TqCode#,
+         #BxCode#,
+         #Type#,
+         #XB#,
+         #Address#,
+         #ByScol1#,
+         #ByScol2#,
+         #ByScol3#
+         )
+
+   </insert>
+   
+   <select id="GetYY_bxRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM YY_bx
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TqCode">[TqCode]='$TqCode$'</isNotNull>
+       <isNotNull prepend="AND" property="BxCode">[BxCode]='$BxCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="XB">[XB]='$XB$'</isNotNull>
+       <isNotNull prepend="AND" property="Address">[Address]='$Address$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetYY_bxRowCount" parameterClass="string">
+    select count(*) from YY_bx $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

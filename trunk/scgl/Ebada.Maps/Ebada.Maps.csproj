@@ -517,6 +517,14 @@
     <EmbeddedResource Include="WarnSet.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="YY_bx.xml" />
+    <EmbeddedResource Include="YY_lineckbdl.xml" />
+    <EmbeddedResource Include="YY_tbdl.xml" />
+    <EmbeddedResource Include="YY_tq.xml" />
+    <EmbeddedResource Include="YY_user.xml" />
+    <EmbeddedResource Include="YY_userdata.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
