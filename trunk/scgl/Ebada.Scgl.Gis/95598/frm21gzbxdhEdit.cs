@@ -77,11 +77,11 @@ namespace Ebada.Scgl.Gis
                 this.comboBoxEdit3.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit4.Properties.Items.AddRange(ryList);
             }
-            ryList = ComboBoxHelper.Getbtq(rowData.OrgCode);
-            if (ryList.Count > 0)
-            {
-                comboBoxEdit1.Properties.Items.AddRange(ryList);
-            }
+            //ryList = ComboBoxHelper.Getbtq(rowData.OrgCode);
+            //if (ryList.Count > 0)
+            //{
+            //    comboBoxEdit1.Properties.Items.AddRange(ryList);
+            //}
 
             //ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
             

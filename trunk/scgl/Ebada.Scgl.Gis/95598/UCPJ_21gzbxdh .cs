@@ -163,11 +163,11 @@ namespace Ebada.Scgl.Gis
         void gridViewOperation_CreatingObjectEvent(PJ_21gzbxdh newobj)
         {
             if (parentID == null) return;
+            newobj.rq = DateTime.Today;
             newobj.OrgCode = parentID;
             newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
-            Ebada.Core.UserBase m_UserBase = MainHelper.ValidateLogin();
-            newobj.CreateMan = m_UserBase.RealName;
+            newobj.CreateMan = MainHelper.User.UserName;
         }
         /// <summary>
         /// 父表ID

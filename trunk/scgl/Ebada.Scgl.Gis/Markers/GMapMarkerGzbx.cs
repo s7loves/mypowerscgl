@@ -66,6 +66,7 @@ namespace Ebada.Scgl.Gis.Markers {
         void item_属性(object sender, EventArgs e) {
 
             frm21gzbxdhEdit dlg = new frm21gzbxdhEdit();
+            dlg.OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(dlg_OnBeginLocation);
             dlg.RowData = Tag as PJ_21gzbxdh;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 Tag = dlg.RowData;
@@ -73,6 +74,24 @@ namespace Ebada.Scgl.Gis.Markers {
                 RefreshToolText();
             }
         }
-        
+
+        void dlg_OnBeginLocation(PJ_21gzbxdh obj) {
+            PointOverLay lay = this.Overlay as PointOverLay;
+            if (lay != null) {
+                frmMapCar95 frm = lay.MapControl.FindForm() as frmMapCar95;
+                if (frm != null) {
+                    frm.OnBeginLocation(obj);
+                }
+            }
+        }
+        public override void Update() {
+            PointOverLay lay = this.Overlay as PointOverLay;
+            if (lay != null && lay.AllowEdit) {
+                PJ_21gzbxdh org = this.Tag as PJ_21gzbxdh;
+                org.wd = this.Position.Lat;
+                org.jd = this.Position.Lng;
+                Client.ClientHelper.PlatformSqlMap.Update<PJ_21gzbxdh>(org);
+            }
+        }
     }
 }
