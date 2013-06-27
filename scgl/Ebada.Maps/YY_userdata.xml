@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="YY_userdata" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="YY_userdata"  type="Ebada.Scgl.Model.YY_userdata,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="YY_userdata_AllColumns" class="YY_userdata">
+        <result property="ID" column="ID" />
+        <result property="UserCode" column="UserCode" />
+        <result property="UserName" column="UserName" />
+        <result property="Type" column="Type" />
+        <result property="month" column="month" />
+        <result property="LastMonthValue" column="LastMonthValue" />
+        <result property="CurrtenMonthValue" column="CurrtenMonthValue" />
+        <result property="DoubleNumber" column="DoubleNumber" />
+        <result property="ChangeDL" column="ChangeDL" />
+        <result property="DL" column="DL" />
+        <result property="DCharge" column="DCharge" />
+        <result property="ByScol1" column="ByScol1" />
+        <result property="ByScol2" column="ByScol2" />
+        <result property="ByScol3" column="ByScol3" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectYY_userdataList" resultMap="YY_userdata_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserCode],
+         [UserName],
+         [Type],
+         [month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DoubleNumber],
+         [ChangeDL],
+         [DL],
+         [DCharge],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_userdata
+          $value$
+   </select>
+   
+   <select id="SelectYY_userdataByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserCode],
+         [UserName],
+         [Type],
+         [month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DoubleNumber],
+         [ChangeDL],
+         [DL],
+         [DCharge],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+          FROM YY_userdata
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="month">[month]='$month$'</isNotNull>
+       <isNotNull prepend="AND" property="LastMonthValue">[LastMonthValue]='$LastMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenMonthValue">[CurrtenMonthValue]='$CurrtenMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="DoubleNumber">[DoubleNumber]='$DoubleNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="ChangeDL">[ChangeDL]='$ChangeDL$'</isNotNull>
+       <isNotNull prepend="AND" property="DL">[DL]='$DL$'</isNotNull>
+       <isNotNull prepend="AND" property="DCharge">[DCharge]='$DCharge$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectYY_userdataByKey" resultMap="YY_userdata_AllColumns" parameterClass="YY_userdata">
+         SELECT 
+         [ID],
+         [UserCode],
+         [UserName],
+         [Type],
+         [month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DoubleNumber],
+         [ChangeDL],
+         [DL],
+         [DCharge],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         FROM YY_userdata
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteYY_userdata" parameterClass="YY_userdata">
+        DELETE FROM 
+         YY_userdata
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteYY_userdataByWhere" parameterClass="string">
+     delete from YY_userdata $value$
+   </delete>
+   
+   <delete id="DeleteYY_userdataByKey" parameterClass="string">
+        DELETE FROM 
+         YY_userdata
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateYY_userdata" parameterClass="YY_userdata" resultClass="int">
+          UPDATE YY_userdata
+           SET
+             [UserCode]=#UserCode#,
+             [UserName]=#UserName#,
+             [Type]=#Type#,
+             [month]=#month#,
+             [LastMonthValue]=#LastMonthValue#,
+             [CurrtenMonthValue]=#CurrtenMonthValue#,
+             [DoubleNumber]=#DoubleNumber#,
+             [ChangeDL]=#ChangeDL#,
+             [DL]=#DL#,
+             [DCharge]=#DCharge#,
+             [ByScol1]=#ByScol1#,
+             [ByScol2]=#ByScol2#,
+             [ByScol3]=#ByScol3#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertYY_userdata" parameterClass="YY_userdata">
+        INSERT INTO YY_userdata
+         (
+         [ID],
+         [UserCode],
+         [UserName],
+         [Type],
+         [month],
+         [LastMonthValue],
+         [CurrtenMonthValue],
+         [DoubleNumber],
+         [ChangeDL],
+         [DL],
+         [DCharge],
+         [ByScol1],
+         [ByScol2],
+         [ByScol3]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserCode#,
+         #UserName#,
+         #Type#,
+         #month#,
+         #LastMonthValue#,
+         #CurrtenMonthValue#,
+         #DoubleNumber#,
+         #ChangeDL#,
+         #DL#,
+         #DCharge#,
+         #ByScol1#,
+         #ByScol2#,
+         #ByScol3#
+         )
+
+   </insert>
+   
+   <select id="GetYY_userdataRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM YY_userdata
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserCode">[UserCode]='$UserCode$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="month">[month]='$month$'</isNotNull>
+       <isNotNull prepend="AND" property="LastMonthValue">[LastMonthValue]='$LastMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenMonthValue">[CurrtenMonthValue]='$CurrtenMonthValue$'</isNotNull>
+       <isNotNull prepend="AND" property="DoubleNumber">[DoubleNumber]='$DoubleNumber$'</isNotNull>
+       <isNotNull prepend="AND" property="ChangeDL">[ChangeDL]='$ChangeDL$'</isNotNull>
+       <isNotNull prepend="AND" property="DL">[DL]='$DL$'</isNotNull>
+       <isNotNull prepend="AND" property="DCharge">[DCharge]='$DCharge$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol1">[ByScol1]='$ByScol1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol2">[ByScol2]='$ByScol2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByScol3">[ByScol3]='$ByScol3$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetYY_userdataRowCount" parameterClass="string">
+    select count(*) from YY_userdata $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -319,6 +319,12 @@
     <Compile Include="xxgx_aqxpj.cs" />
     <Compile Include="xxgx_sbnb.cs" />
     <Compile Include="xxgx_ycjc.cs" />
+    <Content Include="YY_bx.cs" />
+    <Content Include="YY_lineckbdl.cs" />
+    <Content Include="YY_tbdl.cs" />
+    <Content Include="YY_tq.cs" />
+    <Content Include="YY_user.cs" />
+    <Content Include="YY_userdata.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
