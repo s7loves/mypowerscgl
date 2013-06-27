@@ -13,6 +13,11 @@ namespace Ebada.Scgl.Gis {
     public class PointOverLay : GMapOverlay, IUpdateable, IPopuMenu {
 
         private GMapControl control;
+
+        public GMapControl MapControl {
+            get { return control; }
+            set { control = value; }
+        }
         private bool allowEdit;
         ContextMenu contextMenu;
         GMapMarker selectedMarker;

@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Gis {
             bxdh = new UCPJ_21gzbxdh();
             bxdh.Dock = DockStyle.Fill;
             dockPanel2_Container.Controls.Add(bxdh);
-            bxdh.OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(bxdh_OnBeginLocation);
+            bxdh.OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(OnBeginLocation);
             this.WindowState = FormWindowState.Maximized;
             btGzdj.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Gis {
             public double lat;
             public double lng;
         }
-        void bxdh_OnBeginLocation(PJ_21gzbxdh obj) {
+        public void OnBeginLocation(PJ_21gzbxdh obj) {
 
             string url = gpsUrl + "/GetLocation/" + obj.yhdz;
             try {
@@ -173,7 +173,7 @@ namespace Ebada.Scgl.Gis {
         private void addgzMark(location loca, PJ_21gzbxdh obj) {
             //添加故障点
             obj.jd = 0;
-            addgzMark(new PointLatLng(loca.lat, loca.lng), obj);
+            addgzMark(new PointLatLng(loca.lat-offPoint.Lat, loca.lng-offPoint.Lng), obj);
             
         }
 
@@ -213,7 +213,7 @@ namespace Ebada.Scgl.Gis {
         DateTime lastDatetime;
         Dictionary<int, Markers.GMapMarkerCar> carDic = new Dictionary<int, Ebada.Scgl.Gis.Markers.GMapMarkerCar>();
         GMapOverlay carLay;
-        GMapOverlay gzwzLay;//故障位置层
+        PointOverLay gzwzLay;//故障位置层
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
             mapview.FullView();
@@ -227,6 +227,7 @@ namespace Ebada.Scgl.Gis {
                 rMap1.Overlays.Add(carLay);
                 freshPosition();
                 gzwzLay = new PointOverLay(rMap1, "gzwz");
+                gzwzLay.AllowEdit = true;
                 rMap1.Overlays.Add(gzwzLay);
 
                 freshGzwz();
@@ -273,10 +274,11 @@ namespace Ebada.Scgl.Gis {
                 if (pos.date > lastDatetime) lastDatetime = pos.date;
             }
         }
+        static PointLatLng offPoint = new PointLatLng(-.0080283, -.0126086);
         private void showMark(v_position_now pos) {
             if (carDic.ContainsKey(pos.device_id)) {
                 GMapMarkerCar car = carDic[pos.device_id];
-                car.Position = new GMap.NET.PointLatLng(pos.lat - .0080283, pos.lng - .0126086);
+                car.Position =  new GMap.NET.PointLatLng(pos.lat - .0080283, pos.lng - .0126086);
             } else {
                 GMapMarkerCar car = new GMapMarkerCar(new GMap.NET.PointLatLng(pos.lat-.0080283, pos.lng-.0126086));
                 if (pos.carrier_type == "人员") {
