@@ -79,15 +79,16 @@ namespace Ebada.Scgl.Gis.Gps
                 MsgBox.ShowWarningMessageBox("请填写车牌号!");
                 return;
             }
-            if (IsTelephone(txtphone.EditValue.ToString()) || IsHandset(txtphone.EditValue.ToString())||string.IsNullOrEmpty(txtphone.EditValue.ToString()))
-            {
-                this.DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                MsgBox.ShowWarningMessageBox("请填写正确的联系方式");
-                return;
-            }
+            this.DialogResult = DialogResult.OK;
+            //if (IsTelephone(txtphone.EditValue.ToString()) || IsHandset(txtphone.EditValue.ToString())||string.IsNullOrEmpty(txtphone.EditValue.ToString()))
+            //{
+            //    this.DialogResult = DialogResult.OK;
+            //}
+            //else
+            //{
+            //    MsgBox.ShowWarningMessageBox("请填写正确的联系方式");
+            //    return;
+            //}
         }
 
         public bool IsTelephone(string str_telephone)

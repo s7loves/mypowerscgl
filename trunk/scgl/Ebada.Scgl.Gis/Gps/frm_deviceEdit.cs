@@ -144,16 +144,17 @@ namespace Ebada.Scgl.Gis.Gps
             }
             if (lkuezttype.EditValue != null)
                 rowData.c2 = lkuezttype.EditValue.ToString();
-            if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString())||string.IsNullOrEmpty(txtphone_number.EditValue.ToString()))
-            {
+            this.DialogResult = DialogResult.OK;
+            //if (IsTelephone(txtphone_number.EditValue.ToString()) || IsHandset(txtphone_number.EditValue.ToString())||string.IsNullOrEmpty(txtphone_number.EditValue.ToString()))
+            //{
                 
-                this.DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                MsgBox.ShowWarningMessageBox("请填写正确的联系方式!");
-                return;
-            }
+            //    this.DialogResult = DialogResult.OK;
+            //}
+            //else
+            //{
+            //    MsgBox.ShowWarningMessageBox("请填写正确的联系方式!");
+            //    return;
+            //}
         }
 
         private void frm_deviceEdit_Load(object sender, EventArgs e)
