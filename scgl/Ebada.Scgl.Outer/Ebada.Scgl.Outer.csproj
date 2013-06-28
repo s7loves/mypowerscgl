@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{865AA81D-02C6-4563-8562-6A77E93DAE73}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ebada.Scgl.Outer</RootNamespace>
     <AssemblyName>Ebada.Scgl.Outer</AssemblyName>
@@ -54,9 +54,12 @@
       <HintPath>..\Library\Interop.DBATLLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -115,6 +118,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdateSerice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateSerice.Designer.cs">
+      <DependentUpon>UpdateSerice.cs</DependentUpon>
+    </Compile>
     <Compile Include="仿真flash\frmFlashPlay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +151,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="营销系统接口\Form1Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="营销系统接口\Form1Test.Designer.cs">
+      <DependentUpon>Form1Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="营销系统接口\OraHelper.cs" />
+    <Compile Include="营销系统接口\SqlServerHelper.cs" />
+    <Compile Include="营销系统接口\UpdateLog.cs" />
+    <Compile Include="营销系统接口\YYUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="仿真变电站.swf">
@@ -154,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UpdateSerice.resx">
+      <DependentUpon>UpdateSerice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="仿真flash\frmFlashPlay.resx">
       <DependentUpon>frmFlashPlay.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -169,6 +191,9 @@
     <EmbeddedResource Include="智能开关\frmSetup.resx">
       <DependentUpon>frmSetup.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="营销系统接口\Form1Test.resx">
+      <DependentUpon>Form1Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +213,9 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
