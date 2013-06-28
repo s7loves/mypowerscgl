@@ -3,14 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{865AA81D-02C6-4563-8562-6A77E93DAE73}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ebada.Scgl.Outer</RootNamespace>
     <AssemblyName>Ebada.Scgl.Outer</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
     </StartupObject>
@@ -55,10 +55,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -118,10 +123,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpdateSerice.cs">
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UpdateSerice.Designer.cs">
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sertest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="sertest.Designer.cs">
+      <DependentUpon>sertest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="营销系统接口\UpdateSerice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="营销系统接口\UpdateSerice.Designer.cs">
       <DependentUpon>UpdateSerice.cs</DependentUpon>
     </Compile>
     <Compile Include="仿真flash\frmFlashPlay.cs">
@@ -149,14 +167,7 @@
     <Compile Include="智能开关\frmSetup.Designer.cs">
       <DependentUpon>frmSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="营销系统接口\Form1Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="营销系统接口\Form1Test.Designer.cs">
-      <DependentUpon>Form1Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="营销系统接口\OraHelper.cs" />
     <Compile Include="营销系统接口\SqlServerHelper.cs" />
     <Compile Include="营销系统接口\UpdateLog.cs" />
@@ -172,9 +183,14 @@
     <Content Include="外部接口工程.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="UpdateSerice.resx">
+    <EmbeddedResource Include="营销系统接口\UpdateSerice.resx">
       <DependentUpon>UpdateSerice.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="仿真flash\frmFlashPlay.resx">
       <DependentUpon>frmFlashPlay.cs</DependentUpon>
@@ -191,9 +207,6 @@
     <EmbeddedResource Include="智能开关\frmSetup.resx">
       <DependentUpon>frmSetup.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="营销系统接口\Form1Test.resx">
-      <DependentUpon>Form1Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

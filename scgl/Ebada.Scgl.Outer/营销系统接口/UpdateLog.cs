@@ -54,7 +54,7 @@ namespace Ebada.Scgl.Outer
         public static void WriteTxt(string str, string txtname)
         {
             DeleteFile(txtname);
-            FileStream fs = new FileStream(BaseName + txtname, FileMode.Open);
+            FileStream fs = new FileStream(BaseName + txtname, FileMode.OpenOrCreate);
             StreamWriter sw = new StreamWriter(fs);
             sw.Write(str);
             sw.Close();
