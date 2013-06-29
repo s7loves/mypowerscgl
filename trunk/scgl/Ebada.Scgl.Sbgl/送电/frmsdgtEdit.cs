@@ -112,25 +112,54 @@ namespace Ebada.Scgl.Sbgl
                 setImage();
             }
         }
-
+        public string tempID = null;
+        private PS_Image temp35Image = null;
+        private const string temp35gtid = "1111111112";
+        private void gettemp() {
+            if (temp35Image != null) return;
+            sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(temp35gtid);
+            if (gt != null)
+                temp35Image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(gt.ImageID);
+            if (temp35Image != null) tempID = temp35Image.ImageID;
+        }
         private void setImage() {
             pictureEdit1.EditValue = null;
             imageData = null;
+            image = null;
+            tempID = null;
+            gettemp();
             if (string.IsNullOrEmpty(rowData.ImageID)) {
                 string gtid="0000000002";//
                 sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + rowData.LineCode + "'");
                 if (xl == null) return;
-                if (xl.LineVol == "35")
-                    gtid = "1111111112";
+                if (xl.LineVol == "35") {
+                    if (temp35Image != null) {
+                        pictureEdit1.EditValue = temp35Image.ImageData;
+                    }
+                    imageData = null;
+                    return;
+                }
+                    gtid = temp35gtid;
                //PS_gt gt=  Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>("where linecode='"+rowData.LineCode+"' and gtModle='直线杆' and len(imageid)>6 order by gtcode");
                 sd_gt gt = Client.ClientHelper.PlatformSqlMap.GetOneByKey<sd_gt>(gtid);
                 if(gt!=null)
                     image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(gt.ImageID);
+                if (image != null) {
+                    //tempID = image.ImageID;
+                    pictureEdit1.EditValue = image.ImageData;
+                    image = null;//模板杆塔时需清空，要不会更新模板
+                }
             } else {
                 image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.ImageID);
+                
+                if (image != null)
+                    pictureEdit1.EditValue = image.ImageData;
+                if (rowData.ImageID == tempID && rowData.gtID != "1111111112") {
+                    rowData.ImageID = "";
+                    image = null;
+                }
             }
-            if (image != null)
-                pictureEdit1.EditValue = image.ImageData;
+            
             
             imageData = null;
         }

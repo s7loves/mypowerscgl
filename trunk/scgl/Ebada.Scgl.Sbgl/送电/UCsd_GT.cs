@@ -79,10 +79,13 @@ namespace Ebada.Scgl.Sbgl
                     }
                    
                 } else {
-                    image = new PS_Image() { ImageID = gt.ImageID };
+                    //image = new PS_Image() { ImageID = gt.ImageID };
                     //Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, e.Value, image);
-                    Client.ClientHelper.PlatformSqlMap.Update<sd_gt>(e.Value);
-                    Client.ClientHelper.PlatformSqlMap.Delete<PS_Image>(gt.ImageID);
+                    if (!string.IsNullOrEmpty(gt.ImageID)) {
+                        gt.ImageID = "";
+                        Client.ClientHelper.PlatformSqlMap.Update<sd_gt>(gt);
+                        Client.ClientHelper.PlatformSqlMap.Delete<PS_Image>(gt.ImageID);
+                    }
                 }
 
                 Ebada.Core.ConvertHelper.CopyTo(gt, e.ValueOld);
