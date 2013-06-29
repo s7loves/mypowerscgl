@@ -165,8 +165,8 @@ namespace Ebada.Scgl.Sbgl
         }
         PS_Image image = null;
         public PS_Image GetPS_Image() {
-            if (image != null && imageData!=null)
-                image.ImageData =(byte[]) imageData;
+            if (image != null && GetImage()!=null)
+                image.ImageData =(byte[]) GetImage();
             return image;
         }
 
@@ -261,7 +261,7 @@ namespace Ebada.Scgl.Sbgl
         object imageData;
         public object GetImage() {
 
-            return imageData;
+            return pictureEdit1.EditValue;
         }
         private void Rotate90() {
             byte[] buff = (byte[])pictureEdit1.EditValue;
