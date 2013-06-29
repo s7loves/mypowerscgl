@@ -31,7 +31,8 @@ namespace Ebada.SCGL {
 
             helpitem = new BarButtonItem(barManager1, "帮助");
             InitHelp();
-
+            if(MainHelper.User.UserName!="rabbit")
+            dockPanel1.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
             Text += string.Format("-{0}生产管理系统",MainHelper.UserCompany);
         }
         #region Skins
