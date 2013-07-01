@@ -98,10 +98,15 @@ namespace Ebada.Scgl.Yxgl
         private void btnnrcs_Click(object sender, EventArgs e)
         {
             PJ_dyk dyk = SelectorHelper.SelectDyk("05反事故演习记录", "结论和措施", memojlpj, memocs);
+
             if (dyk != null)
             {
                 rowData.jljpj = dyk.nr;
                 rowData.ndcs = dyk.nr2;
+            }
+            else
+            {
+                MsgBox.ShowWarningMessageBox("无相关信息,请在短语库维护模块中填写：05反事故演习记录|结论和措施 信息");
             }
         }
 
