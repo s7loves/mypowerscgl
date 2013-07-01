@@ -84,12 +84,14 @@ namespace Ebada.Scgl.Yxgl
             //else orgCode = cmbOrg.EditValue.ToString();
             else orgCode = rowData.OrgCode;
             voldic.Clear();
+            cmbline.Properties.Items.Clear();
+            cmbLineVol.EditValue = null;
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where OrgCode ='"+orgCode+"'");
             if (xlList == null)
                 return;
             if (xlList.Count == 0)
                 return;
-            cmbline.Properties.Items.Clear();
+           
             foreach (sd_xl xl in xlList)
             {
                 voldic.Add(xl.LineCode, xl.LineVol);
@@ -150,6 +152,7 @@ namespace Ebada.Scgl.Yxgl
             this.cmbOrg.EditValue = rowData.OrgName;
             this.cmbline.EditValue = rowData.LineName;
             this.cmbLineVol.EditValue = rowData.LineVol;
+            this.cmbline.Properties.Items.Clear();
         }
     }
 }
