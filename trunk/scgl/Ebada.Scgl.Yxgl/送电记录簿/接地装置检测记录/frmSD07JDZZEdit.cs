@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl {
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土质", comboBoxEdit7.Properties);
             ComboBoxHelper.FillCBoxByDyk("07接地装置检测记录", "土壤电阻率", comboBoxEdit8.Properties);
 
-            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + parentID + "'and linevol='10'");
+            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + parentID + "' and ParentID='0'");
             lineTable = Ebada.Core.ConvertHelper.ToDataTable((IList)xlList, typeof(sd_xl));
            
             comboBoxEdit10.Properties.Items.Clear();
@@ -233,13 +233,13 @@ namespace Ebada.Scgl.Yxgl {
                 xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linename='" + comboBoxEdit10.Text + "'");
                 if (xl != null) {
                     list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                        "select linename from sd_xl where ParentID='" + xl.LineID + "'");
+                        "select linename from sd_xl where ParentID='" + xl.LineID + "' and parentid!='0'");
                     comboBoxEdit11.Properties.Items.AddRange(list);
                    
                 }
 
             } else {
-                IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from sd_xl where xlpy like '" + comboBoxEdit10.Text + "%'");
+                IList list = MainHelper.PlatformSqlMap.GetList("SelectOneStr", "select LineName  from sd_xl where xlpy like '" + comboBoxEdit10.Text + "%' and parentID='0'");
                 if (list.Count > 0) {
                     comboBoxEdit10.Properties.Items.Clear();
                     comboBoxEdit10.Properties.Items.AddRange(list);
