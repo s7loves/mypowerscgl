@@ -12,12 +12,8 @@ namespace Ebada.Scgl.Outer
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-			{ 
-				new sertest()
-			};
-            ServiceBase.Run(ServicesToRun);
+            YYUpdate ydate = new YYUpdate();
+            ydate.UpdateUserTable();
         }
     }
 }

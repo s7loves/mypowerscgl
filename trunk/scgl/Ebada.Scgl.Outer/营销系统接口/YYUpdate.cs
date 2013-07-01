@@ -180,7 +180,7 @@ namespace Ebada.Scgl.Outer
             Dictionary<string, string> dic = new Dictionary<string, string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (dic.ContainsKey(dt.Rows[i][fieldname].ToString()))
+                if (!dic.ContainsKey(dt.Rows[i][fieldname].ToString()))
                 {
                     dic.Add(dt.Rows[i][fieldname].ToString(), dt.Rows[i][fieldname].ToString());
                 }
