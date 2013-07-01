@@ -223,7 +223,7 @@ namespace Ebada.Scgl.Yxgl
 
                 this.picview.VisibleIndex = 2;
                 picview.FieldName = "Image";
-                gridView1.Columns.Add(picview);
+                //gridView1.Columns.Add(picview);
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
