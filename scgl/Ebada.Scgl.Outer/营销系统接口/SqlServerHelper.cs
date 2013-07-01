@@ -372,7 +372,7 @@ namespace Ebada.Scgl.Outer
                {
                    str = str.Substring(0, str.Length - 1);
                }
-               str += " where [" + fieldkey + "]=" + fieldkey;
+               str += " where [" + fieldkey + "]=@" + fieldkey;
                foreach (DataRow dr in dt.Rows)
                {
                    try
