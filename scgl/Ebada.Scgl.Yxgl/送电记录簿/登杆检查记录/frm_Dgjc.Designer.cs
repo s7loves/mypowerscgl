@@ -82,7 +82,6 @@
             this.cmbLineVol.Name = "cmbLineVol";
             this.cmbLineVol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            
             this.cmbLineVol.Size = new System.Drawing.Size(302, 21);
             this.cmbLineVol.TabIndex = 5;
             // 
@@ -100,8 +99,8 @@
             this.cmbline.Name = "cmbline";
             this.cmbline.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbline.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbline.Size = new System.Drawing.Size(302, 21);
-            cmbline.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbline.TabIndex = 3;
             this.cmbline.EditValueChanged += new System.EventHandler(this.cmbline_EditValueChanged);
             // 
@@ -146,6 +145,7 @@
             this.Name = "frm_Dgjc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "等杆检查";
+            this.Load += new System.EventHandler(this.frm_Dgjc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmbOrg.Properties)).EndInit();
             this.grpdgjc.ResumeLayout(false);
             this.grpdgjc.PerformLayout();

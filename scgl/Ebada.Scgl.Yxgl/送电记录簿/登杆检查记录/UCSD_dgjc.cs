@@ -47,8 +47,8 @@ namespace Ebada.Scgl.Yxgl
 
         void gridViewOperation_CreatingObjectEvent(sdjls_dgjcjl obj) {
 
-            obj.OrgCode = MainHelper.User.OrgCode;
-            obj.OrgName = MainHelper.User.OrgName;
+            //obj.OrgCode = MainHelper.User.OrgCode;
+            //obj.OrgName = MainHelper.User.OrgName;
             
         }
 
