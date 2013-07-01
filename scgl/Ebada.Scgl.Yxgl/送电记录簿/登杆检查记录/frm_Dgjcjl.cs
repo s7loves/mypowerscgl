@@ -96,6 +96,8 @@ namespace Ebada.Scgl.Yxgl
             {
                 this.lblqxdj.Visible = false;
                 this.cmbqxdj.Visible = false;
+                this.cmbqxdj.EditValue = null;
+               
             }
         }
 
@@ -108,6 +110,10 @@ namespace Ebada.Scgl.Yxgl
                     MsgBox.ShowWarningMessageBox("请选择缺陷等级!");
                     return;
                 }
+            }
+            else
+            {
+                rowData.qxdj = string.Empty;
             }
             
             sd_xl xl= Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>("where LineCode='" + rowData.c1 + "'");
