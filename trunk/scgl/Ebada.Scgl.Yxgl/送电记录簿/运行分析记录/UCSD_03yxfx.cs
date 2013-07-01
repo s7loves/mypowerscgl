@@ -193,7 +193,7 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
-            /*
+            
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             if (picview == null)
@@ -227,7 +227,7 @@ namespace Ebada.Scgl.Yxgl
                 ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
                 ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             }
-           */
+           
         }
         /// <summary>
         /// 刷新数据

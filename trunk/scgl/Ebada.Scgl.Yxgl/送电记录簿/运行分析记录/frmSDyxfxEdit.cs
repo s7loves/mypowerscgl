@@ -328,7 +328,7 @@ namespace Ebada.Scgl.Yxgl
                 gzr.gznr = yxfx.hydd + "运行分析-" + yxfx.type;
                 gzr.fzr = yxfx.zcr;
                 gzr.fssj = yxfx.rq;
-                string[] ss = yxfx.cjry.Split(';');
+                string[] ss = yxfx.cjry.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                 if (ss.Length >= 1)
                 {
 
@@ -340,11 +340,6 @@ namespace Ebada.Scgl.Yxgl
                 {
                     gzr.cjry = gzr.fzr;
                 }
-
-
-
-
-
                 MainHelper.PlatformSqlMap.Create<sdjl_gzrjnr>(gzr);
                 MainHelper.PlatformSqlMap.Create<sdjl_03yxfx>(yxfx);
             }
