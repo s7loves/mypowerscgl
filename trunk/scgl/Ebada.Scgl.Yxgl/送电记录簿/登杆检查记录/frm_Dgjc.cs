@@ -45,6 +45,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                     ConvertHelper.CopyTo<sdjls_dgjcjl>(value as sdjls_dgjcjl, rowData);
                 }
+                
             }
         }
 
@@ -62,11 +63,11 @@ namespace Ebada.Scgl.Yxgl
 
         private void dataBind()
         {
-            this.cmbOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
-            this.cmbline.DataBindings.Add("EditValue", rowData, "LineCode");
-            //cmbOrg.EditValue = rowData.OrgName;
-            //cmbline.EditValue = rowData.LineName;
-            this.cmbLineVol.DataBindings.Add("EditValue", rowData, "LineVol");
+            //this.cmbOrg.DataBindings.Add("EditValue", rowData, "OrgCode");
+            //this.cmbline.DataBindings.Add("EditValue", rowData, "LineCode");
+            ////cmbOrg.EditValue = rowData.OrgName;
+            ////cmbline.EditValue = rowData.LineName;
+            //this.cmbLineVol.DataBindings.Add("EditValue", rowData, "LineVol");
         }
 
         #endregion
@@ -76,18 +77,19 @@ namespace Ebada.Scgl.Yxgl
             
             if (string.IsNullOrEmpty(cmbOrg.EditValue.ToString()))
                 return;
-            rowData.OrgName = cmbOrg.Text;
+            
+            cmbline.EditValue = null;
             string orgCode = null;
             if (cmbOrg.EditValue is ListItem) orgCode = ((Ebada.UI.Base.ListItem)(cmbOrg.EditValue)).ValueMember;
-            else orgCode = cmbOrg.EditValue.ToString();
-            cmbline.Properties.Items.Clear();
+            //else orgCode = cmbOrg.EditValue.ToString();
+            else orgCode = rowData.OrgCode;
             voldic.Clear();
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>("where OrgCode ='"+orgCode+"'");
             if (xlList == null)
                 return;
             if (xlList.Count == 0)
                 return;
-           
+            cmbline.Properties.Items.Clear();
             foreach (sd_xl xl in xlList)
             {
                 voldic.Add(xl.LineCode, xl.LineVol);
@@ -103,8 +105,12 @@ namespace Ebada.Scgl.Yxgl
         private void cmbline_EditValueChanged(object sender, EventArgs e)
         {
             if (cmbline.EditValue is ListItem) {
-                try { cmbLineVol.EditValue = voldic[((ListItem)cmbline.EditValue).ValueMember]; } catch { }
+                try { cmbLineVol.EditValue = voldic[((ListItem)cmbline.EditValue).ValueMember];
+                rowData.LineCode = ((ListItem)cmbline.EditValue).ValueMember;
+                rowData.LineVol = this.cmbLineVol.EditValue.ToString();
+                } catch { }
             }
+           
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -126,6 +132,9 @@ namespace Ebada.Scgl.Yxgl
             }
             IList<sdjls_dgjcjl> dgjlList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sdjls_dgjcjl>("where orgcode='"+cmbOrg.EditValue.ToString()+"' and linecode='"
                 +cmbline.EditValue.ToString()+"' and linevol='"+cmbLineVol.EditValue.ToString()+"'");
+            rowData.OrgName = this.cmbOrg.EditValue.ToString();
+            rowData.LineName = this.cmbline.EditValue.ToString();
+
             if (dgjlList.Count == 0)
             {
                 this.DialogResult = DialogResult.OK;
@@ -134,6 +143,13 @@ namespace Ebada.Scgl.Yxgl
             {
                 this.DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void frm_Dgjc_Load(object sender, EventArgs e)
+        {
+            this.cmbOrg.EditValue = rowData.OrgName;
+            this.cmbline.EditValue = rowData.LineName;
+            this.cmbLineVol.EditValue = rowData.LineVol;
         }
     }
 }
