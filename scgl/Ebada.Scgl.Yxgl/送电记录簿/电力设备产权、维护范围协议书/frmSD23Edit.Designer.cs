@@ -114,7 +114,6 @@
             this.comboBoxEdit6.Name = "comboBoxEdit6";
             this.comboBoxEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            
             this.comboBoxEdit6.Size = new System.Drawing.Size(287, 21);
             this.comboBoxEdit6.TabIndex = 19;
             this.comboBoxEdit6.EditValueChanged += new System.EventHandler(this.comboBoxEdit6_EditValueChanged);
@@ -223,7 +222,7 @@
             this.groupBox1.Size = new System.Drawing.Size(404, 278);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "配电设备产权、维护范围协议书";
+            this.groupBox1.Text = "电力设备产权、维护范围协议书";
             // 
             // labelControl9
             // 
@@ -349,7 +348,7 @@
             this.MinimizeBox = false;
             this.Name = "frmSD23Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "配电设备产权、维护范围协议书";
+            this.Text = "电力设备产权、维护范围协议书";
             this.Load += new System.EventHandler(this.frmdlgzdhjtjlEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit5.Properties)).EndInit();
