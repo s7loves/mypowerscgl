@@ -105,7 +105,7 @@ namespace Ebada.Scgl.Yxgl {
                     dataBind();
                 } else {
                     ConvertHelper.CopyTo<sdjl_07jdzz>(value as sdjl_07jdzz, rowData);
-                    InitComboBoxData();
+                    
                 }
                 
             }
