@@ -1987,6 +1987,7 @@
     <Compile Include="送电记录簿\工作日记\UCSD_gzrjnr.Designer.cs">
       <DependentUpon>UCSD_gzrjnr.cs</DependentUpon>
     </Compile>
+    <Compile Include="送电记录簿\接地装置检测\ExportSD08.cs" />
     <Compile Include="送电记录簿\接地装置检测\frmSD08JDZZEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2850,6 +2851,9 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
+    <None Include="00记录模板\接地装置检测.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="00记录模板\远程集抄表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
