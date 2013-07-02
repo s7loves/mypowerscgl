@@ -267,6 +267,7 @@ namespace Ebada.Scgl.Yxgl
         {
             if (parentID == null) return;
             newobj.ParentID = parentID;
+            
             //newobj.OrgName = parentObj.OrgName;
             newobj.CreateDate = DateTime.Now;
             newobj.qdrq = DateTime.Now;
@@ -314,7 +315,7 @@ namespace Ebada.Scgl.Yxgl
                 }
                 else
                 {
-                    ParentID = value.OrgID;
+                    ParentID = value.OrgCode;
                 }
             }
         }

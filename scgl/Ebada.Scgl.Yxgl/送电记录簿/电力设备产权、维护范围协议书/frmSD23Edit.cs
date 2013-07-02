@@ -26,7 +26,6 @@ namespace Ebada.Scgl.Yxgl
         void dataBind()
         {
 
-
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "cqfw");
             // this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "LineCode");
             this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cqdw");
@@ -40,12 +39,6 @@ namespace Ebada.Scgl.Yxgl
              this.comboBoxEdit9.DataBindings.Add("EditValue", rowData, "jf");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzrjID");
             //this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "CreateMan");
-
-            //
-            //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
-            //this.dateEdit1.DataBindings.Add("EditValue", rowData, "PSafeTime");           
-            // this.dateEdit2.DataBindings.Add("EditValue", rowData, "DSafeTime");
-
         }
         #region IPopupFormEdit Members
         private sdjl_23 rowData = null;
@@ -81,14 +74,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void InitComboBoxData()
         {
-            //this.m_CityDic.Clear();
-            //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<sdjl_23>(" WHERE Citylevel = '2'"));
-            /*  IList<DicType> list = new List<DicType>();
-              list.Add(new DicType("0", "机构"));
-              list.Add(new DicType("1", "供电所"));
-              list.Add(new DicType("2", "变电所"));
-              this.SetComboBoxData(this.lookUpEdit1, "Value", "Key", "请选择", "种类", list);*/
-
+           
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
@@ -124,46 +110,17 @@ namespace Ebada.Scgl.Yxgl
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
         }
-
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControlOrg_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void frmdlgzdhjtjlEdit_Load(object sender, EventArgs e)
         {
-
+            comboBoxEdit6.Properties.Items.Clear();
+            IList list=new ArrayList();
+           list= Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select linename from sd_xl where orgcode='"+rowData.ParentID+"' and parentid='0'");
+           comboBoxEdit6.Properties.Items.AddRange(list);
         }
 
-        private void labelControl4_Click(object sender, EventArgs e)
-        {
+       
 
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void comboBoxEdit1_Properties_Click(object sender, EventArgs e)
         {
@@ -240,36 +197,17 @@ namespace Ebada.Scgl.Yxgl
             dsoFramerControl2 = null;
         }
 
-        private void comboBoxEdit5_Properties_EditValueChanged(object sender, EventArgs e)
+        private void comboBoxEdit6_EditValueChanged(object sender, EventArgs e)
         {
-            if (comboBoxEdit5.EditValue == null) return;
-            sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linename='" + comboBoxEdit5.Text + "'");
-            if (xl == null) return;
+            if (string.IsNullOrEmpty(this.comboBoxEdit6.EditValue as string))
+                return;
             comboBoxEdit7.Properties.Items.Clear();
-
-            IList<sd_gt> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_gt>("where LineCode='" + xl.LineCode + "' order by gtCode");
-
-            foreach (sd_gt pl in list)
-            {
-                comboBoxEdit7.Properties.Items.Add(pl.gth);
-            }
-        }
-
-        private void comboBoxEdit6_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-            if (comboBoxEdit6.EditValue == null) return;
-            sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linename='" + comboBoxEdit6.Text + "'");
-            if (xl == null) return;
-            comboBoxEdit5.Properties.Items.Clear();
-            IList<sd_xl> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>("where ParentID='" + xl.LineCode + "'");
-            if (list.Count == 0)
-            {
-                list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>("where ParentID='" + xl.LineID + "'");
-            }
-            foreach (sd_xl pl in list)
-            {
-                comboBoxEdit5.Properties.Items.Add(pl.LineName);
-            }
+            sd_xl xl= Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>("where linename='" + this.comboBoxEdit6.EditValue as string+"'");
+            if (xl == null)
+                return;
+            IList gtList = new ArrayList();
+            gtList= Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select gth from sd_gt where linecode='"+xl.LineCode+"'");
+            comboBoxEdit7.Properties.Items.AddRange(gtList);
         }
     }
 }
