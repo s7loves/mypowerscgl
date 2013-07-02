@@ -59,7 +59,15 @@ namespace Ebada.Scgl.Yxgl
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<sdjl_07jdzz> e)
         {
             if (parentID == null)
+            {
+                MsgBox.ShowWarningMessageBox("请选择单位!");
                 e.Cancel = true;
+            }
+            if (string.IsNullOrEmpty(barxl.EditValue as string))
+            {
+                MsgBox.ShowWarningMessageBox("请选择线路!");
+                e.Cancel = true;
+            }
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -137,7 +145,7 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
-            hideColumn("gzwz");
+            //hideColumn("gzwz");
             hideColumn("sbID");
             hideColumn("LineID");
             hideColumn("c1");
@@ -224,62 +232,15 @@ namespace Ebada.Scgl.Yxgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gridView1.FocusedRowHandle != -1)
+            IList<sdjl_07jdzz> jdzzList = new List<sdjl_07jdzz>();
+            if (gridView1.RowCount > 0)
             {
-                frmExportYearSelect frm = new frmExportYearSelect();
-                DataTable dt = new DataTable();
-                dt.Columns.Add("A", typeof(string));
-                dt.Columns.Add("B", typeof(bool));
-                if (frm.ShowDialog() == DialogResult.OK)
+                for (int i = 0; i < gridView1.RowCount; i++)
                 {
-                    //dt = frm.DT1;
-                    DataRow[] dtc = frm.DT1.Select("B=1");
-                    foreach (DataRow dr1 in dtc)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dr[0] = dr1[0].ToString();
-                        dr[1] = Convert.ToInt32(dr1[1]);
-                        dt.Rows.Add(dr);
-                    }
-                    dtc = frm.DT1.Select("D=1");
-                    foreach (DataRow dr1 in dtc)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dr[0] = dr1[2].ToString();
-                        dr[1] = Convert.ToInt32(dr1[3]);
-                        dt.Rows.Add(dr);
-                    }
-                    dtc = frm.DT1.Select("F=1");
-                    foreach (DataRow dr1 in dtc)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dr[0] = dr1[4].ToString();
-                        dr[1] = Convert.ToInt32(dr1[5]);
-                        dt.Rows.Add(dr);
-                    }
-                    if (dt.Rows.Count == 0)
-                    {
-                        ExportSD07.ExportExcel(gridView1.GetFocusedRow() as sdjl_07jdzz);
-                    }
-                    else
-                    {
-                        string sely = "(";
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            if (i < dt.Rows.Count - 1)
-                            {
-                                sely += "'" + dt.Rows[i][0].ToString() + "',";
-                            }
-                            else
-                                sely += "'" + dt.Rows[i][0].ToString() + "')";
-
-                        }
-                        ExportSD07.ExportExcel(gridView1.GetFocusedRow() as sdjl_07jdzz, sely);
-
-                    }
+                    sdjl_07jdzz jdzz = gridView1.GetRow(i) as sdjl_07jdzz;
+                    jdzzList.Add(jdzz);
                 }
-              
-                
+                ExportSD08.ExportExcel(jdzzList);
             }
         }
 
