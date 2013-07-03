@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Yxgl
             //ICollection linelist = ComboBoxHelper.GetGdsxl(rowData.OrgCode);//获取供电线路名称
             ////线路名称
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
-            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10.0 ");
+            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10");
             popLine.DataSource = xllit;
             //SetComboBoxData(lookUpEdit1, "LineName", "LineID", "选择线路", "", xllit);
             //comboBoxEdit1.Properties.Items.Clear();
