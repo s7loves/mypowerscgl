@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue("'" + obj.gh, 9, 12);
             ex.SetCellValue(obj.cqdw+"。", 12, 4);
             ex.SetCellValue(obj.jf, 11, 4);
-            //ex.SetCellValue(obj.cqdw, 15, 8);
+            ex.SetCellValue(obj.qxydd, 15, 8);
             ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 11);
             ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 13);
             ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 16);
