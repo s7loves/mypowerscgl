@@ -29,45 +29,45 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbgh = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.lblxh = new DevExpress.XtraEditors.LabelControl();
-            this.cmbxh = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.lblbmj = new DevExpress.XtraEditors.LabelControl();
-            this.spebmj = new DevExpress.XtraEditors.SpinEdit();
-            this.lblbmjdw = new DevExpress.XtraEditors.LabelControl();
-            this.lblwd = new DevExpress.XtraEditors.LabelControl();
-            this.spewd = new DevExpress.XtraEditors.SpinEdit();
-            this.lblwddw = new DevExpress.XtraEditors.LabelControl();
-            this.lblwz = new DevExpress.XtraEditors.LabelControl();
-            this.memowz = new DevExpress.XtraEditors.MemoEdit();
-            this.btnwz = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.spedzhyl = new DevExpress.XtraEditors.SpinEdit();
-            this.lbldzhyldw = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.spescymz = new DevExpress.XtraEditors.SpinEdit();
-            this.lblscymzdw = new DevExpress.XtraEditors.LabelControl();
-            this.lblwhdj = new DevExpress.XtraEditors.LabelControl();
-            this.cmbwhdj = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.lblwytz = new DevExpress.XtraEditors.LabelControl();
-            this.lblclrq = new DevExpress.XtraEditors.LabelControl();
-            this.dateclrq = new DevExpress.XtraEditors.DateEdit();
             this.memowytz = new DevExpress.XtraEditors.MemoEdit();
+            this.dateclrq = new DevExpress.XtraEditors.DateEdit();
+            this.lblclrq = new DevExpress.XtraEditors.LabelControl();
+            this.lblwytz = new DevExpress.XtraEditors.LabelControl();
+            this.cmbwhdj = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.lblwhdj = new DevExpress.XtraEditors.LabelControl();
+            this.lblscymzdw = new DevExpress.XtraEditors.LabelControl();
+            this.spescymz = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lbldzhyldw = new DevExpress.XtraEditors.LabelControl();
+            this.spedzhyl = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.btnwz = new DevExpress.XtraEditors.SimpleButton();
+            this.memowz = new DevExpress.XtraEditors.MemoEdit();
+            this.lblwz = new DevExpress.XtraEditors.LabelControl();
+            this.lblwddw = new DevExpress.XtraEditors.LabelControl();
+            this.spewd = new DevExpress.XtraEditors.SpinEdit();
+            this.lblwd = new DevExpress.XtraEditors.LabelControl();
+            this.lblbmjdw = new DevExpress.XtraEditors.LabelControl();
+            this.spebmj = new DevExpress.XtraEditors.SpinEdit();
+            this.lblbmj = new DevExpress.XtraEditors.LabelControl();
+            this.cmbxh = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.lblxh = new DevExpress.XtraEditors.LabelControl();
+            this.cmbgh = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbxh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spebmj.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spewd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memowz.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spedzhyl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spescymz.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbwhdj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memowytz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateclrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateclrq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memowytz.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbwhdj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spescymz.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spedzhyl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memowz.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spewd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spebmj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -104,161 +104,65 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "绝缘子含盐量信息";
             // 
-            // labelControl1
+            // memowytz
             // 
-            this.labelControl1.Location = new System.Drawing.Point(24, 32);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(24, 14);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "杆号";
+            this.memowytz.Location = new System.Drawing.Point(90, 179);
+            this.memowytz.Name = "memowytz";
+            this.memowytz.Size = new System.Drawing.Size(419, 73);
+            this.memowytz.TabIndex = 24;
             // 
-            // cmbgh
+            // dateclrq
             // 
-            this.cmbgh.Location = new System.Drawing.Point(90, 29);
-            this.cmbgh.Name = "cmbgh";
-            this.cmbgh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dateclrq.EditValue = null;
+            this.dateclrq.Location = new System.Drawing.Point(364, 152);
+            this.dateclrq.Name = "dateclrq";
+            this.dateclrq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbgh.Size = new System.Drawing.Size(147, 21);
-            this.cmbgh.TabIndex = 1;
+            this.dateclrq.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateclrq.Size = new System.Drawing.Size(145, 21);
+            this.dateclrq.TabIndex = 23;
             // 
-            // lblxh
+            // lblclrq
             // 
-            this.lblxh.Location = new System.Drawing.Point(310, 32);
-            this.lblxh.Name = "lblxh";
-            this.lblxh.Size = new System.Drawing.Size(24, 14);
-            this.lblxh.TabIndex = 2;
-            this.lblxh.Text = "型号";
+            this.lblclrq.Location = new System.Drawing.Point(310, 155);
+            this.lblclrq.Name = "lblclrq";
+            this.lblclrq.Size = new System.Drawing.Size(48, 14);
+            this.lblclrq.TabIndex = 22;
+            this.lblclrq.Text = "测量日期";
             // 
-            // cmbxh
+            // lblwytz
             // 
-            this.cmbxh.Location = new System.Drawing.Point(364, 29);
-            this.cmbxh.Name = "cmbxh";
-            this.cmbxh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lblwytz.Location = new System.Drawing.Point(24, 179);
+            this.lblwytz.Name = "lblwytz";
+            this.lblwytz.Size = new System.Drawing.Size(48, 14);
+            this.lblwytz.TabIndex = 21;
+            this.lblwytz.Text = "污源特征";
+            // 
+            // cmbwhdj
+            // 
+            this.cmbwhdj.Location = new System.Drawing.Point(90, 152);
+            this.cmbwhdj.Name = "cmbwhdj";
+            this.cmbwhdj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbxh.Size = new System.Drawing.Size(147, 21);
-            this.cmbxh.TabIndex = 3;
+            this.cmbwhdj.Size = new System.Drawing.Size(145, 21);
+            this.cmbwhdj.TabIndex = 20;
             // 
-            // lblbmj
+            // lblwhdj
             // 
-            this.lblbmj.Location = new System.Drawing.Point(24, 59);
-            this.lblbmj.Name = "lblbmj";
-            this.lblbmj.Size = new System.Drawing.Size(36, 14);
-            this.lblbmj.TabIndex = 4;
-            this.lblbmj.Text = "表面积";
+            this.lblwhdj.Location = new System.Drawing.Point(24, 155);
+            this.lblwhdj.Name = "lblwhdj";
+            this.lblwhdj.Size = new System.Drawing.Size(48, 14);
+            this.lblwhdj.TabIndex = 19;
+            this.lblwhdj.Text = "污秽等级";
             // 
-            // spebmj
+            // lblscymzdw
             // 
-            this.spebmj.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spebmj.Location = new System.Drawing.Point(90, 56);
-            this.spebmj.Name = "spebmj";
-            this.spebmj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spebmj.Size = new System.Drawing.Size(147, 21);
-            this.spebmj.TabIndex = 5;
-            // 
-            // lblbmjdw
-            // 
-            this.lblbmjdw.Location = new System.Drawing.Point(241, 59);
-            this.lblbmjdw.Name = "lblbmjdw";
-            this.lblbmjdw.Size = new System.Drawing.Size(28, 14);
-            this.lblbmjdw.TabIndex = 6;
-            this.lblbmjdw.Text = "(c㎡)";
-            // 
-            // lblwd
-            // 
-            this.lblwd.Location = new System.Drawing.Point(310, 59);
-            this.lblwd.Name = "lblwd";
-            this.lblwd.Size = new System.Drawing.Size(24, 14);
-            this.lblwd.TabIndex = 7;
-            this.lblwd.Text = "温度";
-            // 
-            // spewd
-            // 
-            this.spewd.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spewd.Location = new System.Drawing.Point(364, 56);
-            this.spewd.Name = "spewd";
-            this.spewd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spewd.Size = new System.Drawing.Size(147, 21);
-            this.spewd.TabIndex = 8;
-            // 
-            // lblwddw
-            // 
-            this.lblwddw.Location = new System.Drawing.Point(517, 59);
-            this.lblwddw.Name = "lblwddw";
-            this.lblwddw.Size = new System.Drawing.Size(22, 14);
-            this.lblwddw.TabIndex = 9;
-            this.lblwddw.Text = "(℃)";
-            // 
-            // lblwz
-            // 
-            this.lblwz.Location = new System.Drawing.Point(24, 83);
-            this.lblwz.Name = "lblwz";
-            this.lblwz.Size = new System.Drawing.Size(24, 14);
-            this.lblwz.TabIndex = 10;
-            this.lblwz.Text = "位置";
-            // 
-            // memowz
-            // 
-            this.memowz.Location = new System.Drawing.Point(90, 83);
-            this.memowz.Name = "memowz";
-            this.memowz.Size = new System.Drawing.Size(421, 36);
-            this.memowz.TabIndex = 11;
-            // 
-            // btnwz
-            // 
-            this.btnwz.Location = new System.Drawing.Point(517, 84);
-            this.btnwz.Name = "btnwz";
-            this.btnwz.Size = new System.Drawing.Size(22, 34);
-            this.btnwz.TabIndex = 12;
-            this.btnwz.Text = "...";
-            this.btnwz.Click += new System.EventHandler(this.btnwz_Click);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(24, 128);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 14);
-            this.labelControl2.TabIndex = 13;
-            this.labelControl2.Text = "等值含盐量";
-            // 
-            // spedzhyl
-            // 
-            this.spedzhyl.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spedzhyl.Location = new System.Drawing.Point(90, 125);
-            this.spedzhyl.Name = "spedzhyl";
-            this.spedzhyl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spedzhyl.Size = new System.Drawing.Size(147, 21);
-            this.spedzhyl.TabIndex = 14;
-            // 
-            // lbldzhyldw
-            // 
-            this.lbldzhyldw.Location = new System.Drawing.Point(239, 128);
-            this.lbldzhyldw.Name = "lbldzhyldw";
-            this.lbldzhyldw.Size = new System.Drawing.Size(65, 14);
-            this.lbldzhyldw.TabIndex = 15;
-            this.lbldzhyldw.Text = "(mg/100ml)";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(318, 128);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(36, 14);
-            this.labelControl3.TabIndex = 16;
-            this.labelControl3.Text = "盐密值";
+            this.lblscymzdw.Location = new System.Drawing.Point(513, 128);
+            this.lblscymzdw.Name = "lblscymzdw";
+            this.lblscymzdw.Size = new System.Drawing.Size(50, 14);
+            this.lblscymzdw.TabIndex = 18;
+            this.lblscymzdw.Text = "(mg/c㎡)";
             // 
             // spescymz
             // 
@@ -274,65 +178,161 @@
             this.spescymz.Size = new System.Drawing.Size(147, 21);
             this.spescymz.TabIndex = 17;
             // 
-            // lblscymzdw
+            // labelControl3
             // 
-            this.lblscymzdw.Location = new System.Drawing.Point(513, 128);
-            this.lblscymzdw.Name = "lblscymzdw";
-            this.lblscymzdw.Size = new System.Drawing.Size(50, 14);
-            this.lblscymzdw.TabIndex = 18;
-            this.lblscymzdw.Text = "(mg/c㎡)";
+            this.labelControl3.Location = new System.Drawing.Point(318, 128);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(36, 14);
+            this.labelControl3.TabIndex = 16;
+            this.labelControl3.Text = "盐密值";
             // 
-            // lblwhdj
+            // lbldzhyldw
             // 
-            this.lblwhdj.Location = new System.Drawing.Point(24, 155);
-            this.lblwhdj.Name = "lblwhdj";
-            this.lblwhdj.Size = new System.Drawing.Size(48, 14);
-            this.lblwhdj.TabIndex = 19;
-            this.lblwhdj.Text = "污秽等级";
+            this.lbldzhyldw.Location = new System.Drawing.Point(239, 128);
+            this.lbldzhyldw.Name = "lbldzhyldw";
+            this.lbldzhyldw.Size = new System.Drawing.Size(65, 14);
+            this.lbldzhyldw.TabIndex = 15;
+            this.lbldzhyldw.Text = "(mg/100ml)";
             // 
-            // cmbwhdj
+            // spedzhyl
             // 
-            this.cmbwhdj.Location = new System.Drawing.Point(90, 152);
-            this.cmbwhdj.Name = "cmbwhdj";
-            this.cmbwhdj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbwhdj.Size = new System.Drawing.Size(145, 21);
-            this.cmbwhdj.TabIndex = 20;
-            // 
-            // lblwytz
-            // 
-            this.lblwytz.Location = new System.Drawing.Point(24, 179);
-            this.lblwytz.Name = "lblwytz";
-            this.lblwytz.Size = new System.Drawing.Size(48, 14);
-            this.lblwytz.TabIndex = 21;
-            this.lblwytz.Text = "污源特征";
-            // 
-            // lblclrq
-            // 
-            this.lblclrq.Location = new System.Drawing.Point(310, 155);
-            this.lblclrq.Name = "lblclrq";
-            this.lblclrq.Size = new System.Drawing.Size(48, 14);
-            this.lblclrq.TabIndex = 22;
-            this.lblclrq.Text = "测量日期";
-            // 
-            // dateclrq
-            // 
-            this.dateclrq.EditValue = null;
-            this.dateclrq.Location = new System.Drawing.Point(364, 152);
-            this.dateclrq.Name = "dateclrq";
-            this.dateclrq.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateclrq.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spedzhyl.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spedzhyl.Location = new System.Drawing.Point(90, 125);
+            this.spedzhyl.Name = "spedzhyl";
+            this.spedzhyl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateclrq.Size = new System.Drawing.Size(145, 21);
-            this.dateclrq.TabIndex = 23;
+            this.spedzhyl.Size = new System.Drawing.Size(147, 21);
+            this.spedzhyl.TabIndex = 14;
             // 
-            // memowytz
+            // labelControl2
             // 
-            this.memowytz.Location = new System.Drawing.Point(90, 179);
-            this.memowytz.Name = "memowytz";
-            this.memowytz.Size = new System.Drawing.Size(419, 73);
-            this.memowytz.TabIndex = 24;
+            this.labelControl2.Location = new System.Drawing.Point(24, 128);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(60, 14);
+            this.labelControl2.TabIndex = 13;
+            this.labelControl2.Text = "等值含盐量";
+            // 
+            // btnwz
+            // 
+            this.btnwz.Location = new System.Drawing.Point(517, 84);
+            this.btnwz.Name = "btnwz";
+            this.btnwz.Size = new System.Drawing.Size(22, 34);
+            this.btnwz.TabIndex = 12;
+            this.btnwz.Text = "...";
+            this.btnwz.Click += new System.EventHandler(this.btnwz_Click);
+            // 
+            // memowz
+            // 
+            this.memowz.Location = new System.Drawing.Point(90, 83);
+            this.memowz.Name = "memowz";
+            this.memowz.Size = new System.Drawing.Size(421, 36);
+            this.memowz.TabIndex = 11;
+            // 
+            // lblwz
+            // 
+            this.lblwz.Location = new System.Drawing.Point(24, 83);
+            this.lblwz.Name = "lblwz";
+            this.lblwz.Size = new System.Drawing.Size(24, 14);
+            this.lblwz.TabIndex = 10;
+            this.lblwz.Text = "位置";
+            // 
+            // lblwddw
+            // 
+            this.lblwddw.Location = new System.Drawing.Point(517, 59);
+            this.lblwddw.Name = "lblwddw";
+            this.lblwddw.Size = new System.Drawing.Size(22, 14);
+            this.lblwddw.TabIndex = 9;
+            this.lblwddw.Text = "(℃)";
+            // 
+            // spewd
+            // 
+            this.spewd.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spewd.Location = new System.Drawing.Point(364, 56);
+            this.spewd.Name = "spewd";
+            this.spewd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spewd.Size = new System.Drawing.Size(147, 21);
+            this.spewd.TabIndex = 8;
+            // 
+            // lblwd
+            // 
+            this.lblwd.Location = new System.Drawing.Point(310, 59);
+            this.lblwd.Name = "lblwd";
+            this.lblwd.Size = new System.Drawing.Size(24, 14);
+            this.lblwd.TabIndex = 7;
+            this.lblwd.Text = "温度";
+            // 
+            // lblbmjdw
+            // 
+            this.lblbmjdw.Location = new System.Drawing.Point(241, 59);
+            this.lblbmjdw.Name = "lblbmjdw";
+            this.lblbmjdw.Size = new System.Drawing.Size(28, 14);
+            this.lblbmjdw.TabIndex = 6;
+            this.lblbmjdw.Text = "(c㎡)";
+            // 
+            // spebmj
+            // 
+            this.spebmj.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spebmj.Location = new System.Drawing.Point(90, 56);
+            this.spebmj.Name = "spebmj";
+            this.spebmj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spebmj.Size = new System.Drawing.Size(147, 21);
+            this.spebmj.TabIndex = 5;
+            // 
+            // lblbmj
+            // 
+            this.lblbmj.Location = new System.Drawing.Point(24, 59);
+            this.lblbmj.Name = "lblbmj";
+            this.lblbmj.Size = new System.Drawing.Size(36, 14);
+            this.lblbmj.TabIndex = 4;
+            this.lblbmj.Text = "表面积";
+            // 
+            // cmbxh
+            // 
+            this.cmbxh.Location = new System.Drawing.Point(364, 29);
+            this.cmbxh.Name = "cmbxh";
+            this.cmbxh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbxh.Size = new System.Drawing.Size(147, 21);
+            this.cmbxh.TabIndex = 3;
+            // 
+            // lblxh
+            // 
+            this.lblxh.Location = new System.Drawing.Point(310, 32);
+            this.lblxh.Name = "lblxh";
+            this.lblxh.Size = new System.Drawing.Size(24, 14);
+            this.lblxh.TabIndex = 2;
+            this.lblxh.Text = "型号";
+            // 
+            // cmbgh
+            // 
+            this.cmbgh.Location = new System.Drawing.Point(90, 29);
+            this.cmbgh.Name = "cmbgh";
+            this.cmbgh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbgh.Size = new System.Drawing.Size(147, 21);
+            this.cmbgh.TabIndex = 1;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(24, 32);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(24, 14);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "杆号";
             // 
             // btnOk
             // 
@@ -368,17 +368,17 @@
             this.Text = "线路绝缘子盐量测量";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbxh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spebmj.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spewd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memowz.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spedzhyl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spescymz.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbwhdj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memowytz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateclrq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateclrq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memowytz.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbwhdj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spescymz.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spedzhyl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memowz.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spewd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spebmj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

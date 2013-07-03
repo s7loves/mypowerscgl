@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Yxgl
             comboBoxEdit7.Properties.Items.AddRange(ryList);
 
             //comboBoxEdit1.Properties.Items.AddRange(linelist);
-            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10.0 ");
+            IList<sd_xl> xllit = Client.ClientHelper.PlatformSqlMap.GetList<sd_xl>(" where OrgCode='" + rowData.OrgCode + "'and linevol>=10");
            
             //comboBoxEdit1.Properties.Items.Clear();
             for (int i = 0; i < xllit.Count; i++)
