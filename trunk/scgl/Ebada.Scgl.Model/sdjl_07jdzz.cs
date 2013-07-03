@@ -176,10 +176,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：gzwz
-        /// 属性描述：安装位置
+        /// 属性描述：杆塔型式
         /// 字段信息：[gzwz],nvarchar
         /// </summary>
-        [DisplayNameAttribute("安装位置")]
+        [DisplayNameAttribute("杆塔型式")]
         public string gzwz
         {
             get { return _gzwz; }
@@ -187,7 +187,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[安装位置]长度不能大于50!");
+                throw new Exception("[杆塔型式]长度不能大于50!");
                 if (_gzwz as object == null || !_gzwz.Equals(value))
                 {
                     _gzwz = value;
@@ -197,10 +197,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：sbmc
-        /// 属性描述：保护设备名称
+        /// 属性描述：接地型式
         /// 字段信息：[sbmc],nvarchar
         /// </summary>
-        [DisplayNameAttribute("保护设备名称")]
+        [DisplayNameAttribute("接地型式")]
         public string sbmc
         {
             get { return _sbmc; }
@@ -208,7 +208,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[保护设备名称]长度不能大于50!");
+                throw new Exception("[接地型式]长度不能大于50!");
                 if (_sbmc as object == null || !_sbmc.Equals(value))
                 {
                     _sbmc = value;
@@ -218,10 +218,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：xhgg
-        /// 属性描述：型号规格
+        /// 属性描述：检测情况
         /// 字段信息：[xhgg],nvarchar
         /// </summary>
-        [DisplayNameAttribute("型号规格")]
+        [DisplayNameAttribute("检测情况")]
         public string xhgg
         {
             get { return _xhgg; }
@@ -229,7 +229,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[型号规格]长度不能大于50!");
+                throw new Exception("[检测情况]长度不能大于50!");
                 if (_xhgg as object == null || !_xhgg.Equals(value))
                 {
                     _xhgg = value;
@@ -257,10 +257,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：tz
-        /// 属性描述：土质
+        /// 属性描述：换算值
         /// 字段信息：[tz],nvarchar
         /// </summary>
-        [DisplayNameAttribute("土质")]
+        [DisplayNameAttribute("换算值(Ω)")]
         public string tz
         {
             get { return _tz; }
@@ -268,7 +268,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 500)
-                throw new Exception("[土质]长度不能大于500!");
+                throw new Exception("[换算值]长度不能大于500!");
                 if (_tz as object == null || !_tz.Equals(value))
                 {
                     _tz = value;
@@ -278,10 +278,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：trdzr
-        /// 属性描述：土壤电阻率(Ω.m)
+        /// 属性描述：实测值(Ω)
         /// 字段信息：[trdzr],decimal
         /// </summary>
-        [DisplayNameAttribute("土壤电阻率(Ω.m)")]
+        [DisplayNameAttribute("实测值(Ω)")]
         public decimal trdzr
         {
             get { return _trdzr; }
@@ -296,10 +296,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：CreateMan
-        /// 属性描述：填写人
+        /// 属性描述：检测人
         /// 字段信息：[CreateMan],nvarchar
         /// </summary>
-        [DisplayNameAttribute("填写人")]
+        [DisplayNameAttribute("检测人")]
         public string CreateMan
         {
             get { return _createman; }
@@ -307,7 +307,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 10)
-                throw new Exception("[填写人]长度不能大于10!");
+                throw new Exception("[检测人]长度不能大于10!");
                 if (_createman as object == null || !_createman.Equals(value))
                 {
                     _createman = value;
@@ -317,10 +317,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：CreateDate
-        /// 属性描述：填写日期
+        /// 属性描述：检测日期
         /// 字段信息：[CreateDate],datetime
         /// </summary>
-        [DisplayNameAttribute("填写日期")]
+        [DisplayNameAttribute("检测日期")]
         public DateTime CreateDate
         {
             get { return _createdate; }
@@ -356,10 +356,10 @@ namespace Ebada.Scgl.Model
   
         /// <summary>
         /// 属性名称：fzxl
-        /// 属性描述：分支线路
+        /// 属性描述：结论
         /// 字段信息：[fzxl],nvarchar
         /// </summary>
-        [DisplayNameAttribute("分支线路")]
+        [DisplayNameAttribute("结论")]
         public string fzxl
         {
             get { return _fzxl; }
@@ -367,7 +367,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[分支线路]长度不能大于50!");
+                throw new Exception("[结论]长度不能大于50!");
                 if (_fzxl as object == null || !_fzxl.Equals(value))
                 {
                     _fzxl = value;
