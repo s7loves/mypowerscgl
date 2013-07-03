@@ -197,7 +197,7 @@
             this.btGdsList.Id = 14;
             this.btGdsList.Name = "btGdsList";
             // 
-            // frm23Template
+            // frmSD23Template
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,7 +207,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "frm23Template";
+            this.Name = "frmSD23Template";
             this.Text = "配电线路产权维护范围协议书";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm26Template_Load);
