@@ -251,7 +251,7 @@
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(24, 14);
             this.labelControl7.TabIndex = 22;
-            this.labelControl7.Text = "备注";
+            this.labelControl7.Text = "说明";
             // 
             // labelControl5
             // 

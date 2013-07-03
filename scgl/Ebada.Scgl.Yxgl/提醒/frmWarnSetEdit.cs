@@ -147,9 +147,15 @@ namespace Ebada.Scgl.Yxgl
 
             try
             {
-                SqlDataAdapter ada = new SqlDataAdapter(sql, conn);
-                DataTable dt = new DataTable();
-                ada.Fill(dt);
+                //SqlDataAdapter ada = new SqlDataAdapter(sql, conn);
+                //DataTable dt = new DataTable();
+                //ada.Fill(dt);
+
+                //MainHelper.PlatformSqlMap.
+
+               DataTable dt = MainHelper.PlatformSqlMap.GetDataTable("GetWarnResultBySqlWhere", sql);
+
+
                 DataRow[] rows = dt.Select("TABLE_TYPE='TABLE' or TABLE_TYPE='VIEW'");
                 foreach (DataRow row1 in rows)
                 {
