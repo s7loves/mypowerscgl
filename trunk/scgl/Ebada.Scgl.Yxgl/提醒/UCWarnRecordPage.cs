@@ -263,7 +263,8 @@ namespace Ebada.Scgl.Yxgl
                               WritTime = lastneeddate,
                               LinkID = ws.LinkID,
                               TableName = ws.TableName,
-                              Remark="每月["+ws.OrderDays+" ]号填写"
+                              Remark="每月["+ws.OrderDays+" ]号填写",
+                              Des=ws.Remark
                           };
                           record.ID += index;
                           list.Add(record);
@@ -284,6 +285,7 @@ namespace Ebada.Scgl.Yxgl
                               WritTime = lastneeddate,
                               LinkID = ws.LinkID,
                               TableName = ws.TableName,
+                               Des=ws.Remark,
                               Remark = "每隔[" + ws.SpaceDays + " ]日填写"
                           };
                           record.ID += index;
@@ -380,6 +382,7 @@ namespace Ebada.Scgl.Yxgl
         //间隔日
         private bool IsNeedWarnDays(int beforedays, int spacedays, int afterdatys,DateTime haswritdt,out DateTime dt,out int needtimes)
         {
+            spacedays = spacedays + 1;
             // 返回是否需要填写
             bool result = false;
             //需要填写日期
@@ -461,6 +464,8 @@ namespace Ebada.Scgl.Yxgl
         {
             string aa = string.Empty;
         }
+
+      
        
        
     }
