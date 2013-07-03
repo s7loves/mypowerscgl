@@ -84,12 +84,14 @@ namespace Ebada.Scgl.Yxgl
         {
             
             PJ_dyk dyk = SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
-            if (dyk != null) {
-                memoEdit2.Text = memoEdit2.Text + "处理人：" + comboBoxEdit1.Text; 
-                
+            if (dyk != null)
+            {
+                memoEdit2.Text = memoEdit2.Text + "处理人：" + comboBoxEdit1.Text;
+
                 rowData.yyfx = dyk.nr2;
                 rowData.fzdc = dyk.nr3;
             }
+           
         }
 
         private void memoEdit2_EditValueChanged(object sender, EventArgs e)

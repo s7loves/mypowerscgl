@@ -397,6 +397,7 @@ namespace Ebada.Scgl.Yxgl
                 rowData.jy = dyk.nr2;
                 rowData.jr = dyk.nr3;
             }
+           
             //memoEdit1.Focus();
         }
 

@@ -104,10 +104,7 @@ namespace Ebada.Scgl.Yxgl
                 rowData.jljpj = dyk.nr;
                 rowData.ndcs = dyk.nr2;
             }
-            else
-            {
-                MsgBox.ShowWarningMessageBox("无相关信息,请在短语库维护模块中填写：05反事故演习记录|结论和措施 信息");
-            }
+            
         }
 
         
