@@ -525,6 +525,9 @@
     <EmbeddedResource Include="YY_userdata.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="xxgx_ddyb.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

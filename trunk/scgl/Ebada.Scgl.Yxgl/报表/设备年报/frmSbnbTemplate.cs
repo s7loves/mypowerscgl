@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Yxgl
         public frmSbnbTemplate()
         {
             InitializeComponent();
+            this.Text = "设备年报表";
         }
         public xxgx_sbnb pjobject
         {

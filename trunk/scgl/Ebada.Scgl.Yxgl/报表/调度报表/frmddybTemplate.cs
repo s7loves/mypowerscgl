@@ -16,16 +16,16 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Scgl.Yxgl
 {
-    public partial class frmAqTemplate : DevExpress.XtraEditors.XtraForm
+    public partial class frmddybTemplate : DevExpress.XtraEditors.XtraForm
     {
         string filepath = Path.GetTempPath();
-        xxgx_aqxpj _pjobject;
-        public frmAqTemplate()
+        xxgx_ddyb _pjobject;
+        public frmddybTemplate()
         {
             InitializeComponent();
-            this.Text = "安全性评价报表";
+            this.Text = "调度报表";
         }
-        public xxgx_aqxpj pjobject
+        public xxgx_ddyb pjobject
         {
             get
             {
@@ -36,7 +36,7 @@ namespace Ebada.Scgl.Yxgl
                 _pjobject = value;
             }
         }
-        public void Show(xxgx_aqxpj obj)
+        public void Show(xxgx_ddyb obj)
         {
             _pjobject = obj;
         }
@@ -48,7 +48,7 @@ namespace Ebada.Scgl.Yxgl
                 {
                    dsoFramerControl1.FileSave();
                    pjobject.filedata = dsoFramerControl1.FileDataGzip;
-                    Client.ClientHelper.PlatformSqlMap.Update<xxgx_aqxpj>(pjobject);
+                   Client.ClientHelper.PlatformSqlMap.Update<xxgx_ddyb>(pjobject);
                 }
                 catch (System.Exception ex)
                 {

@@ -317,6 +317,7 @@
     <Compile Include="sd_sbcs.cs" />
     <Compile Include="bd_sbcs.cs" />
     <Compile Include="xxgx_aqxpj.cs" />
+    <Compile Include="xxgx_ddyb.cs" />
     <Compile Include="xxgx_sbnb.cs" />
     <Compile Include="xxgx_ycjc.cs" />
     <Content Include="YY_bx.cs" />
