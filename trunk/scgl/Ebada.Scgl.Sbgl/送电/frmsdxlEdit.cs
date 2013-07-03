@@ -186,6 +186,11 @@ namespace Ebada.Scgl.Sbgl {
                 comboBoxEdit11.Properties.Items.Add("暂停");
             }
             //this.comboBoxEdit5.Properties.Items.AddRange(ComboBoxHelper.GetVoltage()); 
+            comboBoxEdit5.Properties.Items.Clear();
+            strlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+           string.Format("select nr from pj_dyk where  dx='公用属性' and sx like '%{0}%' and nr!=''", "电压等级"));
+            if (strlist.Count > 0)
+                comboBoxEdit5.Properties.Items.AddRange(strlist);
         }
 
         /// <summary>
