@@ -34,7 +34,7 @@ namespace Ebada.Scgl.Gis.Markers {
             }
             
             menu.MenuItems.Add(item);
-            item = new MenuItem("消除固障");
+            item = new MenuItem("消除故障");
             item.Click += new EventHandler(item_Click);
             menu.MenuItems.Add(item);
             return menu;
@@ -59,7 +59,7 @@ namespace Ebada.Scgl.Gis.Markers {
         }
         public override void RefreshToolText() {
             PJ_21gzbxdh obj = Tag as PJ_21gzbxdh;
-            this.ToolTipText = string.Format("登记日期:{0}\n地址:{1}\n固障简况:{4}\n联系方式:{2}\n供电所:{3}", obj.rq.ToString(), obj.yhdz, obj.lxfs, obj.OrgName,obj.gzjk);
+            this.ToolTipText = string.Format("登记日期:{0}\n地址:{1}\n故障简况:{4}\n联系方式:{2}\n供电所:{3}", obj.rq.ToString(), obj.yhdz, obj.lxfs, obj.OrgName,obj.gzjk);
             this.ToolTip.Format.Alignment = StringAlignment.Near;
  
         }

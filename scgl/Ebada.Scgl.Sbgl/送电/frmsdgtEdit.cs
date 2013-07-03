@@ -132,7 +132,7 @@ namespace Ebada.Scgl.Sbgl
                 string gtid="0000000002";//
                 sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + rowData.LineCode + "'");
                 if (xl == null) return;
-                if (xl.LineVol == "35") {
+                if (xl.LineVol == "66") {
                     if (temp35Image != null) {
                         pictureEdit1.EditValue = temp35Image.ImageData;
                     }

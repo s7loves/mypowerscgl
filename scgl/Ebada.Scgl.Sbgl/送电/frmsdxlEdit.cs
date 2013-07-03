@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Sbgl {
                 }
                 isnew = false;
                 if (rowData.LineVol == "") {
-                    rowData.LineVol = "35";
+                    rowData.LineVol = "66";
 
                 }
                 if (rowData.LineName == "")
