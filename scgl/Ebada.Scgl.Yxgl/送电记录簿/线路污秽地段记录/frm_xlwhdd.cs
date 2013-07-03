@@ -83,8 +83,10 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            rowData.jyzxh = cmbzxjyzxh.EditValue.ToString() + "|" + txtzxzhfs.EditValue.ToString();
-            rowData.zhfs = cmbnzjyzxh.EditValue.ToString() + "|" + txtnzzhfs.EditValue.ToString();
+            string zxzhfs = string.IsNullOrEmpty(txtzxzhfs.EditValue as string) ? "" : txtnzzhfs.EditValue as string;
+            string nzzhfs = string.IsNullOrEmpty(txtnzzhfs.EditValue as string) ? "" : txtnzzhfs.EditValue as string;
+            rowData.jyzxh = cmbzxjyzxh.EditValue.ToString() + "|" + zxzhfs;
+            rowData.zhfs = cmbnzjyzxh.EditValue.ToString() + "|" + nzzhfs;
         }
 
         private void btnwhqd_Click(object sender, EventArgs e)

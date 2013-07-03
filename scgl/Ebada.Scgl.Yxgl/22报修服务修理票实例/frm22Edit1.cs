@@ -137,7 +137,7 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "所有材料", comboBoxEdit13.Properties);
             ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "停电线路名称及杆号：", comboBoxEdit17.Properties);
             ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "实际故障情况", comboBoxEdit12.Properties);
-            
+            ComboBoxHelper.FillCBoxByDyk("22报修服务修理票实例", "报修地点", comboBoxEdit4.Properties);
         }
 
         /// <summary>

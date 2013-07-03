@@ -53,9 +53,10 @@ namespace Ebada.Scgl.Yxgl
             combldr.Properties.Items.AddRange(ryList);
             cmbjhr.Properties.Items.AddRange(ryList);
             cmbzxr.Properties.Items.AddRange(ryList);
-
+            cmbqzldr.Properties.Items.AddRange(ryList);
+            cmbqzjhr.Properties.Items.AddRange(ryList);
             ComboBoxHelper.FillCBoxByDyk("05反事故演习记录", "演习地点", cmbyxdd);
-           
+            
 
         }
 

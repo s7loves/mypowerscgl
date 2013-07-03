@@ -77,6 +77,7 @@ namespace Ebada.Scgl.Yxgl
            
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "产权单位", comboBoxEdit2.Properties);
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (sd_xl pl in xlList)
             {

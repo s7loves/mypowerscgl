@@ -79,6 +79,9 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+
+            ComboBoxHelper.FillCBoxByDyk("25电源协议书", "型号", comboBoxEdit3.Properties);
+            ComboBoxHelper.FillCBoxByDyk("25电源协议书", "生产厂家", comboBoxEdit7.Properties);
         }
 
         /// <summary>

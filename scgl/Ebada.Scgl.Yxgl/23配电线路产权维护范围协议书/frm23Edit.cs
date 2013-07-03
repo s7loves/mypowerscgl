@@ -91,6 +91,7 @@ namespace Ebada.Scgl.Yxgl
 
             comboBoxEdit4.Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "产权单位", comboBoxEdit2.Properties);
             IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (PS_xl pl in xlList)
             {

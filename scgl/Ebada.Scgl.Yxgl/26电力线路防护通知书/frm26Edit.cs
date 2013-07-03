@@ -68,6 +68,10 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+
+            ComboBoxHelper.FillCBoxByDyk("26电力线路防护通知书", "通知单位", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("26电力线路防护通知书", "电压等级", comboBoxEdit3.Properties);
+
         }
 
         /// <summary>

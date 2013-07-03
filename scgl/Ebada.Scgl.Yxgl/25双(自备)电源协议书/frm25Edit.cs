@@ -58,6 +58,8 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
+            ComboBoxHelper.FillCBoxByDyk("25电源协议书", "产权单位", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("25电源协议书", "闭锁装置", comboBoxEdit3.Properties);
             //this.m_CityDic.Clear();
             //this.m_CityDic.Add(ClientHelper.PlatformSqlMap.GetList<PJ_25>(" WHERE Citylevel = '2'"));
           /*  IList<DicType> list = new List<DicType>();

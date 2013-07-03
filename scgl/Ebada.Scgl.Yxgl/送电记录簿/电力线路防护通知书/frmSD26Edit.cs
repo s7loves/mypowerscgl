@@ -70,6 +70,8 @@ namespace Ebada.Scgl.Yxgl
 
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
+            ComboBoxHelper.FillCBoxByDyk("电力线路防护通知书", "通知单位", comboBoxEdit1.Properties);
+            ComboBoxHelper.FillCBoxByDyk("电力线路防护通知书", "电压等级", comboBoxEdit3.Properties);
            IList<sd_xl> xsList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>("where orgcode='" + rowData.ParentID + "'");
            List<DicType> dicxlList = new List<DicType>();
            foreach (sd_xl xl in xsList)
