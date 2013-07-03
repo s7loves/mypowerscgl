@@ -871,24 +871,31 @@ namespace Ebada.Scgl.Core {
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
             PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>(string.Format("where dx='{0}' and sx='{1}' and parentid=''", dx, sx));
-            if (parentObj != null) {
+            if (parentObj != null)
+            {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
 
-                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
 
                     dyk = dlg.ucpJ_dykSelector1.GetSelectedRow();
-                    int len = txt.Length>4?4:txt.Length;
-                    for (int i = 0; i < len; i++) {
-                        if (i==0)
+                    int len = txt.Length > 4 ? 4 : txt.Length;
+                    for (int i = 0; i < len; i++)
+                    {
+                        if (i == 0)
                             txt[i].EditValue = dyk.nr;
-                        else if (i ==1)
+                        else if (i == 1)
                             txt[i].EditValue = dyk.nr2;
-                        else if (i==2)
+                        else if (i == 2)
                             txt[i].EditValue = dyk.nr3;
-                        else if (i==3)
+                        else if (i == 3)
                             txt[i].EditValue = dyk.nr4;
                     }
                 }
+            }
+            else
+            {
+                MsgBox.ShowWarningMessageBox("短语库中没有找到 记录表中文名为 " + dx + " 属性为 " + sx + " 的记录");
             }
             return dyk;
         }
