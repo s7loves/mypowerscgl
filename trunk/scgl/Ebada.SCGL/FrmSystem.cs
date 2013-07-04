@@ -103,6 +103,7 @@ namespace Ebada.SCGL {
                 if (MainHelper.User.LoginID == "rabbit") {
                     labSet.Show();
                 } else {
+                    CreateMenu();
                     InitFunction(MainHelper.User.UserID);
                 }
                 //this.WindowState = FormWindowState.Maximized;
@@ -142,9 +143,15 @@ namespace Ebada.SCGL {
         private void CreateMenu() {
             nbctSystem.Groups.Clear();
             nbctSystem.Items.Clear();
-
+            listView1.Items.Clear();
             string sqlwhere = "where  Description='system'  order by Sequence";
+
+            if (!string.IsNullOrEmpty(MainHelper.LoginName)) {
+                sqlwhere = "where  Description='" + "system" + "'" + "and Modu_ID in (select distinct modu_id from vusermodule where userid='" + MainHelper.User.UserID + "')" + "  order by Sequence ";
+
+            }
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
+            if (mlist == null || mlist.Count == 0) return;
             moduleTable = Ebada.Core.ConvertHelper.ToDataTable((IList)mlist);
             DataTable table = moduleTable;
 
