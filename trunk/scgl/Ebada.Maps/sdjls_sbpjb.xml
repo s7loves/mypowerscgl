@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sdjls_sbpjb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="sdjls_sbpjb"  type="Ebada.Scgl.Model.sdjls_sbpjb,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="sdjls_sbpjb_AllColumns" class="sdjls_sbpjb">
+        <result property="ID" column="ID" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="OrgName" column="OrgName" />
+        <result property="LineCode" column="LineCode" />
+        <result property="LineName" column="LineName" />
+        <result property="pjrq" column="pjrq" />
+        <result property="pddj" column="pddj" />
+        <result property="pjfzr" column="pjfzr" />
+        <result property="BigData" column="BigData" />
+        <result property="Remark" column="Remark" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectsdjls_sbpjbList" resultMap="sdjls_sbpjb_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [pjrq],
+         [pddj],
+         [pjfzr],
+         [BigData],
+         [Remark],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_sbpjb
+          $value$
+   </select>
+   
+   <select id="Selectsdjls_sbpjbByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [pjrq],
+         [pddj],
+         [pjfzr],
+         [BigData],
+         [Remark],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM sdjls_sbpjb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="pjrq">[pjrq]='$pjrq$'</isNotNull>
+       <isNotNull prepend="AND" property="pddj">[pddj]='$pddj$'</isNotNull>
+       <isNotNull prepend="AND" property="pjfzr">[pjfzr]='$pjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectsdjls_sbpjbByKey" resultMap="sdjls_sbpjb_AllColumns" parameterClass="sdjls_sbpjb">
+         SELECT 
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [pjrq],
+         [pddj],
+         [pjfzr],
+         [BigData],
+         [Remark],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM sdjls_sbpjb
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletesdjls_sbpjb" parameterClass="sdjls_sbpjb">
+        DELETE FROM 
+         sdjls_sbpjb
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletesdjls_sbpjbByWhere" parameterClass="string">
+     delete from sdjls_sbpjb $value$
+   </delete>
+   
+   <delete id="Deletesdjls_sbpjbByKey" parameterClass="string">
+        DELETE FROM 
+         sdjls_sbpjb
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatesdjls_sbpjb" parameterClass="sdjls_sbpjb" resultClass="int">
+          UPDATE sdjls_sbpjb
+           SET
+             [OrgCode]=#OrgCode#,
+             [OrgName]=#OrgName#,
+             [LineCode]=#LineCode#,
+             [LineName]=#LineName#,
+             [pjrq]=#pjrq#,
+             [pddj]=#pddj#,
+             [pjfzr]=#pjfzr#,
+             [BigData]=#BigData#,
+             [Remark]=#Remark#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertsdjls_sbpjb" parameterClass="sdjls_sbpjb">
+        INSERT INTO sdjls_sbpjb
+         (
+         [ID],
+         [OrgCode],
+         [OrgName],
+         [LineCode],
+         [LineName],
+         [pjrq],
+         [pddj],
+         [pjfzr],
+         [BigData],
+         [Remark],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgCode#,
+         #OrgName#,
+         #LineCode#,
+         #LineName#,
+         #pjrq#,
+         #pddj#,
+         #pjfzr#,
+         #BigData#,
+         #Remark#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getsdjls_sbpjbRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM sdjls_sbpjb
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="LineCode">[LineCode]='$LineCode$'</isNotNull>
+       <isNotNull prepend="AND" property="LineName">[LineName]='$LineName$'</isNotNull>
+       <isNotNull prepend="AND" property="pjrq">[pjrq]='$pjrq$'</isNotNull>
+       <isNotNull prepend="AND" property="pddj">[pddj]='$pddj$'</isNotNull>
+       <isNotNull prepend="AND" property="pjfzr">[pjfzr]='$pjfzr$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getsdjls_sbpjbRowCount" parameterClass="string">
+    select count(*) from sdjls_sbpjb $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
