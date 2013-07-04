@@ -49,6 +49,8 @@ namespace Ebada.Scgl.Sbgl
 
         private void Initlkue()
         {
+            ComboBoxHelper.FillCBoxByDyk("变电工作票登记簿", "工作票编号", txtgzpbh);
+            ComboBoxHelper.FillCBoxByDyk("变电工作票登记簿", "工作票种类", txtgzpzl);
             IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
             if (userList == null)
                 return;
@@ -98,6 +100,16 @@ namespace Ebada.Scgl.Sbgl
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电工作票登记簿", "工作地点及工作内容", meogzddjnr);
+        }
+
+        private void frm_gzpdjb_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

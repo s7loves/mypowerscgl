@@ -31,9 +31,7 @@
             this.lblOrgName = new DevExpress.XtraEditors.LabelControl();
             this.txtOrgName = new DevExpress.XtraEditors.TextEdit();
             this.lblgzpbh = new DevExpress.XtraEditors.LabelControl();
-            this.txtgzpbh = new DevExpress.XtraEditors.TextEdit();
             this.lblgzpzl = new DevExpress.XtraEditors.LabelControl();
-            this.txtgzpzl = new DevExpress.XtraEditors.TextEdit();
             this.lblgzfzr = new DevExpress.XtraEditors.LabelControl();
             this.lblStartTime = new DevExpress.XtraEditors.LabelControl();
             this.dateStartTime = new DevExpress.XtraEditors.DateEdit();
@@ -50,9 +48,10 @@
             this.lkuegzxkr = new DevExpress.XtraEditors.LookUpEdit();
             this.lkuezbz = new DevExpress.XtraEditors.LookUpEdit();
             this.lkuegzfpr = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtgzpbh = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtgzpzl = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrgName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgzpbh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgzpzl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStartTime.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEndTime.Properties.VistaTimeProperties)).BeginInit();
@@ -62,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lkuegzxkr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuezbz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuegzfpr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgzpbh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgzpzl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrgName
@@ -88,13 +89,6 @@
             this.lblgzpbh.TabIndex = 2;
             this.lblgzpbh.Text = "工作票编号";
             // 
-            // txtgzpbh
-            // 
-            this.txtgzpbh.Location = new System.Drawing.Point(121, 55);
-            this.txtgzpbh.Name = "txtgzpbh";
-            this.txtgzpbh.Size = new System.Drawing.Size(324, 21);
-            this.txtgzpbh.TabIndex = 3;
-            // 
             // lblgzpzl
             // 
             this.lblgzpzl.Location = new System.Drawing.Point(30, 90);
@@ -102,13 +96,6 @@
             this.lblgzpzl.Size = new System.Drawing.Size(60, 14);
             this.lblgzpzl.TabIndex = 4;
             this.lblgzpzl.Text = "工作票种类";
-            // 
-            // txtgzpzl
-            // 
-            this.txtgzpzl.Location = new System.Drawing.Point(121, 87);
-            this.txtgzpzl.Name = "txtgzpzl";
-            this.txtgzpzl.Size = new System.Drawing.Size(324, 21);
-            this.txtgzpzl.TabIndex = 5;
             // 
             // lblgzfzr
             // 
@@ -266,11 +253,41 @@
             this.lkuegzfpr.Size = new System.Drawing.Size(324, 21);
             this.lkuegzfpr.TabIndex = 25;
             // 
+            // txtgzpbh
+            // 
+            this.txtgzpbh.Location = new System.Drawing.Point(121, 55);
+            this.txtgzpbh.Name = "txtgzpbh";
+            this.txtgzpbh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtgzpbh.Size = new System.Drawing.Size(324, 21);
+            this.txtgzpbh.TabIndex = 26;
+            // 
+            // txtgzpzl
+            // 
+            this.txtgzpzl.Location = new System.Drawing.Point(121, 90);
+            this.txtgzpzl.Name = "txtgzpzl";
+            this.txtgzpzl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtgzpzl.Size = new System.Drawing.Size(324, 21);
+            this.txtgzpzl.TabIndex = 27;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(452, 311);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(22, 23);
+            this.simpleButton1.TabIndex = 28;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_gzpdjb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 425);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.txtgzpzl);
+            this.Controls.Add(this.txtgzpbh);
             this.Controls.Add(this.lkuegzfpr);
             this.Controls.Add(this.lkuezbz);
             this.Controls.Add(this.lkuegzxkr);
@@ -287,9 +304,7 @@
             this.Controls.Add(this.dateStartTime);
             this.Controls.Add(this.lblStartTime);
             this.Controls.Add(this.lblgzfzr);
-            this.Controls.Add(this.txtgzpzl);
             this.Controls.Add(this.lblgzpzl);
-            this.Controls.Add(this.txtgzpbh);
             this.Controls.Add(this.lblgzpbh);
             this.Controls.Add(this.txtOrgName);
             this.Controls.Add(this.lblOrgName);
@@ -297,9 +312,8 @@
             this.Name = "frm_gzpdjb";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工作票登记簿";
+            this.Load += new System.EventHandler(this.frm_gzpdjb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtOrgName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgzpbh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgzpzl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStartTime.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEndTime.Properties.VistaTimeProperties)).EndInit();
@@ -309,6 +323,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lkuegzxkr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuezbz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuegzfpr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgzpbh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgzpzl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,9 +335,7 @@
         private DevExpress.XtraEditors.LabelControl lblOrgName;
         private DevExpress.XtraEditors.TextEdit txtOrgName;
         private DevExpress.XtraEditors.LabelControl lblgzpbh;
-        private DevExpress.XtraEditors.TextEdit txtgzpbh;
         private DevExpress.XtraEditors.LabelControl lblgzpzl;
-        private DevExpress.XtraEditors.TextEdit txtgzpzl;
         private DevExpress.XtraEditors.LabelControl lblgzfzr;
         private DevExpress.XtraEditors.LabelControl lblStartTime;
         private DevExpress.XtraEditors.DateEdit dateStartTime;
@@ -338,5 +352,8 @@
         private DevExpress.XtraEditors.LookUpEdit lkuegzxkr;
         private DevExpress.XtraEditors.LookUpEdit lkuezbz;
         private DevExpress.XtraEditors.LookUpEdit lkuegzfpr;
+        private DevExpress.XtraEditors.ComboBoxEdit txtgzpbh;
+        private DevExpress.XtraEditors.ComboBoxEdit txtgzpzl;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
