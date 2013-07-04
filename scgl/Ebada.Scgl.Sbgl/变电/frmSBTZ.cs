@@ -95,7 +95,7 @@ namespace Ebada.Scgl.Sbgl.变电
                         {
                             XtraPage = new DevExpress.XtraTab.XtraTabPage();
                             XtraPage.Name = "xtrpage" + pageNumber;
-                            XtraPage.Text = string.Format("变电设备第{0}页", pageNumber);
+                            XtraPage.Text = "设备属性";
                             this.xtraTabControl1.TabPages.Add(XtraPage);
                             XtraPage.AutoScroll = true;
                             pageNumber++;
@@ -143,6 +143,7 @@ namespace Ebada.Scgl.Sbgl.变电
                     pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
                     pictureEdit1.Dock = DockStyle.Fill;
                     pictureEdit1.Name = "pictureEdit1";
+                    pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
                     grpbox.Controls.Add(pictureEdit1);
                     pictureEdit1.EditValueChanged += new EventHandler(pictureEdit1_EditValueChanged);
 
