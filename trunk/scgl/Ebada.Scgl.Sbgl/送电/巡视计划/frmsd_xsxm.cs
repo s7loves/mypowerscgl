@@ -45,6 +45,7 @@ namespace Ebada.Scgl.Sbgl
                     this.rowData = value as sd_xsxm;
                     
                     dataBind();
+                    Initlkue();
                 }
                 else
                 {
@@ -69,7 +70,9 @@ namespace Ebada.Scgl.Sbgl
 
         private void Initlkue()
         {
-            
+            ComboBoxHelper.FillCBoxByDyk("巡检项目信息", "项目种类", txtzl);
+            ComboBoxHelper.FillCBoxByDyk("巡检项目信息", "项目内容", txtmc);
+            ComboBoxHelper.FillCBoxByDyk("巡检项目信息", "巡视状态", txtflag);
         }
 
         #endregion

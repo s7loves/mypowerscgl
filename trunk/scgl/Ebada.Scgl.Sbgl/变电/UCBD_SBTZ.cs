@@ -238,6 +238,7 @@ namespace Ebada.Scgl.Sbgl {
         }
         private void InitGridColumns()
         {
+
             foreach (GridColumn c in gridView1.Columns)
             {
                 c.Visible = false;

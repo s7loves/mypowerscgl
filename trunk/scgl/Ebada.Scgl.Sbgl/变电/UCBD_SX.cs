@@ -64,10 +64,11 @@ namespace Ebada.Scgl.Sbgl {
         #region 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<BD_SBTZ_SX> e)
         {
+            bool ishas = false;
             if (enableList.Contains((e.Value as BD_SBTZ_SX).sxcol))
             {
-                MessageBox.Show("不能添加a1-a8之间的值");
-                e.Cancel = true;
+                ishas = true;
+               
             }
             IList<BD_SBTZ_SX> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<BD_SBTZ_SX>("where sxcol='" + (e.Value as BD_SBTZ_SX).sxcol + "'" +
                 "and zldm='" + parentID + "'");
@@ -75,9 +76,14 @@ namespace Ebada.Scgl.Sbgl {
             {
                 //Client.ClientHelper.PlatformSqlMap.Delete<BD_SBTZ_SX>(list[0]);
                 //int id=(int)Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value as BD_SBTZ_SX);
-                MessageBox.Show("属性名重复，修改数据失败！");
-                e.Cancel = true;
+
+                ishas = true;
                
+            }
+            if (ishas)
+            {
+                Client.ClientHelper.PlatformSqlMap.Delete<BD_SBTZ_SX>(e.ValueOld);
+                Client.ClientHelper.PlatformSqlMap.Create<BD_SBTZ_SX>(e.Value);
             }
 
         }
