@@ -70,7 +70,9 @@ namespace Ebada.Scgl.Sbgl
             //    sbmcList.Add(new DicType(mc, mc));
             //}
             ////SetComboBoxData(lkueblqmc, "Value", "Key", "请选择", "避雷器名称", sbmcList);
-
+            ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "调度", this.txtdd);
+            ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "变电所", this.txtbds);
+            ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "指令编号", this.txtzlbh);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
@@ -97,6 +99,11 @@ namespace Ebada.Scgl.Sbgl
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电调度操作指令", "内容", memonr);
         }
     }
 }
