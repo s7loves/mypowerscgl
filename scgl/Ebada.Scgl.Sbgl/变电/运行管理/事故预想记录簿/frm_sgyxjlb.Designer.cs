@@ -33,28 +33,30 @@
             this.lbltq = new DevExpress.XtraEditors.LabelControl();
             this.lblcjry = new DevExpress.XtraEditors.LabelControl();
             this.lbldsyxfs = new DevExpress.XtraEditors.LabelControl();
-            this.txtdsyxfs = new DevExpress.XtraEditors.TextEdit();
             this.lblyxtm = new DevExpress.XtraEditors.LabelControl();
-            this.txtyxtm = new DevExpress.XtraEditors.TextEdit();
             this.lblsgxx = new DevExpress.XtraEditors.LabelControl();
             this.memosgxx = new DevExpress.XtraEditors.MemoEdit();
             this.lblclbz = new DevExpress.XtraEditors.LabelControl();
             this.memoclbz = new DevExpress.XtraEditors.MemoEdit();
             this.lblshyj = new DevExpress.XtraEditors.LabelControl();
-            this.txtshyj = new DevExpress.XtraEditors.TextEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.cmbxcjry = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.lkuetq = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtdsyxfs = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtyxtm = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.txtshyj = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memosgxx.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclbz.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbxcjry.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuetq.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblrq
@@ -101,13 +103,6 @@
             this.lbldsyxfs.TabIndex = 6;
             this.lbldsyxfs.Text = "当时运行方式";
             // 
-            // txtdsyxfs
-            // 
-            this.txtdsyxfs.Location = new System.Drawing.Point(120, 122);
-            this.txtdsyxfs.Name = "txtdsyxfs";
-            this.txtdsyxfs.Size = new System.Drawing.Size(408, 21);
-            this.txtdsyxfs.TabIndex = 7;
-            // 
             // lblyxtm
             // 
             this.lblyxtm.Location = new System.Drawing.Point(38, 156);
@@ -115,13 +110,6 @@
             this.lblyxtm.Size = new System.Drawing.Size(48, 14);
             this.lblyxtm.TabIndex = 8;
             this.lblyxtm.Text = "预想题目";
-            // 
-            // txtyxtm
-            // 
-            this.txtyxtm.Location = new System.Drawing.Point(120, 153);
-            this.txtyxtm.Name = "txtyxtm";
-            this.txtyxtm.Size = new System.Drawing.Size(408, 21);
-            this.txtyxtm.TabIndex = 9;
             // 
             // lblsgxx
             // 
@@ -161,13 +149,6 @@
             this.lblshyj.TabIndex = 14;
             this.lblshyj.Text = "审核意见";
             // 
-            // txtshyj
-            // 
-            this.txtshyj.Location = new System.Drawing.Point(120, 345);
-            this.txtshyj.Name = "txtshyj";
-            this.txtshyj.Size = new System.Drawing.Size(408, 21);
-            this.txtshyj.TabIndex = 15;
-            // 
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(312, 381);
@@ -204,24 +185,71 @@
             this.lkuetq.Size = new System.Drawing.Size(408, 21);
             this.lkuetq.TabIndex = 19;
             // 
+            // txtdsyxfs
+            // 
+            this.txtdsyxfs.Location = new System.Drawing.Point(120, 125);
+            this.txtdsyxfs.Name = "txtdsyxfs";
+            this.txtdsyxfs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtdsyxfs.Size = new System.Drawing.Size(408, 21);
+            this.txtdsyxfs.TabIndex = 20;
+            // 
+            // txtyxtm
+            // 
+            this.txtyxtm.Location = new System.Drawing.Point(120, 156);
+            this.txtyxtm.Name = "txtyxtm";
+            this.txtyxtm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtyxtm.Size = new System.Drawing.Size(408, 21);
+            this.txtyxtm.TabIndex = 21;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(534, 184);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(21, 23);
+            this.simpleButton1.TabIndex = 22;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(534, 264);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(21, 23);
+            this.simpleButton2.TabIndex = 23;
+            this.simpleButton2.Text = "...";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // txtshyj
+            // 
+            this.txtshyj.Location = new System.Drawing.Point(120, 345);
+            this.txtshyj.Name = "txtshyj";
+            this.txtshyj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtshyj.Size = new System.Drawing.Size(408, 21);
+            this.txtshyj.TabIndex = 24;
+            // 
             // frm_sgyxjlb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(556, 423);
+            this.Controls.Add(this.txtshyj);
+            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.txtyxtm);
+            this.Controls.Add(this.txtdsyxfs);
             this.Controls.Add(this.lkuetq);
             this.Controls.Add(this.cmbxcjry);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.txtshyj);
             this.Controls.Add(this.lblshyj);
             this.Controls.Add(this.memoclbz);
             this.Controls.Add(this.lblclbz);
             this.Controls.Add(this.memosgxx);
             this.Controls.Add(this.lblsgxx);
-            this.Controls.Add(this.txtyxtm);
             this.Controls.Add(this.lblyxtm);
-            this.Controls.Add(this.txtdsyxfs);
             this.Controls.Add(this.lbldsyxfs);
             this.Controls.Add(this.lblcjry);
             this.Controls.Add(this.lbltq);
@@ -233,13 +261,13 @@
             this.Text = "事故预想记录";
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.daterq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memosgxx.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclbz.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbxcjry.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuetq.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdsyxfs.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtyxtm.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtshyj.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,18 +280,20 @@
         private DevExpress.XtraEditors.LabelControl lbltq;
         private DevExpress.XtraEditors.LabelControl lblcjry;
         private DevExpress.XtraEditors.LabelControl lbldsyxfs;
-        private DevExpress.XtraEditors.TextEdit txtdsyxfs;
         private DevExpress.XtraEditors.LabelControl lblyxtm;
-        private DevExpress.XtraEditors.TextEdit txtyxtm;
         private DevExpress.XtraEditors.LabelControl lblsgxx;
         private DevExpress.XtraEditors.MemoEdit memosgxx;
         private DevExpress.XtraEditors.LabelControl lblclbz;
         private DevExpress.XtraEditors.MemoEdit memoclbz;
         private DevExpress.XtraEditors.LabelControl lblshyj;
-        private DevExpress.XtraEditors.TextEdit txtshyj;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.CheckedComboBoxEdit cmbxcjry;
         private DevExpress.XtraEditors.LookUpEdit lkuetq;
+        private DevExpress.XtraEditors.ComboBoxEdit txtdsyxfs;
+        private DevExpress.XtraEditors.ComboBoxEdit txtyxtm;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.ComboBoxEdit txtshyj;
     }
 }

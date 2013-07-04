@@ -90,6 +90,10 @@ namespace Ebada.Scgl.Sbgl
             dicTypetqList.Add(new DicType("暴雪", "暴雪"));
             dicTypetqList.Add(new DicType("雨夹雪", "雨夹雪"));
             SetComboBoxData(this.lkuetq, "Value", "Key", "请选择", "天气", dicTypetqList);
+            ComboBoxHelper.FillCBoxByDyk("变电事故预想记录", "当时运行方式", txtdsyxfs);
+            ComboBoxHelper.FillCBoxByDyk("变电事故预想记录", "预想题目", txtyxtm);
+            ComboBoxHelper.FillCBoxByDyk("变电事故预想记录", "审核意见", txtshyj);
+
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
@@ -116,6 +120,17 @@ namespace Ebada.Scgl.Sbgl
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电事故预想记录", "事故现象", memosgxx);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电事故预想记录", "处理步骤", memoclbz);
+
         }
     }
 }

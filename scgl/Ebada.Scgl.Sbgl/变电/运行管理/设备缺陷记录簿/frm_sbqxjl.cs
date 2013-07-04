@@ -126,6 +126,14 @@ namespace Ebada.Scgl.Sbgl
             qxlbList.Add(new DicType("一般", "一般"));
             qxlbList.Add(new DicType("重大", "重大"));
             SetComboBoxData(lkueqxlb, "Value", "Key", "请选择", "缺陷类别", qxlbList);
+            ComboBoxHelper.FillCBoxByDyk("变电设备缺陷记录", "缺陷编号", txtqxbh);
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电设备缺陷记录", "缺陷内容", meoqxnr);
+
         }
     }
 }

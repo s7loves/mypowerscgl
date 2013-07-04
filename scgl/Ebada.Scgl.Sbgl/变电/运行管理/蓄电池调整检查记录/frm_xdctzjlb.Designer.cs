@@ -31,9 +31,7 @@
             this.lblsj = new DevExpress.XtraEditors.LabelControl();
             this.datesj = new DevExpress.XtraEditors.DateEdit();
             this.lbldcdy = new DevExpress.XtraEditors.LabelControl();
-            this.txtdcdy = new DevExpress.XtraEditors.TextEdit();
             this.lbldl = new DevExpress.XtraEditors.LabelControl();
-            this.txtdl = new DevExpress.XtraEditors.TextEdit();
             this.lbltrdcgs = new DevExpress.XtraEditors.LabelControl();
             this.txttrdcgs = new DevExpress.XtraEditors.TextEdit();
             this.lblbzdcdy = new DevExpress.XtraEditors.LabelControl();
@@ -42,13 +40,15 @@
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.lkuejcr = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtdcdy = new DevExpress.XtraEditors.SpinEdit();
+            this.txtdl = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuejcr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblsj
@@ -86,13 +86,6 @@
             this.lbldcdy.TabIndex = 2;
             this.lbldcdy.Text = "电池电压(伏)";
             // 
-            // txtdcdy
-            // 
-            this.txtdcdy.Location = new System.Drawing.Point(150, 68);
-            this.txtdcdy.Name = "txtdcdy";
-            this.txtdcdy.Size = new System.Drawing.Size(396, 21);
-            this.txtdcdy.TabIndex = 3;
-            // 
             // lbldl
             // 
             this.lbldl.Location = new System.Drawing.Point(41, 106);
@@ -100,13 +93,6 @@
             this.lbldl.Size = new System.Drawing.Size(46, 14);
             this.lbldl.TabIndex = 4;
             this.lbldl.Text = "电流(安)";
-            // 
-            // txtdl
-            // 
-            this.txtdl.Location = new System.Drawing.Point(150, 103);
-            this.txtdl.Name = "txtdl";
-            this.txtdl.Size = new System.Drawing.Size(396, 21);
-            this.txtdl.TabIndex = 5;
             // 
             // lbltrdcgs
             // 
@@ -173,11 +159,41 @@
             this.lkuejcr.Size = new System.Drawing.Size(396, 21);
             this.lkuejcr.TabIndex = 14;
             // 
+            // txtdcdy
+            // 
+            this.txtdcdy.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtdcdy.Location = new System.Drawing.Point(150, 64);
+            this.txtdcdy.Name = "txtdcdy";
+            this.txtdcdy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtdcdy.Size = new System.Drawing.Size(396, 21);
+            this.txtdcdy.TabIndex = 15;
+            // 
+            // txtdl
+            // 
+            this.txtdl.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtdl.Location = new System.Drawing.Point(150, 103);
+            this.txtdl.Name = "txtdl";
+            this.txtdl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtdl.Size = new System.Drawing.Size(396, 21);
+            this.txtdl.TabIndex = 16;
+            // 
             // frm_xdctzjlb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 299);
+            this.Controls.Add(this.txtdl);
+            this.Controls.Add(this.txtdcdy);
             this.Controls.Add(this.lkuejcr);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -186,9 +202,7 @@
             this.Controls.Add(this.lblbzdcdy);
             this.Controls.Add(this.txttrdcgs);
             this.Controls.Add(this.lbltrdcgs);
-            this.Controls.Add(this.txtdl);
             this.Controls.Add(this.lbldl);
-            this.Controls.Add(this.txtdcdy);
             this.Controls.Add(this.lbldcdy);
             this.Controls.Add(this.datesj);
             this.Controls.Add(this.lblsj);
@@ -198,11 +212,11 @@
             this.Text = "蓄电池调整及检测记录簿";
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuejcr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,9 +227,7 @@
         private DevExpress.XtraEditors.LabelControl lblsj;
         private DevExpress.XtraEditors.DateEdit datesj;
         private DevExpress.XtraEditors.LabelControl lbldcdy;
-        private DevExpress.XtraEditors.TextEdit txtdcdy;
         private DevExpress.XtraEditors.LabelControl lbldl;
-        private DevExpress.XtraEditors.TextEdit txtdl;
         private DevExpress.XtraEditors.LabelControl lbltrdcgs;
         private DevExpress.XtraEditors.TextEdit txttrdcgs;
         private DevExpress.XtraEditors.LabelControl lblbzdcdy;
@@ -224,5 +236,7 @@
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LookUpEdit lkuejcr;
+        private DevExpress.XtraEditors.SpinEdit txtdcdy;
+        private DevExpress.XtraEditors.SpinEdit txtdl;
     }
 }

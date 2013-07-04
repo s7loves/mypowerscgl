@@ -62,6 +62,11 @@ namespace Ebada.Scgl.Sbgl
 
         private void Initlkue()
         {
+
+            ComboBoxHelper.FillCBoxByDyk("变电设备检修记录", "检修性质", txtjxxz);
+            ComboBoxHelper.FillCBoxByDyk("变电设备检修记录", "检修项目", txtjxxm);
+            ComboBoxHelper.FillCBoxByDyk("变电设备检修记录", "验收意见", txtysyj);
+
             string sqlsbmc = "select distinct a2 from BD_SBTZ where OrgCode='" + rowData.OrgCode + "' and rtrim(ltrim(a2))!=''";
             IList<string> ls = Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
             List<DicType> sbmcList = new List<DicType>();
