@@ -101,5 +101,10 @@ namespace Ebada.Scgl.Sbgl
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电反事故演习记录", "反事故信息", memocljg, memowtjcs, memojljpj);
+        }
     }
 }
