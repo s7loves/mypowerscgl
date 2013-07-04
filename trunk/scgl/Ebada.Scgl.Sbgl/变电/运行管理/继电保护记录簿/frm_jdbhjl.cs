@@ -112,6 +112,12 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void simpleButton1_Click(object sender, System.EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电继电保护记录", "调试内容及结论", memotsnrjjl);
+
+        }
+
         
 
     }
