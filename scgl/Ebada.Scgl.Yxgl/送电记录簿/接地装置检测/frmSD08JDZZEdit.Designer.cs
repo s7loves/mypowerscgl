@@ -36,7 +36,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cmbjl = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lbljl = new DevExpress.XtraEditors.LabelControl();
-            this.txtjcqk = new DevExpress.XtraEditors.TextEdit();
             this.lbljcqk = new DevExpress.XtraEditors.LabelControl();
             this.datejcrq = new DevExpress.XtraEditors.DateEdit();
             this.lbljcrq = new DevExpress.XtraEditors.LabelControl();
@@ -55,12 +54,12 @@
             this.lblgth = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.txtjcqk = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.grpjcqk.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjcr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spehsz.Properties)).BeginInit();
@@ -70,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -106,11 +106,11 @@
             // 
             // grpjcqk
             // 
+            this.grpjcqk.Controls.Add(this.txtjcqk);
             this.grpjcqk.Controls.Add(this.cmbjcr);
             this.grpjcqk.Controls.Add(this.labelControl2);
             this.grpjcqk.Controls.Add(this.cmbjl);
             this.grpjcqk.Controls.Add(this.lbljl);
-            this.grpjcqk.Controls.Add(this.txtjcqk);
             this.grpjcqk.Controls.Add(this.lbljcqk);
             this.grpjcqk.Controls.Add(this.datejcrq);
             this.grpjcqk.Controls.Add(this.lbljcrq);
@@ -158,13 +158,6 @@
             this.lbljl.Size = new System.Drawing.Size(24, 14);
             this.lbljl.TabIndex = 8;
             this.lbljl.Text = "结论";
-            // 
-            // txtjcqk
-            // 
-            this.txtjcqk.Location = new System.Drawing.Point(90, 117);
-            this.txtjcqk.Name = "txtjcqk";
-            this.txtjcqk.Size = new System.Drawing.Size(186, 21);
-            this.txtjcqk.TabIndex = 7;
             // 
             // lbljcqk
             // 
@@ -343,6 +336,15 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // txtjcqk
+            // 
+            this.txtjcqk.Location = new System.Drawing.Point(90, 120);
+            this.txtjcqk.Name = "txtjcqk";
+            this.txtjcqk.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtjcqk.Size = new System.Drawing.Size(186, 21);
+            this.txtjcqk.TabIndex = 12;
+            // 
             // frmSD08JDZZEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -360,7 +362,6 @@
             this.grpjcqk.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjcr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spehsz.Properties)).EndInit();
@@ -371,6 +372,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -399,11 +401,11 @@
         private DevExpress.XtraEditors.SpinEdit spescz;
         private DevExpress.XtraEditors.DateEdit datejcrq;
         private DevExpress.XtraEditors.LabelControl lbljcqk;
-        private DevExpress.XtraEditors.TextEdit txtjcqk;
         private DevExpress.XtraEditors.ComboBoxEdit cmbjcr;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ComboBoxEdit cmbjl;
         private DevExpress.XtraEditors.LabelControl lbljl;
+        private DevExpress.XtraEditors.ComboBoxEdit txtjcqk;
 
     }
 }

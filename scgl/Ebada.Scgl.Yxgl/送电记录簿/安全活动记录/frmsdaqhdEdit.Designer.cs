@@ -92,6 +92,7 @@
             this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -189,6 +190,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.simpleButton3);
             this.groupBox7.Controls.Add(this.dateEdit4);
             this.groupBox7.Controls.Add(this.memoEdit4);
             this.groupBox7.Controls.Add(this.comboBoxEdit27);
@@ -739,7 +741,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.memoEdit1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(388, 182);
+            this.xtraTabPage1.Size = new System.Drawing.Size(386, 179);
             this.xtraTabPage1.Text = "活动内容";
             // 
             // memoEdit1
@@ -748,7 +750,7 @@
             this.memoEdit1.EditValue = "";
             this.memoEdit1.Location = new System.Drawing.Point(0, 0);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(388, 182);
+            this.memoEdit1.Size = new System.Drawing.Size(386, 179);
             this.memoEdit1.TabIndex = 0;
             // 
             // xtraTabPage2
@@ -796,6 +798,15 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(57, 0);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(28, 23);
+            this.simpleButton3.TabIndex = 13;
+            this.simpleButton3.Text = "...";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // frmsdaqhdEdit
             // 
@@ -937,6 +948,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.MemoEdit memoEdit5;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
 
     }
 }

@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Yxgl
                 this.comboBoxEdit6.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit1.Properties.Items.AddRange(ryList);
             }
-            
+            ComboBoxHelper.FillCBoxByDyk("04事故异常运行记录", "发生地点", textEdit2);
         }
 
 

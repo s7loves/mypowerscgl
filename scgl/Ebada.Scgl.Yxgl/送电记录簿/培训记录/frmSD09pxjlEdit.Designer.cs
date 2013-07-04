@@ -61,6 +61,7 @@
             this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.simpleButton2);
             this.groupBox3.Controls.Add(this.memoEdit3);
             this.groupBox3.Controls.Add(this.labelControl9);
             this.groupBox3.Controls.Add(this.labelControl10);
@@ -399,6 +401,15 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(28, 49);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(32, 23);
+            this.simpleButton2.TabIndex = 22;
+            this.simpleButton2.Text = "...";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frmSD09pxjlEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -472,6 +483,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
 
     }
 }

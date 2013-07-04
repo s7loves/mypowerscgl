@@ -39,26 +39,26 @@
             this.lblxjqxh = new DevExpress.XtraEditors.LabelControl();
             this.cmbddxxh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblddxxh = new DevExpress.XtraEditors.LabelControl();
-            this.txtdjzwz = new DevExpress.XtraEditors.TextEdit();
             this.lbldjzwz = new DevExpress.XtraEditors.LabelControl();
             this.cmbljxs = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblljxs = new DevExpress.XtraEditors.LabelControl();
             this.cmbxb = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblxb = new DevExpress.XtraEditors.LabelControl();
-            this.txtdj = new DevExpress.XtraEditors.TextEdit();
             this.lbldj = new DevExpress.XtraEditors.LabelControl();
             this.cmbgh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblgh = new DevExpress.XtraEditors.LabelControl();
+            this.txtdj = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtdjzwz = new DevExpress.XtraEditors.ComboBoxEdit();
             this.grpddxxx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtbz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbsccj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljqxh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbddxxh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdjzwz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbxb.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdjzwz.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -81,6 +81,8 @@
             // 
             // grpddxxx
             // 
+            this.grpddxxx.Controls.Add(this.txtdjzwz);
+            this.grpddxxx.Controls.Add(this.txtdj);
             this.grpddxxx.Controls.Add(this.txtbz);
             this.grpddxxx.Controls.Add(this.lblbz);
             this.grpddxxx.Controls.Add(this.cmbsccj);
@@ -89,13 +91,11 @@
             this.grpddxxx.Controls.Add(this.lblxjqxh);
             this.grpddxxx.Controls.Add(this.cmbddxxh);
             this.grpddxxx.Controls.Add(this.lblddxxh);
-            this.grpddxxx.Controls.Add(this.txtdjzwz);
             this.grpddxxx.Controls.Add(this.lbldjzwz);
             this.grpddxxx.Controls.Add(this.cmbljxs);
             this.grpddxxx.Controls.Add(this.lblljxs);
             this.grpddxxx.Controls.Add(this.cmbxb);
             this.grpddxxx.Controls.Add(this.lblxb);
-            this.grpddxxx.Controls.Add(this.txtdj);
             this.grpddxxx.Controls.Add(this.lbldj);
             this.grpddxxx.Controls.Add(this.cmbgh);
             this.grpddxxx.Controls.Add(this.lblgh);
@@ -172,13 +172,6 @@
             this.lblddxxh.TabIndex = 28;
             this.lblddxxh.Text = "导地线型号";
             // 
-            // txtdjzwz
-            // 
-            this.txtdjzwz.Location = new System.Drawing.Point(102, 144);
-            this.txtdjzwz.Name = "txtdjzwz";
-            this.txtdjzwz.Size = new System.Drawing.Size(349, 21);
-            this.txtdjzwz.TabIndex = 27;
-            // 
             // lbldjzwz
             // 
             this.lbldjzwz.Location = new System.Drawing.Point(18, 147);
@@ -221,13 +214,6 @@
             this.lblxb.TabIndex = 22;
             this.lblxb.Text = "相别";
             // 
-            // txtdj
-            // 
-            this.txtdj.Location = new System.Drawing.Point(102, 84);
-            this.txtdj.Name = "txtdj";
-            this.txtdj.Size = new System.Drawing.Size(349, 21);
-            this.txtdj.TabIndex = 21;
-            // 
             // lbldj
             // 
             this.lbldj.Location = new System.Drawing.Point(54, 87);
@@ -254,6 +240,24 @@
             this.lblgh.TabIndex = 18;
             this.lblgh.Text = "杆号";
             // 
+            // txtdj
+            // 
+            this.txtdj.Location = new System.Drawing.Point(102, 84);
+            this.txtdj.Name = "txtdj";
+            this.txtdj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtdj.Size = new System.Drawing.Size(349, 21);
+            this.txtdj.TabIndex = 36;
+            // 
+            // txtdjzwz
+            // 
+            this.txtdjzwz.Location = new System.Drawing.Point(102, 144);
+            this.txtdjzwz.Name = "txtdjzwz";
+            this.txtdjzwz.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtdjzwz.Size = new System.Drawing.Size(349, 21);
+            this.txtdjzwz.TabIndex = 37;
+            // 
             // frm_ddxljqnr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -274,11 +278,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbsccj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljqxh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbddxxh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdjzwz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbljxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbxb.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtdjzwz.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,17 +299,17 @@
         private DevExpress.XtraEditors.LabelControl lblxjqxh;
         private DevExpress.XtraEditors.ComboBoxEdit cmbddxxh;
         private DevExpress.XtraEditors.LabelControl lblddxxh;
-        private DevExpress.XtraEditors.TextEdit txtdjzwz;
         private DevExpress.XtraEditors.LabelControl lbldjzwz;
         private DevExpress.XtraEditors.ComboBoxEdit cmbljxs;
         private DevExpress.XtraEditors.LabelControl lblljxs;
         private DevExpress.XtraEditors.ComboBoxEdit cmbxb;
         private DevExpress.XtraEditors.LabelControl lblxb;
-        private DevExpress.XtraEditors.TextEdit txtdj;
         private DevExpress.XtraEditors.LabelControl lbldj;
         private DevExpress.XtraEditors.ComboBoxEdit cmbgh;
         private DevExpress.XtraEditors.LabelControl lblgh;
         private DevExpress.XtraEditors.TextEdit txtbz;
+        private DevExpress.XtraEditors.ComboBoxEdit txtdjzwz;
+        private DevExpress.XtraEditors.ComboBoxEdit txtdj;
 
 
     }

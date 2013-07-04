@@ -80,9 +80,10 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5.Properties);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6.Properties);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7.Properties);
-            comboBoxEdit3.Properties.Items.Clear();
-            comboBoxEdit3.Properties.Items.Add("上方");
-            comboBoxEdit3.Properties.Items.Add("下方");
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "跨越位置", comboBoxEdit3);
+            //comboBoxEdit3.Properties.Items.Clear();
+            //comboBoxEdit3.Properties.Items.Add("上方");
+            //comboBoxEdit3.Properties.Items.Add("下方");
             sd_xl xl = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xl>(" where linecode='" + rowData.LineID + "'");
             if (xl!=null)
             {
