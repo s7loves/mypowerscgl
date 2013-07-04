@@ -87,6 +87,7 @@ namespace Ebada.Scgl.Yxgl
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "额定漏电动作时间", comboBoxEdit7);
             ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "运行情况", comboBoxEdit1);
             //ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "安装地点", comboBoxEdit11);
+            //ComboBoxHelper.FillCBoxByDyk("13剩余电流动作保护器测试记录", "安装地点", comboBoxEdit11);
             //IList<PS_tq> listtq = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>("where xlCode='" + lineCode + "'");
             //comboBoxEdit5.Properties.DataSource = listtq
             ICollection list = new ArrayList();
