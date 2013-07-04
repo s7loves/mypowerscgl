@@ -196,7 +196,7 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             //SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1,memoEdit2, memoEdit5);
-            PJ_dyk dyk = SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("送电安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
             if (dyk != null)
             {
                 rowData.hdnr = dyk.nr2+dyk.nr;
@@ -244,7 +244,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("02安全活动记录簿", "工作评语", memoEdit4);
+            SelectorHelper.SelectDyk("送电安全活动记录簿", "工作评语", memoEdit4);
         }
     }
 }

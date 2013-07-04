@@ -76,8 +76,8 @@ namespace Ebada.Scgl.Yxgl
         {
            
             comboBoxEdit4.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
-            ComboBoxHelper.FillCBoxByDyk("23配电线路产权维护范围协议书", "产权单位", comboBoxEdit2.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电电力设备产权、维护范围协议书", "签协议地点", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电电力设备产权、维护范围协议书", "产权单位", comboBoxEdit2.Properties);
             IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + rowData.ParentID + "' and linevol>=10.0 and parentid=''");
             foreach (sd_xl pl in xlList)
             {
@@ -127,7 +127,7 @@ namespace Ebada.Scgl.Yxgl
         {
             frmDykSelector dlg = new frmDykSelector();
             PJ_dyk dyk = null;
-            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='电力设备产权维护范围协议书' and sx='维护界限划分原则' and parentid=''");
+            PJ_dyk parentObj = Client.ClientHelper.PlatformSqlMap.GetOne<PJ_dyk>("where dx='送电电力设备产权、维护范围协议书' and sx='维护界限划分原则' and parentid=''");
             if (parentObj != null)
             {
                 dlg.ucpJ_dykSelector1.ParentObj = parentObj;
@@ -139,7 +139,7 @@ namespace Ebada.Scgl.Yxgl
             }
             else
             {
-                MsgBox.ShowWarningMessageBox("请维护短语库：电力设备产权维护范围协议书|维护界限划分原则");
+                MsgBox.ShowWarningMessageBox("请维护短语库：送电电力设备产权、维护范围协议书|维护界限划分原则");
             }
             //frmCqSelector fcs = new frmCqSelector();
             //if (fcs.ShowDialog()==DialogResult.OK)

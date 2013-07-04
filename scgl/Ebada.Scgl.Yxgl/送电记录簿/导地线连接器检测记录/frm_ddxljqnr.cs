@@ -55,13 +55,13 @@ namespace Ebada.Scgl.Yxgl
             {
                 this.cmbgh.Properties.Items.Add(gt.gth);
             }
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录","相别", this.cmbxb);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "连接型式", this.cmbljxs);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "导地线型号", this.cmbddxxh);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "连接器型号", this.cmbljqxh);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "生产厂家", this.cmbsccj);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "档距", this.txtdj);
-            ComboBoxHelper.FillCBoxByDyk("11导地线连接器检测记录", "档距中位置", this.txtdjzwz);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录","相别", this.cmbxb);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "连接型式", this.cmbljxs);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "导地线型号", this.cmbddxxh);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "连接器型号", this.cmbljqxh);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "生产厂家", this.cmbsccj);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "档距", this.txtdj);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线连接器检测记录", "档距中位置", this.txtdjzwz);
         }
 
         private void dataBind()

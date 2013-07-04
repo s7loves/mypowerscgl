@@ -221,7 +221,7 @@ namespace Ebada.Scgl.Yxgl
             ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]).Properties.Items.Clear();
             ComboBoxHelper.FillCBoxByDyk("公用属性", "签字人", ((ComboBoxEdit)groupBox7.Controls["comboBoxEdit" + 17]));
             comboBoxEdit18.Properties.Items.Clear();
-            ComboBoxHelper.FillCBoxByDyk("送电运行分析", "运行分析地点", comboBoxEdit18.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电运行分析记录", "运行分析地点", comboBoxEdit18.Properties);
             if (comboBoxEdit18.Properties.Items.Count == 0) {
                 comboBoxEdit18.Properties.Items.Add("工区会议室");
             }
@@ -390,7 +390,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            PJ_dyk dyk = SelectorHelper.SelectDyk("03运行分析记录", "分析记录内容", memoEdit5, memoEdit1, memoEdit2);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("送电运行分析记录", "分析记录内容", memoEdit5, memoEdit1, memoEdit2);
             if (dyk != null)
             {
                 rowData.zt = dyk.nr;
@@ -439,7 +439,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("03运行分析记录", "工作评语", memoEdit4);
+            SelectorHelper.SelectDyk("送电运行分析记录", "工作评语", memoEdit4);
         }
     }
 }

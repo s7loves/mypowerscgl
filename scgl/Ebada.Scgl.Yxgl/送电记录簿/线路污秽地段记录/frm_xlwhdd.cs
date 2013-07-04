@@ -52,8 +52,8 @@ namespace Ebada.Scgl.Yxgl
         {
             ComboBoxHelper.FillCBoxByDyk("绝缘子", "型号", this.cmbzxjyzxh.Properties);
             ComboBoxHelper.FillCBoxByDyk("绝缘子", "型号", this.cmbnzjyzxh.Properties);
-            ComboBoxHelper.FillCBoxByDyk("20线路污秽地段记录", "污秽等级", cmbwhdj.Properties);
-            ComboBoxHelper.FillCBoxByDyk("20线路污秽地段记录", "污源性质", cmbwyxz.Properties);
+            ComboBoxHelper.FillCBoxByDyk("绝缘子", "污秽等级", cmbwhdj.Properties);
+            ComboBoxHelper.FillCBoxByDyk("绝缘子", "污源性质", cmbwyxz.Properties);
         }
 
         private void dataBind()

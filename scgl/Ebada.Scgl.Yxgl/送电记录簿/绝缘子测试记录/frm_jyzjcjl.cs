@@ -92,12 +92,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnjyzwz_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("10绝缘子测试记录", "零值绝缘子位置", this.memojyzwz);
+            SelectorHelper.SelectDyk("绝缘子", "位置", this.memojyzwz);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("10绝缘子测试记录", "处理情况", memoclqk);
+            SelectorHelper.SelectDyk("绝缘子", "处理情况", memoclqk);
         }
     }
 }

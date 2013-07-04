@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl
         #endregion
 
         private void InitComboBoxData() {
-            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "结论", comboBoxEdit2.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电交叉跨越及对地距离测量记录", "结论", comboBoxEdit2.Properties);
 
             sdjl_05jcky pj= Client.ClientHelper.PlatformSqlMap.GetOneByKey<sdjl_05jcky>(rowData.jckyID);
             this.comboBoxEdit1.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(pj.OrgCode));
