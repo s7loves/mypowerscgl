@@ -395,6 +395,8 @@ namespace Ebada.Scgl.Core {
                 list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr from pj_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}'", dx, sx));
                 if (list.Count > 0)
                     mCache.Add(key, list);
+                else
+                    Ebada.Client.MsgBox.ShowWarningMessageBox("短语库中没有找到 记录表中文名为 " + dx + " 属性为 " + sx + " 的记录");
             }
             return list;
         }
