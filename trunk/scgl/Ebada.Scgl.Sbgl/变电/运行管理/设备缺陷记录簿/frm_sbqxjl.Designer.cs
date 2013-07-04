@@ -30,7 +30,6 @@
         {
             this.lblsbmc = new DevExpress.XtraEditors.LabelControl();
             this.lblqxbh = new DevExpress.XtraEditors.LabelControl();
-            this.txtqxbh = new DevExpress.XtraEditors.TextEdit();
             this.lblfxrq = new DevExpress.XtraEditors.LabelControl();
             this.datefxrq = new DevExpress.XtraEditors.DateEdit();
             this.lblfxr = new DevExpress.XtraEditors.LabelControl();
@@ -48,7 +47,8 @@
             this.lkuefxr = new DevExpress.XtraEditors.LookUpEdit();
             this.lkuexcr = new DevExpress.XtraEditors.LookUpEdit();
             this.lkueysr = new DevExpress.XtraEditors.LookUpEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtqxbh.Properties)).BeginInit();
+            this.txtqxbh = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.datefxrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datefxrq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).BeginInit();
@@ -59,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lkuefxr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuexcr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueysr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtqxbh.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblsbmc
@@ -76,13 +77,6 @@
             this.lblqxbh.Size = new System.Drawing.Size(48, 14);
             this.lblqxbh.TabIndex = 2;
             this.lblqxbh.Text = "缺陷编号";
-            // 
-            // txtqxbh
-            // 
-            this.txtqxbh.Location = new System.Drawing.Point(97, 64);
-            this.txtqxbh.Name = "txtqxbh";
-            this.txtqxbh.Size = new System.Drawing.Size(349, 21);
-            this.txtqxbh.TabIndex = 3;
             // 
             // lblfxrq
             // 
@@ -235,11 +229,31 @@
             this.lkueysr.Size = new System.Drawing.Size(349, 21);
             this.lkueysr.TabIndex = 23;
             // 
+            // txtqxbh
+            // 
+            this.txtqxbh.Location = new System.Drawing.Point(97, 67);
+            this.txtqxbh.Name = "txtqxbh";
+            this.txtqxbh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtqxbh.Size = new System.Drawing.Size(349, 21);
+            this.txtqxbh.TabIndex = 24;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(452, 311);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(19, 23);
+            this.simpleButton1.TabIndex = 25;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_sbqxjl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 469);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.txtqxbh);
             this.Controls.Add(this.lkueysr);
             this.Controls.Add(this.lkuexcr);
             this.Controls.Add(this.lkuefxr);
@@ -257,7 +271,6 @@
             this.Controls.Add(this.lblfxr);
             this.Controls.Add(this.datefxrq);
             this.Controls.Add(this.lblfxrq);
-            this.Controls.Add(this.txtqxbh);
             this.Controls.Add(this.lblqxbh);
             this.Controls.Add(this.lblsbmc);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -265,7 +278,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设备缺陷记录";
             this.Load += new System.EventHandler(this.frm_sbqxjl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtqxbh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datefxrq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datefxrq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueqxlb.Properties)).EndInit();
@@ -276,6 +288,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lkuefxr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuexcr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueysr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtqxbh.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,7 +298,6 @@
 
         private DevExpress.XtraEditors.LabelControl lblsbmc;
         private DevExpress.XtraEditors.LabelControl lblqxbh;
-        private DevExpress.XtraEditors.TextEdit txtqxbh;
         private DevExpress.XtraEditors.LabelControl lblfxrq;
         private DevExpress.XtraEditors.DateEdit datefxrq;
         private DevExpress.XtraEditors.LabelControl lblfxr;
@@ -303,5 +315,7 @@
         private DevExpress.XtraEditors.LookUpEdit lkuefxr;
         private DevExpress.XtraEditors.LookUpEdit lkuexcr;
         private DevExpress.XtraEditors.LookUpEdit lkueysr;
+        private DevExpress.XtraEditors.ComboBoxEdit txtqxbh;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

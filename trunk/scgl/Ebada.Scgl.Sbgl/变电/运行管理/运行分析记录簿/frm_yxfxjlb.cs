@@ -82,5 +82,17 @@ namespace Ebada.Scgl.Sbgl
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电运行分析记录", "内容", memonr);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电运行分析记录", "结论", memojl);
+
+        }
+
     }
 }

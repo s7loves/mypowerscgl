@@ -65,5 +65,11 @@ namespace Ebada.Scgl.Sbgl
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void simpleButton1_Click(object sender, System.EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电事故、障碍及异常运行记录", "事故障碍异常信息", memofsjg, memoyyjzrfx, memodc);
+
+        }
     }
 }

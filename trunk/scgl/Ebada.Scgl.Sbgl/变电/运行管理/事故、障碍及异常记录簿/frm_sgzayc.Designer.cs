@@ -31,27 +31,36 @@
             this.lblfssj = new DevExpress.XtraEditors.LabelControl();
             this.datefssj = new DevExpress.XtraEditors.DateEdit();
             this.lblxz = new DevExpress.XtraEditors.LabelControl();
-            this.txtxz = new DevExpress.XtraEditors.TextEdit();
             this.lbljt = new DevExpress.XtraEditors.LabelControl();
-            this.txtjt = new DevExpress.XtraEditors.TextEdit();
-            this.lblfsjg = new DevExpress.XtraEditors.LabelControl();
             this.memofsjg = new DevExpress.XtraEditors.MemoEdit();
             this.lblsgssqk = new DevExpress.XtraEditors.LabelControl();
-            this.txtsgssqk = new DevExpress.XtraEditors.TextEdit();
-            this.lbldc = new DevExpress.XtraEditors.LabelControl();
             this.memodc = new DevExpress.XtraEditors.MemoEdit();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.lblyyjzfx = new DevExpress.XtraEditors.LabelControl();
             this.memoyyjzrfx = new DevExpress.XtraEditors.MemoEdit();
+            this.txtxz = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtjt = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtsgssqk = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.datefssj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datefssj.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtxz.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memofsjg.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsgssqk.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memodc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoyyjzrfx.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxz.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsgssqk.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
+            this.xtraTabPage2.SuspendLayout();
+            this.xtraTabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblfssj
@@ -89,13 +98,6 @@
             this.lblxz.TabIndex = 2;
             this.lblxz.Text = "性质";
             // 
-            // txtxz
-            // 
-            this.txtxz.Location = new System.Drawing.Point(144, 71);
-            this.txtxz.Name = "txtxz";
-            this.txtxz.Size = new System.Drawing.Size(449, 21);
-            this.txtxz.TabIndex = 3;
-            // 
             // lbljt
             // 
             this.lbljt.Location = new System.Drawing.Point(38, 112);
@@ -104,26 +106,12 @@
             this.lbljt.TabIndex = 4;
             this.lbljt.Text = "简题";
             // 
-            // txtjt
-            // 
-            this.txtjt.Location = new System.Drawing.Point(144, 109);
-            this.txtjt.Name = "txtjt";
-            this.txtjt.Size = new System.Drawing.Size(449, 21);
-            this.txtjt.TabIndex = 5;
-            // 
-            // lblfsjg
-            // 
-            this.lblfsjg.Location = new System.Drawing.Point(38, 185);
-            this.lblfsjg.Name = "lblfsjg";
-            this.lblfsjg.Size = new System.Drawing.Size(48, 14);
-            this.lblfsjg.TabIndex = 6;
-            this.lblfsjg.Text = "发生经过";
-            // 
             // memofsjg
             // 
-            this.memofsjg.Location = new System.Drawing.Point(144, 185);
+            this.memofsjg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memofsjg.Location = new System.Drawing.Point(0, 0);
             this.memofsjg.Name = "memofsjg";
-            this.memofsjg.Size = new System.Drawing.Size(449, 96);
+            this.memofsjg.Size = new System.Drawing.Size(544, 206);
             this.memofsjg.TabIndex = 7;
             // 
             // lblsgssqk
@@ -134,31 +122,17 @@
             this.lblsgssqk.TabIndex = 8;
             this.lblsgssqk.Text = "事故损失情况\r\n(少送电量)";
             // 
-            // txtsgssqk
-            // 
-            this.txtsgssqk.Location = new System.Drawing.Point(144, 147);
-            this.txtsgssqk.Name = "txtsgssqk";
-            this.txtsgssqk.Size = new System.Drawing.Size(449, 21);
-            this.txtsgssqk.TabIndex = 9;
-            // 
-            // lbldc
-            // 
-            this.lbldc.Location = new System.Drawing.Point(38, 411);
-            this.lbldc.Name = "lbldc";
-            this.lbldc.Size = new System.Drawing.Size(24, 14);
-            this.lbldc.TabIndex = 10;
-            this.lbldc.Text = "对策";
-            // 
             // memodc
             // 
-            this.memodc.Location = new System.Drawing.Point(144, 411);
+            this.memodc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memodc.Location = new System.Drawing.Point(0, 0);
             this.memodc.Name = "memodc";
-            this.memodc.Size = new System.Drawing.Size(449, 96);
+            this.memodc.Size = new System.Drawing.Size(544, 206);
             this.memodc.TabIndex = 11;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(337, 522);
+            this.btnOK.Location = new System.Drawing.Point(356, 445);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 12;
@@ -167,46 +141,115 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(456, 522);
+            this.btnCancel.Location = new System.Drawing.Point(487, 445);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lblyyjzfx
-            // 
-            this.lblyyjzfx.Location = new System.Drawing.Point(40, 298);
-            this.lblyyjzfx.Name = "lblyyjzfx";
-            this.lblyyjzfx.Size = new System.Drawing.Size(84, 14);
-            this.lblyyjzfx.TabIndex = 14;
-            this.lblyyjzfx.Text = "原因及责任分析";
-            // 
             // memoyyjzrfx
             // 
-            this.memoyyjzrfx.Location = new System.Drawing.Point(144, 298);
+            this.memoyyjzrfx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memoyyjzrfx.Location = new System.Drawing.Point(0, 0);
             this.memoyyjzrfx.Name = "memoyyjzrfx";
-            this.memoyyjzrfx.Size = new System.Drawing.Size(449, 96);
+            this.memoyyjzrfx.Size = new System.Drawing.Size(544, 206);
             this.memoyyjzrfx.TabIndex = 15;
+            // 
+            // txtxz
+            // 
+            this.txtxz.Location = new System.Drawing.Point(144, 71);
+            this.txtxz.Name = "txtxz";
+            this.txtxz.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtxz.Size = new System.Drawing.Size(449, 21);
+            this.txtxz.TabIndex = 16;
+            // 
+            // txtjt
+            // 
+            this.txtjt.Location = new System.Drawing.Point(144, 112);
+            this.txtjt.Name = "txtjt";
+            this.txtjt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtjt.Size = new System.Drawing.Size(449, 21);
+            this.txtjt.TabIndex = 17;
+            // 
+            // txtsgssqk
+            // 
+            this.txtsgssqk.Location = new System.Drawing.Point(144, 147);
+            this.txtsgssqk.Name = "txtsgssqk";
+            this.txtsgssqk.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtsgssqk.Size = new System.Drawing.Size(449, 21);
+            this.txtsgssqk.TabIndex = 18;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.simpleButton1);
+            this.groupBox1.Controls.Add(this.xtraTabControl1);
+            this.groupBox1.Location = new System.Drawing.Point(38, 185);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(555, 254);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "事故障碍异常信息";
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(3, 18);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.Size = new System.Drawing.Size(549, 233);
+            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage2,
+            this.xtraTabPage3});
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.memofsjg);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(544, 206);
+            this.xtraTabPage1.Text = "发生经过";
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.memoyyjzrfx);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(544, 206);
+            this.xtraTabPage2.Text = "原因及责任分析";
+            // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.memodc);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(544, 206);
+            this.xtraTabPage3.Text = "对策";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(106, 0);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(35, 23);
+            this.simpleButton1.TabIndex = 1;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // frm_sgzayc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 566);
-            this.Controls.Add(this.memoyyjzrfx);
-            this.Controls.Add(this.lblyyjzfx);
+            this.ClientSize = new System.Drawing.Size(620, 477);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtsgssqk);
+            this.Controls.Add(this.txtjt);
+            this.Controls.Add(this.txtxz);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.memodc);
-            this.Controls.Add(this.lbldc);
-            this.Controls.Add(this.txtsgssqk);
             this.Controls.Add(this.lblsgssqk);
-            this.Controls.Add(this.memofsjg);
-            this.Controls.Add(this.lblfsjg);
-            this.Controls.Add(this.txtjt);
             this.Controls.Add(this.lbljt);
-            this.Controls.Add(this.txtxz);
             this.Controls.Add(this.lblxz);
             this.Controls.Add(this.datefssj);
             this.Controls.Add(this.lblfssj);
@@ -216,12 +259,18 @@
             this.Text = "事故、障碍及异常运行记录";
             ((System.ComponentModel.ISupportInitialize)(this.datefssj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datefssj.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtxz.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memofsjg.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsgssqk.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memodc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoyyjzrfx.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtxz.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsgssqk.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
+            this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,18 +281,21 @@
         private DevExpress.XtraEditors.LabelControl lblfssj;
         private DevExpress.XtraEditors.DateEdit datefssj;
         private DevExpress.XtraEditors.LabelControl lblxz;
-        private DevExpress.XtraEditors.TextEdit txtxz;
         private DevExpress.XtraEditors.LabelControl lbljt;
-        private DevExpress.XtraEditors.TextEdit txtjt;
-        private DevExpress.XtraEditors.LabelControl lblfsjg;
         private DevExpress.XtraEditors.MemoEdit memofsjg;
         private DevExpress.XtraEditors.LabelControl lblsgssqk;
-        private DevExpress.XtraEditors.TextEdit txtsgssqk;
-        private DevExpress.XtraEditors.LabelControl lbldc;
         private DevExpress.XtraEditors.MemoEdit memodc;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.LabelControl lblyyjzfx;
         private DevExpress.XtraEditors.MemoEdit memoyyjzrfx;
+        private DevExpress.XtraEditors.ComboBoxEdit txtxz;
+        private DevExpress.XtraEditors.ComboBoxEdit txtjt;
+        private DevExpress.XtraEditors.ComboBoxEdit txtsgssqk;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

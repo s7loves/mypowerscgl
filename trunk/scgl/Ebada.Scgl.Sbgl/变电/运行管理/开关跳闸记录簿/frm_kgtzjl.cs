@@ -81,6 +81,7 @@ namespace Ebada.Scgl.Sbgl
                 userTypeList.Add(new DicType(user.UserName, user.UserName));
             }
             SetComboBoxData(lkuejlr, "Value", "Key", "请选择", "记录人", userTypeList);
+            ComboBoxHelper.FillCBoxByDyk("变电开关跳闸记录", "开关模式", txtkgms);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
@@ -112,6 +113,12 @@ namespace Ebada.Scgl.Sbgl
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电开关跳闸记录", "保护、重合闸动作情况及跳闸原因", memotzdz);
+
         }
     }
 }
