@@ -78,6 +78,11 @@ namespace Ebada.Scgl.Yxgl
             SelectorHelper.SelectDyk("绝缘子", "位置", this.memowz);
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("绝缘子", "污源特征", this.memowytz);
+        }
+
        
        
         

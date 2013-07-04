@@ -436,5 +436,10 @@ namespace Ebada.Scgl.Yxgl
                 ((ComboBoxEdit)groupBox2.Controls["comboBoxEdit" + i]).EditValue = string.Empty;
             }
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("03运行分析记录", "工作评语", memoEdit4);
+        }
     }
 }

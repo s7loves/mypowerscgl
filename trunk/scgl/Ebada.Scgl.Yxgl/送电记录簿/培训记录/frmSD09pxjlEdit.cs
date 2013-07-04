@@ -172,5 +172,11 @@ namespace Ebada.Scgl.Yxgl
             SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
 
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("09培训记录内容", "检查评语", memoEdit3);
+
+        }
     }
 }

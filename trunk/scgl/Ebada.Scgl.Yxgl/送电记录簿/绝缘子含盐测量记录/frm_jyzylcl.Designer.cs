@@ -56,6 +56,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memowytz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateclrq.Properties.VistaTimeProperties)).BeginInit();
@@ -72,6 +73,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.simpleButton1);
             this.groupBox1.Controls.Add(this.memowytz);
             this.groupBox1.Controls.Add(this.dateclrq);
             this.groupBox1.Controls.Add(this.lblclrq);
@@ -352,6 +354,15 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(517, 181);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(22, 34);
+            this.simpleButton1.TabIndex = 25;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_jyzylcl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -413,6 +424,7 @@
         private DevExpress.XtraEditors.LabelControl lblwhdj;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
 
     }

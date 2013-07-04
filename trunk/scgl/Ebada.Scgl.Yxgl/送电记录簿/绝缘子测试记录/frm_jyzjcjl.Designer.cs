@@ -54,6 +54,7 @@
             this.txtdwmc = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.grpjyzxx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memobz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclqk.Properties)).BeginInit();
@@ -92,6 +93,7 @@
             // 
             // grpjyzxx
             // 
+            this.grpjyzxx.Controls.Add(this.simpleButton1);
             this.grpjyzxx.Controls.Add(this.btnjyzwz);
             this.grpjyzxx.Controls.Add(this.memobz);
             this.grpjyzxx.Controls.Add(this.labelControl6);
@@ -316,6 +318,15 @@
             this.labelControl1.TabIndex = 27;
             this.labelControl1.Text = "线路名称";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(24, 211);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(24, 23);
+            this.simpleButton1.TabIndex = 50;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_jyzjcjl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -377,6 +388,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnjyzwz;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
     }
 }

@@ -47,6 +47,7 @@
             this.lbljcrq = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.grpjcxx.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbqxdj.Properties)).BeginInit();
@@ -62,6 +63,7 @@
             // 
             // grpjcxx
             // 
+            this.grpjcxx.Controls.Add(this.simpleButton1);
             this.grpjcxx.Controls.Add(this.groupBox1);
             this.grpjcxx.Controls.Add(this.memobz);
             this.grpjcxx.Controls.Add(this.lblbz);
@@ -241,6 +243,15 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(32, 156);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(24, 23);
+            this.simpleButton1.TabIndex = 15;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_Dgjcjl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -254,7 +265,7 @@
             this.MinimizeBox = false;
             this.Name = "frm_Dgjcjl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "等杆检查记录";
+            this.Text = "登杆检查记录";
             this.Load += new System.EventHandler(this.frm_Dgjcjl_Load);
             this.grpjcxx.ResumeLayout(false);
             this.grpjcxx.PerformLayout();
@@ -294,6 +305,7 @@
         private DevExpress.XtraEditors.CheckEdit cbxqx;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
 
     }

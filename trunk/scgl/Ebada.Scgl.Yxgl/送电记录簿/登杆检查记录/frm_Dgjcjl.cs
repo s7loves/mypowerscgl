@@ -149,6 +149,11 @@ namespace Ebada.Scgl.Yxgl
             this.DialogResult = DialogResult.OK;
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("登杆检查记录", "检查结果", memojcjg);
+        }
+
 
        
 

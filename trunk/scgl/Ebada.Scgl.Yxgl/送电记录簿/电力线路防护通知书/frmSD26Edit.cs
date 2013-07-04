@@ -147,6 +147,11 @@ namespace Ebada.Scgl.Yxgl
             //Client.ClientHelper.PlatformSqlMap.Create<sdjl_26>(rowData);
         }
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("电力线路防护通知书", "防护信息", memoEdit2, memoEdit3, memoEdit1);
+        }
+
       
     }
 }

@@ -144,7 +144,7 @@
             this.MinimizeBox = false;
             this.Name = "frm_Dgjc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "等杆检查";
+            this.Text = "登杆检查";
             this.Load += new System.EventHandler(this.frm_Dgjc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmbOrg.Properties)).EndInit();
             this.grpdgjc.ResumeLayout(false);

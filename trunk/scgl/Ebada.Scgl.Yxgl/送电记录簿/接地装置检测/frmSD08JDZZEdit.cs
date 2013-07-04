@@ -122,6 +122,7 @@ namespace Ebada.Scgl.Yxgl {
             this.cmbjl.Properties.Items.AddRange(new string[] { "合格", "不合格" });
 
             this.cmbjcr.Properties.Items.AddRange(ComboBoxHelper.GetGdsRy(rowData.OrgCode));
+            ComboBoxHelper.FillCBoxByDyk("送电接地装置检测记录", "检测情况", txtjcqk);
         }
 
         /// <summary>
