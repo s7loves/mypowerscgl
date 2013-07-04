@@ -193,5 +193,10 @@ namespace Ebada.Scgl.Sbgl
             combxCxry.Properties.ValueMember = "Key";
             combxCxry.Properties.DisplayMember = "Value";
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电安全活动记录", "安全活动", memohdnr, memohdxj, memoldjcpy);
+        }
     }
 }
