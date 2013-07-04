@@ -77,7 +77,7 @@ namespace Ebada.Scgl.Sbgl
             flagDictypeList.Add(new DicType("完成", "完成"));
             SetComboBoxData(lkueflag, "Value", "Key", "请选择", "任务状态", flagDictypeList);
 
-            
+            ComboBoxHelper.FillCBoxByDyk("送电巡视计划", "电压等级", txtVol);
 
         }
         public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
@@ -195,6 +195,16 @@ namespace Ebada.Scgl.Sbgl
         private void frmsdxs_jh_FormClosing(object sender, FormClosingEventArgs e)
         {
             rowData.LineName = lkueLine.Text;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("送电巡视计划", "巡视内容", this.txtxsnr);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("送电巡视计划", "缺陷内容", memoqxnr);
         }
 
        

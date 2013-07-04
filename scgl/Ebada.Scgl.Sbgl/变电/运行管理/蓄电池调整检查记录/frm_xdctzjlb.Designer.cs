@@ -33,22 +33,22 @@
             this.lbldcdy = new DevExpress.XtraEditors.LabelControl();
             this.lbldl = new DevExpress.XtraEditors.LabelControl();
             this.lbltrdcgs = new DevExpress.XtraEditors.LabelControl();
-            this.txttrdcgs = new DevExpress.XtraEditors.TextEdit();
             this.lblbzdcdy = new DevExpress.XtraEditors.LabelControl();
-            this.txtbzdcdy = new DevExpress.XtraEditors.TextEdit();
             this.lbljcr = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.lkuejcr = new DevExpress.XtraEditors.LookUpEdit();
             this.txtdcdy = new DevExpress.XtraEditors.SpinEdit();
             this.txtdl = new DevExpress.XtraEditors.SpinEdit();
+            this.txttrdcgs = new DevExpress.XtraEditors.SpinEdit();
+            this.txtbzdcdy = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuejcr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblsj
@@ -102,13 +102,6 @@
             this.lbltrdcgs.TabIndex = 6;
             this.lbltrdcgs.Text = "投入电池个数";
             // 
-            // txttrdcgs
-            // 
-            this.txttrdcgs.Location = new System.Drawing.Point(150, 138);
-            this.txttrdcgs.Name = "txttrdcgs";
-            this.txttrdcgs.Size = new System.Drawing.Size(396, 21);
-            this.txttrdcgs.TabIndex = 7;
-            // 
             // lblbzdcdy
             // 
             this.lblbzdcdy.Location = new System.Drawing.Point(41, 176);
@@ -116,13 +109,6 @@
             this.lblbzdcdy.Size = new System.Drawing.Size(94, 14);
             this.lblbzdcdy.TabIndex = 8;
             this.lblbzdcdy.Text = "标准电池电压(伏)\r\n";
-            // 
-            // txtbzdcdy
-            // 
-            this.txtbzdcdy.Location = new System.Drawing.Point(150, 173);
-            this.txtbzdcdy.Name = "txtbzdcdy";
-            this.txtbzdcdy.Size = new System.Drawing.Size(396, 21);
-            this.txtbzdcdy.TabIndex = 9;
             // 
             // lbljcr
             // 
@@ -166,7 +152,7 @@
             0,
             0,
             0});
-            this.txtdcdy.Location = new System.Drawing.Point(150, 64);
+            this.txtdcdy.Location = new System.Drawing.Point(150, 68);
             this.txtdcdy.Name = "txtdcdy";
             this.txtdcdy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -187,20 +173,48 @@
             this.txtdl.Size = new System.Drawing.Size(396, 21);
             this.txtdl.TabIndex = 16;
             // 
+            // txttrdcgs
+            // 
+            this.txttrdcgs.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txttrdcgs.Location = new System.Drawing.Point(150, 138);
+            this.txttrdcgs.Name = "txttrdcgs";
+            this.txttrdcgs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txttrdcgs.Size = new System.Drawing.Size(396, 21);
+            this.txttrdcgs.TabIndex = 17;
+            // 
+            // txtbzdcdy
+            // 
+            this.txtbzdcdy.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtbzdcdy.Location = new System.Drawing.Point(150, 173);
+            this.txtbzdcdy.Name = "txtbzdcdy";
+            this.txtbzdcdy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtbzdcdy.Size = new System.Drawing.Size(396, 21);
+            this.txtbzdcdy.TabIndex = 18;
+            // 
             // frm_xdctzjlb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 299);
+            this.Controls.Add(this.txtbzdcdy);
+            this.Controls.Add(this.txttrdcgs);
             this.Controls.Add(this.txtdl);
             this.Controls.Add(this.txtdcdy);
             this.Controls.Add(this.lkuejcr);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lbljcr);
-            this.Controls.Add(this.txtbzdcdy);
             this.Controls.Add(this.lblbzdcdy);
-            this.Controls.Add(this.txttrdcgs);
             this.Controls.Add(this.lbltrdcgs);
             this.Controls.Add(this.lbldl);
             this.Controls.Add(this.lbldcdy);
@@ -212,11 +226,11 @@
             this.Text = "蓄电池调整及检测记录簿";
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuejcr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,14 +243,14 @@
         private DevExpress.XtraEditors.LabelControl lbldcdy;
         private DevExpress.XtraEditors.LabelControl lbldl;
         private DevExpress.XtraEditors.LabelControl lbltrdcgs;
-        private DevExpress.XtraEditors.TextEdit txttrdcgs;
         private DevExpress.XtraEditors.LabelControl lblbzdcdy;
-        private DevExpress.XtraEditors.TextEdit txtbzdcdy;
         private DevExpress.XtraEditors.LabelControl lbljcr;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LookUpEdit lkuejcr;
         private DevExpress.XtraEditors.SpinEdit txtdcdy;
         private DevExpress.XtraEditors.SpinEdit txtdl;
+        private DevExpress.XtraEditors.SpinEdit txttrdcgs;
+        private DevExpress.XtraEditors.SpinEdit txtbzdcdy;
     }
 }
