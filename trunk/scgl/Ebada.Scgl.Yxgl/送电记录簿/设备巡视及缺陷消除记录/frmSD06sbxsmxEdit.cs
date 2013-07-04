@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Yxgl
             }
           
             //缺陷类别GetQxlb
-            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
+            SelectorHelper.SelectDyk("送电设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
 
         }
 
@@ -192,7 +192,7 @@ namespace Ebada.Scgl.Yxgl
             DateTime dt = Convert.ToDateTime(rowData.xssj);
             string dx = "", sx = "", nr = "";
             int dayspan1 = 1, dayspan2 = 10, dayspan3 = 30;
-            dx = "06设备巡视及缺陷消除记录";
+            dx = "送电设备巡视及缺陷消除记录";
             sx = "缺陷类别";
             nr = "紧急缺陷";
             IList list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select nr2 from PJ_dyk where  len(parentid)>1 and dx='{0}' and sx='{1}' and nr='{2}'", dx, sx,nr));

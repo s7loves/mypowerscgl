@@ -151,7 +151,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("登杆检查记录", "检查结果", memojcjg);
+            SelectorHelper.SelectDyk("送电登杆检查记录", "检查结果", memojcjg);
         }
 
 

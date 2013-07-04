@@ -124,12 +124,12 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         private void simpleButton1_Click(object sender, EventArgs e) {
-            SelectorHelper.SelectDyk("01工作日记", "记事", memoEdit1);
+            SelectorHelper.SelectDyk("送电工作日记", "记事", memoEdit1);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("01工作日记", "领导检查评语", memoEdit2);
+            SelectorHelper.SelectDyk("送电工作日记", "评语", memoEdit2);
         }
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)

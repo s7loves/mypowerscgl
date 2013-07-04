@@ -55,7 +55,7 @@ namespace Ebada.Scgl.Yxgl
             cmbzxr.Properties.Items.AddRange(ryList);
             cmbqzldr.Properties.Items.AddRange(ryList);
             cmbqzjhr.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxByDyk("05反事故演习记录", "演习地点", cmbyxdd);
+            ComboBoxHelper.FillCBoxByDyk("送电反事故演习记录", "演习地点", cmbyxdd);
             
 
         }
@@ -98,7 +98,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnnrcs_Click(object sender, EventArgs e)
         {
-            PJ_dyk dyk = SelectorHelper.SelectDyk("05反事故演习记录", "结论和措施", memojlpj, memocs);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("送电反事故演习记录", "结论和措施", memojlpj, memocs);
 
             if (dyk != null)
             {

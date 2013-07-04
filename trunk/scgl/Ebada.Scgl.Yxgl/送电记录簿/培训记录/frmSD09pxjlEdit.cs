@@ -84,7 +84,7 @@ namespace Ebada.Scgl.Yxgl
                 comboBoxEdit2.Properties.Items.Add(k);
 
             }
-            ComboBoxHelper.FillCBoxByDyk("09培训记录", "地点", comboBoxEdit7.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电培训记录", "地点", comboBoxEdit7.Properties);
          
         }
         void setxxss()
@@ -169,13 +169,13 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
+            SelectorHelper.SelectDyk("送电培训记录内容", "记录内容",memoEdit1, memoEdit2);
 
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("09培训记录内容", "检查评语", memoEdit3);
+            SelectorHelper.SelectDyk("送电培训记录内容", "检查评语", memoEdit3);
 
         }
     }

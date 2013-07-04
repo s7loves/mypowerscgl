@@ -66,7 +66,7 @@ namespace Ebada.Scgl.Yxgl
                 this.comboBoxEdit6.Properties.Items.AddRange(ryList);
                 this.comboBoxEdit1.Properties.Items.AddRange(ryList);
             }
-            ComboBoxHelper.FillCBoxByDyk("04事故异常运行记录", "发生地点", textEdit2);
+            ComboBoxHelper.FillCBoxByDyk("送电事故异常运行记录", "发生地点", textEdit2);
         }
 
 
@@ -83,7 +83,7 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             
-            PJ_dyk dyk = SelectorHelper.SelectDyk("04事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("送电事故异常运行记录", "异常运行内容", memoEdit2, memoEdit1, memoEdit4);
             if (dyk != null)
             {
                 memoEdit2.Text = memoEdit2.Text + "处理人：" + comboBoxEdit1.Text;

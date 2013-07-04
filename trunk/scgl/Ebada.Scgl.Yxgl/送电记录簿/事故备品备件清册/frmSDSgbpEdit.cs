@@ -60,8 +60,8 @@ namespace Ebada.Scgl.Yxgl
 
             ICollection ryList = ComboBoxHelper.GetGdsRy(rowData.OrgCode);//获取供电所人员列表
             this.cmblyr.Properties.Items.AddRange(ryList);
-            ComboBoxHelper.FillCBoxByDyk("15事故备品备件清册", "备品备件名称", cmbbpbjmc.Properties);
-            ComboBoxHelper.FillCBoxByDyk("15事故备品备件清册", "规格型号", cmbgexh.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电事故备品备件清册", "备品备件名称", cmbbpbjmc.Properties);
+            ComboBoxHelper.FillCBoxByDyk("送电事故备品备件清册", "规格型号", cmbgexh.Properties);
 
             ComboBoxHelper.FillCBoxByDyk("公用属性", "单位", cmbdw.Properties);
         }

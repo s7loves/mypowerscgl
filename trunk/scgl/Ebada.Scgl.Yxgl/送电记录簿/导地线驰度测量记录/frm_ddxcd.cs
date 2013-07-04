@@ -58,8 +58,8 @@ namespace Ebada.Scgl.Yxgl
                 this.cmbcldgh.Properties.Items.Add(gt.gth);
             }
             //型号
-            ComboBoxHelper.FillCBoxByDyk("12导地线驰度测量记录", "导线型号", this.cmbdxxh);
-            ComboBoxHelper.FillCBoxByDyk("12导地线驰度测量记录", "地线型号", this.cmbddxxh);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线驰度测量记录", "导线型号", this.cmbdxxh);
+            ComboBoxHelper.FillCBoxByDyk("送电导地线驰度测量记录", "地线型号", this.cmbddxxh);
 
             List<string> jlList = new List<string>();
             jlList.Add("合格");
