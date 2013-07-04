@@ -77,6 +77,7 @@ namespace Ebada.Scgl.Sbgl
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "被跨越物名称", comboBoxEdit5);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "所属单位", comboBoxEdit6);
             ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "级别", comboBoxEdit7);
+            ComboBoxHelper.FillCBoxByDyk("05交叉跨越及对地距离测量记录", "跨越位置", comboBoxEdit3);
 
             //IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where OrgCode='" + parentID + "'");
             //comboBoxEdit1.Properties.DataSource = xlList;
