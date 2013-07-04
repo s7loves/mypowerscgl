@@ -528,6 +528,9 @@
     <EmbeddedResource Include="xxgx_ddyb.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="sdjls_sbpjb.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
