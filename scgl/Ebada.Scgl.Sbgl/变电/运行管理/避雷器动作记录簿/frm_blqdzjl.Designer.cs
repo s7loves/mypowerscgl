@@ -52,6 +52,7 @@
             this.lblcdzcs = new DevExpress.XtraEditors.LabelControl();
             this.specdzcs = new DevExpress.XtraEditors.SpinEdit();
             this.lkuejlr = new DevExpress.XtraEditors.LookUpEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.lkueblqmc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedzrq.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datedzrq.Properties)).BeginInit();
@@ -282,11 +283,21 @@
             this.lkuejlr.Size = new System.Drawing.Size(394, 21);
             this.lkuejlr.TabIndex = 24;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(533, 332);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(26, 23);
+            this.simpleButton1.TabIndex = 25;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_blqdzjl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 488);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.lkuejlr);
             this.Controls.Add(this.specdzcs);
             this.Controls.Add(this.lblcdzcs);
@@ -358,5 +369,6 @@
         private DevExpress.XtraEditors.LabelControl lblcdzcs;
         private DevExpress.XtraEditors.SpinEdit specdzcs;
         private DevExpress.XtraEditors.LookUpEdit lkuejlr;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

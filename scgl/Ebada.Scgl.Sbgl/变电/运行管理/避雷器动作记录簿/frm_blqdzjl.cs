@@ -115,5 +115,11 @@ namespace Ebada.Scgl.Sbgl
         {
             this.DialogResult = DialogResult.Cancel;
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("变电避雷器动作记录", "动作原因", memodzyy);
+
+        }
     }
 }
