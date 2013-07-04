@@ -33,25 +33,26 @@
             this.lblkssj = new DevExpress.XtraEditors.LabelControl();
             this.datekssj = new DevExpress.XtraEditors.DateEdit();
             this.lbldd = new DevExpress.XtraEditors.LabelControl();
-            this.txtdd = new DevExpress.XtraEditors.TextEdit();
             this.lblbds = new DevExpress.XtraEditors.LabelControl();
-            this.txtbds = new DevExpress.XtraEditors.TextEdit();
             this.lblzlbh = new DevExpress.XtraEditors.LabelControl();
-            this.txtzlbh = new DevExpress.XtraEditors.TextEdit();
             this.lblnr = new DevExpress.XtraEditors.LabelControl();
             this.memonr = new DevExpress.XtraEditors.MemoEdit();
             this.lblzzsj = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.timezzsj = new DevExpress.XtraEditors.TimeEdit();
+            this.txtdd = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtbds = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtzlbh = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtlb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memonr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timezzsj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtbds.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtzlbh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memonr.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timezzsj.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lbllb
@@ -105,13 +106,6 @@
             this.lbldd.TabIndex = 4;
             this.lbldd.Text = "调度";
             // 
-            // txtdd
-            // 
-            this.txtdd.Location = new System.Drawing.Point(97, 93);
-            this.txtdd.Name = "txtdd";
-            this.txtdd.Size = new System.Drawing.Size(431, 21);
-            this.txtdd.TabIndex = 5;
-            // 
             // lblbds
             // 
             this.lblbds.Location = new System.Drawing.Point(31, 129);
@@ -120,13 +114,6 @@
             this.lblbds.TabIndex = 6;
             this.lblbds.Text = "变电所";
             // 
-            // txtbds
-            // 
-            this.txtbds.Location = new System.Drawing.Point(97, 126);
-            this.txtbds.Name = "txtbds";
-            this.txtbds.Size = new System.Drawing.Size(431, 21);
-            this.txtbds.TabIndex = 7;
-            // 
             // lblzlbh
             // 
             this.lblzlbh.Location = new System.Drawing.Point(31, 162);
@@ -134,13 +121,6 @@
             this.lblzlbh.Size = new System.Drawing.Size(48, 14);
             this.lblzlbh.TabIndex = 8;
             this.lblzlbh.Text = "指令编号";
-            // 
-            // txtzlbh
-            // 
-            this.txtzlbh.Location = new System.Drawing.Point(97, 159);
-            this.txtzlbh.Name = "txtzlbh";
-            this.txtzlbh.Size = new System.Drawing.Size(431, 21);
-            this.txtzlbh.TabIndex = 9;
             // 
             // lblnr
             // 
@@ -198,22 +178,59 @@
             this.timezzsj.Size = new System.Drawing.Size(431, 21);
             this.timezzsj.TabIndex = 16;
             // 
+            // txtdd
+            // 
+            this.txtdd.Location = new System.Drawing.Point(97, 93);
+            this.txtdd.Name = "txtdd";
+            this.txtdd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtdd.Size = new System.Drawing.Size(431, 21);
+            this.txtdd.TabIndex = 17;
+            // 
+            // txtbds
+            // 
+            this.txtbds.Location = new System.Drawing.Point(97, 129);
+            this.txtbds.Name = "txtbds";
+            this.txtbds.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtbds.Size = new System.Drawing.Size(431, 21);
+            this.txtbds.TabIndex = 18;
+            // 
+            // txtzlbh
+            // 
+            this.txtzlbh.Location = new System.Drawing.Point(97, 162);
+            this.txtzlbh.Name = "txtzlbh";
+            this.txtzlbh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtzlbh.Size = new System.Drawing.Size(431, 21);
+            this.txtzlbh.TabIndex = 19;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(535, 192);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(27, 23);
+            this.simpleButton1.TabIndex = 20;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // frm_ddczzl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 375);
+            this.ClientSize = new System.Drawing.Size(564, 375);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.txtzlbh);
+            this.Controls.Add(this.txtbds);
+            this.Controls.Add(this.txtdd);
             this.Controls.Add(this.timezzsj);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblzzsj);
             this.Controls.Add(this.memonr);
             this.Controls.Add(this.lblnr);
-            this.Controls.Add(this.txtzlbh);
             this.Controls.Add(this.lblzlbh);
-            this.Controls.Add(this.txtbds);
             this.Controls.Add(this.lblbds);
-            this.Controls.Add(this.txtdd);
             this.Controls.Add(this.lbldd);
             this.Controls.Add(this.datekssj);
             this.Controls.Add(this.lblkssj);
@@ -226,11 +243,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtlb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memonr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timezzsj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtbds.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtzlbh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memonr.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timezzsj.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,16 +260,17 @@
         private DevExpress.XtraEditors.LabelControl lblkssj;
         private DevExpress.XtraEditors.DateEdit datekssj;
         private DevExpress.XtraEditors.LabelControl lbldd;
-        private DevExpress.XtraEditors.TextEdit txtdd;
         private DevExpress.XtraEditors.LabelControl lblbds;
-        private DevExpress.XtraEditors.TextEdit txtbds;
         private DevExpress.XtraEditors.LabelControl lblzlbh;
-        private DevExpress.XtraEditors.TextEdit txtzlbh;
         private DevExpress.XtraEditors.LabelControl lblnr;
         private DevExpress.XtraEditors.MemoEdit memonr;
         private DevExpress.XtraEditors.LabelControl lblzzsj;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.TimeEdit timezzsj;
+        private DevExpress.XtraEditors.ComboBoxEdit txtdd;
+        private DevExpress.XtraEditors.ComboBoxEdit txtbds;
+        private DevExpress.XtraEditors.ComboBoxEdit txtzlbh;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
