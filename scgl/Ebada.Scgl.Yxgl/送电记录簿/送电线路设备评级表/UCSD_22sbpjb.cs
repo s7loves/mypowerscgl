@@ -207,7 +207,7 @@ namespace Ebada.Scgl.Yxgl {
                     sql+="'"+gt.gtID+"',";
                 }
                 sql = sql.Substring(0, sql.Length - 1) + ")";
-                string strSQL = "select  sbModle from sd_gtsb Where  gtID " + sql;
+                string strSQL = "select  sbid from sd_gtsb Where  gtID " + sql;
                 
                 IList jdzzList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
                 if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10)
