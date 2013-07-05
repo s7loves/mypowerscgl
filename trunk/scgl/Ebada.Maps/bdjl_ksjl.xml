@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_ksjl" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_ksjl"  type="Ebada.Scgl.Model.bdjl_ksjl,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_ksjl_AllColumns" class="bdjl_ksjl">
+        <result property="ID" column="ID" />
+        <result property="Ksrq" column="Ksrq" />
+        <result property="Sequence" column="Sequence" />
+        <result property="Orgcode" column="Orgcode" />
+        <result property="Orgname" column="Orgname" />
+        <result property="Ksxm" column="Ksxm" />
+        <result property="UserName" column="UserName" />
+        <result property="PostName" column="PostName" />
+        <result property="PostAge" column="PostAge" />
+        <result property="LastExamTime" column="LastExamTime" />
+        <result property="ExamStartTime" column="ExamStartTime" />
+        <result property="ExamEndTime" column="ExamEndTime" />
+        <result property="TotalEvaluate" column="TotalEvaluate" />
+        <result property="Kswyhjl" column="Kswyhjl" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+        <result property="Bkrqz" column="Bkrqz" />
+        <result property="Kswyhzr" column="Kswyhzr" />
+        <result property="Wy" column="Wy" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_ksjlList" resultMap="bdjl_ksjl_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Ksrq],
+         [Sequence],
+         [Orgcode],
+         [Orgname],
+         [Ksxm],
+         [UserName],
+         [PostName],
+         [PostAge],
+         [LastExamTime],
+         [ExamStartTime],
+         [ExamEndTime],
+         [TotalEvaluate],
+         [Kswyhjl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [Bkrqz],
+         [Kswyhzr],
+         [Wy]
+          FROM bdjl_ksjl
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_ksjlByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Ksrq],
+         [Sequence],
+         [Orgcode],
+         [Orgname],
+         [Ksxm],
+         [UserName],
+         [PostName],
+         [PostAge],
+         [LastExamTime],
+         [ExamStartTime],
+         [ExamEndTime],
+         [TotalEvaluate],
+         [Kswyhjl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [Bkrqz],
+         [Kswyhzr],
+         [Wy]
+          FROM bdjl_ksjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Ksrq">[Ksrq]='$Ksrq$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="Orgcode">[Orgcode]='$Orgcode$'</isNotNull>
+       <isNotNull prepend="AND" property="Orgname">[Orgname]='$Orgname$'</isNotNull>
+       <isNotNull prepend="AND" property="Ksxm">[Ksxm]='$Ksxm$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostAge">[PostAge]='$PostAge$'</isNotNull>
+       <isNotNull prepend="AND" property="LastExamTime">[LastExamTime]='$LastExamTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamStartTime">[ExamStartTime]='$ExamStartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamEndTime">[ExamEndTime]='$ExamEndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalEvaluate">[TotalEvaluate]='$TotalEvaluate$'</isNotNull>
+       <isNotNull prepend="AND" property="Kswyhjl">[Kswyhjl]='$Kswyhjl$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="Bkrqz">[Bkrqz]='$Bkrqz$'</isNotNull>
+       <isNotNull prepend="AND" property="Kswyhzr">[Kswyhzr]='$Kswyhzr$'</isNotNull>
+       <isNotNull prepend="AND" property="Wy">[Wy]='$Wy$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_ksjlByKey" resultMap="bdjl_ksjl_AllColumns" parameterClass="bdjl_ksjl">
+         SELECT 
+         [ID],
+         [Ksrq],
+         [Sequence],
+         [Orgcode],
+         [Orgname],
+         [Ksxm],
+         [UserName],
+         [PostName],
+         [PostAge],
+         [LastExamTime],
+         [ExamStartTime],
+         [ExamEndTime],
+         [TotalEvaluate],
+         [Kswyhjl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [Bkrqz],
+         [Kswyhzr],
+         [Wy]
+         FROM bdjl_ksjl
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_ksjl" parameterClass="bdjl_ksjl">
+        DELETE FROM 
+         bdjl_ksjl
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_ksjlByWhere" parameterClass="string">
+     delete from bdjl_ksjl $value$
+   </delete>
+   
+   <delete id="Deletebdjl_ksjlByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_ksjl
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_ksjl" parameterClass="bdjl_ksjl" resultClass="int">
+          UPDATE bdjl_ksjl
+           SET
+             [Ksrq]=#Ksrq#,
+             [Sequence]=#Sequence#,
+             [Orgcode]=#Orgcode#,
+             [Orgname]=#Orgname#,
+             [Ksxm]=#Ksxm#,
+             [UserName]=#UserName#,
+             [PostName]=#PostName#,
+             [PostAge]=#PostAge#,
+             [LastExamTime]=#LastExamTime#,
+             [ExamStartTime]=#ExamStartTime#,
+             [ExamEndTime]=#ExamEndTime#,
+             [TotalEvaluate]=#TotalEvaluate#,
+             [Kswyhjl]=#Kswyhjl#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#,
+             [Bkrqz]=#Bkrqz#,
+             [Kswyhzr]=#Kswyhzr#,
+             [Wy]=#Wy#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_ksjl" parameterClass="bdjl_ksjl">
+        INSERT INTO bdjl_ksjl
+         (
+         [ID],
+         [Ksrq],
+         [Sequence],
+         [Orgcode],
+         [Orgname],
+         [Ksxm],
+         [UserName],
+         [PostName],
+         [PostAge],
+         [LastExamTime],
+         [ExamStartTime],
+         [ExamEndTime],
+         [TotalEvaluate],
+         [Kswyhjl],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5],
+         [Bkrqz],
+         [Kswyhzr],
+         [Wy]
+         )
+       VALUES
+         (
+         #ID#,
+         #Ksrq#,
+         #Sequence#,
+         #Orgcode#,
+         #Orgname#,
+         #Ksxm#,
+         #UserName#,
+         #PostName#,
+         #PostAge#,
+         #LastExamTime#,
+         #ExamStartTime#,
+         #ExamEndTime#,
+         #TotalEvaluate#,
+         #Kswyhjl#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#,
+         #Bkrqz#,
+         #Kswyhzr#,
+         #Wy#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_ksjlRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_ksjl
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Ksrq">[Ksrq]='$Ksrq$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="Orgcode">[Orgcode]='$Orgcode$'</isNotNull>
+       <isNotNull prepend="AND" property="Orgname">[Orgname]='$Orgname$'</isNotNull>
+       <isNotNull prepend="AND" property="Ksxm">[Ksxm]='$Ksxm$'</isNotNull>
+       <isNotNull prepend="AND" property="UserName">[UserName]='$UserName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostName">[PostName]='$PostName$'</isNotNull>
+       <isNotNull prepend="AND" property="PostAge">[PostAge]='$PostAge$'</isNotNull>
+       <isNotNull prepend="AND" property="LastExamTime">[LastExamTime]='$LastExamTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamStartTime">[ExamStartTime]='$ExamStartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamEndTime">[ExamEndTime]='$ExamEndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalEvaluate">[TotalEvaluate]='$TotalEvaluate$'</isNotNull>
+       <isNotNull prepend="AND" property="Kswyhjl">[Kswyhjl]='$Kswyhjl$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+       <isNotNull prepend="AND" property="Bkrqz">[Bkrqz]='$Bkrqz$'</isNotNull>
+       <isNotNull prepend="AND" property="Kswyhzr">[Kswyhzr]='$Kswyhzr$'</isNotNull>
+       <isNotNull prepend="AND" property="Wy">[Wy]='$Wy$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_ksjlRowCount" parameterClass="string">
+    select count(*) from bdjl_ksjl $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
