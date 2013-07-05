@@ -21,9 +21,9 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _id=Newid(); 
-        private string _ksrq=String.Empty; 
-        private string _sequence=String.Empty; 
+        private string _id=Newid();
+        private DateTime _ksrq = new DateTime(1900, 1, 1); 
+        private int _sequence=0; 
         private string _orgcode=String.Empty; 
         private string _orgname=String.Empty; 
         private string _ksxm=String.Empty; 
@@ -76,7 +76,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[Ksrq],nvarchar
         /// </summary>
         [DisplayNameAttribute("考试日期")]
-        public string Ksrq
+        public DateTime Ksrq
         {
             get { return _ksrq; }
             set
@@ -97,7 +97,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[Sequence],nvarchar
         /// </summary>
         [DisplayNameAttribute("序号")]
-        public string Sequence
+        public int Sequence
         {
             get { return _sequence; }
             set
