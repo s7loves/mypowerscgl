@@ -39,7 +39,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             bar3.Visible = false;
             initImageList();
-            gridViewOperation = new GridViewOperation<bdjl_ksnr>(gridControl1, gridView1, barManager1,null);
+            gridViewOperation = new GridViewOperation<bdjl_ksnr>(gridControl1, gridView1, barManager1,new frm_ksnrEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bdjl_ksnr>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bdjl_ksnr>(gridViewOperation_BeforeDelete);
@@ -102,6 +102,7 @@ namespace Ebada.Scgl.Sbgl
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
+            hideColumn("ParentID");
             hideColumn("c1");
             hideColumn("c2");
             hideColumn("c3");
@@ -130,7 +131,8 @@ namespace Ebada.Scgl.Sbgl
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(bdjl_ksnr newobj) {
             if (parentID == null) return;
-            
+            newobj.th = getSeq().ToString();
+            newobj.ParentID = parentID;
         }
 
         private int getSeq() {

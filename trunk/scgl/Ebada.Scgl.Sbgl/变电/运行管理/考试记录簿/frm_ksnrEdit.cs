@@ -16,15 +16,15 @@ using System.Collections;
 
 namespace Ebada.Scgl.Sbgl
 {
-    public partial class frm_ksjlEdit : FormBase, IPopupFormEdit 
+    public partial class frm_ksnrEdit : FormBase, IPopupFormEdit 
     {
-        public frm_ksjlEdit()
+        public frm_ksnrEdit()
         {
             InitializeComponent();
         }
 
         #region IPopupFormEdit 成员
-        private bdjl_ksjl rowData;
+        private bdjl_ksnr rowData;
         public object RowData
         {
             get
@@ -36,13 +36,13 @@ namespace Ebada.Scgl.Sbgl
                 if (value == null) return;
                 if (rowData == null)
                 {
-                    this.rowData = value as bdjl_ksjl;
+                    this.rowData = value as bdjl_ksnr;
                     Initlkue();
                     dataBind();
                 }
                 else
                 {
-                    ConvertHelper.CopyTo<bdjl_ksjl>(value as bdjl_ksjl, rowData);
+                    ConvertHelper.CopyTo<bdjl_ksnr>(value as bdjl_ksnr, rowData);
                 }
             }
         }
@@ -51,18 +51,13 @@ namespace Ebada.Scgl.Sbgl
 
         private void dataBind()
         {
-            this.cmbksxm.DataBindings.Add("EditValue", rowData, "Ksxm");
-            this.txtUserName.DataBindings.Add("EditValue", rowData, "UserName");
-            this.txtPostName.DataBindings.Add("EditValue", rowData, "PostName");
-            this.spePostAge.DataBindings.Add("EditValue", rowData, "PostAge");
-            this.dateLastExamTime.DataBindings.Add("EditValue", rowData, "LastExamTime");
-            this.timeStartTime.DataBindings.Add("EditValue", rowData, "ExamStartTime");
-            this.ExamEndTime.DataBindings.Add("EditValue", rowData, "ExamEndTime");
+            this.memonr.DataBindings.Add("EditValue", rowData, "nr");
+            this.memopj.DataBindings.Add("EditValue", rowData, "pj");
         }
 
         private void Initlkue()
         {
-            ComboBoxHelper.FillCBoxByDyk("考试记录","考试项目",cmbksxm);
+
             
         }
 
@@ -82,14 +77,38 @@ namespace Ebada.Scgl.Sbgl
 
         #endregion
 
+        private void btnnr_Click(object sender, EventArgs e)
+        {
+             SelectorHelper.SelectDyk("考试记录", "内容", this.memonr);
+             if (!string.IsNullOrEmpty(this.memonr.EditValue as string))
+                 rowData.nr = memonr.EditValue as string;
+        }
+
+        private void btnpj_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("考试记录", "评价", this.memopj);
+            if (!string.IsNullOrEmpty(this.memopj.EditValue as string))
+                rowData.pj = memopj.EditValue as string;
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbksxm.EditValue as string))
+            if (string.IsNullOrEmpty(memonr.EditValue as string))
             {
-                MsgBox.ShowWarningMessageBox("请选择考试项目!");
+                MsgBox.ShowWarningMessageBox("请填写内容!");
+                return;
+            }
+            if (string.IsNullOrEmpty(memopj.EditValue as string))
+            {
+                MsgBox.ShowWarningMessageBox("请填写评价!");
                 return;
             }
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
 
        
