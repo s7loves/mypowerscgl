@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="bdjl_ksnr" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="bdjl_ksnr"  type="Ebada.Scgl.Model.bdjl_ksnr,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="bdjl_ksnr_AllColumns" class="bdjl_ksnr">
+        <result property="ID" column="ID" />
+        <result property="ParentID" column="ParentID" />
+        <result property="th" column="th" />
+        <result property="nr" column="nr" />
+        <result property="pj" column="pj" />
+        <result property="c1" column="c1" />
+        <result property="c2" column="c2" />
+        <result property="c3" column="c3" />
+        <result property="c4" column="c4" />
+        <result property="c5" column="c5" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="Selectbdjl_ksnrList" resultMap="bdjl_ksnr_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ParentID],
+         [th],
+         [nr],
+         [pj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM bdjl_ksnr
+          $value$
+   </select>
+   
+   <select id="Selectbdjl_ksnrByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ParentID],
+         [th],
+         [nr],
+         [pj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+          FROM bdjl_ksnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="th">[th]='$th$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="pj">[pj]='$pj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="Selectbdjl_ksnrByKey" resultMap="bdjl_ksnr_AllColumns" parameterClass="bdjl_ksnr">
+         SELECT 
+         [ID],
+         [ParentID],
+         [th],
+         [nr],
+         [pj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         FROM bdjl_ksnr
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="Deletebdjl_ksnr" parameterClass="bdjl_ksnr">
+        DELETE FROM 
+         bdjl_ksnr
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="Deletebdjl_ksnrByWhere" parameterClass="string">
+     delete from bdjl_ksnr $value$
+   </delete>
+   
+   <delete id="Deletebdjl_ksnrByKey" parameterClass="string">
+        DELETE FROM 
+         bdjl_ksnr
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="Updatebdjl_ksnr" parameterClass="bdjl_ksnr" resultClass="int">
+          UPDATE bdjl_ksnr
+           SET
+             [ParentID]=#ParentID#,
+             [th]=#th#,
+             [nr]=#nr#,
+             [pj]=#pj#,
+             [c1]=#c1#,
+             [c2]=#c2#,
+             [c3]=#c3#,
+             [c4]=#c4#,
+             [c5]=#c5#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="Insertbdjl_ksnr" parameterClass="bdjl_ksnr">
+        INSERT INTO bdjl_ksnr
+         (
+         [ID],
+         [ParentID],
+         [th],
+         [nr],
+         [pj],
+         [c1],
+         [c2],
+         [c3],
+         [c4],
+         [c5]
+         )
+       VALUES
+         (
+         #ID#,
+         #ParentID#,
+         #th#,
+         #nr#,
+         #pj#,
+         #c1#,
+         #c2#,
+         #c3#,
+         #c4#,
+         #c5#
+         )
+
+   </insert>
+   
+   <select id="Getbdjl_ksnrRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM bdjl_ksnr
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ParentID">[ParentID]='$ParentID$'</isNotNull>
+       <isNotNull prepend="AND" property="th">[th]='$th$'</isNotNull>
+       <isNotNull prepend="AND" property="nr">[nr]='$nr$'</isNotNull>
+       <isNotNull prepend="AND" property="pj">[pj]='$pj$'</isNotNull>
+       <isNotNull prepend="AND" property="c1">[c1]='$c1$'</isNotNull>
+       <isNotNull prepend="AND" property="c2">[c2]='$c2$'</isNotNull>
+       <isNotNull prepend="AND" property="c3">[c3]='$c3$'</isNotNull>
+       <isNotNull prepend="AND" property="c4">[c4]='$c4$'</isNotNull>
+       <isNotNull prepend="AND" property="c5">[c5]='$c5$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="Getbdjl_ksnrRowCount" parameterClass="string">
+    select count(*) from bdjl_ksnr $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

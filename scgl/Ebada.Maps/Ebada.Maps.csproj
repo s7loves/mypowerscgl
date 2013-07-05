@@ -531,6 +531,10 @@
     <EmbeddedResource Include="sdjls_sbpjb.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="bdjl_ksjl.xml" />
+    <EmbeddedResource Include="bdjl_ksnr.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
