@@ -483,6 +483,9 @@ namespace Ebada.Scgl.Gis.变电站接线图
                 }
                 else if (bs.DeviceID != null)
                 {
+                    if (frmsbtz == null || frmsbtz.IsDisposed) {
+                        frmsbtz = new frmSBTZ();
+                    }
                     BD_SBTZ rowData = ClientHelper.PlatformSqlMap.GetOne<BD_SBTZ>(" where sb_id='" + bs.DeviceID + "'");
                     if (rowData != null)
                     {
