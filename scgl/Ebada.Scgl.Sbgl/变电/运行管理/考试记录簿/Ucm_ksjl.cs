@@ -42,7 +42,7 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             bar3.Visible = false;
             initImageList();
-            gridViewOperation = new GridViewOperation<bdjl_ksjl>(gridControl1, gridView1, barManager1,null);
+            gridViewOperation = new GridViewOperation<bdjl_ksjl>(gridControl1, gridView1, barManager1,new frm_ksjlEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<bdjl_ksjl>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bdjl_ksjl>(gridViewOperation_BeforeDelete);
@@ -145,6 +145,10 @@ namespace Ebada.Scgl.Sbgl
             hideColumn("Bkrqz");
             hideColumn("Kswyhzr");
             hideColumn("Wy");
+            hideColumn("TotalEvaluate");
+            hideColumn("Kswyhjl");
+            hideColumn("Orgcode");
+            hideColumn("Orgname");
            
         }
         /// <summary>
@@ -225,9 +229,17 @@ namespace Ebada.Scgl.Sbgl
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gridView1.FocusedRowHandle != -1)
+            if (gridView1.GetFocusedRow() != null)
             {
-                //Export01.ExportExcel(gridView1.GetFocusedRow() as bdjl_ksjl,null);
+                bdjl_ksjl ksjl= gridView1.GetFocusedRow() as bdjl_ksjl;
+                IList<bdjl_ksnr> ksList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_ksnr>("where parentID='" + ksjl.ID + "'");
+                if (ksList == null || ksList.Count == 0)
+                {
+                    MsgBox.ShowWarningMessageBox("请先填写考试内容!");
+                    return;
+                }
+                ExportBDksjl.ExportExcel(ksjl);
+                   
             }
         }
     }
