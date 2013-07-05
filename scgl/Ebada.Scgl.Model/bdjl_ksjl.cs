@@ -31,8 +31,8 @@ namespace Ebada.Scgl.Model
         private string _postname=String.Empty; 
         private string _postage=String.Empty; 
         private DateTime _lastexamtime=new DateTime(1900,1,1); 
-        private DateTime _examstarttime=new DateTime(1900,1,1); 
-        private DateTime _examendtime=new DateTime(1900,1,1); 
+        private string _examstarttime=String.Empty; 
+        private string _examendtime=String.Empty; 
         private string _totalevaluate=String.Empty; 
         private string _kswyhjl=String.Empty; 
         private string _c1=String.Empty; 
@@ -262,7 +262,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[ExamStartTime],datetime
         /// </summary>
         [DisplayNameAttribute("考试开始时间")]
-        public DateTime ExamStartTime
+        public string ExamStartTime
         {
             get { return _examstarttime; }
             set
@@ -280,7 +280,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[ExamEndTime],datetime
         /// </summary>
         [DisplayNameAttribute("考试结束时间")]
-        public DateTime ExamEndTime
+        public string ExamEndTime
         {
             get { return _examendtime; }
             set
