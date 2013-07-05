@@ -707,6 +707,9 @@
    <select id="GetBD_SBTZRowCount" parameterClass="string">
     select count(*) from BD_SBTZ $value$
    </select>
+    <select id="GetBD_SBTZRowTable" parameterClass="string">
+       $value$
+    </select>
   </statements>
 </sqlMap>
  

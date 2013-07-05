@@ -45,6 +45,7 @@
             this.txtbds = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtzlbh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtlb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datekssj.Properties)).BeginInit();
@@ -102,17 +103,17 @@
             // 
             this.lbldd.Location = new System.Drawing.Point(31, 96);
             this.lbldd.Name = "lbldd";
-            this.lbldd.Size = new System.Drawing.Size(24, 14);
+            this.lbldd.Size = new System.Drawing.Size(48, 14);
             this.lbldd.TabIndex = 4;
-            this.lbldd.Text = "调度";
+            this.lbldd.Text = "调度人员";
             // 
             // lblbds
             // 
             this.lblbds.Location = new System.Drawing.Point(31, 129);
             this.lblbds.Name = "lblbds";
-            this.lblbds.Size = new System.Drawing.Size(36, 14);
+            this.lblbds.Size = new System.Drawing.Size(60, 14);
             this.lblbds.TabIndex = 6;
-            this.lblbds.Text = "变电所";
+            this.lblbds.Text = "变电所人员";
             // 
             // lblzlbh
             // 
@@ -193,7 +194,7 @@
             this.txtbds.Name = "txtbds";
             this.txtbds.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtbds.Size = new System.Drawing.Size(431, 21);
+            this.txtbds.Size = new System.Drawing.Size(386, 21);
             this.txtbds.TabIndex = 18;
             // 
             // txtzlbh
@@ -214,11 +215,21 @@
             this.simpleButton1.Text = "...";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(501, 129);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(27, 23);
+            this.simpleButton2.TabIndex = 21;
+            this.simpleButton2.Text = "...";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frm_ddczzl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 375);
+            this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.txtzlbh);
             this.Controls.Add(this.txtbds);
@@ -272,5 +283,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit txtbds;
         private DevExpress.XtraEditors.ComboBoxEdit txtzlbh;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
     }
 }

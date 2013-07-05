@@ -38,7 +38,9 @@
           FROM sd_gtsb
           $value$
    </select>
-   
+    <select id="Getsd_gtsbRowCountByWhere" parameterClass="string">
+      select SUM(sbNumber), sbModle,sbName from sd_gtsb $value$
+    </select>
    <select id="Selectsd_gtsbByHash" parameterClass="Hashtable">
          SELECT 
          [gtID],

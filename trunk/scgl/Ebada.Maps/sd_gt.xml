@@ -183,6 +183,16 @@
            gtID = #gtID#
 
    </select>
+   
+    <select id="Getsd_xlLengthByWhere" parameterClass="string">
+      select sum(gtSpan) from sd_gt $value$
+    </select>
+    <select id="Getsd_gtRowCountByWhere" parameterClass="string">
+      select  COUNT(*),gtType,gtModle from sd_gt $value$
+    </select>
+    <select id="Selectsd_gtByStr" resultMap="sd_gt_AllColumns" parameterClass="string">
+      $value$
+    </select>
  
    <delete id="Deletesd_gt" parameterClass="sd_gt">
         DELETE FROM 
