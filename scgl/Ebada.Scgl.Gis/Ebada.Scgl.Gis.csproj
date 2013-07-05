@@ -175,6 +175,12 @@
     <Compile Include="95598\UCPJ_21gzbxdh .Designer.cs">
       <DependentUpon>UCPJ_21gzbxdh .cs</DependentUpon>
     </Compile>
+    <Compile Include="Device\frmSdtj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\frmSdtj.Designer.cs">
+      <DependentUpon>frmSdtj.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drawing\DrawingDxt2.cs" />
     <Compile Include="frmDxtSetup.cs">
       <SubType>Form</SubType>
@@ -513,6 +519,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Device\frmXLSbtj.resx">
       <DependentUpon>frmXLSbtj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\frmSdtj.resx">
+      <DependentUpon>frmSdtj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDxtSetup.resx">

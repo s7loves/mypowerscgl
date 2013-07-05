@@ -63,6 +63,7 @@ namespace Ebada.Scgl.Gis {
                     if(routes.Markers.Count<2)return;
 
                     List<PS_gt> gtlist = new List<PS_gt>();
+                    List<sd_gt> sdlist = new List<sd_gt>();
                     int bl = 1000000;
                     using (GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath()) {
                         List<PointF> list = new List<PointF>();
@@ -80,15 +81,31 @@ namespace Ebada.Scgl.Gis {
                                 if (r.IsVisible(new PointF((float)m.Position.Lng * bl, (float)m.Position.Lat * bl))) {
                                     if(m.Tag is PS_gt)
                                         gtlist.Add(m.Tag as PS_gt);
+                                    else if(m.Tag is sd_gt)
+                                    {
+                                        sdlist.Add(m.Tag as sd_gt);
+                                    }
                                 }
 
                             }
                         }
                     }
-                    frmQytj dlg = new frmQytj(gtlist);
-                    dlg.StartPosition = FormStartPosition.CenterScreen;
+                    if (gtlist.Count>sdlist.Count)
+                    {
+                        frmQytj dlg = new frmQytj(gtlist);
+                        dlg.StartPosition = FormStartPosition.CenterScreen;
 
-                    dlg.Show(this.rMap1);
+                        dlg.Show(this.rMap1);
+                    }
+                    else
+                    {
+                        frmSdtj dlg = new frmSdtj(sdlist);
+                        dlg.StartPosition = FormStartPosition.CenterScreen;
+
+                        dlg.Show(this.rMap1);
+                    }
+                   
+                   
                 }
                 isBegin = false;
             }

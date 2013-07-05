@@ -71,14 +71,19 @@ namespace Ebada.Scgl.Sbgl
             IList<mUser> userList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<mUser>("where OrgCode='" + rowData.OrgCode + "'");
             if (userList == null)
                 return;
-            List<DicType> userTypeList = new List<DicType>();
+            List<string> strlist=new List<string> ();
+            //List<DicType> userTypeList = new List<DicType>();
             foreach (mUser user in userList)
             {
-                userTypeList.Add(new DicType(user.UserName, user.UserName));
+                //userTypeList.Add(new DicType(user.UserName, user.UserName));
+                strlist.Add(user.UserName);
             }
+            lkuejdfzr.Properties.Items.AddRange((ICollection)strlist);
+            lkuezbrjsz.Properties.Items.AddRange((ICollection)strlist);
 
-            SetComboBoxData(this.lkuejdfzr, "Value", "Key", "请选择", "继电负责人", userTypeList);
-            SetComboBoxData(this.lkuezbrjsz, "Value", "Key", "请选择", "值班人及所长", userTypeList);
+
+            //SetComboBoxData(this.lkuejdfzr, "Value", "Key", "请选择", "继电负责人", userTypeList);
+            //SetComboBoxData(this.lkuezbrjsz, "Value", "Key", "请选择", "值班人及所长", userTypeList);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
@@ -115,6 +120,16 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, System.EventArgs e)
         {
             SelectorHelper.SelectDyk("变电继电保护记录", "调试内容及结论", memotsnrjjl);
+
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void frm_jdbhjl_Load(object sender, System.EventArgs e)
+        {
 
         }
 

@@ -70,9 +70,14 @@ namespace Ebada.Scgl.Sbgl
             //    sbmcList.Add(new DicType(mc, mc));
             //}
             ////SetComboBoxData(lkueblqmc, "Value", "Key", "请选择", "避雷器名称", sbmcList);
-            ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "调度", this.txtdd);
-            ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "变电所", this.txtbds);
+            //ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "调度", this.txtdd);
+            //ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "变电所", this.txtbds);
             ComboBoxHelper.FillCBoxByDyk("变电调度操作指令", "指令编号", this.txtzlbh);
+
+
+            string sqlsbmc = "select username  from mUser where OrgCode='032'";
+            ICollection ryList = (ICollection)Client.ClientHelper.PlatformSqlMap.GetList<string>("SelectOneStr", sqlsbmc);
+            txtdd.Properties.Items.AddRange(ryList);
         }
 
         //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
@@ -104,6 +109,15 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电调度操作指令", "内容", memonr);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            PeopleSelecter frm = new PeopleSelecter();
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+                txtbds.Text = frm.UserName;
+            }
         }
     }
 }

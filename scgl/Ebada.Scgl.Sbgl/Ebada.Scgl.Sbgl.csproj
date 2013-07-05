@@ -136,6 +136,12 @@
     <Compile Include="frmGtDel.Designer.cs">
       <DependentUpon>frmGtDel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSbTJ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSbTJ.Designer.cs">
+      <DependentUpon>FrmSbTJ.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1289,6 +1295,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmGtDel.resx">
       <DependentUpon>frmGtDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSbTJ.resx">
+      <DependentUpon>FrmSbTJ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
