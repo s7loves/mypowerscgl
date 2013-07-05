@@ -1574,6 +1574,14 @@
       <DependentUpon>UCSD_21.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\送电线路设备评级表\frm22sbpjbTemplate.resx">
+      <DependentUpon>frm22sbpjbTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="送电记录簿\送电线路设备评级表\UCSD_22sbpjb.resx">
+      <DependentUpon>UCSD_22sbpjb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -2310,6 +2318,18 @@
     </Compile>
     <Compile Include="送电记录簿\送电线路条图\UCSD_21.Designer.cs">
       <DependentUpon>UCSD_21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路设备评级表\frm22sbpjbTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路设备评级表\frm22sbpjbTemplate.Designer.cs">
+      <DependentUpon>frm22sbpjbTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路设备评级表\UCSD_22sbpjb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="送电记录簿\送电线路设备评级表\UCSD_22sbpjb.Designer.cs">
+      <DependentUpon>UCSD_22sbpjb.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -3137,6 +3157,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\送电21线路条图.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\送电线路设备评级表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\避雷器试验完成情况报表.xls">
