@@ -61,6 +61,8 @@
     <Compile Include="bdjl_gzpdjb.cs" />
     <Compile Include="bdjl_jdbhjl.cs" />
     <Compile Include="bdjl_kgtzjl.cs" />
+    <Compile Include="bdjl_ksjl.cs" />
+    <Compile Include="bdjl_ksnr.cs" />
     <Compile Include="bdjl_sbjxjl.cs" />
     <Compile Include="bdjl_sbqxjl.cs" />
     <Compile Include="bdjl_sgyxjlb.cs" />
