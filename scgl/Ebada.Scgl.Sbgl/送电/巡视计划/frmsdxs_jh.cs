@@ -200,11 +200,15 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("送电巡视计划", "巡视内容", this.txtxsnr);
+            if (!string.IsNullOrEmpty(txtxsnr.EditValue as string))
+                rowData.xsnr = txtxsnr.EditValue as string;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("送电巡视计划", "缺陷内容", memoqxnr);
+            if (!string.IsNullOrEmpty(memoqxnr.EditValue as string))
+                rowData.qxnr = memoqxnr.EditValue as string;
         }
 
        
