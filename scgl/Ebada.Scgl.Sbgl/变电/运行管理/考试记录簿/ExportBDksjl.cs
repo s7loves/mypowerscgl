@@ -37,10 +37,7 @@ namespace Ebada.Scgl.Sbgl
             }
             for (int j = 1; j <= pageindex; j++)
             {
-                ex.SetCellValue(ksjl.Ksrq.Year.ToString(), 4, 1);
-                ex.SetCellValue(ksjl.Ksrq.Month.ToString(), 4, 3);
-                ex.SetCellValue(ksjl.Ksrq.Day.ToString(), 4, 5);
-                ex.SetCellValue(ksjl.Sequence.ToString(), 4, 8);
+                ex.SetCellValue(ksjl.Ksrq.Year+"年"+ksjl.Ksrq.Month+"月"+ksjl.Ksrq.Day+"日"+"第"+ksjl.Sequence+"号", 4, 1);
                 ex.SetCellValue(ksjl.Ksxm, 5, 3);
                 ex.SetCellValue(ksjl.UserName, 6, 3);
                 ex.SetCellValue(ksjl.PostName, 6, 6);
