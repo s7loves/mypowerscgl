@@ -86,6 +86,7 @@
             this.ExamEndTime.Name = "ExamEndTime";
             this.ExamEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ExamEndTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.ExamEndTime.Size = new System.Drawing.Size(242, 21);
             this.ExamEndTime.TabIndex = 13;
             // 
@@ -104,6 +105,7 @@
             this.timeStartTime.Name = "timeStartTime";
             this.timeStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.timeStartTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.timeStartTime.Size = new System.Drawing.Size(242, 21);
             this.timeStartTime.TabIndex = 11;
             // 
@@ -222,6 +224,7 @@
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frm_ksjlEdit
             // 

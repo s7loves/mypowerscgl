@@ -92,6 +92,11 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.OK;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
        
     }
 }

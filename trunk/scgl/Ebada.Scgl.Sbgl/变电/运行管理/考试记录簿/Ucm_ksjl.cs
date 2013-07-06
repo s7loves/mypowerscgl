@@ -48,12 +48,12 @@ namespace Ebada.Scgl.Sbgl
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<bdjl_ksjl>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
-        private IViewOperation<PJ_gzrjnr> childView;
+        private IViewOperation<bdjl_ksnr> childView;
         /// <summary>
         /// 获取和设置子表的数据操作接口
         /// </summary>
         [Browsable(false)]
-        public IViewOperation<PJ_gzrjnr> ChildView
+        public IViewOperation<bdjl_ksnr> ChildView
         {
             get { return childView; }
             set
@@ -64,6 +64,16 @@ namespace Ebada.Scgl.Sbgl
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<bdjl_ksjl> e)
         {
             if (childView != null && childView.BindingList.Count > 0) e.Cancel = true;
+            if (gridView1.GetFocusedRow() == null)
+                return;
+            bdjl_ksjl ksjl = gridView1.GetFocusedRow() as bdjl_ksjl;
+            IList<bdjl_ksnr> ksnrList = new List<bdjl_ksnr>();
+            ksnrList= Client.ClientHelper.PlatformSqlMap.GetListByWhere<bdjl_ksnr>("where ParentID='" + ksjl.ID + "'");
+            if (ksnrList.Count > 0)
+            {
+                MsgBox.ShowWarningMessageBox("请先删除考试内容!");
+                e.Cancel = true;
+            }
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<bdjl_ksjl> e)
@@ -149,7 +159,7 @@ namespace Ebada.Scgl.Sbgl
             hideColumn("Kswyhjl");
             hideColumn("Orgcode");
             hideColumn("Orgname");
-           
+            hideColumn("Sequence");
         }
         /// <summary>
         /// 刷新数据
@@ -178,7 +188,6 @@ namespace Ebada.Scgl.Sbgl
             if (parentID == null) return;
             if (string.IsNullOrEmpty(baruser.EditValue as string))
                 return;
-            
             mUser user= Client.ClientHelper.PlatformSqlMap.GetOne<mUser>("where username='" + baruser.EditValue as string + "'");
             if (user == null)
             {
@@ -188,6 +197,10 @@ namespace Ebada.Scgl.Sbgl
             newobj.UserName = user.UserName;
             newobj.PostName = user.PostName;
             newobj.Ksrq = DateTime.Now;
+            newobj.Orgcode = parentID;
+            newobj.Orgname = parentObj.OrgName;
+           
+               
         }
         /// <summary>
         /// 父表ID
@@ -203,7 +216,7 @@ namespace Ebada.Scgl.Sbgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    RefreshData(" where orgcode='" + value + "' order by ksrq desc");
+                    RefreshData(" where Orgcode='" + value + "'");
                 }
             }
         }
@@ -222,7 +235,7 @@ namespace Ebada.Scgl.Sbgl
                 }
                 else
                 {
-                    ParentID = value.OrgID;
+                    ParentID = value.OrgCode;
                 }
             }
         }
