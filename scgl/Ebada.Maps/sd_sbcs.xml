@@ -149,6 +149,9 @@
    <select id="Getsd_sbcsRowCount" parameterClass="string">
     select count(*) from sd_sbcs $value$
    </select>
+    <select id="selectsd_sbcsbyAnyWhere" parameterClass="string">
+       $value$
+    </select>
   </statements>
 </sqlMap>
  

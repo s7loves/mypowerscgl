@@ -395,6 +395,82 @@ namespace Ebada.Scgl.Sbgl
         public static void ExprotExcelXdcdzjlb(IList<bdjl_xdctzjlb> nrList)
         {
             #region 蓄电池调整及检测记录簿
+            //ExcelAccess ex = new ExcelAccess();
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //string fname = Application.StartupPath + "\\00记录模板\\蓄电池调整及检测记录簿.xls";
+            //ex.Open(fname);
+            //int row = 1;
+            ////加页
+            //int pageindex = 1;
+            //if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 15))
+            //{
+            //    pageindex = Ecommonjh.GetPagecount(nrList.Count, 15);
+            //}
+            //for (int j = 1; j <= pageindex; j++)
+            //{
+            //    ex.ActiveSheet(1);
+            //    if (j > 1)
+            //    {
+            //        ex.CopySheet(1, j);
+            //    }
+            //    ex.SetCellValue(nrList[0].sj.Year+"年"+nrList[0].sj.Month+"月", 2, 1);
+
+            //}
+            
+            //for (int j = 1; j <= pageindex; j++)
+            //{
+            //    ex.ActiveSheet(j);
+            //    //ex.ReNameWorkSheet(j, "Sheet" + (j));
+            //    int prepageindex = j - 1;
+            //    //主题
+            //    int starow = prepageindex * 15 + 1;
+            //    int endrow = j * 15;
+
+            //    if (nrList.Count > endrow)
+            //    {
+            //        for (int i = 0; i < 15; i++)
+            //        {
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Day.ToString(), row + 5 + i, 1);
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Hour.ToString(), row + 5 + i, 2);
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Minute.ToString(), row + 5 + i, 3);
+            //            ex.SetCellValue(nrList[starow - 1 + i].dcdy, row + 5 + i, 4);
+            //            ex.SetCellValue(nrList[starow - 1 + i].dl, row + 5 + i, 5);
+            //            ex.SetCellValue(nrList[starow - 1 + i].trdcgs, row + 5 + i, 6);
+            //            string[] arr = nrList[starow - 1 + i].bzdcdy.Split('、');
+            //            for (int k = 0; k < arr.Length; k++)
+            //            {
+            //                ex.SetCellValue(arr[k], row + 5 + i, 6 + k + 1);
+            //            }
+            //            ex.SetCellValue(nrList[starow - 1 + i].jcr, row + 5 + i, 11);
+            //            //ex.SetCellValue(nrList[starow - 1 + i].zbrjsz, row + 3 + i, 6);
+            //        }
+            //    }
+            //    else if (nrList.Count <= endrow && nrList.Count >= starow)
+            //    {
+            //        for (int i = 0; i < nrList.Count - starow + 1; i++)
+            //        {
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Day.ToString(), row + 5 + i, 1);
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Hour.ToString(), row + 5 + i, 2);
+            //            ex.SetCellValue(nrList[starow - 1 + i].sj.Minute.ToString(), row + 5 + i, 3);
+            //            ex.SetCellValue(nrList[starow - 1 + i].dcdy, row + 5 + i, 4);
+            //            ex.SetCellValue(nrList[starow - 1 + i].dl, row + 5 + i, 5);
+            //            ex.SetCellValue(nrList[starow - 1 + i].trdcgs, row + 5 + i, 6);
+            //            string[] arr = nrList[starow - 1 + i].bzdcdy.Split('、');
+            //            for (int k = 0; k < arr.Length; k++)
+            //            {
+            //                ex.SetCellValue(arr[k], row + 5 + i, 6 + k + 1);
+            //            }
+            //            ex.SetCellValue(nrList[starow - 1 + i].jcr, row + 5 + i, 11);
+            //        }
+            //    }
+
+            //}
+            //ex.ActiveSheet(1);
+            //ex.ShowExcel();
+
+
+
+
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             string fname = Application.StartupPath + "\\00记录模板\\蓄电池调整及检测记录簿.xls";
@@ -402,69 +478,63 @@ namespace Ebada.Scgl.Sbgl
             int row = 1;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 15))
+            int newrow=-1;
+            for (int i = 0; i < nrList.Count; i++)
             {
-                pageindex = Ecommonjh.GetPagecount(nrList.Count, 15);
-            }
-            for (int j = 1; j <= pageindex; j++)
-            {
-                ex.ActiveSheet(1);
-                if (j > 1)
+                newrow++;
+                if (newrow%15==0)
+	            {
+                   newrow=0;
+                   pageindex++;
+                   ex.ActiveSheet(pageindex - 1);
+                   ex.ReNameWorkSheet(pageindex - 1, nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + (pageindex - 1));
+                   ex.CopySheet(pageindex - 1, pageindex - 1);
+                   ex.ActiveSheet(pageindex-1);
+                   ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月", 2, 1);
+	            }
+                try
                 {
-                    ex.CopySheet(1, 1);
-                }
-                ex.SetCellValue(nrList[0].sj.Year+"年"+nrList[0].sj.Month+"月", 2, 1);
+                        ex.SetCellValue(nrList[ i].sj.Day.ToString(), row + 5 + newrow, 1);
+                        ex.SetCellValue(nrList[ i].sj.Hour.ToString(), row + 5 + newrow, 2);
+                        ex.SetCellValue(nrList[ i].sj.Minute.ToString(), row + 5 + newrow, 3);
+                        ex.SetCellValue(nrList[ i].dcdy, row + 5 + newrow, 4);
+                        ex.SetCellValue(nrList[ i].dl, row + 5 + newrow, 5);
+                        ex.SetCellValue(nrList[i].trdcgs, row + 5 + newrow, 6);
+                        ex.SetCellValue(nrList[ i].jcr, row + 5 +newrow, 11);
+                        string[] arr = nrList[i].bzdcdy.Split(',');
 
-            }
-
-            for (int j = 1; j <= pageindex; j++)
-            {
-                ex.ActiveSheet(j);
-                //ex.ReNameWorkSheet(j, "Sheet" + (j));
-                int prepageindex = j - 1;
-                //主题
-                int starow = prepageindex * 15 + 1;
-                int endrow = j * 15;
-
-                if (nrList.Count > endrow)
-                {
-                    for (int i = 0; i < 15; i++)
-                    {
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Day.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Hour.ToString(), row + 5 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Minute.ToString(), row + 5 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dcdy, row + 5 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dl, row + 5 + i, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].trdcgs, row + 5 + i, 6);
-                        string[] arr = nrList[starow - 1 + i].bzdcdy.Split('、');
+                        int tempindex=0;
                         for (int k = 0; k < arr.Length; k++)
                         {
-                            ex.SetCellValue(arr[k], row + 5 + i, 6 + k + 1);
+                            if (k % 4 == 0&&k!=0 )
+                            {
+                                tempindex = 0;
+                                newrow++;
+                                if (newrow % 15 == 0)
+                                {
+                                    newrow = 0;
+                                    pageindex++;
+                                    ex.ActiveSheet(pageindex - 1);
+                                    ex.ReNameWorkSheet(pageindex - 1, nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + (pageindex - 1));
+                                    ex.CopySheet(pageindex - 1, pageindex - 1);
+                                    ex.ActiveSheet(pageindex - 1);
+                                    ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月", 2, 1);
+                                }
+                            }
+                            tempindex++;
+                            ex.SetCellValue(arr[k], row + 5 + newrow, 6 + tempindex);
+                           
                         }
-                        ex.SetCellValue(nrList[starow - 1 + i].jcr, row + 5 + i, 11);
-                        //ex.SetCellValue(nrList[starow - 1 + i].zbrjsz, row + 3 + i, 6);
-                    }
+
                 }
-                else if (nrList.Count <= endrow && nrList.Count >= starow)
+                catch
                 {
-                    for (int i = 0; i < nrList.Count - starow + 1; i++)
-                    {
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Day.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Hour.ToString(), row + 5 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].sj.Minute.ToString(), row + 5 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dcdy, row + 5 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dl, row + 5 + i, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].trdcgs, row + 5 + i, 6);
-                        string[] arr = nrList[starow - 1 + i].bzdcdy.Split('、');
-                        for (int k = 0; k < arr.Length; k++)
-                        {
-                            ex.SetCellValue(arr[k], row + 5 + i, 6 + k + 1);
-                        }
-                        ex.SetCellValue(nrList[starow - 1 + i].jcr, row + 5 + i, 11);
-                    }
                 }
 
             }
+            //ex.ActiveSheet(pageindex);
+            //ex.DeleteSheet(pageindex);
+            ////ex.DeleteWorkSheet(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + (pageindex - 1) + " (2)");
             ex.ActiveSheet(1);
             ex.ShowExcel();
             #endregion

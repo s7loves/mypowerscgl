@@ -753,6 +753,12 @@
     <Compile Include="27设备统计表\UCPS_tj.Designer.cs">
       <DependentUpon>UCPS_tj.cs</DependentUpon>
     </Compile>
+    <Compile Include="27设备统计表\UCPS_sdtj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="27设备统计表\UCPS_sdtj.Designer.cs">
+      <DependentUpon>UCPS_sdtj.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ecommon.cs" />
     <Compile Include="06设备巡视及缺陷消除\Export06.cs" />
     <Compile Include="IExport.cs" />
@@ -1150,6 +1156,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="27设备统计表\UCPS_tj.resx">
       <DependentUpon>UCPS_tj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="27设备统计表\UCPS_sdtj.resx">
+      <DependentUpon>UCPS_sdtj.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

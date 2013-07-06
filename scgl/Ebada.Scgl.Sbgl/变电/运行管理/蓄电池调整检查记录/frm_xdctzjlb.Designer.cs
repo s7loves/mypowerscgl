@@ -41,14 +41,14 @@
             this.txtdcdy = new DevExpress.XtraEditors.SpinEdit();
             this.txtdl = new DevExpress.XtraEditors.SpinEdit();
             this.txttrdcgs = new DevExpress.XtraEditors.SpinEdit();
-            this.txtbzdcdy = new DevExpress.XtraEditors.SpinEdit();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuejcr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblsj
@@ -104,7 +104,7 @@
             // 
             // lblbzdcdy
             // 
-            this.lblbzdcdy.Location = new System.Drawing.Point(41, 176);
+            this.lblbzdcdy.Location = new System.Drawing.Point(41, 174);
             this.lblbzdcdy.Name = "lblbzdcdy";
             this.lblbzdcdy.Size = new System.Drawing.Size(94, 14);
             this.lblbzdcdy.TabIndex = 8;
@@ -112,7 +112,7 @@
             // 
             // lbljcr
             // 
-            this.lbljcr.Location = new System.Drawing.Point(41, 211);
+            this.lbljcr.Location = new System.Drawing.Point(41, 273);
             this.lbljcr.Name = "lbljcr";
             this.lbljcr.Size = new System.Drawing.Size(36, 14);
             this.lbljcr.TabIndex = 10;
@@ -120,7 +120,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(316, 245);
+            this.btnOk.Location = new System.Drawing.Point(363, 322);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 12;
@@ -129,7 +129,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(430, 245);
+            this.btnCancel.Location = new System.Drawing.Point(455, 322);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 13;
@@ -138,7 +138,7 @@
             // 
             // lkuejcr
             // 
-            this.lkuejcr.Location = new System.Drawing.Point(150, 208);
+            this.lkuejcr.Location = new System.Drawing.Point(150, 275);
             this.lkuejcr.Name = "lkuejcr";
             this.lkuejcr.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -187,26 +187,20 @@
             this.txttrdcgs.Size = new System.Drawing.Size(396, 21);
             this.txttrdcgs.TabIndex = 17;
             // 
-            // txtbzdcdy
+            // memoEdit1
             // 
-            this.txtbzdcdy.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtbzdcdy.Location = new System.Drawing.Point(150, 173);
-            this.txtbzdcdy.Name = "txtbzdcdy";
-            this.txtbzdcdy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtbzdcdy.Size = new System.Drawing.Size(396, 21);
-            this.txtbzdcdy.TabIndex = 18;
+            this.memoEdit1.Location = new System.Drawing.Point(150, 175);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(396, 84);
+            this.memoEdit1.TabIndex = 18;
+            this.memoEdit1.ToolTip = "请用英文逗号分隔";
             // 
             // frm_xdctzjlb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 299);
-            this.Controls.Add(this.txtbzdcdy);
+            this.ClientSize = new System.Drawing.Size(583, 367);
+            this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.txttrdcgs);
             this.Controls.Add(this.txtdl);
             this.Controls.Add(this.txtdcdy);
@@ -230,7 +224,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtdcdy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttrdcgs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtbzdcdy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +245,6 @@
         private DevExpress.XtraEditors.SpinEdit txtdcdy;
         private DevExpress.XtraEditors.SpinEdit txtdl;
         private DevExpress.XtraEditors.SpinEdit txttrdcgs;
-        private DevExpress.XtraEditors.SpinEdit txtbzdcdy;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
     }
 }
