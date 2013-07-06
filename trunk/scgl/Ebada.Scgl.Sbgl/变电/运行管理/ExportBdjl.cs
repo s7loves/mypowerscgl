@@ -114,7 +114,7 @@ namespace Ebada.Scgl.Sbgl
                     ex.CopySheet(1, 1);
                 }
                 if (!string.IsNullOrEmpty(title))
-                    ex.SetCellValue(title, 2, 2);
+                    ex.SetCellValue("类别:"+title, 2, 1);
             }
 
             for (int j = 1; j <= pageindex; j++)
@@ -130,16 +130,16 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Day.ToString(), row + 4 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxr, row + 4 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].qxnr, row + 4 + i, 5);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 6);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 7);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Year.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Month.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Day.ToString(), row + 5 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxr, row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].qxnr, row + 5 + i, 5);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 5 + i, 6);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 5 + i, 7);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 5 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 5 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 5 + i, 10);
 
                     }
                 }
@@ -147,16 +147,16 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Day.ToString(), row + 4 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].fxr, row + 4 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].qxnr, row + 4 + i, 5);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 6);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 7);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Year.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Month.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxrq.Day.ToString(), row + 5 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].fxr, row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].qxnr, row + 5 + i, 5);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 5 + i, 6);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 5 + i, 7);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 5 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 5 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 5 + i, 10);
                        
                     }
                 }
@@ -273,7 +273,7 @@ namespace Ebada.Scgl.Sbgl
                 {
                     ex.CopySheet(1, 1);
                 }
-                ex.SetCellValue(nrList[0].sbmc, 2, 4);
+                ex.SetCellValue("设备及线路名称:"+nrList[0].sbmc, 2, 1);
 
             }
 
@@ -503,6 +503,7 @@ namespace Ebada.Scgl.Sbgl
                         ex.SetCellValue(nrList[ i].jcr, row + 5 +newrow, 11);
                         string[] arr = nrList[i].bzdcdy.Split(',');
 
+
                         int tempindex=0;
                         for (int k = 0; k < arr.Length; k++)
                         {
@@ -529,6 +530,7 @@ namespace Ebada.Scgl.Sbgl
                 }
                 catch
                 {
+
                 }
 
             }
@@ -583,19 +585,19 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 4 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 4 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 4 + i, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 4 + i, 6);
-                        ex.SetCellValue(nrList[starow - 1 + i].c1, row + 4 + i, 7);
-                        ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].Cxjsqzss, row + 4 + i, 10);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 11);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzyy, row + 4 + i, 12);
-                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 5 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 5 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 5 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].c1, row + 5 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 5 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 5 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].Cxjsqzss, row + 5 + i, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 5 + i, 11);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzyy, row + 5 + i, 12);
+                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 5 + i, 13);
                         
                     }
                 }
@@ -603,19 +605,19 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 4 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 4 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 4 + i, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 4 + i, 6);
-                        ex.SetCellValue(nrList[starow - 1 + i].c1, row + 4 + i, 7);
-                        ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 4 + i, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 4 + i, 9);
-                        ex.SetCellValue(nrList[starow - 1 + i].Cxjsqzss, row + 4 + i, 10);
-                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 4 + i, 11);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzyy, row + 4 + i, 12);
-                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 5 + i, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 5 + i, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 5 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 5 + i, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].c1, row + 5 + i, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 5 + i, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].c2, row + 5 + i, 9);
+                        ex.SetCellValue(nrList[starow - 1 + i].Cxjsqzss, row + 5 + i, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].c3, row + 5 + i, 11);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzyy, row + 5 + i, 12);
+                        ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 5 + i, 13);
                     }
                 }
 
@@ -823,8 +825,8 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < 1; i++)
                     {
-                        ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", row + 1 + i, 1);
-                        ex.SetCellValue(GetWeeks(DateTime.Now.DayOfWeek), row + 1 + i, 4);
+                        //ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", row + 1 + i, 1);
+                        //ex.SetCellValue(GetWeeks(DateTime.Now.DayOfWeek), row + 1 + i, 4);
                         ex.SetCellValue(nrList[0].zcr, row + 2 + i, 2);
                         ex.SetCellValue(Convert.ToDateTime(nrList[0].hdkssj).Year + "年" + Convert.ToDateTime(nrList[0].hdkssj).Month + "月"
                             + Convert.ToDateTime(nrList[0].hdkssj).Day + "日" + Convert.ToDateTime(nrList[0].hdkssj).Hour + "时"
@@ -845,8 +847,8 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-                        ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", row + 1 + i, 1);
-                        ex.SetCellValue(GetWeeks(DateTime.Now.DayOfWeek), row + 1 + i, 4);
+                        //ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", row + 1 + i, 1);
+                        //ex.SetCellValue(GetWeeks(DateTime.Now.DayOfWeek), row + 1 + i, 4);
                         ex.SetCellValue(nrList[0].zcr, row + 2 + i, 2);
                         ex.SetCellValue(Convert.ToDateTime(nrList[0].hdkssj).Year + "年" + Convert.ToDateTime(nrList[0].hdkssj).Month + "月"
                             + Convert.ToDateTime(nrList[0].hdkssj).Day + "日" + Convert.ToDateTime(nrList[0].hdkssj).Hour + "时"
@@ -981,7 +983,7 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < 1; i++)
                     {
-                        ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + nrList[0].sj.Day + "日", row + 1 + i, 1);
+                        ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + nrList[0].sj.Day + "日", row + 1 + i, 2);
                         ex.SetCellValue(nrList[0].cjry, row + 2 + i, 2);
                         ex.SetCellValue(nrList[0].nr, row + 3 + i, 2);
                         ex.SetCellValue(nrList[0].jl, row + 4 + i, 2);
@@ -993,7 +995,7 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-                        ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + nrList[0].sj.Day + "日", row + 1 + i, 1);
+                        ex.SetCellValue(nrList[0].sj.Year + "年" + nrList[0].sj.Month + "月" + nrList[0].sj.Day + "日", row + 1 + i, 2);
                         ex.SetCellValue(nrList[0].cjry, row + 2 + i, 2);
                         ex.SetCellValue(nrList[0].nr, row + 3 + i, 2);
                         ex.SetCellValue(nrList[0].jl, row + 4 + i, 2);
@@ -1063,13 +1065,13 @@ namespace Ebada.Scgl.Sbgl
             string fname = Application.StartupPath + "\\00记录模板\\运行工作记录簿.xls";
             ex.Open(fname);
             int row = 1;
-            int rowmaxsize = 33;//一行最多33个汉字
+            int rowmaxsize = 117;//一行最多33个汉字
             //加页
             int pageindex = 1;
             int totalHang = GetTotalHang(nrList, rowmaxsize);
-            if (pageindex < Ecommonjh.GetPagecount(totalHang, 21))
+            if (pageindex < Ecommonjh.GetPagecount(totalHang, 12))
             {
-                pageindex = Ecommonjh.GetPagecount(totalHang, 21);
+                pageindex = Ecommonjh.GetPagecount(totalHang, 12);
             }
             
 
@@ -1086,8 +1088,8 @@ namespace Ebada.Scgl.Sbgl
             ex.ActiveSheet(1);
             ex.SetCellValue(Convert.ToDateTime(yxgzjl.rq).Year + "年" + Convert.ToDateTime(yxgzjl.rq).Month + "月"
                     + Convert.ToDateTime(yxgzjl.rq).Day + "日", 2, 1);
-            ex.SetCellValue(GetWeeks(Convert.ToDateTime(yxgzjl.rq).DayOfWeek), 2, 5);
-            ex.SetCellValue(yxgzjl.tq, 2, 8);
+            ex.SetCellValue("星期:"+GetWeeks(Convert.ToDateTime(yxgzjl.rq).DayOfWeek), 2, 4);
+            ex.SetCellValue("天气:"+yxgzjl.tq, 2, 7);
             ex.SetCellValue(yxgzjl.jbfzr, 3, 3);
             ex.SetCellValue(yxgzjl.jbry, 3, 7);
             ex.SetCellValue(yxgzjl.jbfzry, 4, 3);
@@ -1101,12 +1103,12 @@ namespace Ebada.Scgl.Sbgl
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 21 + 1;
-                int endrow = j * 21;
+                int starow = prepageindex * 12 + 1;
+                int endrow = j * 12;
                 
                 if (totalHang > endrow)
                 {
-                    for (int i = 0; i < 21; )
+                    for (int i = 0; i < 12; )
                     {
                         int hasrow = GetHasRow(nrList[r].nr.Length, rowmaxsize);
                         if (temp == 0)
@@ -1132,7 +1134,7 @@ namespace Ebada.Scgl.Sbgl
                             }
                             ex.SetCellValue(tempnr, row + 5 + i, 3);
                             i++;
-                            if (i > 21)
+                            if (i > 12)
                             {
                                 temp = t;
                                 break;
