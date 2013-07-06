@@ -936,6 +936,50 @@ namespace Ebada.Scgl.Sbgl
             #endregion
         }
 
+
+
+
+
+        private static int GetTotalHang(IList<bdjl_gzjlzb> nrlist, int rowmaxsize)
+        {
+            if (nrlist.Count == 0)
+                return 1;
+            int totalhang = 0;
+            foreach (bdjl_gzjlzb gzjlzb in nrlist)
+            {
+
+                int length = gzjlzb.nr.Length;
+                int hasrow = 1;
+                if (length % rowmaxsize != 0)
+                {
+                    if (hasrow < ((length / rowmaxsize + 1)))
+                        hasrow = (length / rowmaxsize + 1);
+                }
+                else
+                {
+                    if (hasrow < ((length / rowmaxsize)))
+                        hasrow = length / rowmaxsize;
+                }
+                totalhang += hasrow;
+            }
+            return totalhang;
+        }
+
+        private static int GetHasRow(int length, int rowmaxsize)
+        {
+            int hasrow = 1;
+            if (length % rowmaxsize != 0)
+            {
+                if (hasrow < ((length / rowmaxsize + 1)))
+                    hasrow = (length / rowmaxsize + 1);
+            }
+            else
+            {
+                if (hasrow < ((length / rowmaxsize)))
+                    hasrow = length / rowmaxsize;
+            }
+            return hasrow;
+        }
         /// <summary>
         /// 运行工作记录簿
         /// </summary>
@@ -949,11 +993,13 @@ namespace Ebada.Scgl.Sbgl
             string fname = Application.StartupPath + "\\00记录模板\\运行工作记录簿.xls";
             ex.Open(fname);
             int row = 1;
+            int rowmaxsize = 33;//一行最多33个汉字
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 15))
+            int totalHang = GetTotalHang(nrList, rowmaxsize);
+            if (pageindex < Ecommonjh.GetPagecount(totalHang, 21))
             {
-                pageindex = Ecommonjh.GetPagecount(nrList.Count, 15);
+                pageindex = Ecommonjh.GetPagecount(totalHang, 21);
             }
             for (int j = 1; j <= pageindex; j++)
             {
@@ -972,34 +1018,73 @@ namespace Ebada.Scgl.Sbgl
                 ex.SetCellValue(yxgzjl.jbfzry, 4, 3);
                 ex.SetCellValue(yxgzjl.jbryy, 4, 7);
             }
-
+            int kyh = 0;//空余行
+            int r = 0;//列表循环
             for (int j = 1; j <= pageindex; j++)
             {
                 ex.ActiveSheet(j);
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 15 + 1;
-                int endrow = j * 15;
-
-                if (nrList.Count > endrow)
+                int starow = prepageindex * 21 + 1;
+                int endrow = j * 21;
+                
+                if (totalHang > endrow)
                 {
-                    for (int i = 0; i < 15; i++)
+                    for (int i = 0; i < 21; )
                     {
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Hour.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Minute.ToString(), row + 5 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].nr, row + 5 + i, 3);
-                        //ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+                        int hasrow = GetHasRow(nrList[r].nr.Length, rowmaxsize);
+                        if (i + hasrow > 21)
+                        {
+                            kyh = 20 - i;
+                            break;
+                        }
 
+                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
+                        for (int t = 1; t <= hasrow; t++)
+                        {
+                            string tempnr = "";
+                            if (t != hasrow)
+                            {
+                                tempnr = nrList[r].nr.Substring((t - 1) * rowmaxsize, t * rowmaxsize - ((t - 1) * rowmaxsize));
+                            }
+                            else
+                            {
+                                tempnr = nrList[r].nr.Substring((t - 1) * rowmaxsize, nrList[r].nr.Length - ((t - 1) * rowmaxsize));
+                            }
+                            ex.SetCellValue(tempnr, row + 5 + i, 3);
+                            i++;
+                        }
+
+                        //ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+                        r++;
                     }
                 }
-                else if (nrList.Count <= endrow && nrList.Count >= starow)
+                else if (totalHang <= endrow && totalHang >= starow)
                 {
-                    for (int i = 0; i < nrList.Count - starow + 1; i++)
+                    for (int i = 0; i < totalHang - starow + 1+kyh; )
                     {
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Hour.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].sj).Minute.ToString(), row + 5 + i, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].nr, row + 5 + i, 3);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
+                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
+                        int hasrow = GetHasRow(nrList[r].nr.Length, rowmaxsize);
+                        for (int t = 1; t <= hasrow; t++)
+                        {
+                            string tempnr = "";
+                            if (t != hasrow)
+                            {
+                                tempnr = nrList[r].nr.Substring((t - 1) * rowmaxsize, t * rowmaxsize - ((t - 1) * rowmaxsize));
+                            }
+                            else
+                            {
+                                tempnr = nrList[r].nr.Substring((t - 1) * rowmaxsize, nrList[r].nr.Length - ((t - 1) * rowmaxsize));
+                            }
+                            ex.SetCellValue(tempnr, row + 5 + i, 3);
+                            i++;
+                        }
+
+                        //ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
+                        r++;
                     }
                 }
 
