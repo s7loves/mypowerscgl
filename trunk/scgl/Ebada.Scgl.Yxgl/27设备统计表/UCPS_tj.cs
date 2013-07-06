@@ -61,7 +61,7 @@ namespace Ebada.Scgl.Yxgl
             //InitData();//初始数据
             if (this.Site != null) return;
             btGdsList.Edit = DicTypeHelper.GdsDic2;
-            btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
+            //btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
             btSbList.EditValueChanged += new EventHandler(btSbList_EditValueChanged);
             btTQList.EditValueChanged += new EventHandler(btTQList_EditValueChanged);
