@@ -107,8 +107,53 @@ namespace Ebada.Scgl.Gis {
             bxdh.Dock = DockStyle.Fill;
             dockPanel2_Container.Controls.Add(bxdh);
             bxdh.OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(OnBeginLocation);
+            bxdh.OnTQLocation += new ObjectEventHandler<PJ_21gzbxdh>(bxdh_OnTQLocation);
             this.WindowState = FormWindowState.Maximized;
             btGzdj.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+        }
+
+        void bxdh_OnTQLocation(PJ_21gzbxdh obj)
+        {
+            //台区定位
+            if (obj.tqID == string.Empty)
+            {
+                MessageBox.Show("请先选择台区，再定位！");
+                return;
+            }
+            try
+            {
+                PS_tq tq = ClientHelper.PlatformSqlMap.GetOneByKey<PS_tq>(obj.tqID);
+                PS_gt gt = ClientHelper.PlatformSqlMap.GetOneByKey<PS_gt>(tq.gtID);
+
+
+                string url = gpsUrl + "/GetLocation/" + obj.yhdz;
+                try
+                {
+                    location loca = new location();
+                    loca.lat = (double)gt.gtLat;
+                    loca.lng = (double)gt.gtLon;
+
+                    //location loca = Newtonsoft.Json.JsonConvert.DeserializeObject<location>(loc);
+                    if (loca != null && loca.lat > 0)
+                    {
+                        addgzMark(loca, obj);
+                        return;
+                    }
+                }
+                catch
+                {
+
+                }
+                MsgBox.ShowWarningMessageBox("地址定位失败，需手工设置位置。");
+                addgzMark(rMap1.Position, obj);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
         string gpsUrl = "http://10.166.137.29:8305/GpsService";
         class location {

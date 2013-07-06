@@ -32,6 +32,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ccborg = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.cobLinkID = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.lkuorg = new DevExpress.XtraEditors.LookUpEdit();
@@ -59,9 +60,11 @@
             this.cobTable = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ccborg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobLinkID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuorg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkufield.Properties)).BeginInit();
@@ -111,6 +114,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelControl9);
+            this.groupBox1.Controls.Add(this.ccborg);
             this.groupBox1.Controls.Add(this.cobLinkID);
             this.groupBox1.Controls.Add(this.labelControl8);
             this.groupBox1.Controls.Add(this.lkuorg);
@@ -139,9 +144,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "提醒设置";
             // 
+            // ccborg
+            // 
+            this.ccborg.Location = new System.Drawing.Point(70, 187);
+            this.ccborg.Name = "ccborg";
+            this.ccborg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ccborg.Properties.NullValuePromptShowForEmptyValue = true;
+            this.ccborg.Size = new System.Drawing.Size(190, 21);
+            this.ccborg.TabIndex = 39;
+            this.ccborg.EditValueChanged += new System.EventHandler(this.ccborg_EditValueChanged);
+            // 
             // cobLinkID
             // 
-            this.cobLinkID.Location = new System.Drawing.Point(54, 147);
+            this.cobLinkID.Location = new System.Drawing.Point(70, 147);
             this.cobLinkID.Name = "cobLinkID";
             this.cobLinkID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -160,7 +176,7 @@
             // 
             // lkuorg
             // 
-            this.lkuorg.Location = new System.Drawing.Point(54, 121);
+            this.lkuorg.Location = new System.Drawing.Point(70, 121);
             this.lkuorg.Name = "lkuorg";
             this.lkuorg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -169,7 +185,7 @@
             // 
             // lkufield
             // 
-            this.lkufield.Location = new System.Drawing.Point(54, 94);
+            this.lkufield.Location = new System.Drawing.Point(70, 94);
             this.lkufield.Name = "lkufield";
             this.lkufield.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -188,7 +204,7 @@
             // 
             // cobtype
             // 
-            this.cobtype.Location = new System.Drawing.Point(54, 38);
+            this.cobtype.Location = new System.Drawing.Point(70, 38);
             this.cobtype.Name = "cobtype";
             this.cobtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -206,18 +222,13 @@
             this.spAfterDays.Name = "spAfterDays";
             this.spAfterDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spAfterDays.Properties.MaxValue = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
             this.spAfterDays.Size = new System.Drawing.Size(125, 21);
             this.spAfterDays.TabIndex = 32;
             // 
             // spBeforeDays
             // 
             this.spBeforeDays.EditValue = new decimal(new int[] {
-            1,
+            0,
             0,
             0,
             0});
@@ -225,29 +236,19 @@
             this.spBeforeDays.Name = "spBeforeDays";
             this.spBeforeDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spBeforeDays.Properties.MaxValue = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.spBeforeDays.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.spBeforeDays.Size = new System.Drawing.Size(125, 21);
             this.spBeforeDays.TabIndex = 31;
             // 
             // memoRemark
             // 
-            this.memoRemark.Location = new System.Drawing.Point(50, 197);
+            this.memoRemark.Location = new System.Drawing.Point(69, 224);
             this.memoRemark.Name = "memoRemark";
-            this.memoRemark.Size = new System.Drawing.Size(194, 49);
+            this.memoRemark.Size = new System.Drawing.Size(191, 49);
             this.memoRemark.TabIndex = 22;
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(14, 194);
+            this.labelControl7.Location = new System.Drawing.Point(14, 224);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(24, 14);
             this.labelControl7.TabIndex = 22;
@@ -300,11 +301,6 @@
             this.spSpaceDays.Name = "spSpaceDays";
             this.spSpaceDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spSpaceDays.Properties.MaxValue = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
             this.spSpaceDays.Size = new System.Drawing.Size(100, 21);
             this.spSpaceDays.TabIndex = 30;
             // 
@@ -396,7 +392,7 @@
             // 
             // cobTable
             // 
-            this.cobTable.Location = new System.Drawing.Point(54, 64);
+            this.cobTable.Location = new System.Drawing.Point(70, 64);
             this.cobTable.Name = "cobTable";
             this.cobTable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -420,6 +416,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(12, 190);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(48, 14);
+            this.labelControl9.TabIndex = 40;
+            this.labelControl9.Text = "提醒单位";
+            // 
             // frmWarnSetEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -435,6 +439,7 @@
             this.groupControlOrg.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ccborg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobLinkID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuorg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkufield.Properties)).EndInit();
@@ -488,6 +493,8 @@
         private DevExpress.XtraEditors.LookUpEdit lkufield;
         private DevExpress.XtraEditors.ComboBoxEdit cobLinkID;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit ccborg;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
 
     }
 }

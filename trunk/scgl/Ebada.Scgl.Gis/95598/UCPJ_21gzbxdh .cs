@@ -35,6 +35,7 @@ namespace Ebada.Scgl.Gis
         public event SendDataEventHandler<PJ_21gzbxdh> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;
         public event ObjectEventHandler<PJ_21gzbxdh> OnBeginLocation;
+        public event ObjectEventHandler<PJ_21gzbxdh> OnTQLocation;
         private string parentID = null;
         private mOrg parentObj;
         public UCPJ_21gzbxdh()
@@ -47,7 +48,16 @@ namespace Ebada.Scgl.Gis
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_21gzbxdh>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             (gridViewOperation.EditForm as frm21gzbxdhEdit).OnBeginLocation += new ObjectEventHandler<PJ_21gzbxdh>(UCPJ_21gzbxdh_OnBeginLocation);
+            (gridViewOperation.EditForm as frm21gzbxdhEdit).OnTQLocation += new ObjectEventHandler<PJ_21gzbxdh>(UCPJ_21gzbxdh_OnTQLocation);
             bar3.Visible = false;
+        }
+
+        void UCPJ_21gzbxdh_OnTQLocation(PJ_21gzbxdh obj)
+        {
+            if (OnTQLocation != null)
+            {
+                OnTQLocation(obj);
+            }
         }
 
         void UCPJ_21gzbxdh_OnBeginLocation(PJ_21gzbxdh obj) {

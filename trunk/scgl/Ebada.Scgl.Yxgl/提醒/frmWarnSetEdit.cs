@@ -39,7 +39,8 @@ namespace Ebada.Scgl.Yxgl
             this.sporderdays.DataBindings.Add("EditValue", rowData, "OrderDays");
             this.spSpaceDays.DataBindings.Add("EditValue", rowData, "SpaceDays");
             this.spBeforeDays.DataBindings.Add("EditValue", rowData,"BeforeDays");
-            this.spAfterDays.DataBindings.Add("EditValue", rowData,  "AfterDays");
+            this.ccborg.DataBindings.Add("EditValue", rowData,  "BYScol1");
+
         }
         #region IPopupFormEdit Members
         private WarnSet rowData = null;
@@ -68,6 +69,9 @@ namespace Ebada.Scgl.Yxgl
                     WarningType();
                     rowData.WarnType = warningtype[1];
                 }
+                //ccborg.EditValue = null;
+                //ccborg.EditValue = rowData.BYScol1;
+                //ccborg.Refresh();
             }
         }
 
@@ -103,6 +107,13 @@ namespace Ebada.Scgl.Yxgl
             cobtype.Properties.Items.AddRange(WarnSetType());
             cobWarnType.Properties.Items.AddRange(WarningType());
             cobTable.Properties.Items.AddRange(GetDataTableNameList());
+
+
+            IList<mOrg> orglist =ClientHelper.PlatformSqlMap.GetList<mOrg>("  where c1='是'");
+
+            ccborg.Properties.DataSource = orglist;
+            ccborg.Properties.ValueMember = "OrgCode";
+            ccborg.Properties.DisplayMember = "OrgName";
         }
       
      
@@ -225,6 +236,13 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void ccborg_EditValueChanged(object sender, EventArgs e)
+        {
+            ccborg.RefreshEditValue();
+        }
+
+      
        
     }
 }

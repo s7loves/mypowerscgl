@@ -13,6 +13,7 @@ using Ebada.Core;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Collections;
+using Ebada.Scgl.Sbgl;
 namespace Ebada.Scgl.Gis
 {
     public partial class frm21gzbxdhEdit : FormBase, IPopupFormEdit {
@@ -21,15 +22,25 @@ namespace Ebada.Scgl.Gis
         public frm21gzbxdhEdit() {
             InitializeComponent();
         }
+        UCPopupLine popTq = new UCPopupLine();
         void dataBind() {
 
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
-            this.comboBoxEdit6.DataBindings.Add("EditValue", rowData, "gzjk");
+            this.cobmtq.DataBindings.Add("EditValue", rowData, "gzjk");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "djr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clr");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "lxfs");
+
+            popTq.Bounds = cobmtq.Bounds;
+            cobmtq.Hide();
+            popTq.Parent = cobmtq.Parent;
+
+            this.popTq.DisplayField = "tqName";
+            this.popTq.ValueField = "tqID";
+
+            this.popTq.DataBindings.Add("EditValue", rowData, "tqid");
             
             //
             //this.lookUpEdit1.DataBindings.Add("EditValue", rowData, "OrgType");
@@ -84,7 +95,13 @@ namespace Ebada.Scgl.Gis
             //}
 
             //ComboBoxHelper.FillCBoxByDyk("21电力故障电话接听记录", "故障简况", comboBoxEdit6.Properties);
-            
+            IList<PS_tq> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_tq>(string.Format("where    left(xlcode,3)='{0}' ", rowData.OrgCode));
+            if (xlList.Count != 0)
+            {
+                this.popTq.DisplayField = "tqName";
+                this.popTq.ValueField = "tqID";
+                popTq.DataSource = xlList;
+            }
         }
 
         /// <summary>
@@ -161,6 +178,7 @@ namespace Ebada.Scgl.Gis
             //}
         }
         public event Ebada.Client.ObjectEventHandler<PJ_21gzbxdh> OnBeginLocation;
+        public event Ebada.Client.ObjectEventHandler<PJ_21gzbxdh> OnTQLocation;
         private void simpleButton1_Click(object sender, EventArgs e) {
             if (OnBeginLocation!= null) {
                 OnBeginLocation(rowData);
@@ -171,6 +189,22 @@ namespace Ebada.Scgl.Gis
             if (rowData.jd == 0 && OnBeginLocation != null  ) {
                 OnBeginLocation(rowData);
             }
+        }
+
+        private void labelControl6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            if (OnTQLocation != null)
+            {
+                OnTQLocation(rowData);
+            }
+           
+
+            
         }
     }
 }
