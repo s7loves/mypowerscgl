@@ -118,7 +118,8 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电开关跳闸记录", "保护、重合闸动作情况及跳闸原因", memotzdz);
-
+            if (!string.IsNullOrEmpty(memotzdz.EditValue as string))
+                rowData.bhzhzzdqk = memotzdz.EditValue as string;
         }
     }
 }

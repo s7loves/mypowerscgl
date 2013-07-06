@@ -68,8 +68,16 @@ namespace Ebada.Scgl.Sbgl
 
         private void simpleButton1_Click(object sender, System.EventArgs e)
         {
-            SelectorHelper.SelectDyk("变电事故、障碍及异常运行记录", "事故障碍异常信息", memofsjg, memoyyjzrfx, memodc);
-
+          PJ_dyk pjdyk=  SelectorHelper.SelectDyk("变电事故、障碍及异常运行记录", "事故障碍异常信息", memofsjg, memoyyjzrfx, memodc);
+          if (pjdyk != null)
+          {
+              memofsjg.EditValue = pjdyk.nr;
+              memoyyjzrfx.EditValue = pjdyk.nr2;
+              memodc.EditValue = pjdyk.nr3;
+              rowData.fsjg = pjdyk.nr;
+              rowData.yyjfzfx = pjdyk.nr2;
+              rowData.dc = pjdyk.nr3;
+          }
         }
     }
 }

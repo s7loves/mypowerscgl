@@ -133,6 +133,8 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电设备缺陷记录", "缺陷内容", meoqxnr);
+            if (!string.IsNullOrEmpty(meoqxnr.EditValue as string))
+                rowData.qxnr = meoqxnr.EditValue as string;
 
         }
     }

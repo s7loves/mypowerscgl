@@ -196,7 +196,14 @@ namespace Ebada.Scgl.Sbgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("变电安全活动记录", "安全活动", memohdnr, memohdxj, memoldjcpy);
+            PJ_dyk pjdy= SelectorHelper.SelectDyk("变电安全活动记录", "安全活动", memohdnr, memohdxj, memoldjcpy);
+            if (pjdy != null)
+            {
+                memohdxj.EditValue = pjdy.nr2;
+                memoldjcpy.EditValue = pjdy.nr3;
+                rowData.hdxj = pjdy.nr2;
+                rowData.ldjcpy = pjdy.nr3;
+            }
         }
     }
 }
