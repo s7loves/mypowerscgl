@@ -153,7 +153,7 @@ namespace Ebada.Scgl.Yxgl
             if (rowData.BigData.Length == 0)
             {
                 mOrg org = MainHelper.PlatformSqlMap.GetOneByKey<mOrg>(rowData.ParentID);
-                string fname = Application.StartupPath + "\\00记录模板\\送电电力设备产权、维护范围协议书.xls";
+                string fname = Application.StartupPath + "\\00记录模板\\送电16电力设备产权、维护范围协议书.xls";
                 string bhname = org.OrgName.Replace("供电所", "");
                 DSOFramerControl dsoFramerControl1 = new DSOFramerControl();
                 dsoFramerControl1.FileOpen(fname);

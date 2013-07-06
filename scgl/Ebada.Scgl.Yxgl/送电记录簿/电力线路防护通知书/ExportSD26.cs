@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Yxgl {
         public static void ExportExcel(sdjl_26 obj) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\送电26防护通知书.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电17防护通知书.xls";
 
             ex.Open(fname);
             //此处写填充内容代码

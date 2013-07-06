@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Yxgl {
             nrList = getRjnrList(jl.gzrjID);
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\送电01工作日志.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电02工作日志.xls";
             ex.Open(fname);
             int row = 1;
             int col = 1;

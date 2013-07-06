@@ -21,7 +21,7 @@ namespace Ebada.Scgl.Yxgl {
             //lgm
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\送电09培训记录";
+            string fname = Application.StartupPath + "\\00记录模板\\送电18培训记录.xls";
 
             ex.Open(fname);
             //每行显示文字长度
