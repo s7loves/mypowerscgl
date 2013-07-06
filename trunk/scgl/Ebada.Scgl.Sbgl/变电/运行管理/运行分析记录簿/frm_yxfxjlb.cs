@@ -86,11 +86,15 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电运行分析记录", "内容", memonr);
+            if (!string.IsNullOrEmpty(memonr.EditValue as string))
+                rowData.nr = memonr.EditValue as string;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电运行分析记录", "结论", memojl);
+            if (!string.IsNullOrEmpty(memojl.EditValue as string))
+                rowData.jl = memojl.EditValue as string;
 
         }
 

@@ -125,11 +125,19 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电事故预想记录", "事故现象", memosgxx);
+            if (!string.IsNullOrEmpty(memosgxx.EditValue as string))
+            {
+                rowData.sgxx = memosgxx.EditValue as string;
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电事故预想记录", "处理步骤", memoclbz);
+            if (!string.IsNullOrEmpty(memoclbz.EditValue as string))
+            {
+                rowData.clbz = memoclbz.EditValue as string;
+            }
 
         }
     }

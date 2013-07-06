@@ -105,6 +105,10 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电工作票登记簿", "工作地点及工作内容", meogzddjnr);
+            if (!string.IsNullOrEmpty(meogzddjnr.EditValue as string))
+            {
+                rowData.gzddjnr = meogzddjnr.EditValue as string;
+            }
         }
 
         private void frm_gzpdjb_Load(object sender, EventArgs e)

@@ -69,6 +69,10 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电运行工作记录簿", "内容", memonr);
+            if (string.IsNullOrEmpty(memonr.EditValue as string))
+            {
+                rowData.nr = memonr.EditValue as string;
+            }
         }
     }
 }

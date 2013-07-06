@@ -103,7 +103,10 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电操作票登记簿", "操作任务", meoczrw);
-
+            if (!string.IsNullOrEmpty(meoczrw.EditValue as string))
+            {
+                rowData.czrw = meoczrw.EditValue as string;
+            }
         }
 
     }
