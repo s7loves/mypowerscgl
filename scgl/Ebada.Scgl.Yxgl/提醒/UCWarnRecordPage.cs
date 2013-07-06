@@ -225,6 +225,12 @@ namespace Ebada.Scgl.Yxgl
             int index = 0;
             foreach (WarnSet  ws in wslist)
             {
+                //如果此提醒设置对该单位不起作用，则不用计算
+
+                if (Org!=null&&!ws.BYScol1.Contains(Org.OrgCode))
+                {
+                    break;
+                }
                 index++;
                 string tablename=ws.TableName;
                 string field=ws.FieldName;
@@ -301,8 +307,48 @@ namespace Ebada.Scgl.Yxgl
                 }
                
             }
+            if (type=="实验")
+            {
+                list = InsertSYdata(list);
+            }
             gridControl1.DataSource = list;
 
+        }
+        private List<WarnRecord> InsertSYdata(List<WarnRecord> list)
+        {
+            int index = 0;
+            string sql=string.Empty;
+            if (Org!=null)
+	        {
+                sql=" where OrgID='"+Org.OrgCode+"'";
+	        }
+            IList<PS_aqgj> aqgjlist = ClientHelper.PlatformSqlMap.GetList<PS_aqgj>(sql);
+
+            foreach (PS_aqgj aqgj in aqgjlist)
+            {
+                index++;
+                string sqlsy = " where sbID='" + aqgj.sbID + "' order by xcsyrq desc";
+                IList<PJ_14aqgjsy> aqgjsylist = ClientHelper.PlatformSqlMap.GetList<PJ_14aqgjsy>(sqlsy);
+                if (aqgjsylist.Count>0&&aqgjsylist[0].xcsyrq>DateTime.Now)
+                {
+                    WarnRecord record=new WarnRecord ()
+                    {
+                        Type = "实验",
+                        WarnType = "安全工具",
+                        Times = 1,
+                        WritTime = aqgjsylist[0].xcsyrq,
+                        LinkID = "",
+                        TableName = "PJ_14aqgjsy",
+                        Des = " 编号：" + aqgj.sbCode + " 名称：" + aqgj.sbName,
+                        Remark = "下次实验在" + aqgjsylist[0].xcsyrq.ToShortDateString()
+                    };
+                    record.ID += index;
+                    list.Add(record);
+
+                }
+            }
+            return list;
+             
         }
         //月份
         private bool IsNeedWarnMonth(int beforedays,int orderdays ,int afterdatys,DateTime haswritdt,out DateTime dt,out int needtimes)

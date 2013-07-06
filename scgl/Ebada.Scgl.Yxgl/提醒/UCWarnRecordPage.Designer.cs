@@ -267,7 +267,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 1;
-            this.gridColumn8.Width = 100;
+            this.gridColumn8.Width = 250;
             // 
             // gridColumn2
             // 
@@ -287,11 +287,12 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "填写时间";
+            this.gridColumn4.Caption = "提醒有效时间";
             this.gridColumn4.FieldName = "WritTime";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
+            this.gridColumn4.Width = 100;
             // 
             // gridColumn5
             // 

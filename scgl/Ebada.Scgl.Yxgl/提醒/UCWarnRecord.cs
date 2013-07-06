@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Yxgl
             {
                 string name = list[i];
                 DevExpress.XtraTab.XtraTabPage page = new DevExpress.XtraTab.XtraTabPage();
-                page.Text = name;
+                page.Text = name+"提醒";
                 UCWarnRecordPage ucrecord = new UCWarnRecordPage();
                 ucrecord.type = name;
                 ucrecord.Org = parentObj;
