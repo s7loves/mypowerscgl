@@ -287,6 +287,37 @@
     <Compile Include="变电\运行管理\反事故演习记录簿\Ucm_fsgyxjlbM.Designer.cs">
       <DependentUpon>Ucm_fsgyxjlbM.cs</DependentUpon>
     </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\ExportBDksjl.cs" />
+    <Compile Include="变电\运行管理\变电考试记录簿\frm_ksjlEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\frm_ksjlEdit.designer.cs">
+      <DependentUpon>frm_ksjlEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\frm_ksnrEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\frm_ksnrEdit.designer.cs">
+      <DependentUpon>frm_ksnrEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksjl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksjl.designer.cs">
+      <DependentUpon>Ucm_ksjl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksjlM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksjlM.designer.cs">
+      <DependentUpon>Ucm_ksjlM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksnr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="变电\运行管理\变电考试记录簿\Ucm_ksnr.designer.cs">
+      <DependentUpon>Ucm_ksnr.cs</DependentUpon>
+    </Compile>
     <Compile Include="变电\运行管理\安全活动记录簿\frm_aqhdjlb.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1396,6 +1427,21 @@
       <DependentUpon>Ucm_fsgyxjlbM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\变电考试记录簿\frm_ksjlEdit.resx">
+      <DependentUpon>frm_ksjlEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\变电考试记录簿\frm_ksnrEdit.resx">
+      <DependentUpon>frm_ksnrEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\变电考试记录簿\Ucm_ksjl.resx">
+      <DependentUpon>Ucm_ksjl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\变电考试记录簿\Ucm_ksjlM.resx">
+      <DependentUpon>Ucm_ksjlM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="变电\运行管理\变电考试记录簿\Ucm_ksnr.resx">
+      <DependentUpon>Ucm_ksnr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="变电\运行管理\安全活动记录簿\frm_aqhdjlb.resx">
       <DependentUpon>frm_aqhdjlb.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1780,6 +1826,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\继电保护及自动装置调试工作记录簿.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="00记录模板\考试记录簿.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\蓄电池调整及检测记录簿.xls">
