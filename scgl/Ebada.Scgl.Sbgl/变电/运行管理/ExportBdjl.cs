@@ -1001,6 +1001,8 @@ namespace Ebada.Scgl.Sbgl
             {
                 pageindex = Ecommonjh.GetPagecount(totalHang, 21);
             }
+            
+
             for (int j = 1; j <= pageindex; j++)
             {
                 ex.ActiveSheet(1);
@@ -1009,17 +1011,20 @@ namespace Ebada.Scgl.Sbgl
                 {
                     ex.CopySheet(1, 1);
                 }
-                ex.SetCellValue(Convert.ToDateTime(yxgzjl.rq).Year + "年" + Convert.ToDateTime(yxgzjl.rq).Month + "月"
-                    + Convert.ToDateTime(yxgzjl.rq).Day + "日", 2, 1);
-                ex.SetCellValue(GetWeeks(Convert.ToDateTime(yxgzjl.rq).DayOfWeek), 2, 5);
-                ex.SetCellValue(yxgzjl.tq, 2, 8);
-                ex.SetCellValue(yxgzjl.jbfzr, 3, 3);
-                ex.SetCellValue(yxgzjl.jbry, 3, 7);
-                ex.SetCellValue(yxgzjl.jbfzry, 4, 3);
-                ex.SetCellValue(yxgzjl.jbryy, 4, 7);
+                
             }
+            ex.ActiveSheet(1);
+            ex.SetCellValue(Convert.ToDateTime(yxgzjl.rq).Year + "年" + Convert.ToDateTime(yxgzjl.rq).Month + "月"
+                    + Convert.ToDateTime(yxgzjl.rq).Day + "日", 2, 1);
+            ex.SetCellValue(GetWeeks(Convert.ToDateTime(yxgzjl.rq).DayOfWeek), 2, 5);
+            ex.SetCellValue(yxgzjl.tq, 2, 8);
+            ex.SetCellValue(yxgzjl.jbfzr, 3, 3);
+            ex.SetCellValue(yxgzjl.jbry, 3, 7);
+            ex.SetCellValue(yxgzjl.jbfzry, 4, 3);
+            ex.SetCellValue(yxgzjl.jbryy, 4, 7);
             int kyh = 0;//空余行
             int r = 0;//列表循环
+            int temp = 0;
             for (int j = 1; j <= pageindex; j++)
             {
                 ex.ActiveSheet(j);
@@ -1034,16 +1039,18 @@ namespace Ebada.Scgl.Sbgl
                     for (int i = 0; i < 21; )
                     {
                         int hasrow = GetHasRow(nrList[r].nr.Length, rowmaxsize);
-                        if (i + hasrow > 21)
+                        if (temp == 0)
                         {
-                            kyh = 20 - i;
-                            break;
+                            ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
                         }
-
-                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
                         for (int t = 1; t <= hasrow; t++)
                         {
+                            if (temp > 0)
+                            {
+                                t = temp;
+                                temp = 0;
+                            }
                             string tempnr = "";
                             if (t != hasrow)
                             {
@@ -1055,21 +1062,35 @@ namespace Ebada.Scgl.Sbgl
                             }
                             ex.SetCellValue(tempnr, row + 5 + i, 3);
                             i++;
+                            if (i > 21)
+                            {
+                                temp = t;
+                                break;
+                            }
                         }
 
                         //ex.SetCellValue(nrList[starow - 1 + i].jlr, row + 4 + i, 13);
-                        r++;
+                        if (temp == 0)
+                            r++;
                     }
                 }
                 else if (totalHang <= endrow && totalHang >= starow)
                 {
                     for (int i = 0; i < totalHang - starow + 1+kyh; )
                     {
-                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
+                        if (temp == 0)
+                        {
+                            ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Hour.ToString(), row + 5 + i, 1);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[r].sj).Minute.ToString(), row + 5 + i, 2);
+                        }
                         int hasrow = GetHasRow(nrList[r].nr.Length, rowmaxsize);
                         for (int t = 1; t <= hasrow; t++)
                         {
+                            if (temp > 0)
+                            {
+                                t = temp;
+                                temp = 0;
+                            }
                             string tempnr = "";
                             if (t != hasrow)
                             {
