@@ -21,8 +21,8 @@ namespace Ebada.Scgl.Model
     {
         
         #region Private 成员
-        private string _gtid=Newid(); 
-        private string _sbid=String.Empty; 
+        private string _gtid=Newid();
+        private string _sbid = Newid(); 
         private string _sbcode=String.Empty; 
         private string _sbtype=String.Empty; 
         private string _sbmodle=String.Empty; 
