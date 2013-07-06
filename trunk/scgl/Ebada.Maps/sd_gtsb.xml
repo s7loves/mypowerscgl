@@ -1,192 +1,189 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sqlMap namespace="sd_gtsb" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="sd_gtsb"  type="Ebada.Scgl.Model.sd_gtsb,Ebada.Scgl.Model" />
+    <typeAlias alias="sd_gtsb"  type="Ebada.Scgl.Model.sd_gtsb,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="sd_gtsb_AllColumns" class="sd_gtsb">
-        <result property="gtID" column="gtID" />
-        <result property="sbID" column="sbID" />
-        <result property="sbCode" column="sbCode" />
-        <result property="sbType" column="sbType" />
-        <result property="sbModle" column="sbModle" />
-        <result property="sbName" column="sbName" />
-        <result property="sbNumber" column="sbNumber" />
-        <result property="C1" column="C1" />
-        <result property="C2" column="C2" />
-        <result property="C3" column="C3" />
-        <result property="C4" column="C4" />
-        <result property="C5" column="C5" />
-      </resultMap>
+    <resultMap id="sd_gtsb_AllColumns" class="sd_gtsb">
+      <result property="gtID" column="gtID" />
+      <result property="sbID" column="sbID" />
+      <result property="sbCode" column="sbCode" />
+      <result property="sbType" column="sbType" />
+      <result property="sbModle" column="sbModle" />
+      <result property="sbName" column="sbName" />
+      <result property="sbNumber" column="sbNumber" />
+      <result property="C1" column="C1" />
+      <result property="C2" column="C2" />
+      <result property="C3" column="C3" />
+      <result property="C4" column="C4" />
+      <result property="C5" column="C5" />
+    </resultMap>
   </resultMaps>
 
   <statements>
-   <select id="Selectsd_gtsbList" resultMap="sd_gtsb_AllColumns" parameterClass="string">
-        SELECT 
-         [gtID],
-         [sbID],
-         [sbCode],
-         [sbType],
-         [sbModle],
-         [sbName],
-         [sbNumber],
-         [C1],
-         [C2],
-         [C3],
-         [C4],
-         [C5]
-          FROM sd_gtsb
-          $value$
-   </select>
-    <select id="Getsd_gtsbRowCountByWhere" parameterClass="string">
-      select SUM(sbNumber), sbModle,sbName from sd_gtsb $value$
+    <select id="Selectsd_gtsbList" resultMap="sd_gtsb_AllColumns" parameterClass="string">
+      SELECT
+      [gtID],
+      [sbID],
+      [sbCode],
+      [sbType],
+      [sbModle],
+      [sbName],
+      [sbNumber],
+      [C1],
+      [C2],
+      [C3],
+      [C4],
+      [C5]
+      FROM sd_gtsb
+      $value$
     </select>
-   <select id="Selectsd_gtsbByHash" parameterClass="Hashtable">
-         SELECT 
-         [gtID],
-         [sbID],
-         [sbCode],
-         [sbType],
-         [sbModle],
-         [sbName],
-         [sbNumber],
-         [C1],
-         [C2],
-         [C3],
-         [C4],
-         [C5]
-          FROM sd_gtsb
-     <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
-       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
-       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
-       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
-       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
-       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
-       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
-       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
-       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
-       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
-       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
-       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
-     </dynamic>
-   </select>
-   <select id="Selectsd_gtsbByKey" resultMap="sd_gtsb_AllColumns" parameterClass="sd_gtsb">
-         SELECT 
-         [gtID],
-         [sbID],
-         [sbCode],
-         [sbType],
-         [sbModle],
-         [sbName],
-         [sbNumber],
-         [C1],
-         [C2],
-         [C3],
-         [C4],
-         [C5]
-         FROM sd_gtsb
-         WHERE 
-           gtID = #gtID#
 
-   </select>
- 
-   <delete id="Deletesd_gtsb" parameterClass="sd_gtsb">
-        DELETE FROM 
-         sd_gtsb
-           WHERE
-         gtID = #gtID#
+    <select id="Selectsd_gtsbByHash" parameterClass="Hashtable">
+      SELECT
+      [gtID],
+      [sbID],
+      [sbCode],
+      [sbType],
+      [sbModle],
+      [sbName],
+      [sbNumber],
+      [C1],
+      [C2],
+      [C3],
+      [C4],
+      [C5]
+      FROM sd_gtsb
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+        <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+        <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+        <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+        <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+        <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+        <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+        <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+        <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+        <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+        <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+        <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+      </dynamic>
+    </select>
+    <select id="Selectsd_gtsbByKey" resultMap="sd_gtsb_AllColumns" parameterClass="sd_gtsb">
+      SELECT
+      [gtID],
+      [sbID],
+      [sbCode],
+      [sbType],
+      [sbModle],
+      [sbName],
+      [sbNumber],
+      [C1],
+      [C2],
+      [C3],
+      [C4],
+      [C5]
+      FROM sd_gtsb
+      WHERE
+      sbID = #sbID#
 
-   </delete>
-   
-   <delete id="Deletesd_gtsbByWhere" parameterClass="string">
-     delete from sd_gtsb $value$
-   </delete>
-   
-   <delete id="Deletesd_gtsbByKey" parameterClass="string">
-        DELETE FROM 
-         sd_gtsb
-           WHERE
-         gtID = #gtID#
-    
-   </delete>
-   
-   <update id="Updatesd_gtsb" parameterClass="sd_gtsb" resultClass="int">
-          UPDATE sd_gtsb
-           SET
-             [sbID]=#sbID#,
-             [sbCode]=#sbCode#,
-             [sbType]=#sbType#,
-             [sbModle]=#sbModle#,
-             [sbName]=#sbName#,
-             [sbNumber]=#sbNumber#,
-             [C1]=#C1#,
-             [C2]=#C2#,
-             [C3]=#C3#,
-             [C4]=#C4#,
-             [C5]=#C5#
-            WHERE 
-              gtID = #gtID#
+    </select>
 
-   </update>
-  
-   <insert id="Insertsd_gtsb" parameterClass="sd_gtsb">
-        INSERT INTO sd_gtsb
-         (
-         [gtID],
-         [sbID],
-         [sbCode],
-         [sbType],
-         [sbModle],
-         [sbName],
-         [sbNumber],
-         [C1],
-         [C2],
-         [C3],
-         [C4],
-         [C5]
-         )
-       VALUES
-         (
-         #gtID#,
-         #sbID#,
-         #sbCode#,
-         #sbType#,
-         #sbModle#,
-         #sbName#,
-         #sbNumber#,
-         #C1#,
-         #C2#,
-         #C3#,
-         #C4#,
-         #C5#
-         )
+    <delete id="Deletesd_gtsb" parameterClass="sd_gtsb">
+      DELETE FROM
+      sd_gtsb
+      WHERE
+      sbID = #sbID#
 
-   </insert>
-   
-   <select id="Getsd_gtsbRowCountByHash" parameterClass="Hashtable">
-         SELECT Count(*) 
-          FROM sd_gtsb
-     <dynamic prepend="WHERE">
-       <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
-       <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
-       <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
-       <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
-       <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
-       <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
-       <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
-       <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
-       <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
-       <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
-       <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
-       <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
-     </dynamic>
+    </delete>
 
-   </select>
-   
-   <select id="Getsd_gtsbRowCount" parameterClass="string">
-    select count(*) from sd_gtsb $value$
-   </select>
+    <delete id="Deletesd_gtsbByWhere" parameterClass="string">
+      delete from sd_gtsb $value$
+    </delete>
+
+    <delete id="Deletesd_gtsbByKey" parameterClass="string">
+      DELETE FROM
+      sd_gtsb
+      WHERE
+      sbID = #sbID#
+
+    </delete>
+
+    <update id="Updatesd_gtsb" parameterClass="sd_gtsb" resultClass="int">
+      UPDATE sd_gtsb
+      SET
+      [gtID]=#gtID#,
+      [sbCode]=#sbCode#,
+      [sbType]=#sbType#,
+      [sbModle]=#sbModle#,
+      [sbName]=#sbName#,
+      [sbNumber]=#sbNumber#,
+      [C1]=#C1#,
+      [C2]=#C2#,
+      [C3]=#C3#,
+      [C4]=#C4#,
+      [C5]=#C5#
+      WHERE
+      sbID = #sbID#
+
+    </update>
+
+    <insert id="Insertsd_gtsb" parameterClass="sd_gtsb">
+      INSERT INTO sd_gtsb
+      (
+      [gtID],
+      [sbID],
+      [sbCode],
+      [sbType],
+      [sbModle],
+      [sbName],
+      [sbNumber],
+      [C1],
+      [C2],
+      [C3],
+      [C4],
+      [C5]
+      )
+      VALUES
+      (
+      #gtID#,
+      #sbID#,
+      #sbCode#,
+      #sbType#,
+      #sbModle#,
+      #sbName#,
+      #sbNumber#,
+      #C1#,
+      #C2#,
+      #C3#,
+      #C4#,
+      #C5#
+      )
+
+    </insert>
+
+    <select id="Getsd_gtsbRowCountByHash" parameterClass="Hashtable">
+      SELECT Count(*)
+      FROM sd_gtsb
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="gtID">[gtID]='$gtID$'</isNotNull>
+        <isNotNull prepend="AND" property="sbID">[sbID]='$sbID$'</isNotNull>
+        <isNotNull prepend="AND" property="sbCode">[sbCode]='$sbCode$'</isNotNull>
+        <isNotNull prepend="AND" property="sbType">[sbType]='$sbType$'</isNotNull>
+        <isNotNull prepend="AND" property="sbModle">[sbModle]='$sbModle$'</isNotNull>
+        <isNotNull prepend="AND" property="sbName">[sbName]='$sbName$'</isNotNull>
+        <isNotNull prepend="AND" property="sbNumber">[sbNumber]='$sbNumber$'</isNotNull>
+        <isNotNull prepend="AND" property="C1">[C1]='$C1$'</isNotNull>
+        <isNotNull prepend="AND" property="C2">[C2]='$C2$'</isNotNull>
+        <isNotNull prepend="AND" property="C3">[C3]='$C3$'</isNotNull>
+        <isNotNull prepend="AND" property="C4">[C4]='$C4$'</isNotNull>
+        <isNotNull prepend="AND" property="C5">[C5]='$C5$'</isNotNull>
+      </dynamic>
+
+    </select>
+
+    <select id="Getsd_gtsbRowCount" parameterClass="string">
+      select count(*) from sd_gtsb $value$
+    </select>
   </statements>
 </sqlMap>
- 
