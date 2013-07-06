@@ -173,8 +173,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[标准电池电压(伏)]长度不能大于50!");
+                if( value.ToString().Length > 500)
+                throw new Exception("[标准电池电压(伏)]长度不能大于500!");
                 if (_bzdcdy as object == null || !_bzdcdy.Equals(value))
                 {
                     _bzdcdy = value;

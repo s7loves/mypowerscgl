@@ -30,20 +30,20 @@ namespace Ebada.Scgl.Yxgl
     /// 
     /// </summary>
     [ToolboxItem(false)]
-    public partial class UCPS_tj : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPS_sdtj : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<PS_tj> gridViewOperation;
 
         public event SendDataEventHandler<PS_tj> FocusedRowChanged;
         public event SendDataEventHandler<mOrg> SelectGdsChanged;    
         private string parentID = null;
-        private PS_tq parentObj;
+        //private sd_tq parentObj;
         private DataTable dt = new DataTable();
         private IList<string> sbList = new List<string>();
         private string sqlSentence = null;
         private IList strTypeList = new ArrayList();
         IList<PS_tj> tjList = new List<PS_tj>();
-        public UCPS_tj()
+        public UCPS_sdtj()
         {
             InitializeComponent();
             initImageList();
@@ -64,7 +64,7 @@ namespace Ebada.Scgl.Yxgl
             btGdsList.EditValueChanged += new EventHandler(btGdsList_EditValueChanged);
             btXlList.EditValueChanged += new EventHandler(btXlList_EditValueChanged);
             btSbList.EditValueChanged += new EventHandler(btSbList_EditValueChanged);
-            btTQList.EditValueChanged += new EventHandler(btTQList_EditValueChanged);
+            //btTQList.EditValueChanged += new EventHandler(btTQList_EditValueChanged);
             if (MainHelper.UserOrg != null && MainHelper.UserOrg.OrgType == "1")
             {//如果是供电所人员，则锁定
                 btGdsList.EditValue = MainHelper.UserOrg.OrgCode;
@@ -83,20 +83,25 @@ namespace Ebada.Scgl.Yxgl
         }
         private void InitComBox()
         {
-            IList<PS_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_sbcs>(" where len(id)=5");
-//             dataSetPS_sbcs1.Clear();
-//             foreach (PS_sbcs sb in list)
-//             {
-//                 DataRow dr = dt.NewRow();
-//                 dr["bh"] = sb.bh;
-//                 dr["mc"] = sb.mc;
-//                 dr["xh"] = sb.xh;
-//                 dr["ID"] = sb.ID;
-//                 dr["ParentID"] = sb.ParentID;
-//                // dr["isSelect"] = true;
-//                 dt.Rows.Add(dr);
-//             }
-            repositoryItemCheckedComboBoxEdit1.DataSource = list;
+           // IList<sd_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_sbcs>(" where len(id)=5");
+            IList<sd_sbcs> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_sbcs>(" ");
+
+            string sql="SELECT  distinct([mc]) [mc]  FROM sd_sbcs";
+            DataTable dt = Client.ClientHelper.PlatformSqlMap.GetDataTable("selectsd_sbcsbyAnyWhere", sql);
+            //dataSetsd_sbcs1.Clear();
+            //foreach (sd_sbcs sb in list)
+            //{
+            //    DataRow dr = dt.NewRow();
+            //    dr["bh"] = sb.bh;
+            //    dr["mc"] = sb.mc;
+            //    dr["xh"] = sb.xh;
+            //    dr["ID"] = sb.ID;
+            //    dr["ParentID"] = sb.ParentID;
+            //    // dr["isSelect"] = true;
+            //    dt.Rows.Add(dr);
+            //}
+            repositoryItemCheckedComboBoxEdit1.DataSource = dt;
+
             repositoryItemCheckedComboBoxEdit1.DisplayMember = "mc";
             repositoryItemCheckedComboBoxEdit1.ValueMember = "mc";
           
@@ -168,7 +173,7 @@ namespace Ebada.Scgl.Yxgl
             btGdsList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btXlList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btSbList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            //btTQList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bar3.Visible = false;
         }
         /// <summary>
@@ -206,22 +211,22 @@ namespace Ebada.Scgl.Yxgl
                         }
                         else
                         {
-                            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where LEN(lineCode) = 6");
+                            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where LEN(lineCode) = 6");
                             repositoryItemCheckedComboBoxEdit3.DataSource = xlList;
                             repositoryItemCheckedComboBoxEdit3.DisplayMember = "LineName";
                             repositoryItemCheckedComboBoxEdit3.ValueMember = "LineCode";
-                            IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqListByWhere", ",PS_xl,mOrg where PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode");
+                            //IList<sd_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<sd_tq>("Selectsd_tqListByWhere", ",sd_xl,mOrg where sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode");
 
-                            repositoryItemCheckedComboBoxEdit2.DataSource = listTQ;
-                            repositoryItemCheckedComboBoxEdit2.DisplayMember = "tqName";
-                            repositoryItemCheckedComboBoxEdit2.ValueMember = "tqID";  
+                            //repositoryItemCheckedComboBoxEdit2.DataSource = listTQ;
+                            //repositoryItemCheckedComboBoxEdit2.DisplayMember = "tqName";
+                            //repositoryItemCheckedComboBoxEdit2.ValueMember = "tqID";  
 
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");              
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");              
 
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            // IList tqDLBHSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqdlbhRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
 
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere"," group by byqModle,byqName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere"," group by byqModle,byqName");
                             
                             foreach (object[] ob in gtSBList)
                             {
@@ -257,20 +262,20 @@ namespace Ebada.Scgl.Yxgl
 
                         if (org != null)
                         {
-                            IList<PS_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<PS_xl>(" where LEN(lineCode) = 6 and OrgCode='" + org.OrgCode + "'");
+                            IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where LEN(lineCode) = 6 and OrgCode='" + org.OrgCode + "'");
                             repositoryItemCheckedComboBoxEdit3.DataSource = xlList;
                             repositoryItemCheckedComboBoxEdit3.DisplayMember = "LineName";
                             repositoryItemCheckedComboBoxEdit3.ValueMember = "LineCode";
-                            IList<PS_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("SelectPS_tqListByWhere", ",PS_xl,mOrg where PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode='" + org.OrgCode + "'");
+                            //IList<sd_tq> listTQ = Client.ClientHelper.PlatformSqlMap.GetList<sd_tq>("Selectsd_tqListByWhere", ",sd_xl,mOrg where sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode='" + org.OrgCode + "'");
 
-                            repositoryItemCheckedComboBoxEdit2.DataSource = listTQ;
-                            repositoryItemCheckedComboBoxEdit2.DisplayMember = "tqName";
-                            repositoryItemCheckedComboBoxEdit2.ValueMember = "tqID";                    
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");                
+                            //repositoryItemCheckedComboBoxEdit2.DataSource = listTQ;
+                            //repositoryItemCheckedComboBoxEdit2.DisplayMember = "tqName";
+                            //repositoryItemCheckedComboBoxEdit2.ValueMember = "tqID";                    
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");                
      
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
 
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' group by byqModle,byqName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' group by byqModle,byqName");
                             
                             foreach (object[] ob in gtSBList)
                             {
@@ -314,9 +319,9 @@ namespace Ebada.Scgl.Yxgl
 
                         foreach (string str in xlStringList)
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -359,55 +364,55 @@ namespace Ebada.Scgl.Yxgl
                     }
                     break;
                 case "TQ":
-                    if (!string.IsNullOrEmpty(repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString()))
-                    {     
-                        tqStringList = repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString().Split(new char[]{','});
-                        foreach (string str in tqStringList)
-                        {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" +str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and  PS_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
-                            foreach (object[] ob in gtSBList)
-                            {
-                                PS_tj tj = new PS_tj();
-                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
-                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
-                                tj.SbOwner = strOwner;
-                                tj.SBNumber = Convert.ToInt32(ob[0]);
-                                tj.SbType = ob[1].ToString();
-                                tj.SbName = ob[2].ToString();
-                                tjList.Add(tj);
-                            }
-                            foreach (object[] ob in tqSBList)
-                            {
-                                PS_tj tj = new PS_tj();
-                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
-                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
-                                tj.SbOwner = strOwner;
-                                tj.SBNumber = Convert.ToInt32(ob[0]);
-                                tj.SbType = ob[1].ToString();
-                                tj.SbName = ob[2].ToString();
-                                tjList.Add(tj);
-                            }
-                            foreach (object[] ob in byqSBList)
-                            {
-                                PS_tj tj = new PS_tj();
-                                string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
-                                tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
-                                tj.SbOwner = strOwner;
-                                tj.SBNumber = Convert.ToInt32(ob[0]);
-                                tj.SbType = ob[1].ToString();
-                                tj.SbName = ob[2].ToString();
-                                tjList.Add(tj);
-                            }
-                        }
+                    //if (!string.IsNullOrEmpty(repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString()))
+                    //{     
+                    //    tqStringList = repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString().Split(new char[]{','});
+                    //    foreach (string str in tqStringList)
+                    //    {
+                    //        gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                    //        //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                    //        tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq where sd_tqsb.tqID = sd_tq.tqID  and sd_tq.tqID = '" +str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                    //        byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and  sd_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
+                    //        foreach (object[] ob in gtSBList)
+                    //        {
+                    //            PS_tj tj = new PS_tj();
+                    //            string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                    //            tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                    //            tj.SbOwner = strOwner;
+                    //            tj.SBNumber = Convert.ToInt32(ob[0]);
+                    //            tj.SbType = ob[1].ToString();
+                    //            tj.SbName = ob[2].ToString();
+                    //            tjList.Add(tj);
+                    //        }
+                    //        foreach (object[] ob in tqSBList)
+                    //        {
+                    //            PS_tj tj = new PS_tj();
+                    //            string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                    //            tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                    //            tj.SbOwner = strOwner;
+                    //            tj.SBNumber = Convert.ToInt32(ob[0]);
+                    //            tj.SbType = ob[1].ToString();
+                    //            tj.SbName = ob[2].ToString();
+                    //            tjList.Add(tj);
+                    //        }
+                    //        foreach (object[] ob in byqSBList)
+                    //        {
+                    //            PS_tj tj = new PS_tj();
+                    //            string strOwner = repositoryItemCheckedComboBoxEdit2.GetDisplayText(str).Trim();
+                    //            tj.SmOrg = btGdsList.Edit.GetDisplayText(btGdsList.EditValue);
+                    //            tj.SbOwner = strOwner;
+                    //            tj.SBNumber = Convert.ToInt32(ob[0]);
+                    //            tj.SbType = ob[1].ToString();
+                    //            tj.SbName = ob[2].ToString();
+                    //            tjList.Add(tj);
+                    //        }
+                    //    }
                         
-                     }
-                    else
-                    {
-                        RefreshGridControlData("SB");
-                    }
+                    // }
+                    //else
+                    //{
+                    //    RefreshGridControlData("SB");
+                    //}
                     break;
                 case "SB":
                     if (!string.IsNullOrEmpty(repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString()))
@@ -415,9 +420,9 @@ namespace Ebada.Scgl.Yxgl
                         tqStringList = repositoryItemCheckedComboBoxEdit2.GetCheckedItems().ToString().Split(new char[] { ',' });
                         foreach (string str in tqStringList)
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq where PS_tqsb.tqID = PS_tq.tqID  and PS_tq.tqID = '" + str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and  PS_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and linevol='0.4' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq where sd_tqsb.tqID = sd_tq.tqID  and sd_tq.tqID = '" + str.Trim() + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and  sd_tq.tqID = '" + str.Trim() + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -458,9 +463,9 @@ namespace Ebada.Scgl.Yxgl
                         xlStringList = repositoryItemCheckedComboBoxEdit3.GetCheckedItems().ToString().Split(new char[] { ',' });
                         foreach (string str in xlStringList)
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and PS_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and sd_xl.LineCode like '" + str.Trim() + "%'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -507,9 +512,9 @@ namespace Ebada.Scgl.Yxgl
                         }
                         else
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", " group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", " group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -544,9 +549,9 @@ namespace Ebada.Scgl.Yxgl
 
                         if (org != null)
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -590,9 +595,9 @@ namespace Ebada.Scgl.Yxgl
                         }
                         else
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", " group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", " group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -627,9 +632,9 @@ namespace Ebada.Scgl.Yxgl
 
                         if (org != null)
                         {
-                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_gtsbRowCountByWhere", ",PS_gt,PS_xl,mOrg where PS_gtsb.gtID = PS_gt.gtID and PS_gt.LineCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqsbRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqsb.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("GetPS_tqbyqRowCountByWhere", ",PS_tq,PS_xl,mOrg where PS_tqbyq.tqID = PS_tq.tqID and PS_tq.xlCode = PS_xl.LineCode and PS_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
+                            gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -667,7 +672,7 @@ namespace Ebada.Scgl.Yxgl
 
             gridControl1.BeginInit();
             gridControl1.DataSource = tjList;
-           
+            gridView1.Columns["SbOwner"].Caption = "线路";
             gridControl1.EndInit();
         }
         /// <summary>
@@ -713,23 +718,23 @@ namespace Ebada.Scgl.Yxgl
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public PS_tq ParentObj
-        {
-            get { return parentObj; }
-            set
-            {
+        //public sd_tq ParentObj
+        //{
+        //    get { return parentObj; }
+        //    set
+        //    {
 
-                parentObj = value;
-                if (value == null)
-                {
-                    parentID = null;
-                }
-                else
-                {
-                    ParentID = value.tqID;
-                }
-            }
-        }
+        //        parentObj = value;
+        //        if (value == null)
+        //        {
+        //            parentID = null;
+        //        }
+        //        else
+        //        {
+        //            ParentID = value.tqID;
+        //        }
+        //    }
+        //}
 
         private void btView_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             if (gridView1.FocusedRowHandle>=0)
