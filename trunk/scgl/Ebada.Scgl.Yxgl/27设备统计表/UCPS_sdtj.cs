@@ -550,8 +550,8 @@ namespace Ebada.Scgl.Yxgl
                         if (org != null)
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -596,8 +596,8 @@ namespace Ebada.Scgl.Yxgl
                         else
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", " group by byqModle,byqName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", " Where sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", " group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
@@ -633,8 +633,8 @@ namespace Ebada.Scgl.Yxgl
                         if (org != null)
                         {
                             gtSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_gtsbRowCountByWhere", ",sd_gt,sd_xl,mOrg where sd_gtsb.gtID = sd_gt.gtID and sd_gt.LineCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
-                            byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
+                            //tqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqsbRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqsb.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "' and sbName in " + getSelectSbName() + " group by sbModle,sbName");
+                            //byqSBList = Client.ClientHelper.PlatformSqlMap.GetList("Getsd_tqbyqRowCountByWhere", ",sd_tq,sd_xl,mOrg where sd_tqbyq.tqID = sd_tq.tqID and sd_tq.xlCode = sd_xl.LineCode and sd_xl.OrgCode = mOrg.OrgCode and mOrg.OrgCode = '" + org.OrgCode + "'  group by byqModle,byqName");
                             foreach (object[] ob in gtSBList)
                             {
                                 PS_tj tj = new PS_tj();
