@@ -121,7 +121,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(list[starow - 1 + i].qw, rowcount + i, col + 4);
 
                         ex.SetCellValue(mans[0], rowcount + i, col + 5);
-                        ex.SetCellValue(mans[1], rowcount + i, col + 6);
+                        //ex.SetCellValue(mans[1], rowcount + i, col + 6);
                         ex.SetCellValue(list[starow - 1 + i].jr, rowcount + i, col + 7);
 
                     }
