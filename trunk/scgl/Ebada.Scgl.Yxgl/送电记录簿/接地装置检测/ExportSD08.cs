@@ -18,7 +18,7 @@ namespace Ebada.Scgl.Yxgl {
         public static void ExportExcel(IList<sdjl_07jdzz> objlist) {
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\接地装置检测.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电08接地装置检测.xls";
             ex.Open(fname);
             //此处写填充内容代码
             int rowcount = 6;

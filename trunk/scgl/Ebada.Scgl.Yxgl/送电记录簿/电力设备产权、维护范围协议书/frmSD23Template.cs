@@ -115,7 +115,7 @@ namespace Ebada.Scgl.Yxgl {
             initcomment();
             string fname = Path.GetTempFileName() + ".xls"; ;
             filename = fname;
-            fname = Application.StartupPath + "\\00记录模板\\送电电力设备产权、维护范围协议书.xls";
+            fname = Application.StartupPath + "\\00记录模板\\送电16电力设备产权、维护范围协议书.xls";
             //string temp = Path.GetTempFileName()+".xls";
             File.Copy(fname, filename);
             if (pjobject.BigData == null) {

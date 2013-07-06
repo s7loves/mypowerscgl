@@ -2901,13 +2901,10 @@
     </None>
     <None Include="00记录模板\pdca周循环一览表.xls" />
     <None Include="00记录模板\pdca循环一览表.xls" />
-    <None Include="00记录模板\接地装置检测.xls">
+    <None Include="00记录模板\送电08接地装置检测.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\远程集抄表.xls">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="00记录模板\送电10绝缘子测试记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\送电20线路污秽地段记录.xls">
@@ -2953,19 +2950,19 @@
     <None Include="00记录模板\供电所材料出入库明细.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="00记录模板\送电02安全活动记录.xls">
+    <Content Include="00记录模板\送电01安全活动记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电01工作日志.xls">
+    <Content Include="00记录模板\送电02工作日志.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电03运行分析记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电05交叉跨越及对地距离测量记录.xls">
+    <Content Include="00记录模板\送电06交叉跨越及对地距离测量记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电07接地装置检测记录.xls">
+    <Content Include="00记录模板\送电08接地装置检测记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电13电力安全工具试验记录.xls">
@@ -2977,19 +2974,19 @@
     <Content Include="00记录模板\电力设备产权、维护范围协议书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电26防护通知书.xls">
+    <Content Include="00记录模板\送电17防护通知书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电09培训记录.xls">
+    <Content Include="00记录模板\送电18培训记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电04事故障碍异常运行记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电06设备巡视及缺陷消除记录.xls">
+    <Content Include="00记录模板\送电07设备巡视及缺陷消除记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电电力设备产权、维护范围协议书.xls">
+    <Content Include="00记录模板\送电16电力设备产权、维护范围协议书.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="00记录模板\医疗农电局.xls" />
@@ -3120,7 +3117,7 @@
     <None Include="00记录模板\电容器试验记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\登杆检查记录.xls">
+    <None Include="00记录模板\送电09登杆检查记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\百安活动落实情况记录.xls">
@@ -3153,13 +3150,13 @@
     <None Include="00记录模板\设备预防性试验耗材记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\送电反事故演习记录.xls">
+    <None Include="00记录模板\送电05反事故演习记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\送电21线路条图.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="00记录模板\送电线路设备评级表.xls">
+    <None Include="00记录模板\送电22线路设备评级表.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="00记录模板\避雷器试验完成情况报表.xls">

@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Yxgl {
 
            ExcelAccess ex = new ExcelAccess();
              SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-             string fname = Application.StartupPath + "\\00记录模板\\送电07接地装置检测记录.xls";
+             string fname = Application.StartupPath + "\\00记录模板\\送电08接地装置检测记录.xls";
              ex.Open(fname);
                 int row = 1;
                 int col = 1;

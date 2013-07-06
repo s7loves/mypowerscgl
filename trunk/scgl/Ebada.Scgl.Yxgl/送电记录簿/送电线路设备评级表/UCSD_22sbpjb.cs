@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Yxgl {
             {
 
                 try {
-                    if (ExportToExcel("送电线路设备评级表", "", pj) < 1) return;
+                    if (ExportToExcel("送电22线路设备评级表.xls", "", pj) < 1) return;
 
                     frm22sbpjbTemplate frm = new frm22sbpjbTemplate();
                     frm.pjobject = pj;
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         public static int ExportToExcel(string title, string dw, sdjls_sbpjb pj17) {
-            string fname = Application.StartupPath + "\\00记录模板\\送电线路设备评级表.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电22线路设备评级表.xls.xls";
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string outfname = Path.GetTempFileName() + ".xls";
             File.Copy(fname, outfname);
