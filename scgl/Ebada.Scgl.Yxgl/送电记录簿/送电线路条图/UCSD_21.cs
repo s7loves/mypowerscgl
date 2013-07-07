@@ -57,7 +57,7 @@ namespace Ebada.Scgl.Yxgl {
             treeViewOperator.AfterEdit += treeViewOperator_AfterEdit;
             treeViewOperator.AfterDelete += treeViewOperator_AfterDelete;
             treeList1.FocusedNodeChanged += treeList1_FocusedNodeChanged;
-            btGdsList.EditValueChanged += new EventHandler(btGDS_EditValueChanged);
+            //btGdsList.EditValueChanged += new EventHandler(btGDS_EditValueChanged);
             Init();
         }
 
@@ -71,7 +71,8 @@ namespace Ebada.Scgl.Yxgl {
 
             if (org != null) {
                 parentObj = org;
-                IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where LineVol='35' and OrgCode='" + org.OrgCode + "'");
+                //IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where LineVol='35' and OrgCode='" + org.OrgCode + "'");
+                IList<sd_xl> xlList = Client.ClientHelper.PlatformSqlMap.GetListByWhere<sd_xl>(" where OrgCode='" + org.OrgCode + "'");
                 repositoryItemLookUpEdit2.DataSource = xlList;
             }
         }
@@ -272,14 +273,23 @@ namespace Ebada.Scgl.Yxgl {
                     sd_gt gtobj = gtlis[i];
                     
                     //绝缘子
+                    //string strSQL = "select distinct sbModle from sd_gtsb Where  gtID='" + gtobj.gtID + "' ";
+                    //if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10) {
+                    //    strSQL += "  and (sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
+                    //} else
+                    //    if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol)) {
+                    //        strSQL += "  and (sbName like '低压%立瓶%'  or sbName like '低压%茶台%' )";
+                    //    }
                     string strSQL = "select distinct sbModle from sd_gtsb Where  gtID='" + gtobj.gtID + "' ";
-                    if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10) {
-                        strSQL += "  and (sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
-                    } else
-                        if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol)) {
-                            strSQL += "  and (sbName like '低压%立瓶%'  or sbName like '低压%茶台%' )";
+                    if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10)
+                    {
+                        strSQL += "  and (sbName like '%绝缘子%' or sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
+                    }
+                    else
+                        if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol))
+                        {
+                            strSQL += "  and (sbName like '低压%立瓶%' or sbName like  '%绝缘子%'  or sbName like '低压%茶台%' )";
                         }
-
                     IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
 
                     //导线型号
