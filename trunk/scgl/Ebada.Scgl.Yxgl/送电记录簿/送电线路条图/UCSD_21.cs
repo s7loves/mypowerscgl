@@ -572,8 +572,10 @@ namespace Ebada.Scgl.Yxgl {
                             }
                             //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
                             activShape.Fill.ForeColor.RGB = icolor;
-                            if (itemp > 0) {
-                                IList<sdjl_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<sdjl_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
+                            if (itemp > 0) { 
+                                //IList<sdjl_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<sdjl_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
+                                IList<PJ_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<PJ_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
+                               
                                 if (kyxli.Count == 0) {
                                    
                                     {
