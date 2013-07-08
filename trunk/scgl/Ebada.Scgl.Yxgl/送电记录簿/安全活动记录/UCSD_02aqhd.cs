@@ -161,12 +161,14 @@ namespace Ebada.Scgl.Yxgl {
             hideColumn("qzrq");
             hideColumn("OrgCode");
             hideColumn("gznrID");
-            hideColumn("c1");
+            
             hideColumn("hydd");
             hideColumn("c2");
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            gridView1.Columns["hdxj"].Caption = "发现存在的问题";
+            gridView1.Columns["c1"].Caption = "防范对策";
             gridView1.Columns["kssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             gridView1.Columns["kssj"].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             gridView1.Columns["jssj"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
