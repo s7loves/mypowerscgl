@@ -32,6 +32,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.grpjcqk = new System.Windows.Forms.GroupBox();
+            this.txtjcqk = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbjcr = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cmbjl = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -46,18 +47,18 @@
             this.grpgtinfo = new System.Windows.Forms.GroupBox();
             this.spejddz = new DevExpress.XtraEditors.SpinEdit();
             this.jddz = new DevExpress.XtraEditors.LabelControl();
-            this.txtjdxs = new DevExpress.XtraEditors.TextEdit();
-            this.txtgtxs = new DevExpress.XtraEditors.TextEdit();
             this.lbljdxs = new DevExpress.XtraEditors.LabelControl();
             this.lblgtxs = new DevExpress.XtraEditors.LabelControl();
             this.cmbgth = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblgth = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.txtjcqk = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtgtxs = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtjdxs = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.grpjcqk.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjcr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties.VistaTimeProperties)).BeginInit();
@@ -66,10 +67,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.spescz.Properties)).BeginInit();
             this.grpgtinfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spejddz.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -124,6 +124,15 @@
             this.grpjcqk.TabIndex = 2;
             this.grpjcqk.TabStop = false;
             this.grpjcqk.Text = "检测情况";
+            // 
+            // txtjcqk
+            // 
+            this.txtjcqk.Location = new System.Drawing.Point(90, 120);
+            this.txtjcqk.Name = "txtjcqk";
+            this.txtjcqk.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtjcqk.Size = new System.Drawing.Size(186, 21);
+            this.txtjcqk.TabIndex = 12;
             // 
             // cmbjcr
             // 
@@ -235,10 +244,10 @@
             // 
             // grpgtinfo
             // 
-            this.grpgtinfo.Controls.Add(this.spejddz);
-            this.grpgtinfo.Controls.Add(this.jddz);
             this.grpgtinfo.Controls.Add(this.txtjdxs);
             this.grpgtinfo.Controls.Add(this.txtgtxs);
+            this.grpgtinfo.Controls.Add(this.spejddz);
+            this.grpgtinfo.Controls.Add(this.jddz);
             this.grpgtinfo.Controls.Add(this.lbljdxs);
             this.grpgtinfo.Controls.Add(this.lblgtxs);
             this.grpgtinfo.Controls.Add(this.cmbgth);
@@ -271,20 +280,6 @@
             this.jddz.Size = new System.Drawing.Size(48, 42);
             this.jddz.TabIndex = 7;
             this.jddz.Text = "接地电阻\r\n值应不大\r\n于(Ω)";
-            // 
-            // txtjdxs
-            // 
-            this.txtjdxs.Location = new System.Drawing.Point(80, 98);
-            this.txtjdxs.Name = "txtjdxs";
-            this.txtjdxs.Size = new System.Drawing.Size(186, 21);
-            this.txtjdxs.TabIndex = 6;
-            // 
-            // txtgtxs
-            // 
-            this.txtgtxs.Location = new System.Drawing.Point(80, 63);
-            this.txtgtxs.Name = "txtgtxs";
-            this.txtgtxs.Size = new System.Drawing.Size(186, 21);
-            this.txtgtxs.TabIndex = 5;
             // 
             // lbljdxs
             // 
@@ -336,14 +331,32 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // txtjcqk
+            // txtgtxs
             // 
-            this.txtjcqk.Location = new System.Drawing.Point(90, 120);
-            this.txtjcqk.Name = "txtjcqk";
-            this.txtjcqk.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtgtxs.Location = new System.Drawing.Point(80, 63);
+            this.txtgtxs.Name = "txtgtxs";
+            this.txtgtxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtjcqk.Size = new System.Drawing.Size(186, 21);
-            this.txtjcqk.TabIndex = 12;
+            this.txtgtxs.Properties.Items.AddRange(new object[] {
+            "直线杆",
+            "A型杆",
+            "终端杆",
+            "A型转角杆",
+            "耐张杆",
+            "加强杆"});
+            this.txtgtxs.Size = new System.Drawing.Size(186, 21);
+            this.txtgtxs.TabIndex = 9;
+            // 
+            // txtjdxs
+            // 
+            this.txtjdxs.Location = new System.Drawing.Point(80, 98);
+            this.txtjdxs.Name = "txtjdxs";
+            this.txtjdxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtjdxs.Properties.Items.AddRange(new object[] {
+            "单根水平式"});
+            this.txtjdxs.Size = new System.Drawing.Size(186, 21);
+            this.txtjdxs.TabIndex = 10;
             // 
             // frmSD08JDZZEdit
             // 
@@ -360,6 +373,7 @@
             this.groupControlOrg.ResumeLayout(false);
             this.grpjcqk.ResumeLayout(false);
             this.grpjcqk.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjcr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbjl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties.VistaTimeProperties)).EndInit();
@@ -369,10 +383,9 @@
             this.grpgtinfo.ResumeLayout(false);
             this.grpgtinfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spejddz.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjcqk.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -390,8 +403,6 @@
         private DevExpress.XtraEditors.LabelControl lblgth;
         private DevExpress.XtraEditors.LabelControl lbljdxs;
         private DevExpress.XtraEditors.LabelControl jddz;
-        private DevExpress.XtraEditors.TextEdit txtjdxs;
-        private DevExpress.XtraEditors.TextEdit txtgtxs;
         private System.Windows.Forms.GroupBox grpjcqk;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SpinEdit spejddz;
@@ -406,6 +417,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbjl;
         private DevExpress.XtraEditors.LabelControl lbljl;
         private DevExpress.XtraEditors.ComboBoxEdit txtjcqk;
+        private DevExpress.XtraEditors.ComboBoxEdit txtjdxs;
+        private DevExpress.XtraEditors.ComboBoxEdit txtgtxs;
 
     }
 }
