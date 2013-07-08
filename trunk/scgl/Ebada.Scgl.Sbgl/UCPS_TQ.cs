@@ -57,7 +57,7 @@ namespace Ebada.Scgl.Sbgl {
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_tq> e) {
-            int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_gt>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
+            int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_tq>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
             if (count > 0) {
                 MsgBox.ShowWarningMessageBox("台区代码重复！");
                 e.Cancel = true;
@@ -67,7 +67,7 @@ namespace Ebada.Scgl.Sbgl {
 
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
             if(e.Value.tqCode!=e.ValueOld.tqCode){
-                int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_gt>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
+                int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_tq>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
                 if (count > 0) {
                     MsgBox.ShowWarningMessageBox("台区代码重复！");
                     e.Cancel = true;
