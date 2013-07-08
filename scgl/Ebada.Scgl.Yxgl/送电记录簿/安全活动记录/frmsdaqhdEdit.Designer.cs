@@ -32,6 +32,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.groupControlOrg = new DevExpress.XtraEditors.GroupControl();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.dateEdit4 = new DevExpress.XtraEditors.DateEdit();
             this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
             this.comboBoxEdit27 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -85,14 +86,15 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.memohdnr = new DevExpress.XtraEditors.MemoEdit();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
+            this.memofxczwt = new DevExpress.XtraEditors.MemoEdit();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.memoEdit5 = new DevExpress.XtraEditors.MemoEdit();
+            this.memofyjyjl = new DevExpress.XtraEditors.MemoEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.memoffdc = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -144,11 +146,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memohdnr.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memofxczwt.Properties)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memofyjyjl.Properties)).BeginInit();
+            this.xtraTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoffdc.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -202,6 +206,15 @@
             this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "工作评语";
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(57, 0);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(28, 23);
+            this.simpleButton3.TabIndex = 13;
+            this.simpleButton3.Text = "...";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // dateEdit4
             // 
@@ -735,53 +748,54 @@
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2,
+            this.xtraTabPage4,
             this.xtraTabPage3});
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.memoEdit1);
+            this.xtraTabPage1.Controls.Add(this.memohdnr);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(386, 179);
             this.xtraTabPage1.Text = "活动内容";
             // 
-            // memoEdit1
+            // memohdnr
             // 
-            this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit1.EditValue = "";
-            this.memoEdit1.Location = new System.Drawing.Point(0, 0);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(386, 179);
-            this.memoEdit1.TabIndex = 0;
+            this.memohdnr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memohdnr.EditValue = "";
+            this.memohdnr.Location = new System.Drawing.Point(0, 0);
+            this.memohdnr.Name = "memohdnr";
+            this.memohdnr.Size = new System.Drawing.Size(386, 179);
+            this.memohdnr.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
-            this.xtraTabPage2.Controls.Add(this.memoEdit2);
+            this.xtraTabPage2.Controls.Add(this.memofxczwt);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(386, 180);
-            this.xtraTabPage2.Text = "活动小结";
+            this.xtraTabPage2.Size = new System.Drawing.Size(386, 179);
+            this.xtraTabPage2.Text = "发现存在的问题";
             // 
-            // memoEdit2
+            // memofxczwt
             // 
-            this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit2.Location = new System.Drawing.Point(0, 0);
-            this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(386, 180);
-            this.memoEdit2.TabIndex = 0;
+            this.memofxczwt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memofxczwt.Location = new System.Drawing.Point(0, 0);
+            this.memofxczwt.Name = "memofxczwt";
+            this.memofxczwt.Size = new System.Drawing.Size(386, 179);
+            this.memofxczwt.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
-            this.xtraTabPage3.Controls.Add(this.memoEdit5);
+            this.xtraTabPage3.Controls.Add(this.memofyjyjl);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(386, 180);
+            this.xtraTabPage3.Size = new System.Drawing.Size(386, 179);
             this.xtraTabPage3.Text = "发言简要记录";
             // 
-            // memoEdit5
+            // memofyjyjl
             // 
-            this.memoEdit5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit5.Location = new System.Drawing.Point(0, 0);
-            this.memoEdit5.Name = "memoEdit5";
-            this.memoEdit5.Size = new System.Drawing.Size(386, 180);
-            this.memoEdit5.TabIndex = 0;
+            this.memofyjyjl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memofyjyjl.Location = new System.Drawing.Point(0, 0);
+            this.memofyjyjl.Name = "memofyjyjl";
+            this.memofyjyjl.Size = new System.Drawing.Size(386, 179);
+            this.memofyjyjl.TabIndex = 0;
             // 
             // bar1
             // 
@@ -799,14 +813,20 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // simpleButton3
+            // xtraTabPage4
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(57, 0);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(28, 23);
-            this.simpleButton3.TabIndex = 13;
-            this.simpleButton3.Text = "...";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            this.xtraTabPage4.Controls.Add(this.memoffdc);
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(386, 179);
+            this.xtraTabPage4.Text = "防范对策";
+            // 
+            // memoffdc
+            // 
+            this.memoffdc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memoffdc.Location = new System.Drawing.Point(0, 0);
+            this.memoffdc.Name = "memoffdc";
+            this.memoffdc.Size = new System.Drawing.Size(386, 179);
+            this.memoffdc.TabIndex = 0;
             // 
             // frmsdaqhdEdit
             // 
@@ -873,11 +893,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memohdnr.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memofxczwt.Properties)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memofyjyjl.Properties)).EndInit();
+            this.xtraTabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memoffdc.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -894,8 +916,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
-        private DevExpress.XtraEditors.MemoEdit memoEdit2;
+        private DevExpress.XtraEditors.MemoEdit memohdnr;
+        private DevExpress.XtraEditors.MemoEdit memofxczwt;
         private System.Windows.Forms.GroupBox groupBox5;
         private DevExpress.XtraEditors.MemoEdit memoEdit3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
@@ -946,9 +968,11 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private DevExpress.XtraEditors.MemoEdit memoEdit5;
+        private DevExpress.XtraEditors.MemoEdit memofyjyjl;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        private DevExpress.XtraEditors.MemoEdit memoffdc;
 
     }
 }

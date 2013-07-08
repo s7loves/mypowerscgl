@@ -30,12 +30,13 @@ namespace Ebada.Scgl.Yxgl
             this.dateEdit3.DataBindings.Add("EditValue", rowData, "jssj");
             //this.comboBoxEdit2.DataBindings.Add("EditValue", rowData, "cjry");
             //this.comboBoxEdit28.DataBindings.Add("EditValue", rowData, "qxry");
-            this.memoEdit1.DataBindings.Add("EditValue", rowData, "hdnr", false, DataSourceUpdateMode.OnPropertyChanged);
-            this.memoEdit2.DataBindings.Add("EditValue", rowData, "hdxj", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memohdnr.DataBindings.Add("EditValue", rowData, "hdnr", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memofxczwt.DataBindings.Add("EditValue", rowData, "hdxj", false, DataSourceUpdateMode.OnPropertyChanged);
             this.memoEdit4.DataBindings.Add("EditValue", rowData, "py");
-            this.memoEdit5.DataBindings.Add("EditValue", rowData, "fyjyjl", false, DataSourceUpdateMode.OnPropertyChanged);
+            this.memofyjyjl.DataBindings.Add("EditValue", rowData, "fyjyjl", false, DataSourceUpdateMode.OnPropertyChanged);
             this.comboBoxEdit27.DataBindings.Add("EditValue", rowData, "qz");
             this.dateEdit4.DataBindings.Add("EditValue", rowData, "qzrq");
+            this.memoffdc.DataBindings.Add("EditValue", rowData, "c1");
 
         }
         #region IPopupFormEdit Members
@@ -196,11 +197,12 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             //SelectorHelper.SelectDyk("02安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1,memoEdit2, memoEdit5);
-            PJ_dyk dyk = SelectorHelper.SelectDyk("送电安全活动记录簿", "安全活动内容", memoEdit1, memoEdit1, memoEdit2, memoEdit5);
+            PJ_dyk dyk = SelectorHelper.SelectDyk("送电安全活动记录簿", "安全活动内容", memohdnr, memofxczwt, memoffdc, memofyjyjl);
             if (dyk != null)
             {
-                rowData.hdnr = dyk.nr2+dyk.nr;
-                rowData.hdxj = dyk.nr3;
+                rowData.hdnr = dyk.nr;
+                rowData.hdxj = dyk.nr2;
+                rowData.c1 = dyk.nr3;
                 rowData.fyjyjl = dyk.nr4;
             }
             //memoEdit5.Update();

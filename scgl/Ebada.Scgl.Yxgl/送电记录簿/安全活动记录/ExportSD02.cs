@@ -38,25 +38,28 @@ namespace Ebada.Scgl.Yxgl {
 
 
             string hdstr = Ecommon.Comparestring(obj.hdnr, "活动内容") ? "" : "活动内容：";
-            List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 8);
+            List<string> hdlist = Ecommon.ResultStrListByPage(hdstr, obj.hdnr, zc, 5);
             //if (Ecommon.GetPagecount(hdlist.Count, 8) > pagecount)
             //{
             //    pagecount = Ecommon.GetPagecount(hdlist.Count, 8);
             //}
             //活动小结
-            string hdxjstr = Ecommon.Comparestring(obj.hdxj, "活动小结") ? "" : "活动小结：";
-            List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 5);
+            string hdxjstr = Ecommon.Comparestring(obj.hdxj, "发现存在的问题") ? "" : "发现存在的问题：";
+            List<string> hdxlist = Ecommon.ResultStrListByPage(hdxjstr, obj.hdxj, zc, 7);
             //if (Ecommon.GetPagecount(hdxlist.Count, 5) > pagecount)
             //{
             //    pagecount = Ecommon.GetPagecount(hdxlist.Count, 5);
             //}
+            //防范对策
+            string ffdcstr = Ecommon.Comparestring(obj.c1, "防范对策") ? "" : "防范对策：";
+            List<string> ffdlist = Ecommon.ResultStrListByPage(ffdcstr, obj.c1, zc, 6);
             //发言简要记录
             //领导评语
             string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
             List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 2);
-            if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15) > pagecount)
+            if (Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count+ffdlist.Count, 20) > pagecount)
             {
-                pagecount = Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count, 15);
+                pagecount = Ecommon.GetPagecount(ldpylist.Count + hdxlist.Count + hdlist.Count+ffdlist.Count, 20);
             }
             List<string> fyjyjllist = Ecommon.ResultStrListByPage("", obj.fyjyjl, zc, 21);
             if (Ecommon.GetPagecount(fyjyjllist.Count, 21) > pagecount)
@@ -78,13 +81,13 @@ namespace Ebada.Scgl.Yxgl {
             {
                 ex.ActiveSheet(p + 1);
                 //改造后的
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 20; i++)
                 {
 
-                    if (p * 15 + i < hdlist.Count)
+                    if (p * 20 + i < hdlist.Count)
                     {
 
-                        string tempstr = hdlist[p * 15 + i];
+                        string tempstr = hdlist[p * 20 + i];
                         ex.SetCellValue(tempstr, 10 + i, 1);
                         if (p == 0 && i == 0)
                         {
@@ -92,32 +95,45 @@ namespace Ebada.Scgl.Yxgl {
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
                         }
                     }
-                    if (p * 15 + i >= hdlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count)
+                    if (p * 20 + i >= hdlist.Count && p * 20 + i < hdlist.Count + hdxlist.Count)
                     {
 
-                        string tempstr = hdxlist[p * 15 + i - hdlist.Count];
+                        string tempstr = hdxlist[p * 20 + i - hdlist.Count];
                         ex.SetCellValue(tempstr, 10 + i, 1);
-                        if (p * 15 + i == hdlist.Count)
+                        if (p * 20 + i == hdlist.Count)
+                        {
+                            ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 8);
+                        }
+                        //break;
+                    }
+                    if (p * 20 + i >= hdlist.Count+hdxlist.Count && p * 20 + i < hdlist.Count + hdxlist.Count+ffdlist.Count)
+                    {
+
+                        string tempstr = ffdlist[p * 20 + i - hdlist.Count-hdxlist.Count];
+                        ex.SetCellValue(tempstr, 10 + i, 1);
+                        if (p * 20 + i == hdlist.Count+hdxlist.Count)
                         {
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 5);
                         }
                         //break;
                     }
 
-                    if (p * 15 + i >= hdlist.Count + hdxlist.Count && p * 15 + i < hdlist.Count + hdxlist.Count + ldpylist.Count)
+
+                    if (p * 20 + i >= hdlist.Count + hdxlist.Count +ffdlist.Count&& p * 20 + i < hdlist.Count + hdxlist.Count+ffdlist.Count + ldpylist.Count)
                     {
 
-                        string tempstr = ldpylist[p * 15 + i - hdlist.Count - hdxlist.Count];
+                        string tempstr = ldpylist[p * 20 + i - hdlist.Count - hdxlist.Count-ffdlist.Count];
 
                         ex.SetCellValue(tempstr, 10 + i, 1);
-                        if (p * 15 + i == hdlist.Count + hdxlist.Count)
+                        if (p * 20 + i == hdlist.Count + hdxlist.Count+ffdlist.Count)
                             ex.SetFontBold(10 + i, 1, 10 + i, 1, true, 0, 7);
                         //break;
                     }
-                    if (p * 15 + i >= hdlist.Count + hdxlist.Count + ldpylist.Count)
+                    if (p * 20 + i >= hdlist.Count + hdxlist.Count + ldpylist.Count+ffdlist.Count)
                     {
                         break;
                     }
+
                 }
                 ////活动内容
                 //for (int i = 0; i < 8; i++)
@@ -163,12 +179,12 @@ namespace Ebada.Scgl.Yxgl {
                             break;
                         }
                         string tempstr = fyjyjllist[(jymaxpage + p - pagecount) * 21 + jy];
-                        ex.SetCellValue(tempstr, 30 + jy, 1);
+                        ex.SetCellValue(tempstr, 35 + jy, 1);
 
                         if (p == pagecount - jymaxpage && jy == 0)
                         {
                             //设定活动内容为粗体
-                            ex.SetFontBold(30, 1, 30, 1, true, 0, 6);
+                            ex.SetFontBold(35, 1, 35, 1, true, 0, 6);
                         }
                     }
                 }
@@ -250,16 +266,16 @@ namespace Ebada.Scgl.Yxgl {
 
 
             //签字
-            ex.SetCellValue("签字: ", 25, 1);
-            ex.SetCellValue(obj.qz, 25, col + 1);
+            ex.SetCellValue("签字: ", 30, 1);
+            ex.SetCellValue(obj.qz, 30, col + 1);
 
 
             //签字时间小于系统默认时间则不输出
             if (ComboBoxHelper.CompreDate(obj.qzrq))
             {
-                ex.SetCellValue(obj.qzrq.Year.ToString(), 25, 5);
-                ex.SetCellValue(obj.qzrq.Month.ToString(), 25, 7);
-                ex.SetCellValue(obj.qzrq.Day.ToString(), 25, 11);
+                ex.SetCellValue(obj.qzrq.Year.ToString(), 30, 5);
+                ex.SetCellValue(obj.qzrq.Month.ToString(), 30, 7);
+                ex.SetCellValue(obj.qzrq.Day.ToString(), 30, 11);
 
             }
 
