@@ -51,11 +51,30 @@ namespace Ebada.Scgl.Sbgl {
             gridViewOperation.CreatingObjectEvent += gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeUpdate);
+            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_tq>(gridViewOperation_BeforeInsert);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             btGtList.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
+        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_tq> e) {
+            int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_gt>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
+            if (count > 0) {
+                MsgBox.ShowWarningMessageBox("台区代码重复！");
+                e.Cancel = true;
+                return;
+            }
+        }
+
         void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<PS_tq> e) {
+            if(e.Value.tqCode!=e.ValueOld.tqCode){
+                int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_gt>(string.Format("where tqcode='{0}' ", e.Value.tqCode));
+                if (count > 0) {
+                    MsgBox.ShowWarningMessageBox("台区代码重复！");
+                    e.Cancel = true;
+                    return;
+                }
+
+            }
             if (e.Value.Contractor != e.ValueOld.Contractor)
                 Client.ClientHelper.PlatformSqlMap.Update("Update",
                     string.Format("update ps_xl set Contractor='{0}' where left(linecode,{1})='{2}'", e.Value.Contractor, e.Value.tqCode.Length, e.Value.tqCode));
@@ -217,7 +236,22 @@ namespace Ebada.Scgl.Sbgl {
         }
         string getcode() {
             string code = "";
-
+            string linecode = frm.LineCode.Substring(0, 6);
+            string sql = "select max(tqcode) from ps_tq where len(tqcode)=10 and tqcode like '" + linecode + "%'";
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+            if (list.Count > 0 && list[0]!=null) {
+                string bh = list[0].ToString().Substring(6);
+                bh = "1" + bh;
+                bh = (int.Parse(bh) + 10).ToString();
+                if (bh.StartsWith("2")) {
+                    MessageBox.Show("编辑超出范围，自动生成失败，需手工修改。");
+                } else {
+                    code = linecode + bh.Substring(1);
+                }
+            } else {
+                code = linecode + "0010";
+            }
+              /*
             if (gridViewOperation.BindingList.Count > 0) {
                 int maxcode = 0;
                 string tqcode = gridViewOperation.BindingList[0].tqCode;
@@ -230,7 +264,7 @@ namespace Ebada.Scgl.Sbgl {
             } else {
                 code = frm.LineCode + "0010";
             }
-
+            */
             return code;
         }
         /// <summary>
