@@ -105,8 +105,10 @@ namespace Ebada.Scgl.Sbgl {
                     string lname = e.Node["Name"].ToString();
                     IList<PS_xl> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_xl>("where parentid='" + id.Substring(2) + "'  and linevol='0.4'");
                     foreach (PS_xl xl in list) {
-                        mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
-                        mLines2.Add(xl.LineID, xl);
+                        if (!mLines2.ContainsKey(xl.LineID)) {
+                            mTable.Rows.Add(xl.LineName, xl.LineID, id, "xl2");
+                            mLines2.Add(xl.LineID, xl);
+                        }
                     }
                 } else if (type == "dyxl") {
                     IList<PS_tq> list = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>("where left(tqcode,3)='" + id.Substring(2) + "'");
