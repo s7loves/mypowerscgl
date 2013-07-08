@@ -239,17 +239,31 @@ namespace Ebada.Scgl.Gis {
         }
         public void ShowDialog(string type,GMapMarker marker) {
             if (type == "jcky") {//交叉跨跃
-                PS_gt gt = selectedMarker.Tag as PS_gt;
-                Ebada.Scgl.Sbgl.UCPS_jcky jcky = new UCPS_jcky();
-                jcky.ParentObj = gt;
-                DevExpress.XtraEditors.XtraForm dlg = new DevExpress.XtraEditors.XtraForm();
-                dlg.Controls.Add(jcky);
-                jcky.Dock = DockStyle.Fill;
-                jcky.HideList();
-                dlg.Size = new System.Drawing.Size(800, 600);
-                dlg.StartPosition = FormStartPosition.CenterScreen;
-                dlg.Text = "交叉跨越-" + gt.gth;
-                dlg.ShowDialog();
+                if (marker.Tag is sd_gt) {
+                    sd_gt gt = marker.Tag as sd_gt;
+                    Ebada.Scgl.Sbgl.UCsd_jcky jcky = new UCsd_jcky();
+                    jcky.ParentObj = gt;
+                    DevExpress.XtraEditors.XtraForm dlg = new DevExpress.XtraEditors.XtraForm();
+                    dlg.Controls.Add(jcky);
+                    jcky.Dock = DockStyle.Fill;
+                    jcky.HideList();
+                    dlg.Size = new System.Drawing.Size(800, 600);
+                    dlg.StartPosition = FormStartPosition.CenterScreen;
+                    dlg.Text = "交叉跨越-" + gt.gth;
+                    dlg.ShowDialog();
+                } else {
+                    PS_gt gt = selectedMarker.Tag as PS_gt;
+                    Ebada.Scgl.Sbgl.UCPS_jcky jcky = new UCPS_jcky();
+                    jcky.ParentObj = gt;
+                    DevExpress.XtraEditors.XtraForm dlg = new DevExpress.XtraEditors.XtraForm();
+                    dlg.Controls.Add(jcky);
+                    jcky.Dock = DockStyle.Fill;
+                    jcky.HideList();
+                    dlg.Size = new System.Drawing.Size(800, 600);
+                    dlg.StartPosition = FormStartPosition.CenterScreen;
+                    dlg.Text = "交叉跨越-" + gt.gth;
+                    dlg.ShowDialog();
+                }
             } else {
                 MessageBox.Show("此功能正在开发中。。。");
             }
