@@ -48,15 +48,15 @@ namespace Ebada.Scgl.Yxgl {
                     //
                     ex.SetCellValue(tempobj.jr, 8 + i, 4);
                     //送检人
-                    ex.SetCellValue(tempobj.sjr, 8 + i, 5);
+                    //ex.SetCellValue(tempobj.sjr, 8 + i, 5);
                     //实验人
-                    ex.SetCellValue(tempobj.syr, 8 + i, 6);
+                    ex.SetCellValue(tempobj.syr, 8 + i, 5);
                     //安监签字
-                    ex.SetCellValue(tempobj.ajqz, 8 + i, 7);
+                    ex.SetCellValue(tempobj.ajqz, 8 + i, 6);
                      //下次实验日期
-                    ex.SetCellValue(tempobj.xcsyrq.Year.ToString(), 8 + i, 8);
-                    ex.SetCellValue(tempobj.xcsyrq.Month.ToString(), 8 + i, 9);
-                    ex.SetCellValue(tempobj.xcsyrq.Day.ToString(), 8 + i, 10);
+                    ex.SetCellValue(tempobj.xcsyrq.Year.ToString(), 8 + i, 7);
+                    ex.SetCellValue(tempobj.xcsyrq.Month.ToString(), 8 + i, 8);
+                    ex.SetCellValue(tempobj.xcsyrq.Day.ToString(), 8 + i, 9);
                 }
 
             }
@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Yxgl {
             }
           
             ex.SetCellValue(obj.syzq.ToString()+"年", 5, 5);
-            ex.SetCellValue(obj.syxm, 5, 8);
+            ex.SetCellValue(obj.syxm, 5, 7);
 
 
             ex.ActiveSheet(1);

@@ -137,7 +137,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\05交叉跨越及对地距离测量记录.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电06交叉跨越及对地距离测量记录.xls";
             ex.Open(fname);
             int row = 1;
             int col = 1;
