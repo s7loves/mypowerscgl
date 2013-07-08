@@ -156,6 +156,10 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("14电力安全工具试验记录", "结论", memoEdit1);
+            if (!string.IsNullOrEmpty(memoEdit1.EditValue as string))
+            {
+                rowData.jr = memoEdit1.EditValue as string;
+            }
 
         }
     }

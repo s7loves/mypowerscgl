@@ -149,7 +149,13 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("送电电力线路防护通知书", "防护信息", memoEdit2, memoEdit3, memoEdit1);
+           PJ_dyk pjdyk= SelectorHelper.SelectDyk("送电电力线路防护通知书", "防护信息", memoEdit2, memoEdit3, memoEdit1);
+           if (pjdyk != null)
+           {
+               rowData.fxwt = pjdyk.nr;
+               rowData.clcs = pjdyk.nr2;
+               rowData.Remark = pjdyk.nr3;
+           }
         }
 
       

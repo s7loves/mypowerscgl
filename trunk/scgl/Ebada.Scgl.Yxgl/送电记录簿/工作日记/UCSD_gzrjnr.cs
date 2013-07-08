@@ -138,6 +138,7 @@ namespace Ebada.Scgl.Yxgl {
             newobj.CreateDate = DateTime.Now;
             newobj.fssj = DateTime.Now;
             newobj.seq = getSeq();
+            newobj.CreateMan = MainHelper.User.UserName;
         }
 
         private int getSeq() {

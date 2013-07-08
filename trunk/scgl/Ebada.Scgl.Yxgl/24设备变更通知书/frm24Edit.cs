@@ -146,6 +146,8 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("24设备变更通知书", "变动内容及说明", memoEdit1);
+            if (!string.IsNullOrEmpty(memoEdit1.EditValue as string))
+                rowData.nr = memoEdit1.EditValue as string;
 
         }
 
