@@ -69,8 +69,8 @@ namespace Ebada.Scgl.Yxgl {
                   //          ex.SetCellValue(objlist[starow - 1 + i].sbCode+objlist[starow - 1 + i].sbCode, rowcount + i, 7);
                             ex.SetCellValue(objlist[starow - 1 + i].sbName +objlist[starow - 1 + i].sbCode, rowcount + i, 7);
                         }
-                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.ToShortDateString(), rowcount + i, 8);
+                        
                         ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 10);
                     }
                 }
@@ -93,8 +93,8 @@ namespace Ebada.Scgl.Yxgl {
                         {
                             ex.SetCellValue(objlist[starow - 1 + i].sbName+ objlist[starow - 1 + i].sbCode, rowcount + i, 7);
                         }
-                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Year.ToString(), rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].lqsj.ToShortDateString(), rowcount + i, 8);
+                        //ex.SetCellValue(objlist[starow - 1 + i].lqsj.Month.ToString(), rowcount + i, 9);
                         ex.SetCellValue(objlist[starow - 1 + i].Remark, rowcount + i, 10);
                     }
                 }
