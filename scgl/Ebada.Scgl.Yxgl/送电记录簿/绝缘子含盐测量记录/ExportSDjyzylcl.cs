@@ -60,7 +60,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].wd, rowcount + i, 6);
                         ex.SetCellValue(objlist[starow - 1 + i].dzhyl, rowcount + i, 7);
                         ex.SetCellValue(objlist[starow - 1 + i].scymz, rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].hdwhdj, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].scwhdj, rowcount + i, 9);
                         ex.SetCellValue(objlist[starow - 1 + i].whtz, rowcount + i, 10);
                         ex.SetCellValue(objlist[starow - 1 + i].clrq.Year.ToString(), rowcount + i, 11);
                         ex.SetCellValue(objlist[starow - 1 + i].clrq.Month.ToString(), rowcount + i, 12);
@@ -79,7 +79,7 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(objlist[starow - 1 + i].wd, rowcount + i, 6);
                         ex.SetCellValue(objlist[starow - 1 + i].dzhyl, rowcount + i, 7);
                         ex.SetCellValue(objlist[starow - 1 + i].scymz, rowcount + i, 8);
-                        ex.SetCellValue(objlist[starow - 1 + i].hdwhdj, rowcount + i, 9);
+                        ex.SetCellValue(objlist[starow - 1 + i].scwhdj, rowcount + i, 9);
                         ex.SetCellValue(objlist[starow - 1 + i].whtz, rowcount + i, 10);
                         ex.SetCellValue(objlist[starow - 1 + i].clrq.Year.ToString(), rowcount + i, 11);
                         ex.SetCellValue(objlist[starow - 1 + i].clrq.Month.ToString(), rowcount + i, 12);
