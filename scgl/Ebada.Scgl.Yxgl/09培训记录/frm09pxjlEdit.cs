@@ -168,7 +168,12 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
+           PJ_dyk pjdyk= SelectorHelper.SelectDyk("09培训记录内容", "记录内容",memoEdit1, memoEdit2);
+           if (pjdyk != null)
+           {
+               rowData.tm = pjdyk.nr;
+               rowData.nr = pjdyk.nr2;
+           }
 
         }
     }

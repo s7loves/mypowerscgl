@@ -93,11 +93,15 @@ namespace Ebada.Scgl.Yxgl
         private void btnjyzwz_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("绝缘子", "位置", this.memojyzwz);
+            if (!string.IsNullOrEmpty(memojyzwz.EditValue as string))
+                rowData.lzjyzwz = memojyzwz.EditValue as string;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("绝缘子", "处理情况", memoclqk);
+            if (!string.IsNullOrEmpty(memoclqk.EditValue as string))
+                rowData.c1 = memoclqk.EditValue as string;
         }
     }
 }

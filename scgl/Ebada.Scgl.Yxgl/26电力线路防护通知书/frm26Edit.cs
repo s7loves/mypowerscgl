@@ -205,5 +205,19 @@ namespace Ebada.Scgl.Yxgl
             dsoFramerControl1.Dispose();
             dsoFramerControl1 = null;
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("26电力线路防护通知书", "发现问题", memoEdit2);
+            if (!string.IsNullOrEmpty(memoEdit2.EditValue as string))
+                rowData.fxwt = memoEdit2.EditValue as string;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("26电力线路防护通知书", "处理措施", memoEdit3);
+                if(!string.IsNullOrEmpty(memoEdit3.EditValue as string))
+                    rowData.clcs=memoEdit3.EditValue as string;
+        }
     }
 }

@@ -429,5 +429,12 @@ namespace Ebada.Scgl.Yxgl
                 }
             }
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            SelectorHelper.SelectDyk("03运行分析记录", "工作评语", memoEdit4);
+            if (!string.IsNullOrEmpty(memoEdit4.EditValue as string))
+                rowData.py = memoEdit4.EditValue as string;
+        }
     }
 }

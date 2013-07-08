@@ -47,6 +47,7 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBoxEdit15 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit10 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEdit5 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -71,7 +72,7 @@
             this.comboBoxEdit18 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -150,6 +151,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.simpleButton3);
             this.groupBox7.Controls.Add(this.dateEdit4);
             this.groupBox7.Controls.Add(this.memoEdit4);
             this.groupBox7.Controls.Add(this.labelControl6);
@@ -311,6 +313,17 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "出席人员情况";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(86, 1);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(34, 15);
+            this.simpleButton2.TabIndex = 3;
+            this.simpleButton2.Text = "…";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // comboBoxEdit15
             // 
@@ -535,16 +548,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
-            // simpleButton2
+            // simpleButton3
             // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("仿宋_GB2312", 9F);
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(86, 1);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(34, 15);
-            this.simpleButton2.TabIndex = 3;
-            this.simpleButton2.Text = "…";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.simpleButton3.Location = new System.Drawing.Point(63, 0);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(32, 23);
+            this.simpleButton3.TabIndex = 13;
+            this.simpleButton3.Text = "...";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // frmyxfxEdit
             // 
@@ -646,6 +657,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
 
     }
 }

@@ -125,11 +125,15 @@ namespace Ebada.Scgl.Yxgl {
 
         private void simpleButton1_Click(object sender, EventArgs e) {
             SelectorHelper.SelectDyk("送电工作日记", "记事", memoEdit1);
+            if (!string.IsNullOrEmpty(memoEdit1.EditValue as string))
+                rowData.js = memoEdit1.EditValue as string;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("送电工作日记", "评语", memoEdit2);
+            if (!string.IsNullOrEmpty(memoEdit2.EditValue as string))
+                rowData.py = memoEdit2.EditValue as string;
         }
 
         private void dateEdit2_EditValueChanged(object sender, EventArgs e)

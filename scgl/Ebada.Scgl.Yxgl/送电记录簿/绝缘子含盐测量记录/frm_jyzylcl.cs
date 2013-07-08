@@ -76,11 +76,17 @@ namespace Ebada.Scgl.Yxgl
         private void btnwz_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("绝缘子", "位置", this.memowz);
+            if (!string.IsNullOrEmpty(memowz.EditValue as string))
+            {
+                rowData.wz = memowz.EditValue as string;
+            }
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("绝缘子", "污源特征", this.memowytz);
+            if (!string.IsNullOrEmpty(memowytz.EditValue as string))
+                rowData.whtz = memowytz.EditValue as string;
         }
 
        

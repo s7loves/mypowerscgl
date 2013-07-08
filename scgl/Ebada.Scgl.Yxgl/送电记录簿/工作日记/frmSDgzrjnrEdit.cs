@@ -96,6 +96,12 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("送电工作日记", "工作地址及项目", memoEdit1);
+            if (!string.IsNullOrEmpty(memoEdit1.EditValue as string))
+            {
+                rowData.gznr = memoEdit1.EditValue as string;
+            }
+                
+            
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

@@ -151,6 +151,8 @@ namespace Ebada.Scgl.Yxgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("08设备停电检修记录", "检修内容", memoEdit1);
+            if (string.IsNullOrEmpty(memoEdit1.EditValue as string))
+                rowData.jxnr = memoEdit1.EditValue as string;
             //memoEdit1.Focus();
         }
 
