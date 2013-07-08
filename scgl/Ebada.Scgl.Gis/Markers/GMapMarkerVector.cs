@@ -130,15 +130,16 @@ namespace Ebada.Scgl.Gis.Markers {
             item.Text = "线路属性";
             item.Click += new EventHandler(线路属性_Click);
             contextMenu.MenuItems.Add(item);
+            item = new MenuItem();
+            item.Text = "交叉跨越";
+            item.Click += new EventHandler(交叉跨越_Click);
+            contextMenu.MenuItems.Add(item);
             if (this.Tag is Ebada.Scgl.Model.PS_gt) {
                 item = new MenuItem();
                 item.Text = "线路条图";
                 item.Click += new EventHandler(线路条图_Click);
                 contextMenu.MenuItems.Add(item);
-                item = new MenuItem();
-                item.Text = "交叉跨越";
-                item.Click += new EventHandler(交叉跨越_Click);
-                contextMenu.MenuItems.Add(item);
+                
                 item = new MenuItem();
                 item.Text = "统计线路设备";
                 item.Click += new EventHandler(线路设备统计_Click);
