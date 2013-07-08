@@ -119,7 +119,8 @@ namespace Ebada.Scgl.Sbgl
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             SelectorHelper.SelectDyk("变电避雷器动作记录", "动作原因", memodzyy);
-
+            if (!string.IsNullOrEmpty(memodzyy.EditValue as string))
+                rowData.dzyy = memodzyy.EditValue as string;
         }
     }
 }
