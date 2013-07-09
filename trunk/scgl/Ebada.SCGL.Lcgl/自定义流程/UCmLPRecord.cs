@@ -3303,7 +3303,19 @@ namespace Ebada.Scgl.Lcgl
 
         private void btEditsj_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            if (gridView1.GetFocusedRow() == null)
+                return;
+            LP_Record lprecord= ConvertHelper.RowToObject<LP_Record>(gridView1.GetFocusedDataRow());
+            frmsjEdit frm = new frmsjEdit();
+            
+            if (!string.IsNullOrEmpty(lprecord.CreateTime))
+                frm.CreateTime = Convert.ToDateTime(lprecord.CreateTime);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                lprecord.CreateTime = frm.CreateTime.ToShortDateString();
+                Client.ClientHelper.PlatformSqlMap.Update<LP_Record>(lprecord);
+                InitData(strKind);
+            }
         }
     }
 }
