@@ -3288,5 +3288,22 @@ namespace Ebada.Scgl.Lcgl
             InitData(strKind);
         }
         #endregion
+
+        private void UCmLPRecord_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(MainHelper.User.UserName))
+            {
+                if (MainHelper.User.UserName.ToLower() == "rabbit")
+                {
+                    this.btEditsj.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                }
+            }
+            
+        }
+
+        private void btEditsj_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
