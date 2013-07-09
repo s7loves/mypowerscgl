@@ -128,7 +128,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：调度
         /// 字段信息：[dd],nvarchar
         /// </summary>
-        [DisplayNameAttribute("调度")]
+        [DisplayNameAttribute("调度发令人")]
         public string dd
         {
             get { return _dd; }
@@ -149,7 +149,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：变电所
         /// 字段信息：[bds],nvarchar
         /// </summary>
-        [DisplayNameAttribute("变电所")]
+        [DisplayNameAttribute("变电所受令人")]
         public string bds
         {
             get { return _bds; }
@@ -233,7 +233,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用字段1
         /// 字段信息：[c1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("备用字段1")]
+        [DisplayNameAttribute("变电所")]
         public string c1
         {
             get { return _c1; }

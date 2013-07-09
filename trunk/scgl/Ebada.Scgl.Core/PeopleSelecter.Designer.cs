@@ -96,7 +96,7 @@
             this.gridControl2.Location = new System.Drawing.Point(3, 18);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(242, 310);
+            this.gridControl2.Size = new System.Drawing.Size(274, 310);
             this.gridControl2.TabIndex = 6;
             this.gridControl2.UseEmbeddedNavigator = true;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -133,20 +133,21 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "变电所";
+            this.groupBox1.Visible = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.gridControl2);
-            this.groupBox2.Location = new System.Drawing.Point(261, 13);
+            this.groupBox2.Location = new System.Drawing.Point(12, 13);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(248, 331);
+            this.groupBox2.Size = new System.Drawing.Size(280, 331);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "变电所人员";
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(335, 360);
+            this.simpleButton1.Location = new System.Drawing.Point(135, 360);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 9;
@@ -156,7 +157,7 @@
             // simpleButton2
             // 
             this.simpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton2.Location = new System.Drawing.Point(417, 360);
+            this.simpleButton2.Location = new System.Drawing.Point(217, 360);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 10;
@@ -166,7 +167,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 395);
+            this.ClientSize = new System.Drawing.Size(309, 395);
             this.ControlBox = false;
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
