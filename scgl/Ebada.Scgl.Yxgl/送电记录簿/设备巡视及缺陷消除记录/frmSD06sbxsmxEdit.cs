@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Yxgl
             }
           
             //缺陷类别GetQxlb
-            ComboBoxHelper.FillCBoxByDyk("送电设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
+            ComboBoxHelper.FillCBoxByDyk("06设备巡视及缺陷消除记录", "缺陷类别", comboBoxEdit4.Properties);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SelectorHelper.SelectDyk("送电设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
+            SelectorHelper.SelectDyk("06设备巡视及缺陷消除记录", "缺陷内容", memoEdit1);
             if (!string.IsNullOrEmpty(memoEdit1.EditValue as string))
                 rowData.qxnr = memoEdit1.EditValue as string;
         }
