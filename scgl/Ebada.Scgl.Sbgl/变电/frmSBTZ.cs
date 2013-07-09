@@ -263,13 +263,17 @@ namespace Ebada.Scgl.Sbgl.变电
         void pictureEdit1_EditValueChanged(object sender, EventArgs e)
         {
             imageData = pictureEdit1.EditValue;
-            if (imageData == null)
-            {
+            if (imageData == null) {
                 imageData = new byte[] { 0 };
+                if (image != null)
+                    ClientHelper.PlatformSqlMap.DeleteByKey<PS_Image>(image.ImageID);
+                rowData.c3 = "";
+                image = null;
+            } else {
+                if (image == null)
+                    image = new PS_Image();
+                image.ImageData = (byte[])imageData;
             }
-            if (image == null)
-                image = new PS_Image();
-            image.ImageData = (byte[])imageData;
         }
 
         void btnOk_Click(object sender, EventArgs e)
@@ -293,7 +297,8 @@ namespace Ebada.Scgl.Sbgl.变电
         {
             pictureEdit1.EditValue = null;
             imageData = null;
-            
+            image = null;
+            if(!string.IsNullOrEmpty(rowData.c3))
                 image = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_Image>(rowData.c3);
             
             if (image != null)
