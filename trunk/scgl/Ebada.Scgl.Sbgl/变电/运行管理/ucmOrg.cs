@@ -86,7 +86,7 @@ namespace Ebada.Scgl.Sbgl
             if (this.Site != null && this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
 
-            RefreshData(" where parentid='300' order by orgcode");
+            RefreshData(" where parentid='300'and c1='是' order by orgcode");
             gridView1.BestFitColumns();
         }
         /// <summary>
