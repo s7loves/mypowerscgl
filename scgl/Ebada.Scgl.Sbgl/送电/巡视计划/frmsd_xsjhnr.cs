@@ -28,7 +28,10 @@ namespace Ebada.Scgl.Sbgl
         DevExpress.XtraTab.XtraTabPage XtraPage = null;
         public  IList<sd_gt> gtList;
         public sd_xsjh sdxsjh;
-        
+        //巡视时间
+        private DateTime xssj;
+        //巡视状态
+        private string xszt;
         public frmsd_xsjhnr()
         {
             InitializeComponent();
@@ -131,19 +134,19 @@ namespace Ebada.Scgl.Sbgl
 
                 XtraPage = new DevExpress.XtraTab.XtraTabPage();
                 XtraPage.Name = "xtrpage" + pageNumber;
-                XtraPage.Text = string.Format("特殊区域第{0}页", pageNumber);
+                XtraPage.Text = string.Format("巡视杆塔第{0}页", pageNumber);
                 this.xtraTabControl1.TabPages.Add(XtraPage);
                 pageNumber++;
 
 
-                AddLable(startlblw, "gtid", "设备ID", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtid", "gtid", ref starttexth, 48, XtraPage, pageNumber - 2);
+                //AddLable(startlblw, "gtid", "设备ID", ref startlblh, XtraPage);
+                //AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtid", "gtid", ref starttexth, 48, XtraPage, pageNumber - 2);
 
                 AddLable(startlblw, "gtbh", "杆塔编号", ref startlblh, XtraPage);
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "gtbh", "gtbh", ref starttexth, 48, XtraPage, pageNumber - 2);
 
-                AddLable(startlblw, "flag1", "缺陷状态", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "flag1", "flag1", ref starttexth, 48, XtraPage, pageNumber - 2);
+                //AddLable(startlblw, "flag1", "缺陷状态", ref startlblh, XtraPage);
+                //AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "flag1", "flag1", ref starttexth, 48, XtraPage, pageNumber - 2);
 
                 AddLable(startlblw, "lng", "经度", ref startlblh, XtraPage);
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "lng", "lng", ref starttexth, 48, XtraPage, pageNumber - 2);
@@ -151,14 +154,14 @@ namespace Ebada.Scgl.Sbgl
                 AddLable(startlblw, "lat", "纬度", ref startlblh, XtraPage);
                 AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "lat", "lat", ref starttexth, 48, XtraPage, pageNumber - 2);
 
-                AddLable(startlblw, "flag2", "巡视状态", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "flag2", "flag2", ref starttexth, 48, XtraPage, pageNumber - 2);
+                //AddLable(startlblw, "flag2", "巡视状态", ref startlblh, XtraPage);
+                //AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "flag2", "flag2", ref starttexth, 48, XtraPage, pageNumber - 2);
 
-                AddLable(startlblw, "xssj", "巡视时间", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.DateEdit(), "xssj", "xssj", ref starttexth, 48, XtraPage, pageNumber - 2);
+                //AddLable(startlblw, "xssj", "巡视时间", ref startlblh, XtraPage);
+                //AddOtherControl(new DevExpress.XtraEditors.DateEdit(), "xssj", "xssj", ref starttexth, 48, XtraPage, pageNumber - 2);
 
-                AddLable(startlblw, "qxnr", "缺陷内容", ref startlblh, XtraPage);
-                AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "qxnr", "qxnr", ref starttexth, 48, XtraPage, pageNumber - 2);
+                //AddLable(startlblw, "qxnr", "缺陷内容", ref startlblh, XtraPage);
+                //AddOtherControl(new DevExpress.XtraEditors.TextEdit(), "qxnr", "qxnr", ref starttexth, 48, XtraPage, pageNumber - 2);
 
             }
         }
@@ -281,11 +284,21 @@ namespace Ebada.Scgl.Sbgl
 
         void btnOk_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(datexssj.EditValue.ToString()))
+            {
+                MsgBox.ShowWarningMessageBox("请选择巡视时间!");
+                return;
+            }
+            if (string.IsNullOrEmpty(cmbxszt.EditValue as string))
+            {
+                MsgBox.ShowWarningMessageBox("请选择巡视状态!");
+                return;
+            }
             List<sd_xsjhnr> list = rowData;
             foreach (sd_xsjhnr jhnr in list)
             {
-                jhnr.xssj = Convert.ToDateTime(jhnr.xssj).ToShortDateString();
+                jhnr.xssj = xssj.ToShortDateString();
+                jhnr.flag2 = xszt;
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -353,6 +366,18 @@ namespace Ebada.Scgl.Sbgl
                 return;
             InitControl();
             RefershControl();
+        }
+
+        private void datexssj_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(datexssj.EditValue.ToString()))
+                xssj = Convert.ToDateTime(datexssj.EditValue);
+        }
+
+        private void cmbxszt_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbxszt.EditValue as string))
+                xszt = cmbxszt.EditValue as string;
         }
     }
 }

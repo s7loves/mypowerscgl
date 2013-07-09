@@ -33,28 +33,28 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtgtbh = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtflag1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtlng = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtlat = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.txtflag2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.txtqxnr = new DevExpress.XtraEditors.TextEdit();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.txtxssj = new DevExpress.XtraEditors.DateEdit();
+            this.txtflag2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtflag1 = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlng.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlat.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtqxnr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -95,13 +95,6 @@
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "缺陷状态 ";
             // 
-            // txtflag1
-            // 
-            this.txtflag1.Location = new System.Drawing.Point(111, 92);
-            this.txtflag1.Name = "txtflag1";
-            this.txtflag1.Size = new System.Drawing.Size(447, 21);
-            this.txtflag1.TabIndex = 5;
-            // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(39, 130);
@@ -140,14 +133,6 @@
             this.labelControl6.TabIndex = 10;
             this.labelControl6.Text = "巡视状态";
             // 
-            // txtflag2
-            // 
-            this.txtflag2.AllowDrop = true;
-            this.txtflag2.Location = new System.Drawing.Point(111, 197);
-            this.txtflag2.Name = "txtflag2";
-            this.txtflag2.Size = new System.Drawing.Size(447, 21);
-            this.txtflag2.TabIndex = 11;
-            // 
             // labelControl7
             // 
             this.labelControl7.Location = new System.Drawing.Point(39, 235);
@@ -166,6 +151,7 @@
             // 
             // txtqxnr
             // 
+            this.txtqxnr.Enabled = false;
             this.txtqxnr.Location = new System.Drawing.Point(111, 267);
             this.txtqxnr.Name = "txtqxnr";
             this.txtqxnr.Size = new System.Drawing.Size(447, 21);
@@ -201,24 +187,49 @@
             this.txtxssj.Size = new System.Drawing.Size(447, 21);
             this.txtxssj.TabIndex = 18;
             // 
+            // txtflag2
+            // 
+            this.txtflag2.Location = new System.Drawing.Point(111, 200);
+            this.txtflag2.Name = "txtflag2";
+            this.txtflag2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtflag2.Properties.Items.AddRange(new object[] {
+            "已巡视",
+            "未巡视"});
+            this.txtflag2.Size = new System.Drawing.Size(447, 21);
+            this.txtflag2.TabIndex = 19;
+            // 
+            // txtflag1
+            // 
+            this.txtflag1.Location = new System.Drawing.Point(111, 92);
+            this.txtflag1.Name = "txtflag1";
+            this.txtflag1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtflag1.Properties.Items.AddRange(new object[] {
+            "缺陷",
+            "不缺陷"});
+            this.txtflag1.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_Properties_EditValueChanged);
+            this.txtflag1.Size = new System.Drawing.Size(447, 21);
+            this.txtflag1.TabIndex = 20;
+            // 
             // frmsd_xsjhnrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 348);
+            this.Controls.Add(this.txtflag1);
+            this.Controls.Add(this.txtflag2);
             this.Controls.Add(this.txtxssj);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtqxnr);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.txtflag2);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.txtlat);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.txtlng);
             this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.txtflag1);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.txtgtbh);
             this.Controls.Add(this.labelControl2);
@@ -232,13 +243,13 @@
             this.Text = "巡视计划内容";
             ((System.ComponentModel.ISupportInitialize)(this.txtgtid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtgtbh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlng.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlat.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtqxnr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtxssj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtflag1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,18 +262,18 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtgtbh;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtflag1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.TextEdit txtlng;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txtlat;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit txtflag2;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.TextEdit txtqxnr;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.DateEdit txtxssj;
+        private DevExpress.XtraEditors.ComboBoxEdit txtflag2;
+        private DevExpress.XtraEditors.ComboBoxEdit txtflag1;
     }
 }
