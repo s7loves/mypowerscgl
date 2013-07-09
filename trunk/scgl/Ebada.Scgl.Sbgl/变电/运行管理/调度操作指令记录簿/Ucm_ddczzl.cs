@@ -56,7 +56,7 @@ namespace Ebada.Scgl.Sbgl
         private void InitGridviewColumn()
         {
             gridView1.Columns["OrgCode"].Visible = false;
-            gridView1.Columns["c1"].Visible = false;
+            //gridView1.Columns["c1"].Visible = false;
             gridView1.Columns["c2"].Visible = false;
             gridView1.Columns["c3"].Visible = false;
 
