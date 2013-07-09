@@ -159,10 +159,16 @@ namespace Ebada.Scgl.Yxgl {
             sd_gt gt= Client.ClientHelper.PlatformSqlMap.GetOne<sd_gt>("where gth='"+gth+"'");
             if (gt == null)
                 return;
-            this.txtgtxs.EditValue = gt.gtModle;
-            rowData.gzwz = gt.gtModle;
-            this.txtjdxs.EditValue = gt.c2;
-            rowData.sbmc = gt.c2;
+            if (string.IsNullOrEmpty(rowData.gzwz))
+            {
+                this.txtgtxs.EditValue = gt.gtModle;
+                rowData.gzwz = gt.gtModle;
+            }
+            if (string.IsNullOrEmpty(rowData.sbmc))
+            {
+                this.txtjdxs.EditValue = gt.c2;
+                rowData.sbmc = gt.c2;
+            }
         }
 
         private void spescz_TextChanged(object sender, EventArgs e)
