@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Sbgl {
                 PS_Image image = frm.GetPS_Image();
                 if (frm.GetImage() != null)
                 {
-                    if (sdsb.c3 == "" || image == null)
+                    if (sdsb.c3 == "" || image == null || sdsb.c3!=image.ImageID)
                     {
                         image = new PS_Image();
                         image.ImageName = "变电设备照片";
