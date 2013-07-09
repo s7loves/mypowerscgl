@@ -336,7 +336,7 @@ namespace Ebada.Scgl.Gis {
                 car.Text = pos.device_name;
                 car.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                 
-                car.ToolTipText = string.Format("名称：{5}\n时间：{0}\n位置：{1}\n电话：{4}\n", pos.gps_realtime_position, pos.adress, pos.lng, pos.lat,pos.phone_number,pos.device_name);
+                car.ToolTipText = string.Format("名称：{5}\n时间：{0}\n位置：{1}\n电话：{4}\n单位：{6}", pos.gps_realtime_position, pos.adress, pos.lng, pos.lat,pos.phone_number,pos.device_name,pos.device_owner);
                 //car.ToolTip.Format.LineAlignment = StringAlignment.Near;
                 car.ToolTip.Format.Alignment = StringAlignment.Near;
             }
