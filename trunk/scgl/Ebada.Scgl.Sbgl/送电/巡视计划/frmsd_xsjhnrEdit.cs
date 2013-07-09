@@ -70,6 +70,21 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void comboBoxEdit1_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtflag1.EditValue as string))
+                return;
+            if (txtflag1.EditValue as string == "缺陷")
+            {
+                this.txtqxnr.Enabled = true;
+            }
+            else
+            {
+                this.txtqxnr.Enabled = false;
+                this.txtqxnr.EditValue = null;
+            }
+        }
+
         
     }
 }

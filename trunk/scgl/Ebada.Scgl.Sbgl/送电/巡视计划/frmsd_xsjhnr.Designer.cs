@@ -37,6 +37,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
+            this.lblxssj = new DevExpress.XtraEditors.LabelControl();
+            this.datexssj = new DevExpress.XtraEditors.DateEdit();
+            this.lblxszt = new DevExpress.XtraEditors.LabelControl();
+            this.cmbxszt = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -44,6 +48,9 @@
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lkueEndGt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueStartGt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxszt.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -75,6 +82,10 @@
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Controls.Add(this.cmbxszt);
+            this.xtraTabPage1.Controls.Add(this.lblxszt);
+            this.xtraTabPage1.Controls.Add(this.datexssj);
+            this.xtraTabPage1.Controls.Add(this.lblxssj);
             this.xtraTabPage1.Controls.Add(this.lkueEndGt);
             this.xtraTabPage1.Controls.Add(this.lblEndGt);
             this.xtraTabPage1.Controls.Add(this.lkueStartGt);
@@ -85,7 +96,7 @@
             // 
             // lkueEndGt
             // 
-            this.lkueEndGt.Location = new System.Drawing.Point(99, 85);
+            this.lkueEndGt.Location = new System.Drawing.Point(99, 75);
             this.lkueEndGt.Name = "lkueEndGt";
             this.lkueEndGt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -95,7 +106,7 @@
             // 
             // lblEndGt
             // 
-            this.lblEndGt.Location = new System.Drawing.Point(28, 85);
+            this.lblEndGt.Location = new System.Drawing.Point(28, 78);
             this.lblEndGt.Name = "lblEndGt";
             this.lblEndGt.Size = new System.Drawing.Size(48, 14);
             this.lblEndGt.TabIndex = 2;
@@ -137,6 +148,48 @@
             this.btnOk.Text = "确定";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // lblxssj
+            // 
+            this.lblxssj.Location = new System.Drawing.Point(28, 124);
+            this.lblxssj.Name = "lblxssj";
+            this.lblxssj.Size = new System.Drawing.Size(48, 14);
+            this.lblxssj.TabIndex = 4;
+            this.lblxssj.Text = "巡视时间";
+            // 
+            // datexssj
+            // 
+            this.datexssj.EditValue = null;
+            this.datexssj.Location = new System.Drawing.Point(99, 121);
+            this.datexssj.Name = "datexssj";
+            this.datexssj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datexssj.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.datexssj.Size = new System.Drawing.Size(417, 21);
+            this.datexssj.TabIndex = 5;
+            this.datexssj.EditValueChanged += new System.EventHandler(this.datexssj_EditValueChanged);
+            // 
+            // lblxszt
+            // 
+            this.lblxszt.Location = new System.Drawing.Point(28, 170);
+            this.lblxszt.Name = "lblxszt";
+            this.lblxszt.Size = new System.Drawing.Size(48, 14);
+            this.lblxszt.TabIndex = 6;
+            this.lblxszt.Text = "巡视状态";
+            // 
+            // cmbxszt
+            // 
+            this.cmbxszt.Location = new System.Drawing.Point(99, 167);
+            this.cmbxszt.Name = "cmbxszt";
+            this.cmbxszt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbxszt.Properties.Items.AddRange(new object[] {
+            "已巡视",
+            "未巡视"});
+            this.cmbxszt.Size = new System.Drawing.Size(417, 21);
+            this.cmbxszt.TabIndex = 7;
+            this.cmbxszt.EditValueChanged += new System.EventHandler(this.cmbxszt_EditValueChanged);
+            // 
             // frmsd_xsjhnr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -156,6 +209,9 @@
             this.xtraTabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lkueEndGt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueStartGt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datexssj.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbxszt.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,6 +227,10 @@
         private DevExpress.XtraEditors.LabelControl lblEndGt;
         private DevExpress.XtraEditors.LookUpEdit lkueStartGt;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblxszt;
+        private DevExpress.XtraEditors.DateEdit datexssj;
+        private DevExpress.XtraEditors.LabelControl lblxssj;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbxszt;
 
     }
 }

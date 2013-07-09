@@ -167,9 +167,13 @@ namespace Ebada.Scgl.Sbgl
                 sql = "where wcbj='完成'";
                 btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
-            else if(checkState=="03")
+            else if (checkState == "03")
             {
                 sql = "where RTrim(Ltrim(qxnr))!=''";
+            }
+            else
+            {
+                sql = "where 0>1";
             }
             gridViewOperation.RefreshData(sql);
         }
