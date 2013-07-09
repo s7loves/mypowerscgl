@@ -15,6 +15,7 @@ namespace Ebada.Scgl.Core
         {
             InitializeComponent();
         }
+        public string  OrgCode;
         public mUser User;
         public string UserName = string.Empty;
         protected override void OnLoad(EventArgs e)
@@ -24,11 +25,19 @@ namespace Ebada.Scgl.Core
         }
         private void InitData()
         {
-            IList<mOrg> orglist = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(" where OrgType=2");
+            //IList<mOrg> orglist = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>(" where OrgType=2");
 
-            gridControl1.DataSource = orglist;
+            //gridControl1.DataSource = orglist;
 
-            gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(gridView1_RowClick);
+            //gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(gridView1_RowClick);
+
+            if (OrgCode != null||OrgCode!=string.Empty)
+            {
+                IList<mUser> urserlist = Client.ClientHelper.PlatformSqlMap.GetList<mUser>(" where OrgCode='" + OrgCode + "'");
+
+                gridControl2.DataSource = urserlist;
+
+            }
 
         }
 
