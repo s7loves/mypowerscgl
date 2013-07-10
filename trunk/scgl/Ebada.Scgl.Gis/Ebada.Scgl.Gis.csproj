@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0D4A51D4-E72E-4423-A308-F35291195DFD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -543,9 +543,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gps\frm_carrierselect.resx">
       <DependentUpon>frm_carrierselect.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gps\frm_SeeCarrier.resx">
       <DependentUpon>frm_SeeCarrier.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Gps\UCgps_carrier.resx">
       <DependentUpon>UCgps_carrier.cs</DependentUpon>
@@ -639,18 +641,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\Desiger\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\frmChooseBD_SBTZ.resx">
       <DependentUpon>frmChooseBD_SBTZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\frmJieXianTu.resx">
       <DependentUpon>frmJieXianTu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\frmMapXlt.resx">
       <DependentUpon>frmMapXlt.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="变电站接线图\UCXianLuTu.resx">
       <DependentUpon>UCXianLuTu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

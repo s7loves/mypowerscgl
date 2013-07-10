@@ -28,11 +28,11 @@ namespace Ebada.Scgl.Gis
 
             this.dateEdit1.DataBindings.Add("EditValue", rowData, "rq");
             this.comboBoxEdit1.DataBindings.Add("EditValue", rowData, "yhdz");
-            this.cobmtq.DataBindings.Add("EditValue", rowData, "gzjk");
+            this.cobmtq.DataBindings.Add("EditValue", rowData, "tqid");
             this.comboBoxEdit3.DataBindings.Add("EditValue", rowData, "djr");
             this.comboBoxEdit4.DataBindings.Add("EditValue", rowData, "clr");
             this.textEdit2.DataBindings.Add("EditValue", rowData, "lxfs");
-
+            this.comboBoxEdit5.DataBindings.Add("EditValue", rowData, "gzjk");
             popTq.Bounds = cobmtq.Bounds;
             cobmtq.Hide();
             popTq.Parent = cobmtq.Parent;
