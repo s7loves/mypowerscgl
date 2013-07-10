@@ -185,14 +185,16 @@ namespace Ebada.Scgl.Sbgl
 
                 foreach (sd_xsjhnr jhnr in (List<sd_xsjhnr>)frm.RowData)
                 {
-                    if (Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where ID='" + jhnr.ID + "'") == null)
+                    if (Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where ID='" + jhnr.ID + "'") != null)
                     {
-                        if (Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where gtbh='" + jhnr.gtbh + "'") == null)
-                        {
-                            Client.ClientHelper.PlatformSqlMap.Create<sd_xsjhnr>(jhnr);
-                        }
+                        Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(jhnr);
                     }
-                        
+                    sd_xsjhnr tempjhnr = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where gtbh='" + jhnr.gtbh + "'");
+                    if (tempjhnr != null)
+                    {
+                        Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(tempjhnr);
+                    }
+                    Client.ClientHelper.PlatformSqlMap.Create<sd_xsjhnr>(jhnr);
                 }
                 RefreshData();
                 
