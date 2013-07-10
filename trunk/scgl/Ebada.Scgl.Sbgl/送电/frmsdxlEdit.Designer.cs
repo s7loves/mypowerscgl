@@ -285,6 +285,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit8.Size = new System.Drawing.Size(163, 21);
             this.spinEdit8.TabIndex = 24;
+            this.spinEdit8.Visible = false;
             // 
             // spinEdit7
             // 
@@ -307,6 +308,7 @@
             this.labelControl25.Size = new System.Drawing.Size(103, 14);
             this.labelControl25.TabIndex = 23;
             this.labelControl25.Text = "无功供电量(kvar.h)";
+            this.labelControl25.Visible = false;
             // 
             // labelControl24
             // 
@@ -329,6 +331,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit5.Size = new System.Drawing.Size(198, 21);
             this.spinEdit5.TabIndex = 22;
+            this.spinEdit5.Visible = false;
             // 
             // labelControl22
             // 
@@ -337,6 +340,7 @@
             this.labelControl22.Size = new System.Drawing.Size(76, 14);
             this.labelControl22.TabIndex = 21;
             this.labelControl22.Text = "特征系数(k值)";
+            this.labelControl22.Visible = false;
             // 
             // comboBoxEdit8
             // 
@@ -366,6 +370,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit6.Size = new System.Drawing.Size(163, 21);
             this.spinEdit6.TabIndex = 24;
+            this.spinEdit6.Visible = false;
             // 
             // comboBoxEdit7
             // 
@@ -389,6 +394,7 @@
             this.labelControl23.Size = new System.Drawing.Size(99, 14);
             this.labelControl23.TabIndex = 23;
             this.labelControl23.Text = "有功供电量(kW.h)";
+            this.labelControl23.Visible = false;
             // 
             // spinEdit4
             // 
