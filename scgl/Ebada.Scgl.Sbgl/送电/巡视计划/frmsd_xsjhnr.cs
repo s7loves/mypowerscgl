@@ -104,6 +104,7 @@ namespace Ebada.Scgl.Sbgl
             }
             SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
             SetComboBoxData(lkueEndGt, "Value", "Key", "请选择", "终止杆塔", gtDictypeList);
+            datexssj.EditValue = DateTime.Now;
         }
 
         private void RefershControl()
@@ -284,7 +285,7 @@ namespace Ebada.Scgl.Sbgl
 
         void btnOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(datexssj.EditValue.ToString()))
+            if (datexssj.EditValue==null)
             {
                 MsgBox.ShowWarningMessageBox("请选择巡视时间!");
                 return;
