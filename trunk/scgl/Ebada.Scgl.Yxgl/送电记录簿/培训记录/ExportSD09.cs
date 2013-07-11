@@ -157,6 +157,142 @@ namespace Ebada.Scgl.Yxgl {
             ex.ShowExcel();
            
         }
+
+
+        /// <summary>
+        /// 文档格式预定义好的，只填写内容
+        /// </summary>
+        /// <param name="obj"></param>
+        public static void ExportExcel1(sdjl_09pxjl obj)
+        {
+            //lgm
+            ExcelAccess ex = new ExcelAccess();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            string fname = Application.StartupPath + "\\00记录模板\\送电18培训记录.xls";
+
+            ex.Open(fname);
+            //每行显示文字长度
+            int zc = 58;
+            //与会人员之间的间隔符号
+            char[] jksign = new char[1] { ';' };
+            int row = 1;
+            int col = 1;
+
+            //计算页码
+            int pagecount = 1;
+            //题目
+            string tmstr = Ecommon.Comparestring(obj.tm, "题目") ? "" : "题目：";
+            List<string> tmlist = Ecommon.ResultStrListByPage(tmstr, obj.tm, zc, 4);
+          
+            //内容
+            string nrstr = Ecommon.Comparestring(obj.nr, "内容") ? "" : "内容：";
+            List<string> nrlist = Ecommon.ResultStrListByPage(nrstr, obj.nr, zc, 10);
+            
+            //领导评语
+            string ldpystr = Ecommon.Comparestring(obj.py, "领导检查评语") ? "" : "领导检查评语：";
+            List<string> ldpylist = Ecommon.ResultStrListByPage(ldpystr, obj.py, zc, 3);
+            //页数
+            if (Ecommon.GetPagecount(tmlist.Count + nrlist.Count + ldpylist.Count, 15) > pagecount)
+            {
+                pagecount = Ecommon.GetPagecount(ldpylist.Count + tmlist.Count + nrlist.Count, 15);
+            }
+            
+            //复制空模版
+            if (pagecount > 1)
+            {
+                for (int i = 1; i < pagecount; i++)
+                {
+                    ex.CopySheet(1, i);
+                    ex.ReNameWorkSheet(i + 1, "Sheet" + (i + 1));
+                }
+            }
+            for (int p = 0; p < pagecount; p++)
+            {
+                ex.ActiveSheet(p + 1);
+                //改造后的
+                for (int i = 0; i < 17; i++)
+                {
+
+                    if (p * 17 + i < tmlist.Count)
+                    {
+
+                        string tempstr = tmlist[p * 17 + i];
+                        ex.SetCellValue(tempstr, 7 + i, 1);
+                        if (p == 0 && i == 0)
+                        {
+                            //设定活动内容为粗体
+                            ex.SetFontBold(7 + i, 1, 7 + i, 1, true, 0, 3);
+                        }
+                    }
+                    if (p * 17 + i >= tmlist.Count && p * 17 + i < tmlist.Count + nrlist.Count)
+                    {
+
+                        string tempstr = nrlist[p * 17 + i - tmlist.Count];
+                        ex.SetCellValue(tempstr, 7 + i, 1);
+                        if (p * 17 + i == tmlist.Count)
+                        {
+                            ex.SetFontBold(7 + i, 1, 7 + i, 1, true, 0, 3);
+                        }
+                        //break;
+                    }
+
+                    if (p * 17 + i >= tmlist.Count + nrlist.Count && p * 17 + i < tmlist.Count + nrlist.Count + ldpylist.Count)
+                    {
+
+                        string tempstr = ldpylist[p * 17 + i - tmlist.Count - nrlist.Count];
+
+                        ex.SetCellValue(tempstr, 7 + i, 1);
+                        if (p * 17 + i == tmlist.Count + nrlist.Count)
+                            ex.SetFontBold(7 + i, 1, 7 + i, 1, true, 0, 7);
+                        //break;
+                    }
+                    if (p * 17 + i >= tmlist.Count + nrlist.Count + ldpylist.Count)
+                    {
+                        break;
+                    }
+                }
+                
+            }
+
+            ex.ActiveSheet(1);
+
+            
+            //培训时间
+            ex.SetCellValue(obj.rq.Year.ToString(), 4, 2);
+
+            ex.SetCellValue(obj.rq.Month.ToString(), 4, 4);
+
+            ex.SetCellValue(obj.rq.Day.ToString(), 4, 6);
+            //学习时数
+            string[] ary = obj.xxss.Split(jksign);
+            if (ary.Length >= 1)
+            {
+                ex.SetCellValue(ary[0], 4, 9);
+            }
+            else
+            {
+                ex.SetCellValue("", 4, 9);
+            }
+            if (ary.Length >= 2)
+            {
+                ex.SetCellValue(ary[1], 4, 11);
+            }
+            else
+            {
+                ex.SetCellValue("", 4, 11);
+            }
+            //参加人数
+            ex.SetCellValue(obj.cjrs, 4, 14);
+            //主持人
+            ex.SetCellValue(obj.zcr, 6, 3);
+            ex.SetCellValue(obj.zjr, 6, 9);
+            //会议地点
+            //ex.SetCellValue(obj.hydd, 6, 14);
+
+
+            ex.ShowExcel();
+
+        }
       
     }
 }
