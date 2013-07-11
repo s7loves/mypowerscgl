@@ -31,9 +31,9 @@ namespace Ebada.Scgl.Yxgl {
             int row = 1;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(nrList.Count, 16))
+            if (pageindex < Ecommon.GetPagecount(nrList.Count, 11))
             {
-                pageindex = Ecommon.GetPagecount(nrList.Count, 16);
+                pageindex = Ecommon.GetPagecount(nrList.Count, 11);
             }
             for (int j = 1; j <= pageindex; j++)
             {
@@ -51,12 +51,12 @@ namespace Ebada.Scgl.Yxgl {
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 16 + 1;
-                int endrow = j * 16;
+                int starow = prepageindex * 11 + 1;
+                int endrow = j * 11;
 
                 if (nrList.Count > endrow)
                 {
-                    for (int i = 0; i < 16; i++)
+                    for (int i = 0; i < 11; i++)
                     {
                         //ex.SetCellValue(nrList[starow - 1 + i].jcrq.Year.ToString(), row + 5 + i, 1);
                         ex.SetCellValue(nrList[starow - 1 + i].cssj.Year.ToString(), row + 5 + i, 1);
