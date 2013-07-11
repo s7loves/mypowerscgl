@@ -425,6 +425,7 @@ namespace Ebada.Scgl.Yxgl
             return result;
 
         }
+
         //间隔日
         private bool IsNeedWarnDays(int beforedays, int spacedays, int afterdatys,DateTime haswritdt,out DateTime dt,out int needtimes)
         {
@@ -498,6 +499,153 @@ namespace Ebada.Scgl.Yxgl
             return result;
 
         }
+
+        private static  bool IsNeedWarnMonth1(int beforedays, int orderdays, int afterdatys, DateTime haswritdt, out DateTime dt, out int needtimes)
+        {
+            // 返回是否需要填写
+            bool result = false;
+            //需要填写日期
+            DateTime resultdt = new DateTime();
+            //需要填写次数
+            int times = 0;
+
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+
+            //1.如果在当前月份已填写则
+            if (haswritdt.Month == month && haswritdt.Year == year)
+            {
+                // 下个月需要填写日期
+                DateTime nextmonth = new DateTime(year, (month + 1), orderdays);
+                // 下个月填写日距离现在天数
+                int days = new TimeSpan(nextmonth.Ticks - DateTime.Now.Ticks).Days;
+
+                //1.1下个月需填写的已在提前提醒范围内
+                if (days <= beforedays)
+                {
+                    times = 1;
+                    resultdt = nextmonth;
+                    result = true;
+                }
+            }
+            else
+            {
+                //根据上次填写时间计算需要填写次数
+                int monthtimes = (DateTime.Now.Year - haswritdt.Year) * 12 + (month - haswritdt.Month);
+                //只有当前月未填写
+                if (monthtimes == 1)
+                {
+                    //当前日期在本月提醒范围内
+                    if ((orderdays - beforedays) <= day && day <= (orderdays + afterdatys))
+                    {
+                        times = 1;
+                        resultdt = new DateTime(year, month, orderdays);
+                        result = true;
+                    }
+
+                    // 下个月需要填写日期
+                    DateTime nextmonth = new DateTime(year, (month + 1), orderdays);
+                    // 下个月填写日距离现在天数
+                    int days = new TimeSpan(nextmonth.Ticks - DateTime.Now.Ticks).Days;
+
+                    //下个月需填写的已在提前提醒范围内
+                    if (days <= beforedays)
+                    {
+                        times = times + 1;
+                        resultdt = nextmonth;
+                        result = true;
+                    }
+
+                }//有多月未填写 此时只提醒本月要填写的日期，不去关注下个月日期
+                else
+                {
+                    times = monthtimes;
+                    resultdt = new DateTime(year, month, orderdays);
+                    result = true;
+                }
+
+            }
+
+
+
+            needtimes = times;
+            dt = resultdt;
+            return result;
+
+        }
+        private static  bool IsNeedWarnDays1(int beforedays, int spacedays, int afterdatys, DateTime haswritdt, out DateTime dt, out int needtimes)
+        {
+            spacedays = spacedays + 1;
+            // 返回是否需要填写
+            bool result = false;
+            //需要填写日期
+            DateTime resultdt = new DateTime();
+            //需要填写次数
+            int times = 0;
+
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+
+            //
+            int days = new TimeSpan(DateTime.Now.Ticks - haswritdt.Ticks).Days;
+
+            //看需要填写几次
+            times = days / spacedays;
+            // 可能有一次未填写
+            if (times == 0)
+            {
+                //下次要填写日期
+                DateTime nextday = haswritdt.AddDays(spacedays);
+                int cha = new TimeSpan(nextday.Ticks - DateTime.Now.Ticks).Days;
+                //下次要填写日期已在提醒范围内
+                if (cha <= beforedays)
+                {
+                    times = 1;
+                    resultdt = nextday;
+                    result = true;
+                }
+            }//  至少有一次未填写
+            else if (times == 1)
+            {
+                // 本次要填写日期
+                DateTime currtenday = haswritdt.AddDays(spacedays);
+                int cha = new TimeSpan(DateTime.Now.Ticks - currtenday.Ticks).Days;
+                //本次要填写日期还在延时提醒范围内
+                if (cha <= afterdatys)
+                {
+                    times = 1;
+                    resultdt = currtenday;
+                    result = true;
+                }
+                //下次要填写日期
+                DateTime nextday = currtenday.AddDays(spacedays);
+                int nextcha = new TimeSpan(nextday.Ticks - DateTime.Now.Ticks).Days;
+                //下次提醒已在提前提醒范围内
+                if (nextcha <= beforedays)
+                {
+                    if (result)
+                    {
+                        times = times + 1;
+                    }
+                    resultdt = nextday;
+                    result = true;
+                }
+
+            }// 至少有两次未填写
+            else
+            {
+                int cha = days % spacedays;
+                //最近一次需要填写日期
+                resultdt = DateTime.Now.AddDays(-cha);
+                result = true;
+            }
+            dt = resultdt;
+            needtimes = times;
+            return result;
+
+        }
         /// <summary>
         /// 初始化列,
         /// </summary>
@@ -511,8 +659,111 @@ namespace Ebada.Scgl.Yxgl
             string aa = string.Empty;
         }
 
-      
-       
+        public static bool IsNeedTX( mOrg userorg)
+        {
+            //找到所有启用的提醒设置
+            bool result=false;
+            List<WarnRecord> list = new List<WarnRecord>();
+
+            string sqlwarn = "where IsUse=1";
+            
+            IList<WarnSet> wslist = MainHelper.PlatformSqlMap.GetList<WarnSet>(sqlwarn);
+
+            DateTime dtnow = DateTime.Now;
+            int index = 0;
+            foreach (WarnSet ws in wslist)
+            {
+                //如果此提醒设置对该单位不起作用，则不用计算
+
+                if (userorg != null && !ws.BYScol1.Contains(userorg.OrgCode))
+                {
+                    break;
+                }
+                index++;
+                string tablename = ws.TableName;
+                string field = ws.FieldName;
+                string orgfield = ws.OrgField;
+                string sql = string.Empty;
+                sql = "  select top(1) " + field + " from " + tablename;
+                if (orgfield != string.Empty && userorg != null)
+                {
+                    sql += "  where " + orgfield + " ='" + userorg.OrgCode + "'";
+                }
+                sql += " order by cast(" + field + "  as datetime)  desc";
+
+                DateTime lastneeddate = new DateTime();
+                int needtimes = 0;
+
+
+
+                try
+                {
+                    //查找符合条件的日期最后值
+
+                    object dt = MainHelper.PlatformSqlMap.GetObject("GetWarnResultBySqlWhere", sql);
+                    DateTime resdt = DateTime.Parse(dt.ToString());
+                    //每月类型
+                    if (ws.WarnType == frmWarnSetEdit.WarinType1)
+                    {
+                        if (IsNeedWarnMonth1(ws.BeforeDays, ws.OrderDays, ws.AfterDays, resdt, out lastneeddate, out needtimes))
+                        {
+
+                            result = true;
+                            return result;
+                        }
+                    }
+                    else
+                    {
+                        if (IsNeedWarnDays1(ws.BeforeDays, ws.SpaceDays, ws.AfterDays, resdt, out lastneeddate, out needtimes))
+                        {
+                            result = true;
+                            return result;
+                           
+
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+
+            }
+            
+            if (!result)
+            {
+                result = HasSYdata(userorg);
+            }
+
+            return result;
+        }
+        private static   bool  HasSYdata( mOrg userorg)
+        {
+            bool result = false;
+            int index = 0;
+            string sql = string.Empty;
+            if (userorg != null)
+            {
+                sql = " where OrgID='" + userorg.OrgCode + "'";
+            }
+            IList<PS_aqgj> aqgjlist = ClientHelper.PlatformSqlMap.GetList<PS_aqgj>(sql);
+
+            foreach (PS_aqgj aqgj in aqgjlist)
+            {
+                index++;
+                string sqlsy = " where sbID='" + aqgj.sbID + "' order by xcsyrq desc";
+                IList<PJ_14aqgjsy> aqgjsylist = ClientHelper.PlatformSqlMap.GetList<PJ_14aqgjsy>(sqlsy);
+                if (aqgjsylist.Count > 0 && aqgjsylist[0].xcsyrq > DateTime.Now)
+                {
+                    result = true;
+                    break;
+
+                }
+            }
+            return result;
+
+        }
        
     }
 }
