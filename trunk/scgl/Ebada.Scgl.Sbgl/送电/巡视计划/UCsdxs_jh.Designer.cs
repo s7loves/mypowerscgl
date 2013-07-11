@@ -35,7 +35,6 @@
             this.btUpdates = new DevExpress.XtraBars.BarButtonItem();
             this.btDeletes = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
-            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -44,11 +43,14 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.repositoryItemCheckedComboBoxEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
@@ -75,8 +77,10 @@
             this.btRefresh,
             this.barEditItem1,
             this.btClose,
-            this.btFind});
-            this.barManager1.MaxItemId = 13;
+            this.btFind,
+            this.barButtonItem1,
+            this.btExport});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckedComboBoxEdit1,
             this.repositoryItemCheckedComboBoxEdit2,
@@ -95,7 +99,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btUpdates),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDeletes),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport)});
             this.bar1.Text = "Tools";
             // 
             // btAdds
@@ -133,14 +138,6 @@
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // btFind
-            // 
-            this.btFind.Caption = "查询";
-            this.btFind.Id = 12;
-            this.btFind.ImageIndex = 5;
-            this.btFind.Name = "btFind";
-            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -165,7 +162,7 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(920, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(920, 24);
             // 
             // barDockControlBottom
             // 
@@ -176,14 +173,14 @@
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 423);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 422);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(920, 23);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 423);
+            this.barDockControlRight.Location = new System.Drawing.Point(920, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
             // barEditItem1
             // 
@@ -195,6 +192,14 @@
             // 
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // btFind
+            // 
+            this.btFind.Caption = "查询";
+            this.btFind.Id = 12;
+            this.btFind.ImageIndex = 5;
+            this.btFind.Name = "btFind";
+            this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // repositoryItemCheckedComboBoxEdit1
             // 
@@ -220,11 +225,11 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 23);
+            this.gridControl1.Location = new System.Drawing.Point(0, 24);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(920, 423);
+            this.gridControl1.Size = new System.Drawing.Size(920, 422);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -239,6 +244,20 @@
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 13;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 14;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // UCsdxs_jh
             // 
@@ -284,5 +303,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraBars.BarButtonItem btClose;
         private DevExpress.XtraBars.BarButtonItem btFind;
+        private DevExpress.XtraBars.BarSubItem btExport;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
