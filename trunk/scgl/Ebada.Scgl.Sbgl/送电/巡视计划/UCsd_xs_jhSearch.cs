@@ -141,5 +141,10 @@ namespace Ebada.Scgl.Sbgl
             uCsdxs_jh1.Playback();
         }
 
+        private void UCsd_xs_jhSearch_Load(object sender, EventArgs e)
+        {
+            btPlayback.Visible = false;
+        }
+
     }
 }
