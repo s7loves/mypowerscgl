@@ -31,6 +31,7 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lkuewcbj = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.btPlayback = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.checkcomLine = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -45,7 +46,6 @@
             this.uCsdxs_jhnr1 = new Ebada.Scgl.Sbgl.UCsdxs_jhnr();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.uCsd_xsxm1 = new Ebada.Scgl.Sbgl.UCsd_xsxm();
-            this.btPlayback = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -103,6 +103,15 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lkuewcbj.Size = new System.Drawing.Size(100, 21);
             this.lkuewcbj.TabIndex = 7;
+            // 
+            // btPlayback
+            // 
+            this.btPlayback.Location = new System.Drawing.Point(646, 30);
+            this.btPlayback.Name = "btPlayback";
+            this.btPlayback.Size = new System.Drawing.Size(98, 23);
+            this.btPlayback.TabIndex = 6;
+            this.btPlayback.Text = "巡视轨迹回放";
+            this.btPlayback.Click += new System.EventHandler(this.btPlayback_Click);
             // 
             // btnSearch
             // 
@@ -236,15 +245,6 @@
             this.uCsd_xsxm1.Size = new System.Drawing.Size(772, 238);
             this.uCsd_xsxm1.TabIndex = 0;
             // 
-            // btPlayback
-            // 
-            this.btPlayback.Location = new System.Drawing.Point(646, 30);
-            this.btPlayback.Name = "btPlayback";
-            this.btPlayback.Size = new System.Drawing.Size(98, 23);
-            this.btPlayback.TabIndex = 6;
-            this.btPlayback.Text = "巡视轨迹回放";
-            this.btPlayback.Click += new System.EventHandler(this.btPlayback_Click);
-            // 
             // UCsd_xs_jhSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -252,6 +252,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "UCsd_xs_jhSearch";
             this.Size = new System.Drawing.Size(779, 580);
+            this.Load += new System.EventHandler(this.UCsd_xs_jhSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
