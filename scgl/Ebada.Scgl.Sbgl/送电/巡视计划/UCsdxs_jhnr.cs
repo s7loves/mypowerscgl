@@ -50,7 +50,10 @@ namespace Ebada.Scgl.Sbgl
         {
             if (issearch)
             {
-                bar1.Visible = false;
+                //bar1.Visible = false;
+                btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnDeletes.Visibility = DevExpress.XtraBars.BarItemVisibility.Never; 
             }
             if (ishidebtAdds)
             {
