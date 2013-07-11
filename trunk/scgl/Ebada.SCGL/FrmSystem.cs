@@ -43,6 +43,7 @@ namespace Ebada.SCGL {
             pictureEdit1.SizeChanged += new EventHandler(pictureEdit1_SizeChanged);
             labdate.Parent = pictureEdit1;
             labTime.Parent = pictureEdit1;
+            lagtx.Parent = pictureEdit1;
             labdate2.Parent = pictureEdit1;
             labSet.Parent = pictureEdit1;
             labExit.Parent = pictureEdit1;
@@ -454,14 +455,7 @@ namespace Ebada.SCGL {
 
         private void lagtx_Click(object sender, EventArgs e)
         {
-            FormBase frm = new FormBase();
-            frm.Text = "提醒记录";
-            Ebada.Scgl.Yxgl.UCWarnRecord warnrecord = new Ebada.Scgl.Yxgl.UCWarnRecord();
-            frm.Controls.Add(warnrecord);
-            warnrecord.Dock = System.Windows.Forms.DockStyle.Fill;
-            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            frm.Width = 600;
-            frm.Height = 500;
+            Ebada.Scgl.Yxgl.FrmWarnRecord frm = new Ebada.Scgl.Yxgl.FrmWarnRecord();
             frm.ShowDialog();
         }
 
