@@ -19,6 +19,7 @@ using System.Reflection;
 using Ebada.Scgl.Run;
 using Ebada.Core;
 using Ebada.SCGL.Properties;
+using Ebada.UI.Base;
 namespace Ebada.SCGL {
     //public partial class FrmSystem : DevExpress.XtraEditors.XtraForm
     public partial class FrmSystem : Form {
@@ -111,6 +112,22 @@ namespace Ebada.SCGL {
                 allowClose = true;
                 this.Close();
             }
+            try
+            {
+                if (Ebada.Scgl.Yxgl.UCWarnRecordPage.IsNeedTX(MainHelper.UserOrg))
+                {
+                    lagtx.Visible = true;
+                }
+                else
+                {
+                    lagtx.Visible = true;
+                }
+            }
+            catch 
+            {
+                
+            }
+            
         }
         protected override void OnClosing(CancelEventArgs e) {
             e.Cancel = !allowClose;
@@ -314,8 +331,22 @@ namespace Ebada.SCGL {
             labbuttom.Text = mdule.IsCores;
         }
 
+        int tempindex = 0;
         private void timer1_Tick(object sender, EventArgs e) {
             labTime.Text = DateTime.Now.ToString("HH:mm");
+            if (lagtx.Visible)
+            {
+                tempindex++;
+                if (tempindex==10)
+                {
+                    tempindex = 0;
+                    lagtx.Text = "";
+                }
+                else
+                {
+                    lagtx.Text = "提醒";
+                }
+            }
         }
         //显示农历日期
         string GetCNDate() {
@@ -420,6 +451,21 @@ namespace Ebada.SCGL {
 
 
         #endregion
+
+        private void lagtx_Click(object sender, EventArgs e)
+        {
+            FormBase frm = new FormBase();
+            frm.Text = "提醒记录";
+            Ebada.Scgl.Yxgl.UCWarnRecord warnrecord = new Ebada.Scgl.Yxgl.UCWarnRecord();
+            frm.Controls.Add(warnrecord);
+            warnrecord.Dock = System.Windows.Forms.DockStyle.Fill;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            frm.Width = 600;
+            frm.Height = 500;
+            frm.ShowDialog();
+        }
+
+       
 
     }
 }

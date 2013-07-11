@@ -50,6 +50,7 @@
             this.labTime = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lagtx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picback.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbctSystem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -345,12 +346,29 @@
             this.panelControl1.Size = new System.Drawing.Size(693, 26);
             this.panelControl1.TabIndex = 27;
             // 
+            // lagtx
+            // 
+            this.lagtx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lagtx.BackColor = System.Drawing.Color.Transparent;
+            this.lagtx.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lagtx.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.lagtx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lagtx.Location = new System.Drawing.Point(706, 64);
+            this.lagtx.Name = "lagtx";
+            this.lagtx.Size = new System.Drawing.Size(49, 20);
+            this.lagtx.TabIndex = 28;
+            this.lagtx.Text = "提醒";
+            this.lagtx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lagtx.Visible = false;
+            this.lagtx.Click += new System.EventHandler(this.lagtx_Click);
+            // 
             // FrmSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(910, 530);
+            this.Controls.Add(this.lagtx);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.labAbout);
             this.Controls.Add(this.labbuttom);
@@ -405,6 +423,7 @@
         private DevExpress.XtraEditors.LabelControl labTime;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.Label lagtx;
 
 
     }
