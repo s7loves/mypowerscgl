@@ -70,7 +70,7 @@ namespace Ebada.Scgl.Yxgl {
             }
             else
             {
-                ex.SetCellValue(obj.sbName+obj.sbCode, 5, 4);
+                ex.SetCellValue(obj.sbCode, 5, 4);
             }
           
             ex.SetCellValue(obj.syzq.ToString()+"年", 5, 5);

@@ -22,13 +22,14 @@ namespace Ebada.Scgl.Yxgl {
             int col = 1;
             int row_nr = 9;
             int row_num = 36 * 2;
-            List<string> strpy = Ecommon.ResultStrList("领导检查评语：" + jl.py, row_num);
+            //List<string> strpy = Ecommon.ResultStrList("领导检查评语：" + jl.py, row_num);
             List<string> strjs = Ecommon.ResultStrList("记事：" + jl.js, row_num);
             int nrpage = Ecommon.GetPagecount(nrList.Count, 9);
-            int p = Math.Max(Ecommon.GetPagecount(strpy.Count + strjs.Count, 5), nrpage);
+            //int p = Math.Max(Ecommon.GetPagecount(strpy.Count + strjs.Count, 5), nrpage);
+            int p = Math.Max(Ecommon.GetPagecount( strjs.Count, 5), nrpage);
             System.Collections.ArrayList objlist = new System.Collections.ArrayList();
             objlist.Add(strjs);
-            objlist.Add(strpy);
+            //objlist.Add(strpy);
             List<string> allList = Ecommon.GetCollList(objlist);
             
             for (int j = 1; j <= p; j++) {
