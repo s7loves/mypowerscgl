@@ -492,26 +492,26 @@ namespace Ebada.Scgl.Gis.变电站接线图
                         frmsbtz.RowData = rowData;
                         if (frmsbtz.ShowDialog() == DialogResult.OK)
                         {
-                            rowData = frmsbtz.RowData as BD_SBTZ;
+                            //rowData = frmsbtz.RowData as BD_SBTZ;
 
-                            PS_Image image = frmsbtz.GetPS_Image();
-                            if (frmsbtz.GetImage() != null) {
-                                if (rowData.c3 == "" || image == null) {
-                                    image = new PS_Image();
-                                    image.ImageName = "变电设备照片";
-                                    image.ImageType = "bd";
-                                    image.ImageData = (byte[])frmsbtz.GetImage();
-                                    rowData.c3 = image.ImageID;
-                                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, rowData, null);
-                                } else {
+                            //PS_Image image = frmsbtz.GetPS_Image();
+                            //if (frmsbtz.GetImage() != null) {
+                            //    if (rowData.c3 == "" || image == null) {
+                            //        image = new PS_Image();
+                            //        image.ImageName = "变电设备照片";
+                            //        image.ImageType = "bd";
+                            //        image.ImageData = (byte[])frmsbtz.GetImage();
+                            //        rowData.c3 = image.ImageID;
+                            //        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(image, rowData, null);
+                            //    } else {
 
-                                    Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { rowData, image }, null);
-                                }
+                            //        Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(null, new object[] { rowData, image }, null);
+                            //    }
 
-                            } else {
-                                Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(rowData);
+                            //} else {
+                            //    Client.ClientHelper.PlatformSqlMap.Update<BD_SBTZ>(rowData);
 
-                            }
+                            //}
                         }
                     }
                 }
