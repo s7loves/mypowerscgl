@@ -59,7 +59,11 @@ namespace Ebada.Scgl.Sbgl
         {
             if (isSearch)
             {
-                this.bar1.Visible = false;
+                //this.bar1.Visible = false;
+                this.btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                this.btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                this.btDeletes.Visibility = DevExpress.XtraBars.BarItemVisibility.Never; 
+
             }
         }
         private void initImageList() {
