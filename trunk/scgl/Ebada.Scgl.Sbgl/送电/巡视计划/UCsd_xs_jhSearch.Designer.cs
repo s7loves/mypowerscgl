@@ -111,6 +111,7 @@
             this.btPlayback.Size = new System.Drawing.Size(98, 23);
             this.btPlayback.TabIndex = 6;
             this.btPlayback.Text = "巡视轨迹回放";
+            this.btPlayback.Visible = false;
             this.btPlayback.Click += new System.EventHandler(this.btPlayback_Click);
             // 
             // btnSearch

@@ -257,9 +257,11 @@ namespace Ebada.Scgl.Sbgl
                 return;
             }
             sd_xsjh jh = gridView1.GetFocusedRow() as sd_xsjh;
-            if (jh != null) {
+            if (jh != null)
+            {
                 int ncount = ClientHelper.PlatformSqlMap.GetRowCount<sd_xsgj>("where rwid='" + jh.ID + "'");
-                if (ncount == 0) {
+                if (ncount == 0)
+                {
 
                     MsgBox.ShowTipMessageBox("无巡视轨迹信息，不能回放。");
                     return;
