@@ -189,7 +189,7 @@ namespace Ebada.Scgl.Sbgl
                     {
                         Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(jhnr);
                     }
-                    sd_xsjhnr tempjhnr = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where gtbh='" + jhnr.gtbh + "' and id="+parentid+"'");
+                    sd_xsjhnr tempjhnr = Client.ClientHelper.PlatformSqlMap.GetOne<sd_xsjhnr>("where gtbh='" + jhnr.gtbh + "' and parentid='"+parentid+"'");
                     if (tempjhnr != null)
                     {
                         Client.ClientHelper.PlatformSqlMap.Delete<sd_xsjhnr>(tempjhnr);
