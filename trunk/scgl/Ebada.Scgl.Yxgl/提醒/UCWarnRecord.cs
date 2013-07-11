@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
     /// <summary>
     /// 
     /// </summary>
-    [ToolboxItem(false)]
+    //[ToolboxItem(false)]
     public partial class UCWarnRecord : DevExpress.XtraEditors.XtraUserControl
     {
         private GridViewOperation<WarnRecord> gridViewOperation;
