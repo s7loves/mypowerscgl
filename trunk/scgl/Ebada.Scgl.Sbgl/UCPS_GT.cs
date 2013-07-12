@@ -426,6 +426,43 @@ btDelete2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btRefresh.PerformClick();
             }
         }
+        private bool checktq(out PS_tq pstq) {
+            pstq = null;
+            if (ParentObj == null) return false;
+            
+            if (ParentObj.LineVol != "0.4") {
+                MsgBox.ShowWarningMessageBox("此功能只对0.4kV线路有效！");
+                return false;
+            }
+            string linecode = ParentObj.LineCode.Substring(0, ParentObj.LineCode.Length - 3);
+            PS_tq tq = ClientHelper.PlatformSqlMap.GetOne<PS_tq>("where tqcode='" + linecode + "'");
+            if (tq == null) {
+                MsgBox.ShowTipMessageBox(string.Format("没有找到台区号为｛{0}｝的台区，请重新选择一级线路！", linecode));
+                return false;
+            }
+            pstq = tq;
+            return true;
+        }
+        private void btAddM4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            PS_tq tq = null;
+            if (!checktq(out tq)) return;
+            frmgtsbEditM dlg = new frmgtsbEditM();
+            dlg.pstq = tq;
+            dlg.ShowDialog(this);
+        }
+
+        private void btDelete4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            PS_tq tq = null;
+            if (!checktq(out tq)) return;
+            if (MsgBox.ShowAskMessageBox("警告!此操作将删除["+tq.tqName+"]台区下所有杆塔的附属设备，确认吗？") == DialogResult.OK) {
+                int count = ClientHelper.PlatformSqlMap.GetRowCount<PS_xl>("where linevol='0.4' and linecode like '" + tq.tqCode + "%'");
+                if (count > 0) {
+                    string sql = string.Format(" where gtid in(select gtid from ps_gt where linecode in (select linecode from ps_xl where linevol='0.4' and linecode like '{0}%'))", tq.tqCode);
+                    count = ClientHelper.PlatformSqlMap.DeleteByWhere<PS_gtsb>(sql);
+                    MsgBox.ShowTipMessageBox(string.Format("共删除{0}条记录.",count));
+                }
+            }
+        }
       
     }
 }
