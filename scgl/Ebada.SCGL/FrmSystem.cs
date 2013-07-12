@@ -338,13 +338,15 @@ namespace Ebada.SCGL {
             if (lagtx.Visible)
             {
                 tempindex++;
-                if (tempindex==10)
+                if (tempindex==15)
                 {
                     tempindex = 0;
                     lagtx.Text = "";
+                    lagtx.ImageIndex = -1;
                 }
                 else
                 {
+                    lagtx.ImageIndex = 1;
                     lagtx.Text = "提醒";
                 }
             }
