@@ -60,6 +60,8 @@
             this.txtVol = new DevExpress.XtraEditors.ComboBoxEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.lblqxzt = new DevExpress.XtraEditors.LabelControl();
+            this.cmbqxzt = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueOrg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueLine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejhsj.Properties.VistaTimeProperties)).BeginInit();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtxslb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsxr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVol.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbqxzt.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrg
@@ -365,11 +368,34 @@
             this.simpleButton2.Text = "...";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
+            // lblqxzt
+            // 
+            this.lblqxzt.Location = new System.Drawing.Point(33, 330);
+            this.lblqxzt.Name = "lblqxzt";
+            this.lblqxzt.Size = new System.Drawing.Size(48, 14);
+            this.lblqxzt.TabIndex = 42;
+            this.lblqxzt.Text = "缺陷状况";
+            // 
+            // cmbqxzt
+            // 
+            this.cmbqxzt.Location = new System.Drawing.Point(110, 330);
+            this.cmbqxzt.Name = "cmbqxzt";
+            this.cmbqxzt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbqxzt.Properties.Items.AddRange(new object[] {
+            "一般",
+            "紧急",
+            "重大"});
+            this.cmbqxzt.Size = new System.Drawing.Size(285, 21);
+            this.cmbqxzt.TabIndex = 43;
+            // 
             // frmsdxs_jh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 395);
+            this.Controls.Add(this.cmbqxzt);
+            this.Controls.Add(this.lblqxzt);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.txtVol);
@@ -428,6 +454,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtxslb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsxr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVol.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbqxzt.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,5 +494,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit txtVol;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.LabelControl lblqxzt;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbqxzt;
     }
 }
