@@ -51,6 +51,7 @@
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.lagtx = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picback.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbctSystem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -353,14 +354,23 @@
             this.lagtx.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lagtx.Font = new System.Drawing.Font("Tahoma", 8F);
             this.lagtx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lagtx.Location = new System.Drawing.Point(706, 64);
+            this.lagtx.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lagtx.ImageList = this.imageList1;
+            this.lagtx.Location = new System.Drawing.Point(695, 64);
             this.lagtx.Name = "lagtx";
-            this.lagtx.Size = new System.Drawing.Size(49, 20);
+            this.lagtx.Size = new System.Drawing.Size(54, 20);
             this.lagtx.TabIndex = 28;
             this.lagtx.Text = "提醒";
-            this.lagtx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lagtx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lagtx.Visible = false;
             this.lagtx.Click += new System.EventHandler(this.lagtx_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "tx.png");
+            this.imageList1.Images.SetKeyName(1, "alert_48.png");
             // 
             // FrmSystem
             // 
@@ -424,6 +434,7 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Label lagtx;
+        private System.Windows.Forms.ImageList imageList1;
 
 
     }
