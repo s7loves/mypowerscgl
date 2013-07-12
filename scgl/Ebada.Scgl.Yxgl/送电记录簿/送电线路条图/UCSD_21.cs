@@ -162,6 +162,8 @@ namespace Ebada.Scgl.Yxgl {
 
         }
 
+        
+
         public static int ExportToExcel(string title, string dw, sdjl_21 pj17) {
             string fname = Application.StartupPath + "\\00记录模板\\送电21线路条图.xls";
             float fxstart = 0, fystart = 0, fwidth = 0, fheight = 0;
@@ -175,6 +177,7 @@ namespace Ebada.Scgl.Yxgl {
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
             sd_xl xl = MainHelper.PlatformSqlMap.GetOne<sd_xl>(" where LineCode='" + pj17.LineCode + "'");
+            Dictionary<int, NZLength> Dic = new Dictionary<int, NZLength>();
             try {
                 if (xl == null) {
                     MsgBox.ShowWarningMessageBox("数据出错，没找到线路");
@@ -183,6 +186,38 @@ namespace Ebada.Scgl.Yxgl {
                 string strLinexh = xl.WireType;//导线型号
                 sd_gt gtformer = null;
                 IList<sd_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<sd_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
+                int h = 1;
+                int start = -1;
+                int end = -1;
+                bool notStart=true;
+                decimal sums = 0;
+                foreach (sd_gt gt in gtlis)
+                {
+                    if (gt.gtModle != "直线杆")
+                    {
+                        if (notStart)
+                        {
+                            start = h;
+                            notStart = false;
+                        }
+                        sums += gt.gtSpan;
+                    }
+                    else
+                    {
+                        notStart = true;
+                        end = h - 1;
+                        if (start > 0)
+                        {
+                            Dic.Add(h, new NZLength{Start = start,End = end,Sum = sums});
+                        }
+                        start = -1;
+                        end = -1;
+                        sums = 0;
+                        
+                    }
+                    h++;
+                }
+
                 gtformer = Client.ClientHelper.PlatformSqlMap.GetOne<sd_gt>(" Where gtID='" + xl.ParentGT + "'");
                 gtlis.Insert(0, gtformer);
                 //计算页码
@@ -427,34 +462,9 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     ihang++;
 
-                    //横担
-                    if (hdobj != null && hdobj.Count > 0)
-                    {
+                    //耐张段长度
+                    
 
-                        if (hdobj.Count > hdRowCount)
-                        {
-                            for (j = hdRowCount; j < hdobj.Count; j++)
-                            {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, "A"], xx.Cells[ihang + hdRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                for (int item = 0; item < 29; item += 2)
-                                {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
-
-                            hdRowCount = hdobj.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + hdRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < hdobj.Count; j++)
-                        {
-                            ex.SetCellValue(hdobj[j].ToString(), ihang + j, jlie);
-
-                        }
-
-                    }
                     ihang += hdRowCount;
 
                     //累计长度
@@ -717,8 +727,61 @@ namespace Ebada.Scgl.Yxgl {
                     ihang += jyzRowCount*2 ;
                     jlie += 2;
                 }
-                ex.ActiveSheet(1);
                 
+                foreach (int key in Dic.Keys)
+                {
+                    int page = 1;
+                    int page1 = 1;
+                    NZLength nzlength = Dic[key];
+
+                    int startcolumn = (nzlength.Start + 1) * 2 - 1;
+                    if (startcolumn % 32 == 0)
+                    {
+                        page = startcolumn / 32;
+                    }
+                    else
+                    {
+                        page = startcolumn / 32 + 1;
+                    }
+
+                    ex.ActiveSheet(page);
+                    
+                    int endcolumn = (nzlength.End + 1) * 2 - 1;
+                    if (nzlength.End % 32 == 0)
+                    {
+                        page1 = endcolumn / 32;
+                    }
+                    else
+                    {
+                        page1 = endcolumn / 32 + 1;
+                    }
+                    if (page == page1)
+                    {
+                        ex.ActiveSheet(page);
+                        ex.UnitCells(15, startcolumn % 32, 15, endcolumn % 32);
+                        ex.SetCellValue(nzlength.Sum.ToString(), 15, startcolumn % 32);
+                    }
+                    else
+                    {
+                        ex.ActiveSheet(page);
+                        ex.UnitCells(15, startcolumn % 32, 15, 31);
+                        ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Sum, 15, startcolumn % 32);
+                        for (int tmp = 1; tmp <= page1 - page; tmp++)
+                        {
+                            ex.ActiveSheet(page + tmp);
+                            if (tmp < page1 - page)
+                            {
+                                ex.UnitCells(15, 3,15, 31);
+                                
+                            }
+                            ex.UnitCells(15, 3, 15, (endcolumn+2) % 32);
+                            ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Sum, 15, 3);
+                        }
+                    }
+
+
+                }
+                ex.ActiveSheet(1);
 
             } catch (Exception exmess) {
                 MsgBox.ShowTipMessageBox(exmess.Message.ToString());
@@ -796,5 +859,14 @@ namespace Ebada.Scgl.Yxgl {
                 }
             }
         }
+    }
+
+    public class NZLength
+    {
+        public int Start { get; set; }
+
+        public int End { get; set; }
+
+        public decimal Sum { get; set; }
     }
 }
