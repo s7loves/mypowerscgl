@@ -759,13 +759,13 @@ namespace Ebada.Scgl.Yxgl {
                     {
                         ex.ActiveSheet(page);
                         ex.UnitCells(15, startcolumn % 32, 15, endcolumn % 32);
-                        ex.SetCellValue(nzlength.Sum.ToString(), 15, startcolumn % 32);
+                        ex.SetCellValue(Math.Round(nzlength.Sum/1000,3).ToString(), 15, startcolumn % 32);
                     }
                     else
                     {
                         ex.ActiveSheet(page);
                         ex.UnitCells(15, startcolumn % 32, 15, 31);
-                        ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Sum, 15, startcolumn % 32);
+                        ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + Math.Round(nzlength.Sum/1000,3), 15, startcolumn % 32);
                         for (int tmp = 1; tmp <= page1 - page; tmp++)
                         {
                             ex.ActiveSheet(page + tmp);
@@ -775,7 +775,7 @@ namespace Ebada.Scgl.Yxgl {
                                 
                             }
                             ex.UnitCells(15, 3, 15, (endcolumn+2) % 32);
-                            ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Sum, 15, 3);
+                            ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + Math.Round(nzlength.Sum/1000,3), 15, 3);
                         }
                     }
 
