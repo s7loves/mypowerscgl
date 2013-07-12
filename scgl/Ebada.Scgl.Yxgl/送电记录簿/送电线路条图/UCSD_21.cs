@@ -426,6 +426,37 @@ namespace Ebada.Scgl.Yxgl {
                             ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
                     }
                     ihang++;
+
+                    //横担
+                    if (hdobj != null && hdobj.Count > 0)
+                    {
+
+                        if (hdobj.Count > hdRowCount)
+                        {
+                            for (j = hdRowCount; j < hdobj.Count; j++)
+                            {
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, "A"], xx.Cells[ihang + hdRowCount, "A"]);
+                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                for (int item = 0; item < 29; item += 2)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart + 1 + item]);
+                                    range.Merge(Type.Missing);
+                                }
+                            }
+
+                            hdRowCount = hdobj.Count;
+                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + hdRowCount - 1, 1]);
+                            range.Merge(Type.Missing);
+                        }
+                        for (j = 0; j < hdobj.Count; j++)
+                        {
+                            ex.SetCellValue(hdobj[j].ToString(), ihang + j, jlie);
+
+                        }
+
+                    }
+                    ihang += hdRowCount;
+
                     //累计长度
 
 
@@ -630,30 +661,7 @@ namespace Ebada.Scgl.Yxgl {
                     }
                     ihang++;
 
-                    //横担
-                    if (hdobj != null && hdobj.Count > 0) {
-
-                        if (hdobj.Count > hdRowCount) {
-                            for (j = hdRowCount; j < hdobj.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, "A"], xx.Cells[ihang + hdRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
-
-                            hdRowCount = hdobj.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + hdRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < hdobj.Count; j++) {
-                            ex.SetCellValue(hdobj[j].ToString(), ihang + j, jlie);
-                            
-                        }
-
-                    }
-                    ihang += hdRowCount;
+                  
                     //拉线规格/条数
                     if (lxlist != null && lxlist.Count > 0) {
 
