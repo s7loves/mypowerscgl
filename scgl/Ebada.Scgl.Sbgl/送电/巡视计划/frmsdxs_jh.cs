@@ -23,6 +23,7 @@ namespace Ebada.Scgl.Sbgl
 {
     public partial class frmsdxs_jh : FormBase, IPopupFormEdit
     {
+        public bool isqx = false;
         public frmsdxs_jh()
         {
             InitializeComponent();
@@ -107,6 +108,7 @@ namespace Ebada.Scgl.Sbgl
             this.lkuewcbj.DataBindings.Add("EditValue", rowData, "wcbj");
             this.memoqxnr.DataBindings.Add("EditValue", rowData, "qxnr");
             this.lkueflag.DataBindings.Add("EditValue", rowData, "flag");
+            this.cmbqxzt.DataBindings.Add("EditValue", rowData, "c1");
             //this.txtcjr.DataBindings.Add("EditValue", rowData, "cjr");
             this.txtfbr.DataBindings.Add("EditValue", rowData, "fbr");
             this.datefbsj.DataBindings.Add("EditValue", rowData, "fbsj");
@@ -129,6 +131,17 @@ namespace Ebada.Scgl.Sbgl
 
         private void frmsdxs_jh_Load(object sender, EventArgs e)
         {
+            if (isqx)
+            {
+                lblqxzt.Visible = true;
+                cmbqxzt.Visible = true;
+                isqx = false;
+            }
+            else
+            {
+                lblqxzt.Visible = false;
+                cmbqxzt.Visible = false;
+            }
             
         }
 

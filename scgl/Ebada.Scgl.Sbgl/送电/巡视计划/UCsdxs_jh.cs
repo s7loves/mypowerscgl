@@ -21,6 +21,7 @@ namespace Ebada.Scgl.Sbgl
         private GridViewOperation<sd_xsjh> gridViewOperation;
         public event SendDataEventHandler<sd_xsjh> FocusedRowChanged;
         public event SendDataEventHandler<sd_xsjh> DeleteEvent;
+        private bool isqx = false;
         public bool isSearch = false;
         private string checkState="";
         public string CheckState
@@ -61,7 +62,7 @@ namespace Ebada.Scgl.Sbgl
             {
                 //this.bar1.Visible = false;
                 this.btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                this.btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //this.btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 this.btDeletes.Visibility = DevExpress.XtraBars.BarItemVisibility.Never; 
 
             }
@@ -149,6 +150,11 @@ namespace Ebada.Scgl.Sbgl
                 this.gridView1.Columns["fbsj"].Caption = "发布时间";
                 this.gridView1.Columns["fbsj"].VisibleIndex = m++;
             }
+            if (isqx)
+            {
+                this.gridView1.Columns["c1"].VisibleIndex = m++;
+                this.gridView1.Columns["c1"].Caption = "缺陷状态";
+            }
 
         }
 
@@ -165,19 +171,24 @@ namespace Ebada.Scgl.Sbgl
             if (checkState == "01")
             {
                 sql = "where wcbj='未完成'";
+                isqx = false;
             }
             else if (checkState == "02")
             {
                 sql = "where wcbj='完成'";
                 btAdds.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                isqx = false;
             }
             else if (checkState == "03")
             {
                 sql = "where RTrim(Ltrim(qxnr))!=''";
+                btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                isqx = true;
             }
             else
             {
                 sql = "where 0>1";
+                btUpdates.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
             gridViewOperation.RefreshData(sql);
         }
@@ -214,6 +225,8 @@ namespace Ebada.Scgl.Sbgl
             sd_xsjh xsjh = gridView1.GetFocusedRow() as sd_xsjh;
             frmsdxs_jh frm = new frmsdxs_jh();
             frm.isupdate = true;
+            if (isqx)
+                frm.isqx = isqx;
             frm.RowData = xsjh;
             if (frm.ShowDialog() == DialogResult.OK)
             {
