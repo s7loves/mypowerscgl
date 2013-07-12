@@ -191,7 +191,7 @@ namespace Ebada.Scgl.Yxgl {
             //repositoryItemLookUpEdit2.DataSource = xlList;
             //if (this.Site == null)
             //    InitData();
-
+            treeList1.BestFitColumns();
         }
         /// <summary>
         /// 初始化数据
@@ -323,256 +323,227 @@ namespace Ebada.Scgl.Yxgl {
                 string strfx = "";
                 Excel.Range range;
                 for (i = 1; i < gtlis.Count; i++) {
-                    if ((i + 0.0) % (jmax) == 1) {
+                    try
+                    {
+                        if ((i + 0.0) % (jmax) == 1)
+                        {
 
-                        jlie = 3;
+                            jlie = 3;
+                            ihang = 8;
+                            hdRowCount = 1;
+                            jyzRowCount = 1;
+                            dxRowCount = 1;
+                            btRowCount = 1;
+                            blqRowCount = 1;
+                            kgRowCount = 1;
+                            lxRowCount = 1;
+
+                        }
+                        if (Math.Ceiling((i + 0.0) / (jmax)) > 1)
+                        {
+                            ex.ActiveSheet("Sheet" + Math.Ceiling((i + 0.0) / (jmax)));
+                            xx = wb.Application.Sheets["Sheet" + Math.Ceiling((i + 0.0) / (jmax))] as Microsoft.Office.Interop.Excel.Worksheet;
+
+
+                        }
+                        else
+                        {
+                            ex.ActiveSheet("Sheet1");
+                            xx = wb.Application.Sheets["Sheet1"] as Microsoft.Office.Interop.Excel.Worksheet;
+                        }
+
+                        //ex.SetCellValue(i.ToString(), ihang, jlie);
+
+                        ////杆塔数
+                        PS_gt gtobj = gtlis[i];
+                        //if (gtobj == null)
+                        //{
+                        //    if ((i + 0.0) % (jmax) == 0&&i>1)
+                        //    {
+                        //        //累计长度
+                        //        double sum = 0;
+                        //        for (int item = i; item < i + 15 && item < gtlis.Count; item++)
+                        //        {
+                        //            PS_gt gttemp = gtlis[item];
+                        //            if (gttemp != null)
+                        //            {
+                        //                sum += Convert.ToDouble(gttemp.gtSpan);
+                        //            }
+                        //        }
+                        //        ex.SetCellValue(sum.ToString(), ihang, 2);
+                        //    }
+                        //    jlie += 2;
+                        //    continue;
+
+                        //}
+                        //绝缘子
+                        string strSQL = "select distinct sbModle from PS_gtsb Where  gtID='" + gtobj.gtID + "' ";
+                        if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10)
+                        {
+                            strSQL += "  and (sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
+                        }
+                        else
+                            if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol))
+                            {
+                                strSQL += "  and (sbName like '低压%立瓶%'  or sbName like '低压%茶台%' )";
+                            }
+
+                        IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
+
+                        //变台
+                        //IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%变压器%' and gtID='" + gtobj.gtID + "'");
+                        IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct bttype from PS_tq Where   gtID='" + gtobj.gtID + "'");
+
+                        //避雷器
+                        IList blqlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName='避雷器' and gtID='" + gtobj.gtID + "'");
+
+                        //开关
+                        IList kglist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct kgModle from PS_kg Where gtID='" + gtobj.gtID + "'");
+
+                        //导线型号
+                        IList dxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbModle from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
+                        //导线排列方式
+                        IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
+
+                        //横担规格
+                        IList hdobj = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%横担%' and gtID='" + gtobj.gtID + "'");
+
+                        //拉线规格
+                        IList lxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb  Where sbName like '%拉线%' and gtID='" + gtobj.gtID + "'");
+
+                        IList ilisttemp = null;
+
+
                         ihang = 8;
-                        hdRowCount = 1;
-                        jyzRowCount = 1;
-                        dxRowCount = 1;
-                        btRowCount = 1;
-                        blqRowCount = 1;
-                        kgRowCount = 1;
-                        lxRowCount = 1;
+                        ////杆号
+                        ex.SetCellValue((i).ToString(), ihang, jlie);
+                        ihang++;
 
-                    }
-                    if (Math.Ceiling((i + 0.0) / (jmax)) > 1) {
-                        ex.ActiveSheet("Sheet" + Math.Ceiling((i + 0.0) / (jmax)));
-                        xx = wb.Application.Sheets["Sheet" + Math.Ceiling((i + 0.0) / (jmax))] as Microsoft.Office.Interop.Excel.Worksheet;
+                        //转角方向
+                        if (gtobj.gtModle.IndexOf("转角") > -1)
+                        {
+                            if (i != 1 && i < gtlis.Count - 1)
+                            {
 
 
-                    } else {
-                        ex.ActiveSheet("Sheet1");
-                        xx = wb.Application.Sheets["Sheet1"] as Microsoft.Office.Interop.Excel.Worksheet;
-                    }
+                                decimal[,] a1 = new decimal[1, 2];
+                                decimal[,] a2 = new decimal[1, 2];
+                                a1[0, 0] = gtlis[i].gtLat - gtlis[i - 1].gtLat;
+                                a1[0, 1] = gtlis[i].gtLon - gtlis[i - 1].gtLon;
 
-                    //ex.SetCellValue(i.ToString(), ihang, jlie);
-
-                    ////杆塔数
-                    PS_gt gtobj = gtlis[i];
-                    //if (gtobj == null)
-                    //{
-                    //    if ((i + 0.0) % (jmax) == 0&&i>1)
-                    //    {
-                    //        //累计长度
-                    //        double sum = 0;
-                    //        for (int item = i; item < i + 15 && item < gtlis.Count; item++)
-                    //        {
-                    //            PS_gt gttemp = gtlis[item];
-                    //            if (gttemp != null)
-                    //            {
-                    //                sum += Convert.ToDouble(gttemp.gtSpan);
-                    //            }
-                    //        }
-                    //        ex.SetCellValue(sum.ToString(), ihang, 2);
-                    //    }
-                    //    jlie += 2;
-                    //    continue;
-
-                    //}
-                    //绝缘子
-                    string strSQL = "select distinct sbModle from PS_gtsb Where  gtID='" + gtobj.gtID + "' ";
-                    if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10) {
-                        strSQL += "  and (sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
-                    } else
-                        if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol)) {
-                            strSQL += "  and (sbName like '低压%立瓶%'  or sbName like '低压%茶台%' )";
-                        }
-
-                    IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
-
-                    //变台
-                    //IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%变压器%' and gtID='" + gtobj.gtID + "'");
-                    IList btlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct bttype from PS_tq Where   gtID='" + gtobj.gtID + "'");
-
-                    //避雷器
-                    IList blqlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName='避雷器' and gtID='" + gtobj.gtID + "'");
-
-                    //开关
-                    IList kglist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct kgModle from PS_kg Where gtID='" + gtobj.gtID + "'");
-
-                    //导线型号
-                    IList dxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbModle from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
-                    //导线排列方式
-                    IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
-
-                    //横担规格
-                    IList hdobj = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%横担%' and gtID='" + gtobj.gtID + "'");
-
-                    //拉线规格
-                    IList lxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb  Where sbName like '%拉线%' and gtID='" + gtobj.gtID + "'");
-
-                    IList ilisttemp = null;
-                    
-
-                    ihang = 8;
-                    ////杆号
-                    ex.SetCellValue((i).ToString(), ihang, jlie);
-                    ihang++;
-
-                    //转角方向
-                    if (gtobj.gtModle.IndexOf("转角") > -1) {
-                        if (i != 1 && i < gtlis.Count - 1) {
-
-
-                            decimal[,] a1 = new decimal[1, 2];
-                            decimal[,] a2 = new decimal[1, 2];
-                            a1[0, 0] = gtlis[i].gtLat - gtlis[i - 1].gtLat;
-                            a1[0, 1] = gtlis[i].gtLon - gtlis[i - 1].gtLon;
-
-                            a2[0, 0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
-                            a2[0, 1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
-                            decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
-                            double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
-                                a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
-                            dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
-                            if (gtlis[i].gtLon > gtlis[i - 1].gtLon) {
-                                strfx = "右转";
-                            } else {
-                                strfx = "左转";
-                            }
-                            if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                                ex.SetCellValue(strfx + dc + "度", ihang, jlie);
-                            else {
-
-                            }
-                        }
-
-                    }
-                    ihang++;
-
-                    //杆高（m）
-                    if (gtobj != null) {
-
-                        ex.SetCellValue(gtobj.gtHeight.ToString(), ihang, jlie);
-
-                    }
-                    ihang++;
-
-                    //电杆种类/杆型
-                    if (gtobj != null) {
-                        string strtype = "", strzj = "";
-                        if (gtobj.gtType.IndexOf("混凝土拔梢杆") > -1) {
-                            strtype = "砼";
-                        }
-                        if (gtobj.gtModle.IndexOf("直线杆") > -1) {
-                            strzj = "直";
-                        } else if (gtobj.gtModle.IndexOf("分支杆") > -1) {
-                            strzj = "分";
-                        } else if (gtobj.gtModle.IndexOf("转角杆") > -1) {
-                            strzj = "转";
-                        } else if (gtobj.gtModle.IndexOf("耐张杆") > -1) {
-                            strzj = "耐";
-                        } else if (gtobj.gtModle.IndexOf("终端杆") > -1) {
-                            strzj = "终";
-                        }
-                       
-                        if (strtype != "" && strzj != "") {
-                            ex.SetCellValue(strtype + "/" + strzj, ihang, jlie);
-                        } else {
-                            ex.SetCellValue(gtobj.gtType + "/" + gtobj.gtModle, ihang, jlie);
-                        }
-                    }
-                    ihang++;
-                    //导线排列方式
-
-                    if (hdobj.Count>0 && hdobj[0].ToString().Contains("三角")) {
-
-                        ex.SetCellValue("三角排列", ihang, jlie);
-                    } else {
-                        ex.SetCellValue("水平排列", ihang, jlie);
-                    }
-                    /*
-                    if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count) {
-                        //合并同类项
-                        string stplrname = "";
-                        int ista = i, item = i, jlietemp = jlie;
-                        for (item = i; item > 1; item--) {
-                            PS_gt gttemp = gtlis[item - 1];
-                            PS_gt gttemp2 = gtlis[item - 2];
-                            IList dxpllist2 = null;
-                            IList dxpllist3 = null;
-                            string str1 = "", str2 = "";
-                            if (gttemp != null) {
-                                dxpllist2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                                    "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp.gtID + "'");
-                                if (dxpllist2.Count > 0) str1 = dxpllist2[0].ToString();
-                            }
-                            if (gttemp2 != null) {
-                                dxpllist3 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
-                                    "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp2.gtID + "'");
-                                if (dxpllist3.Count > 0) str2 = dxpllist3[0].ToString();
-                            }
-
-                            if (gttemp2 == null || str2 == str1) {
-                                if (jlietemp > 4) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
-                                    range.Merge(Type.Missing);
-                                    if ((item % jmax == 2 && ista != item) || jlietemp == 5) {
-                                        if (str1 != "" && str1.Contains("三角"))
-                                        {                                          
-                                            ex.SetCellValue("角排列", ihang, jlietemp - 2);
-                                        }
-                                        else
-                                        {
-                                            ex.SetCellValue("水平排列", ihang, jlietemp - 2);
-                                        }
-
-                                    }
-                                }
-                            } else {
-                                if (str1 != "" && str1.Contains("三角"))
+                                a2[0, 0] = gtlis[i + 1].gtLat - gtlis[i].gtLat;
+                                a2[0, 1] = gtlis[i + 1].gtLon - gtlis[i].gtLon;
+                                decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
+                                double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
+                                    a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
+                                dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
+                                if (gtlis[i].gtLon > gtlis[i - 1].gtLon)
                                 {
-                                    ex.SetCellValue("角排列", ihang, jlietemp);
+                                    strfx = "右转";
                                 }
                                 else
                                 {
-                                    ex.SetCellValue("水平排列", ihang, jlietemp);
-                                }                               
-                            }
-                            jlietemp = jlietemp - 2;
-                            if (item % jmax == 2 && ista != item) {
-                                break;
+                                    strfx = "左转";
+                                }
+                                if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                    ex.SetCellValue(strfx + dc + "度", ihang, jlie);
+                                else
+                                {
+
+                                }
                             }
 
                         }
-                    }
-                    else
-                    {
-                        if (gtlis.Count>0)
+                        ihang++;
+
+                        //杆高（m）
+                        if (gtobj != null)
                         {
+
+                            ex.SetCellValue(gtobj.gtHeight.ToString(), ihang, jlie);
+
+                        }
+                        ihang++;
+
+                        //电杆种类/杆型
+                        if (gtobj != null)
+                        {
+                            string strtype = "", strzj = "";
+                            if (gtobj.gtType.IndexOf("混凝土拔梢杆") > -1)
+                            {
+                                strtype = "砼";
+                            }
+                            if (gtobj.gtModle.IndexOf("直线杆") > -1)
+                            {
+                                strzj = "直";
+                            }
+                            else if (gtobj.gtModle.IndexOf("分支杆") > -1)
+                            {
+                                strzj = "分";
+                            }
+                            else if (gtobj.gtModle.IndexOf("转角杆") > -1)
+                            {
+                                strzj = "转";
+                            }
+                            else if (gtobj.gtModle.IndexOf("耐张杆") > -1)
+                            {
+                                strzj = "耐";
+                            }
+                            else if (gtobj.gtModle.IndexOf("终端杆") > -1)
+                            {
+                                strzj = "终";
+                            }
+
+                            if (strtype != "" && strzj != "")
+                            {
+                                ex.SetCellValue(strtype + "/" + strzj, ihang, jlie);
+                            }
+                            else
+                            {
+                                ex.SetCellValue(gtobj.gtType + "/" + gtobj.gtModle, ihang, jlie);
+                            }
+                        }
+                        ihang++;
+                        //导线排列方式
+
+                        if (hdobj.Count > 0 && hdobj[0].ToString().Contains("三角"))
+                        {
+
+                            ex.SetCellValue("三角排列", ihang, jlie);
+                        }
+                        else
+                        {
+                            ex.SetCellValue("水平排列", ihang, jlie);
+                        }
+                        /*
+                        if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count) {
+                            //合并同类项
                             string stplrname = "";
                             int ista = i, item = i, jlietemp = jlie;
-                            for (item = i; item > 1; item--)
-                            {
+                            for (item = i; item > 1; item--) {
                                 PS_gt gttemp = gtlis[item - 1];
                                 PS_gt gttemp2 = gtlis[item - 2];
                                 IList dxpllist2 = null;
                                 IList dxpllist3 = null;
                                 string str1 = "", str2 = "";
-                                if (gttemp != null)
-                                {
+                                if (gttemp != null) {
                                     dxpllist2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                                         "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp.gtID + "'");
                                     if (dxpllist2.Count > 0) str1 = dxpllist2[0].ToString();
                                 }
-                                if (gttemp2 != null)
-                                {
+                                if (gttemp2 != null) {
                                     dxpllist3 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
                                         "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp2.gtID + "'");
                                     if (dxpllist3.Count > 0) str2 = dxpllist3[0].ToString();
                                 }
 
-                                if (gttemp2 == null || str2 == str1)
-                                {
-                                    if (jlietemp > 4)
-                                    {
+                                if (gttemp2 == null || str2 == str1) {
+                                    if (jlietemp > 4) {
                                         range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
                                         range.Merge(Type.Missing);
-                                        if ((item % jmax == 2 && ista != item) || jlietemp == 5)
-                                        {
+                                        if ((item % jmax == 2 && ista != item) || jlietemp == 5) {
                                             if (str1 != "" && str1.Contains("三角"))
-                                            {
+                                            {                                          
                                                 ex.SetCellValue("角排列", ihang, jlietemp - 2);
                                             }
                                             else
@@ -582,9 +553,7 @@ namespace Ebada.Scgl.Yxgl {
 
                                         }
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     if (str1 != "" && str1.Contains("三角"))
                                     {
                                         ex.SetCellValue("角排列", ihang, jlietemp);
@@ -592,117 +561,281 @@ namespace Ebada.Scgl.Yxgl {
                                     else
                                     {
                                         ex.SetCellValue("水平排列", ihang, jlietemp);
-                                    }
+                                    }                               
                                 }
                                 jlietemp = jlietemp - 2;
-                                if (item % jmax == 2 && ista != item)
-                                {
+                                if (item % jmax == 2 && ista != item) {
                                     break;
                                 }
 
                             }
                         }
-                    }
-                    */
-                    ihang++;
-                    //导线型号规格（mm2）
-                    if (dxlist != null && dxlist.Count > 0) {
-                        if (dxlist.Count > dxRowCount) {
-                            for (j = dxRowCount; j < dxlist.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + dxRowCount, "A"], xx.Cells[ihang + dxRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-
-                            }
-                            for (int jtem = 1; jtem < dxlist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
-                            dxRowCount = dxlist.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + dxRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        if (dxlist.Count > 0) {
-
-                            for (j = 0; j < dxlist.Count; j++)
-                                ex.SetCellValue(dxlist[j].ToString(), ihang + j, jlie);
-                        }
-
-                    } else {
-                        ex.SetCellValue(strLinexh, ihang, jlie);
-                    }
-
-                    ihang += dxRowCount;
-                    if (i == 15) {
-                        int nn = 0;
-                    }
-                    //档        距（m）
-                    if (gtobj != null && gtobj.gtSpan>0) {
-                        if (jlie > 3)
-                            ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
                         else
-                            ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
-                    }
-                    ihang++;
-                    //累计长度
-
-
-                    if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count - 1) {
-                        //累计长度
-                        double sum = 0;
-                        int ista = i, item = i;
-                        for (item = i; item > 0; item--) {
-                            PS_gt gttemp = gtlis[item ];
-                            if (gttemp != null) {
-                                sum += Convert.ToDouble(gttemp.gtSpan);
-                            }
-                            if (i < gtlis.Count - 1) {
-                                if (item % jmax == 1 && ista != item) {
-                                    break;
-                                }
-                            } else {
-                                if (item % jmax == 1) {
-                                    break;
-                                }
-                            }
-                        }
-                        sum = 0;
-                        for (int m1 = 0; m1 < gtlis.Count;m1++ )
                         {
-                            PS_gt gttemp = gtlis[m1];
-                            if (gttemp != null)
+                            if (gtlis.Count>0)
                             {
-                                sum += Convert.ToDouble(gttemp.gtSpan);
+                                string stplrname = "";
+                                int ista = i, item = i, jlietemp = jlie;
+                                for (item = i; item > 1; item--)
+                                {
+                                    PS_gt gttemp = gtlis[item - 1];
+                                    PS_gt gttemp2 = gtlis[item - 2];
+                                    IList dxpllist2 = null;
+                                    IList dxpllist3 = null;
+                                    string str1 = "", str2 = "";
+                                    if (gttemp != null)
+                                    {
+                                        dxpllist2 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                                            "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp.gtID + "'");
+                                        if (dxpllist2.Count > 0) str1 = dxpllist2[0].ToString();
+                                    }
+                                    if (gttemp2 != null)
+                                    {
+                                        dxpllist3 = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr",
+                                            "select distinct sbName from PS_gtsb  Where sbName like '%横担%' and gtID='" + gttemp2.gtID + "'");
+                                        if (dxpllist3.Count > 0) str2 = dxpllist3[0].ToString();
+                                    }
+
+                                    if (gttemp2 == null || str2 == str1)
+                                    {
+                                        if (jlietemp > 4)
+                                        {
+                                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, jlietemp], xx.Cells[ihang, jlietemp - 2]);
+                                            range.Merge(Type.Missing);
+                                            if ((item % jmax == 2 && ista != item) || jlietemp == 5)
+                                            {
+                                                if (str1 != "" && str1.Contains("三角"))
+                                                {
+                                                    ex.SetCellValue("角排列", ihang, jlietemp - 2);
+                                                }
+                                                else
+                                                {
+                                                    ex.SetCellValue("水平排列", ihang, jlietemp - 2);
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (str1 != "" && str1.Contains("三角"))
+                                        {
+                                            ex.SetCellValue("角排列", ihang, jlietemp);
+                                        }
+                                        else
+                                        {
+                                            ex.SetCellValue("水平排列", ihang, jlietemp);
+                                        }
+                                    }
+                                    jlietemp = jlietemp - 2;
+                                    if (item % jmax == 2 && ista != item)
+                                    {
+                                        break;
+                                    }
+
+                                }
                             }
                         }
-                        ex.SetCellValue(sum.ToString(), ihang, jstart);
+                        */
+                        ihang++;
+                        //导线型号规格（mm2）
+                        if (dxlist != null && dxlist.Count > 0)
+                        {
+                            if (dxlist.Count > dxRowCount)
+                            {
+                                for (j = dxRowCount; j < dxlist.Count; j++)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + dxRowCount, "A"], xx.Cells[ihang + dxRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
 
-                        float gwidth = 13.50F, gheifht = 13.50F;
-                        //float gwidth = 10F, gheifht = 10F;
-                        Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null, kywShape = null;
-                        int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
-                        range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
-                        fxstart = (float)Convert.ToDouble(range.Cells.Width);
-                        range = (Excel.Range)xx.get_Range(xx.Cells[6, 2], xx.Cells[6, 2]);
-                        fxstart += (float)Convert.ToDouble(range.Cells.Width);
-                        range = (Excel.Range)xx.get_Range(xx.Cells[1, 1], xx.Cells[5, 1]);
-                        fystart = (float)Convert.ToDouble(range.Cells.Height);
-                        range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
-                        fystart = fystart + (float)(Convert.ToDouble(range.Cells.Height) / 2);
-                        activShape = null;
-                        for (int itemp = 0; itemp <= ista - item; itemp++) {
+                                }
+                                for (int jtem = 1; jtem < dxlist.Count; jtem++)
+                                {
+                                    for (int item = 0; item < 29; item += 2)
+                                    {
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                        range.Merge(Type.Missing);
+                                    }
+                                }
+                                dxRowCount = dxlist.Count;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + dxRowCount - 1, 1]);
+                                range.Merge(Type.Missing);
+                            }
+                            if (dxlist.Count > 0)
+                            {
 
-                            range = (Excel.Range)xx.get_Range(xx.Cells[6, itemp * 2 + jstart], xx.Cells[6, itemp * 2 + jstart + 1]);
-                            float width = (float)Convert.ToDouble(range.Cells.Width);
+                                for (j = 0; j < dxlist.Count; j++)
+                                    ex.SetCellValue(dxlist[j].ToString(), ihang + j, jlie);
+                            }
 
-                            PS_xl xl2 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where ParentGT='" + gtlis[item + itemp].gtID + "'");
-                            if (xl2 == null) {
-                                if (gtlis[item + itemp].gtModle.IndexOf("转角") == -1) {
-                                    activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
-                                } else {
-                                    PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '直角'");
-                                    if (tb2 != null) {
+                        }
+                        else
+                        {
+                            ex.SetCellValue(strLinexh, ihang, jlie);
+                        }
+
+                        ihang += dxRowCount;
+                        if (i == 15)
+                        {
+                            int nn = 0;
+                        }
+                        //档        距（m）
+                        if (gtobj != null && gtobj.gtSpan > 0)
+                        {
+                            if (jlie > 3)
+                                ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie - 1);
+                            else
+                                ex.SetCellValue(gtobj.gtSpan.ToString(), ihang, jlie);
+                        }
+                        ihang++;
+                        //累计长度
+
+
+                        if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count - 1)
+                        {
+                            //累计长度
+                            double sum = 0;
+                            int ista = i, item = i;
+                            for (item = i; item > 0; item--)
+                            {
+                                PS_gt gttemp = gtlis[item];
+                                if (gttemp != null)
+                                {
+                                    sum += Convert.ToDouble(gttemp.gtSpan);
+                                }
+                                if (i < gtlis.Count - 1)
+                                {
+                                    if (item % jmax == 1 && ista != item)
+                                    {
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    if (item % jmax == 1)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            sum = 0;
+                            for (int m1 = 0; m1 < gtlis.Count; m1++)
+                            {
+                                PS_gt gttemp = gtlis[m1];
+                                if (gttemp != null)
+                                {
+                                    sum += Convert.ToDouble(gttemp.gtSpan);
+                                }
+                            }
+                            ex.SetCellValue(sum.ToString(), ihang, jstart);
+
+                            float gwidth = 13.50F, gheifht = 13.50F;
+                            //float gwidth = 10F, gheifht = 10F;
+                            Microsoft.Office.Interop.Excel.Shape activShape, oldShape = null, kywShape = null;
+                            int icolor = (int)(((uint)Color.White.B << 16) | (ushort)(((ushort)Color.White.G << 8) | Color.White.R));
+                            range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
+                            fxstart = (float)Convert.ToDouble(range.Cells.Width);
+                            range = (Excel.Range)xx.get_Range(xx.Cells[6, 2], xx.Cells[6, 2]);
+                            fxstart += (float)Convert.ToDouble(range.Cells.Width);
+                            range = (Excel.Range)xx.get_Range(xx.Cells[1, 1], xx.Cells[5, 1]);
+                            fystart = (float)Convert.ToDouble(range.Cells.Height);
+                            range = (Excel.Range)xx.get_Range(xx.Cells[6, 1], xx.Cells[6, 1]);
+                            fystart = fystart + (float)(Convert.ToDouble(range.Cells.Height) / 2);
+                            activShape = null;
+                            for (int itemp = 0; itemp <= ista - item; itemp++)
+                            {
+
+                                range = (Excel.Range)xx.get_Range(xx.Cells[6, itemp * 2 + jstart], xx.Cells[6, itemp * 2 + jstart + 1]);
+                                float width = (float)Convert.ToDouble(range.Cells.Width);
+
+                                PS_xl xl2 = Client.ClientHelper.PlatformSqlMap.GetOne<PS_xl>("where ParentGT='" + gtlis[item + itemp].gtID + "'");
+                                if (xl2 == null)
+                                {
+                                    if (gtlis[item + itemp].gtModle.IndexOf("转角") == -1)
+                                    {
+                                        activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
+                                    }
+                                    else
+                                    {
+                                        PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '直角'");
+                                        if (tb2 != null)
+                                        {
+
+                                            string tempPath = Path.GetTempPath();
+                                            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb2.S1;
+                                            FileStream fs;
+                                            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                                            BinaryWriter bw = new BinaryWriter(fs);
+                                            bw.Write(tb2.picImage);
+                                            bw.Flush();
+                                            bw.Close();
+                                            fs.Close();
+                                            Image im = Bitmap.FromFile(tempfile);
+                                            Bitmap bt = new Bitmap(im);
+                                            decimal[,] a1 = new decimal[1, 2];
+                                            decimal[,] a2 = new decimal[1, 2];
+                                            if (item + itemp < gtlis.Count)
+                                            {
+                                                a1[0, 0] = gtlis[item + itemp].gtLat - gtlis[item + itemp - 1].gtLat;
+                                                a1[0, 1] = gtlis[item + itemp].gtLon - gtlis[item + itemp - 1].gtLon;
+
+                                                a2[0, 0] = gtlis[item + itemp + 1].gtLat - gtlis[item + itemp].gtLat;
+                                                a2[0, 1] = gtlis[item + itemp + 1].gtLon - gtlis[item + itemp].gtLon;
+                                            }
+                                            decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
+                                            double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
+                                                a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
+                                            dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
+                                            if (gtlis[item + itemp].gtLon > gtlis[item + itemp - 1].gtLon)
+                                            {
+                                                strfx = "右转";
+                                            }
+                                            else
+                                            {
+                                                strfx = "左转";
+                                            }
+                                            int btw = (int)(bt.Width / 1.33f);
+                                            int bth = (int)(bt.Height / 1.33f);
+                                            if (btw < width / 2)
+                                            {
+
+                                                activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - btw / 2, fystart + gheifht / 2 - bth / 2, btw, bth);
+                                                if (strfx == "左转")
+                                                {
+                                                    if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                        activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
+                                                }
+                                                else
+                                                {
+                                                    if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                        activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2, bt.Width, bt.Height);
+                                                if (strfx == "左转")
+                                                {
+                                                    if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                        activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
+                                                }
+                                                else
+                                                {
+                                                    if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
+                                                        activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ex.SetCellValue(xl2.LineName, 5, itemp * 2 + 4);//分支线路
+                                    PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
+                                    if (tb2 != null)
+                                    {
 
                                         string tempPath = Path.GetTempPath();
                                         string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb2.S1;
@@ -715,391 +848,389 @@ namespace Ebada.Scgl.Yxgl {
                                         fs.Close();
                                         Image im = Bitmap.FromFile(tempfile);
                                         Bitmap bt = new Bitmap(im);
-                                        decimal[,] a1 = new decimal[1, 2];
-                                        decimal[,] a2 = new decimal[1, 2];
-                                        if (item + itemp < gtlis.Count) {
-                                            a1[0, 0] = gtlis[item + itemp].gtLat - gtlis[item + itemp - 1].gtLat;
-                                            a1[0, 1] = gtlis[item + itemp].gtLon - gtlis[item + itemp - 1].gtLon;
-
-                                            a2[0, 0] = gtlis[item + itemp + 1].gtLat - gtlis[item + itemp].gtLat;
-                                            a2[0, 1] = gtlis[item + itemp + 1].gtLon - gtlis[item + itemp].gtLon;
-                                        }
-                                        decimal di = a1[0, 0] * a2[0, 0] + a1[0, 1] * a2[0, 1];
-                                        double dl = Math.Sqrt(Convert.ToDouble(a1[0, 0] * a1[0, 0] + a1[0, 1] * a1[0, 1]) * Math.Sqrt(Convert.ToDouble(
-                                            a2[0, 0] * a2[0, 0] + a2[0, 1] * a2[0, 1])));
-                                        dc = Math.Round(180 * Math.Acos(Convert.ToDouble(di) / Convert.ToDouble(dl)) / 3.1415926, 0);
-                                        if (gtlis[item + itemp].gtLon > gtlis[item + itemp - 1].gtLon) {
-                                            strfx = "右转";
-                                        } else {
-                                            strfx = "左转";
-                                        }
                                         int btw = (int)(bt.Width / 1.33f);
                                         int bth = (int)(bt.Height / 1.33f);
-                                        if (btw < width / 2) {
-                                            
+                                        if (btw < width / 2)
+                                        {
                                             activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - btw / 2, fystart + gheifht / 2 - bth / 2, btw, bth);
-                                            if (strfx == "左转") {
-                                                if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                                                    activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
-                                            } else {
-                                                if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                                                    activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
-                                            }
-
-                                        } else {
-                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bt.Height / 2,bt.Width, bt.Height);
-                                            if (strfx == "左转") {
-                                                if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                                                    activShape.Rotation = (float)(90 - Convert.ToDouble(dc));
-                                            } else {
-                                                if (dc.ToString() != "NaN" && dc.ToString() != "非数字")
-                                                    activShape.Rotation = (float)(90 + Convert.ToDouble(dc));
-                                            }
-
                                         }
+                                        else
+                                        {
+                                            activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bth / 2, btw, bth);
+                                        }
+
                                     }
-                                }
-                            } else {
-                                ex.SetCellValue(xl2.LineName, 5, itemp * 2 + 4);//分支线路
-                                PJ_tbsj tb2 = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '分支'");
-                                if (tb2 != null) {
-
-                                    string tempPath = Path.GetTempPath();
-                                    string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb2.S1;
-                                    FileStream fs;
-                                    fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                                    BinaryWriter bw = new BinaryWriter(fs);
-                                    bw.Write(tb2.picImage);
-                                    bw.Flush();
-                                    bw.Close();
-                                    fs.Close();
-                                    Image im = Bitmap.FromFile(tempfile);
-                                    Bitmap bt = new Bitmap(im);
-                                    int btw = (int)(bt.Width / 1.33f);
-                                    int bth = (int)(bt.Height / 1.33f);
-                                    if (btw < width / 2) {
-                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 2 - btw / 2, fystart + gheifht / 2 - bth / 2, btw, bth);
-                                    } else {
-                                        activShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, fxstart + width / 5, fystart + gheifht / 2 - bth / 2, btw, bth);
-                                    }
-
-                                } else {
-                                    activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
-                                }
-
-
-                            }
-                            //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
-                            activShape.Fill.ForeColor.RGB = icolor;
-                            if (itemp > 0) {
-                                IList<PJ_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<PJ_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
-                                if (kyxli.Count == 0) {
-                                    //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
-                                    //if (Export17.ExistsRegedit() == 1) {//vs2003
-                                    //    xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                    //        oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                    //        //activShape.Left , oldShape.Top + oldShape.Height / 2);
-                                    //     activShape.Left - (oldShape.Left + oldShape.Width), 0);
-                                    //} else 
+                                    else
                                     {
-                                        xx.Shapes.AddLine(
-                                              oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                              activShape.Left, activShape.Top + activShape.Height / 2);
+                                        activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart + width / 2, fystart, gwidth, gheifht);
                                     }
-                                } else {
-                                    PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + kyxli[0].kymc + "'");
-                                    if (tb != null) {
-                                        string tempPath = Path.GetTempPath();
-                                        string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
-                                        FileStream fs;
-                                        fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
-                                        BinaryWriter bw = new BinaryWriter(fs);
-                                        bw.Write(tb.picImage);
-                                        bw.Flush();
-                                        bw.Close();
-                                        fs.Close();
-                                        Image im = Bitmap.FromFile(tempfile);
-                                        Bitmap bt = new Bitmap(im);
-                                        int btw = (int)(bt.Width / 1.33f);
-                                        int bth = (int)(bt.Height / 1.33f);
-                                        if (btw < width / 2) {
-                                            kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 2 - btw / 2, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
-                                           // xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                           //oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                           //kywShape.Left, oldShape.Top + oldShape.Height / 2);
+
+
+                                }
+                                //activShape = xx.Shapes.AddShape(Microsoft.Office.Core.MsoAutoShapeType.msoShapeOval, fxstart, fystart, gwidth, gheifht);
+                                activShape.Fill.ForeColor.RGB = icolor;
+                                if (itemp > 0)
+                                {
+                                    IList<PJ_05jcky> kyxli = MainHelper.PlatformSqlMap.GetList<PJ_05jcky>(" where gtID='" + gtlis[item + itemp].gtID + "'");
+                                    if (kyxli.Count == 0)
+                                    {
+                                        //Texture Image Recognition Algorithm Based on Steerable Pyramid Transform
+                                        //if (Export17.ExistsRegedit() == 1) {//vs2003
+                                        //    xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                        //        oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                        //        //activShape.Left , oldShape.Top + oldShape.Height / 2);
+                                        //     activShape.Left - (oldShape.Left + oldShape.Width), 0);
+                                        //} else 
+                                        {
                                             xx.Shapes.AddLine(
-                                          oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                          kywShape.Left, oldShape.Top + oldShape.Height / 2);
-
-                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                          //kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
-                                          //activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
-
-                                            xx.Shapes.AddLine(
-                                          kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
-                                          activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
-                                        } else {
-                                          //  kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
-                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                          // oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                          // kywShape.Left, oldShape.Top + oldShape.Height / 2);
-
-                                          //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
-                                          //kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
-                                          //activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
-
-                                            xx.Shapes.AddLine(
-                                           oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
-                                           kywShape.Left, oldShape.Top + oldShape.Height / 2);
-
-                                            xx.Shapes.AddLine(
-                                          kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
-                                          activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
+                                                  oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                                  activShape.Left, activShape.Top + activShape.Height / 2);
                                         }
-                                        //Image im = Bitmap.FromFile(tempfile);
-                                        //Bitmap bt = new Bitmap(im);
-                                        //DataObject dataObject = new DataObject();
-                                        //dataObject.SetData(DataFormats.Bitmap, bt);
-                                        //Clipboard.SetDataObject(dataObject, true);
+                                    }
+                                    else
+                                    {
+                                        PJ_tbsj tb = MainHelper.PlatformSqlMap.GetOne<PJ_tbsj>("where picName = '" + kyxli[0].kymc + "'");
+                                        if (tb != null)
+                                        {
+                                            string tempPath = Path.GetTempPath();
+                                            string tempfile = tempPath + "~" + Guid.NewGuid().ToString() + tb.S1;
+                                            FileStream fs;
+                                            fs = new FileStream(tempfile, FileMode.Create, FileAccess.Write);
+                                            BinaryWriter bw = new BinaryWriter(fs);
+                                            bw.Write(tb.picImage);
+                                            bw.Flush();
+                                            bw.Close();
+                                            fs.Close();
+                                            Image im = Bitmap.FromFile(tempfile);
+                                            Bitmap bt = new Bitmap(im);
+                                            int btw = (int)(bt.Width / 1.33f);
+                                            int bth = (int)(bt.Height / 1.33f);
+                                            if (btw < width / 2)
+                                            {
+                                                kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 2 - btw / 2, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
+                                                // xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                                //oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                                //kywShape.Left, oldShape.Top + oldShape.Height / 2);
+                                                xx.Shapes.AddLine(
+                                              oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                              kywShape.Left, oldShape.Top + oldShape.Height / 2);
 
+                                                //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                                //kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
+                                                //activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
+
+                                                xx.Shapes.AddLine(
+                                              kywShape.Left + (float)(kywShape.Width - 2), kywShape.Top + kywShape.Height / 2,
+                                              activShape.Left + 2, kywShape.Top + kywShape.Height / 2);
+                                            }
+                                            else
+                                            {
+                                                //  kywShape = xx.Shapes.AddPicture(tempfile, MsoTriState.msoFalse, MsoTriState.msoTrue, oldShape.Left + oldShape.Width + width / 5, oldShape.Top + oldShape.Height / 2 - bth / 2, btw, bth);
+                                                //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                                // oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                                // kywShape.Left, oldShape.Top + oldShape.Height / 2);
+
+                                                //  xx.Shapes.AddConnector(Microsoft.Office.Core.MsoConnectorType.msoConnectorStraight,
+                                                //kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
+                                                //activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
+
+                                                xx.Shapes.AddLine(
+                                               oldShape.Left + oldShape.Width, oldShape.Top + oldShape.Height / 2,
+                                               kywShape.Left, oldShape.Top + oldShape.Height / 2);
+
+                                                xx.Shapes.AddLine(
+                                              kywShape.Left + (float)(kywShape.Width - 1), kywShape.Top + kywShape.Height / 2,
+                                              activShape.Left + 1, kywShape.Top + kywShape.Height / 2);
+                                            }
+                                            //Image im = Bitmap.FromFile(tempfile);
+                                            //Bitmap bt = new Bitmap(im);
+                                            //DataObject dataObject = new DataObject();
+                                            //dataObject.SetData(DataFormats.Bitmap, bt);
+                                            //Clipboard.SetDataObject(dataObject, true);
+
+                                        }
                                     }
                                 }
+                                //fxstart += gtwidth[itemp];
+                                fxstart += width;
+                                oldShape = activShape;
                             }
-                            //fxstart += gtwidth[itemp];
-                            fxstart += width;
-                            oldShape = activShape;
                         }
-                    }
-                    ihang++;
+                        ihang++;
 
-                    //横担
-                    if (hdobj != null && hdobj.Count > 0) {
+                        //横担
+                        if (hdobj != null && hdobj.Count > 0)
+                        {
 
-                        if (hdobj.Count > hdRowCount) {
-                            for (j = hdRowCount; j < hdobj.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, "A"], xx.Cells[ihang + hdRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
+                            if (hdobj.Count > hdRowCount)
+                            {
+                                for (j = hdRowCount; j < hdobj.Count; j++)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, "A"], xx.Cells[ihang + hdRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                    for (int item = 0; item < 29; item += 2)
+                                    {
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + hdRowCount, jstart + item], xx.Cells[ihang + hdRowCount, jstart + 1 + item]);
+                                        range.Merge(Type.Missing);
+                                    }
                                 }
+
+                                hdRowCount = hdobj.Count;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + hdRowCount - 1, 1]);
+                                range.Merge(Type.Missing);
                             }
-
-                            hdRowCount = hdobj.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + hdRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < hdobj.Count; j++) {
-                            ex.SetCellValue(hdobj[j].ToString(), ihang + j, jlie);
-                            //if (j + 1 < hdobj.Count)
-                            //{
-                            //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + 1, 1]);
-                            //    range.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
-                            //    ihang++;
-                            //}
-                        }
-
-                    }
-                    ihang += hdRowCount;
-                    //拉线规格/条数
-                    if (lxlist != null && lxlist.Count > 0) {
-
-                        if (lxlist.Count > lxRowCount) {
-                            for (j = lxRowCount; j < lxlist.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-                                //for (int item = 0; item < 29; item += 2)
+                            for (j = 0; j < hdobj.Count; j++)
+                            {
+                                ex.SetCellValue(hdobj[j].ToString(), ihang + j, jlie);
+                                //if (j + 1 < hdobj.Count)
                                 //{
-                                //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j + 1, jstart + item], xx.Cells[ihang + j + 1, jstart + 1 + item]);
-                                //    range.Merge(Type.Missing);
+                                //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + 1, 1]);
+                                //    range.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+                                //    ihang++;
                                 //}
                             }
-                            for (int jtem = lxRowCount; jtem < lxlist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + item + 1]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
-                            lxRowCount = lxlist.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < lxlist.Count; j++) {
-                            int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                            //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
 
                         }
-                    }
-                    ihang += lxRowCount;
+                        ihang += hdRowCount;
+                        //拉线规格/条数
+                        if (lxlist != null && lxlist.Count > 0)
+                        {
 
-                    //绝缘子型号/数量
-                    if (jyuzlist != null) {
-
-                        if (jyuzlist.Count > jyzRowCount) {
-                            for (j = jyzRowCount + 1; j < jyuzlist.Count; j = j+2) {
-
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jyzRowCount, "A"], xx.Cells[ihang + jyzRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
-                                range.Merge(Type.Missing);
-                            }
-                            //for (int jtem = 0; jtem < jyuzlist.Count; jtem++) {
-                            //    for (int item = 0; item < 29; item += 2) {
-                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
-                            //        range.Merge(Type.Missing);
-                            //    }
-                            //}
-                            jyzRowCount = jyuzlist.Count/2 + jyuzlist.Count%2 == 0?0:1;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + jyzRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < jyuzlist.Count; j++) {
-                            int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                            //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(jyuzlist[j].ToString() /*+ "/" + icount*/, ihang + j/2, jlie + j%2);
-                            ex.SetCellValue(icount.ToString(), ihang + j / 2 + 1, jlie + j % 2);
-
-                        }
-                    }
-                    ihang += jyzRowCount*2 ;
-                    //变台型式
-                    if (btlist != null) {
-                        if (btlist.Count > 0) {
-                            //ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq  Where tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
-                            //if (ilisttemp.Count > btRowCount) {
-                            //    for (j = btRowCount; j < ilisttemp.Count; j++) {
-                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount + 1, "A"], xx.Cells[ihang + btRowCount + 1, "A"]);
-                            //        range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-
-                            //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j + 1, 2]);
-                            //        range.Merge(Type.Missing);
-
-                            //    }
-                            //    for (int jtem = 1; jtem < ilisttemp.Count; jtem++) {
-                            //        for (int item = 0; item < 29; item += 2) {
-                            //            range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 3, jstart + item], xx.Cells[ihang + jtem + 3, jstart + item + 1]);
-                            //            range.Merge(Type.Missing);
-                            //        }
-                            //    }
-
-                            //    btRowCount = ilisttemp.Count;
-                            //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + btRowCount + 1 - 1, 1]);
-                            //    range.Merge(Type.Missing);
-                            //}
-                            //if (btlist.Count == 1)
-                                ex.SetCellValue(btlist[0].ToString(), ihang, jlie);
-                            //else
-                            //{
-                            //    j = j;
-                            //}
-                            int byqrl = 0;
-                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   count(*) from PS_tqbyq where  tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')"));
-                            for (j = 0; j < Math.Min(ilisttemp.Count,2); j++) {//只能显示两个
-                                //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                                ////int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                //PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                PS_tqbyq gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" Where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
-                                if (gtsbtemp != null) {
-                                    //PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType + ilisttemp[0].ToString());
-                                    //if (sbcstemp != null)
+                            if (lxlist.Count > lxRowCount)
+                            {
+                                for (j = lxRowCount; j < lxlist.Count; j++)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                                    //for (int item = 0; item < 29; item += 2)
                                     //{
-                                    //ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                    //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j + 1, jstart + item], xx.Cells[ihang + j + 1, jstart + 1 + item]);
+                                    //    range.Merge(Type.Missing);
                                     //}
-                                    byqrl += gtsbtemp.byqCapcity;
-                                    if (gtsbtemp.byqModle.IndexOf("-") < 0) {
-                                        ex.SetCellValue(gtsbtemp.byqModle /*+ "/" + icount.ToString()*/, ihang  + 1, jlie+j);
-                                        //ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang+j  + 2, jlie);
-                                        //ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang+j  + 3, jlie);
-                                    } else {
-                                        ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-"))  /*+ "/"+ icount.ToString()*/, ihang  + 1, jlie+j);
-                                        
+                                }
+                                for (int jtem = lxRowCount; jtem < lxlist.Count; jtem++)
+                                {
+                                    for (int item = 0; item < 29; item += 2)
+                                    {
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + item + 1]);
+                                        range.Merge(Type.Missing);
                                     }
                                 }
-                            }
-                            ex.SetCellValue(icount.ToString(), ihang + 2, jlie);
-                            ex.SetCellValue(byqrl.ToString(), ihang + 3, jlie);
-                        }
-
-                    }
-                    ihang += btRowCount + 3;
-
-                    //避雷器型号/数量
-                    if (blqlist != null && blqlist.Count > 0) {
-
-                        if (blqlist.Count > blqRowCount) {
-
-                            for (j = blqRowCount; j < blqlist.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + blqRowCount, "A"], xx.Cells[ihang + blqRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
-
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
+                                lxRowCount = lxlist.Count;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
                                 range.Merge(Type.Missing);
-
+                            }
+                            for (j = 0; j < lxlist.Count; j++)
+                            {
+                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
 
                             }
-                            for (int jtem = 0; jtem < blqlist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                        }
+                        ihang += lxRowCount;
+
+                        //绝缘子型号/数量
+                        if (jyuzlist != null)
+                        {
+
+                            if (jyuzlist.Count > jyzRowCount)
+                            {
+                                for (j = jyzRowCount + 1; j < jyuzlist.Count; j = j + 2)
+                                {
+
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jyzRowCount, "A"], xx.Cells[ihang + jyzRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
                                     range.Merge(Type.Missing);
                                 }
-                            }
-                            blqRowCount = blqlist.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + blqRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < blqlist.Count; j++) {
-                            int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                            // int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(blqlist[j].ToString() , ihang + j, jlie);
-                            ex.SetCellValue( icount.ToString(), ihang + j +1, jlie);
-
-                        }
-
-
-                    }
-                    ihang += blqRowCount +1;
-
-                    //开关型号/数量
-                    if (kglist != null && kglist.Count > 0) {
-
-                        if (kglist.Count > kgRowCount) {
-
-                            for (j = kgRowCount; j < kglist.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + kgRowCount, "A"], xx.Cells[ihang + kgRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
-
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
+                                //for (int jtem = 0; jtem < jyuzlist.Count; jtem++) {
+                                //    for (int item = 0; item < 29; item += 2) {
+                                //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                //        range.Merge(Type.Missing);
+                                //    }
+                                //}
+                                jyzRowCount = jyuzlist.Count / 2 + jyuzlist.Count % 2 == 0 ? 0 : 1;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + jyzRowCount - 1, 1]);
                                 range.Merge(Type.Missing);
-
+                            }
+                            for (j = 0; j < jyuzlist.Count; j++)
+                            {
+                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + jyuzlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                ex.SetCellValue(jyuzlist[j].ToString() /*+ "/" + icount*/, ihang + j / 2, jlie + j % 2);
+                                ex.SetCellValue(icount.ToString(), ihang + j / 2 + 1, jlie + j % 2);
 
                             }
-                            for (int jtem = 0; jtem < kglist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
-                                    range.Merge(Type.Missing);
+                        }
+                        ihang += jyzRowCount * 2;
+                        //变台型式
+                        if (btlist != null)
+                        {
+                            if (btlist.Count > 0)
+                            {
+                                //ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbCode from PS_gtsb  Where  sbModle = '" + btlist[0].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                ilisttemp = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct byqModle from PS_tqbyq  Where tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
+                                //if (ilisttemp.Count > btRowCount) {
+                                //    for (j = btRowCount; j < ilisttemp.Count; j++) {
+                                //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + btRowCount + 1, "A"], xx.Cells[ihang + btRowCount + 1, "A"]);
+                                //        range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                                //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j + 1, 2]);
+                                //        range.Merge(Type.Missing);
+
+                                //    }
+                                //    for (int jtem = 1; jtem < ilisttemp.Count; jtem++) {
+                                //        for (int item = 0; item < 29; item += 2) {
+                                //            range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem + 3, jstart + item], xx.Cells[ihang + jtem + 3, jstart + item + 1]);
+                                //            range.Merge(Type.Missing);
+                                //        }
+                                //    }
+
+                                //    btRowCount = ilisttemp.Count;
+                                //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + 1, 1], xx.Cells[ihang + btRowCount + 1 - 1, 1]);
+                                //    range.Merge(Type.Missing);
+                                //}
+                                //if (btlist.Count == 1)
+                                ex.SetCellValue(btlist[0].ToString(), ihang, jlie);
+                                //else
+                                //{
+                                //    j = j;
+                                //}
+                                int byqrl = 0;
+                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   count(*) from PS_tqbyq where  tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')"));
+                                for (j = 0; j < Math.Min(ilisttemp.Count, 2); j++)
+                                {//只能显示两个
+                                    //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                    ////int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and  sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                    //PS_gtsb gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gtsb>(" Where sbCode='" + ilisttemp[0].ToString() + "' and sbModle = '" + btlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                    PS_tqbyq gtsbtemp = Client.ClientHelper.PlatformSqlMap.GetOne<PS_tqbyq>(" Where byqModle='" + ilisttemp[j].ToString() + "'   and tqID  in ( select tqID from PS_tq where  gtID='" + gtobj.gtID + "')");
+                                    if (gtsbtemp != null)
+                                    {
+                                        //PS_sbcs sbcstemp = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(gtsbtemp.sbType + ilisttemp[0].ToString());
+                                        //if (sbcstemp != null)
+                                        //{
+                                        //ex.SetCellValue(sbcstemp.xh + "/" + icount.ToString(), ihang + j + 1, jlie);
+                                        //}
+                                        byqrl += gtsbtemp.byqCapcity;
+                                        if (gtsbtemp.byqModle.IndexOf("-") < 0)
+                                        {
+                                            ex.SetCellValue(gtsbtemp.byqModle /*+ "/" + icount.ToString()*/, ihang + 1, jlie + j);
+                                            //ex.SetCellValue(/*gtsbtemp.byqModle + "/" +*/ icount.ToString(), ihang+j  + 2, jlie);
+                                            //ex.SetCellValue(gtsbtemp.byqCapcity.ToString(), ihang+j  + 3, jlie);
+                                        }
+                                        else
+                                        {
+                                            ex.SetCellValue(gtsbtemp.byqModle.Substring(0, gtsbtemp.byqModle.IndexOf("-"))  /*+ "/"+ icount.ToString()*/, ihang + 1, jlie + j);
+
+                                        }
+                                    }
                                 }
+                                ex.SetCellValue(icount.ToString(), ihang + 2, jlie);
+                                ex.SetCellValue(byqrl.ToString(), ihang + 3, jlie);
                             }
-                            kgRowCount = kglist.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + kgRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < kglist.Count; j++) {
-                            try {
-                                //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                                //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                ex.SetCellValue(kglist[j].ToString() , ihang + j, jlie);
-                                
-                            } catch { }
 
                         }
-                        ex.SetCellValue(kglist.Count.ToString(), ihang  + 2, jlie);
+                        ihang += btRowCount + 3;
+
+                        //避雷器型号/数量
+                        if (blqlist != null && blqlist.Count > 0)
+                        {
+
+                            if (blqlist.Count > blqRowCount)
+                            {
+
+                                for (j = blqRowCount; j < blqlist.Count; j++)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + blqRowCount, "A"], xx.Cells[ihang + blqRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
+                                    range.Merge(Type.Missing);
+
+
+                                }
+                                for (int jtem = 0; jtem < blqlist.Count; jtem++)
+                                {
+                                    for (int item = 0; item < 29; item += 2)
+                                    {
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                        range.Merge(Type.Missing);
+                                    }
+                                }
+                                blqRowCount = blqlist.Count;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + blqRowCount - 1, 1]);
+                                range.Merge(Type.Missing);
+                            }
+                            for (j = 0; j < blqlist.Count; j++)
+                            {
+                                int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                // int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + blqlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                ex.SetCellValue(blqlist[j].ToString(), ihang + j, jlie);
+                                ex.SetCellValue(icount.ToString(), ihang + j + 1, jlie);
+
+                            }
+
+
+                        }
+                        ihang += blqRowCount + 1;
+
+                        //开关型号/数量
+                        if (kglist != null && kglist.Count > 0)
+                        {
+
+                            if (kglist.Count > kgRowCount)
+                            {
+
+                                for (j = kgRowCount; j < kglist.Count; j++)
+                                {
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + kgRowCount, "A"], xx.Cells[ihang + kgRowCount, "A"]);
+                                    range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown, Type.Missing);
+
+                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + j, 2], xx.Cells[ihang + j - 1, 2]);
+                                    range.Merge(Type.Missing);
+
+
+                                }
+                                for (int jtem = 0; jtem < kglist.Count; jtem++)
+                                {
+                                    for (int item = 0; item < 29; item += 2)
+                                    {
+                                        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + 1 + item]);
+                                        range.Merge(Type.Missing);
+                                    }
+                                }
+                                kgRowCount = kglist.Count;
+                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + kgRowCount - 1, 1]);
+                                range.Merge(Type.Missing);
+                            }
+                            for (j = 0; j < kglist.Count; j++)
+                            {
+                                try
+                                {
+                                    //int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb  Where sbModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                                    //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_kg>(" Where kgModle = '" + kglist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                                    ex.SetCellValue(kglist[j].ToString(), ihang + j, jlie);
+
+                                }
+                                catch { }
+
+                            }
+                            ex.SetCellValue(kglist.Count.ToString(), ihang + 2, jlie);
+                        }
+                        ihang += kgRowCount + 2;
+
+                        jlie += 2;
+
+
+
                     }
-                    ihang += kgRowCount + 2;
-
-                    jlie += 2;
+                    catch 
+                    {
+ 
+                    }
+                   
                 }
                 //#region 画图形
                 //dsoFramerWordControl1.FileOpen(outfname);
