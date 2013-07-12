@@ -212,7 +212,7 @@ namespace Ebada.Scgl.Sbgl {
         /// 初始化数据
         /// </summary>
         public void InitData() {
-            treeViewOperator.RefreshData("order by linetype,linecode");
+            RefreshData("order by linetype,linecode");
         }
         void btGdsList_EditValueChanged(object sender, EventArgs e) {
             IList<mOrg> list = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgcode='" + btGdsList.EditValue + "'");
@@ -225,7 +225,12 @@ namespace Ebada.Scgl.Sbgl {
             }
         }
         public void RefreshData(string slqwhere) {
+            treeList1.BeginInit();
             treeViewOperator.RefreshData(slqwhere);
+            
+            treeList1.EndInit();
+            treeList1.KeyFieldName = "LineID";
+            treeList1.ParentFieldName = "ParentID";
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
