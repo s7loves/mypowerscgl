@@ -54,6 +54,18 @@ namespace Ebada.Scgl.Sbgl
             RowData = new PS_gtsb();
             rowData.sbNumber = 1;
         }
+        PS_tq mpstq;
+        public PS_tq pstq {
+            get { return mpstq; }
+            set {
+                mpstq = value;
+                labelControl1.Hide();
+                labelControl2.Hide();
+                comboBoxEdit10.Hide();
+                comboBoxEdit11.Hide();
+                labelInfo.Hide();
+            }
+        }
         #region IPopupFormEdit Members
         private PS_gtsb rowData = null;
 
@@ -142,26 +154,61 @@ namespace Ebada.Scgl.Sbgl
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (comboBoxEdit10.SelectedIndex == -1) {
-                MsgBox.ShowTipMessageBox("请输入启始杆号。");
-                comboBoxEdit10.Focus();
-                return;
+            if (mpstq != null) {
+                save2();
+            } else {
+                if (comboBoxEdit10.SelectedIndex == -1) {
+                    MsgBox.ShowTipMessageBox("请输入启始杆号。");
+                    comboBoxEdit10.Focus();
+                    return;
+                }
+                if (comboBoxEdit11.SelectedIndex == -1) {
+                    MsgBox.ShowTipMessageBox("请输入终止杆号。");
+                    comboBoxEdit11.Focus();
+                    return;
+                }
+                save();
             }
-            if (comboBoxEdit11.SelectedIndex == -1) {
-                MsgBox.ShowTipMessageBox("请输入终止杆号。");
-                comboBoxEdit11.Focus();
-                return;
-            }
-
-            //if (comboBoxEdit1.Text == "")
-            //{
-            //    MsgBox.ShowTipMessageBox("启始设备编号不能为空。");
-            //    comboBoxEdit1.Focus();
-            //    return;
-            //}
-            save();
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void save2() {
+            string sql = string.Format("select gtid from ps_gt where linecode in (select linecode from ps_xl where linevol='0.4' and linecode like '{0}%')", mpstq.tqCode);
+
+            IList list = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", sql);
+            if (list.Count <2) return;
+            DataTable dt = gridControl1.DataSource as DataTable;
+            List<PS_gtsb> gtsblist = new List<PS_gtsb>();
+            if (dt != null && dt.Rows.Count > 0) {
+                for (int i = 0; i < list.Count; i++) {
+
+                    string gtid = list[i].ToString();
+                    int j = 0;
+                    foreach (DataRow dr in dt.Rows) {
+                        if (dr["type"] == null) continue;
+                        PS_gtsb gtsb = new PS_gtsb();
+
+                        gtsb.sbName = dr["name"].ToString();
+                        gtsb.sbModle = dr["sbgg"].ToString();
+                        if (dr["sl"] != null && (dr["sl"].ToString().Trim()) != "")
+                            gtsb.sbNumber = Convert.ToInt16(dr["sl"]);
+                        gtsb.gtID = gtid;
+                        gtsb.sbID = gtsb.CreateID() + j;
+                        j++;
+                        gtsb.sbCode = j.ToString("000");
+                        gtsb.sbType = dr["type"].ToString();
+                        if (gtsb.sbName == "") continue;
+                        Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+                        gtsblist.Add(gtsb);
+                    }
+                }
+            }
+            if (gtsblist.Count > 0) {
+                Ebada.Client.ClientHelper.PlatformSqlMap.ExecuteTransationUpdate(gtsblist, null, null);
+                MsgBox.ShowTipMessageBox(string.Format("共插入{0}条记录", gtsblist.Count));
+            }
+
         }
         private void save() {
             int begin = comboBoxEdit10.SelectedIndex;

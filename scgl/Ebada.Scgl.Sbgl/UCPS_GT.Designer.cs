@@ -38,6 +38,9 @@
             this.btAddM2 = new DevExpress.XtraBars.BarButtonItem();
             this.btEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btDeleteMenu = new DevExpress.XtraBars.BarSubItem();
+            this.btDelete2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btDelete3 = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
@@ -51,9 +54,8 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btDeleteMenu = new DevExpress.XtraBars.BarSubItem();
-            this.btDelete2 = new DevExpress.XtraBars.BarButtonItem();
-            this.btDelete3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btDelete4 = new DevExpress.XtraBars.BarButtonItem();
+            this.btAddM4 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -89,8 +91,10 @@
             this.btAddIn,
             this.btDeleteMenu,
             this.btDelete2,
-            this.btDelete3});
-            this.barManager1.MaxItemId = 25;
+            this.btDelete3,
+            this.btDelete4,
+            this.btAddM4});
+            this.barManager1.MaxItemId = 27;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
@@ -181,7 +185,8 @@
             this.barSubItem1.Id = 18;
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAddM),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btAddM4)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // btAddM
@@ -215,6 +220,30 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btDeleteMenu
+            // 
+            this.btDeleteMenu.Caption = "批量删除";
+            this.btDeleteMenu.Id = 22;
+            this.btDeleteMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete4)});
+            this.btDeleteMenu.Name = "btDeleteMenu";
+            // 
+            // btDelete2
+            // 
+            this.btDelete2.Caption = "删除杆塔";
+            this.btDelete2.Id = 23;
+            this.btDelete2.Name = "btDelete2";
+            this.btDelete2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete2_ItemClick);
+            // 
+            // btDelete3
+            // 
+            this.btDelete3.Caption = "删除其它设备";
+            this.btDelete3.Id = 24;
+            this.btDelete3.Name = "btDelete3";
+            this.btDelete3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete3_ItemClick);
             // 
             // btRefresh
             // 
@@ -334,28 +363,19 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // btDeleteMenu
+            // btDelete4
             // 
-            this.btDeleteMenu.Caption = "批量删除";
-            this.btDeleteMenu.Id = 22;
-            this.btDeleteMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btDelete3)});
-            this.btDeleteMenu.Name = "btDeleteMenu";
+            this.btDelete4.Caption = "删除台区设备";
+            this.btDelete4.Id = 25;
+            this.btDelete4.Name = "btDelete4";
+            this.btDelete4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete4_ItemClick);
             // 
-            // btDelete2
+            // btAddM4
             // 
-            this.btDelete2.Caption = "删除杆塔";
-            this.btDelete2.Id = 23;
-            this.btDelete2.Name = "btDelete2";
-            this.btDelete2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete2_ItemClick);
-            // 
-            // btDelete3
-            // 
-            this.btDelete3.Caption = "删除其它设备";
-            this.btDelete3.Id = 24;
-            this.btDelete3.Name = "btDelete3";
-            this.btDelete3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete3_ItemClick);
+            this.btAddM4.Caption = "台区设备";
+            this.btAddM4.Id = 26;
+            this.btAddM4.Name = "btAddM4";
+            this.btAddM4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAddM4_ItemClick);
             // 
             // UCPS_GT
             // 
@@ -408,5 +428,7 @@
         private DevExpress.XtraBars.BarSubItem btDeleteMenu;
         private DevExpress.XtraBars.BarButtonItem btDelete2;
         private DevExpress.XtraBars.BarButtonItem btDelete3;
+        private DevExpress.XtraBars.BarButtonItem btAddM4;
+        private DevExpress.XtraBars.BarButtonItem btDelete4;
     }
 }
