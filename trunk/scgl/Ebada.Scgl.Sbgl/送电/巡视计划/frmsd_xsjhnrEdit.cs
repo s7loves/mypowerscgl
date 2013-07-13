@@ -74,14 +74,14 @@ namespace Ebada.Scgl.Sbgl
         {
             if (string.IsNullOrEmpty(txtflag1.EditValue as string))
                 return;
-            if (txtflag1.EditValue as string == "缺陷")
+            if (txtflag1.EditValue as string!="")
             {
                 this.txtqxnr.Enabled = true;
             }
             else
             {
                 this.txtqxnr.Enabled = false;
-                this.txtqxnr.EditValue = null;
+                this.txtqxnr.EditValue = "";
             }
         }
 

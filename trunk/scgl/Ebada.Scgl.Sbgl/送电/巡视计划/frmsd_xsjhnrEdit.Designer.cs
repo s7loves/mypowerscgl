@@ -93,7 +93,7 @@
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(52, 14);
             this.labelControl3.TabIndex = 4;
-            this.labelControl3.Text = "缺陷状态 ";
+            this.labelControl3.Text = "缺陷类别 ";
             // 
             // labelControl4
             // 
@@ -206,8 +206,9 @@
             this.txtflag1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtflag1.Properties.Items.AddRange(new object[] {
-            "缺陷",
-            "不缺陷"});
+            "一般缺陷",
+            "紧急缺陷",
+            "重大缺陷"});
             this.txtflag1.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_Properties_EditValueChanged);
             this.txtflag1.Size = new System.Drawing.Size(447, 21);
             this.txtflag1.TabIndex = 20;

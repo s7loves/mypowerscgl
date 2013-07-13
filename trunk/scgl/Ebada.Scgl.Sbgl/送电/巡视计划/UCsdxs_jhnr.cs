@@ -94,7 +94,7 @@ namespace Ebada.Scgl.Sbgl
             this.gridView1.Columns["gtbh"].Caption = "杆塔编号";
             this.gridView1.Columns["gtbh"].VisibleIndex = m++;
 
-            this.gridView1.Columns["flag1"].Caption = "缺陷状态";
+            this.gridView1.Columns["flag1"].Caption = "缺陷类别";
             this.gridView1.Columns["flag1"].VisibleIndex = m++;
 
             this.gridView1.Columns["lng"].Caption = "经度";
