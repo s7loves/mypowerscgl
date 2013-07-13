@@ -42,6 +42,7 @@ namespace Ebada.Scgl.Yxgl
             InitializeComponent();
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             repositoryItemHyperLinkEdit1.Click += new EventHandler(repositoryItemHyperLinkEdit1_Click);
+            bar3.Visible = false;
         }
 
         void repositoryItemHyperLinkEdit1_Click(object sender, EventArgs e)
@@ -651,7 +652,7 @@ namespace Ebada.Scgl.Yxgl
         /// </summary>
         public void InitColumns()
         {
-
+            hideColumn("TableName");
         }
 
         private void repositoryItemHyperLinkEdit1_Click_1(object sender, EventArgs e)
