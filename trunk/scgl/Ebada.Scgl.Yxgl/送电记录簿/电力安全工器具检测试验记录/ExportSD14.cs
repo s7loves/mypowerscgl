@@ -74,7 +74,7 @@ namespace Ebada.Scgl.Yxgl {
             }
           
             ex.SetCellValue(obj.syzq.ToString()+"年", 5, 5);
-            ex.SetCellValue(obj.syxm, 5, 7);
+            ex.SetCellValue(obj.syxm, 5, 6);
 
 
             ex.ActiveSheet(1);
