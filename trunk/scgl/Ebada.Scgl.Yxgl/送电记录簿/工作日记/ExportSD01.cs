@@ -137,7 +137,7 @@ namespace Ebada.Scgl.Yxgl {
             //姓名、原因
             string[] rr = new string[10];
             string[] yy = new string[10];
-            string[] rr2 = jl.qqry.Split(";".ToCharArray());
+            string[] rr2 = jl.qqry.Split(";".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < rr2.Length - 1; i++) {
                 rr[i] = rr2[i].Split(":".ToCharArray())[0];
                 yy[i] = rr2[i].Split(":".ToCharArray())[1];
