@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl
             int row = 1;
             int col = 1;
             //每行显示文字长度
-            int zc = 33;
+            int zc = 32;
             //要发生变化的部分
             //List<string>[] bhcollect = new List<string>[3] { Ecommon.ResultStrList("三、事故、障碍、异常运行情况及处理经过：" + obj.clqk, zc), Ecommon.ResultStrList("四、主要原因分析：" + obj.yyfx, zc), Ecommon.ResultStrList("五、今后防止对策：" + obj.fzdc, zc) };
             //int[] hs = new int[3] { 4, 5, 5 };
