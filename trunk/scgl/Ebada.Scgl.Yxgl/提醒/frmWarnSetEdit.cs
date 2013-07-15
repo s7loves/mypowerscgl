@@ -39,6 +39,7 @@ namespace Ebada.Scgl.Yxgl
             this.sporderdays.DataBindings.Add("EditValue", rowData, "OrderDays");
             this.spSpaceDays.DataBindings.Add("EditValue", rowData, "SpaceDays");
             this.spBeforeDays.DataBindings.Add("EditValue", rowData,"BeforeDays");
+            this.spAfterDays.DataBindings.Add("EditValue", rowData,"AfterDays");
             this.ccborg.DataBindings.Add("EditValue", rowData,  "BYScol1");
 
         }
