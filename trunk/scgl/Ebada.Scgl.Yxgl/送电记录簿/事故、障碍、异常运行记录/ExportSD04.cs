@@ -73,6 +73,7 @@ namespace Ebada.Scgl.Yxgl
             ex.SetCellValue(obj.zxr, 23, 8);
             //记录填写人
             ex.SetCellValue(obj.CreateMan, 24, 8);
+            ex.SetCellValue(obj.CreateDate.Year.ToString(), 24, 11);
             ex.SetCellValue(obj.CreateDate.Month.ToString(), 24, 15);
             ex.SetCellValue(obj.CreateDate.Day.ToString(), 24, 17);
 
