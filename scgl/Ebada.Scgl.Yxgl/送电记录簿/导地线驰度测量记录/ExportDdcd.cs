@@ -31,9 +31,9 @@ namespace Ebada.Scgl.Yxgl {
             int row = 1;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(nrList.Count, 14))
+            if (pageindex < Ecommon.GetPagecount(nrList.Count, 5))
             {
-                pageindex = Ecommon.GetPagecount(nrList.Count, 14);
+                pageindex = Ecommon.GetPagecount(nrList.Count, 5);
             }
             for (int j = 1; j <= pageindex; j++)
             {
@@ -51,12 +51,12 @@ namespace Ebada.Scgl.Yxgl {
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 14+ 1;
-                int endrow = j * 14;
+                int starow = prepageindex * 5+ 1;
+                int endrow = j * 5;
 
                 if (nrList.Count > endrow)
                 {
-                    for (int i = 0; i < 14; i++)
+                    for (int i = 0; i < 5; i++)
                     {
 
                         //导线
@@ -78,20 +78,20 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 7, 18);
 
                         //地线
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxxh, row + i + 24, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].nzdgh, row + i + 24, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].cldgh, row + i + 24, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Year.ToString(), row + i + 24, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Month.ToString(), row + i + 24, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Day.ToString(), row + i + 24, 6);
-                        ex.SetCellValue(nrList[starow - 1 + i].wd, row + i + 24, 7);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxscz, row + i + 24, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxsczy, row + i + 24, 10);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxbzz, row + i + 24, 12);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddwcz, row + i + 24, 13);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddwcy, row + i + 24, 15);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxjl, row + i + 24, 17);
-                        ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 24, 18);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxxh, row + i + 15, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].nzdgh, row + i + 15, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].cldgh, row + i + 15, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Year.ToString(), row + i + 15, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Month.ToString(), row + i + 15, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Day.ToString(), row + i + 15, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].wd, row + i + 15, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxscz, row + i + 15, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxsczy, row + i + 15, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxbzz, row + i + 15, 12);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddwcz, row + i + 15, 13);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddwcy, row + i + 15, 15);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxjl, row + i + 15, 17);
+                        ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 15, 18);
 
                     }
                 }
@@ -118,20 +118,20 @@ namespace Ebada.Scgl.Yxgl {
                         ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 7, 18);
 
                         //地线
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxxh, row + i + 24, 1);
-                        ex.SetCellValue(nrList[starow - 1 + i].nzdgh, row + i + 24, 2);
-                        ex.SetCellValue(nrList[starow - 1 + i].cldgh, row + i + 24, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Year.ToString(), row + i + 24, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Month.ToString(), row + i + 24, 5);
-                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Day.ToString(), row + i + 24, 6);
-                        ex.SetCellValue(nrList[starow - 1 + i].wd, row + i + 24, 7);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxscz, row + i + 24, 8);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxsczy, row + i + 24, 10);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxbzz, row + i + 24, 12);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddwcz, row + i + 24, 13);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddwcy, row + i + 24, 15);
-                        ex.SetCellValue(nrList[starow - 1 + i].ddxjl, row + i + 24, 17);
-                        ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 24, 18);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxxh, row + i + 15, 1);
+                        ex.SetCellValue(nrList[starow - 1 + i].nzdgh, row + i + 15, 2);
+                        ex.SetCellValue(nrList[starow - 1 + i].cldgh, row + i + 15, 3);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Year.ToString(), row + i + 15, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Month.ToString(), row + i + 15, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].clrq.Day.ToString(), row + i + 15, 6);
+                        ex.SetCellValue(nrList[starow - 1 + i].wd, row + i + 15, 7);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxscz, row + i + 15, 8);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxsczy, row + i + 15, 10);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxbzz, row + i + 15, 12);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddwcz, row + i + 15, 13);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddwcy, row + i + 15, 15);
+                        ex.SetCellValue(nrList[starow - 1 + i].ddxjl, row + i + 15, 17);
+                        ex.SetCellValue(nrList[starow - 1 + i].clr, row + i + 15, 18);
 
                     }
                 }
