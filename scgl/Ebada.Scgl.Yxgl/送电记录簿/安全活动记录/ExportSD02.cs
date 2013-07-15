@@ -26,7 +26,7 @@ namespace Ebada.Scgl.Yxgl {
 
             ex.Open(fname);
             //每行显示文字长度
-            int zc = 58;
+            int zc = 62;
             //与会人员之间的间隔符号
             char[] jksign = new char[1] { ';' };
             int row = 1;
