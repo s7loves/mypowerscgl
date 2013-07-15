@@ -28,7 +28,7 @@ namespace Ebada.Scgl.Yxgl {
             //电压
             ex.SetCellValue(obj.lineVol, 6, 7);
             //线路
-            ex.SetCellValue(obj.c1, 7, 9);
+            ex.SetCellValue(obj.c1, 6, 9);
             //发现问题
             List<string> fxwtList = GetList(obj.fxwt, sz);
             for (int i = 0; i < fxwtList.Count; i++)
