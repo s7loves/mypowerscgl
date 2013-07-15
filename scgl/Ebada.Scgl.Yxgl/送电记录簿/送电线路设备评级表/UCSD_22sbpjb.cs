@@ -147,7 +147,7 @@ namespace Ebada.Scgl.Yxgl {
             {
 
                 try {
-                    if (ExportToExcel("送电22线路设备评级表.xls", "", pj) < 1) return;
+                    if (ExportToExcel("送管22送电线路设备评级表.xls", "", pj) < 1) return;
 
                     frm22sbpjbTemplate frm = new frm22sbpjbTemplate();
                     frm.pjobject = pj;
@@ -164,7 +164,7 @@ namespace Ebada.Scgl.Yxgl {
         }
 
         public static int ExportToExcel(string title, string dw, sdjls_sbpjb pj17) {
-            string fname = Application.StartupPath + "\\00记录模板\\送电22线路设备评级表.xls.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送管22送电线路设备评级表.xls";
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
             string outfname = Path.GetTempFileName() + ".xls";
             File.Copy(fname, outfname);
@@ -186,20 +186,21 @@ namespace Ebada.Scgl.Yxgl {
                 
                 ex.ActiveSheet(1);
                 //设置线路值
-                ex.SetCellValue(xl.LineName, 4, 3);
-                ex.SetCellValue(xl.LineVol, 4, 5);
-                ex.SetCellValue(xl.WireLength.ToString(), 4, 7);
-                ex.SetCellValue(xl.InDate.Year.ToString(), 4, 9);
-                ex.SetCellValue(xl.InDate.Month.ToString(), 4, 11);
+                ex.SetCellValue(xl.LineName, 3, 3);
+                ex.SetCellValue(xl.LineVol, 3, 8);
+                ex.SetCellValue(xl.WireLength.ToString(), 3, 11);
+                ex.SetCellValue(xl.InDate.Year + "年" + xl.InDate.Month + "月", 3, 13);
+                //ex.SetCellValue(xl.InDate.Year.ToString(), 4, 9);
+                //ex.SetCellValue(xl.InDate.Month.ToString(), 4, 11);
                 //评级日期
-                ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", 5, 3);
+                ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", 4, 3);
 
                 //杆塔
-                ex.SetCellValue(gtlis.Count.ToString(), 6, 3);//合计
-                ex.SetCellValue(gtlis.Count.ToString(), 7, 3);//一类
+                ex.SetCellValue(gtlis.Count.ToString(), 5, 3);//合计
+                ex.SetCellValue(gtlis.Count.ToString(), 6, 3);//一类
                 //导地线
-                ex.SetCellValue(xl.WireLength.ToString(), 10, 3);//合计
-                ex.SetCellValue(xl.WireLength.ToString(), 11, 3);//一类
+                ex.SetCellValue(xl.WireLength.ToString(), 9, 3);//合计
+                ex.SetCellValue(xl.WireLength.ToString(), 10, 3);//一类
                 //绝缘子
                 string sql = "in (";
                 foreach (sd_gt gt in gtlis)
@@ -222,20 +223,20 @@ namespace Ebada.Scgl.Yxgl {
 
                 IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
 
+                ex.SetCellValue(jyuzlist.Count.ToString(), 13, 3);
                 ex.SetCellValue(jyuzlist.Count.ToString(), 14, 3);
-                ex.SetCellValue(jyuzlist.Count.ToString(), 15, 3);
                 //接地装置
+                ex.SetCellValue(jdzzList.Count.ToString(), 17, 3);
                 ex.SetCellValue(jdzzList.Count.ToString(), 18, 3);
-                ex.SetCellValue(jdzzList.Count.ToString(), 19, 3);
 
                 //其它
                 
                 //评定等级
-                ex.SetCellValue("一级", 25, 3);
+                ex.SetCellValue("一级", 24, 3);
                 //评级负责人
                 if (MainHelper.User != null)
                 {
-                    ex.SetCellValue(MainHelper.User.UserName, 26, 3);
+                    ex.SetCellValue(MainHelper.User.UserName, 25, 3);
                 }
             } catch (Exception exmess) {
                 MsgBox.ShowTipMessageBox(exmess.Message.ToString());
