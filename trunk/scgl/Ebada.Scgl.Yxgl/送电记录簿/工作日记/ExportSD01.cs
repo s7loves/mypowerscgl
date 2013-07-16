@@ -16,7 +16,7 @@ namespace Ebada.Scgl.Yxgl {
             nrList = getRjnrList(jl.gzrjID);
             ExcelAccess ex = new ExcelAccess();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            string fname = Application.StartupPath + "\\00记录模板\\送电02工作日志.xls";
+            string fname = Application.StartupPath + "\\00记录模板\\送电02工作日记.xls";
             ex.Open(fname);
             int row = 1;
             int col = 1;
@@ -138,13 +138,18 @@ namespace Ebada.Scgl.Yxgl {
             string[] rr = new string[10];
             string[] yy = new string[10];
             string[] rr2 = jl.qqry.Split(";".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < rr2.Length - 1; i++) {
-                rr[i] = rr2[i].Split(":".ToCharArray())[0];
-                yy[i] = rr2[i].Split(":".ToCharArray())[1];
-            }
-            for (int i = rr2.Length - 1; i < rr.Length; i++) {
-                rr[i] = "";
-                yy[i] = "";
+            if (rr2.Length > 0)
+            {
+                for (int i = 0; i < rr2.Length - 1; i++)
+                {
+                    rr[i] = rr2[i].Split(":".ToCharArray())[0];
+                    yy[i] = rr2[i].Split(":".ToCharArray())[1];
+                }
+                for (int i = rr2.Length - 1; i < rr.Length; i++)
+                {
+                    rr[i] = "";
+                    yy[i] = "";
+                }
             }
             ex.SetCellValue(rr[0], row + 4, col + 2);
             ex.SetCellValue(rr[1], row + 4, col + 4);

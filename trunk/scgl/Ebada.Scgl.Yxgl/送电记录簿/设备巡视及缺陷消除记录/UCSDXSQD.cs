@@ -168,6 +168,9 @@ namespace Ebada.Scgl.Yxgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(sdjl_sbxsqd newobj) {
             if (parentID == null) return;
+            if (xsobj == null)
+                return;
+
             fdialog.orgcode = parentObj.OrgID;
             fdialog.lineid = xsobj.LineID;
             //newobj.OrgCode = parentID;

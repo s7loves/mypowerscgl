@@ -34,7 +34,6 @@
             this.lbljhr = new DevExpress.XtraEditors.LabelControl();
             this.combldr = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblldr = new DevExpress.XtraEditors.LabelControl();
-            this.btnyxtm = new DevExpress.XtraEditors.SimpleButton();
             this.cmbyxtm = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lblyxtm = new DevExpress.XtraEditors.LabelControl();
             this.cmbyxdd = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -95,7 +94,6 @@
             this.groupBox1.Controls.Add(this.lbljhr);
             this.groupBox1.Controls.Add(this.combldr);
             this.groupBox1.Controls.Add(this.lblldr);
-            this.groupBox1.Controls.Add(this.btnyxtm);
             this.groupBox1.Controls.Add(this.cmbyxtm);
             this.groupBox1.Controls.Add(this.lblyxtm);
             this.groupBox1.Controls.Add(this.cmbyxdd);
@@ -155,15 +153,6 @@
             this.lblldr.Size = new System.Drawing.Size(36, 14);
             this.lblldr.TabIndex = 13;
             this.lblldr.Text = "领导人";
-            // 
-            // btnyxtm
-            // 
-            this.btnyxtm.Location = new System.Drawing.Point(495, 141);
-            this.btnyxtm.Name = "btnyxtm";
-            this.btnyxtm.Size = new System.Drawing.Size(24, 14);
-            this.btnyxtm.TabIndex = 12;
-            this.btnyxtm.Text = "...";
-            this.btnyxtm.Click += new System.EventHandler(this.btnyxtm_Click);
             // 
             // cmbyxtm
             // 
@@ -401,7 +390,7 @@
             // 
             this.xtrPageJl.Controls.Add(this.memojlpj);
             this.xtrPageJl.Name = "xtrPageJl";
-            this.xtrPageJl.Size = new System.Drawing.Size(310, 204);
+            this.xtrPageJl.Size = new System.Drawing.Size(308, 201);
             this.xtrPageJl.Text = "结论及评价";
             // 
             // memojlpj
@@ -409,7 +398,7 @@
             this.memojlpj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memojlpj.Location = new System.Drawing.Point(0, 0);
             this.memojlpj.Name = "memojlpj";
-            this.memojlpj.Size = new System.Drawing.Size(310, 204);
+            this.memojlpj.Size = new System.Drawing.Size(308, 201);
             this.memojlpj.TabIndex = 0;
             // 
             // xtrPagecs
@@ -488,7 +477,6 @@
         private DevExpress.XtraEditors.LabelControl lblyxdd;
         private DevExpress.XtraEditors.TimeEdit timejssj;
         private DevExpress.XtraEditors.LabelControl lbljssj;
-        private DevExpress.XtraEditors.SimpleButton btnyxtm;
         private DevExpress.XtraEditors.LabelControl lbljhr;
         private DevExpress.XtraEditors.ComboBoxEdit combldr;
         private DevExpress.XtraEditors.LabelControl lblldr;
