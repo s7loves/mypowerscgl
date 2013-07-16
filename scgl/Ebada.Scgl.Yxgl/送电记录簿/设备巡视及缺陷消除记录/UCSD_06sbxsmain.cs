@@ -87,9 +87,11 @@ namespace Ebada.Scgl.Yxgl
             if (org != null)
             {
                 ParentObj = org;
+
                 if (SelectGdsChanged != null)
                     SelectGdsChanged(this, org);
             }
+
             
 
         }
@@ -103,6 +105,8 @@ namespace Ebada.Scgl.Yxgl
         {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as sdjl_06sbxs);
+            else
+                FocusedRowChanged(gridView1, null);
         }
         private void hideColumn(string colname)
         {

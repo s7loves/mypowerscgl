@@ -25,9 +25,9 @@ namespace Ebada.Scgl.Yxgl {
             int rowcount = 7;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommon.GetPagecount(objlist.Count, 17))
+            if (pageindex < Ecommon.GetPagecount(objlist.Count, 11))
             {
-                pageindex = Ecommon.GetPagecount(objlist.Count, 17);
+                pageindex = Ecommon.GetPagecount(objlist.Count, 11);
             }
             for (int j = 1; j <= pageindex; j++)
             {
@@ -46,12 +46,12 @@ namespace Ebada.Scgl.Yxgl {
                
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 17 + 1;
-                int endrow = j * 17;
+                int starow = prepageindex * 11 + 1;
+                int endrow = j * 11;
                 
                 if (objlist.Count > endrow)
                 {
-                    for (int i = 0; i < 17; i++)
+                    for (int i = 0; i < 11; i++)
                     {
                         ex.SetCellValue(objlist[starow - 1 + i].whqd, rowcount + i, 1);
                         ex.SetCellValue(objlist[starow - 1 + i].wyxz, rowcount + i, 2);

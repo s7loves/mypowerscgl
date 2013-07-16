@@ -97,11 +97,27 @@ namespace Ebada.Scgl.Yxgl
                 {
                     if (i == 0)
                     {
-                        tempstr = obj.ndcs.Substring(startnum, endnum - startnum - 2);
+                        if (endnum == obj.ndcs.Length)
+                        {
+                            tempstr = obj.ndcs.Substring(startnum, endnum - startnum);
+                        }
+                        else
+                        {
+                            tempstr = obj.ndcs.Substring(startnum, endnum - startnum - 2);
+                        }
+                        
                     }
                     else
                     {
-                        tempstr = obj.ndcs.Substring(startnum-2, endnum - startnum);
+                        if (endnum == obj.ndcs.Length)
+                        {
+                            tempstr = obj.ndcs.Substring(startnum - 2, endnum - startnum+1);
+                        }
+                        else
+                        {
+                            tempstr = obj.ndcs.Substring(startnum - 2, endnum - startnum);
+                        }
+                        
                     }
                     
                 }

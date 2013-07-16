@@ -214,6 +214,7 @@ namespace Ebada.Scgl.Yxgl
                 if (value == null)
                 {
                     parentID = null;
+                    RefreshData(" where 0>1");
                 }
                 else
                 {

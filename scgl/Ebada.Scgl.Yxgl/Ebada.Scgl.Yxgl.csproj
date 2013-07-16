@@ -2976,7 +2976,7 @@
     <Content Include="00记录模板\送电01安全活动记录.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="00记录模板\送电02工作日志.xls">
+    <Content Include="00记录模板\送电02工作日记.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="00记录模板\送电03运行分析记录.xls">
