@@ -76,6 +76,7 @@ namespace Ebada.Scgl.Yxgl
             this.memojyzwz.DataBindings.Add("EditValue", rowData, "lzjyzwz");
             this.memoclqk.DataBindings.Add("EditValue", rowData, "c1");
             this.memobz.DataBindings.Add("EditValue", rowData, "bz");
+            this.spelzs.DataBindings.Add("EditValue", rowData, "c3");
         }
 
         #endregion

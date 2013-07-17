@@ -151,9 +151,11 @@ namespace Ebada.Scgl.Yxgl {
             hideColumn("zyc");
             hideColumn("c1");
             hideColumn("c2");
-            hideColumn("c3");
+            //hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            gridView1.Columns["c3"].Visible = true;
+            gridView1.Columns["c3"].Caption = "零值数量";
            
         }
         /// <summary>
