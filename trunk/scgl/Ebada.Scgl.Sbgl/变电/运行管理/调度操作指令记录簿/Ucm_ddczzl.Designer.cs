@@ -44,6 +44,8 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.lkueorg = new DevExpress.XtraEditors.LookUpEdit();
+            this.lblOrg = new DevExpress.XtraEditors.LabelControl();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearchs = new DevExpress.XtraEditors.SimpleButton();
             this.datesj = new DevExpress.XtraEditors.DateEdit();
@@ -53,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lkueorg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -160,13 +163,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(564, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(713, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 408);
-            this.barDockControlBottom.Size = new System.Drawing.Size(564, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(713, 0);
             // 
             // barDockControlLeft
             // 
@@ -177,7 +180,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(564, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(713, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 384);
             // 
             // btRefresh
@@ -192,6 +195,8 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 24);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.lkueorg);
+            this.splitContainerControl1.Panel1.Controls.Add(this.lblOrg);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnReset);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSearchs);
             this.splitContainerControl1.Panel1.Controls.Add(this.datesj);
@@ -199,14 +204,33 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(564, 384);
+            this.splitContainerControl1.Size = new System.Drawing.Size(713, 384);
             this.splitContainerControl1.SplitterPosition = 29;
             this.splitContainerControl1.TabIndex = 5;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
+            // lkueorg
+            // 
+            this.lkueorg.Location = new System.Drawing.Point(75, 3);
+            this.lkueorg.MenuManager = this.barManager1;
+            this.lkueorg.Name = "lkueorg";
+            this.lkueorg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkueorg.Properties.NullText = "选择变电所";
+            this.lkueorg.Size = new System.Drawing.Size(132, 21);
+            this.lkueorg.TabIndex = 7;
+            // 
+            // lblOrg
+            // 
+            this.lblOrg.Location = new System.Drawing.Point(9, 6);
+            this.lblOrg.Name = "lblOrg";
+            this.lblOrg.Size = new System.Drawing.Size(60, 14);
+            this.lblOrg.TabIndex = 6;
+            this.lblOrg.Text = "选择变电所";
+            // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(306, 4);
+            this.btnReset.Location = new System.Drawing.Point(502, 2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 3;
@@ -215,7 +239,7 @@
             // 
             // btnSearchs
             // 
-            this.btnSearchs.Location = new System.Drawing.Point(215, 4);
+            this.btnSearchs.Location = new System.Drawing.Point(421, 2);
             this.btnSearchs.Name = "btnSearchs";
             this.btnSearchs.Size = new System.Drawing.Size(75, 23);
             this.btnSearchs.TabIndex = 2;
@@ -225,7 +249,7 @@
             // datesj
             // 
             this.datesj.EditValue = null;
-            this.datesj.Location = new System.Drawing.Point(70, 4);
+            this.datesj.Location = new System.Drawing.Point(267, 3);
             this.datesj.MenuManager = this.barManager1;
             this.datesj.Name = "datesj";
             this.datesj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -243,7 +267,7 @@
             // 
             // lbltime
             // 
-            this.lbltime.Location = new System.Drawing.Point(16, 7);
+            this.lbltime.Location = new System.Drawing.Point(213, 6);
             this.lbltime.Name = "lbltime";
             this.lbltime.Size = new System.Drawing.Size(48, 14);
             this.lbltime.TabIndex = 0;
@@ -255,7 +279,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(564, 349);
+            this.gridControl1.Size = new System.Drawing.Size(713, 349);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -279,11 +303,12 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Ucm_ddczzl";
-            this.Size = new System.Drawing.Size(564, 408);
+            this.Size = new System.Drawing.Size(713, 408);
             this.Load += new System.EventHandler(this.Ucm_czpdjb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lkueorg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datesj.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -315,5 +340,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSearchs;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btClose;
+        private DevExpress.XtraEditors.LabelControl lblOrg;
+        private DevExpress.XtraEditors.LookUpEdit lkueorg;
     }
 }
