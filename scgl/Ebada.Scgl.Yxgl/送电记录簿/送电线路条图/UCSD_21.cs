@@ -336,8 +336,8 @@ namespace Ebada.Scgl.Yxgl {
                     IList hdobj = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from sd_gtsb Where sbName like '%耐张%' and gtID='" + gtobj.gtID + "'");
 
                     //拉线规格
-                    IList lxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from sd_gtsb  Where sbName like '%拉线%' and gtID='" + gtobj.gtID + "'");
-
+                    //IList lxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from sd_gtsb  Where sbName like '%拉线%' and gtID='" + gtobj.gtID + "'");
+                    IList lxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneInt", " select sum(sbnumber) from sd_gtsb where sbName like '%拉线%' and gtID='" + gtobj.gtID + "'");
                    
                     
 
@@ -675,27 +675,31 @@ namespace Ebada.Scgl.Yxgl {
                     //拉线规格/条数
                     if (lxlist != null && lxlist.Count > 0) {
 
-                        if (lxlist.Count > lxRowCount) {
-                            for (j = lxRowCount; j < lxlist.Count; j++) {
-                                range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
-                                range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
+                        //if (lxlist.Count > lxRowCount) {
+                        //    for (j = lxRowCount; j < lxlist.Count; j++) {
+                        //        range = (Excel.Range)xx.get_Range(xx.Cells[ihang + lxRowCount, "A"], xx.Cells[ihang + lxRowCount, "A"]);
+                        //        range.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftToRight, Type.Missing);
                                 
-                            }
-                            for (int jtem = lxRowCount; jtem < lxlist.Count; jtem++) {
-                                for (int item = 0; item < 29; item += 2) {
-                                    range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + item + 1]);
-                                    range.Merge(Type.Missing);
-                                }
-                            }
-                            lxRowCount = lxlist.Count;
-                            range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
-                            range.Merge(Type.Missing);
-                        }
-                        for (j = 0; j < lxlist.Count; j++) {
-                            int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from sd_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
-                            //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<sd_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                            ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
+                        //    }
+                        //    for (int jtem = lxRowCount; jtem < lxlist.Count; jtem++) {
+                        //        for (int item = 0; item < 29; item += 2) {
+                        //            range = (Excel.Range)xx.get_Range(xx.Cells[ihang + jtem, jstart + item], xx.Cells[ihang + jtem, jstart + item + 1]);
+                        //            range.Merge(Type.Missing);
+                        //        }
+                        //    }
+                        //    lxRowCount = lxlist.Count;
+                        //    range = (Excel.Range)xx.get_Range(xx.Cells[ihang, 1], xx.Cells[ihang + lxRowCount - 1, 1]);
+                        //    range.Merge(Type.Missing);
+                        //}
+                        //for (j = 0; j < lxlist.Count; j++) {
+                        //    int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from sd_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
+                        //    //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<sd_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
+                        //    ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
 
+                        //}
+                        if (lxlist[0] != null)
+                        {
+                            ex.SetCellValue(lxlist[0].ToString(), ihang, jlie);
                         }
                     }
                     ihang += lxRowCount;
