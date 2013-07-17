@@ -13,6 +13,7 @@ using System.Reflection;
 using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -25,9 +26,32 @@ namespace Ebada.Scgl.Sbgl
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<bdjl_ddzczl>(gridControl1, gridView1, barManager1, false);
-           
+            InitLuke();
         }
 
+        private void InitLuke()
+        {
+           IList<mOrg> orgList= Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgType=2");
+           List<DicType> dictypeList = new List<DicType>();
+           foreach (mOrg org in orgList)
+           {
+               dictypeList.Add(new DicType(org.OrgCode, org.OrgName));
+           }
+           SetComboBoxData(lkueorg, "Value", "Key", "请选择", "变电所", dictypeList);
+        }
+        //SetComboBoxData(lkueStartGt, "Value", "Key", "请选择", "起始杆塔", gtDictypeList);
+        public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<DicType> post)
+        {
+            comboBox.Properties.Columns.Clear();
+            comboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            comboBox.Properties.DataSource = post;
+            comboBox.Properties.DisplayMember = displayMember;
+            comboBox.Properties.ValueMember = valueMember;
+            comboBox.Properties.NullText = nullTest;
+            comboBox.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(valueMember, "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(displayMember, cnStr)});
+        }
         private void initImageList()
         {
             ImageList imagelist = new ImageList();
@@ -48,7 +72,8 @@ namespace Ebada.Scgl.Sbgl
         private void Ucm_czpdjb_Load(object sender, EventArgs e)
         {
             gridView1.BestFitColumns();
-            this.datesj.EditValue = DateTime.Now.ToString("yyyy-MM");
+            //this.datesj.EditValue = DateTime.Now.ToString("yyyy-MM");
+            this.datesj.EditValue = null;
             RefreshGridData("");
             InitGridviewColumn();
         }
@@ -120,6 +145,10 @@ namespace Ebada.Scgl.Sbgl
                 return;
             string searchtime = Convert.ToDateTime(datesj.EditValue).ToString("yyyy-M");
             string sqlwhere = "where Convert(varchar,Year(kssj)) + '-' + Convert(varchar,Month(kssj))='"+searchtime+"'";
+            if (!string.IsNullOrEmpty(lkueorg.EditValue as string))
+            {
+                sqlwhere += " and orgcode='"+lkueorg.EditValue as string+"'";
+            }
             RefreshGridData(sqlwhere);
             //Convert(varchar,Year(kssj)) + '-' + Convert(varchar,Month(kssj))
         }
