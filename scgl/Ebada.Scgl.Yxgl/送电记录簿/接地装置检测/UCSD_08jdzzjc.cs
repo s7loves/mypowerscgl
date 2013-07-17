@@ -145,6 +145,8 @@ namespace Ebada.Scgl.Yxgl
             //需要隐藏列时在这写代码
 
             hideColumn("OrgCode");
+            hideColumn("OrgName");
+            hideColumn("LineName");
             //hideColumn("gzwz");
             hideColumn("sbID");
             hideColumn("LineID");
@@ -153,6 +155,18 @@ namespace Ebada.Scgl.Yxgl
             hideColumn("c3");
             hideColumn("c4");
             hideColumn("c5");
+            int m = 0;
+            gridView1.Columns["gth"].VisibleIndex = m++;
+            gridView1.Columns["gzwz"].VisibleIndex = m++;
+            gridView1.Columns["sbmc"].VisibleIndex = m++;
+            gridView1.Columns["jddz"].VisibleIndex = m++;
+            gridView1.Columns["CreateDate"].VisibleIndex = m++;
+            gridView1.Columns["trdzr"].VisibleIndex = m++;
+            gridView1.Columns["tz"].VisibleIndex = m++;
+            gridView1.Columns["xhgg"].VisibleIndex = m++;
+            gridView1.Columns["fzxl"].VisibleIndex = m++;
+            gridView1.Columns["CreateMan"].VisibleIndex = m++;
+
 
         }
         /// <summary>
