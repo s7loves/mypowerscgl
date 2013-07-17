@@ -10,6 +10,7 @@ using Ebada.Scgl.Model;
 using Ebada.Core;
 using Ebada.UI.Base;
 using Ebada.Client;
+using Ebada.Scgl.Core;
 
 namespace Ebada.Scgl.Sbgl
 {
@@ -35,13 +36,22 @@ namespace Ebada.Scgl.Sbgl
                 if (rowData == null)
                 {
                     this.rowData = value as sd_xsjhnr;
-
+                    InitComboBox();
                     dataBind();
                 }
                 else
                 {
                     ConvertHelper.CopyTo<sd_xsjhnr>(value as sd_xsjhnr, rowData);
                 }
+            }
+        }
+
+        private void InitComboBox()
+        {
+            ComboBoxHelper.FillCBoxByDyk("巡视计划内容", "缺陷类别", txtflag1);
+            if (!string.IsNullOrEmpty(txtflag1.EditValue as string))
+            {
+                rowData.flag1 = txtflag1.EditValue as string;
             }
         }
 
