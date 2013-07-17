@@ -31,6 +31,7 @@
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.grpjyzxx = new System.Windows.Forms.GroupBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnjyzwz = new DevExpress.XtraEditors.SimpleButton();
             this.memobz = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -54,7 +55,8 @@
             this.txtdwmc = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.lbllzs = new DevExpress.XtraEditors.LabelControl();
+            this.spelzs = new DevExpress.XtraEditors.SpinEdit();
             this.grpjyzxx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memobz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoclqk.Properties)).BeginInit();
@@ -69,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlineName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdwmc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spelzs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOk
@@ -93,6 +96,8 @@
             // 
             // grpjyzxx
             // 
+            this.grpjyzxx.Controls.Add(this.spelzs);
+            this.grpjyzxx.Controls.Add(this.lbllzs);
             this.grpjyzxx.Controls.Add(this.simpleButton1);
             this.grpjyzxx.Controls.Add(this.btnjyzwz);
             this.grpjyzxx.Controls.Add(this.memobz);
@@ -124,25 +129,34 @@
             this.grpjyzxx.TabStop = false;
             this.grpjyzxx.Text = "绝缘子信息";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(24, 211);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(24, 23);
+            this.simpleButton1.TabIndex = 50;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // btnjyzwz
             // 
-            this.btnjyzwz.Location = new System.Drawing.Point(470, 142);
+            this.btnjyzwz.Location = new System.Drawing.Point(249, 143);
             this.btnjyzwz.Name = "btnjyzwz";
-            this.btnjyzwz.Size = new System.Drawing.Size(29, 28);
+            this.btnjyzwz.Size = new System.Drawing.Size(20, 27);
             this.btnjyzwz.TabIndex = 49;
             this.btnjyzwz.Text = "...";
             this.btnjyzwz.Click += new System.EventHandler(this.btnjyzwz_Click);
             // 
             // memobz
             // 
-            this.memobz.Location = new System.Drawing.Point(384, 189);
+            this.memobz.Location = new System.Drawing.Point(336, 188);
             this.memobz.Name = "memobz";
-            this.memobz.Size = new System.Drawing.Size(113, 96);
+            this.memobz.Size = new System.Drawing.Size(161, 94);
             this.memobz.TabIndex = 48;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(354, 192);
+            this.labelControl6.Location = new System.Drawing.Point(275, 190);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(24, 14);
             this.labelControl6.TabIndex = 47;
@@ -150,9 +164,9 @@
             // 
             // memoclqk
             // 
-            this.memoclqk.Location = new System.Drawing.Point(78, 188);
+            this.memoclqk.Location = new System.Drawing.Point(80, 188);
             this.memoclqk.Name = "memoclqk";
-            this.memoclqk.Size = new System.Drawing.Size(252, 96);
+            this.memoclqk.Size = new System.Drawing.Size(166, 96);
             this.memoclqk.TabIndex = 46;
             // 
             // lblclqk
@@ -165,14 +179,14 @@
             // 
             // memojyzwz
             // 
-            this.memojyzwz.Location = new System.Drawing.Point(80, 142);
+            this.memojyzwz.Location = new System.Drawing.Point(80, 141);
             this.memojyzwz.Name = "memojyzwz";
-            this.memojyzwz.Size = new System.Drawing.Size(387, 31);
+            this.memojyzwz.Size = new System.Drawing.Size(163, 41);
             this.memojyzwz.TabIndex = 44;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(14, 144);
+            this.labelControl5.Location = new System.Drawing.Point(14, 141);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(48, 28);
             this.labelControl5.TabIndex = 43;
@@ -180,7 +194,7 @@
             // 
             // cmbsyfzr
             // 
-            this.cmbsyfzr.Location = new System.Drawing.Point(337, 115);
+            this.cmbsyfzr.Location = new System.Drawing.Point(336, 112);
             this.cmbsyfzr.Name = "cmbsyfzr";
             this.cmbsyfzr.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -189,7 +203,7 @@
             // 
             // lblsyfzr
             // 
-            this.lblsyfzr.Location = new System.Drawing.Point(270, 118);
+            this.lblsyfzr.Location = new System.Drawing.Point(270, 115);
             this.lblsyfzr.Name = "lblsyfzr";
             this.lblsyfzr.Size = new System.Drawing.Size(60, 14);
             this.lblsyfzr.TabIndex = 41;
@@ -197,7 +211,7 @@
             // 
             // cmbjyzxh
             // 
-            this.cmbjyzxh.Location = new System.Drawing.Point(80, 115);
+            this.cmbjyzxh.Location = new System.Drawing.Point(80, 112);
             this.cmbjyzxh.Name = "cmbjyzxh";
             this.cmbjyzxh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -206,7 +220,7 @@
             // 
             // lbljyzxh
             // 
-            this.lbljyzxh.Location = new System.Drawing.Point(14, 118);
+            this.lbljyzxh.Location = new System.Drawing.Point(14, 115);
             this.lbljyzxh.Name = "lbljyzxh";
             this.lbljyzxh.Size = new System.Drawing.Size(60, 14);
             this.lbljyzxh.TabIndex = 39;
@@ -215,7 +229,7 @@
             // dateclsj
             // 
             this.dateclsj.EditValue = null;
-            this.dateclsj.Location = new System.Drawing.Point(336, 55);
+            this.dateclsj.Location = new System.Drawing.Point(336, 54);
             this.dateclsj.Name = "dateclsj";
             this.dateclsj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -226,7 +240,7 @@
             // 
             // lblclsj
             // 
-            this.lblclsj.Location = new System.Drawing.Point(270, 58);
+            this.lblclsj.Location = new System.Drawing.Point(270, 57);
             this.lblclsj.Name = "lblclsj";
             this.lblclsj.Size = new System.Drawing.Size(48, 14);
             this.lblclsj.TabIndex = 37;
@@ -235,7 +249,7 @@
             // datecssj
             // 
             this.datecssj.EditValue = null;
-            this.datecssj.Location = new System.Drawing.Point(80, 55);
+            this.datecssj.Location = new System.Drawing.Point(80, 54);
             this.datecssj.Name = "datecssj";
             this.datecssj.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -246,7 +260,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(14, 58);
+            this.labelControl4.Location = new System.Drawing.Point(14, 57);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(48, 14);
             this.labelControl4.TabIndex = 35;
@@ -254,7 +268,7 @@
             // 
             // cmbgx
             // 
-            this.cmbgx.Location = new System.Drawing.Point(336, 85);
+            this.cmbgx.Location = new System.Drawing.Point(336, 83);
             this.cmbgx.Name = "cmbgx";
             this.cmbgx.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -263,7 +277,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(270, 88);
+            this.labelControl3.Location = new System.Drawing.Point(270, 86);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 33;
@@ -271,7 +285,7 @@
             // 
             // cmbgh
             // 
-            this.cmbgh.Location = new System.Drawing.Point(80, 85);
+            this.cmbgh.Location = new System.Drawing.Point(80, 83);
             this.cmbgh.Name = "cmbgh";
             this.cmbgh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -280,7 +294,7 @@
             // 
             // lblgh
             // 
-            this.lblgh.Location = new System.Drawing.Point(14, 88);
+            this.lblgh.Location = new System.Drawing.Point(14, 86);
             this.lblgh.Name = "lblgh";
             this.lblgh.Size = new System.Drawing.Size(24, 14);
             this.lblgh.TabIndex = 31;
@@ -318,14 +332,27 @@
             this.labelControl1.TabIndex = 27;
             this.labelControl1.Text = "线路名称";
             // 
-            // simpleButton1
+            // lbllzs
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(24, 211);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(24, 23);
-            this.simpleButton1.TabIndex = 50;
-            this.simpleButton1.Text = "...";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.lbllzs.Location = new System.Drawing.Point(270, 144);
+            this.lbllzs.Name = "lbllzs";
+            this.lbllzs.Size = new System.Drawing.Size(48, 14);
+            this.lbllzs.TabIndex = 51;
+            this.lbllzs.Text = "零值数量";
+            // 
+            // spelzs
+            // 
+            this.spelzs.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spelzs.Location = new System.Drawing.Point(336, 141);
+            this.spelzs.Name = "spelzs";
+            this.spelzs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spelzs.Size = new System.Drawing.Size(163, 21);
+            this.spelzs.TabIndex = 52;
             // 
             // frm_jyzjcjl
             // 
@@ -356,6 +383,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbgh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlineName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtdwmc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spelzs.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,6 +417,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnjyzwz;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SpinEdit spelzs;
+        private DevExpress.XtraEditors.LabelControl lbllzs;
 
     }
 }
