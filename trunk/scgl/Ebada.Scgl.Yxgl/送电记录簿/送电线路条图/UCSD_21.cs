@@ -261,7 +261,7 @@ namespace Ebada.Scgl.Yxgl {
                 for (m = 1; m <= pagecount; m++) {
                     ex.ActiveSheet("Sheet" + m);
                     if(!string.IsNullOrEmpty(strname[0]))
-                    ex.SetCellValue(strname[0], 3, 2);
+                    ex.SetCellValue(strname[0], 3, 3);
                     if (!string.IsNullOrEmpty(strname[1]))
                     ex.SetCellValue(strname[1], 3, 5);
                     if (!string.IsNullOrEmpty(strname[2]))

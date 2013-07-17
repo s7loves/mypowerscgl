@@ -45,6 +45,8 @@
             this.spescz = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.grpgtinfo = new System.Windows.Forms.GroupBox();
+            this.txtjdxs = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtgtxs = new DevExpress.XtraEditors.ComboBoxEdit();
             this.spejddz = new DevExpress.XtraEditors.SpinEdit();
             this.jddz = new DevExpress.XtraEditors.LabelControl();
             this.lbljdxs = new DevExpress.XtraEditors.LabelControl();
@@ -53,8 +55,6 @@
             this.lblgth = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.txtgtxs = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.txtjdxs = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.grpjcqk.SuspendLayout();
@@ -66,10 +66,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.spehsz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spescz.Properties)).BeginInit();
             this.grpgtinfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spejddz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -259,6 +259,33 @@
             this.grpgtinfo.TabStop = false;
             this.grpgtinfo.Text = "杆塔信息";
             // 
+            // txtjdxs
+            // 
+            this.txtjdxs.Location = new System.Drawing.Point(80, 98);
+            this.txtjdxs.Name = "txtjdxs";
+            this.txtjdxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtjdxs.Properties.Items.AddRange(new object[] {
+            "单根水平式"});
+            this.txtjdxs.Size = new System.Drawing.Size(186, 21);
+            this.txtjdxs.TabIndex = 10;
+            // 
+            // txtgtxs
+            // 
+            this.txtgtxs.Location = new System.Drawing.Point(80, 63);
+            this.txtgtxs.Name = "txtgtxs";
+            this.txtgtxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtgtxs.Properties.Items.AddRange(new object[] {
+            "直线杆",
+            "A型杆",
+            "终端杆",
+            "A型转角杆",
+            "耐张杆",
+            "加强杆"});
+            this.txtgtxs.Size = new System.Drawing.Size(186, 21);
+            this.txtgtxs.TabIndex = 9;
+            // 
             // spejddz
             // 
             this.spejddz.EditValue = new decimal(new int[] {
@@ -311,9 +338,9 @@
             // 
             this.lblgth.Location = new System.Drawing.Point(18, 31);
             this.lblgth.Name = "lblgth";
-            this.lblgth.Size = new System.Drawing.Size(36, 14);
+            this.lblgth.Size = new System.Drawing.Size(24, 14);
             this.lblgth.TabIndex = 0;
-            this.lblgth.Text = "杆塔号";
+            this.lblgth.Text = "杆号";
             // 
             // bar1
             // 
@@ -330,33 +357,6 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
-            // 
-            // txtgtxs
-            // 
-            this.txtgtxs.Location = new System.Drawing.Point(80, 63);
-            this.txtgtxs.Name = "txtgtxs";
-            this.txtgtxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtgtxs.Properties.Items.AddRange(new object[] {
-            "直线杆",
-            "A型杆",
-            "终端杆",
-            "A型转角杆",
-            "耐张杆",
-            "加强杆"});
-            this.txtgtxs.Size = new System.Drawing.Size(186, 21);
-            this.txtgtxs.TabIndex = 9;
-            // 
-            // txtjdxs
-            // 
-            this.txtjdxs.Location = new System.Drawing.Point(80, 98);
-            this.txtjdxs.Name = "txtjdxs";
-            this.txtjdxs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtjdxs.Properties.Items.AddRange(new object[] {
-            "单根水平式"});
-            this.txtjdxs.Size = new System.Drawing.Size(186, 21);
-            this.txtjdxs.TabIndex = 10;
             // 
             // frmSD08JDZZEdit
             // 
@@ -382,10 +382,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.spescz.Properties)).EndInit();
             this.grpgtinfo.ResumeLayout(false);
             this.grpgtinfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spejddz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtgtxs.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtjdxs.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
