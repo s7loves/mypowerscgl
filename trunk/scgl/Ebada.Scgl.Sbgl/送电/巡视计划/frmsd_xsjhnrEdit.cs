@@ -80,11 +80,13 @@ namespace Ebada.Scgl.Sbgl
             this.DialogResult = DialogResult.Cancel;
         }
 
-        private void comboBoxEdit1_Properties_EditValueChanged(object sender, EventArgs e)
+     
+
+        private void txtflag1_EditValueChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtflag1.EditValue as string))
                 return;
-            if (txtflag1.EditValue as string!="")
+            if (txtflag1.EditValue as string != "")
             {
                 this.txtqxnr.Enabled = true;
             }

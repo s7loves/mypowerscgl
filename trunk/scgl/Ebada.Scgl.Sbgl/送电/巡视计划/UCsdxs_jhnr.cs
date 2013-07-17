@@ -222,11 +222,13 @@ namespace Ebada.Scgl.Sbgl
             sd_xsjhnr jhnr = this.gridView1.GetFocusedRow() as sd_xsjhnr;
             frmsd_xsjhnrEdit frm = new frmsd_xsjhnrEdit();
             frm.RowData = jhnr;
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Update<sd_xsjhnr>(frm.RowData);
-                RefreshData();
+                
             }
+            RefreshData();
         }
 
         private void gridControl1_Click(object sender, EventArgs e)

@@ -205,9 +205,9 @@
             this.txtflag1.Name = "txtflag1";
             this.txtflag1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtflag1.Properties.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_Properties_EditValueChanged);
             this.txtflag1.Size = new System.Drawing.Size(447, 21);
             this.txtflag1.TabIndex = 20;
+            this.txtflag1.EditValueChanged += new System.EventHandler(this.txtflag1_EditValueChanged);
             // 
             // frmsd_xsjhnrEdit
             // 
