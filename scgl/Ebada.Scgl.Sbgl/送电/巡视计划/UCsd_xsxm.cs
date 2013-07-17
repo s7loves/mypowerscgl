@@ -194,8 +194,9 @@ namespace Ebada.Scgl.Sbgl
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Client.ClientHelper.PlatformSqlMap.Update<sd_xsxm>(frm.RowData);
-                RefreshData();
+               
             }
+            RefreshData();
         }
 
         private void btDeletes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
