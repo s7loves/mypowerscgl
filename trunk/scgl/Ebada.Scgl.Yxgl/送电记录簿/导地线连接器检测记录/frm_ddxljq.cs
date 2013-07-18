@@ -64,7 +64,7 @@ namespace Ebada.Scgl.Yxgl
 
         private void dataBind()
         {
-            this.cmbLineName.EditValue = rowData.LineName;
+            
             this.cmbLineVol.DataBindings.Add("EditValue", rowData, "LineVol");
             this.datejcrq.DataBindings.Add("EditValue", rowData, "jcrq");
            
@@ -76,7 +76,17 @@ namespace Ebada.Scgl.Yxgl
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-
+            string lineCode = "";
+            try
+            {
+                lineCode = ((Ebada.UI.Base.ListItem)(this.cmbLineName.EditValue)).ValueMember;
+            }
+            catch
+            {
+               
+            }
+            rowData.LineName = cmbLineName.Text;
+            rowData.LineCode = lineCode;
             this.DialogResult = DialogResult.OK;
         }
 
@@ -84,17 +94,36 @@ namespace Ebada.Scgl.Yxgl
         {
             if (string.IsNullOrEmpty(this.cmbLineName.EditValue.ToString()))
                 return;
-            string lineCode = ((Ebada.UI.Base.ListItem)(this.cmbLineName.EditValue)).ValueMember;
+            string lineCode = "";
+            try
+            {
+                 lineCode = ((Ebada.UI.Base.ListItem)(this.cmbLineName.EditValue)).ValueMember;
+            }
+            catch
+            {
+                return;
+            }
+            
             ICollection list = new ArrayList();
             list = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("select distinct lineVol from sd_xl where   LineCode='{0}' ", lineCode));
+            //cmbLineVol.EditValue = null;
+            cmbLineVol.Properties.Items.Clear();
             cmbLineVol.Properties.Items.AddRange(list);
-            rowData.LineName = cmbLineName.Text;
-            rowData.LineCode = lineCode;
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            
+            
         }
+
+        private void frm_ddxljq_Load(object sender, EventArgs e)
+        {
+            this.cmbLineName.EditValue = rowData.LineName;
+        }
+
+       
     }
 }
