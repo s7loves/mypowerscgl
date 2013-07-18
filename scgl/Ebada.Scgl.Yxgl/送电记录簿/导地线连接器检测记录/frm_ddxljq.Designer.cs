@@ -136,6 +136,7 @@
             this.Name = "frm_ddxljq";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "导地线检测记录";
+            this.Load += new System.EventHandler(this.frm_ddxljq_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmbLineName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datejcrq.Properties)).EndInit();
