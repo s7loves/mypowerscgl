@@ -50,6 +50,7 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelControl9);
             this.groupBox1.Controls.Add(this.comboBoxEdit2);
             this.groupBox1.Controls.Add(this.comboBoxEdit1);
             this.groupBox1.Controls.Add(this.comboBoxEdit7);
@@ -277,6 +279,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(459, 108);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(12, 14);
+            this.labelControl9.TabIndex = 8;
+            this.labelControl9.Text = "米";
+            // 
             // frmSDjckyEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -328,6 +338,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit spinEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
 
     }
 }
