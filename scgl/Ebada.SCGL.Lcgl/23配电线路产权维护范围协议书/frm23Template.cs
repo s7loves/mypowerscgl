@@ -147,6 +147,61 @@ namespace Ebada.Scgl.Lcgl
             }
             filename = dsoFramerControl1.AxFramerControl.DocumentFullName;
         }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            if (pjobject != null)
+            {
+                Microsoft.Office.Interop.Excel.Workbook wb = dsoFramerControl1.AxFramerControl.ActiveDocument as Microsoft.Office.Interop.Excel.Workbook;
+
+                ExcelAccess ea = new ExcelAccess();
+                ea.MyWorkBook = wb;
+                ea.MyExcel = wb.Application;
+                ExportExcel(pjobject, ea);
+            }
+        }
+
+        private static void ExportExcel(PJ_23 obj, ExcelAccess ex)
+        {
+
+            ex.SetCellValue(obj.jf + ":", 5, 4);
+            ex.SetCellValue(obj.xybh, 4, 8);
+            ex.SetCellValue(obj.cqdw + "：", 6, 4);
+            string linename = "";
+            if (obj.linename.Contains("线"))
+            {
+                linename = obj.linename.Substring(0, obj.linename.LastIndexOf("线"));
+            }
+            else
+                linename = obj.linename;
+            string[] filtchar = { "V", "v" };
+            for (int i = 0; i < filtchar.Length; i++)
+            {
+                if (linename.Contains(filtchar[i]))
+                {
+                    linename = linename.Substring(linename.LastIndexOf(filtchar[i]) + 1);
+                }
+            }
+            ex.SetCellValue(linename, 10, 7);
+            string fzlinename = "";
+            if (obj.fzlinename.Contains("支"))
+            {
+                fzlinename = obj.fzlinename.Substring(0, obj.fzlinename.LastIndexOf("支"));
+            }
+            else
+                fzlinename = obj.fzlinename;
+            ex.SetCellValue(fzlinename, 10, 10);
+            ex.SetCellValue("'" + obj.gh, 10, 16);
+            ex.SetCellValue(obj.cqfw, 11, 4);
+            ex.SetCellValue(obj.cqdw + "。", 13, 4);
+            ex.SetCellValue(obj.jf, 17, 4);
+            //ex.SetCellValue(obj.cqdw, 15, 8);
+            ex.SetCellValue(obj.qdrq.Year.ToString(), 21, 7);
+            ex.SetCellValue(obj.qdrq.Month.ToString(), 21, 9);
+            ex.SetCellValue(obj.qdrq.Day.ToString(), 21, 11);
+        }
+
         private void initcomment()
         {
           IList<string> ilist=  MainHelper.PlatformSqlMap.GetList<string>("SelectOneStr","select picName from PJ_tbsj");
