@@ -234,7 +234,7 @@ namespace Ebada.Scgl.Lcgl
             IList mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct bh from PS_sbcs where mc='" + comWpmc.Text + "'");
             if (mclist != null && mclist.Count > 0)
             {
-                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh from PS_sbcs where ParentID='" + mclist[0] + "' and len(xh)>0;");
+                mclist = ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct xh from PS_sbcs where mc='" + comWpmc.Text + "' and len(xh)>0;");
                 if (mclist.Count > 0) comWpgg.Properties.Items.AddRange(mclist);
             }
 
@@ -308,7 +308,7 @@ namespace Ebada.Scgl.Lcgl
             rowData.ID = rowData.CreateID();
             DateTime now = DateTime.Now;
             rowData.lasttime = now;
-            rowData.indate = now;
+            //rowData.indate = now;
             rowData.ckdate = now;
             rowData.type = "入库";
             rowData.wpsl = spWpsl.EditValue.ToString();
