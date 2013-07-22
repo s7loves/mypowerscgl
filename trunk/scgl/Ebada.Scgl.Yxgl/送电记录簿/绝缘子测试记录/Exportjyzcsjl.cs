@@ -95,11 +95,11 @@ namespace Ebada.Scgl.Yxgl {
                 }
                 else if (nrList.Count <= endrow && nrList.Count >= starow)
                 {
-                    ex.SetCellValue("#"+startgh, 18, 6);
-                    ex.SetCellValue("#~" + endgh, 18, 7);
-                    ex.SetCellValue(nrList.Count.ToString(), 18, 9);
-                    ex.SetCellValue(nzglzs.ToString()+"片;", 19, 6);
-                    ex.SetCellValue(zxglzs.ToString(), 19, 10);
+                    ex.SetCellValue("#"+startgh, 19, 6);
+                    ex.SetCellValue("#~" + endgh, 19, 7);
+                    ex.SetCellValue(nrList.Count.ToString(), 19, 9);
+                    ex.SetCellValue(nzglzs.ToString()+"片;", 20, 6);
+                    ex.SetCellValue(zxglzs.ToString(), 20, 10);
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
                         ex.SetCellValue(nrList[starow - 1 + i].cssj.Year.ToString(), row + 5 + i, 1);
