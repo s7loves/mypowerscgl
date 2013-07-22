@@ -46,10 +46,30 @@ namespace Ebada.Scgl.Sbgl {
             initImageList();
             gridViewOperation = new GridViewOperation<PS_sbcs>(gridControl1, gridView1, barManager1);
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeAdd);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeEdit);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeDelete);
             gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<PS_sbcs>(gridViewOperation_BeforeInsert);
             gridView1.FocusedRowChanged +=gridView1_FocusedRowChanged;
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PS_sbcs> e)
+        {
+            if (e.ValueOld == null)
+                return;
+            PS_sbcs sbcs = e.ValueOld as PS_sbcs;
+            if(sbcs.ParentID.Trim().Length==0)
+                return;
+            IList<PS_sbcs> sbcsList = new List<PS_sbcs>();
+            sbcsList= Client.ClientHelper.PlatformSqlMap.GetList<PS_sbcs>("where parentid='" + sbcs.ID + "'");
+            if (sbcsList.Count <= 0)
+                return;
+            foreach (PS_sbcs cs in sbcsList)
+            {
+                cs.mc = sbcs.mc;
+                Client.ClientHelper.PlatformSqlMap.Update<PS_sbcs>(cs);
+            }
+            
         }
 
         void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<PS_sbcs> e) {
@@ -145,6 +165,7 @@ namespace Ebada.Scgl.Sbgl {
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(PS_sbcs newobj) {
             newobj.ParentID = parentID;
+            CheckExsits(newobj);
             if (parentObj != null ) {
                 newobj.c1 = parentObj.c1;
                 if (parentObj.bh.Length > 2) {
@@ -155,6 +176,19 @@ namespace Ebada.Scgl.Sbgl {
                     newobj.bh =newobj.ParentID+ getbh(5);
                 }
             }
+        }
+
+        private static void CheckExsits(PS_sbcs newobj)
+        {
+            Random rm=new Random();
+            PS_sbcs sbcs = null;
+            sbcs = Client.ClientHelper.PlatformSqlMap.GetOneByKey<PS_sbcs>(newobj.ID);
+            if (sbcs != null)
+            {
+                newobj.ID += rm.Next(10, 20);
+                CheckExsits(newobj);
+            }
+            
         }
 
         private string getbh(int len) {
