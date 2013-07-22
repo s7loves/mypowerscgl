@@ -33,6 +33,7 @@ namespace Ebada.Scgl.Sbgl {
         void ucTop_FocusedRowChanged(object sender, PS_sbcs obj) {
             ucBottom.ParentObj = obj;
             splitCC1.Panel2.Text = "设备分类：" + (obj != null ? obj.mc : "");
+
         }
 
         protected override void OnLoad(EventArgs e) {

@@ -46,7 +46,7 @@
             this.splitCC1.Panel2.Text = "内容";
             this.splitCC1.ShowCaption = true;
             this.splitCC1.Size = new System.Drawing.Size(555, 460);
-            this.splitCC1.SplitterPosition = 265;
+            this.splitCC1.SplitterPosition = 316;
             this.splitCC1.TabIndex = 0;
             this.splitCC1.Text = "splitContainerControl1";
             // 
@@ -54,18 +54,20 @@
             // 
             this.ucTop.ChildView = null;
             this.ucTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTop.Iszl = false;
             this.ucTop.Location = new System.Drawing.Point(0, 0);
             this.ucTop.Name = "ucTop";
-            this.ucTop.Size = new System.Drawing.Size(261, 435);
+            this.ucTop.Size = new System.Drawing.Size(312, 435);
             this.ucTop.TabIndex = 0;
             // 
             // ucBottom
             // 
             this.ucBottom.ChildView = null;
             this.ucBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBottom.Iszl = false;
             this.ucBottom.Location = new System.Drawing.Point(0, 0);
             this.ucBottom.Name = "ucBottom";
-            this.ucBottom.Size = new System.Drawing.Size(280, 435);
+            this.ucBottom.Size = new System.Drawing.Size(229, 435);
             this.ucBottom.TabIndex = 0;
             // 
             // UCPS_sbcsM
