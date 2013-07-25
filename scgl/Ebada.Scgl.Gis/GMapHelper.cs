@@ -274,7 +274,7 @@ namespace Ebada.Scgl.Gis {
                     PointF p2 = new PointF((float)gtlist[1].gtLon * bl, (float)gtlist[1].gtLat * bl);
                     PointF[] pts = new PointF[] { p1, p2 };
                     matrix.TransformPoints(pts);
-                    drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
+                    //drawArrow(g, pts[0].X, h - pts[0].Y, pts[1].X, h - pts[1].Y);
                 }
 
             }
