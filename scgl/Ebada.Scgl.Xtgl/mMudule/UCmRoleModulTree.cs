@@ -104,7 +104,7 @@ namespace Ebada.Scgl.Xtgl {
         public void InitData() {
             //treeViewOperator.RefreshData("order by parentid,sequence");
             string sql = "delete from dbo.mModule where modutypes='hide' and parentid not in (select modu_id from mmodule)";
-            ClientHelper.PlatformSqlMap.DeleteByWhere<mModule>("modutypes='hide' and parentid not in (select modu_id from mmodule)");
+            ClientHelper.PlatformSqlMap.DeleteByWhere<mModule>(" where modutypes='hide' and parentid not in (select modu_id from mmodule)");
 
             RefreshData("  order by parentid,sequence");
 
