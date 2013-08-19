@@ -79,63 +79,63 @@ namespace Ebada.Scgl.Xtgl
         }
         void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<PJ_dyk> e)
         {
-            if (e.Value.bh == "")
-            {
-                long xhidex = 0;
-                IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
-                if (li.Count > 0 && li[0].bh != "")
-                    xhidex = (Convert.ToInt64(li[0].bh) + 1);
-                else
-                {
-                    xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
-                }
-                //e.Value.ID = Convert.ToString(xhidex);
-                e.Value.bh = Convert.ToString(xhidex);
-            }
+            //if (e.Value.bh == "")
+            //{
+            //    long xhidex = 0;
+            //    IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
+            //    if (li.Count > 0 && li[0].bh != "")
+            //        xhidex = (Convert.ToInt64(li[0].bh) + 1);
+            //    else
+            //    {
+            //        xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
+            //    }
+            //    //e.Value.ID = Convert.ToString(xhidex);
+            //    e.Value.bh = Convert.ToString(xhidex);
+            //}
         }
         void gridViewOperation_AfterAdd(PJ_dyk obj)
         {
-            if (obj.bh != "")
-            {
-                //obj.ID = obj.bh;
-                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}' WHERE ID='{1}'", obj.bh, obj.ID));
-                obj.ID = obj.bh;
+            //if (obj.bh != "")
+            //{
+            //    //obj.ID = obj.bh;
+            //    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}' WHERE ID='{1}'", obj.bh, obj.ID));
+            //    obj.ID = obj.bh;
 
-            }
-            if (parentObj != null)
-                RefreshData(" where parentid='" + parentObj.ID + "'");
+            //}
+            //if (parentObj != null)
+            //    RefreshData(" where parentid='" + parentObj.ID + "'");
         }
         void gridViewOperation_AfterEdit(PJ_dyk obj)
         {
-            if (obj.bh != "" && obj.bh != obj.ID)
-            {
-                //obj.ID = obj.bh;
-                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", obj.bh, obj.ID));
+            //if (obj.bh != "" && obj.bh != obj.ID)
+            //{
+            //    //obj.ID = obj.bh;
+            //    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", obj.bh, obj.ID));
 
-                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", obj.bh, obj.bh, obj.ID));
-                obj.ID = obj.bh;
-                MainHelper.PlatformSqlMap.Update<PJ_dyk>(obj);
-            }
+            //    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", obj.bh, obj.bh, obj.ID));
+            //    obj.ID = obj.bh;
+            //    MainHelper.PlatformSqlMap.Update<PJ_dyk>(obj);
+            //}
         }
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<PJ_dyk> e)
         {
-            if (parentID == null)
-                e.Cancel = true;
-            if (parentObj != null && parentID != parentObj.ID) ParentID = parentObj.ID;
-            if (parentID != "")
-            {
-                long xhidex = 0;
-                IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
-                if (li.Count > 0 && li[0].bh != "")
-                    xhidex = (Convert.ToInt64(li[0].bh) + 1);
-                else
-                {
-                    xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
-                }
-                e.Value.ParentID = parentID;
-                e.Value.ID = Convert.ToString(xhidex);
-                e.Value.bh = Convert.ToString(xhidex);
-            }
+            //if (parentID == null)
+            //    e.Cancel = true;
+            //if (parentObj != null && parentID != parentObj.ID) ParentID = parentObj.ID;
+            //if (parentID != "")
+            //{
+            //    long xhidex = 0;
+            //    IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + parentObj.bh + "'  order by id desc");
+            //    if (li.Count > 0 && li[0].bh != "")
+            //        xhidex = (Convert.ToInt64(li[0].bh) + 1);
+            //    else
+            //    {
+            //        xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
+            //    }
+            //    e.Value.ParentID = parentID;
+            //    e.Value.ID = Convert.ToString(xhidex);
+            //    e.Value.bh = Convert.ToString(xhidex);
+            //}
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -232,26 +232,26 @@ namespace Ebada.Scgl.Xtgl
                 {
                     newobj.dx = temp.dx;
                 }
-                var bh = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where dx='" + newobj.dx + "' and len(bh)=6");
-                if (bh != null)
-                {
-                    string str_bh = "";
-                    for (int i = 0; i < 6 - bh.ToString().Length; i++)
-                    {
-                        str_bh += "0";
-                    }
-                    newobj.bh = str_bh + bh;
-                }
-                else
-                {
-                    var bh1 = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where len(bh)=6");
-                    string str_bh = "";
-                    for (int i = 0; i < 6 - bh1.ToString().Length; i++)
-                    {
-                        str_bh += "0";
-                    }
-                    newobj.bh = str_bh + bh1;
-                }
+                //var bh = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where dx='" + newobj.dx + "' and len(bh)=6");
+                //if (bh != null)
+                //{
+                //    string str_bh = "";
+                //    for (int i = 0; i < 6 - bh.ToString().Length; i++)
+                //    {
+                //        str_bh += "0";
+                //    }
+                //    newobj.bh = str_bh + bh;
+                //}
+                //else
+                //{
+                //    var bh1 = MainHelper.PlatformSqlMap.GetObject("SelectOneInt", "select cast(max(bh) as int) + 1 from pj_dyk where len(bh)=6");
+                //    string str_bh = "";
+                //    for (int i = 0; i < 6 - bh1.ToString().Length; i++)
+                //    {
+                //        str_bh += "0";
+                //    }
+                //    newobj.bh = str_bh + bh1;
+                //}
                 if (!string.IsNullOrEmpty(zjm))
                     newobj.zjm = zjm;
                 
@@ -271,100 +271,100 @@ namespace Ebada.Scgl.Xtgl
                 parentID = value;
                 if (!string.IsNullOrEmpty(value))
                 {
-                    if (value != "" && value != "0")
-                    {
-                        List<PJ_dyk> list2 = new List<PJ_dyk>();
-                        long xhidex = 0;
-                        IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + value + "'  order by id desc");
-                        if (li.Count > 0 && li[0].bh == "")
-                        {
-                            if (li.Count > 0 && li[0].bh != "")
-                                xhidex = (Convert.ToInt64(li[0].bh) + 1);
-                            else
-                            {
-                                xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
-                            }
-                            foreach (PJ_dyk dyk in li)
-                            {
+                    //if (value != "" && value != "0")
+                    //{
+                    //    List<PJ_dyk> list2 = new List<PJ_dyk>();
+                    //    long xhidex = 0;
+                    //    IList<PJ_dyk> li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + value + "'  order by id desc");
+                    //    if (li.Count > 0 && li[0].bh == "")
+                    //    {
+                    //        if (li.Count > 0 && li[0].bh != "")
+                    //            xhidex = (Convert.ToInt64(li[0].bh) + 1);
+                    //        else
+                    //        {
+                    //            xhidex = (Convert.ToInt64(parentObj.bh) * 100 + 1);
+                    //        }
+                    //        foreach (PJ_dyk dyk in li)
+                    //        {
 
 
-                                dyk.bh = Convert.ToString(xhidex);
-                                xhidex++;
-                                try
-                                {
-                                    Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
-                                }
-                                catch { };
-                            }
-                        }
-                        li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh !=id and ParentID='' ");
-                        foreach (PJ_dyk dyk in li)
-                        {
-                            try
-                            {
-                                if (dyk.bh != "")
-                                {
-                                    PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    while (one != null)
-                                    {
-                                        dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
-                                        one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    }
+                    //            dyk.bh = Convert.ToString(xhidex);
+                    //            xhidex++;
+                    //            try
+                    //            {
+                    //                Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}', bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                    //            }
+                    //            catch { };
+                    //        }
+                    //    }
+                    //    li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh !=id and ParentID='' ");
+                    //    foreach (PJ_dyk dyk in li)
+                    //    {
+                    //        try
+                    //        {
+                    //            if (dyk.bh != "")
+                    //            {
+                    //                PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                while (one != null)
+                    //                {
+                    //                    dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
+                    //                    one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                }
 
-                                }
-                                else
-                                {
-                                    IList<PJ_dyk> litemp = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh =id and ParentID='' order by  bh desc");
-                                    if (litemp.Count > 0)
-                                    {
-                                        dyk.bh = (Convert.ToInt64(litemp[0].bh.Substring(0, 2)) + 1).ToString() + "0101";
-                                    }
-                                    PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    while (one != null)
-                                    {
-                                        dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
-                                        one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    }
-                                }
-                                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", dyk.bh, dyk.ID));
-                                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
-                            }
-                            catch { };
-                        }
-                        li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh !=id and ParentID!='' ");
-                        foreach (PJ_dyk dyk in li)
-                        {
-                            try
-                            {
-                                if (dyk.bh != "")
-                                {
-                                    PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    while (one != null)
-                                    {
-                                        dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
-                                        one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
-                                    }
-                                    Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
-                                }
-                                else
-                                {
+                    //            }
+                    //            else
+                    //            {
+                    //                IList<PJ_dyk> litemp = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh =id and ParentID='' order by  bh desc");
+                    //                if (litemp.Count > 0)
+                    //                {
+                    //                    dyk.bh = (Convert.ToInt64(litemp[0].bh.Substring(0, 2)) + 1).ToString() + "0101";
+                    //                }
+                    //                PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                while (one != null)
+                    //                {
+                    //                    dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
+                    //                    one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                }
+                    //            }
+                    //            Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ParentID='{0}' WHERE ParentID='{1}'", dyk.bh, dyk.ID));
+                    //            Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                    //        }
+                    //        catch { };
+                    //    }
+                    //    li = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where bh !=id and ParentID!='' ");
+                    //    foreach (PJ_dyk dyk in li)
+                    //    {
+                    //        try
+                    //        {
+                    //            if (dyk.bh != "")
+                    //            {
+                    //                PJ_dyk one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                while (one != null)
+                    //                {
+                    //                    dyk.bh = (Convert.ToInt64(dyk.bh) + 1).ToString();
+                    //                    one = MainHelper.PlatformSqlMap.GetOne<PJ_dyk>(" where ID='" + dyk.bh + "' ");
+                    //                }
+                    //                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                    //            }
+                    //            else
+                    //            {
 
-                                    IList<PJ_dyk> litemp = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + dyk.ParentID + "'  order by id desc");
-                                    if (litemp.Count > 0 && litemp[0].bh != "")
-                                        xhidex = (Convert.ToInt64(litemp[0].bh) + 1);
-                                    else
-                                    {
-                                        xhidex = (Convert.ToInt64(dyk.ParentID) * 100 + 1);
-                                    }
-                                    //e.Value.ID = Convert.ToString(xhidex);
-                                    dyk.bh = Convert.ToString(xhidex);
-                                    Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
-                                }
+                    //                IList<PJ_dyk> litemp = MainHelper.PlatformSqlMap.GetList<PJ_dyk>("SelectPJ_dykList", " where ParentID='" + dyk.ParentID + "'  order by id desc");
+                    //                if (litemp.Count > 0 && litemp[0].bh != "")
+                    //                    xhidex = (Convert.ToInt64(litemp[0].bh) + 1);
+                    //                else
+                    //                {
+                    //                    xhidex = (Convert.ToInt64(dyk.ParentID) * 100 + 1);
+                    //                }
+                    //                //e.Value.ID = Convert.ToString(xhidex);
+                    //                dyk.bh = Convert.ToString(xhidex);
+                    //                Client.ClientHelper.PlatformSqlMap.GetList("Update", string.Format("UPDATE  dbo.PJ_dyk SET ID='{0}',bh='{1}' WHERE ID='{2}'", dyk.bh, dyk.bh, dyk.ID));
+                    //            }
 
-                            }
-                            catch { };
-                        }
-                    }
+                    //        }
+                    //        catch { };
+                    //    }
+                    //}
 
                     RefreshData(" where parentid='" + value + "'");
                 }
