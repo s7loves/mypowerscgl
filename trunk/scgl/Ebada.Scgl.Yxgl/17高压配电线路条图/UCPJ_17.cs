@@ -1024,7 +1024,7 @@ namespace Ebada.Scgl.Yxgl {
                             {
                                 int icount = Convert.ToInt32(Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", "select   sum(sbNumber) from PS_gtsb where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'"));
                                 //int icount = Client.ClientHelper.PlatformSqlMap.GetRowCount<PS_gtsb>(" Where sbModle = '" + lxlist[j].ToString() + "' and gtID='" + gtobj.gtID + "'");
-                                ex.SetCellValue(lxlist[j].ToString()/* + "/" + icount*/, ihang + j, jlie);
+                                ex.SetCellValue(lxlist[j].ToString() + "/" + icount, ihang + j, jlie);
 
                             }
                         }
