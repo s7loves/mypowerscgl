@@ -85,7 +85,8 @@ namespace Ebada.Scgl.Yxgl
                 
             }
             comboBoxEdit9.Properties.Items.Clear();
-            comboBoxEdit9.Properties.Items.Add(MainHelper.UserCompany);
+            //comboBoxEdit9.Properties.Items.Add(MainHelper.UserCompany);
+            ComboBoxHelper.FillCBoxByDyk("送电电力设备产权、维护范围协议书", "甲方", comboBoxEdit9.Properties);
             //if (null != cityCode && cityCode.Trim().Length > 0)
             //    this.cltCity.Properties.KeyValue = cityCode;
         }
@@ -213,6 +214,11 @@ namespace Ebada.Scgl.Yxgl
             IList gtList = new ArrayList();
             gtList= Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select gth from sd_gt where linecode='"+xl.LineCode+"'");
             comboBoxEdit7.Properties.Items.AddRange(gtList);
+        }
+
+        private void comboBoxEdit9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
