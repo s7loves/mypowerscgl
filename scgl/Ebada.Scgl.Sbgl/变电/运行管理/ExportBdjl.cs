@@ -181,9 +181,9 @@ namespace Ebada.Scgl.Sbgl
             int row = 1;
             //加页
             int pageindex = 1;
-            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 16))
+            if (pageindex < Ecommonjh.GetPagecount(nrList.Count, 12))
             {
-                pageindex = Ecommonjh.GetPagecount(nrList.Count, 16);
+                pageindex = Ecommonjh.GetPagecount(nrList.Count, 12);
             }
             for (int j = 1; j <= pageindex; j++)
             {
@@ -192,8 +192,11 @@ namespace Ebada.Scgl.Sbgl
                 {
                     ex.CopySheet(1, 1);
                 }
-                ex.SetCellValue(nrList[0].kgmc, 2, 4);
-                ex.SetCellValue(nrList[0].dlqyxgztzcs.ToString(), 2, 10);
+                if (nrList.Count > 0)
+                {
+                    ex.SetCellValue(nrList[0].kgmc, 2, 4);
+                    ex.SetCellValue(nrList[0].dlqyxgztzcs.ToString(), 2, 10);
+                }
 
             }
 
@@ -203,16 +206,19 @@ namespace Ebada.Scgl.Sbgl
                 //ex.ReNameWorkSheet(j, "Sheet" + (j));
                 int prepageindex = j - 1;
                 //主题
-                int starow = prepageindex * 16 + 1;
-                int endrow = j * 16;
+                int starow = prepageindex * 12 + 1;
+                int endrow = j * 12;
 
                 if (nrList.Count > endrow)
                 {
-                    for (int i = 0; i < 16; i++)
+                    for (int i = 0; i < 12; i++)
                     {
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        if (!string.IsNullOrEmpty(nrList[starow - 1 + i].c1.ToString()))
+                        {
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        }
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Year.ToString(), row + 4 + i, 4);
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Month.ToString(), row + 4 + i, 5);
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Day.ToString(), row + 4 + i, 6);
@@ -226,10 +232,12 @@ namespace Ebada.Scgl.Sbgl
                 {
                     for (int i = 0; i < nrList.Count - starow + 1; i++)
                     {
-
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
-                        ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        if (!string.IsNullOrEmpty(nrList[starow - 1 + i].c1.ToString()))
+                        {
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Year.ToString(), row + 4 + i, 1);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Month.ToString(), row + 4 + i, 2);
+                            ex.SetCellValue(Convert.ToDateTime(nrList[starow - 1 + i].c1).Day.ToString(), row + 4 + i, 3);
+                        }
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Year.ToString(), row + 4 + i, 4);
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Month.ToString(), row + 4 + i, 5);
                         ex.SetCellValue(nrList[starow - 1 + i].tzrq.Day.ToString(), row + 4 + i, 6);
@@ -1007,10 +1015,6 @@ namespace Ebada.Scgl.Sbgl
             ex.ShowExcel();
             #endregion
         }
-
-
-
-
 
         private static int GetTotalHang(IList<bdjl_gzjlzb> nrlist, int rowmaxsize)
         {
