@@ -31,7 +31,7 @@ namespace Ebada.Scgl.Sbgl
 
         private void InitLuke()
         {
-           IList<mOrg> orgList= Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgType=2");
+            IList<mOrg> orgList = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("where orgType=2 order by OrgName");
            List<DicType> dictypeList = new List<DicType>();
            foreach (mOrg org in orgList)
            {
