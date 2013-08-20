@@ -809,6 +809,7 @@ namespace Ebada.Scgl.Yxgl {
             //System.Diagnostics.Process.Start(outfname);
             return 1;
         }
+
         #region 查询注册表，判断本机是否安装Office2003,2007和WPS
 
         public static int ExistsRegedit() {
@@ -851,5 +852,17 @@ namespace Ebada.Scgl.Yxgl {
             return ifused;
         }
         #endregion
+    }
+
+    /// <summary>
+    /// 导线排列方式
+    /// </summary>
+    public class DXPLFS
+    {
+        public int Start { get; set; }
+
+        public int End { get; set; }
+
+        public string Name { get; set; }
     }
 }
