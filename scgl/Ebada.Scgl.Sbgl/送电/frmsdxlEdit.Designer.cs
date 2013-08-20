@@ -93,6 +93,8 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.lbldxplfs = new DevExpress.XtraEditors.LabelControl();
+            this.cmbDxplfs = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlOrg)).BeginInit();
             this.groupControlOrg.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,6 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDxplfs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -173,6 +176,7 @@
             this.simpleButton5.Size = new System.Drawing.Size(75, 23);
             this.simpleButton5.TabIndex = 10;
             this.simpleButton5.Text = "分段信息";
+            this.simpleButton5.Visible = false;
             // 
             // simpleButton2
             // 
@@ -213,6 +217,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbDxplfs);
+            this.groupBox1.Controls.Add(this.lbldxplfs);
             this.groupBox1.Controls.Add(this.spinEdit8);
             this.groupBox1.Controls.Add(this.spinEdit7);
             this.groupBox1.Controls.Add(this.labelControl25);
@@ -820,6 +826,26 @@
             this.barDockControlRight.Location = new System.Drawing.Point(669, 23);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 385);
             // 
+            // lbldxplfs
+            // 
+            this.lbldxplfs.Location = new System.Drawing.Point(334, 306);
+            this.lbldxplfs.Name = "lbldxplfs";
+            this.lbldxplfs.Size = new System.Drawing.Size(72, 14);
+            this.lbldxplfs.TabIndex = 27;
+            this.lbldxplfs.Text = "导线排列方式";
+            // 
+            // cmbDxplfs
+            // 
+            this.cmbDxplfs.Location = new System.Drawing.Point(411, 306);
+            this.cmbDxplfs.Name = "cmbDxplfs";
+            this.cmbDxplfs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbDxplfs.Properties.Items.AddRange(new object[] {
+            "水平排列",
+            "三角排列"});
+            this.cmbDxplfs.Size = new System.Drawing.Size(196, 21);
+            this.cmbDxplfs.TabIndex = 28;
+            // 
             // frmsdxlEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -865,6 +891,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDxplfs.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -937,6 +964,8 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit18;
         private DevExpress.XtraEditors.LabelControl labelControl26;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbDxplfs;
+        private DevExpress.XtraEditors.LabelControl lbldxplfs;
 
     }
 }
