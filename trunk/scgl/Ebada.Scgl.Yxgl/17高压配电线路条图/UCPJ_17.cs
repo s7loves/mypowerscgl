@@ -237,7 +237,83 @@ namespace Ebada.Scgl.Yxgl {
 
         }
 
-        public static int ExportToExcel(string title, string dw, PJ_17 pj17) {
+       
+        private void barCreat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (treeList1.FocusedNode == null)
+                return;
+
+            PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
+            if (obj == null)
+                return;
+            try {
+                if (ExportToExcel("高压配电线路条图", "", obj) < 1) return;
+
+                frm17Template frm = new frm17Template();
+                frm.pjobject = obj;
+                if (frm.ShowDialog() == DialogResult.OK) {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
+                    //MessageBox.Show("保存成功");
+                }
+            } catch (Exception ex) {
+                MsgBox.ShowException(ex);
+                if (ex.Message.IndexOf("无效") > -1) {
+                    SelectorHelper.Execute("taskkill /im EXCEL.EXE /f");
+                }
+            }
+        }
+        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (treeList1.FocusedNode != null) {
+                //Export17.ExportExcel(treeList1.FocusedNode);
+                PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
+                if (obj == null)
+                    return;
+                string fname = "";
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
+                    fname = saveFileDialog1.FileName;
+                    try {
+                        DSOFramerControl ds1 = new DSOFramerControl();
+                        ds1.FileDataGzip = obj.BigData;
+                        ds1.FileSave(fname, true);
+                        ds1.FileClose();
+                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
+                            return;
+
+                        System.Diagnostics.Process.Start(fname);
+                    } catch (Exception ex) {
+                        Console.WriteLine(ex.Message);
+                        MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            if (treeList1.FocusedNode != null) {
+                frm17Template frm = new frm17Template();
+                PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
+                if (obj == null)
+                    return;
+                frm.pjobject = obj;
+                if (frm.ShowDialog() == DialogResult.OK) {
+                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
+                    //MessageBox.Show("保存成功");
+                }
+            }
+        }
+       
+        /// <summary>
+        /// 导出EXCEL
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="dw"></param>
+        /// <param name="pj17"></param>
+        /// <returns></returns>
+        public static int ExportToExcel(string title, string dw, PJ_17 pj17)
+        {
+            Dictionary<int, DXPLFS> Dic = new Dictionary<int, DXPLFS>();
             string fname = Application.StartupPath + "\\00记录模板\\17线路条图2.xls";
             float fxstart = 0, fystart = 0, fwidth = 0, fheight = 0;
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
@@ -245,19 +321,87 @@ namespace Ebada.Scgl.Yxgl {
             File.Copy(fname, outfname);
             dsoFramerWordControl1.FileOpen(outfname);
             Microsoft.Office.Interop.Excel.Worksheet xx;
-            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;        
+            Excel.Workbook wb = dsoFramerWordControl1.AxFramerControl.ActiveDocument as Excel.Workbook;
             ExcelAccess ex = new ExcelAccess();
             ex.MyWorkBook = wb;
             ex.MyExcel = wb.Application;
             PS_xl xl = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineCode='" + pj17.LineCode + "'");
-            try {
-                if (xl == null) {
+            try
+            {
+                if (xl == null)
+                {
                     MsgBox.ShowWarningMessageBox("数据出错，没找到线路");
                     return -1;
                 }
                 string strLinexh = xl.WireType;//导线型号
                 PS_gt gtformer = null;
                 IList<PS_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<PS_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
+
+                #region 导线排列方式
+                int h = 1;
+                int sjstart = -1;
+                int sjend = -1;
+                int spstart = -1;
+                int spend = -1;
+                bool issjStart = true;
+                bool isspStart = true;
+                string sjname = "三角排列";
+                string spname = "水平排列";
+                foreach (PS_gt gt in gtlis)
+                {
+                    IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct gtid from PS_gtsb  Where sbName like '%三角%' and gtID='" + gt.gtID + "'");
+                    if (dxpllist.Count>0)//三角
+                    {
+                        if (issjStart)
+                        {
+                            sjstart = h;
+                            issjStart = false;
+                        }
+
+                        isspStart = true;
+                        spend = h - 1;
+                        if (spstart > 0)
+                        {
+                            Dic.Add(h, new DXPLFS { Start = spstart, End = spend, Name = spname });
+                            spstart = -1;
+                            spend = -1;
+                        }
+                        else if (h == gtlis.Count&&sjstart>0)
+                        {
+                            Dic.Add(h, new DXPLFS { Start = sjstart, End = h, Name = sjname });
+                        }
+                        
+
+                    }
+                    else//水平
+                    {
+                        if (isspStart)
+                        {
+                            spstart = h;
+                            isspStart = false;
+                        }
+
+                        issjStart = true;
+                        sjend = h - 1;
+                        if (sjstart > 0)
+                        {
+                            Dic.Add(h, new DXPLFS { Start = sjstart, End = sjend, Name = sjname });
+                            sjstart = -1;
+                            sjend = -1; 
+                        }
+                        else if (h == gtlis.Count&&spstart>0)
+                        { 
+                            Dic.Add(h,new DXPLFS{Start=spstart,End=h,Name=spname});
+                        }
+                                        
+                    }
+                    h++;
+                }
+
+                #endregion
+
+
+
                 gtformer = Client.ClientHelper.PlatformSqlMap.GetOne<PS_gt>(" Where gtID='" + xl.ParentGT + "'");
                 gtlis.Insert(0, gtformer);
                 //计算页码
@@ -266,7 +410,8 @@ namespace Ebada.Scgl.Yxgl {
                 int ihang = 8, jlie = 2;
                 int i = 0;
                 //复制空模板
-                for (m = 1; m < pagecount; m++) {
+                for (m = 1; m < pagecount; m++)
+                {
                     ex.CopySheet(1, m);
                     ex.ReNameWorkSheet(m + 1, "Sheet" + (m + 1));
                 }
@@ -275,21 +420,27 @@ namespace Ebada.Scgl.Yxgl {
                 strname[1] = "";
                 strname[2] = "";
 
-                if (xl.LineType == "1") {
+                if (xl.LineType == "1")
+                {
                     strname[0] = xl.LineName.Split('线')[0] + "线";
                     strname[1] = xl.LineName.Replace(strname[0], "");
 
 
-                } else
-                    if (xl.LineType == "2") {
+                }
+                else
+                    if (xl.LineType == "2")
+                    {
                         PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xl.ParentID + "'");
                         if (xltemp != null)
                             strname[0] = xltemp.LineName;
-                        strname[1] = xl.LineName.Replace(xltemp.LineName,"");
-                    } else if (xl.LineType == "3") {
+                        strname[1] = xl.LineName.Replace(xltemp.LineName, "");
+                    }
+                    else if (xl.LineType == "3")
+                    {
                         strname[2] = xl.LineName;
                         PS_xl xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xl.ParentID + "'");
-                        if (xltemp != null) {
+                        if (xltemp != null)
+                        {
                             strname[1] = xltemp.LineName;
                             xltemp = MainHelper.PlatformSqlMap.GetOne<PS_xl>(" where LineID='" + xltemp.ParentID + "'");
                             if (xltemp != null) strname[0] = xltemp.LineName;
@@ -298,14 +449,15 @@ namespace Ebada.Scgl.Yxgl {
                         strname[1].Replace(strname[0], "");
                     }
                 //填写公共项
-                for (m = 1; m <= pagecount; m++) {
+                for (m = 1; m <= pagecount; m++)
+                {
                     ex.ActiveSheet("Sheet" + m);
-                    if(!string.IsNullOrEmpty(strname[0]))
-                    ex.SetCellValue(strname[0], 3, 2);
+                    if (!string.IsNullOrEmpty(strname[0]))
+                        ex.SetCellValue(strname[0], 3, 2);
                     if (!string.IsNullOrEmpty(strname[1]))
-                    ex.SetCellValue(strname[1], 3, 5);
+                        ex.SetCellValue(strname[1], 3, 5);
                     if (!string.IsNullOrEmpty(strname[2]))
-                    ex.SetCellValue(strname[2], 3, 11);
+                        ex.SetCellValue(strname[2], 3, 11);
                     ex.SetCellValue(xl.LineVol.ToString(), 3, 20);
 
                 }
@@ -322,7 +474,8 @@ namespace Ebada.Scgl.Yxgl {
                 double dc = 0;
                 string strfx = "";
                 Excel.Range range;
-                for (i = 1; i < gtlis.Count; i++) {
+                for (i = 1; i < gtlis.Count; i++)
+                {
                     try
                     {
                         if ((i + 0.0) % (jmax) == 1)
@@ -403,7 +556,7 @@ namespace Ebada.Scgl.Yxgl {
                         //导线型号
                         IList dxlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct sbModle from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
                         //导线排列方式
-                        IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
+                        //IList dxpllist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", "select distinct C1 from PS_gtsb  Where sbName like '%导线%' and gtID='" + gtobj.gtID + "'");
 
                         //横担规格
                         IList hdobj = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", " select distinct sbModle from PS_gtsb Where sbName like '%横担%' and gtID='" + gtobj.gtID + "'");
@@ -506,15 +659,15 @@ namespace Ebada.Scgl.Yxgl {
                         ihang++;
                         //导线排列方式
 
-                        if (hdobj.Count > 0 && hdobj[0].ToString().Contains("三角"))
-                        {
+                        //if (hdobj.Count > 0 && hdobj[0].ToString().Contains("三角"))
+                        //{
 
-                            ex.SetCellValue("三角排列", ihang, jlie);
-                        }
-                        else
-                        {
-                            ex.SetCellValue("水平排列", ihang, jlie);
-                        }
+                        //    ex.SetCellValue("三角排列", ihang, jlie);
+                        //}
+                        //else
+                        //{
+                        //    ex.SetCellValue("水平排列", ihang, jlie);
+                        //}
                         /*
                         if (((i + 0.0) % (jmax) == 0 && i > 1) || i == gtlis.Count) {
                             //合并同类项
@@ -1226,11 +1379,11 @@ namespace Ebada.Scgl.Yxgl {
 
 
                     }
-                    catch 
+                    catch
                     {
- 
+
                     }
-                   
+
                 }
                 //#region 画图形
                 //dsoFramerWordControl1.FileOpen(outfname);
@@ -1259,10 +1412,85 @@ namespace Ebada.Scgl.Yxgl {
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight].Weight = Excel.XlBorderWeight.xlThick;
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                 //range.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].Weight = Excel.XlBorderWeight.xlThick;
-                ex.ActiveSheet(1);
-                
 
-            } catch (Exception exmess) {
+
+                #region 填写导线排列方式
+                foreach (int key in Dic.Keys)
+                {
+                    int page = 1;
+                    int page1 = 1;
+                    DXPLFS nzlength = Dic[key];
+
+                    //int startcolumn = (nzlength.Start + 1) * 2 - 1;
+                    if (nzlength.Start % 15 == 0)
+                    {
+                        page = nzlength.Start / 15;
+                    }
+                    else
+                    {
+                        page = nzlength.Start / 15 + 1;
+                    }
+
+                    ex.ActiveSheet(page);
+
+                    //int endcolumn = (nzlength.End + 1) * 2;
+                    if (nzlength.End % 15 == 0)
+                    {
+                        page1 = nzlength.End / 15;
+                    }
+                    else
+                    {
+                        page1 = nzlength.End / 15 + 1;
+                    }
+                    if (page == page1)
+                    {
+                        ex.ActiveSheet(page);
+                        try
+                        {                            
+                            ex.UnitCells(12, ((nzlength.Start % 15)+1)*2-1, 12, ((nzlength.End % 15)+1)*2 );
+                            
+                        }
+                        catch (Exception ex11)
+                        {
+
+                        }
+
+                        ex.SetCellValue(nzlength.Name, 12, ((nzlength.Start % 15)+1)*2-1);
+                    }
+                    else
+                    {
+                        ex.ActiveSheet(page);
+                        ex.UnitCells(12, ((nzlength.Start % 15)+1)*2-1, 12, 32);
+                        ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Name, 12, ((nzlength.Start % 15)+1)*2-1);
+                        for (int tmp = 1; tmp <= page1 - page; tmp++)
+                        {
+                            ex.ActiveSheet(page + tmp);
+                            if (tmp < page1 - page)
+                            {
+                                ex.UnitCells(12, 3, 12, 32);
+                                ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Name, 12, 3);
+                            }
+                            if (tmp == page1 - page)
+                            {
+                                ex.UnitCells(12, 3, 12, ((nzlength.End % 15)+1)*2);
+                                ex.SetCellValue(nzlength.Start + "到" + nzlength.End + "杆塔:" + nzlength.Name, 12, 3);
+                            }
+                            
+                            
+                        }
+                    }
+
+
+                }
+                #endregion
+
+
+                ex.ActiveSheet(1);
+
+
+            }
+            catch (Exception exmess)
+            {
                 MsgBox.ShowTipMessageBox(exmess.Message.ToString());
             }
             dsoFramerWordControl1.FileSave();
@@ -1273,70 +1501,14 @@ namespace Ebada.Scgl.Yxgl {
             //System.Diagnostics.Process.Start(outfname);
             return 1;
         }
-        private void barCreat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (treeList1.FocusedNode == null)
-                return;
 
-            PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
-            if (obj == null)
-                return;
-            try {
-                if (ExportToExcel("高压配电线路条图", "", obj) < 1) return;
 
-                frm17Template frm = new frm17Template();
-                frm.pjobject = obj;
-                if (frm.ShowDialog() == DialogResult.OK) {
-                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
-                    //MessageBox.Show("保存成功");
-                }
-            } catch (Exception ex) {
-                MsgBox.ShowException(ex);
-                if (ex.Message.IndexOf("无效") > -1) {
-                    SelectorHelper.Execute("taskkill /im EXCEL.EXE /f");
-                }
-            }
-        }
-        private void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (treeList1.FocusedNode != null) {
-                //Export17.ExportExcel(treeList1.FocusedNode);
-                PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
-                if (obj == null)
-                    return;
-                string fname = "";
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
-                    fname = saveFileDialog1.FileName;
-                    try {
-                        DSOFramerControl ds1 = new DSOFramerControl();
-                        ds1.FileDataGzip = obj.BigData;
-                        ds1.FileSave(fname, true);
-                        ds1.FileClose();
-                        if (MsgBox.ShowAskMessageBox("导出成功，是否打开该文档？") != DialogResult.OK)
-                            return;
+    }
 
-                        System.Diagnostics.Process.Start(fname);
-                    } catch (Exception ex) {
-                        Console.WriteLine(ex.Message);
-                        MsgBox.ShowWarningMessageBox("无法保存" + fname + "。请用其他文件名保存文件，或将文件存至其他位置。");
-                        return;
-                    }
-                }
-            }
-        }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (treeList1.FocusedNode != null) {
-                frm17Template frm = new frm17Template();
-                PJ_17 obj = MainHelper.PlatformSqlMap.GetOneByKey<PJ_17>(treeList1.FocusedNode["ID"]);
-                if (obj == null)
-                    return;
-                frm.pjobject = obj;
-                if (frm.ShowDialog() == DialogResult.OK) {
-                    Client.ClientHelper.PlatformSqlMap.Update<PJ_17>(frm.pjobject);
-                    //MessageBox.Show("保存成功");
-                }
-            }
-        }
+    public class DXPLFS
+    {
+        public int Start { get; set; }
+        public int End { get; set; }
+        public string Name { get; set; }
     }
 }
