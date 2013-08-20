@@ -596,8 +596,8 @@ namespace Ebada.Scgl.Sbgl
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 5 + i, 1);
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 5 + i, 2);
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 5 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 5 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 5 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzsj.Hour.ToString(), row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzsj.Minute.ToString(), row + 5 + i, 5);
                         ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 5 + i, 6);
                         ex.SetCellValue(nrList[starow - 1 + i].c1, row + 5 + i, 7);
                         ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 5 + i, 8);
@@ -616,8 +616,8 @@ namespace Ebada.Scgl.Sbgl
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Year.ToString(), row + 5 + i, 1);
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Month.ToString(), row + 5 + i, 2);
                         ex.SetCellValue(nrList[starow - 1 + i].dzrq.Day.ToString(), row + 5 + i, 3);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Hour.ToString(), row + 5 + i, 4);
-                        ex.SetCellValue(nrList[starow - 1 + i].dzrq.Minute.ToString(), row + 5 + i, 5);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzsj.Hour.ToString(), row + 5 + i, 4);
+                        ex.SetCellValue(nrList[starow - 1 + i].dzsj.Minute.ToString(), row + 5 + i, 5);
                         ex.SetCellValue(nrList[starow - 1 + i].Axjsqzss, row + 5 + i, 6);
                         ex.SetCellValue(nrList[starow - 1 + i].c1, row + 5 + i, 7);
                         ex.SetCellValue(nrList[starow - 1 + i].Bxjsqzss, row + 5 + i, 8);
