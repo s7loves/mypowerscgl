@@ -854,15 +854,5 @@ namespace Ebada.Scgl.Yxgl {
         #endregion
     }
 
-    /// <summary>
-    /// 导线排列方式
-    /// </summary>
-    public class DXPLFS
-    {
-        public int Start { get; set; }
-
-        public int End { get; set; }
-
-        public string Name { get; set; }
-    }
+   
 }
