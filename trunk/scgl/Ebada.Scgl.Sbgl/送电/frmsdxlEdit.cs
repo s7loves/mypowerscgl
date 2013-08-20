@@ -80,6 +80,7 @@ namespace Ebada.Scgl.Sbgl {
             this.comboBoxEdit16.DataBindings.Add("EditValue", rowData, "lineKind");//完好类型
             this.comboBoxEdit17.DataBindings.Add("EditValue", rowData, "lineNum");//线路类型
             this.comboBoxEdit18.DataBindings.Add("EditValue", rowData, "xlpy");//线路类型
+            this.cmbDxplfs.DataBindings.Add("EditValue", rowData, "c1");//导线排列方式
 
         }
         #region IPopupFormEdit Members

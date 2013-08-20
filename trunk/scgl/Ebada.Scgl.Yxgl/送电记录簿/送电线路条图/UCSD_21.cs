@@ -412,13 +412,13 @@ namespace Ebada.Scgl.Yxgl {
                     ihang++;
                     //导线排列方式
 
-                    if (hdobj.Count>0 && hdobj[0].ToString().Contains("三角")) {
+                    //if (hdobj.Count>0 && hdobj[0].ToString().Contains("三角")) {
 
-                        ex.SetCellValue("三角排列", ihang, jlie);
-                    } else {
-                        ex.SetCellValue("水平排列", ihang, jlie);
-                    }
-                    
+                    //    ex.SetCellValue("三角排列", ihang, jlie);
+                    //} else {
+                    //    ex.SetCellValue("水平排列", ihang, jlie);
+                    //}
+                    ex.SetCellValue(xl.c1, ihang, jlie);
                    
                     ihang++;
                     //导线型号规格（mm2）
