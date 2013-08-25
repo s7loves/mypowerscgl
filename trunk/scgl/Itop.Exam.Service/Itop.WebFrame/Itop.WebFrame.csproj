@@ -65,15 +65,6 @@
     <Reference Include="Ebada.Server">
       <HintPath>..\weblib\Ebada.Server.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net, Version=1.2.0.21133, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Ext.Net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ext.Net.Utilities, Version=1.1.0.21129, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Ext.Net.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="IBatisNet.DataAccess, Version=1.9.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\weblib\IBatisNet.DataAccess.dll</HintPath>
@@ -135,9 +126,6 @@
     <Compile Include="ConvertHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="GridPageBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="app_Code\json.cs" />
     <Compile Include="IWcfExamSercice.cs" />
