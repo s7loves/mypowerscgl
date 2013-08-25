@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExaminationPaper" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExaminationPaper"  type="Itop.Frame.Model.E_ExaminationPaper,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExaminationPaper_AllColumns" class="E_ExaminationPaper">
+        <result property="ID" column="ID" />
+        <result property="EP_Name" column="EP_Name" />
+        <result property="SettingID" column="SettingID" />
+        <result property="OrderRandom" column="OrderRandom" />
+        <result property="TotalScore" column="TotalScore" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="Paper_Type" column="Paper_Type" />
+        <result property="ProfessionalID" column="ProfessionalID" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExaminationPaperList" resultMap="E_ExaminationPaper_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [EP_Name],
+         [SettingID],
+         [OrderRandom],
+         [TotalScore],
+         [CreateTime],
+         [CreateMan],
+         [Paper_Type],
+         [ProfessionalID],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaper
+          $value$
+   </select>
+   
+   <select id="SelectE_ExaminationPaperByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [EP_Name],
+         [SettingID],
+         [OrderRandom],
+         [TotalScore],
+         [CreateTime],
+         [CreateMan],
+         [Paper_Type],
+         [ProfessionalID],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaper
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_Name">[EP_Name]='$EP_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="SettingID">[SettingID]='$SettingID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrderRandom">[OrderRandom]='$OrderRandom$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalScore">[TotalScore]='$TotalScore$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="Paper_Type">[Paper_Type]='$Paper_Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ProfessionalID">[ProfessionalID]='$ProfessionalID$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExaminationPaperByKey" resultMap="E_ExaminationPaper_AllColumns" parameterClass="E_ExaminationPaper">
+         SELECT 
+         [ID],
+         [EP_Name],
+         [SettingID],
+         [OrderRandom],
+         [TotalScore],
+         [CreateTime],
+         [CreateMan],
+         [Paper_Type],
+         [ProfessionalID],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExaminationPaper
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExaminationPaper" parameterClass="E_ExaminationPaper">
+        DELETE FROM 
+         E_ExaminationPaper
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperByWhere" parameterClass="string">
+     delete from E_ExaminationPaper $value$
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExaminationPaper
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExaminationPaper" parameterClass="E_ExaminationPaper" resultClass="int">
+          UPDATE E_ExaminationPaper
+           SET
+             [EP_Name]=#EP_Name#,
+             [SettingID]=#SettingID#,
+             [OrderRandom]=#OrderRandom#,
+             [TotalScore]=#TotalScore#,
+             [CreateTime]=#CreateTime#,
+             [CreateMan]=#CreateMan#,
+             [Paper_Type]=#Paper_Type#,
+             [ProfessionalID]=#ProfessionalID#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExaminationPaper" parameterClass="E_ExaminationPaper">
+        INSERT INTO E_ExaminationPaper
+         (
+         [ID],
+         [EP_Name],
+         [SettingID],
+         [OrderRandom],
+         [TotalScore],
+         [CreateTime],
+         [CreateMan],
+         [Paper_Type],
+         [ProfessionalID],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #EP_Name#,
+         #SettingID#,
+         #OrderRandom#,
+         #TotalScore#,
+         #CreateTime#,
+         #CreateMan#,
+         #Paper_Type#,
+         #ProfessionalID#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExaminationPaperRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExaminationPaper
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_Name">[EP_Name]='$EP_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="SettingID">[SettingID]='$SettingID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrderRandom">[OrderRandom]='$OrderRandom$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalScore">[TotalScore]='$TotalScore$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="Paper_Type">[Paper_Type]='$Paper_Type$'</isNotNull>
+       <isNotNull prepend="AND" property="ProfessionalID">[ProfessionalID]='$ProfessionalID$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExaminationPaperRowCount" parameterClass="string">
+    select count(*) from E_ExaminationPaper $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

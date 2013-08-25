@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExaminationPaperQuestion" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExaminationPaperQuestion"  type="Itop.Frame.Model.E_ExaminationPaperQuestion,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExaminationPaperQuestion_AllColumns" class="E_ExaminationPaperQuestion">
+        <result property="ID" column="ID" />
+        <result property="ExID" column="ExID" />
+        <result property="QuID" column="QuID" />
+        <result property="QuType" column="QuType" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExaminationPaperQuestionList" resultMap="E_ExaminationPaperQuestion_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ExID],
+         [QuID],
+         [QuType],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaperQuestion
+          $value$
+   </select>
+   
+   <select id="SelectE_ExaminationPaperQuestionByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ExID],
+         [QuID],
+         [QuType],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaperQuestion
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExID">[ExID]='$ExID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuID">[QuID]='$QuID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuType">[QuType]='$QuType$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExaminationPaperQuestionByKey" resultMap="E_ExaminationPaperQuestion_AllColumns" parameterClass="E_ExaminationPaperQuestion">
+         SELECT 
+         [ID],
+         [ExID],
+         [QuID],
+         [QuType],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExaminationPaperQuestion
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExaminationPaperQuestion" parameterClass="E_ExaminationPaperQuestion">
+        DELETE FROM 
+         E_ExaminationPaperQuestion
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperQuestionByWhere" parameterClass="string">
+     delete from E_ExaminationPaperQuestion $value$
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperQuestionByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExaminationPaperQuestion
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExaminationPaperQuestion" parameterClass="E_ExaminationPaperQuestion" resultClass="int">
+          UPDATE E_ExaminationPaperQuestion
+           SET
+             [ExID]=#ExID#,
+             [QuID]=#QuID#,
+             [QuType]=#QuType#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExaminationPaperQuestion" parameterClass="E_ExaminationPaperQuestion">
+        INSERT INTO E_ExaminationPaperQuestion
+         (
+         [ID],
+         [ExID],
+         [QuID],
+         [QuType],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #ExID#,
+         #QuID#,
+         #QuType#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExaminationPaperQuestionRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExaminationPaperQuestion
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExID">[ExID]='$ExID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuID">[QuID]='$QuID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuType">[QuType]='$QuType$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExaminationPaperQuestionRowCount" parameterClass="string">
+    select count(*) from E_ExaminationPaperQuestion $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_Examination" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_Examination"  type="Itop.Frame.Model.E_Examination,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_Examination_AllColumns" class="E_Examination">
+        <result property="ID" column="ID" />
+        <result property="E_Name" column="E_Name" />
+        <result property="UserType" column="UserType" />
+        <result property="UserIDS" column="UserIDS" />
+        <result property="StartTime" column="StartTime" />
+        <result property="EndTime" column="EndTime" />
+        <result property="EP_ID" column="EP_ID" />
+        <result property="OrgIDS" column="OrgIDS" />
+        <result property="ShowResult" column="ShowResult" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExaminationList" resultMap="E_Examination_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [E_Name],
+         [UserType],
+         [UserIDS],
+         [StartTime],
+         [EndTime],
+         [EP_ID],
+         [OrgIDS],
+         [ShowResult],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Examination
+          $value$
+   </select>
+   
+   <select id="SelectE_ExaminationByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [E_Name],
+         [UserType],
+         [UserIDS],
+         [StartTime],
+         [EndTime],
+         [EP_ID],
+         [OrgIDS],
+         [ShowResult],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Examination
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_Name">[E_Name]='$E_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="UserType">[UserType]='$UserType$'</isNotNull>
+       <isNotNull prepend="AND" property="UserIDS">[UserIDS]='$UserIDS$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_ID">[EP_ID]='$EP_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgIDS">[OrgIDS]='$OrgIDS$'</isNotNull>
+       <isNotNull prepend="AND" property="ShowResult">[ShowResult]='$ShowResult$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExaminationByKey" resultMap="E_Examination_AllColumns" parameterClass="E_Examination">
+         SELECT 
+         [ID],
+         [E_Name],
+         [UserType],
+         [UserIDS],
+         [StartTime],
+         [EndTime],
+         [EP_ID],
+         [OrgIDS],
+         [ShowResult],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_Examination
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_Examination" parameterClass="E_Examination">
+        DELETE FROM 
+         E_Examination
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExaminationByWhere" parameterClass="string">
+     delete from E_Examination $value$
+   </delete>
+   
+   <delete id="DeleteE_ExaminationByKey" parameterClass="string">
+        DELETE FROM 
+         E_Examination
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_Examination" parameterClass="E_Examination" resultClass="int">
+          UPDATE E_Examination
+           SET
+             [E_Name]=#E_Name#,
+             [UserType]=#UserType#,
+             [UserIDS]=#UserIDS#,
+             [StartTime]=#StartTime#,
+             [EndTime]=#EndTime#,
+             [EP_ID]=#EP_ID#,
+             [OrgIDS]=#OrgIDS#,
+             [ShowResult]=#ShowResult#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_Examination" parameterClass="E_Examination">
+        INSERT INTO E_Examination
+         (
+         [ID],
+         [E_Name],
+         [UserType],
+         [UserIDS],
+         [StartTime],
+         [EndTime],
+         [EP_ID],
+         [OrgIDS],
+         [ShowResult],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #E_Name#,
+         #UserType#,
+         #UserIDS#,
+         #StartTime#,
+         #EndTime#,
+         #EP_ID#,
+         #OrgIDS#,
+         #ShowResult#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExaminationRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_Examination
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_Name">[E_Name]='$E_Name$'</isNotNull>
+       <isNotNull prepend="AND" property="UserType">[UserType]='$UserType$'</isNotNull>
+       <isNotNull prepend="AND" property="UserIDS">[UserIDS]='$UserIDS$'</isNotNull>
+       <isNotNull prepend="AND" property="StartTime">[StartTime]='$StartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EndTime">[EndTime]='$EndTime$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_ID">[EP_ID]='$EP_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgIDS">[OrgIDS]='$OrgIDS$'</isNotNull>
+       <isNotNull prepend="AND" property="ShowResult">[ShowResult]='$ShowResult$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExaminationRowCount" parameterClass="string">
+    select count(*) from E_Examination $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

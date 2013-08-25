@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Itop.WebFrame.WcfExamSercice" CodeBehind="WcfExamSercice.svc.cs" %>
