@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExaminationPaperQuestionRandom" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExaminationPaperQuestionRandom"  type="Ebada.Scgl.Model.E_ExaminationPaperQuestionRandom,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExaminationPaperQuestionRandom_AllColumns" class="E_ExaminationPaperQuestionRandom">
+        <result property="ID" column="ID" />
+        <result property="E_ID" column="E_ID" />
+        <result property="EP_D" column="EP_D" />
+        <result property="QuID" column="QuID" />
+        <result property="QuType" column="QuType" />
+        <result property="UserID" column="UserID" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExaminationPaperQuestionRandomList" resultMap="E_ExaminationPaperQuestionRandom_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [E_ID],
+         [EP_D],
+         [QuID],
+         [QuType],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaperQuestionRandom
+          $value$
+   </select>
+   
+   <select id="SelectE_ExaminationPaperQuestionRandomByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [E_ID],
+         [EP_D],
+         [QuID],
+         [QuType],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExaminationPaperQuestionRandom
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_ID">[E_ID]='$E_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_D">[EP_D]='$EP_D$'</isNotNull>
+       <isNotNull prepend="AND" property="QuID">[QuID]='$QuID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuType">[QuType]='$QuType$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExaminationPaperQuestionRandomByKey" resultMap="E_ExaminationPaperQuestionRandom_AllColumns" parameterClass="E_ExaminationPaperQuestionRandom">
+         SELECT 
+         [ID],
+         [E_ID],
+         [EP_D],
+         [QuID],
+         [QuType],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExaminationPaperQuestionRandom
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExaminationPaperQuestionRandom" parameterClass="E_ExaminationPaperQuestionRandom">
+        DELETE FROM 
+         E_ExaminationPaperQuestionRandom
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperQuestionRandomByWhere" parameterClass="string">
+     delete from E_ExaminationPaperQuestionRandom $value$
+   </delete>
+   
+   <delete id="DeleteE_ExaminationPaperQuestionRandomByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExaminationPaperQuestionRandom
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExaminationPaperQuestionRandom" parameterClass="E_ExaminationPaperQuestionRandom" resultClass="int">
+          UPDATE E_ExaminationPaperQuestionRandom
+           SET
+             [E_ID]=#E_ID#,
+             [EP_D]=#EP_D#,
+             [QuID]=#QuID#,
+             [QuType]=#QuType#,
+             [UserID]=#UserID#,
+             [CreateTime]=#CreateTime#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExaminationPaperQuestionRandom" parameterClass="E_ExaminationPaperQuestionRandom">
+        INSERT INTO E_ExaminationPaperQuestionRandom
+         (
+         [ID],
+         [E_ID],
+         [EP_D],
+         [QuID],
+         [QuType],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #E_ID#,
+         #EP_D#,
+         #QuID#,
+         #QuType#,
+         #UserID#,
+         #CreateTime#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExaminationPaperQuestionRandomRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExaminationPaperQuestionRandom
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_ID">[E_ID]='$E_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_D">[EP_D]='$EP_D$'</isNotNull>
+       <isNotNull prepend="AND" property="QuID">[QuID]='$QuID$'</isNotNull>
+       <isNotNull prepend="AND" property="QuType">[QuType]='$QuType$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExaminationPaperQuestionRandomRowCount" parameterClass="string">
+    select count(*) from E_ExaminationPaperQuestionRandom $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

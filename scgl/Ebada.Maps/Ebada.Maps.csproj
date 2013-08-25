@@ -535,6 +535,24 @@
     <EmbeddedResource Include="bdjl_ksnr.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="E_ExamAnswerResult.xml" />
+    <EmbeddedResource Include="E_Examination.xml" />
+    <EmbeddedResource Include="E_ExaminationPaper.xml" />
+    <EmbeddedResource Include="E_ExaminationPaperQuestion.xml" />
+    <EmbeddedResource Include="E_ExaminationPaperQuestionRandom.xml" />
+    <EmbeddedResource Include="E_ExamResult.xml" />
+    <EmbeddedResource Include="E_ExamSetting.xml" />
+    <EmbeddedResource Include="E_Professional.xml" />
+    <EmbeddedResource Include="E_QuestionBank.xml" />
+    <EmbeddedResource Include="E_User.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="E_QBank.xml" />
+    <EmbeddedResource Include="E_R_EBankORG.xml" />
+    <EmbeddedResource Include="E_R_EBankPro.xml" />
+    <EmbeddedResource Include="E_R_ESetPro.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

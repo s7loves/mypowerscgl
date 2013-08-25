@@ -274,5 +274,235 @@ namespace Ebada.Scgl.Core {
                 return DicTypeHelper.orgDic;
             }
         }
+
+        static RepositoryItem eProDic;
+
+        public static RepositoryItem E_proDic
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (eProDic == null || eProDic.LinkCount == 1)
+                {
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    IList<E_Professional> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Professional>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_Professional pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.PName));
+                    }
+                    eProDic = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.eProDic;
+            }
+        }
+        static IList<DicType> _SettingDic;
+        public static IList<DicType> SettingDic
+        {
+            get
+            {
+                if (_SettingDic==null)
+	            {
+                   IList<E_ExamSetting> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExamSetting>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_ExamSetting pro in list)
+                    {
+                        string des="(判断 "+pro.JudgeNUM+"个;  单选"+pro.SelectNUM+"个;  多选 "+pro.MuSelectNUM+"个;总分 "+pro.TotalScore+"分)";
+                        dic.Add(new DicType(pro.ID, pro.SettingName+des));
+                    }
+                    _SettingDic = dic;
+	            }
+                return _SettingDic;
+            }
+            set
+            {
+                _SettingDic=value;
+            }
+        }
+        static RepositoryItem esetting;
+
+        public static RepositoryItem E_Setting
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (esetting == null || esetting.LinkCount == 1)
+                {
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    IList<E_ExamSetting> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExamSetting>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_ExamSetting pro in list)
+                    {
+                        string des = "(判断 " + pro.JudgeNUM + "个;  单选" + pro.SelectNUM + "个;  多选 " + pro.MuSelectNUM + "个;总分 " + pro.TotalScore + "分)";
+                        dic.Add(new DicType(pro.ID, pro.SettingName + des));
+                    }
+                    esetting = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.esetting;
+            }
+        }
+
+        static  IList<DicType> dicee = new List<DicType>();
+       
+        public static IList<DicType> GetE_QuDicList()
+        {
+            if (dicee.Count==0)
+            {
+                dicee.Add(new DicType("1", "☆"));
+                dicee.Add(new DicType("2", "☆☆"));
+                dicee.Add(new DicType("3", "☆☆☆"));
+                dicee.Add(new DicType("4", "☆☆☆☆"));
+                dicee.Add(new DicType("5", "☆☆☆☆☆"));
+            }
+            return dicee;
+        }
+        //题的难道系数
+        static RepositoryItem eQuestionBankDic;
+        public static RepositoryItem E_QuestionBankDic
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (eQuestionBankDic == null || eQuestionBankDic.LinkCount == 1)
+                {
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    //IList<E_Professional> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Professional>(" ");
+                    
+                    IList<DicType> dic = new List<DicType>();
+                    //foreach (E_Professional pro in list)
+                    //{
+                    //    dic.Add(new DicType(pro.ID, pro.PName));
+                    //}
+                    dic.Add(new DicType("1", "☆"));
+                    dic.Add(new DicType("2", "☆☆"));
+                    dic.Add(new DicType("3", "☆☆☆"));
+                    dic.Add(new DicType("4", "☆☆☆☆"));
+                    dic.Add(new DicType("5", "☆☆☆☆☆"));
+                    eQuestionBankDic = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.eQuestionBankDic;
+            }
+        }
+        static RepositoryItem equbank;
+
+        public static RepositoryItem E_QBank
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (equbank == null || equbank.LinkCount == 1)
+                {
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    IList<E_QBank> list = Client.ClientHelper.PlatformSqlMap.GetList<E_QBank>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_QBank pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.TKName));
+                    }
+                    equbank = new LookUpDicType(dic);
+                }
+                return DicTypeHelper.equbank;
+            }
+        }
+
+        static IList<DicType> _EbankDiclist;
+        public static IList<DicType> EbankDicList
+        {
+            get
+            {
+                if (_EbankDiclist == null)
+                {
+                    IList<E_QBank> list = Client.ClientHelper.PlatformSqlMap.GetList<E_QBank>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_QBank pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.TKName));
+                    }
+                    _EbankDiclist = dic;
+                }
+                return _EbankDiclist;
+            }
+            set
+            {
+                _EbankDiclist = value;
+            }
+        }
+
+        static IList<DicType> _ExPaperDic;
+        public static IList<DicType> ExPaperDic
+        {
+            get
+            {
+                if (_ExPaperDic == null)
+                {
+                    IList<E_ExaminationPaper> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExaminationPaper>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_ExaminationPaper pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.EP_Name));
+                    }
+
+                    _ExPaperDic = dic;
+                }
+                return _ExPaperDic;
+            }
+            set
+            {
+                _SettingDic = value;
+            }
+        }
+
+        static RepositoryItem _ExPaper;
+
+        public static RepositoryItem E_Paper
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                if (_ExPaper == null || _ExPaper.LinkCount == 1)
+                {
+                    //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                    //IList<DicType> dic = new List<DicType>();
+                    //foreach (ViewGds gds in list) {
+                    //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                    //}
+                    //gdsDic = new LookUpDicType(dic); 
+
+                    IList<E_ExaminationPaper> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExaminationPaper>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_ExaminationPaper pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.EP_Name));
+                    }
+
+                    _ExPaper = new LookUpDicType(dic);
+                }
+                return DicTypeHelper._ExPaper;
+            }
+        }
     }
 }
