@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExamResult" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExamResult"  type="Itop.Frame.Model.E_ExamResult,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExamResult_AllColumns" class="E_ExamResult">
+        <result property="ID" column="ID" />
+        <result property="E_ID" column="E_ID" />
+        <result property="EP_ID" column="EP_ID" />
+        <result property="UserID" column="UserID" />
+        <result property="RealStartTime" column="RealStartTime" />
+        <result property="RealEenTime" column="RealEenTime" />
+        <result property="IsExamed" column="IsExamed" />
+        <result property="Score" column="Score" />
+        <result property="IsPassed" column="IsPassed" />
+        <result property="Comment" column="Comment" />
+        <result property="CheckPeople" column="CheckPeople" />
+        <result property="Sequence" column="Sequence" />
+        <result property="ShowScore" column="ShowScore" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExamResultList" resultMap="E_ExamResult_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [E_ID],
+         [EP_ID],
+         [UserID],
+         [RealStartTime],
+         [RealEenTime],
+         [IsExamed],
+         [Score],
+         [IsPassed],
+         [Comment],
+         [CheckPeople],
+         [Sequence],
+         [ShowScore],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamResult
+          $value$
+   </select>
+   
+   <select id="SelectE_ExamResultByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [E_ID],
+         [EP_ID],
+         [UserID],
+         [RealStartTime],
+         [RealEenTime],
+         [IsExamed],
+         [Score],
+         [IsPassed],
+         [Comment],
+         [CheckPeople],
+         [Sequence],
+         [ShowScore],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamResult
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_ID">[E_ID]='$E_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_ID">[EP_ID]='$EP_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="RealStartTime">[RealStartTime]='$RealStartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="RealEenTime">[RealEenTime]='$RealEenTime$'</isNotNull>
+       <isNotNull prepend="AND" property="IsExamed">[IsExamed]='$IsExamed$'</isNotNull>
+       <isNotNull prepend="AND" property="Score">[Score]='$Score$'</isNotNull>
+       <isNotNull prepend="AND" property="IsPassed">[IsPassed]='$IsPassed$'</isNotNull>
+       <isNotNull prepend="AND" property="Comment">[Comment]='$Comment$'</isNotNull>
+       <isNotNull prepend="AND" property="CheckPeople">[CheckPeople]='$CheckPeople$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ShowScore">[ShowScore]='$ShowScore$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExamResultByKey" resultMap="E_ExamResult_AllColumns" parameterClass="E_ExamResult">
+         SELECT 
+         [ID],
+         [E_ID],
+         [EP_ID],
+         [UserID],
+         [RealStartTime],
+         [RealEenTime],
+         [IsExamed],
+         [Score],
+         [IsPassed],
+         [Comment],
+         [CheckPeople],
+         [Sequence],
+         [ShowScore],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExamResult
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExamResult" parameterClass="E_ExamResult">
+        DELETE FROM 
+         E_ExamResult
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExamResultByWhere" parameterClass="string">
+     delete from E_ExamResult $value$
+   </delete>
+   
+   <delete id="DeleteE_ExamResultByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExamResult
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExamResult" parameterClass="E_ExamResult" resultClass="int">
+          UPDATE E_ExamResult
+           SET
+             [E_ID]=#E_ID#,
+             [EP_ID]=#EP_ID#,
+             [UserID]=#UserID#,
+             [RealStartTime]=#RealStartTime#,
+             [RealEenTime]=#RealEenTime#,
+             [IsExamed]=#IsExamed#,
+             [Score]=#Score#,
+             [IsPassed]=#IsPassed#,
+             [Comment]=#Comment#,
+             [CheckPeople]=#CheckPeople#,
+             [Sequence]=#Sequence#,
+             [ShowScore]=#ShowScore#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExamResult" parameterClass="E_ExamResult">
+        INSERT INTO E_ExamResult
+         (
+         [ID],
+         [E_ID],
+         [EP_ID],
+         [UserID],
+         [RealStartTime],
+         [RealEenTime],
+         [IsExamed],
+         [Score],
+         [IsPassed],
+         [Comment],
+         [CheckPeople],
+         [Sequence],
+         [ShowScore],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #E_ID#,
+         #EP_ID#,
+         #UserID#,
+         #RealStartTime#,
+         #RealEenTime#,
+         #IsExamed#,
+         #Score#,
+         #IsPassed#,
+         #Comment#,
+         #CheckPeople#,
+         #Sequence#,
+         #ShowScore#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExamResultRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExamResult
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="E_ID">[E_ID]='$E_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="EP_ID">[EP_ID]='$EP_ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="RealStartTime">[RealStartTime]='$RealStartTime$'</isNotNull>
+       <isNotNull prepend="AND" property="RealEenTime">[RealEenTime]='$RealEenTime$'</isNotNull>
+       <isNotNull prepend="AND" property="IsExamed">[IsExamed]='$IsExamed$'</isNotNull>
+       <isNotNull prepend="AND" property="Score">[Score]='$Score$'</isNotNull>
+       <isNotNull prepend="AND" property="IsPassed">[IsPassed]='$IsPassed$'</isNotNull>
+       <isNotNull prepend="AND" property="Comment">[Comment]='$Comment$'</isNotNull>
+       <isNotNull prepend="AND" property="CheckPeople">[CheckPeople]='$CheckPeople$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ShowScore">[ShowScore]='$ShowScore$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExamResultRowCount" parameterClass="string">
+    select count(*) from E_ExamResult $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

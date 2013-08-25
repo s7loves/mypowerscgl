@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>	
+  <components>
+	<!--<component id="sysgroupBLL" type="Itop.Frame.BLL.sysgroupBLL,Itop.Frame.BLL" />  
+	<component id="sysgroupprogBLL" type="Itop.Frame.BLL.sysgroupprogBLL,Itop.Frame.BLL" />  
+	<component id="sysgroupuserBLL" type="Itop.Frame.BLL.sysgroupuserBLL,Itop.Frame.BLL" />  
+	<component id="sysprogBLL" type="Itop.Frame.BLL.sysprogBLL,Itop.Frame.BLL" />  
+	<component id="sysuserBLL" type="Itop.Frame.BLL.sysuserBLL,Itop.Frame.BLL" />-->
+    <!--<component id="ExamAnswerResultBLL" type="Itop.Frame.BLL.ExamAnswerResultBLL,Itop.Frame.BLL" />
+    <component id="ExaminationPaperBLL" type="Itop.Frame.BLL.ExaminationPaperBLL,Itop.Frame.BLL" />
+    <component id="ExaminationPaperInfoBLL" type="Itop.Frame.BLL.ExaminationPaperInfoBLL,Itop.Frame.BLL" />
+    <component id="ExamResultBLL" type="Itop.Frame.BLL.ExamResultBLL,Itop.Frame.BLL" />
+    <component id="ExamSettingBLL" type="Itop.Frame.BLL.ExamSettingBLL,Itop.Frame.BLL" />
+    <component id="GroupExamineBLL" type="Itop.Frame.BLL.GroupExamineBLL,Itop.Frame.BLL" />-->
+    <!--<component id="mUserBLL" type="Itop.Frame.BLL.mUserBLL,Itop.Frame.BLL" />-->
+    <!--<component id="mUserModuleBLL" type="Itop.Frame.BLL.mUserModuleBLL,Itop.Frame.BLL" />
+    <component id="rUserRoleBLL" type="Itop.Frame.BLL.rUserRoleBLL,Itop.Frame.BLL" />-->
+  </components>
+</configuration>

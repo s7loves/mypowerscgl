@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExamSetting" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExamSetting"  type="Itop.Frame.Model.E_ExamSetting,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExamSetting_AllColumns" class="E_ExamSetting">
+        <result property="ID" column="ID" />
+        <result property="SettingName" column="SettingName" />
+        <result property="EQBID" column="EQBID" />
+        <result property="IsUsed" column="IsUsed" />
+        <result property="SelectNUM" column="SelectNUM" />
+        <result property="SelectLevel" column="SelectLevel" />
+        <result property="SelectScore" column="SelectScore" />
+        <result property="MuSelectNUM" column="MuSelectNUM" />
+        <result property="MuSelectLevel" column="MuSelectLevel" />
+        <result property="MuSelectScore" column="MuSelectScore" />
+        <result property="JudgeNUM" column="JudgeNUM" />
+        <result property="JudgeLevel" column="JudgeLevel" />
+        <result property="JudgeScore" column="JudgeScore" />
+        <result property="WaitTime" column="WaitTime" />
+        <result property="PassScore" column="PassScore" />
+        <result property="TotalScore" column="TotalScore" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExamSettingList" resultMap="E_ExamSetting_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [SettingName],
+         [EQBID],
+         [IsUsed],
+         [SelectNUM],
+         [SelectLevel],
+         [SelectScore],
+         [MuSelectNUM],
+         [MuSelectLevel],
+         [MuSelectScore],
+         [JudgeNUM],
+         [JudgeLevel],
+         [JudgeScore],
+         [WaitTime],
+         [PassScore],
+         [TotalScore],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamSetting
+          $value$
+   </select>
+   
+   <select id="SelectE_ExamSettingByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [SettingName],
+         [EQBID],
+         [IsUsed],
+         [SelectNUM],
+         [SelectLevel],
+         [SelectScore],
+         [MuSelectNUM],
+         [MuSelectLevel],
+         [MuSelectScore],
+         [JudgeNUM],
+         [JudgeLevel],
+         [JudgeScore],
+         [WaitTime],
+         [PassScore],
+         [TotalScore],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamSetting
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="SettingName">[SettingName]='$SettingName$'</isNotNull>
+       <isNotNull prepend="AND" property="EQBID">[EQBID]='$EQBID$'</isNotNull>
+       <isNotNull prepend="AND" property="IsUsed">[IsUsed]='$IsUsed$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectNUM">[SelectNUM]='$SelectNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectLevel">[SelectLevel]='$SelectLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectScore">[SelectScore]='$SelectScore$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectNUM">[MuSelectNUM]='$MuSelectNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectLevel">[MuSelectLevel]='$MuSelectLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectScore">[MuSelectScore]='$MuSelectScore$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeNUM">[JudgeNUM]='$JudgeNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeLevel">[JudgeLevel]='$JudgeLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeScore">[JudgeScore]='$JudgeScore$'</isNotNull>
+       <isNotNull prepend="AND" property="WaitTime">[WaitTime]='$WaitTime$'</isNotNull>
+       <isNotNull prepend="AND" property="PassScore">[PassScore]='$PassScore$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalScore">[TotalScore]='$TotalScore$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExamSettingByKey" resultMap="E_ExamSetting_AllColumns" parameterClass="E_ExamSetting">
+         SELECT 
+         [ID],
+         [SettingName],
+         [EQBID],
+         [IsUsed],
+         [SelectNUM],
+         [SelectLevel],
+         [SelectScore],
+         [MuSelectNUM],
+         [MuSelectLevel],
+         [MuSelectScore],
+         [JudgeNUM],
+         [JudgeLevel],
+         [JudgeScore],
+         [WaitTime],
+         [PassScore],
+         [TotalScore],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExamSetting
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExamSetting" parameterClass="E_ExamSetting">
+        DELETE FROM 
+         E_ExamSetting
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExamSettingByWhere" parameterClass="string">
+     delete from E_ExamSetting $value$
+   </delete>
+   
+   <delete id="DeleteE_ExamSettingByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExamSetting
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExamSetting" parameterClass="E_ExamSetting" resultClass="int">
+          UPDATE E_ExamSetting
+           SET
+             [SettingName]=#SettingName#,
+             [EQBID]=#EQBID#,
+             [IsUsed]=#IsUsed#,
+             [SelectNUM]=#SelectNUM#,
+             [SelectLevel]=#SelectLevel#,
+             [SelectScore]=#SelectScore#,
+             [MuSelectNUM]=#MuSelectNUM#,
+             [MuSelectLevel]=#MuSelectLevel#,
+             [MuSelectScore]=#MuSelectScore#,
+             [JudgeNUM]=#JudgeNUM#,
+             [JudgeLevel]=#JudgeLevel#,
+             [JudgeScore]=#JudgeScore#,
+             [WaitTime]=#WaitTime#,
+             [PassScore]=#PassScore#,
+             [TotalScore]=#TotalScore#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExamSetting" parameterClass="E_ExamSetting">
+        INSERT INTO E_ExamSetting
+         (
+         [ID],
+         [SettingName],
+         [EQBID],
+         [IsUsed],
+         [SelectNUM],
+         [SelectLevel],
+         [SelectScore],
+         [MuSelectNUM],
+         [MuSelectLevel],
+         [MuSelectScore],
+         [JudgeNUM],
+         [JudgeLevel],
+         [JudgeScore],
+         [WaitTime],
+         [PassScore],
+         [TotalScore],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #SettingName#,
+         #EQBID#,
+         #IsUsed#,
+         #SelectNUM#,
+         #SelectLevel#,
+         #SelectScore#,
+         #MuSelectNUM#,
+         #MuSelectLevel#,
+         #MuSelectScore#,
+         #JudgeNUM#,
+         #JudgeLevel#,
+         #JudgeScore#,
+         #WaitTime#,
+         #PassScore#,
+         #TotalScore#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExamSettingRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExamSetting
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="SettingName">[SettingName]='$SettingName$'</isNotNull>
+       <isNotNull prepend="AND" property="EQBID">[EQBID]='$EQBID$'</isNotNull>
+       <isNotNull prepend="AND" property="IsUsed">[IsUsed]='$IsUsed$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectNUM">[SelectNUM]='$SelectNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectLevel">[SelectLevel]='$SelectLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectScore">[SelectScore]='$SelectScore$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectNUM">[MuSelectNUM]='$MuSelectNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectLevel">[MuSelectLevel]='$MuSelectLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="MuSelectScore">[MuSelectScore]='$MuSelectScore$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeNUM">[JudgeNUM]='$JudgeNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeLevel">[JudgeLevel]='$JudgeLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="JudgeScore">[JudgeScore]='$JudgeScore$'</isNotNull>
+       <isNotNull prepend="AND" property="WaitTime">[WaitTime]='$WaitTime$'</isNotNull>
+       <isNotNull prepend="AND" property="PassScore">[PassScore]='$PassScore$'</isNotNull>
+       <isNotNull prepend="AND" property="TotalScore">[TotalScore]='$TotalScore$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExamSettingRowCount" parameterClass="string">
+    select count(*) from E_ExamSetting $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
