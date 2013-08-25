@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_QuestionBank" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_QuestionBank"  type="Ebada.Scgl.Model.E_QuestionBank,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_QuestionBank_AllColumns" class="E_QuestionBank">
+        <result property="ID" column="ID" />
+        <result property="Type" column="Type" />
+        <result property="Title" column="Title" />
+        <result property="QueryText" column="QueryText" />
+        <result property="Option" column="Option" />
+        <result property="Answer" column="Answer" />
+        <result property="Explain" column="Explain" />
+        <result property="DifficultyLevel" column="DifficultyLevel" />
+        <result property="ScoreNum" column="ScoreNum" />
+        <result property="Professional" column="Professional" />
+        <result property="Sequence" column="Sequence" />
+        <result property="InTime" column="InTime" />
+        <result property="InUser" column="InUser" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_QuestionBankList" resultMap="E_QuestionBank_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Type],
+         [Title],
+         [QueryText],
+         [Option],
+         [Answer],
+         [Explain],
+         [DifficultyLevel],
+         [ScoreNum],
+         [Professional],
+         [Sequence],
+         [InTime],
+         [InUser],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_QuestionBank
+          $value$
+   </select>
+   
+   <select id="SelectE_QuestionBankByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Type],
+         [Title],
+         [QueryText],
+         [Option],
+         [Answer],
+         [Explain],
+         [DifficultyLevel],
+         [ScoreNum],
+         [Professional],
+         [Sequence],
+         [InTime],
+         [InUser],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_QuestionBank
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="QueryText">[QueryText]='$QueryText$'</isNotNull>
+       <isNotNull prepend="AND" property="Option">[Option]='$Option$'</isNotNull>
+       <isNotNull prepend="AND" property="Answer">[Answer]='$Answer$'</isNotNull>
+       <isNotNull prepend="AND" property="Explain">[Explain]='$Explain$'</isNotNull>
+       <isNotNull prepend="AND" property="DifficultyLevel">[DifficultyLevel]='$DifficultyLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="ScoreNum">[ScoreNum]='$ScoreNum$'</isNotNull>
+       <isNotNull prepend="AND" property="Professional">[Professional]='$Professional$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="InTime">[InTime]='$InTime$'</isNotNull>
+       <isNotNull prepend="AND" property="InUser">[InUser]='$InUser$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_QuestionBankByKey" resultMap="E_QuestionBank_AllColumns" parameterClass="E_QuestionBank">
+         SELECT 
+         [ID],
+         [Type],
+         [Title],
+         [QueryText],
+         [Option],
+         [Answer],
+         [Explain],
+         [DifficultyLevel],
+         [ScoreNum],
+         [Professional],
+         [Sequence],
+         [InTime],
+         [InUser],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_QuestionBank
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_QuestionBank" parameterClass="E_QuestionBank">
+        DELETE FROM 
+         E_QuestionBank
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_QuestionBankByWhere" parameterClass="string">
+     delete from E_QuestionBank $value$
+   </delete>
+   
+   <delete id="DeleteE_QuestionBankByKey" parameterClass="string">
+        DELETE FROM 
+         E_QuestionBank
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_QuestionBank" parameterClass="E_QuestionBank" resultClass="int">
+          UPDATE E_QuestionBank
+           SET
+             [Type]=#Type#,
+             [Title]=#Title#,
+             [QueryText]=#QueryText#,
+             [Option]=#Option#,
+             [Answer]=#Answer#,
+             [Explain]=#Explain#,
+             [DifficultyLevel]=#DifficultyLevel#,
+             [ScoreNum]=#ScoreNum#,
+             [Professional]=#Professional#,
+             [Sequence]=#Sequence#,
+             [InTime]=#InTime#,
+             [InUser]=#InUser#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_QuestionBank" parameterClass="E_QuestionBank">
+        INSERT INTO E_QuestionBank
+         (
+         [ID],
+         [Type],
+         [Title],
+         [QueryText],
+         [Option],
+         [Answer],
+         [Explain],
+         [DifficultyLevel],
+         [ScoreNum],
+         [Professional],
+         [Sequence],
+         [InTime],
+         [InUser],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #Type#,
+         #Title#,
+         #QueryText#,
+         #Option#,
+         #Answer#,
+         #Explain#,
+         #DifficultyLevel#,
+         #ScoreNum#,
+         #Professional#,
+         #Sequence#,
+         #InTime#,
+         #InUser#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_QuestionBankRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_QuestionBank
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="QueryText">[QueryText]='$QueryText$'</isNotNull>
+       <isNotNull prepend="AND" property="Option">[Option]='$Option$'</isNotNull>
+       <isNotNull prepend="AND" property="Answer">[Answer]='$Answer$'</isNotNull>
+       <isNotNull prepend="AND" property="Explain">[Explain]='$Explain$'</isNotNull>
+       <isNotNull prepend="AND" property="DifficultyLevel">[DifficultyLevel]='$DifficultyLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="ScoreNum">[ScoreNum]='$ScoreNum$'</isNotNull>
+       <isNotNull prepend="AND" property="Professional">[Professional]='$Professional$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="InTime">[InTime]='$InTime$'</isNotNull>
+       <isNotNull prepend="AND" property="InUser">[InUser]='$InUser$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_QuestionBankRowCount" parameterClass="string">
+    select count(*) from E_QuestionBank $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

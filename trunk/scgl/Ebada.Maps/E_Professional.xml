@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_Professional" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_Professional"  type="Ebada.Scgl.Model.E_Professional,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_Professional_AllColumns" class="E_Professional">
+        <result property="ID" column="ID" />
+        <result property="PName" column="PName" />
+        <result property="Desc" column="Desc" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ProfessionalList" resultMap="E_Professional_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [PName],
+         [Desc],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Professional
+          $value$
+   </select>
+   
+   <select id="SelectE_ProfessionalByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [PName],
+         [Desc],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Professional
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PName">[PName]='$PName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ProfessionalByKey" resultMap="E_Professional_AllColumns" parameterClass="E_Professional">
+         SELECT 
+         [ID],
+         [PName],
+         [Desc],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_Professional
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_Professional" parameterClass="E_Professional">
+        DELETE FROM 
+         E_Professional
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ProfessionalByWhere" parameterClass="string">
+     delete from E_Professional $value$
+   </delete>
+   
+   <delete id="DeleteE_ProfessionalByKey" parameterClass="string">
+        DELETE FROM 
+         E_Professional
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_Professional" parameterClass="E_Professional" resultClass="int">
+          UPDATE E_Professional
+           SET
+             [PName]=#PName#,
+             [Desc]=#Desc#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_Professional" parameterClass="E_Professional">
+        INSERT INTO E_Professional
+         (
+         [ID],
+         [PName],
+         [Desc],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #PName#,
+         #Desc#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ProfessionalRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_Professional
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PName">[PName]='$PName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ProfessionalRowCount" parameterClass="string">
+    select count(*) from E_Professional $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

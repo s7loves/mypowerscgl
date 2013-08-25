@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ebada.Exam</RootNamespace>
+    <AssemblyName>Ebada.Exam</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\output\client\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Design.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.1.Design, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v10.1.Design, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Ebada.Client, Version=1.0.4831.13376, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Client.Resource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Client.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Components, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\Ebada.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmE_ProfessionalEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ProfessionalEdit.Designer.cs">
+      <DependentUpon>FrmE_ProfessionalEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmE_ProfessionalEdit.resx">
+      <DependentUpon>FrmE_ProfessionalEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcEBNK.resx">
+      <DependentUpon>UcEBNK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_Professional.resx">
+      <DependentUpon>UCE_Professional.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_R_EBankORG.resx">
+      <DependentUpon>UCE_R_EBankORG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_R_EBankORGEdit.resx">
+      <DependentUpon>FrmE_R_EBankORGEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_QuestionBank.resx">
+      <DependentUpon>UCE_QuestionBank.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_QuestionBank.resx">
+      <DependentUpon>FrmE_QuestionBank.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamSetting.resx">
+      <DependentUpon>UCE_ExamSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExamSettingEdit.resx">
+      <DependentUpon>FrmE_ExamSettingEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExaminationPaper.resx">
+      <DependentUpon>UCE_ExaminationPaper.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExaminationPaper.resx">
+      <DependentUpon>FrmE_ExaminationPaper.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_QBank.resx">
+      <DependentUpon>UCE_QBank.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_QBankEdit.resx">
+      <DependentUpon>FrmE_QBankEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_R_EBankPro.resx">
+      <DependentUpon>UCE_R_EBankPro.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_R_EBankProEdit.resx">
+      <DependentUpon>FrmE_R_EBankProEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_Examination.resx">
+      <DependentUpon>UCE_Examination.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_Examination.resx">
+      <DependentUpon>FrmE_Examination.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCOrgUserTree.resx">
+      <DependentUpon>UCOrgUserTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UcEBNK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcEBNK.Designer.cs">
+      <DependentUpon>UcEBNK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_Professional.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_Professional.Designer.cs">
+      <DependentUpon>UCE_Professional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_R_EBankORG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_R_EBankORG.Designer.cs">
+      <DependentUpon>UCE_R_EBankORG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_R_EBankORGEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_R_EBankORGEdit.Designer.cs">
+      <DependentUpon>FrmE_R_EBankORGEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_QuestionBank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_QuestionBank.Designer.cs">
+      <DependentUpon>UCE_QuestionBank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_QuestionBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_QuestionBank.Designer.cs">
+      <DependentUpon>FrmE_QuestionBank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamSetting.Designer.cs">
+      <DependentUpon>UCE_ExamSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_ExamSettingEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExamSettingEdit.Designer.cs">
+      <DependentUpon>FrmE_ExamSettingEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExaminationPaper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExaminationPaper.Designer.cs">
+      <DependentUpon>UCE_ExaminationPaper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_ExaminationPaper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExaminationPaper.Designer.cs">
+      <DependentUpon>FrmE_ExaminationPaper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_QBank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_QBank.Designer.cs">
+      <DependentUpon>UCE_QBank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_QBankEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_QBankEdit.Designer.cs">
+      <DependentUpon>FrmE_QBankEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_R_EBankPro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_R_EBankPro.Designer.cs">
+      <DependentUpon>UCE_R_EBankPro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_R_EBankProEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_R_EBankProEdit.Designer.cs">
+      <DependentUpon>FrmE_R_EBankProEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_Examination.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_Examination.Designer.cs">
+      <DependentUpon>UCE_Examination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_Examination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_Examination.Designer.cs">
+      <DependentUpon>FrmE_Examination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCOrgUserTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCOrgUserTree.Designer.cs">
+      <DependentUpon>UCOrgUserTree.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ebada.Scgl.Core\Ebada.Scgl.Core.csproj">
+      <Project>{BFD83E09-E190-4B5E-8F16-BD91F457E058}</Project>
+      <Name>Ebada.Scgl.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ebada.Scgl.Model\Ebada.Scgl.Model.csproj">
+      <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
+      <Name>Ebada.Scgl.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

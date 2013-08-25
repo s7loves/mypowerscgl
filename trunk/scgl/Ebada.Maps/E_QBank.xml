@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_QBank" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_QBank"  type="Ebada.Scgl.Model.E_QBank,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_QBank_AllColumns" class="E_QBank">
+        <result property="ID" column="ID" />
+        <result property="TKName" column="TKName" />
+        <result property="Desc" column="Desc" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_QBankList" resultMap="E_QBank_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [TKName],
+         [Desc],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_QBank
+          $value$
+   </select>
+   
+   <select id="SelectE_QBankByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [TKName],
+         [Desc],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_QBank
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TKName">[TKName]='$TKName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_QBankByKey" resultMap="E_QBank_AllColumns" parameterClass="E_QBank">
+         SELECT 
+         [ID],
+         [TKName],
+         [Desc],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_QBank
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_QBank" parameterClass="E_QBank">
+        DELETE FROM 
+         E_QBank
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_QBankByWhere" parameterClass="string">
+     delete from E_QBank $value$
+   </delete>
+   
+   <delete id="DeleteE_QBankByKey" parameterClass="string">
+        DELETE FROM 
+         E_QBank
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_QBank" parameterClass="E_QBank" resultClass="int">
+          UPDATE E_QBank
+           SET
+             [TKName]=#TKName#,
+             [Desc]=#Desc#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_QBank" parameterClass="E_QBank">
+        INSERT INTO E_QBank
+         (
+         [ID],
+         [TKName],
+         [Desc],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #TKName#,
+         #Desc#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_QBankRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_QBank
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="TKName">[TKName]='$TKName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_QBankRowCount" parameterClass="string">
+    select count(*) from E_QBank $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

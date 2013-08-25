@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -77,6 +77,21 @@
     <Compile Include="BD_SBTZ_SX.cs" />
     <Compile Include="BD_SBTZ_ZL.cs" />
     <Compile Include="Empolyees.cs" />
+    <Compile Include="E_ExamAnswerResult.cs" />
+    <Compile Include="E_Examination.cs" />
+    <Compile Include="E_ExaminationPaper.cs" />
+    <Compile Include="E_ExaminationPaperQuestion.cs" />
+    <Compile Include="E_ExaminationPaperQuestionRandom.cs" />
+    <Compile Include="E_ExamResult.cs" />
+    <Compile Include="E_ExamSetting.cs" />
+    <Compile Include="E_Professional.cs" />
+    <Compile Include="E_QBank.cs" />
+    <Compile Include="E_QuestionBank.cs" />
+    <Compile Include="E_R_EBankORG.cs" />
+    <Compile Include="E_R_EBankPro.cs" />
+    <Compile Include="E_R_ESetPro.cs" />
+    <Compile Include="E_R_ProOrg.cs" />
+    <Compile Include="E_User.cs" />
     <Compile Include="gps_carrier.cs" />
     <Compile Include="gps_device.cs" />
     <Compile Include="gps_position.cs" />
