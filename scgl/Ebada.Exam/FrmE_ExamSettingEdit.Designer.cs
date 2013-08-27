@@ -332,16 +332,6 @@
             this.spPassScore.Name = "spPassScore";
             this.spPassScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spPassScore.Properties.MaxValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.spPassScore.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.spPassScore.Size = new System.Drawing.Size(108, 21);
             this.spPassScore.TabIndex = 21;
             // 
@@ -365,7 +355,7 @@
             this.spWaitTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spWaitTime.Properties.MaxValue = new decimal(new int[] {
-            1,
+            500,
             0,
             0,
             0});
@@ -397,7 +387,7 @@
             this.spJudgeScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spJudgeScore.Properties.MaxValue = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
@@ -454,7 +444,7 @@
             this.spMuSelectScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spMuSelectScore.Properties.MaxValue = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
@@ -511,7 +501,7 @@
             this.spSelectScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spSelectScore.Properties.MaxValue = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});

@@ -47,6 +47,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barbtnIn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -74,8 +75,9 @@
             this.bsItem1,
             this.btExport,
             this.barEproLuk,
-            this.barTypeCom});
-            this.barManager1.MaxItemId = 16;
+            this.barTypeCom,
+            this.barbtnIn});
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemComboBox1});
@@ -97,7 +99,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnIn)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
             this.bar1.OptionsBar.DisableCustomization = true;
@@ -269,6 +272,13 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // barbtnIn
+            // 
+            this.barbtnIn.Caption = "导入";
+            this.barbtnIn.Id = 16;
+            this.barbtnIn.Name = "barbtnIn";
+            this.barbtnIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnIn_ItemClick);
+            // 
             // UCE_QuestionBank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -312,5 +322,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarEditItem barTypeCom;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraBars.BarButtonItem barbtnIn;
     }
 }

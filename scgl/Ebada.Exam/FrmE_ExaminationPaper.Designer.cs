@@ -91,6 +91,7 @@
             this.btnEditQuestion.Size = new System.Drawing.Size(75, 23);
             this.btnEditQuestion.TabIndex = 6;
             this.btnEditQuestion.Text = "编辑试题";
+            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
             // 
             // checkOrderRand
             // 

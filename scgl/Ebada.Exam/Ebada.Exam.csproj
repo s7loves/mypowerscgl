@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -76,6 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmE_ExaminationUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExaminationUserEdit.Designer.cs">
+      <DependentUpon>FrmE_ExaminationUserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_PaperEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_PaperEdit.Designer.cs">
+      <DependentUpon>FrmE_PaperEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmE_ProfessionalEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
       <DependentUpon>FrmE_ProfessionalEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmE_ExaminationUserEdit.resx">
+      <DependentUpon>FrmE_ExaminationUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_PaperEdit.resx">
+      <DependentUpon>FrmE_PaperEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmE_ProfessionalEdit.resx">
       <DependentUpon>FrmE_ProfessionalEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -157,8 +175,8 @@
       <DependentUpon>FrmE_Examination.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCOrgUserTree.resx">
-      <DependentUpon>UCOrgUserTree.cs</DependentUpon>
+    <EmbeddedResource Include="UCmOrgUserTree.resx">
+      <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -271,11 +289,11 @@
     <Compile Include="FrmE_Examination.Designer.cs">
       <DependentUpon>FrmE_Examination.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCOrgUserTree.cs">
+    <Compile Include="UCmOrgUserTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCOrgUserTree.Designer.cs">
-      <DependentUpon>UCOrgUserTree.cs</DependentUpon>
+    <Compile Include="UCmOrgUserTree.Designer.cs">
+      <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

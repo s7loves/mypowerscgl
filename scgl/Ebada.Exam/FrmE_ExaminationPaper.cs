@@ -153,5 +153,10 @@ namespace Ebada.Exam
                 btnEditQuestion.Enabled = false;
             }
         }
+
+        private void btnEditQuestion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

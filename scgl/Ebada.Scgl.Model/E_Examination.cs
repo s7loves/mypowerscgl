@@ -112,6 +112,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：考生
         /// 字段信息：[UserIDS],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("考生")]
         public string UserIDS
         {
@@ -190,6 +191,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：考生机构
         /// 字段信息：[OrgIDS],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("考生机构")]
         public string OrgIDS
         {

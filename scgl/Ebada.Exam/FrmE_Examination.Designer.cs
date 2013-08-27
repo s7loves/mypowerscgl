@@ -41,14 +41,18 @@
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.dateStart = new System.Windows.Forms.DateTimePicker();
-            this.dateEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateStart = new DevExpress.XtraEditors.DateEdit();
+            this.dateEnd = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkOrderRand.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueExPaper.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -109,12 +113,12 @@
             // 
             // btnEditQuestion
             // 
-            this.btnEditQuestion.Enabled = false;
             this.btnEditQuestion.Location = new System.Drawing.Point(359, 239);
             this.btnEditQuestion.Name = "btnEditQuestion";
             this.btnEditQuestion.Size = new System.Drawing.Size(86, 23);
             this.btnEditQuestion.TabIndex = 6;
             this.btnEditQuestion.Text = "编辑参考对像";
+            this.btnEditQuestion.Click += new System.EventHandler(this.btnEditQuestion_Click);
             // 
             // checkOrderRand
             // 
@@ -180,21 +184,49 @@
             // 
             // dateStart
             // 
-            this.dateStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateStart.Location = new System.Drawing.Point(91, 135);
+            this.dateStart.EditValue = null;
+            this.dateStart.Location = new System.Drawing.Point(90, 135);
             this.dateStart.Name = "dateStart";
-            this.dateStart.Size = new System.Drawing.Size(354, 22);
-            this.dateStart.TabIndex = 13;
+            this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStart.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateStart.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateStart.Properties.Mask.EditMask = "g";
+            this.dateStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateStart.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateStart.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateStart.Properties.VistaTimeProperties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateStart.Properties.VistaTimeProperties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateStart.Properties.VistaTimeProperties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateStart.Properties.VistaTimeProperties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateStart.Size = new System.Drawing.Size(355, 21);
+            this.dateStart.TabIndex = 6;
             // 
             // dateEnd
             // 
-            this.dateEnd.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateEnd.Location = new System.Drawing.Point(91, 167);
+            this.dateEnd.EditValue = null;
+            this.dateEnd.Location = new System.Drawing.Point(90, 166);
             this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Size = new System.Drawing.Size(354, 22);
-            this.dateEnd.TabIndex = 14;
+            this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEnd.Properties.Mask.EditMask = "g";
+            this.dateEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEnd.Properties.VistaEditTime = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEnd.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dateEnd.Properties.VistaTimeProperties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEnd.Properties.VistaTimeProperties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEnd.Properties.VistaTimeProperties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dateEnd.Properties.VistaTimeProperties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEnd.Size = new System.Drawing.Size(355, 21);
+            this.dateEnd.TabIndex = 7;
             // 
             // FrmE_ExaminationEdit
             // 
@@ -214,6 +246,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cobType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueExPaper.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,7 +269,7 @@
         private DevExpress.XtraEditors.SimpleButton btnEditQuestion;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private System.Windows.Forms.DateTimePicker dateEnd;
-        private System.Windows.Forms.DateTimePicker dateStart;
+        private DevExpress.XtraEditors.DateEdit dateStart;
+        private DevExpress.XtraEditors.DateEdit dateEnd;
     }
 }
