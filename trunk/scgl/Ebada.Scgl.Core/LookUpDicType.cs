@@ -282,8 +282,8 @@ namespace Ebada.Scgl.Core {
             get
             {
                 //if (gdsDic == null) {
-                if (eProDic == null || eProDic.LinkCount == 1)
-                {
+                //if (eProDic == null || eProDic.LinkCount == 1)
+                //{
                     //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     //IList<DicType> dic = new List<DicType>();
                     //foreach (ViewGds gds in list) {
@@ -298,7 +298,7 @@ namespace Ebada.Scgl.Core {
                         dic.Add(new DicType(pro.ID, pro.PName));
                     }
                     eProDic = new LookUpDicType(dic);
-                }
+                //}
                 return DicTypeHelper.eProDic;
             }
         }
@@ -307,8 +307,8 @@ namespace Ebada.Scgl.Core {
         {
             get
             {
-                if (_SettingDic==null)
-	            {
+                //if (_SettingDic==null)
+                //{
                    IList<E_ExamSetting> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExamSetting>(" ");
                     IList<DicType> dic = new List<DicType>();
                     foreach (E_ExamSetting pro in list)
@@ -317,7 +317,7 @@ namespace Ebada.Scgl.Core {
                         dic.Add(new DicType(pro.ID, pro.SettingName+des));
                     }
                     _SettingDic = dic;
-	            }
+                //}
                 return _SettingDic;
             }
             set
@@ -332,8 +332,8 @@ namespace Ebada.Scgl.Core {
             get
             {
                 //if (gdsDic == null) {
-                if (esetting == null || esetting.LinkCount == 1)
-                {
+                //if (esetting == null || esetting.LinkCount == 1)
+                //{
                     //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     //IList<DicType> dic = new List<DicType>();
                     //foreach (ViewGds gds in list) {
@@ -349,7 +349,7 @@ namespace Ebada.Scgl.Core {
                         dic.Add(new DicType(pro.ID, pro.SettingName + des));
                     }
                     esetting = new LookUpDicType(dic);
-                }
+                //}
                 return DicTypeHelper.esetting;
             }
         }
@@ -375,8 +375,8 @@ namespace Ebada.Scgl.Core {
             get
             {
                 //if (gdsDic == null) {
-                if (eQuestionBankDic == null || eQuestionBankDic.LinkCount == 1)
-                {
+                //if (eQuestionBankDic == null || eQuestionBankDic.LinkCount == 1)
+                //{
                     //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     //IList<DicType> dic = new List<DicType>();
                     //foreach (ViewGds gds in list) {
@@ -397,7 +397,7 @@ namespace Ebada.Scgl.Core {
                     dic.Add(new DicType("4", "☆☆☆☆"));
                     dic.Add(new DicType("5", "☆☆☆☆☆"));
                     eQuestionBankDic = new LookUpDicType(dic);
-                }
+                //}
                 return DicTypeHelper.eQuestionBankDic;
             }
         }
@@ -408,8 +408,8 @@ namespace Ebada.Scgl.Core {
             get
             {
                 //if (gdsDic == null) {
-                if (equbank == null || equbank.LinkCount == 1)
-                {
+                //if (equbank == null || equbank.LinkCount == 1)
+                //{
                     //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     //IList<DicType> dic = new List<DicType>();
                     //foreach (ViewGds gds in list) {
@@ -424,7 +424,7 @@ namespace Ebada.Scgl.Core {
                         dic.Add(new DicType(pro.ID, pro.TKName));
                     }
                     equbank = new LookUpDicType(dic);
-                }
+                //}
                 return DicTypeHelper.equbank;
             }
         }
@@ -434,8 +434,8 @@ namespace Ebada.Scgl.Core {
         {
             get
             {
-                if (_EbankDiclist == null)
-                {
+                //if (_EbankDiclist == null)
+                //{
                     IList<E_QBank> list = Client.ClientHelper.PlatformSqlMap.GetList<E_QBank>(" ");
                     IList<DicType> dic = new List<DicType>();
                     foreach (E_QBank pro in list)
@@ -443,7 +443,7 @@ namespace Ebada.Scgl.Core {
                         dic.Add(new DicType(pro.ID, pro.TKName));
                     }
                     _EbankDiclist = dic;
-                }
+                //}
                 return _EbankDiclist;
             }
             set
@@ -457,8 +457,8 @@ namespace Ebada.Scgl.Core {
         {
             get
             {
-                if (_ExPaperDic == null)
-                {
+                //if (_ExPaperDic == null)
+                //{
                     IList<E_ExaminationPaper> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExaminationPaper>(" ");
                     IList<DicType> dic = new List<DicType>();
                     foreach (E_ExaminationPaper pro in list)
@@ -467,7 +467,7 @@ namespace Ebada.Scgl.Core {
                     }
 
                     _ExPaperDic = dic;
-                }
+                //}
                 return _ExPaperDic;
             }
             set
@@ -483,8 +483,8 @@ namespace Ebada.Scgl.Core {
             get
             {
                 //if (gdsDic == null) {
-                if (_ExPaper == null || _ExPaper.LinkCount == 1)
-                {
+                //if (_ExPaper == null || _ExPaper.LinkCount == 1)
+                //{
                     //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
                     //IList<DicType> dic = new List<DicType>();
                     //foreach (ViewGds gds in list) {
@@ -500,7 +500,7 @@ namespace Ebada.Scgl.Core {
                     }
 
                     _ExPaper = new LookUpDicType(dic);
-                }
+                //}
                 return DicTypeHelper._ExPaper;
             }
         }

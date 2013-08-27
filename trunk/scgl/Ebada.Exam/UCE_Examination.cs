@@ -115,9 +115,10 @@ namespace Ebada.Exam {
         /// </summary>
         /// <param name="newobj"></param>
         void gridViewOperation_CreatingObjectEvent(E_Examination newobj) {
-            //newobj.CreateTime = DateTime.Now;
-            //newobj.CreateMan = MainHelper.User.UserName;
-            //newobj.Paper_Type = "随机试题";
+            DateTime date=DateTime.Now.Date.AddDays(1);
+            newobj.StartTime = date.AddHours(8);
+            newobj.EndTime = date.AddDays(2).AddHours(12);
+            
         }
 
         [Browsable(false)]

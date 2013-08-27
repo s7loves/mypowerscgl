@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Exam
 {
-    partial class UCOrgUserTree
+    partial class UCmOrgUserTree
     {
         /// <summary> 
         /// Required designer variable.
@@ -11,8 +11,10 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -24,9 +26,10 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCOrgUserTree));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCmOrgUserTree));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -54,7 +57,7 @@
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.KeyFieldName = "OrgID";
+            this.treeList1.KeyFieldName = "UserID";
             this.treeList1.Location = new System.Drawing.Point(0, 26);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -62,7 +65,7 @@
             this.treeList1.OptionsMenu.EnableColumnMenu = false;
             this.treeList1.OptionsMenu.EnableFooterMenu = false;
             this.treeList1.OptionsView.ShowCheckBoxes = true;
-            this.treeList1.ParentFieldName = "ParentID";
+            this.treeList1.ParentFieldName = "OrgCode";
             this.treeList1.Size = new System.Drawing.Size(549, 326);
             this.treeList1.TabIndex = 0;
             this.treeList1.BeforeCheckNode += new DevExpress.XtraTreeList.CheckNodeEventHandler(this.treeList1_BeforeCheckNode);
@@ -70,8 +73,8 @@
             // 
             // treeListColumn1
             // 
-            this.treeListColumn1.Caption = "部门名称";
-            this.treeListColumn1.FieldName = "OrgName";
+            this.treeListColumn1.Caption = "用户名称";
+            this.treeListColumn1.FieldName = "UserName";
             this.treeListColumn1.Name = "treeListColumn1";
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;

@@ -133,11 +133,62 @@ namespace Ebada.Exam
         {
             if (lkueExPaper.EditValue!=null&&lkueExPaper.EditValue.ToString()!=string.Empty)
             {
-                //string id = lkueExPaper.EditValue.ToString();
-                //E_ExaminationPaper
+                string id = lkueExPaper.EditValue.ToString();
+                E_ExaminationPaper ep = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExaminationPaper>(id);
+                E_ExamSetting es = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExamSetting>(ep.SettingID);
+                rowData.BySCol1 = es.WaitTime.ToString();
             }
         }
 
+        private void btnEditQuestion_Click(object sender, EventArgs e)
+        {
+            if (lkueExPaper.EditValue == null || lkueExPaper.EditValue.ToString() == string.Empty)
+            {
+                MsgBox.ShowWarningMessageBox("请选择试卷！");
+                return;
+            }
+            if (cobType.EditValue == null || cobType.EditValue.ToString() == string.Empty)
+            {
+                MsgBox.ShowWarningMessageBox("请选参考对象类型！");
+                return;
+            }
+            string stype = string.Empty;
+            if (cobType.EditValue.ToString() == "人员")
+            {
+                stype = "user";
+            }
+            else
+            {
+                stype = "org";
+            }
+            FrmE_ExaminationUserEdit frm = new FrmE_ExaminationUserEdit(stype, GetOrgIDS(lkueExPaper.EditValue.ToString()), rowData.OrgIDS, rowData.UserIDS);
+           
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+                rowData.OrgIDS = frm.GetOgrIDS;
+                rowData.UserIDS = frm.GetUserIDS;
+            }
+
+        }
+        char charsplit = ',';
+        private string  GetOrgIDS(string exampaperid)
+        {
+            string strresult=string.Empty;
+            E_ExaminationPaper ep = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExaminationPaper>(exampaperid);
+            E_ExamSetting es = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExamSetting>(ep.SettingID);
+            string sql = " where EBID='" + es.EQBID + "'";
+            IList<E_R_EBankORG> erbolist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_R_EBankORG>(sql);
+
+            foreach (E_R_EBankORG item in erbolist)
+	        {
+        		 strresult+=item.ORGID+charsplit;
+	        }
+            if (strresult.Length>1)
+	        {
+                strresult=strresult.Substring(0,strresult.Length-1);
+	        }
+            return strresult;
+        }
        
 
        

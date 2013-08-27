@@ -204,8 +204,8 @@ namespace Ebada.Exam
             if (lkueEBank.EditValue != null && lkueEBank.EditValue.ToString() != string.Empty)
             {
                 string tkid = lkueEBank.EditValue.ToString();
-                //删除除它题库的设置
-                string delsql = " where BySCol1!='" + tkid + "'";
+                //删除除其它题库的设置
+                string delsql = " where ESETID='" + rowData.ID + "' and BySCol1!='" + tkid + "'";
                 Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_R_ESetPro>(delsql);
                 string sqlwhere = " where ESETID='" + rowData.ID + "' and BySCol1='" + tkid + "'";
                 IList<E_R_ESetPro> eresblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
