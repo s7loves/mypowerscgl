@@ -297,6 +297,7 @@ namespace Ebada.Scgl.Core {
                     {
                         dic.Add(new DicType(pro.ID, pro.PName));
                     }
+                    dic.Add(new DicType("010101", "试题合计"));
                     eProDic = new LookUpDicType(dic);
                 //}
                 return DicTypeHelper.eProDic;

@@ -179,6 +179,15 @@
       <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcTroQuestonPD.resx">
+      <DependentUpon>UcTroQuestonPD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcTroQuestonSlect.resx">
+      <DependentUpon>UcTroQuestonSlect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcTroQuestonMuSlect.resx">
+      <DependentUpon>UcTroQuestonMuSlect.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -294,6 +303,24 @@
     </Compile>
     <Compile Include="UCmOrgUserTree.Designer.cs">
       <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcTroQuestonPD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcTroQuestonPD.Designer.cs">
+      <DependentUpon>UcTroQuestonPD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcTroQuestonSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcTroQuestonSlect.Designer.cs">
+      <DependentUpon>UcTroQuestonSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcTroQuestonMuSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcTroQuestonMuSlect.Designer.cs">
+      <DependentUpon>UcTroQuestonMuSlect.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
