@@ -450,6 +450,42 @@ namespace Itop.WebFrame
 
     #endregion
 
+
+    public class Helper
+    {
+        /// <summary>
+        /// 给定一个数，反回一个该数的随机顺序数组
+        /// </summary>
+        /// <param name="randomnum"></param>
+        /// <returns></returns>
+        public static int[] OrderINT(int randomnum)
+        {
+            Random rand = new Random();
+            Dictionary<int, int> intdic = new Dictionary<int, int>();
+            for (int i = 0; i < randomnum; i++)
+            {
+                bool has = false;
+                while (!has)
+                {
+                    int tempint = rand.Next(randomnum);
+                    if (!intdic.ContainsKey(tempint))
+                    {
+                        intdic.Add(tempint, tempint);
+                        has = true;
+                    }
+                }
+
+            }
+            int[] order = new int[ randomnum ];
+            int index = 0;
+            foreach (int key in intdic.Keys)
+            {
+                order[index] = key;
+                index++;
+            }
+            return order;
+        }
+    }
    
 
 }
