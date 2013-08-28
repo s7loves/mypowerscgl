@@ -182,7 +182,17 @@ namespace Ebada.Exam
         }
         private void Account()
         {
-            int allscore = rowData.SelectNUM  * rowData.SelectScore + rowData.MuSelectNUM  * rowData.MuSelectScore + rowData.JudgeNUM  * rowData.JudgeScore;
+
+            int pdnum = (int)spJudgeNUM.Value;
+            int pdscore = (int)spJudgeScore.Value;
+
+            int dxnum = (int)spSelectNUM.Value;
+            int dxscore = (int)spSelectScore.Value;
+
+            int dxxnum = (int)spMuSelectNUM.Value;
+            int dxxscore = (int)spMuSelectScore.Value;
+
+            int allscore = pdnum * pdscore + dxnum * dxscore + dxxnum * dxxscore;
             rowData.TotalScore = allscore;
             spTotalScore.Value = allscore;
         }

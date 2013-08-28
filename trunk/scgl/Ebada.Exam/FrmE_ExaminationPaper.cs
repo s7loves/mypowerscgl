@@ -156,7 +156,13 @@ namespace Ebada.Exam
 
         private void btnEditQuestion_Click(object sender, EventArgs e)
         {
+            FrmE_PaperEdit frm = new FrmE_PaperEdit();
+            frm.EPID = rowData.ID;
+            frm.SetId = rowData.SettingID;
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
 
+            }
         }
     }
 }
