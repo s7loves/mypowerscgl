@@ -263,7 +263,7 @@ namespace Ebada.Exam
         private void RandSelectQuestion(IList<E_QuestionBank> eqlist, int randnum)
         {
             string type = eqlist[0].Type;
-            int qunumall = eqlist.Count-1;
+            int qunumall = eqlist.Count;
             //如果总试题数不多，小于2 倍的出题数，侧采用减少试题的方法
             if (eqlist.Count<=randnum*2)
             {
