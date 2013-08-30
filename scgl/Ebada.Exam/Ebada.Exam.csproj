@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -82,6 +82,12 @@
     <Compile Include="FrmE_ExaminationUserEdit.Designer.cs">
       <DependentUpon>FrmE_ExaminationUserEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmE_ExamResultByUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExamResultByUser.Designer.cs">
+      <DependentUpon>FrmE_ExamResultByUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmE_PaperEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <EmbeddedResource Include="FrmE_ExaminationUserEdit.resx">
       <DependentUpon>FrmE_ExaminationUserEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExamResultByUser.resx">
+      <DependentUpon>FrmE_ExamResultByUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_PaperEdit.resx">
       <DependentUpon>FrmE_PaperEdit.cs</DependentUpon>
@@ -191,6 +200,25 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcTroQuestonMuSlect.resx">
       <DependentUpon>UcTroQuestonMuSlect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_R_ESetPro.resx">
+      <DependentUpon>UCE_R_ESetPro.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_R_ESetProEdit.resx">
+      <DependentUpon>FrmE_R_ESetProEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamResult.resx">
+      <DependentUpon>UCE_ExamResult.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExamResultOrder.resx">
+      <DependentUpon>FrmE_ExamResultOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamResultOrder.resx">
+      <DependentUpon>UCE_ExamResultOrder.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -326,6 +354,36 @@
     </Compile>
     <Compile Include="UcTroQuestonMuSlect.Designer.cs">
       <DependentUpon>UcTroQuestonMuSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_R_ESetPro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_R_ESetPro.Designer.cs">
+      <DependentUpon>UCE_R_ESetPro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_R_ESetProEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_R_ESetProEdit.Designer.cs">
+      <DependentUpon>FrmE_R_ESetProEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamResult.Designer.cs">
+      <DependentUpon>UCE_ExamResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_ExamResultOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExamResultOrder.Designer.cs">
+      <DependentUpon>FrmE_ExamResultOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamResultOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamResultOrder.Designer.cs">
+      <DependentUpon>UCE_ExamResultOrder.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

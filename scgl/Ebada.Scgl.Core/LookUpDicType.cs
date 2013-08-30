@@ -297,10 +297,36 @@ namespace Ebada.Scgl.Core {
                     {
                         dic.Add(new DicType(pro.ID, pro.PName));
                     }
-                    dic.Add(new DicType("010101", "试题合计"));
                     eProDic = new LookUpDicType(dic);
                 //}
                 return DicTypeHelper.eProDic;
+            }
+        }
+        static RepositoryItem eProDicTB;
+        public static RepositoryItem E_proDicTB
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                //if (eProDic == null || eProDic.LinkCount == 1)
+                //{
+                //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                //IList<DicType> dic = new List<DicType>();
+                //foreach (ViewGds gds in list) {
+                //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                //}
+                //gdsDic = new LookUpDicType(dic); 
+
+                IList<E_Professional> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Professional>(" ");
+                IList<DicType> dic = new List<DicType>();
+                foreach (E_Professional pro in list)
+                {
+                    dic.Add(new DicType(pro.ID, pro.PName));
+                }
+                dic.Add(new DicType("010101", "试题合计"));
+                eProDicTB = new LookUpDicType(dic);
+                //}
+                return DicTypeHelper.eProDicTB;
             }
         }
         static IList<DicType> _SettingDic;
@@ -503,6 +529,55 @@ namespace Ebada.Scgl.Core {
                     _ExPaper = new LookUpDicType(dic);
                 //}
                 return DicTypeHelper._ExPaper;
+            }
+        }
+
+        static RepositoryItem _ExExam;
+
+        public static RepositoryItem E_Exam
+        {
+            get
+            {
+                //if (gdsDic == null) {
+                //if (_ExPaper == null || _ExPaper.LinkCount == 1)
+                //{
+                //IList<ViewGds> list=Client.ClientHelper.PlatformSqlMap.GetList<ViewGds>("");
+                //IList<DicType> dic = new List<DicType>();
+                //foreach (ViewGds gds in list) {
+                //    dic.Add(new DicType(gds.OrgCode, gds.OrgName));
+                //}
+                //gdsDic = new LookUpDicType(dic); 
+
+                IList<E_Examination> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Examination>(" order by EndTime desc ");
+                IList<DicType> dic = new List<DicType>();
+                foreach (E_Examination pro in list)
+                {
+                    dic.Add(new DicType(pro.ID, pro.E_Name));
+                }
+
+                _ExExam = new LookUpDicType(dic);
+                //}
+                return DicTypeHelper._ExExam;
+            }
+        }
+
+        static RepositoryItem _user;
+
+        public static RepositoryItem UserDic
+        {
+            get
+            {
+                if (_user == null || _user.LinkCount == 1)
+                {
+                    IList<mUser> list = Client.ClientHelper.PlatformSqlMap.GetList<mUser>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (mUser pro in list)
+                    {
+                        dic.Add(new DicType(pro.UserID, pro.UserName));
+                    }
+                     _user = new LookUpDicType(dic);
+                }
+                return DicTypeHelper._user;
             }
         }
     }
