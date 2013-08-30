@@ -487,7 +487,7 @@ namespace Itop.WebFrame
 
         [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID,ReCount 是否重新算分")]
         [ScriptMethod(UseHttpGet = false)]
-        public string GetExamResult(string examid, string userid,bool ReCount)
+        public string GetExamResultReCount(string examid, string userid,bool ReCount)
         {
             PdaExamResult per = new PdaExamResult();
 
