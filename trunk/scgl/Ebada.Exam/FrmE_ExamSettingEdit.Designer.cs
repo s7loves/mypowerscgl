@@ -31,17 +31,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lkueEBank = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -65,17 +55,11 @@
             this.txtSettingName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.ucE_R_ESetPro1 = new Ebada.Exam.UCE_R_ESetPro();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueEBank.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spTotalScore.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spPassScore.Properties)).BeginInit();
@@ -109,7 +93,6 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.groupControl3);
             this.groupControl1.Controls.Add(this.groupControl2);
             this.groupControl1.Controls.Add(this.lkueEBank);
             this.groupControl1.Controls.Add(this.labelControl13);
@@ -140,134 +123,14 @@
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "设置";
             // 
-            // groupControl3
-            // 
-            this.groupControl3.Controls.Add(this.spinEdit1);
-            this.groupControl3.Controls.Add(this.labelControl12);
-            this.groupControl3.Controls.Add(this.spinEdit2);
-            this.groupControl3.Controls.Add(this.labelControl14);
-            this.groupControl3.Controls.Add(this.spinEdit3);
-            this.groupControl3.Controls.Add(this.labelControl15);
-            this.groupControl3.Controls.Add(this.simpleButton1);
-            this.groupControl3.Location = new System.Drawing.Point(314, 228);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(170, 175);
-            this.groupControl3.TabIndex = 29;
-            this.groupControl3.Text = "各专业试题数设置";
-            // 
-            // spinEdit1
-            // 
-            this.spinEdit1.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit1.Location = new System.Drawing.Point(88, 41);
-            this.spinEdit1.Name = "spinEdit1";
-            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit1.Size = new System.Drawing.Size(71, 21);
-            this.spinEdit1.TabIndex = 19;
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Location = new System.Drawing.Point(10, 44);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(72, 14);
-            this.labelControl12.TabIndex = 18;
-            this.labelControl12.Text = "判断题数量：";
-            // 
-            // spinEdit2
-            // 
-            this.spinEdit2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit2.Location = new System.Drawing.Point(88, 95);
-            this.spinEdit2.Name = "spinEdit2";
-            this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Size = new System.Drawing.Size(71, 21);
-            this.spinEdit2.TabIndex = 17;
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Location = new System.Drawing.Point(10, 98);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(72, 14);
-            this.labelControl14.TabIndex = 16;
-            this.labelControl14.Text = "多选题数量：";
-            // 
-            // spinEdit3
-            // 
-            this.spinEdit3.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEdit3.Location = new System.Drawing.Point(88, 68);
-            this.spinEdit3.Name = "spinEdit3";
-            this.spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit3.Size = new System.Drawing.Size(71, 21);
-            this.spinEdit3.TabIndex = 15;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Location = new System.Drawing.Point(10, 71);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(72, 14);
-            this.labelControl15.TabIndex = 14;
-            this.labelControl15.Text = "单选题数量：";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(106, 138);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(59, 27);
-            this.simpleButton1.TabIndex = 6;
-            this.simpleButton1.Text = "保存";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.gridControl1);
+            this.groupControl2.Controls.Add(this.ucE_R_ESetPro1);
             this.groupControl2.Location = new System.Drawing.Point(18, 228);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(288, 175);
+            this.groupControl2.Size = new System.Drawing.Size(466, 175);
             this.groupControl2.TabIndex = 28;
             this.groupControl2.Text = "题库内各专业";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Buttons.Append.Visible = false;
-            this.gridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
-            this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
-            this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
-            this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(2, 23);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(284, 150);
-            this.gridControl1.TabIndex = 5;
-            this.gridControl1.UseEmbeddedNavigator = true;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // lkueEBank
             // 
@@ -414,7 +277,7 @@
             this.spJudgeNUM.Properties.ReadOnly = true;
             this.spJudgeNUM.Size = new System.Drawing.Size(138, 21);
             this.spJudgeNUM.TabIndex = 13;
-            this.spJudgeNUM.EditValueChanged += new System.EventHandler(this.spJudgeNUM_EditValueChanged);
+
             // 
             // labelControl6
             // 
@@ -471,7 +334,6 @@
             this.spMuSelectNUM.Properties.ReadOnly = true;
             this.spMuSelectNUM.Size = new System.Drawing.Size(138, 21);
             this.spMuSelectNUM.TabIndex = 9;
-            this.spMuSelectNUM.EditValueChanged += new System.EventHandler(this.spMuSelectNUM_EditValueChanged);
             // 
             // labelControl3
             // 
@@ -528,7 +390,7 @@
             this.spSelectNUM.Properties.ReadOnly = true;
             this.spSelectNUM.Size = new System.Drawing.Size(138, 21);
             this.spSelectNUM.TabIndex = 5;
-            this.spSelectNUM.EditValueChanged += new System.EventHandler(this.spSelectNUM_EditValueChanged);
+  
             // 
             // labelControl4
             // 
@@ -561,6 +423,15 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "设置名称：";
             // 
+            // ucE_R_ESetPro1
+            // 
+            this.ucE_R_ESetPro1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucE_R_ESetPro1.ESETID = "";
+            this.ucE_R_ESetPro1.Location = new System.Drawing.Point(2, 23);
+            this.ucE_R_ESetPro1.Name = "ucE_R_ESetPro1";
+            this.ucE_R_ESetPro1.Size = new System.Drawing.Size(462, 150);
+            this.ucE_R_ESetPro1.TabIndex = 0;
+            // 
             // FrmE_ExamSettingEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -575,16 +446,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkueEBank.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spTotalScore.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spPassScore.Properties)).EndInit();
@@ -629,15 +492,6 @@
         private DevExpress.XtraEditors.LookUpEdit lkueEBank;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SpinEdit spinEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.SpinEdit spinEdit2;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.SpinEdit spinEdit3;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private UCE_R_ESetPro ucE_R_ESetPro1;
     }
 }

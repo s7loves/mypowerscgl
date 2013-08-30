@@ -57,7 +57,7 @@ namespace Ebada.Exam
                 eresblist.Add(ere);
 
                 gridControl1.DataSource = eresblist;
-                gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDic;
+                gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDicTB;
                 gridView1.Columns["JudgeNUM"].Width = 80;
                 gridView1.Columns["SelectNUM"].Width = 80;
                 gridView1.Columns["MuSelectNUM"].Width = 80;

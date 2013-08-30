@@ -19,48 +19,35 @@ namespace Ebada.Exam
         public FrmE_ExamSettingEdit()
         {
             InitializeComponent();
-            gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+            ucE_R_ESetPro1.AfterEdit += new UCE_R_ESetPro.edit(ucE_R_ESetPro1_AfterEdit);
         }
-        E_R_ESetPro _currentEr;
-        E_R_ESetPro currentEr
+
+        void ucE_R_ESetPro1_AfterEdit()
         {
-            set
-            {
-                if (value == null) return;
-                this._currentEr = value as E_R_ESetPro;
-                spinEdit1.EditValue = _currentEr.JudgeNUM;
-                spinEdit2.EditValue = _currentEr.SelectNUM;
-                spinEdit3.EditValue = _currentEr.MuSelectNUM;
-
-                //if (_currentEr == null)
-                //{
-                //    this._currentEr = value as E_R_ESetPro;
-
-
-                //    //this.spinEdit1.DataBindings.Add("EditValue", _currentEr, "JudgeNUM");
-                //    //this.spinEdit2.DataBindings.Add("EditValue", _currentEr, "SelectNUM");
-                //    //this.spinEdit3.DataBindings.Add("EditValue", _currentEr, "MuSelectNUM");
-                //}
-                //else
-                //{
-                //    ConvertHelper.CopyTo<E_R_ESetPro>(value as E_R_ESetPro, _currentEr);
-                //    spinEdit1.EditValue = _currentEr.JudgeNUM;
-                //    spinEdit2.EditValue = _currentEr.SelectNUM;
-                //    spinEdit3.EditValue = _currentEr.MuSelectNUM;
-                //}
-            }
-            get
-            {
-                return _currentEr;
-            }
+            ReCount();
         }
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+
+        private void ReCount()
         {
-            if (gridView1.GetFocusedRow()!=null)
+            string sqlwhere=" where ESETID='"+rowData.ID+"'";
+            IList<E_R_ESetPro> erslist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_R_ESetPro>(sqlwhere);
+            int pdnum = 0;
+            int selectnum = 0;
+            int muselectnum = 0;
+            foreach (E_R_ESetPro item in erslist)
             {
-                E_R_ESetPro er = gridView1.GetFocusedRow() as E_R_ESetPro;
-                currentEr = er;
+                pdnum += item.JudgeNUM;
+                selectnum += item.SelectNUM;
+                muselectnum += item.MuSelectNUM;
             }
+            rowData.JudgeNUM = pdnum;
+            rowData.SelectNUM = selectnum;
+            rowData.MuSelectNUM = muselectnum;
+
+            spJudgeNUM.Value = pdnum;
+            spSelectNUM.Value = selectnum;
+            spMuSelectNUM.Value = muselectnum;
+            Account();
         }
 
         void dataBind()
@@ -101,11 +88,9 @@ namespace Ebada.Exam
                 }
                 else
                 {
-                    spinEdit1.EditValue = 0;
-                    spinEdit2.EditValue = 0;
-                    spinEdit3.EditValue = 0;
                     ConvertHelper.CopyTo<E_ExamSetting>(value as E_ExamSetting, rowData);
                 }
+                ucE_R_ESetPro1.ESETID = rowData.ID;
             }
         }
 
@@ -136,21 +121,6 @@ namespace Ebada.Exam
             this.DialogResult = DialogResult.OK;
         }
 
-        private void spJudgeNUM_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
-
-        private void spSelectNUM_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
-
-        private void spMuSelectNUM_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
-
         private void spJudgeScore_EditValueChanged(object sender, EventArgs e)
         {
             Account();
@@ -166,20 +136,7 @@ namespace Ebada.Exam
             Account();
         }
 
-        private void spComJudgeNUM_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
-
-        private void spComMuSelectNUM_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
-
-        private void spinEdit11_EditValueChanged(object sender, EventArgs e)
-        {
-            Account();
-        }
+       
         private void Account()
         {
 
@@ -213,73 +170,36 @@ namespace Ebada.Exam
         {
             if (lkueEBank.EditValue != null && lkueEBank.EditValue.ToString() != string.Empty)
             {
-                string tkid = lkueEBank.EditValue.ToString();
-                //删除除其它题库的设置
-                string delsql = " where ESETID='" + rowData.ID + "' and BySCol1!='" + tkid + "'";
-                Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_R_ESetPro>(delsql);
-                string sqlwhere = " where ESETID='" + rowData.ID + "' and BySCol1='" + tkid + "'";
-                IList<E_R_ESetPro> eresblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
-                if (eresblist.Count == 0)
+                try
                 {
-                    IList<E_R_EBankPro> erblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_EBankPro>(" where EBID='" + tkid + "'");
-                    for (int i = 0; i < erblist.Count; i++)
+                    string tkid = lkueEBank.EditValue.ToString();
+                    //删除除其它题库的设置
+                    string delsql = " where ESETID='" + rowData.ID + "' and BySCol1!='" + tkid + "'";
+                    Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_R_ESetPro>(delsql);
+                    string sqlwhere = " where ESETID='" + rowData.ID + "' and BySCol1='" + tkid + "'";
+                    IList<E_R_ESetPro> eresblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
+                    if (eresblist.Count == 0)
                     {
-                        E_R_ESetPro er = new E_R_ESetPro();
-                        er.ID += i;
-                        er.ESETID = rowData.ID;
-                        er.PROID = erblist[i].PROID;
-                        er.BySCol1 = tkid;
-                        Client.ClientHelper.PlatformSqlMap.Create<E_R_ESetPro>(er);
+                        IList<E_R_EBankPro> erblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_EBankPro>(" where EBID='" + tkid + "'");
+                        for (int i = 0; i < erblist.Count; i++)
+                        {
+                            E_R_ESetPro er = new E_R_ESetPro();
+                            er.ID += i;
+                            er.ESETID = rowData.ID;
+                            er.PROID = erblist[i].PROID;
+                            er.BySCol1 = tkid;
+                            Client.ClientHelper.PlatformSqlMap.Create<E_R_ESetPro>(er);
+                        }
+                       
                     }
-                    IList<E_R_ESetPro> eresblist2 = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
-                    gridControl1.DataSource = eresblist2;
                 }
-                else
+                catch (Exception ee)
                 {
-                    gridControl1.DataSource = eresblist;
+                    
                 }
-                gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDic;
+              
             }
-            else
-            {
-                gridControl1.DataSource = null;
-                gridView1.Columns.Clear();
-            }
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            if (currentEr==null)
-            {
-                MsgBox.ShowWarningMessageBox("请选择左侧列表中的一行，然后修改保存");
-                return;
-            }
-            currentEr.JudgeNUM = int.Parse(spinEdit1.EditValue.ToString());
-            currentEr.SelectNUM = int.Parse(spinEdit2.EditValue.ToString());
-            currentEr.MuSelectNUM = int.Parse(spinEdit3.EditValue.ToString());
-
-            Client.ClientHelper.PlatformSqlMap.Update<E_R_ESetPro>(currentEr);
-            string tkid = lkueEBank.EditValue.ToString();
-            string sqlwhere = " where ESETID='" + rowData.ID + "' and BySCol1='" + tkid + "'";
-
-
-            IList<E_R_ESetPro> eresblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
-
-            rowData.JudgeNUM = 0;
-            rowData.SelectNUM = 0;
-            rowData.MuSelectNUM = 0;
-            for (int i = 0; i < eresblist.Count; i++)
-            {
-                rowData.JudgeNUM += eresblist[i].JudgeNUM;
-                rowData.SelectNUM += eresblist[i].SelectNUM;
-                rowData.MuSelectNUM += eresblist[i].MuSelectNUM;
-            }
-            spJudgeNUM.Value = rowData.JudgeNUM;
-            spSelectNUM.Value = rowData.SelectNUM;
-            spMuSelectNUM.Value = rowData.MuSelectNUM;
-            Account();
-            gridControl1.DataSource = eresblist;
-            gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDic;
+            ucE_R_ESetPro1.ESETID = rowData.ID;
         }
     }
 }

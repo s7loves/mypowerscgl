@@ -73,7 +73,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：考试ID
         /// 字段信息：[E_ID],nvarchar
         /// </summary>
-        [DisplayNameAttribute("考试ID")]
+        [DisplayNameAttribute("考试")]
         public string E_ID
         {
             get { return _e_id; }
@@ -94,6 +94,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：试卷ID
         /// 字段信息：[EP_ID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("试卷ID")]
         public string EP_ID
         {
@@ -172,6 +173,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：是否已考
         /// 字段信息：[IsExamed],bit
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("是否已考")]
         public bool IsExamed
         {
@@ -226,6 +228,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：评语
         /// 字段信息：[Comment],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("评语")]
         public string Comment
         {
@@ -247,6 +250,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：阅卷人
         /// 字段信息：[CheckPeople],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("阅卷人")]
         public string CheckPeople
         {
@@ -267,6 +271,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：公开考试结果
         /// 字段信息：[ShowScore],bit
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("公开考试结果")]
         public bool ShowScore
         {
@@ -285,8 +290,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("序号")]
+        [DisplayNameAttribute("排名")]
         public int Sequence
         {
             get { return _sequence; }
