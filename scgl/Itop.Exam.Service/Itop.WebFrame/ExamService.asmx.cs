@@ -651,6 +651,28 @@ namespace Itop.WebFrame
             return GetJsonStr<SysTime>(time);
         }
 
+        [WebMethod(Description = "校验登录，username用户名，pwd密码")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string CheckLogin(string username,string pwd)
+        {
+            ResponseResult res = new ResponseResult();
+            string name = username.Trim();
+            string password = PasswordHelper.CoreManager.EncryptoPassword(pwd.Trim());
+            string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
+            IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
+            if (list.Count>0)
+            {
+                res.Status = 1;
+                res.Details = list[0].UserID;
+            }
+            else
+            {
+                res.Status = 0;
+                res.Details = "验证失败!";
+            }
+            return GetJsonStr<ResponseResult>(res);
+        }
+        
         
 
         #endregion
