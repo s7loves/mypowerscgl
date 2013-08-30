@@ -5,7 +5,6 @@ using System.Web.Services;
 using System.Data;
 using Newtonsoft.Json;
 using Itop.Frame.Model;
-using PasswordHelper;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
@@ -657,7 +656,7 @@ namespace Itop.WebFrame
         {
             ResponseResult res = new ResponseResult();
             string name = username.Trim();
-            string password = PasswordHelper.CoreManager.EncryptoPassword(pwd.Trim());
+            string password = MainHelper.EncryptoPassword(pwd.Trim());
             string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
             IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
             if (list.Count>0)

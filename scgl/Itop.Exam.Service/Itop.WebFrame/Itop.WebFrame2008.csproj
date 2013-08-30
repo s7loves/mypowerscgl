@@ -45,40 +45,41 @@
   <ItemGroup>
     <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Castle.Core.dll</HintPath>
+      <HintPath>..\..\Library\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Facilities.IBatisNetIntegration, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Castle.Facilities.IBatisNetIntegration.dll</HintPath>
+      <HintPath>..\..\Library\Castle.Facilities.IBatisNetIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\Library\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Ebada.Client">
-      <HintPath>..\weblib\Ebada.Client.dll</HintPath>
+      <HintPath>..\..\Library\Ebada.Client.dll</HintPath>
     </Reference>
     <Reference Include="Ebada.Components, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\Ebada.Components.dll</HintPath>
+      <HintPath>..\..\Library\Ebada.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Ebada.Scgl.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\output\client\Ebada.Scgl.Model.dll</HintPath>
     </Reference>
     <Reference Include="Ebada.Server">
-      <HintPath>..\weblib\Ebada.Server.dll</HintPath>
+      <HintPath>..\..\Library\Ebada.Server.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.DataAccess, Version=1.9.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\IBatisNet.DataAccess.dll</HintPath>
+      <HintPath>..\..\Library\IBatisNet.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.DataMapper, Version=1.6.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\weblib\IBatisNet.DataMapper.dll</HintPath>
+      <HintPath>..\..\Library\IBatisNet.DataMapper.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PasswordHelper">
-      <HintPath>..\weblib\PasswordHelper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -103,7 +104,6 @@
   <ItemGroup>
     <Content Include="WcfExamSercice.svc" />
     <Content Include="WebService1.asmx" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="PdaService.asmx" />
     <Content Include="config\Exam\Exam.config" />
     <Content Include="config\remoting\Itop.FrameBll.xml">

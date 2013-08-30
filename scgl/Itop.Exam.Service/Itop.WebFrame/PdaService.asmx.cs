@@ -5,7 +5,6 @@ using System.Web.Services;
 using System.Data;
 using Newtonsoft.Json;
 using Itop.Frame.Model;
-using PasswordHelper;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
