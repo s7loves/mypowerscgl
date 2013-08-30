@@ -76,6 +76,7 @@
     <Compile Include="class\E_R_EBankPro.cs" />
     <Compile Include="class\E_R_ESetPro.cs" />
     <Compile Include="class\E_User.cs" />
+    <Compile Include="class\mUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +111,9 @@
     <EmbeddedResource Include="Maps\E_R_EBankPro.xml" />
     <EmbeddedResource Include="Maps\E_R_ESetPro.xml" />
     <EmbeddedResource Include="Maps\E_User.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\mUser.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
