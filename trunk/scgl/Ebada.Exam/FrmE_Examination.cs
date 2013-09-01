@@ -137,6 +137,11 @@ namespace Ebada.Exam
                 E_ExaminationPaper ep = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExaminationPaper>(id);
                 E_ExamSetting es = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExamSetting>(ep.SettingID);
                 rowData.BySCol1 = es.WaitTime.ToString();
+                rowData.BySCol2 = es.JudgeNUM.ToString()+","+es.JudgeScore;
+                rowData.BySCol3 = es.SelectNUM.ToString() + "," + es.SelectScore;
+                rowData.BySCol4 = es.MuSelectNUM.ToString() + "," + es.MuSelectScore;
+                rowData.BySCol5 = es.TotalScore.ToString();
+                rowData.Remark = " 判断题：" + es.JudgeNUM + "道，每题" + es.JudgeScore + "分 ; 单项选择题：" + es.SelectNUM + "道，每题" + es.SelectScore + "分 ;多项选择题：" + es.MuSelectNUM + "道，每题" + es.MuSelectScore + "分 ;总分："+es.TotalScore.ToString()+"分。";
             }
         }
 
