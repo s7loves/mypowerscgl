@@ -264,7 +264,7 @@ namespace Ebada.Exam
 
         public  string GetUserIDS()
         {
-            string strresult = string.Empty;
+            string strresult = string.Empty + spchar;
 
             if (Type=="user")
             {
@@ -276,10 +276,10 @@ namespace Ebada.Exam
                 {
                     strresult += str + spchar;
                 }
-                if (strresult.Length > 2)
-                {
-                    strresult = strresult.Substring(0, strresult.Length - 1);
-                }
+                //if (strresult.Length > 2)
+                //{
+                //    strresult = strresult.Substring(0, strresult.Length - 1);
+                //}
                 
             }
             else
@@ -303,7 +303,7 @@ namespace Ebada.Exam
 
         public string GetOrgIDS()
         {
-            string strresult = string.Empty;
+            string strresult =string.Empty;
             List<string> list = new List<string>();
 
             this.getOrgCheckList(this.treeList1.Nodes, list);
@@ -410,7 +410,11 @@ namespace Ebada.Exam
                 {
                     for (int i = 0; i < strarry.Length; i++)
                     {
-                        dic.Add(strarry[i], strarry[i]);
+                        if (!dic.ContainsKey(strarry[i]))
+                        {
+                            dic.Add(strarry[i], strarry[i]);
+                        }
+                       
                     }
                 }
 
@@ -429,7 +433,10 @@ namespace Ebada.Exam
                 {
                     for (int i = 0; i < strarry.Length; i++)
                     {
-                        dic.Add(strarry[i], strarry[i]);
+                        if (!dic.ContainsKey(strarry[i]))
+                        {
+                            dic.Add(strarry[i], strarry[i]);
+                        }
                     }
                 }
 
