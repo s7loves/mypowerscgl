@@ -96,13 +96,13 @@ namespace Itop.WebFrame
         public string GetExamList(string userid)
         {
             string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  and IsExamed=1";
+            string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%' ";
             IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
             List<TurnE_Examination> tlist = new List<TurnE_Examination>();
             foreach (E_Examination ex in list)
             {
 
-                string sqlwhereresult = " where E_ID='" + ex.ID + "'  and EP_ID='" + ex.EP_ID + "' and UserID='" + userid + "'";
+                string sqlwhereresult = " where E_ID='" + ex.ID + "'  and EP_ID='" + ex.EP_ID + "' and UserID='" + userid + "' and IsExamed=1";
                 IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhereresult);
                 if (erlist.Count == 0)
                 {
@@ -230,6 +230,12 @@ namespace Itop.WebFrame
             return GetQuestionStr(returnlist);
         }
 
+        /// <summary>
+        /// 生成随机试题
+        /// </summary>
+        /// <param name="SetId"></param>
+        /// <param name="eqblist"></param>
+        /// <returns></returns>
         private bool CreateRandomQuestion( string SetId, IList<E_QuestionBank> eqblist)
         {
           
@@ -300,16 +306,23 @@ namespace Itop.WebFrame
         }
         private void AddQuestion(IList<E_QuestionBank> frmeqlist,  IList<E_QuestionBank> toeqlist)
         {
+            int i = 1;
             foreach (E_QuestionBank item in frmeqlist)
             {
+                item.Sequence = i;
                 toeqlist.Add( item);
+                i++;
             }
         }
         private void AddQuestion(Dictionary<string, E_QuestionBank> dicold,  IList<E_QuestionBank> toeqlist)
         {
+            int i = 1;
             foreach (string item in dicold.Keys)
             {
-                toeqlist.Add( dicold[item]);
+                E_QuestionBank eq = dicold[item];
+                eq.Sequence = i;
+                toeqlist.Add(eq);
+                i++;
             }
         }
    
@@ -357,7 +370,7 @@ namespace Itop.WebFrame
                     er.EP_ID = exam.EP_ID;
                     er.UserID = userid;
                     er.RealStartTime = DateTime.Now;
-                    er.IsExamed = true;
+                    er.IsExamed = false;
                     Global.SqlMapper.Create<E_ExamResult>(er);
                     result.Status = 1;
                     result.Details = "已记录该考生考试数据！";
@@ -553,13 +566,17 @@ namespace Itop.WebFrame
             string str = string.Empty;
             foreach (E_ExamAnswerResult item in eearlist)
             {
-                anserdic.Add(item.ExamQueston_ID, item.Answer);
-                str += "'"+item.ExamQueston_ID + "',";
+                if (!anserdic.ContainsKey(item.ExamQueston_ID))
+                {
+                    anserdic.Add(item.ExamQueston_ID, item.Answer);
+                    str += "'" + item.ExamQueston_ID + "',";
+                }
+               
             }
             if (str.Length>3)
             {
                 str = str.Substring(0, str.Length - 1);
-                string sql = " where ID in （" + str + "）";
+                string sql = " where ID in (" + str + ")";
                 IList<E_QuestionBank> qqblist = Global.SqlMapper.GetList<E_QuestionBank>(sql);
                 int score=0;
                 for (int i = 0; i < qqblist.Count; i++)
