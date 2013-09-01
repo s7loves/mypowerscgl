@@ -446,7 +446,6 @@ namespace Itop.WebFrame
                         eear.ExamQuestonType = splist[i].ExamQuestonType;
                         eear.Answer = splist[i].Answer;
                         eear.RandomID = splist[i].RandomID;
-
                         Global.SqlMapper.Create<E_ExamAnswerResult>(eear);
                     }
                     result.Details = "成功";
