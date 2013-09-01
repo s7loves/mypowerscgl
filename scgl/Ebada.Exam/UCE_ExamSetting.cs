@@ -92,6 +92,17 @@ namespace Ebada.Exam {
 
             //hideColumn("ID");
             gridView1.Columns["EQBID"].ColumnEdit = DicTypeHelper.E_QBank;
+            gridView1.Columns["SettingName"].Width = 250;
+            gridView1.Columns["EQBID"].Width = 80;
+            gridView1.Columns["JudgeNUM"].Width =80;
+            gridView1.Columns["JudgeScore"].Width = 100;
+            gridView1.Columns["SelectNUM"].Width = 80;
+            gridView1.Columns["SelectScore"].Width = 100;
+            gridView1.Columns["MuSelectNUM"].Width = 80;
+            gridView1.Columns["MuSelectScore"].Width =100;
+            gridView1.Columns["WaitTime"].Width = 80;
+           
+            
             
         }
 

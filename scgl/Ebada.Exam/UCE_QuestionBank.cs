@@ -86,7 +86,7 @@ namespace Ebada.Exam {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
+            InitColumns();//初始列
             barEproLuk.Edit = DicTypeHelper.E_proDic;
             InitData();//初始数据
 
@@ -120,9 +120,15 @@ namespace Ebada.Exam {
             gridView1.Columns["Professional"].ColumnEdit = DicTypeHelper.E_proDic;
             gridView1.Columns["DifficultyLevel"].ColumnEdit = DicTypeHelper.E_QuestionBankDic;
 
-            //IList<E_Professional> orglist = Client.ClientHelper.PlatformSqlMap.GetList<E_Professional>("");
-            //SetComboBoxData(repositoryItemLookUpEdit1, "PName", "ID", "请选择", "专业", orglist);
-            //hideColumn("ID");
+            gridView1.Columns["Title"].Width = 400;
+            gridView1.Columns["Option"].Width = 120;
+            gridView1.Columns["Answer"].Width = 60;
+            gridView1.Columns["Explain"].Width = 100;
+            gridView1.Columns["DifficultyLevel"].Width = 60;
+            gridView1.Columns["Professional"].Width = 90;
+           
+
+
             
         }
 

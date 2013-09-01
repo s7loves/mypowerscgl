@@ -187,7 +187,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：试卷类型(指定,随机)
         /// 字段信息：[Paper_Type],nvarchar
         /// </summary>
-        [DisplayNameAttribute("试卷类型(指定")]
+        [DisplayNameAttribute("试卷类型")]
         public string Paper_Type
         {
             get { return _paper_type; }

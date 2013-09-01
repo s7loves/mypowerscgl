@@ -91,7 +91,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：考生类型(单位,个人)
         /// 字段信息：[UserType],nvarchar
         /// </summary>
-        [DisplayNameAttribute("考生类型(单位")]
+        [DisplayNameAttribute("考生类型")]
         public string UserType
         {
             get { return _usertype; }
