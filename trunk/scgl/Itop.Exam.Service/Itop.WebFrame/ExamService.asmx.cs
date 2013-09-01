@@ -96,7 +96,7 @@ namespace Itop.WebFrame
         public string GetExamList(string userid)
         {
             string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%" + userid + "%'";
+            string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  and IsExamed=1";
             IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
             List<TurnE_Examination> tlist = new List<TurnE_Examination>();
             foreach (E_Examination ex in list)
@@ -114,7 +114,11 @@ namespace Itop.WebFrame
                     tex.EndTime = ex.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
                     tex.ShowResult = ex.ShowResult;
                     tex.Time = ex.BySCol1;
-
+                    tex.PdNum = ex.BySCol2;
+                    tex.XzNum = ex.BySCol3;
+                    tex.DxXzNum = ex.BySCol4;
+                    tex.AllScore = ex.BySCol5;
+                    tex.Remark = ex.Remark;
                     tlist.Add(tex);
                 }
 
