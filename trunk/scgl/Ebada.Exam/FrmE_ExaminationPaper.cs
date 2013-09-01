@@ -146,6 +146,7 @@ namespace Ebada.Exam
                 else
                 {
                     btnEditQuestion.Enabled = false;
+                    rowData.CreateMan = string.Empty;
                 }
             }
             else
@@ -161,7 +162,8 @@ namespace Ebada.Exam
             frm.SetId = rowData.SettingID;
             if (frm.ShowDialog()==DialogResult.OK)
             {
-
+                rowData.CreateTime = DateTime.Now;
+                rowData.CreateMan = MainHelper.User.UserName;
             }
         }
     }

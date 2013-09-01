@@ -80,6 +80,8 @@ namespace Ebada.Exam {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
             RefreshData(" ");
+            gridView1.Columns["PName"].Width = 300;
+            gridView1.Columns["Desc"].Width = 300;
         }
         /// <summary>
         /// 初始化列,

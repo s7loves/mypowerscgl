@@ -92,7 +92,12 @@ namespace Ebada.Exam {
 
             //hideColumn("ID");
             gridView1.Columns["SettingID"].ColumnEdit = DicTypeHelper.E_Setting;
-            
+            gridView1.Columns["EP_Name"].Width = 120;
+            gridView1.Columns["SettingID"].Width = 400;
+            gridView1.Columns["OrderRandom"].Width = 120;
+            gridView1.Columns["TotalScore"].Width = 60;
+            gridView1.Columns["CreateTime"].Width = 70;
+            gridView1.Columns["CreateMan"].Width = 60;
         }
 
         /// <summary>

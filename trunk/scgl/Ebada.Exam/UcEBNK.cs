@@ -16,11 +16,15 @@ namespace Ebada.Exam
             InitializeComponent();
             ucE_QBank1.FocusedRowChanged += new Ebada.Client.SendDataEventHandler<Ebada.Scgl.Model.E_QBank>(ucE_QBank1_FocusedRowChanged);
         }
-
+       
         void ucE_QBank1_FocusedRowChanged(object sender, Ebada.Scgl.Model.E_QBank obj)
         {
-            ucE_R_EBankORG1.ParentID = obj.ID;
-            ucE_R_EBankPro1.ParentID = obj.ID;
+            if (obj!=null)
+            {
+                ucE_R_EBankORG1.ParentID = obj.ID;
+                ucE_R_EBankPro1.ParentID = obj.ID;
+            }
+            
         }
 
       

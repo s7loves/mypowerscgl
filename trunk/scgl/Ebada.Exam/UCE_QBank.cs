@@ -40,16 +40,14 @@ namespace Ebada.Exam {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_QBank>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_QBank>(gridViewOperation_BeforeDelete);
-            gridViewOperation.FocusedRowChanged += new SendDataEventHandler<E_QBank>(gridViewOperation_FocusedRowChanged);
-
+            gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
         }
 
-        void gridViewOperation_FocusedRowChanged(object sender, E_QBank obj)
+        void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_QBank);
         }
-        
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_QBank> e) {
            
@@ -61,7 +59,7 @@ namespace Ebada.Exam {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
-            //InitColumns();//初始列
+            InitColumns();//初始列
             InitData();//初始数据
         }
         private void initImageList() {
@@ -88,8 +86,9 @@ namespace Ebada.Exam {
 
             //需要隐藏列时在这写代码
 
-            hideColumn("ID");
-            
+            //hideColumn("ID");
+            gridView1.Columns["TKName"].Width = 200;
+            gridView1.Columns["Desc"].Width = 300;
         }
 
         /// <summary>
@@ -123,14 +122,14 @@ namespace Ebada.Exam {
             set
             {
                 parentID = value;
-                if (!string.IsNullOrEmpty(value))
-                {
-                    RefreshData(" where ID='" + value + "' order by dxxh");
-                }
-                else
-                {
-                    RefreshData(" where dydj='10' order by dxxh");
-                }
+                //if (!string.IsNullOrEmpty(value))
+                //{
+                //    RefreshData(" where ID='" + value + "' order by dxxh");
+                //}
+                //else
+                //{
+                //    RefreshData(" where dydj='10' order by dxxh");
+                //}
             }
         }
         [Browsable(false)]
@@ -152,5 +151,15 @@ namespace Ebada.Exam {
                 }
             }
         }
+
+        private void gridView1_GotFocus(object sender, EventArgs e)
+        {
+            if (gridView1.GetFocusedRow()!=null)
+            {
+                ParentObj = gridView1.GetFocusedRow() as E_QBank;
+            }
+        }
+
+       
     }
 }

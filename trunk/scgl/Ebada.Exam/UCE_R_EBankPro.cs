@@ -93,6 +93,7 @@ namespace Ebada.Exam {
             //需要隐藏列时在这写代码
 
             gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDic;
+            gridView1.Columns["PROID"].Width = 150;
             //hideColumn("ID");
             
         }

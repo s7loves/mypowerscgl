@@ -115,6 +115,7 @@ namespace Ebada.Exam {
             gridView1.Columns["UserID"].ColumnEdit = DicTypeHelper.UserDic;
             gridView1.Columns["Sequence"].Visible = false;
             barLkueExam.Edit = DicTypeHelper.E_Exam;
+            gridView1.Columns["E_ID"].Width = 250;
         }
 
         /// <summary>

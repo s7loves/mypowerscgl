@@ -200,7 +200,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：难度级别
         /// 字段信息：[DifficultyLevel],int
         /// </summary>
-        [DisplayNameAttribute("难度级别")]
+        [DisplayNameAttribute("难度")]
         public int DifficultyLevel
         {
             get { return _difficultylevel; }
