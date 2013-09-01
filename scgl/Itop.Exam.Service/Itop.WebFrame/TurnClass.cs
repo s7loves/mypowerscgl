@@ -18,6 +18,13 @@ namespace Itop.WebFrame
         private string _ep_id = String.Empty;
         private bool _showresult = false;
         private string _time = String.Empty;
+
+        private string  _PdNum = String.Empty;
+        private string _XzNum = String.Empty;
+        private string _DxXzNum = String.Empty;
+        private string _AllScore = String.Empty;
+
+        private string _Remark = String.Empty;
         #endregion
 
 
@@ -143,11 +150,11 @@ namespace Itop.WebFrame
 
 
         /// <summary>
-        /// 属性名称：BySCol1
-        /// 属性描述：备用1
+        /// 属性名称：Time
+        /// 属性描述：考试时间
         /// 字段信息：[BySCol1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("备用1")]
+        [DisplayNameAttribute("考试时间")]
         public string Time
         {
             get { return _time; }
@@ -155,10 +162,115 @@ namespace Itop.WebFrame
             {
                 if (value == null) return;
                 if (value.ToString().Length > 200)
-                    throw new Exception("[备用1]长度不能大于200!");
+                    throw new Exception("[考试时间]长度不能大于200!");
                 if (_time as object == null || !_time.Equals(value))
                 {
                     _time = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：PdNum
+        /// 属性描述：判断题数
+        /// 字段信息：[PdNum],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("判断题数")]
+        public string PdNum
+        {
+            get { return _PdNum; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[考试时间]长度不能大于200!");
+                if (_PdNum as object == null || !_PdNum.Equals(value))
+                {
+                    _PdNum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：XzNum
+        /// 属性描述：单选题数
+        /// 字段信息：[XzNum],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单选题数")]
+        public string XzNum
+        {
+            get { return _XzNum; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[单选题数]长度不能大于200!");
+                if (_XzNum as object == null || !_XzNum.Equals(value))
+                {
+                    _XzNum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：DxXzNum
+        /// 属性描述：多选题数
+        /// 字段信息：[DxXzNum],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("多选题数")]
+        public string DxXzNum
+        {
+            get { return _DxXzNum; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[多选题数]长度不能大于200!");
+                if (_DxXzNum as object == null || !_DxXzNum.Equals(value))
+                {
+                    _DxXzNum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：AllScore
+        /// 属性描述：总分数
+        /// 字段信息：[AllScore],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("总分数")]
+        public string AllScore
+        {
+            get { return _AllScore; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[总分数]长度不能大于200!");
+                if (_AllScore as object == null || !_AllScore.Equals(value))
+                {
+                    _AllScore = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Remark
+        /// 属性描述：考试信息
+        /// 字段信息：[AllScore],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("考试信息")]
+        public string Remark
+        {
+            get { return _Remark; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[总分数]长度不能大于200!");
+                if (_Remark as object == null || !_Remark.Equals(value))
+                {
+                    _Remark = value;
                 }
             }
         }
@@ -188,7 +300,7 @@ namespace Itop.WebFrame
         private int _difficultylevel = 0;
         private string _professional = String.Empty;
         private int _sequence = 0;
-
+        private string _DaAn = String.Empty;
         #endregion
 
         #region Public 成员
@@ -377,7 +489,26 @@ namespace Itop.WebFrame
                 }
             }
         }
-
+        /// <summary>
+        /// 属性名称：Title
+        /// 属性描述：题目
+        /// 字段信息：[Title],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("答案")]
+        public string DaAn
+        {
+            get { return _DaAn; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 500)
+                    throw new Exception("[题目]长度不能大于500!");
+                if (_DaAn as object == null || !_DaAn.Equals(value))
+                {
+                    _DaAn = value;
+                }
+            }
+        }
         #endregion
 
         #region 方法
