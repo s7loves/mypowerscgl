@@ -578,6 +578,34 @@ namespace Itop.WebFrame
         public int  Seconds { get; set; }
     }
 
+    public class PdaExamResultOrder
+    {
+        [DisplayNameAttribute("ID")]
+        public string ID { get; set; }
+
+        [DisplayNameAttribute("考生ID")]
+        public string UserID { get; set; }
+
+        [DisplayNameAttribute("考生姓名")]
+        public string UserName { get; set; }
+
+        [DisplayNameAttribute("考试ID")]
+        public string ExamID { get; set; }
+
+        [DisplayNameAttribute("考试名称")]
+        public string ExamName { get; set; }
+
+        [DisplayNameAttribute("考试排名")]
+        public int OrderNum { get; set; }
+
+        [DisplayNameAttribute("考试分数")]
+        public int Score { get; set; }
+
+        [DisplayNameAttribute("是否通过")]
+        public bool Pass { get; set; }
+
+    }
+
     #endregion
 
 
