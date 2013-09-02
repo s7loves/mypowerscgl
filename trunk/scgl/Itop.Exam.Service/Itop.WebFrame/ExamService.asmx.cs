@@ -436,11 +436,7 @@ namespace Itop.WebFrame
                 try
                 {
                     string sqlwhere = " where E_ID='" + splist[0].E_ID + "' and EP_ID='" + splist[0].EP_ID + "' and UserID='" + splist[0].UserID + "'";
-                    IList<E_ExamAnswerResult> list = Global.SqlMapper.GetListByWhere<E_ExamAnswerResult>(sqlwhere);
-                    if (list.Count > 0)
-                    {
-                        Global.SqlMapper.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
-                    }
+                    Global.SqlMapper.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
                     for (int i = 0; i < splist.Count; i++)
                     {
                         E_ExamAnswerResult eear = new E_ExamAnswerResult();
