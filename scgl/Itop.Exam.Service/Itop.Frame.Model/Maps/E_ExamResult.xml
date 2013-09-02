@@ -254,6 +254,14 @@
    <select id="GetE_ExamResultRowCount" parameterClass="string">
     select count(*) from E_ExamResult $value$
    </select>
+
+
+    <select id="SelectE_ExamResultOrder" resultMap="E_ExamResult_AllColumns" parameterClass="string">
+      $value$
+    </select>
+    
+    
+    
   </statements>
 </sqlMap>
  

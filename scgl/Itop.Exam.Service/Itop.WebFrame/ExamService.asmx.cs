@@ -435,6 +435,12 @@ namespace Itop.WebFrame
                
                 try
                 {
+                    string sqlwhere = " where E_ID='" + splist[0].E_ID + "' and EP_ID='" + splist[0].EP_ID + "' and UserID='" + splist[0].UserID + "'";
+                    IList<E_ExamAnswerResult> list = Global.SqlMapper.GetListByWhere<E_ExamAnswerResult>(sqlwhere);
+                    if (list.Count > 0)
+                    {
+                        Global.SqlMapper.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
+                    }
                     for (int i = 0; i < splist.Count; i++)
                     {
                         E_ExamAnswerResult eear = new E_ExamAnswerResult();
@@ -582,10 +588,20 @@ namespace Itop.WebFrame
                 {
                     if (qqblist[i].Type == "判断题")
                     {
-                        if (bool.Parse(qqblist[i].Answer) == bool.Parse(anserdic[qqblist[i].ID]))
+                        bool temp=false;
+                        if (bool.TryParse(qqblist[i].Answer, out temp))
                         {
-                            score += eset.JudgeScore;
+                            bool temp2 = false;
+                            if (bool.TryParse(anserdic[qqblist[i].ID],out temp2))
+                            {
+                                if (temp==temp2)
+                                {
+                                    score += eset.JudgeScore;
+                                }
+                            }
+                            
                         }
+
                     }
                     if (qqblist[i].Type == "单项选择题")
                     {
@@ -660,6 +676,81 @@ namespace Itop.WebFrame
             }
             return GetJsonStr<SysRemainingTime>(rtime);
         }
+
+        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，topnum为用前多少名,topnum为零时返回当次考试所有排名")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetEaxmResultOrder(string examid, int  topnum)
+        {
+            string sqlwere = string.Empty;
+            if (topnum>0)
+            {
+                sqlwere += " SELECT top " + topnum;
+            }
+            else
+            {
+                sqlwere += " SELECT ";
+            }
+            sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+            sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
+
+            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+
+            List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
+            int i=1;
+            foreach (E_ExamResult eer in resultlist)
+            {
+                PdaExamResultOrder per = new PdaExamResultOrder();
+                per.ID = eer.ID;
+                per.UserID = eer.UserID;
+                per.ExamID = eer.E_ID;
+                per.ExamName = eer.BySCol2;
+                per.UserName = eer.BySCol1;
+                per.OrderNum=i;
+                per.Score =eer.Score;
+                per.Pass =eer.IsPassed;
+                tlist.Add(per);
+                i++;
+            }
+            return GetJsonStr<PdaExamResultOrder>(tlist);
+        }
+
+
+        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，userid为用户ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetEaxmResultOrderByUser(string examid, string userid)
+        {
+            PdaExamResultOrder per = new PdaExamResultOrder();
+            per.ID = "101";
+            per.OrderNum = 0;
+            per.Pass = false;
+
+            string sqlwere = string.Empty;
+            sqlwere += " SELECT ";
+            sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+            sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
+
+            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+
+            List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
+            int i = 0;
+            foreach (E_ExamResult eer in resultlist)
+            {
+                i++;
+                if (eer.UserID==userid)
+                {
+                    per.ID = eer.ID;
+                    per.UserID = eer.UserID;
+                    per.ExamID = eer.E_ID;
+                    per.ExamName = eer.BySCol2;
+                    per.UserName = eer.BySCol1;
+                    per.OrderNum = i;
+                    per.Score = eer.Score;
+                    per.Pass = eer.IsPassed;
+                }
+            }
+            return GetJsonStr<PdaExamResultOrder>(per);
+        }
+
 
         [WebMethod(Description = "反回系统时间")]
         [ScriptMethod(UseHttpGet = false)]
