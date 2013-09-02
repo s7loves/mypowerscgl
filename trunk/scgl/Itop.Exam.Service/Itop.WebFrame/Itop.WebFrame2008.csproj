@@ -140,6 +140,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="TurnClass.cs" />
+    <Compile Include="verHandler.ashx.cs">
+      <DependentUpon>verHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="WcfExamSercice.svc.cs">
       <DependentUpon>WcfExamSercice.svc</DependentUpon>
     </Compile>
@@ -174,6 +177,7 @@
     <None Include="Service References\ServiceReference1\Service1.xsd" />
     <None Include="Service References\ServiceReference1\Service11.xsd" />
     <None Include="Service References\ServiceReference1\Service12.xsd" />
+    <Content Include="verHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Itop.Frame.BLL\Itop.Frame.BLL.csproj">
