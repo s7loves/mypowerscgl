@@ -529,7 +529,13 @@ namespace Itop.WebFrame
         public int Status { get; set; }
 
     }
+    public class ResponseResultUser {
 
+        public string Details { get; set; }
+        public string UserName { get; set; }
+        public int Status { get; set; }
+
+    }
     public class PdaAnswer
     {
         [DisplayNameAttribute("考试ID")]
