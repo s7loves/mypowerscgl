@@ -207,7 +207,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>8088</DevelopmentServerPort>
+          <DevelopmentServerPort>8087</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/Itop.WebFrame</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
