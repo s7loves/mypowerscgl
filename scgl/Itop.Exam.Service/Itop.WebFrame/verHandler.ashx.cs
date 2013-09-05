@@ -16,8 +16,8 @@ namespace Itop.WebFrame {
             //string model = context.Request["model"].ToString();
             string jsonStr = "\"ver\":\"{0}\",\"url\":\"{1}\"";
             string msg = string.Empty;
-            string ver = "1.0.1";
-            string url = "http://222.170.135.12:8087/qwks.apk";
+            string ver = "1.0.2";
+            string url = "http://222.170.135.12:8087/qwks1.0.2.apk";
             //res.GetVerInfo(model, ref ver, ref url);
             msg = "{" + string.Format(jsonStr, ver, url) + "}";
             context.Response.Write(msg);
