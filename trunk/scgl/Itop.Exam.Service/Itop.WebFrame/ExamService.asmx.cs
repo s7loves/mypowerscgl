@@ -761,7 +761,7 @@ namespace Itop.WebFrame
         [ScriptMethod(UseHttpGet = false)]
         public string CheckLogin(string username,string pwd)
         {
-            ResponseResult res = new ResponseResult();
+            ResponseResultUser res = new ResponseResultUser();
             string name = username.Trim();
             string password = MainHelper.EncryptoPassword(pwd.Trim());
             string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
@@ -770,13 +770,14 @@ namespace Itop.WebFrame
             {
                 res.Status = 1;
                 res.Details = list[0].UserID;
+                res.UserName = list[0].UserName;
             }
             else
             {
                 res.Status = 0;
                 res.Details = "验证失败!";
             }
-            return GetJsonStr<ResponseResult>(res);
+            return GetJsonStr<ResponseResultUser>(res);
         }
         
         
