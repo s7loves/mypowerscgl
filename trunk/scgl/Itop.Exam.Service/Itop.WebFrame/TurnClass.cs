@@ -511,8 +511,323 @@ namespace Itop.WebFrame
         }
         #endregion
 
-        #region 方法
-        
+    }
+    /// <summary>
+    /// 题库
+    /// </summary>
+    public class TurnE_QBank
+    {
+
+        #region Private 成员
+        private string _id = string.Empty;
+        private string _tkname = String.Empty;
+        private string _desc = String.Empty;
+        private int _pdnum = 0;
+        private int _dxnum = 0;
+        private int _dxxnum = 0;
+        private List<TurnE_Professional> _eprolist = new List<TurnE_Professional>();
+        #endregion
+
+
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：题库ID
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("题库ID")]
+        public string ID
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[题库ID]长度不能大于50!");
+                if (_id as object == null || !_id.Equals(value))
+                {
+                    _id = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：TKName
+        /// 属性描述：题库名称
+        /// 字段信息：[TKName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("题库名称")]
+        public string TKName
+        {
+            get { return _tkname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[题库名称]长度不能大于50!");
+                if (_tkname as object == null || !_tkname.Equals(value))
+                {
+                    _tkname = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：说明
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("说明")]
+        public string Desc
+        {
+            get { return _desc; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[说明]长度不能大于50!");
+                if (_desc as object == null || !_desc.Equals(value))
+                {
+                    _desc = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：判断题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("判断题数")]
+        public int PdNum
+        {
+            get { return _pdnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_pdnum as object == null || !_pdnum.Equals(value))
+                {
+                    _pdnum = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：单项选择题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单项选择题数")]
+        public int DxNum
+        {
+            get { return _dxnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_dxnum as object == null || !_dxnum.Equals(value))
+                {
+                    _dxnum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：多项选择题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("多项选择题数")]
+        public int DXxNum
+        {
+            get { return _dxxnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_dxxnum as object == null || !_dxxnum.Equals(value))
+                {
+                    _dxxnum = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：专业列表
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("专业列表")]
+        public List<TurnE_Professional>  EProList
+        {
+            get { return _eprolist; }
+            set
+            {
+                if (value == null) return;
+                if (_eprolist as object == null || !_eprolist.Equals(value))
+                {
+                    _eprolist = value;
+
+                    PdNum = 0;
+                    DxNum = 0;
+                    DXxNum = 0;
+
+                    foreach (TurnE_Professional item in _eprolist)
+                    {
+                        PdNum += item.PdNum;
+                        DxNum += item.DxNum;
+                        DXxNum += item.DXxNum;
+                    }
+                }
+            }
+        }
+        #endregion
+    }
+
+
+    /// <summary>
+    ///[E_Professional]业务实体类
+    ///对应表名:E_Professional
+    /// </summary>
+    [Serializable]
+    public class TurnE_Professional
+    {
+
+        #region Private 成员
+        private string _id = string.Empty;
+        private string _pname = String.Empty;
+        private string _desc = String.Empty;
+
+        private int _pdnum = 0;
+        private int _dxnum = 0;
+        private int _dxxnum = 0;
+
+        #endregion
+
+
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[]长度不能大于50!");
+                if (_id as object == null || !_id.Equals(value))
+                {
+                    _id = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：PName
+        /// 属性描述：名称
+        /// 字段信息：[PName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("名称")]
+        public string PName
+        {
+            get { return _pname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[名称]长度不能大于50!");
+                if (_pname as object == null || !_pname.Equals(value))
+                {
+                    _pname = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：描述
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("描述")]
+        public string Desc
+        {
+            get { return _desc; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[描述]长度不能大于200!");
+                if (_desc as object == null || !_desc.Equals(value))
+                {
+                    _desc = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：判断题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("判断题数")]
+        public int PdNum
+        {
+            get { return _pdnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_pdnum as object == null || !_pdnum.Equals(value))
+                {
+                    _pdnum = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：单项选择题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("单项选择题数")]
+        public int DxNum
+        {
+            get { return _dxnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_dxnum as object == null || !_dxnum.Equals(value))
+                {
+                    _dxnum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：多项选择题数
+        /// 字段信息：[Desc],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("多项选择题数")]
+        public int DXxNum
+        {
+            get { return _dxxnum; }
+            set
+            {
+                if (value == null) return;
+
+                if (_dxxnum as object == null || !_dxxnum.Equals(value))
+                {
+                    _dxxnum = value;
+                }
+            }
+        }
         #endregion
     }	
 
@@ -611,6 +926,10 @@ namespace Itop.WebFrame
         public bool Pass { get; set; }
 
     }
+
+
+
+
 
     #endregion
 
