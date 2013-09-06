@@ -73,7 +73,7 @@
             // 
             // treeListColumn1
             // 
-            this.treeListColumn1.Caption = "用户名称";
+            this.treeListColumn1.Caption = "考生姓名";
             this.treeListColumn1.FieldName = "UserName";
             this.treeListColumn1.Name = "treeListColumn1";
             this.treeListColumn1.Visible = true;
@@ -249,7 +249,7 @@
             this.imageList1.Images.SetKeyName(12, "toolStripMenuItemCancelApplyRevise.Image.png");
             this.imageList1.Images.SetKeyName(13, "toolStripButtonOKSubmitRevise.Image.png");
             // 
-            // UCmUserRoleTree
+            // UCmOrgUserTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -258,7 +258,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCmUserRoleTree";
+            this.Name = "UCmOrgUserTree";
             this.Size = new System.Drawing.Size(549, 374);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
