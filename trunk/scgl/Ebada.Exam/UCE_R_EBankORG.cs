@@ -41,8 +41,12 @@ namespace Ebada.Exam {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_R_EBankORG>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_R_EBankORG>(gridViewOperation_BeforeDelete);
-           
 
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<E_R_EBankORG> e)
+        {
+            throw new NotImplementedException();
         }
 
        
@@ -134,6 +138,17 @@ namespace Ebada.Exam {
                     RefreshData(" where EBID='" + value + "'");
                 }
             }
+        }
+
+        private void btEdit11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmE_R_EBankORGEdit frm = new FrmE_R_EBankORGEdit();
+            frm.Ebid = parentID;
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+                RefreshData(" where EBID='" + parentID + "'");
+            }
+
         }
        
        

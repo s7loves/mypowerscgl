@@ -19,11 +19,44 @@ namespace Ebada.Exam
         {
             InitializeComponent();
         }
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            Refresh();
+        }
+        private void Refresh()
+        {
+            string sqlwhere = " where EBID='" + _ebid + "'";
+            IList<E_R_EBankORG> erorglist = ClientHelper.PlatformSqlMap.GetListByWhere<E_R_EBankORG>(sqlwhere);
 
+            string str = string.Empty;
+            foreach (E_R_EBankORG item in erorglist)
+            {
+                str += item.ORGID + ",";
+            }
+            if (str.Length > 2)
+            {
+                str = str.Substring(0, str.Length - 1);
+            }
+            uCmOrgTree1.OrgIDs = str;
+        }
+        private string _ebid = string.Empty;
+        public string Ebid
+        {
+            set
+            {
+                if (value != null)
+                {
+                    this._ebid = value ;
+                    
+                }
+               
+            }
+        }
         void dataBind()
         {
 
-            this.lkueorg.DataBindings.Add("EditValue", rowData, "ORGID");
+            //this.lkueorg.DataBindings.Add("EditValue", rowData, "ORGID");
 
         }
         private E_R_EBankORG rowData = null;
@@ -36,38 +69,68 @@ namespace Ebada.Exam
             }
             set
             {
-                if (value == null) return;
-                if (rowData == null)
-                {
-                    this.rowData = value as E_R_EBankORG;
-                    this.InitComboBoxData();
-                    dataBind();
-                }
-                else
-                {
-                    ConvertHelper.CopyTo<E_R_EBankORG>(value as E_R_EBankORG, rowData);
-                }
+
+                //if (value != null)
+                //{
+                //    this.rowData = value as E_R_EBankORG;
+                //    string sqlwhere = " where EBID='" + rowData.EBID + "'";
+                //    IList<E_R_EBankORG> erorglist = ClientHelper.PlatformSqlMap.GetListByWhere<E_R_EBankORG>(sqlwhere);
+
+                //    string str = string.Empty;
+                //    foreach (E_R_EBankORG item in erorglist)
+                //    {
+                //        str += item.ORGID + ",";
+                //    }
+                //    if (str.Length > 2)
+                //    {
+                //        str = str.Substring(0, str.Length - 1);
+                //    }
+                //    uCmOrgTree1.OrgIDs = str;
+                //}
+                //else
+                //{
+                //    uCmOrgTree1.OrgIDs = string.Empty;
+                //}
+               
             }
         }
 
         private void InitComboBoxData()
         {
-            IList<mOrg> orglist = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("");
-            SetComboBoxData(lkueorg, "OrgName", "OrgCode", "请选择", "单位", orglist);
+            //IList<mOrg> orglist = Client.ClientHelper.PlatformSqlMap.GetList<mOrg>("");
+            //SetComboBoxData(lkueorg, "OrgName", "OrgCode", "请选择", "单位", orglist);
         }
-
+        char spchar = ',';
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (lkueorg.EditValue == null)
+            //if (lkueorg.EditValue == null)
+            //{
+            //    MsgBox.ShowWarningMessageBox("请选择组织机构！");
+            //    return;
+            //}
+            //IList<E_R_EBankORG> list = Client.ClientHelper.PlatformSqlMap.GetList<E_R_EBankORG>(" where ORGID='" + lkueorg.EditValue.ToString() + "' and EBID='" + rowData.EBID + "'");
+            //if (list.Count > 0 && rowData.ID != list[0].ID)
+            //{
+            //    MsgBox.ShowWarningMessageBox("该题库已添加名为【" + lkueorg.Text + "】的组织机构！");
+            //    return;
+            //}
+            string OrgIDs = uCmOrgTree1.GetOrgIDS();
+            string[] strarry = OrgIDs.Split(spchar);
+            if (strarry.Length > 0)
             {
-                MsgBox.ShowWarningMessageBox("请选择组织机构！");
-                return;
-            }
-            IList<E_R_EBankORG> list = Client.ClientHelper.PlatformSqlMap.GetList<E_R_EBankORG>(" where ORGID='" + lkueorg.EditValue.ToString() + "' and EBID='" + rowData.EBID + "'");
-            if (list.Count > 0 && rowData.ID != list[0].ID)
-            {
-                MsgBox.ShowWarningMessageBox("该题库已添加名为【" + lkueorg.Text + "】的组织机构！");
-                return;
+                string sqlwhere = " where EBID='" + _ebid + "'";
+                ClientHelper.PlatformSqlMap.DeleteByWhere<E_R_EBankORG>(sqlwhere);
+                for (int i = 0; i < strarry.Length; i++)
+                {
+                    if (strarry[i]!=string.Empty)
+                    {
+                        E_R_EBankORG ereb = new E_R_EBankORG();
+                        ereb.ID += i;
+                        ereb.EBID = _ebid;
+                        ereb.ORGID = strarry[i];
+                        ClientHelper.PlatformSqlMap.Create<E_R_EBankORG>(ereb);
+                    }
+                }
             }
             this.DialogResult = DialogResult.OK;
         }

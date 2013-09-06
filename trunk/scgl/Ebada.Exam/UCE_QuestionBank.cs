@@ -61,20 +61,21 @@ namespace Ebada.Exam {
             if (barEproLuk.EditValue!=null)
             {
                 sql += " Professional='" + barEproLuk.EditValue.ToString() + "'";
-            }
-            if (barTypeCom.EditValue!=null)
-            {
-                if (sql.Length>7)
+                if (barTypeCom.EditValue != null)
                 {
-                    sql += " and ";
+                    if (sql.Length > 7)
+                    {
+                        sql += " and ";
+                    }
+                    sql += " Type='" + barTypeCom.EditValue.ToString() + "'";
                 }
-                sql += " Type='" + barTypeCom.EditValue.ToString() + "'";
+                if (sql.Length > 7)
+                {
+                    sql += " order by Professional,Type";
+                    RefreshData(sql);
+                }
             }
-            if (sql.Length>7)
-            {
-                sql += " order by Professional,Type";
-            }
-            RefreshData( sql);
+            
         }
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_QuestionBank> e) {
            

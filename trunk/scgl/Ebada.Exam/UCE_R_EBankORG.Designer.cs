@@ -29,7 +29,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
-            this.btEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.btEdit11 = new DevExpress.XtraBars.BarButtonItem();
             this.btDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
@@ -60,7 +60,7 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btAdd,
-            this.btEdit,
+            this.btEdit11,
             this.btDelete,
             this.btFind,
             this.btRefresh,
@@ -79,7 +79,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btAdd),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btEdit11),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
@@ -98,14 +98,16 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
-            // btEdit
+            // btEdit11
             // 
-            this.btEdit.Caption = "修改";
-            this.btEdit.Id = 1;
-            this.btEdit.ImageIndex = 1;
-            this.btEdit.Name = "btEdit";
-            this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btEdit11.Caption = "修改";
+            this.btEdit11.Id = 1;
+            this.btEdit11.ImageIndex = 1;
+            this.btEdit11.Name = "btEdit11";
+            this.btEdit11.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btEdit11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btEdit11_ItemClick);
             // 
             // btDelete
             // 
@@ -114,6 +116,7 @@
             this.btDelete.ImageIndex = 12;
             this.btDelete.Name = "btDelete";
             this.btDelete.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btRefresh
             // 
@@ -130,6 +133,7 @@
             this.btFind.ImageIndex = 5;
             this.btFind.Name = "btFind";
             this.btFind.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btFind.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btExport
             // 
@@ -138,6 +142,7 @@
             this.btExport.ImageIndex = 7;
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btClose
             // 
@@ -146,6 +151,7 @@
             this.btClose.ImageIndex = 13;
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btClose.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bar3
             // 
@@ -222,7 +228,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UC2
+            // UCE_R_EBankORG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -231,7 +237,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UC2";
+            this.Name = "UCE_R_EBankORG";
             this.Size = new System.Drawing.Size(479, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -250,7 +256,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btAdd;
-        private DevExpress.XtraBars.BarButtonItem btEdit;
+        private DevExpress.XtraBars.BarButtonItem btEdit11;
         private DevExpress.XtraBars.BarButtonItem btDelete;
         private DevExpress.XtraBars.BarButtonItem btFind;
         private DevExpress.XtraBars.BarButtonItem btRefresh;
