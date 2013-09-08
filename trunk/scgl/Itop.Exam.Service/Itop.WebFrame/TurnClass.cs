@@ -297,6 +297,7 @@ namespace Itop.WebFrame
         private string _option = String.Empty;
         private string _answer = String.Empty;
         private string _explain = String.Empty;
+        private int  _score = 0;
         private int _difficultylevel = 0;
         private string _professional = String.Empty;
         private int _sequence = 0;
@@ -450,6 +451,24 @@ namespace Itop.WebFrame
             }
         }
 
+
+        /// <summary>
+        /// 属性名称：Score
+        /// 属性描述： 分数
+        /// 字段信息：[Score],int
+        /// </summary>
+        [DisplayNameAttribute("分数")]
+        public int Score
+        {
+            get { return _score; }
+            set
+            {
+                if (_score as object == null || !_score.Equals(value))
+                {
+                    _score = value;
+                }
+            }
+        }
 
         /// <summary>
         /// 属性名称：Professional
