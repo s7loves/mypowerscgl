@@ -621,6 +621,17 @@ namespace Itop.WebFrame
         }
 
 
+        [WebMethod(Description = "反回模拟试题，tkid为题库ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetFalseExamQuestionList(string tkid)
+        {
+            string strresult = string.Empty;
+
+            strresult = GetPractiseListByTKFalseExam(tkid, FalseExamPdNum, FalseExamDxNum, FalseExamDXxNum);
+
+            return strresult;
+        }
+
 
         #endregion
 
@@ -858,6 +869,24 @@ namespace Itop.WebFrame
                 i++;
             }
         }
+
+        /// <summary>
+        /// 从一个列表加入另一个列表
+        /// </summary>
+        /// <param name="frmeqlist">源表</param>
+        /// <param name="score"> 分数</param>
+        /// <param name="toeqlist">目标表</param>
+        private void AddQuestionFalseExam(IList<E_QuestionBank> frmeqlist, int score,IList<E_QuestionBank> toeqlist)
+        {
+            int i = 1;
+            foreach (E_QuestionBank item in frmeqlist)
+            {
+                item.Sequence = i;
+                item.ScoreNum = score;
+                toeqlist.Add(item);
+                i++;
+            }
+        }
         /// <summary>
         /// 从一个集合加入另一个表
         /// </summary>
@@ -892,6 +921,7 @@ namespace Itop.WebFrame
                 teq.Option = eq.Option;
                 teq.Answer = eq.Answer;
                 teq.Explain = eq.Explain;
+                teq.Score = eq.ScoreNum;
                 teq.DifficultyLevel = eq.DifficultyLevel;
                 teq.Professional = eq.Professional;
                 teq.Sequence = eq.Sequence;
@@ -940,7 +970,7 @@ namespace Itop.WebFrame
         }
 
         /// <summary>
-        /// 根据题畗ID及类型返回试题列表
+        /// 根据题库ID及类型返回试题列表
         /// </summary>
         /// <param name="tkid">题库id</param>
         /// <param name="type">类型</param>
@@ -1039,6 +1069,44 @@ namespace Itop.WebFrame
             return reseqblist;
         }
 
+        /// <summary>
+        /// 返回模拟考试试题
+        /// </summary>
+        /// <param name="tkid"></param>
+        /// <param name="pdnum"></param>
+        /// <param name="dxnum"></param>
+        /// <param name="dxxnum"></param>
+        /// <returns></returns>
+        public string GetPractiseListByTKFalseExam(string tkid, int pdnum, int dxnum, int dxxnum)
+        {
+
+            IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+
+            IList<E_QuestionBank> pdlist = GetQuBankListByTK(tkid, "判断题");
+
+            IList<E_QuestionBank> dxlist = GetQuBankListByTK(tkid, "单项选择题");
+
+            IList<E_QuestionBank> dxxlist = GetQuBankListByTK(tkid, "多项选择题");
+
+            IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
+            IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
+            IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
+
+            //随机生成判断题放入respdlist
+            RandSelectQuestion(pdlist, pdnum, respdlist);
+            //随机生成单项选择题放入resdxlist
+            RandSelectQuestion(dxlist, dxnum, resdxlist);
+            //随机生成多项选择题放入resdxxlist
+            RandSelectQuestion(dxxlist, dxnum, resdxxlist);
+
+            //将三项整合到结果表
+            AddQuestionFalseExam(respdlist,FalseExamPdScore, resultlist);
+            AddQuestionFalseExam(resdxlist,FalseExamDxScore,resultlist); 
+            AddQuestionFalseExam(resdxxlist,FalseExamDXxScore, resultlist);
+
+            return GetQuestionStr(resultlist);
+        }
+
 
         /// <summary>
         /// 计算分数
@@ -1129,6 +1197,39 @@ namespace Itop.WebFrame
             return per;
 
         }
+        #endregion
+
+
+        #region 属性定义
+
+        /// <summary>
+        /// 模拟考试判断题数
+        /// </summary>
+        private static int FalseExamPdNum = 10;
+        /// <summary>
+        /// 模拟考试单项选择题数
+        /// </summary>
+        private static int FalseExamDxNum = 10;
+        /// <summary>
+        /// 模拟考试多项选择题数
+        /// </summary>
+        private static int FalseExamDXxNum = 10;
+
+
+        /// <summary>
+        /// 模拟考试判断题每题分数
+        /// </summary>
+        private static int FalseExamPdScore = 3;
+        /// <summary>
+        /// 模拟考试单项选择每题分数
+        /// </summary>
+        private static int FalseExamDxScore = 3;
+        /// <summary>
+        /// 模拟考试多项选择每题分数
+        /// </summary>
+        private static int FalseExamDXxScore = 4;
+
+
         #endregion
 
 
