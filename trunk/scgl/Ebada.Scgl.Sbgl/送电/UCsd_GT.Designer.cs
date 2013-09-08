@@ -32,6 +32,7 @@
             this.btXlList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.btAddM = new DevExpress.XtraBars.BarButtonItem();
             this.btAddM2 = new DevExpress.XtraBars.BarButtonItem();
@@ -40,6 +41,7 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -50,7 +52,6 @@
             this.btExport0 = new DevExpress.XtraBars.BarSubItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btAdd2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
@@ -83,8 +84,9 @@
             this.btAddM,
             this.barSubItem1,
             this.btAddM2,
-            this.btAdd2});
-            this.barManager1.MaxItemId = 21;
+            this.btAdd2,
+            this.btExport});
+            this.barManager1.MaxItemId = 22;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
@@ -108,6 +110,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -158,6 +161,15 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // btAdd2
+            // 
+            this.btAdd2.Caption = "插杆";
+            this.btAdd2.Id = 20;
+            this.btAdd2.ImageIndex = 6;
+            this.btAdd2.Name = "btAdd2";
+            this.btAdd2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd2_ItemClick);
             // 
             // barSubItem1
             // 
@@ -223,7 +235,16 @@
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
+            // 
+            // btExport
+            // 
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 21;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btClose
             // 
@@ -318,15 +339,6 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // btAdd2
-            // 
-            this.btAdd2.Caption = "插杆";
-            this.btAdd2.Id = 20;
-            this.btAdd2.ImageIndex = 6;
-            this.btAdd2.Name = "btAdd2";
-            this.btAdd2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btAdd2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btAdd2_ItemClick);
-            // 
             // UCsd_GT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -375,5 +387,6 @@
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem btAddM2;
         private DevExpress.XtraBars.BarButtonItem btAdd2;
+        private DevExpress.XtraBars.BarSubItem btExport;
     }
 }
