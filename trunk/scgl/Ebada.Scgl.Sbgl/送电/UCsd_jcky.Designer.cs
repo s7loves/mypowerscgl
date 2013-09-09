@@ -39,7 +39,7 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btView = new DevExpress.XtraBars.BarButtonItem();
-            this.btExport0 = new DevExpress.XtraBars.BarSubItem();
+            this.btExport = new DevExpress.XtraBars.BarSubItem();
             this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -75,7 +75,7 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport0,
+            this.btExport,
             this.btGdsList,
             this.btView,
             this.btXlList,
@@ -104,7 +104,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btView, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btExport0),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btExport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -215,16 +215,16 @@
             this.btView.ImageIndex = 7;
             this.btView.Name = "btView";
             this.btView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btView_ItemClick);
             // 
-            // btExport0
+            // btExport
             // 
-            this.btExport0.Caption = "导出";
-            this.btExport0.Id = 8;
-            this.btExport0.ImageIndex = 7;
-            this.btExport0.Name = "btExport0";
-            this.btExport0.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btExport0.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btExport.Caption = "导出";
+            this.btExport.Id = 8;
+            this.btExport.ImageIndex = 7;
+            this.btExport.Name = "btExport";
+            this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btClose
             // 
@@ -309,7 +309,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // UCPS_GTSB
+            // UCsd_jcky
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -318,7 +318,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCPS_GTSB";
+            this.Name = "UCsd_jcky";
             this.Size = new System.Drawing.Size(668, 328);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -348,7 +348,7 @@
         private DevExpress.XtraBars.BarStaticItem bsItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.BarSubItem btExport0;
+        private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraBars.BarEditItem btGdsList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraBars.BarButtonItem btView;
