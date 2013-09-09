@@ -162,7 +162,15 @@ namespace Ebada.Scgl.Yxgl {
             }
 
         }
-
+        static string [] snames=new string[]{"绝缘子","金具", "横担","抱箍","球头挂环","挂板","环","线夹","螺栓","挂环","防震锤","压接管","钢线卡子","垫铁"};
+        static string getNamesql() {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" sbName like '%" + snames[0] + "%'");
+            for(int i=1;i<snames.Length;i++){
+                sb.Append(" or sbName like '%" + snames[i] + "%'");
+            }
+            return sb.ToString();
+        }
         public static int ExportToExcel(string title, string dw, sdjls_sbpjb pj17) {
             string fname = Application.StartupPath + "\\00记录模板\\送管22送电线路设备评级表.xls";
             DSOFramerControl dsoFramerWordControl1 = new DSOFramerControl();
@@ -182,8 +190,8 @@ namespace Ebada.Scgl.Yxgl {
                 }
                 string strLinexh = xl.WireType;//导线型号
                 
-                IList<sd_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<sd_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
-                
+                //IList<sd_gt> gtlis = Client.ClientHelper.PlatformSqlMap.GetList<sd_gt>(" Where LineCode='" + xl.LineCode + "' order by gtcode");
+                int gtcount = Client.ClientHelper.PlatformSqlMap.GetRowCount<sd_gt>(" Where LineCode='" + xl.LineCode + "'");
                 ex.ActiveSheet(1);
                 //设置线路值
                 ex.SetCellValue(xl.LineName, 3, 3);
@@ -196,30 +204,26 @@ namespace Ebada.Scgl.Yxgl {
                 ex.SetCellValue(DateTime.Now.Year + "年" + DateTime.Now.Month + "月" + DateTime.Now.Day + "日", 4, 3);
 
                 //杆塔
-                ex.SetCellValue(gtlis.Count.ToString(), 5, 3);//合计
-                ex.SetCellValue(gtlis.Count.ToString(), 6, 3);//一类
+                ex.SetCellValue(gtcount.ToString(), 5, 3);//合计
+                ex.SetCellValue(gtcount.ToString(), 6, 3);//一类
                 //导地线
                 ex.SetCellValue(xl.WireLength.ToString(), 9, 3);//合计
                 ex.SetCellValue(xl.WireLength.ToString(), 10, 3);//一类
                 //绝缘子
                 string sql = "in (";
-                foreach (sd_gt gt in gtlis)
-                { 
-                    sql+="'"+gt.gtID+"',";
-                }
-                sql = sql.Substring(0, sql.Length - 1) + ")";
+                //foreach (sd_gt gt in gtlis)
+                //{ 
+                //    sql+="'"+gt.gtID+"',";
+                //}
+                //sql = sql.Substring(0, sql.Length - 1) + ")";
+                sql = "in (select gtid from sd_gt Where LineCode='" + xl.LineCode + "' )";
                 string strSQL = "select  sbid from sd_gtsb Where  gtID " + sql;
                 
                 IList jdzzList = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
-                if (xl.LineVol != "" && Convert.ToDouble(xl.LineVol) >= 10)
-                {
-                    strSQL += "  and (sbName like '高压%立瓶%' or sbName like '高压%悬垂%' or sbName like '高压%茶台%' )";
-                }
-                else
-                    if (xl.LineVol != "" && 0.4 >= Convert.ToDouble(xl.LineVol))
-                    {
-                        strSQL += "  and (sbName like '低压%立瓶%'  or sbName like '低压%茶台%' )";
-                    }
+               
+                   
+                strSQL += "  and ("+getNamesql()+")";
+                
 
                 IList jyuzlist = Client.ClientHelper.PlatformSqlMap.GetList("SelectOneStr", strSQL);
 
@@ -257,7 +261,7 @@ namespace Ebada.Scgl.Yxgl {
             if (obj == null)
                 return;
             try {
-                if (ExportToExcel("送电线路条图", "", obj) < 1) return;
+                if (ExportToExcel("送电线路评级", "", obj) < 1) return;
 
                 frm22sbpjbTemplate frm = new frm22sbpjbTemplate();
                 frm.pjobject = obj;
