@@ -24,85 +24,164 @@ namespace Ebada.Exam
 
         public IList<E_QuestionBank> EQlist;
         E_ExamSetting ESet;
-        public   string SetId = string.Empty;
+        public string SetId = string.Empty;
+
+        string fixedid = "010101";
+
 
         IList<E_R_ESetPro> ereslist;
+
+        IList<TurnE_R_ESetPro> realereslist;
+
+        TurnE_R_ESetPro realallere = new TurnE_R_ESetPro();
 
         Dictionary<string, E_QuestionBank> PdDic = new Dictionary<string, E_QuestionBank>();
         Dictionary<string, E_QuestionBank> SelectDic = new Dictionary<string, E_QuestionBank>();
         Dictionary<string, E_QuestionBank> MuSelectDic = new Dictionary<string, E_QuestionBank>();
+
+        Dictionary<string, TurnE_R_ESetPro> RealEREPDic = new Dictionary<string, TurnE_R_ESetPro>();
 
         private void InitData()
         {
             PdDic.Clear();
             SelectDic.Clear();
             MuSelectDic.Clear();
-            if (SetId!=string.Empty)
+            RealEREPDic.Clear();
+            if (SetId != string.Empty)
             {
                 //
                 ESet = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_ExamSetting>(SetId);
                 string sqlwhere = " where ESETID='" + SetId + "'";
                 IList<E_R_ESetPro> eresblist = Client.ClientHelper.PlatformSqlMap.GetList<E_R_ESetPro>(sqlwhere);
                 ereslist = eresblist;
-                E_R_ESetPro ere = new E_R_ESetPro();
-                ere.PROID = "010101";
-                
                 foreach (E_R_ESetPro item in eresblist)
                 {
-                    ere.JudgeNUM += item.JudgeNUM;
-                    ere.SelectNUM += item.SelectNUM;
-                    ere.MuSelectNUM += item.MuSelectNUM;
-
+                    TurnE_R_ESetPro teres = new TurnE_R_ESetPro();
+                    teres.ID = item.ID;
+                    teres.PROID = item.PROID;
+                    teres.JudgeNUM = item.JudgeNUM;
+                    teres.SelectNUM = item.SelectNUM;
+                    teres.MuSelectNUM = item.MuSelectNUM;
+                    RealEREPDic.Add(teres.PROID, teres);
                 }
-                eresblist.Add(ere);
 
-                gridControl1.DataSource = eresblist;
-                gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDicTB;
-                gridView1.Columns["JudgeNUM"].Width = 80;
-                gridView1.Columns["SelectNUM"].Width = 80;
-                gridView1.Columns["MuSelectNUM"].Width = 80;
-            }
-            if (EPID!=string.Empty)
-            {
-                string sqlwhere = " where ExID='" + EPID + "'";
-                IList<E_ExaminationPaperQuestion> eepqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_ExaminationPaperQuestion>(sqlwhere);
 
-                string str = string.Empty;
-                if (eepqlist.Count>0)
+
+                if (EPID != string.Empty)
                 {
-                    foreach (E_ExaminationPaperQuestion item in eepqlist)
+                    string sqlwhere2 = " where ExID='" + EPID + "'";
+                    IList<E_ExaminationPaperQuestion> eepqlist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_ExaminationPaperQuestion>(sqlwhere2);
+                    string str = string.Empty;
+                    if (eepqlist.Count > 0)
                     {
-                        str += "'"+item.QuID + "' ,";
-                    }
-                    str = str.Substring(0, str.Length - 1);
-
-                    string stsqlwhere = " where ID in (" + str + ")";
-                    IList<E_QuestionBank> banklist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(stsqlwhere);
-                    if (banklist.Count > 0)
-                    {
-                        foreach (E_QuestionBank item in banklist)
+                        foreach (E_ExaminationPaperQuestion item in eepqlist)
                         {
-                            if (item.Type == "判断题")
-                            {
-                                PdDic.Add(item.ID, item);
-                            }
-                            if (item.Type == "单项选择题")
-                            {
-                                SelectDic.Add(item.ID, item);
-                            }
-                            if (item.Type == "多项选择题")
-                            {
-                                MuSelectDic.Add(item.ID, item);
-                            }
+                            str += "'" + item.QuID + "' ,";
                         }
-                        ViewQuestionPaper();
+                        str = str.Substring(0, str.Length - 1);
+
+                        string stsqlwhere = " where ID in (" + str + ")";
+                        IList<E_QuestionBank> banklist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(stsqlwhere);
+                        if (banklist.Count > 0)
+                        {
+                            foreach (E_QuestionBank item in banklist)
+                            {
+                                if (item.Type == "判断题")
+                                {
+                                    PdDic.Add(item.ID, item);
+                                    RealEREPDic[item.Professional].RealJudgeNUM += 1;
+                                }
+                                if (item.Type == "单项选择题")
+                                {
+                                    SelectDic.Add(item.ID, item);
+                                    RealEREPDic[item.Professional].RealSelectNUM += 1;
+                                }
+                                if (item.Type == "多项选择题")
+                                {
+                                    MuSelectDic.Add(item.ID, item);
+                                    RealEREPDic[item.Professional].RealMuSelectNUM += 1;
+                                }
+                            }
+
+                        }
                     }
+
                 }
-               
-               
-               
+                ViewQuestionPaper();
             }
-           
+
+
+        }
+
+        /// <summary>
+        /// 显示设计题数和实际题数
+        /// </summary>
+        private void ShowSet()
+        {
+            //清空实际试题数量
+            foreach (string item in RealEREPDic.Keys)
+            {
+                RealEREPDic[item].RealJudgeNUM = 0;
+                RealEREPDic[item].RealSelectNUM = 0;
+                RealEREPDic[item].RealMuSelectNUM = 0;
+            }
+            //计算实际判断题数量
+            foreach (string key in PdDic.Keys)
+            {
+                RealEREPDic[PdDic[key].Professional].RealJudgeNUM += 1;
+            }
+            //计算实际选择题数量
+            foreach (string key in SelectDic.Keys)
+            {
+                RealEREPDic[SelectDic[key].Professional].RealSelectNUM += 1;
+            }
+            //计算实际多项选择题数量
+            foreach (string key in MuSelectDic.Keys)
+            {
+                RealEREPDic[MuSelectDic[key].Professional].RealMuSelectNUM += 1;
+            }
+
+
+
+            TurnE_R_ESetPro realere = new TurnE_R_ESetPro();
+            realere.PROID = fixedid;
+
+            List<TurnE_R_ESetPro> datalist = new List<TurnE_R_ESetPro>();
+            foreach (string item in RealEREPDic.Keys)
+            {
+                TurnE_R_ESetPro temptere = RealEREPDic[item];
+                datalist.Add(temptere);
+
+                realere.JudgeNUM += temptere.JudgeNUM;
+                realere.SelectNUM += temptere.SelectNUM;
+                realere.MuSelectNUM += temptere.MuSelectNUM;
+
+                realere.RealJudgeNUM += temptere.RealJudgeNUM;
+                realere.RealSelectNUM += temptere.RealSelectNUM;
+                realere.RealMuSelectNUM += temptere.RealMuSelectNUM;
+
+
+            }
+            realallere = realere;
+            datalist.Add(realere);
+
+            int i = 1;
+            gridControl1.DataSource = null;
+            gridControl1.DataSource = datalist;
+            gridView1.Columns["PROID"].ColumnEdit = DicTypeHelper.E_proDicTB;
+            gridView1.Columns["PROID"].VisibleIndex = i++;
+            gridView1.Columns["JudgeNUM"].Width = 110;
+            gridView1.Columns["JudgeNUM"].VisibleIndex = i++;
+            gridView1.Columns["RealJudgeNUM"].Width = 110;
+            gridView1.Columns["RealJudgeNUM"].VisibleIndex = i++;
+            gridView1.Columns["SelectNUM"].Width = 110;
+            gridView1.Columns["SelectNUM"].VisibleIndex = i++;
+            gridView1.Columns["RealSelectNUM"].Width = 110;
+            gridView1.Columns["RealSelectNUM"].VisibleIndex = i++;
+            gridView1.Columns["MuSelectNUM"].Width = 110;
+            gridView1.Columns["MuSelectNUM"].VisibleIndex = i++;
+            gridView1.Columns["RealMuSelectNUM"].Width = 110;
+            gridView1.Columns["RealMuSelectNUM"].VisibleIndex = i++;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -116,17 +195,19 @@ namespace Ebada.Exam
         /// <param name="e"></param>
         private void btnRandPaper_Click(object sender, EventArgs e)
         {
-            if (CreateRandomQuestion())
+            if (MsgBox.ShowAskMessageBox("您确定要生成随机试题吗？当前试题将被删除") == DialogResult.OK)
             {
-                ViewQuestionPaper();
+                if (CreateRandomQuestion())
+                {
+                    ViewQuestionPaper();
+                }
             }
-           
         }
         private void ViewQuestionPaper()
         {
             panel1.Controls.Clear();
-            int x=15;
-            int y=15;
+            int x = 15;
+            int y = 15;
 
             LabelControl pdlab = new LabelControl();
             pdlab.Font = labMB.Font;
@@ -136,13 +217,13 @@ namespace Ebada.Exam
             pdlab.Location = new Point(x, y);
 
             y = y + pdlab.Height + 5;
-            
+
 
             int pdjs = 1;
-            foreach (string  key in PdDic.Keys)
+            foreach (string key in PdDic.Keys)
             {
                 UcTroQuestonPD pd = new UcTroQuestonPD(pdjs, PdDic[key]);
-                pd.DelEvent +=new UcTroQuestonPD.DelQue(pd_DelEvent);
+                pd.DelEvent += new UcTroQuestonPD.DelQue(pd_DelEvent);
                 panel1.Controls.Add(pd);
                 pd.Location = new Point(x, y);
                 y = y + pd.Height + 5;
@@ -184,10 +265,51 @@ namespace Ebada.Exam
                 muselect.DelEvent += new UcTroQuestonMuSlect.DelQue(muselect_DelEvent);
                 panel1.Controls.Add(muselect);
                 muselect.Location = new Point(x, y);
-                y = y + muselect.GetHeight +5;
+                y = y + muselect.GetHeight + 5;
                 muselectjs++;
             }
+            ShowSet();
+            CheckPaperQNum();
         }
+
+
+        private bool  CheckPaperQNum()
+        {
+            bool result = true;
+
+            string str = string.Empty;
+
+            if (realallere.JudgeNUM != PdDic.Count)
+            {
+                str += " 判断题数量应为【" + realallere.JudgeNUM + "】道，目前缺少【" + (realallere.JudgeNUM - PdDic.Count) + "】道;";
+            }
+            if (realallere.SelectNUM != SelectDic.Count)
+            {
+                str += " 单项选择题数量应为【" + realallere.SelectNUM + "】道，目前缺少【" + (realallere.SelectNUM - SelectDic.Count) + "】道;";
+            }
+            if (realallere.MuSelectNUM != MuSelectDic.Count)
+            {
+                str += " 多项选择题数量应为【" + realallere.MuSelectNUM + "】道，目前缺少【" + (realallere.MuSelectNUM - MuSelectDic.Count) + "】道;";
+            }
+            if (str.Length > 1)
+            {
+                str = "提示：" + str;
+                labWaring.Text = str;
+                labWaring.Visible = true;
+                btnAddQ.Enabled = true;
+                result = false;
+            }
+            else
+            {
+                labWaring.Visible = false;
+                btnAddQ.Enabled = false;
+            }
+            return result;
+        }
+        /// <summary>
+        /// 删除判断题
+        /// </summary>
+        /// <param name="qid"></param>
         void pd_DelEvent(string qid)
         {
             if (PdDic.ContainsKey(qid))
@@ -195,6 +317,10 @@ namespace Ebada.Exam
                 PdDic.Remove(qid);
             }
         }
+        /// <summary>
+        /// 删除单项选择题
+        /// </summary>
+        /// <param name="qid"></param>
         void select_DelEvent(string qid)
         {
             if (SelectDic.ContainsKey(qid))
@@ -202,7 +328,10 @@ namespace Ebada.Exam
                 SelectDic.Remove(qid);
             }
         }
-
+        /// <summary>
+        /// 删除多项选择题
+        /// </summary>
+        /// <param name="qid"></param>
         void muselect_DelEvent(string qid)
         {
             if (MuSelectDic.ContainsKey(qid))
@@ -211,8 +340,10 @@ namespace Ebada.Exam
             }
         }
 
-       
-       
+        /// <summary>
+        /// 生成随机试题
+        /// </summary>
+        /// <returns></returns>
         private bool CreateRandomQuestion()
         {
             PdDic.Clear();
@@ -222,7 +353,7 @@ namespace Ebada.Exam
             foreach (E_R_ESetPro item in ereslist)
             {
                 //统计时临时加上的一个标识
-                if (item.PROID != "010101")
+                if (item.PROID != fixedid)
                 {
                     string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'";
                     IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
@@ -255,25 +386,31 @@ namespace Ebada.Exam
                     }
                     RandSelectQuestion(eqmuselectblist, item.MuSelectNUM);
                 }
-                
+
             }
             return hasst;
         }
         Random rand = new Random();
+
+        /// <summary>
+        /// 根据随机数和指定列表，选出随机试题
+        /// </summary>
+        /// <param name="eqlist"></param>
+        /// <param name="randnum"></param>
         private void RandSelectQuestion(IList<E_QuestionBank> eqlist, int randnum)
         {
             string type = eqlist[0].Type;
             int qunumall = eqlist.Count;
             //如果总试题数不多，小于2 倍的出题数，侧采用减少试题的方法
-            if (eqlist.Count<=randnum*2)
+            if (eqlist.Count <= randnum * 2)
             {
-               
-                for (int i = 0; i < qunumall-randnum; i++)
+
+                for (int i = 0; i < qunumall - randnum; i++)
                 {
                     int index = rand.Next(eqlist.Count);
                     eqlist.RemoveAt(index);
                 }
-                if (type=="判断题")
+                if (type == "判断题")
                 {
                     AddQuestion(eqlist, PdDic);
                 }
@@ -316,10 +453,14 @@ namespace Ebada.Exam
                     AddQuestion(tempdic, MuSelectDic);
                 }
             }
-            
-        }
-        
 
+        }
+
+        /// <summary>
+        /// 将列表中的数据填加到字典中
+        /// </summary>
+        /// <param name="eqlist"></param>
+        /// <param name="dic"></param>
         private void AddQuestion(IList<E_QuestionBank> eqlist, Dictionary<string, E_QuestionBank> dic)
         {
             foreach (E_QuestionBank item in eqlist)
@@ -327,32 +468,119 @@ namespace Ebada.Exam
                 dic.Add(item.ID, item);
             }
         }
+        /// <summary>
+        /// 将一个字典中的数据加到另一个字典中
+        /// </summary>
+        /// <param name="dicold"></param>
+        /// <param name="dic"></param>
         private void AddQuestion(Dictionary<string, E_QuestionBank> dicold, Dictionary<string, E_QuestionBank> dic)
         {
-            foreach (string  item in dicold.Keys)
+            foreach (string item in dicold.Keys)
             {
                 dic.Add(item, dicold[item]);
             }
         }
-
+        /// <summary>
+        /// 刷新试卷
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             ViewQuestionPaper();
         }
+      
+        /// <summary>
+        /// 从列表中生成随机数量的度题，添加到字典中
+        /// </summary>
+        /// <param name="fromeqlist"></param>
+        /// <param name="randnum"></param>
+        /// <param name="ToDic"></param>
+        private void RandAddQuestion(IList<E_QuestionBank> fromeqlist, int randnum, Dictionary<string, E_QuestionBank> ToDic)
+        {
 
+            for (int i = 0; i < randnum; i++)
+            {
+                bool hasdel = true;
+                while (hasdel)
+                {
+                    int index = rand.Next(fromeqlist.Count);
+                    if (!ToDic.ContainsKey(fromeqlist[index].ID))
+                    {
+                        ToDic.Add(fromeqlist[index].ID, fromeqlist[index]);
+                        hasdel = false;
+                    }
+                }
+            }
+
+
+
+        }
+        /// <summary>
+        /// 补齐试题
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddQ_Click(object sender, EventArgs e)
+        {
+
+            foreach (string key in RealEREPDic.Keys)
+            {
+                TurnE_R_ESetPro item = RealEREPDic[key];
+                //缺少判断题
+                if (item.JudgeNUM > item.RealJudgeNUM)
+                {
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'";
+                    IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
+                    RandAddQuestion(eqpdblist, (item.JudgeNUM - item.RealJudgeNUM), PdDic);
+
+                }
+
+                //缺少单项选择题
+                if (item.SelectNUM > item.RealSelectNUM)
+                {
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='单项选择题'";
+                    IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
+                    RandAddQuestion(eqpdblist, (item.SelectNUM - item.RealSelectNUM), SelectDic);
+
+                }
+
+                //缺少多面选择题
+                if (item.MuSelectNUM > item.RealMuSelectNUM)
+                {
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='多项选择题'";
+                    IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
+                    RandAddQuestion(eqpdblist, (item.MuSelectNUM - item.RealMuSelectNUM), MuSelectDic);
+
+                }
+            }
+            ViewQuestionPaper();
+        }
+
+        /// <summary>
+        /// 确定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!CheckPaperQNum())
+            {
+                ShowSet();
+                MsgBox.ShowWarningMessageBox("当前试题数量不够，请补齐试题！");
+                return;
+            }
             EQlist = new List<E_QuestionBank>();
 
             string del = " where ExID='" + EPID + "'";
             Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_ExaminationPaperQuestion>(del);
 
-            int i=0;
+            int i = 0;
             foreach (string key in PdDic.Keys)
             {
                 i++;
                 E_ExaminationPaperQuestion eepq = new E_ExaminationPaperQuestion();
-                eepq.ID+=i.ToString();
+                eepq.ID += i.ToString();
                 eepq.ExID = EPID;
                 eepq.QuID = key;
                 eepq.QuType = "判断题";
@@ -384,5 +612,6 @@ namespace Ebada.Exam
             this.DialogResult = DialogResult.OK;
 
         }
+
     }
 }
