@@ -241,7 +241,7 @@ namespace Ebada.Exam {
                 }
                 catch (Exception ex)
                 {
-                    MsgBox.ShowWarningMessageBox("导入数据失败!");
+                    MsgBox.ShowWarningMessageBox("导入数据失败!"+ex.Message);
                     //数据回滚
                     foreach (E_QuestionBank yc in eqbList)
                     {
@@ -294,109 +294,146 @@ namespace Ebada.Exam {
         //判断题
         private void JudgeDeal(DataTable dt)
         {
-            int i = 0;
-            foreach (DataRow dr in dt.Rows)
+            string th=string.Empty;
+            try
             {
-                i++;
-                if (i == 1000)
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
                 {
-                    i = 0;
+                    i++;
+                    if (i == 10000)
+                    {
+                        i = 0;
+                    }
+                    E_QuestionBank eq = new E_QuestionBank();
+                    if (dr["出题科室"].ToString().Trim()==string.Empty||dr["题目"].ToString().Trim()==string.Empty)
+                    {
+                        continue;
+                    }
+                    eq.ID += i.ToString();
+                    eq.Type = "判断题";
+                    eq.Sequence = OrderNumTurn(dr["题号"].ToString());
+                    th = dr["题号"].ToString();
+                    eq.Title = dr["题目"].ToString();
+                    eq.Answer = PDAnswerChange(dr["答案"].ToString());
+                    eq.Professional = ProfTurn(dr["出题科室"].ToString());
+                    eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
+                    eq.InTime = DateTime.Now;
+                    eq.InUser = MainHelper.User.UserName + "[导入]";
+                    if (dr["解释说明"]!=null)
+                    {
+                        eq.Explain = dr["解释说明"].ToString();
+                    }
+                    if (eq.Title.Length > 5)
+                    {
+                        eqbList.Add(eq);
+                    }
                 }
-                E_QuestionBank eq = new E_QuestionBank();
-                if (dr["出题科室"].ToString().Trim()==string.Empty||dr["题目"].ToString().Trim()==string.Empty)
-                {
-                    continue;
-                }
-                eq.ID += i.ToString();
-                eq.Type = "判断题";
-                eq.Title = dr["题目"].ToString();
-                eq.Answer = PDAnswerChange(dr["答案"].ToString());
-                eq.Professional = ProfTurn(dr["出题科室"].ToString());
-                eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
-                eq.InTime = DateTime.Now;
-                eq.InUser = MainHelper.User.UserName + "[导入]";
-                eq.Sequence = OrderNumTurn(dr["题号"].ToString());
-                if (dr["解释说明"]!=null)
-                {
-                    eq.Explain = dr["解释说明"].ToString();
-                }
-                if (eq.Title.Length > 5)
-                {
-                    eqbList.Add(eq);
-                }
+            }
+            catch (Exception ee)
+            {
+
+                MsgBox.ShowWarningMessageBox("判断题第" + th + "题有问题，请检查。\r\n" + ee.Message);
             }
         }
         //单项选择
         private void SelectDeal(DataTable dt)
         {
-            int i = 0;
-            foreach (DataRow dr in dt.Rows)
+            string th=string.Empty;
+            try
             {
-                i++;
-                if (i == 1000)
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
                 {
-                    i = 0;
+                    i++;
+                    if (i == 10000)
+                    {
+                        i = 0;
+                    }
+                    E_QuestionBank eq = new E_QuestionBank();
+                    if (dr["出题科室"].ToString().Trim() == string.Empty || dr["题目"].ToString().Trim() == string.Empty)
+                    {
+                        continue;
+                    }
+                    eq.ID += i.ToString();
+
+                    eq.Type = "单项选择题";
+                    eq.Sequence = OrderNumTurn(dr["题号"].ToString());
+                    th=dr["题号"].ToString();
+
+                    eq.Title = dr["题目"].ToString();
+                    eq.Option = OperationTurn(dr["选项内容"].ToString());
+                    eq.Answer = SelectAnswwerTurn(dr["答案"].ToString());
+                    eq.Professional = ProfTurn(dr["出题科室"].ToString());
+                    eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
+                    eq.InTime = DateTime.Now;
+                    eq.InUser = MainHelper.User.UserName + "[导入]";
+                   
+                    if (dr["解释说明"] != null)
+                    {
+                        eq.Explain = dr["解释说明"].ToString();
+                    }
+                    if (eq.Title.Length > 5)
+                    {
+                        eqbList.Add(eq);
+                    }
+
                 }
-                E_QuestionBank eq = new E_QuestionBank();
-                 if (dr["出题科室"].ToString().Trim()==string.Empty||dr["题目"].ToString().Trim()==string.Empty)
-                {
-                    continue;
-                }
-                eq.ID += i.ToString();
-                eq.Type = "单项选择题";
-                eq.Title = dr["题目"].ToString();
-                eq.Option = OperationTurn(dr["选项内容"].ToString());
-                eq.Answer = SelectAnswwerTurn(dr["答案"].ToString());
-                eq.Professional = ProfTurn(dr["出题科室"].ToString());
-                eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
-                eq.InTime = DateTime.Now;
-                eq.InUser = MainHelper.User.UserName + "[导入]";
-                eq.Sequence = OrderNumTurn(dr["题号"].ToString());
-                if (dr["解释说明"] != null)
-                {
-                    eq.Explain = dr["解释说明"].ToString();
-                }
-                if (eq.Title.Length>5)
-                {
-                    eqbList.Add(eq);
-                }
-               
             }
+            catch (Exception ee)
+            {
+
+                MsgBox.ShowWarningMessageBox("单项选择题第"+th+"题有问题，请检查。\r\n"+ee.Message);
+            }
+            
         }
         //多项选择题
         private void MuSelectDeal(DataTable dt)
         {
-            int i = 0;
-            foreach (DataRow dr in dt.Rows)
+            string th=string.Empty;
+            try
             {
-                i++;
-                if (i == 1000)
+              
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
                 {
-                    i = 0;
+                    i++;
+                    if (i == 10000)
+                    {
+                        i = 0;
+                    }
+                    E_QuestionBank eq = new E_QuestionBank();
+                     if (dr["出题科室"].ToString().Trim()==string.Empty||dr["题目"].ToString().Trim()==string.Empty)
+                    {
+                        continue;
+                    }
+                    eq.ID += i.ToString();
+                    eq.Type = "多项选择题";
+                    eq.Sequence = OrderNumTurn(dr["题号"].ToString());
+                    th = dr["题号"].ToString();
+
+                    eq.Title = dr["题目"].ToString();
+                    eq.Option = OperationTurn(dr["选项内容"].ToString());
+                    eq.Answer = (dr["答案"].ToString());
+                    eq.Professional = ProfTurn(dr["出题科室"].ToString());
+                    eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
+                    eq.InTime = DateTime.Now;
+                    eq.InUser = MainHelper.User.UserName + "[导入]";
+                 
+                    if (dr["解释说明"] != null)
+                    {
+                        eq.Explain = dr["解释说明"].ToString();
+                    }
+                    if (eq.Title.Length > 5)
+                    {
+                        eqbList.Add(eq);
+                    }
                 }
-                E_QuestionBank eq = new E_QuestionBank();
-                 if (dr["出题科室"].ToString().Trim()==string.Empty||dr["题目"].ToString().Trim()==string.Empty)
-                {
-                    continue;
-                }
-                eq.ID += i.ToString();
-                eq.Type = "多项选择题";
-                eq.Title = dr["题目"].ToString();
-                eq.Option = OperationTurn(dr["选项内容"].ToString());
-                eq.Answer = (dr["答案"].ToString());
-                eq.Professional = ProfTurn(dr["出题科室"].ToString());
-                eq.DifficultyLevel = DiLeverTurn(dr["难度等级"].ToString());
-                eq.InTime = DateTime.Now;
-                eq.InUser = MainHelper.User.UserName + "[导入]";
-                eq.Sequence = OrderNumTurn(dr["题号"].ToString());
-                if (dr["解释说明"] != null)
-                {
-                    eq.Explain = dr["解释说明"].ToString();
-                }
-                if (eq.Title.Length > 5)
-                {
-                    eqbList.Add(eq);
-                }
+            }
+            catch (Exception ee)
+            {
+
+                MsgBox.ShowWarningMessageBox("多面选择题第" + th + "题有问题，请检查。\r\n" + ee.Message);
             }
         }
         /// <summary>
