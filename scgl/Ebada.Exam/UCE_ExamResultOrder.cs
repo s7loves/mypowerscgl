@@ -186,5 +186,15 @@ namespace Ebada.Exam {
                 }
             }
         }
+
+        private void barbtnViewPaper_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.GetFocusedRow()!=null)
+            {
+                E_ExamResult eer = gridView1.GetFocusedRow() as E_ExamResult;
+                FrmE_PaperView frm = new FrmE_PaperView(eer.E_ID, eer.UserID);
+                frm.ShowDialog();
+            }
+        }
     }
 }

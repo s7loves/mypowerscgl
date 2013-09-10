@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -107,6 +107,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_ExamResultByUser.resx">
       <DependentUpon>FrmE_ExamResultByUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_PaperEdit.resx">
       <DependentUpon>FrmE_PaperEdit.cs</DependentUpon>
@@ -216,6 +217,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_ExamResultOrder.resx">
       <DependentUpon>FrmE_ExamResultOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UCE_ExamResultOrder.resx">
       <DependentUpon>UCE_ExamResultOrder.cs</DependentUpon>
@@ -223,6 +225,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCmOrgTree.resx">
       <DependentUpon>UCmOrgTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcViewTroQuestonPD.resx">
+      <DependentUpon>UcViewTroQuestonPD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcViewTroQuestonSlect.resx">
+      <DependentUpon>UcViewTroQuestonSlect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcViewTroQuestonMuSlect.resx">
+      <DependentUpon>UcViewTroQuestonMuSlect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_PaperView.resx">
+      <DependentUpon>FrmE_PaperView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -394,6 +412,30 @@
     </Compile>
     <Compile Include="UCmOrgTree.Designer.cs">
       <DependentUpon>UCmOrgTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcViewTroQuestonPD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcViewTroQuestonPD.Designer.cs">
+      <DependentUpon>UcViewTroQuestonPD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcViewTroQuestonSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcViewTroQuestonSlect.Designer.cs">
+      <DependentUpon>UcViewTroQuestonSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcViewTroQuestonMuSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcViewTroQuestonMuSlect.Designer.cs">
+      <DependentUpon>UcViewTroQuestonMuSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_PaperView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_PaperView.Designer.cs">
+      <DependentUpon>FrmE_PaperView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

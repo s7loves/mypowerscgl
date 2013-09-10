@@ -45,6 +45,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barbtnViewPaper = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -70,8 +71,9 @@
             this.btClose,
             this.bsItem1,
             this.btExport,
-            this.barLkueExam});
-            this.barManager1.MaxItemId = 15;
+            this.barLkueExam,
+            this.barbtnViewPaper});
+            this.barManager1.MaxItemId = 16;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
             this.barManager1.StatusBar = this.bar3;
@@ -89,6 +91,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnViewPaper, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
@@ -196,13 +199,13 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(479, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(643, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
-            this.barDockControlBottom.Size = new System.Drawing.Size(479, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(643, 25);
             // 
             // barDockControlLeft
             // 
@@ -213,7 +216,7 @@
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(479, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(643, 25);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 264);
             // 
             // gridControl1
@@ -228,7 +231,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(479, 264);
+            this.gridControl1.Size = new System.Drawing.Size(643, 264);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -247,6 +250,13 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // barbtnViewPaper
+            // 
+            this.barbtnViewPaper.Caption = "查看试卷";
+            this.barbtnViewPaper.Id = 15;
+            this.barbtnViewPaper.Name = "barbtnViewPaper";
+            this.barbtnViewPaper.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnViewPaper_ItemClick);
+            // 
             // UCE_ExamResultOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -257,7 +267,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "UCE_ExamResultOrder";
-            this.Size = new System.Drawing.Size(479, 314);
+            this.Size = new System.Drawing.Size(643, 314);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -287,5 +297,6 @@
         private DevExpress.XtraBars.BarSubItem btExport;
         private DevExpress.XtraBars.BarEditItem barLkueExam;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraBars.BarButtonItem barbtnViewPaper;
     }
 }
