@@ -37,8 +37,10 @@
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.labMB = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labWaring = new DevExpress.XtraEditors.LabelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAddQ = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -69,7 +71,7 @@
             // 
             // btnRandPaper
             // 
-            this.btnRandPaper.Location = new System.Drawing.Point(542, 12);
+            this.btnRandPaper.Location = new System.Drawing.Point(811, 12);
             this.btnRandPaper.Name = "btnRandPaper";
             this.btnRandPaper.Size = new System.Drawing.Size(95, 23);
             this.btnRandPaper.TabIndex = 1;
@@ -81,7 +83,7 @@
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Location = new System.Drawing.Point(12, 9);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(490, 163);
+            this.groupControl2.Size = new System.Drawing.Size(783, 163);
             this.groupControl2.TabIndex = 29;
             this.groupControl2.Text = "试卷试题情况";
             // 
@@ -96,7 +98,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(486, 138);
+            this.gridControl1.Size = new System.Drawing.Size(779, 138);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -117,7 +119,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(542, 68);
+            this.btnRefresh.Location = new System.Drawing.Point(920, 12);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(95, 23);
             this.btnRefresh.TabIndex = 30;
@@ -137,6 +139,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labWaring);
             this.groupControl1.Controls.Add(this.panelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupControl1.Location = new System.Drawing.Point(0, 196);
@@ -145,11 +148,24 @@
             this.groupControl1.TabIndex = 32;
             this.groupControl1.Text = "试卷预览";
             // 
+            // labWaring
+            // 
+            this.labWaring.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labWaring.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labWaring.Appearance.Options.UseFont = true;
+            this.labWaring.Appearance.Options.UseForeColor = true;
+            this.labWaring.Location = new System.Drawing.Point(68, 5);
+            this.labWaring.Name = "labWaring";
+            this.labWaring.Size = new System.Drawing.Size(82, 14);
+            this.labWaring.TabIndex = 1;
+            this.labWaring.Text = "labelControl1";
+            this.labWaring.Visible = false;
+            // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(811, 147);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(95, 23);
+            this.btnOK.Size = new System.Drawing.Size(95, 36);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "确 定";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -159,9 +175,19 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(920, 147);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(95, 23);
+            this.btnCancel.Size = new System.Drawing.Size(95, 36);
             this.btnCancel.TabIndex = 34;
             this.btnCancel.Text = "取消";
+            // 
+            // btnAddQ
+            // 
+            this.btnAddQ.Enabled = false;
+            this.btnAddQ.Location = new System.Drawing.Point(811, 65);
+            this.btnAddQ.Name = "btnAddQ";
+            this.btnAddQ.Size = new System.Drawing.Size(95, 23);
+            this.btnAddQ.TabIndex = 35;
+            this.btnAddQ.Text = "补齐试题";
+            this.btnAddQ.Click += new System.EventHandler(this.btnAddQ_Click);
             // 
             // FrmE_PaperEdit
             // 
@@ -169,6 +195,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 661);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAddQ);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupControl1);
@@ -189,6 +216,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +235,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.LabelControl labWaring;
+        private DevExpress.XtraEditors.SimpleButton btnAddQ;
     }
 }

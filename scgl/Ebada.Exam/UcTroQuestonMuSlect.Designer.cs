@@ -71,7 +71,6 @@
             this.btnDel.Size = new System.Drawing.Size(51, 23);
             this.btnDel.TabIndex = 4;
             this.btnDel.Text = "删除";
-            this.btnDel.Visible = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // labTS

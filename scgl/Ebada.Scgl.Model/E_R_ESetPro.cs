@@ -323,5 +323,219 @@ namespace Ebada.Scgl.Model
             return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
         }
         #endregion		
+    }
+
+
+    public class TurnE_R_ESetPro
+    {
+
+        #region Private 成员
+        private string _id = Newid();
+        private string _esetid = String.Empty;
+        private string _proid = String.Empty;
+       
+        private int _selectnum = 0;
+        private int _muselectnum = 0;
+        private int _judgenum = 0;
+
+        private int _realselectnum = 0;
+        private int _realmuselectnum = 0;
+        private int _realjudgenum = 0;
+
+        #endregion
+
+
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[]长度不能大于50!");
+                if (_id as object == null || !_id.Equals(value))
+                {
+                    _id = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：ESETID
+        /// 属性描述：设置
+        /// 字段信息：[ESETID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("设置")]
+        public string ESETID
+        {
+            get { return _esetid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[设置]长度不能大于50!");
+                if (_esetid as object == null || !_esetid.Equals(value))
+                {
+                    _esetid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：PROID
+        /// 属性描述：专业
+        /// 字段信息：[PROID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("专业")]
+        public string PROID
+        {
+            get { return _proid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[专业]长度不能大于200!");
+                if (_proid as object == null || !_proid.Equals(value))
+                {
+                    _proid = value;
+                }
+            }
+        }
+
+       
+        /// <summary>
+        /// 属性名称：JudgeNUM
+        /// 属性描述：判断题数
+        /// 字段信息：[JudgeNUM],int
+        /// </summary>
+        [DisplayNameAttribute("设计判断题数")]
+        public int JudgeNUM
+        {
+            get { return _judgenum; }
+            set
+            {
+                if (_judgenum as object == null || !_judgenum.Equals(value))
+                {
+                    _judgenum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：SelectNUM
+        /// 属性描述：单选题数量
+        /// 字段信息：[SelectNUM],int
+        /// </summary>
+        [DisplayNameAttribute("设计单选题数量")]
+        public int SelectNUM
+        {
+            get { return _selectnum; }
+            set
+            {
+                if (_selectnum as object == null || !_selectnum.Equals(value))
+                {
+                    _selectnum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：MuSelectNUM
+        /// 属性描述：多选题数量
+        /// 字段信息：[MuSelectNUM],int
+        /// </summary>
+        [DisplayNameAttribute("设计多选题数量")]
+        public int MuSelectNUM
+        {
+            get { return _muselectnum; }
+            set
+            {
+                if (_muselectnum as object == null || !_muselectnum.Equals(value))
+                {
+                    _muselectnum = value;
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// 属性名称：RealJudgeNUM
+        /// 属性描述：实际判断题数
+        /// 字段信息：[RealJudgeNUM],int
+        /// </summary>
+        [DisplayNameAttribute("实际判断题数")]
+        public int RealJudgeNUM
+        {
+            get { return _realjudgenum; }
+            set
+            {
+                if (_realjudgenum as object == null || !_realjudgenum.Equals(value))
+                {
+                    _realjudgenum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：RealSelectNUM
+        /// 属性描述：实际单选题数量
+        /// 字段信息：[RealSelectNUM],int
+        /// </summary>
+        [DisplayNameAttribute("实际单选题数量")]
+        public int RealSelectNUM
+        {
+            get { return _realselectnum; }
+            set
+            {
+                if (_realselectnum as object == null || !_realselectnum.Equals(value))
+                {
+                    _realselectnum = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：RealMuSelectNUM
+        /// 属性描述：实际多选题数量
+        /// 字段信息：[RealMuSelectNUM],int
+        /// </summary>
+        [DisplayNameAttribute("实际多选题数量")]
+        public int RealMuSelectNUM
+        {
+            get { return _realmuselectnum; }
+            set
+            {
+                if (_realmuselectnum as object == null || !_realmuselectnum.Equals(value))
+                {
+                    _realmuselectnum = value;
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region 方法
+        public static string Newid()
+        {
+            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+        }
+        public string CreateID()
+        {
+            Thread.Sleep(new TimeSpan(100000));//0.1毫秒
+            return DateTime.Now.ToString("yyyyMMddHHmmssffffff");
+        }
+        #endregion
     }	
 }

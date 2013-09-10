@@ -86,12 +86,18 @@ namespace Ebada.Exam
                 MsgBox.ShowWarningMessageBox("请选择试卷类型！");
                 return;
             }
+            if (rowData.Paper_Type=="随机试题")
+            {
+                
+                string del = " where ExID='" + rowData.ID + "'";
+                Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_ExaminationPaperQuestion>(del);
 
-            //if (lkuePro.EditValue == null || lkuePro.EditValue.ToString() == string.Empty)
-            //{
-            //    MsgBox.ShowWarningMessageBox("请选择专业！");
-            //    return;
-            //}
+            }
+            else if (rowData.Paper_Type == "指定试题"&&rowData.BySCol1!="1")
+            {
+                MsgBox.ShowWarningMessageBox("您选择指定试题，试题没有指定或者数量不对，将影响考生考试，请完成试题后再保存！");
+                return;
+            }
             IList<E_ExaminationPaper> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExaminationPaper>(" where EP_Name='" + exname + "' ");
             if (list.Count>0&&rowData.ID!=list[0].ID)
             {
@@ -146,6 +152,7 @@ namespace Ebada.Exam
                 else
                 {
                     btnEditQuestion.Enabled = false;
+                    rowData.BySCol1 = "";
                     rowData.CreateMan = string.Empty;
                 }
             }
@@ -162,6 +169,8 @@ namespace Ebada.Exam
             frm.SetId = rowData.SettingID;
             if (frm.ShowDialog()==DialogResult.OK)
             {
+                //表示指定的试题已经准备好了
+                rowData.BySCol1 = "1";
                 rowData.CreateTime = DateTime.Now;
                 rowData.CreateMan = MainHelper.User.UserName;
             }
