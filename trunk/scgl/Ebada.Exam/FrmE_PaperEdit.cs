@@ -355,7 +355,7 @@ namespace Ebada.Exam
                 //统计时临时加上的一个标识
                 if (item.PROID != fixedid)
                 {
-                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'";
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题' and ByScol1!='del'";
                     IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
                     E_Professional ep = Client.ClientHelper.PlatformSqlMap.GetOneByKey<E_Professional>(item.PROID);
                     if (eqpdblist.Count < item.JudgeNUM)
@@ -366,7 +366,7 @@ namespace Ebada.Exam
                     }
                     RandSelectQuestion(eqpdblist, item.JudgeNUM);
 
-                    string sqlwhereselect = " where Professional='" + item.PROID + "' and Type='单项选择题'";
+                    string sqlwhereselect = " where Professional='" + item.PROID + "' and Type='单项选择题' and ByScol1!='del'";
                     IList<E_QuestionBank> eqselectblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwhereselect);
                     if (eqselectblist.Count < item.SelectNUM)
                     {
@@ -376,7 +376,7 @@ namespace Ebada.Exam
                     }
                     RandSelectQuestion(eqselectblist, item.SelectNUM);
 
-                    string sqlwheremuselect = " where Professional='" + item.PROID + "' and Type='多项选择题'";
+                    string sqlwheremuselect = " where Professional='" + item.PROID + "' and Type='多项选择题' and ByScol1!='del'";
                     IList<E_QuestionBank> eqmuselectblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwheremuselect);
                     if (eqmuselectblist.Count < item.MuSelectNUM)
                     {
@@ -530,7 +530,7 @@ namespace Ebada.Exam
                 //缺少判断题
                 if (item.JudgeNUM > item.RealJudgeNUM)
                 {
-                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'";
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'  and ByScol1!='del'";
                     IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
                     RandAddQuestion(eqpdblist, (item.JudgeNUM - item.RealJudgeNUM), PdDic);
 
@@ -539,7 +539,7 @@ namespace Ebada.Exam
                 //缺少单项选择题
                 if (item.SelectNUM > item.RealSelectNUM)
                 {
-                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='单项选择题'";
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='单项选择题' and ByScol1!='del'";
                     IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
                     RandAddQuestion(eqpdblist, (item.SelectNUM - item.RealSelectNUM), SelectDic);
 
@@ -548,7 +548,7 @@ namespace Ebada.Exam
                 //缺少多面选择题
                 if (item.MuSelectNUM > item.RealMuSelectNUM)
                 {
-                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='多项选择题'";
+                    string sqlwherepd = " where Professional='" + item.PROID + "' and Type='多项选择题' and ByScol1!='del'";
                     IList<E_QuestionBank> eqpdblist = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_QuestionBank>(sqlwherepd);
                     RandAddQuestion(eqpdblist, (item.MuSelectNUM - item.RealMuSelectNUM), MuSelectDic);
 

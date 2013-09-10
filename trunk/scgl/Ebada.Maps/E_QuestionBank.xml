@@ -254,6 +254,31 @@
    <select id="GetE_QuestionBankRowCount" parameterClass="string">
     select count(*) from E_QuestionBank $value$
    </select>
+    <select id="SelectE_QuestionBankCount" resultMap="E_QuestionBank_AllColumns" parameterClass="string">
+      SELECT
+      a.[ID] as [ID]  ,
+      a.[Type] as [Type],
+      a.[Title] as [Title],
+      a.[QueryText]  as [QueryText] ,
+      a.[Option] as [Option],
+      a.[Answer] as [Answer],
+      a.[Explain] as [Explain],
+      a.[DifficultyLevel] as [DifficultyLevel],
+      a.[ScoreNum] as [ScoreNum],
+      a.[Professional] as [Professional],
+      a.[Sequence] as [Sequence],
+      a.[InTime] as [InTime],
+      a.[InUser] as [InUser],
+      a.[BySCol1] as [BySCol1],
+      a.[BySCol2] as [BySCol2],
+      a.[BySCol3] as [BySCol3],
+      a.[BySCol4] as [BySCol4],
+      b.Answer as [BySCol5],
+      a.[Remark] as [Remark],
+      a.[RowVersion] as [RowVersion]
+      FROM E_QuestionBank as a,E_ExamAnswerResult as b where a.id=b.ExamQueston_ID and
+      $value$
+    </select>
   </statements>
 </sqlMap>
  

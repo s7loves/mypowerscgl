@@ -42,6 +42,7 @@ namespace Ebada.Exam {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_QuestionBank>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_QuestionBank>(gridViewOperation_BeforeDelete);
+            
             barEproLuk.EditValueChanged += new EventHandler(barEproLuk_EditValueChanged);
             barTypeCom.EditValueChanged += new EventHandler(barTypeCom_EditValueChanged);
         }
@@ -71,7 +72,7 @@ namespace Ebada.Exam {
                 }
                 if (sql.Length > 7)
                 {
-                    sql += " order by Professional,Type";
+                    sql += " and ByScol1!='del'  order by Professional,Type";
                     RefreshData(sql);
                 }
             }
@@ -601,6 +602,25 @@ namespace Ebada.Exam {
             }
 
             return strresult;
+        }
+        /// <summary>
+        /// 删除数据，标记
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btDelete1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (gridView1.GetFocusedRow()!=null)
+            {
+                E_QuestionBank eq = gridView1.GetFocusedRow() as E_QuestionBank;
+
+                if (MsgBox.ShowAskMessageBox("确定要删除当前试题吗？")==DialogResult.OK)
+                {
+                    eq.BySCol1 = "del";
+                    ClientHelper.PlatformSqlMap.Update<E_QuestionBank>(eq);
+                    Refresh();
+                }
+            }
         }
 
     }
