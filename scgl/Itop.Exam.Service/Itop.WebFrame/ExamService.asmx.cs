@@ -96,18 +96,17 @@ namespace Itop.WebFrame
 
         [WebMethod(Description = "反回考试列表，参数userid为用户ID")]
         [ScriptMethod(UseHttpGet = false)]
+      
         public string GetExamList(string userid)
         {
-            string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  order by StartTime asc";
-            IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
             List<TurnE_Examination> tlist = new List<TurnE_Examination>();
-            foreach (E_Examination ex in list)
+            try
             {
+                string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  and  id not in( select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime asc";
+                IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
 
-                string sqlwhereresult = " where E_ID='" + ex.ID + "'  and EP_ID='" + ex.EP_ID + "' and UserID='" + userid + "' and IsExamed=1";
-                IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhereresult);
-                if (erlist.Count == 0)
+                foreach (E_Examination ex in list)
                 {
                     TurnE_Examination tex = new TurnE_Examination();
                     tex.ID = ex.ID;
@@ -124,30 +123,23 @@ namespace Itop.WebFrame
                     tex.Remark = ex.Remark;
                     tlist.Add(tex);
                 }
-
-
             }
+            catch (Exception)
+            {
+            }
+            
             return GetJsonStr<TurnE_Examination>(tlist);
         }
+
 
         [WebMethod(Description = "反回已考试列表，参数userid为用户ID")]
         [ScriptMethod(UseHttpGet = false)]
         public string GetHasExamList(string userid)
         {
             List<TurnE_Examination> tlist = new List<TurnE_Examination>();
-            string sqlwhereresult = " where UserID='" + userid + "' and IsExamed=1";
-            IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhereresult);
-            string str = string.Empty;
-            foreach (E_ExamResult item in erlist)
+            try
             {
-
-                str += "'" + item.E_ID + "',";
-            }
-            if (str.Length > 2)
-            {
-                str = str.Substring(0, str.Length - 1);
-
-                string sql = " where ID in (" + str + ") order by StartTime desc";
+                string sql = " where ID in (select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime desc";
                 IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sql);
                 foreach (E_Examination ex in list)
                 {
@@ -166,10 +158,12 @@ namespace Itop.WebFrame
                     tex.Remark = ex.Remark;
                     tlist.Add(tex);
                 }
+            }
+            catch (Exception)
+            {
 
             }
-
-
+           
             return GetJsonStr<TurnE_Examination>(tlist);
         }
 
@@ -182,93 +176,110 @@ namespace Itop.WebFrame
             MuSelectlist.Clear();
             IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
 
-            E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-            if (exam != null)
+            try
             {
-                E_ExaminationPaper eep = Global.SqlMapper.GetOneByKey<E_ExaminationPaper>(exam.EP_ID);
-                if (eep != null)
+
+                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                if (exam != null)
                 {
-                    if (eep.Paper_Type == "指定试题")
+                    E_ExaminationPaper eep = Global.SqlMapper.GetOneByKey<E_ExaminationPaper>(exam.EP_ID);
+                    if (eep != null)
                     {
-                        string sqlwhere = " where ExID='" + eep.ID + "'";
-                        IList<E_ExaminationPaperQuestion> eepqlist = Global.SqlMapper.GetListByWhere<E_ExaminationPaperQuestion>(sqlwhere);
-                        string str = string.Empty;
-                        if (eepqlist.Count > 0)
+                        if (eep.Paper_Type == "指定试题")
                         {
-                            foreach (E_ExaminationPaperQuestion item in eepqlist)
+                            //试题已经准备好了
+                            if (eep.BySCol1 == "1")
                             {
-                                str += "'" + item.QuID + "' ,";
+                                string sqlwhere = " where ExID='" + eep.ID + "'";
+                                IList<E_ExaminationPaperQuestion> eepqlist = Global.SqlMapper.GetListByWhere<E_ExaminationPaperQuestion>(sqlwhere);
+                                string str = string.Empty;
+                                if (eepqlist.Count > 0)
+                                {
+                                    foreach (E_ExaminationPaperQuestion item in eepqlist)
+                                    {
+                                        str += "'" + item.QuID + "' ,";
+                                    }
+                                    str = str.Substring(0, str.Length - 1);
+
+                                    string stsqlwhere = " where ID in (" + str + ") order by  Type";
+                                    IList<E_QuestionBank> banklist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(stsqlwhere);
+                                    if (banklist.Count > 0)
+                                    {
+                                        foreach (E_QuestionBank item in banklist)
+                                        {
+                                            if (item.Type == "判断题")
+                                            {
+                                                Pdlist.Add(item);
+                                            }
+                                            if (item.Type == "单项选择题")
+                                            {
+                                                Selectlist.Add(item);
+                                            }
+                                            if (item.Type == "多项选择题")
+                                            {
+                                                MuSelectlist.Add(item);
+                                            }
+                                        }
+                                        //随机顺序
+                                        if (eep.OrderRandom)
+                                        {
+                                            int[] pdtemparray = Helper.OrderINT(Pdlist.Count);
+                                            for (int i = 0; i < pdtemparray.Length; i++)
+                                            {
+                                                returnlist.Add(Pdlist[pdtemparray[i]]);
+                                            }
+                                            int[] selecttemparray = Helper.OrderINT(Selectlist.Count);
+                                            for (int i = 0; i < selecttemparray.Length; i++)
+                                            {
+                                                returnlist.Add(Selectlist[selecttemparray[i]]);
+                                            }
+                                            int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
+                                            for (int i = 0; i < muselecttemparray.Length; i++)
+                                            {
+                                                returnlist.Add(MuSelectlist[muselecttemparray[i]]);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i < Pdlist.Count; i++)
+                                            {
+                                                returnlist.Add(Pdlist[i]);
+                                            }
+                                            for (int i = 0; i < Selectlist.Count; i++)
+                                            {
+                                                returnlist.Add(Selectlist[i]);
+                                            }
+                                            int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
+                                            for (int i = 0; i < MuSelectlist.Count; i++)
+                                            {
+                                                returnlist.Add(MuSelectlist[i]);
+                                            }
+
+                                        }
+
+
+                                    }
+                                }
                             }
-                            str = str.Substring(0, str.Length - 1);
-
-                            string stsqlwhere = " where ID in (" + str + ") order by  Type";
-                            IList<E_QuestionBank> banklist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(stsqlwhere);
-                            if (banklist.Count > 0)
+                            //没有准备好，则用随机试题
+                            else
                             {
-                                foreach (E_QuestionBank item in banklist)
-                                {
-                                    if (item.Type == "判断题")
-                                    {
-                                        Pdlist.Add(item);
-                                    }
-                                    if (item.Type == "单项选择题")
-                                    {
-                                        Selectlist.Add(item);
-                                    }
-                                    if (item.Type == "多项选择题")
-                                    {
-                                        MuSelectlist.Add(item);
-                                    }
-                                }
-                                //随机顺序
-                                if (eep.OrderRandom)
-                                {
-                                    int[] pdtemparray = Helper.OrderINT(Pdlist.Count);
-                                    for (int i = 0; i < pdtemparray.Length; i++)
-                                    {
-                                        returnlist.Add(Pdlist[pdtemparray[i]]);
-                                    }
-                                    int[] selecttemparray = Helper.OrderINT(Selectlist.Count);
-                                    for (int i = 0; i < selecttemparray.Length; i++)
-                                    {
-                                        returnlist.Add(Selectlist[selecttemparray[i]]);
-                                    }
-                                    int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
-                                    for (int i = 0; i < muselecttemparray.Length; i++)
-                                    {
-                                        returnlist.Add(MuSelectlist[muselecttemparray[i]]);
-                                    }
-                                }
-                                else
-                                {
-                                    for (int i = 0; i < Pdlist.Count; i++)
-                                    {
-                                        returnlist.Add(Pdlist[i]);
-                                    }
-                                    for (int i = 0; i < Selectlist.Count; i++)
-                                    {
-                                        returnlist.Add(Selectlist[i]);
-                                    }
-                                    int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
-                                    for (int i = 0; i < MuSelectlist.Count; i++)
-                                    {
-                                        returnlist.Add(MuSelectlist[i]);
-                                    }
-
-                                }
-
-
+                                CreateRandomQuestion(eep.SettingID, returnlist);
                             }
                         }
+                        else if (eep.Paper_Type == "随机试题")
+                        {
+                            CreateRandomQuestion(eep.SettingID, returnlist);
 
-                    }
-                    else if (eep.Paper_Type == "随机试题")
-                    {
-                        CreateRandomQuestion(eep.SettingID, returnlist);
-
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+
+            }
+            
             return GetQuestionStr(returnlist);
         }
 
@@ -278,32 +289,37 @@ namespace Itop.WebFrame
         public string GetExamResult(string examid, string userid)
         {
             PdaExamResult per = new PdaExamResult();
-
-            E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-            string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
-            //有考试记录
-            if (resultlist.Count > 0)
+            try
             {
-                //是否已经提交结果
-                if (resultlist[0].IsExamed)
+                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
+                //有考试记录
+                if (resultlist.Count > 0)
                 {
-                    //是否已经计算过分数
-                    if (resultlist[0].BySCol1 == "1")
+                    //是否已经提交结果
+                    if (resultlist[0].IsExamed)
                     {
-                        per.Score = resultlist[0].Score;
-                        per.Pass = resultlist[0].IsPassed;
-                    }
+                        //是否已经计算过分数
+                        if (resultlist[0].BySCol1 == "1")
+                        {
+                            per.Score = resultlist[0].Score;
+                            per.Pass = resultlist[0].IsPassed;
+                        }
 
-                    else
-                    {
-                        per = CountExamResult(examid, userid);
+                        else
+                        {
+                            per = CountExamResult(examid, userid);
+                        }
+
                     }
 
                 }
+            }
+            catch (Exception)
+            {
 
             }
-
             return GetJsonStr<PdaExamResult>(per);
         }
 
@@ -312,41 +328,45 @@ namespace Itop.WebFrame
         public string GetExamResultReCount(string examid, string userid, bool ReCount)
         {
             PdaExamResult per = new PdaExamResult();
-
-            E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-            string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
-            //有考试记录
-            if (resultlist.Count > 0)
+            try
             {
-                //是否已经提交结果
-                if (resultlist[0].IsExamed)
+                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
+                //有考试记录
+                if (resultlist.Count > 0)
                 {
-                    //是否已经计算过分数
-                    if (resultlist[0].BySCol1 == "1")
+                    //是否已经提交结果
+                    if (resultlist[0].IsExamed)
                     {
-                        // 是否重新计算分数
-                        if (ReCount)
+                        //是否已经计算过分数
+                        if (resultlist[0].BySCol1 == "1")
+                        {
+                            // 是否重新计算分数
+                            if (ReCount)
+                            {
+                                per = CountExamResult(examid, userid);
+                            }
+                            else
+                            {
+                                per.Score = resultlist[0].Score;
+                                per.Pass = resultlist[0].IsPassed;
+                            }
+
+                        }
+
+                        else
                         {
                             per = CountExamResult(examid, userid);
                         }
-                        else
-                        {
-                            per.Score = resultlist[0].Score;
-                            per.Pass = resultlist[0].IsPassed;
-                        }
 
                     }
-
-                    else
-                    {
-                        per = CountExamResult(examid, userid);
-                    }
-
                 }
+            }
+            catch (Exception)
+            {
 
             }
-
             return GetJsonStr<PdaExamResult>(per);
         }
 
@@ -391,62 +411,28 @@ namespace Itop.WebFrame
         [ScriptMethod(UseHttpGet = false)]
         public string GetEaxmResultOrder(string examid, int topnum)
         {
-            string sqlwere = string.Empty;
-            if (topnum > 0)
-            {
-                sqlwere += " SELECT top " + topnum;
-            }
-            else
-            {
-                sqlwere += " SELECT ";
-            }
-            sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
-            sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
-
-            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
-
             List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
-            int i = 1;
-            foreach (E_ExamResult eer in resultlist)
+            try
             {
-                PdaExamResultOrder per = new PdaExamResultOrder();
-                per.ID = eer.ID;
-                per.UserID = eer.UserID;
-                per.ExamID = eer.E_ID;
-                per.ExamName = eer.BySCol2;
-                per.UserName = eer.BySCol1;
-                per.OrderNum = i;
-                per.Score = eer.Score;
-                per.Pass = eer.IsPassed;
-                tlist.Add(per);
-                i++;
-            }
-            return GetJsonStr<PdaExamResultOrder>(tlist);
-        }
-
-        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEaxmResultOrderByUser(string examid, string userid)
-        {
-            PdaExamResultOrder per = new PdaExamResultOrder();
-            per.ID = "101";
-            per.OrderNum = 0;
-            per.Pass = false;
-
-            string sqlwere = string.Empty;
-            sqlwere += " SELECT ";
-            sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
-            sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
-
-            IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
-
-            List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
-            int i = 0;
-            foreach (E_ExamResult eer in resultlist)
-            {
-                i++;
-                if (eer.UserID == userid)
+                string sqlwere = string.Empty;
+                if (topnum > 0)
                 {
+                    sqlwere += " SELECT top " + topnum;
+                }
+                else
+                {
+                    sqlwere += " SELECT ";
+                }
+                sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+                sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
+
+                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+
+
+                int i = 1;
+                foreach (E_ExamResult eer in resultlist)
+                {
+                    PdaExamResultOrder per = new PdaExamResultOrder();
                     per.ID = eer.ID;
                     per.UserID = eer.UserID;
                     per.ExamID = eer.E_ID;
@@ -455,7 +441,50 @@ namespace Itop.WebFrame
                     per.OrderNum = i;
                     per.Score = eer.Score;
                     per.Pass = eer.IsPassed;
+                    tlist.Add(per);
+                    i++;
                 }
+
+            }
+            catch (Exception)
+            {
+            }
+           
+            return GetJsonStr<PdaExamResultOrder>(tlist);
+        }
+
+        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，userid为用户ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetEaxmResultOrderByUser(string examid, string userid)
+        {
+            PdaExamResultOrder per = new PdaExamResultOrder();
+            try
+            {
+                string sqlwere = string.Empty;
+                sqlwere += " SELECT ";
+                sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+                sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
+
+                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+                int i = 0;
+                foreach (E_ExamResult eer in resultlist)
+                {
+                    i++;
+                    if (eer.UserID == userid)
+                    {
+                        per.ID = eer.ID;
+                        per.UserID = eer.UserID;
+                        per.ExamID = eer.E_ID;
+                        per.ExamName = eer.BySCol2;
+                        per.UserName = eer.BySCol1;
+                        per.OrderNum = i;
+                        per.Score = eer.Score;
+                        per.Pass = eer.IsPassed;
+                    }
+                }
+            }
+            catch (Exception)
+            {
             }
             return GetJsonStr<PdaExamResultOrder>(per);
         }
@@ -474,21 +503,30 @@ namespace Itop.WebFrame
         public string CheckLogin(string username, string pwd)
         {
             ResponseResultUser res = new ResponseResultUser();
-            string name = username.Trim();
-            string password = MainHelper.EncryptoPassword(pwd.Trim());
-            string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
-            IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
-            if (list.Count > 0)
+            try
             {
-                res.Status = 1;
-                res.Details = list[0].UserID;
-                res.UserName = list[0].UserName;
+                string name = username.Trim();
+                string password = MainHelper.EncryptoPassword(pwd.Trim());
+                string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
+                IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
+                if (list.Count > 0)
+                {
+                    res.Status = 1;
+                    res.Details = list[0].UserID;
+                    res.UserName = list[0].UserName;
+                }
+                else
+                {
+                    res.Status = 0;
+                    res.Details = "验证失败!";
+                }
             }
-            else
+            catch (Exception ee)
             {
                 res.Status = 0;
-                res.Details = "验证失败!";
+                res.Details = ee.Message;
             }
+           
             return GetJsonStr<ResponseResultUser>(res);
         }
 
@@ -499,17 +537,24 @@ namespace Itop.WebFrame
         public string GetEQBankList()
         {
             List<TurnE_QBank> teqblist = new List<TurnE_QBank>();
-
-            IList<E_QBank> eqblist = Global.SqlMapper.GetListByWhere<E_QBank>(string.Empty);
-            foreach (E_QBank item in eqblist)
+            try
             {
-                TurnE_QBank teqb = new TurnE_QBank();
-                teqb.ID = item.ID;
-                teqb.TKName = item.TKName;
-                teqb.Desc = item.Desc;
-                teqb.EProList = GetTEPList(item.ID);
-                teqblist.Add(teqb);
+                IList<E_QBank> eqblist = Global.SqlMapper.GetListByWhere<E_QBank>(string.Empty);
+                foreach (E_QBank item in eqblist)
+                {
+                    TurnE_QBank teqb = new TurnE_QBank();
+                    teqb.ID = item.ID;
+                    teqb.TKName = item.TKName;
+                    teqb.Desc = item.Desc;
+                    teqb.EProList = GetTEPList(item.ID);
+                    teqblist.Add(teqb);
+                }
             }
+            catch (Exception)
+            {
+
+            }
+            
             return GetJsonStr<TurnE_QBank>(teqblist);
         }
 
@@ -520,28 +565,34 @@ namespace Itop.WebFrame
 
             IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
 
-            IList<E_QuestionBank> pdlist = GetQuBankListByTK(tkid, "判断题");
+            try
+            {
+                IList<E_QuestionBank> pdlist = GetQuBankListByTK(tkid, "判断题");
 
-            IList<E_QuestionBank> dxlist = GetQuBankListByTK(tkid, "单项选择题");
+                IList<E_QuestionBank> dxlist = GetQuBankListByTK(tkid, "单项选择题");
 
-            IList<E_QuestionBank> dxxlist = GetQuBankListByTK(tkid, "多项选择题");
+                IList<E_QuestionBank> dxxlist = GetQuBankListByTK(tkid, "多项选择题");
 
-            IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
-            IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
-            IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
+                IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
+                IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
+                IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
 
-            //随机生成判断题放入respdlist
-            RandSelectQuestion(pdlist, pdnum, respdlist);
-            //随机生成单项选择题放入resdxlist
-            RandSelectQuestion(dxlist, dxnum, resdxlist);
-            //随机生成多项选择题放入resdxxlist
-            RandSelectQuestion(dxxlist, dxnum, resdxxlist);
+                //随机生成判断题放入respdlist
+                RandSelectQuestion(pdlist, pdnum, respdlist);
+                //随机生成单项选择题放入resdxlist
+                RandSelectQuestion(dxlist, dxnum, resdxlist);
+                //随机生成多项选择题放入resdxxlist
+                RandSelectQuestion(dxxlist, dxnum, resdxxlist);
 
-            //将三项整合到结果表
-            AddQuestion(respdlist, resultlist);
-            AddQuestion(resdxlist, resultlist);
-            AddQuestion(resdxxlist, resultlist);
+                //将三项整合到结果表
+                AddQuestion(respdlist, resultlist);
+                AddQuestion(resdxlist, resultlist);
+                AddQuestion(resdxxlist, resultlist);
 
+            }
+            catch (Exception)
+            {
+            }
             return GetQuestionStr(resultlist);
         }
 
@@ -551,18 +602,24 @@ namespace Itop.WebFrame
         {
 
             IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+            try
+            {
+                IList<E_QuestionBank> pdlist = GetQuBankListByTKOrder(tkid, "判断题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> pdlist = GetQuBankListByTKOrder(tkid, "判断题", basepdnum, pdnum);
+                IList<E_QuestionBank> dxlist = GetQuBankListByTKOrder(tkid, "单项选择题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> dxlist = GetQuBankListByTKOrder(tkid, "单项选择题", basepdnum, pdnum);
+                IList<E_QuestionBank> dxxlist = GetQuBankListByTKOrder(tkid, "多项选择题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> dxxlist = GetQuBankListByTKOrder(tkid, "多项选择题", basepdnum, pdnum);
+                //将三项整合到结果表
+                AddQuestion(pdlist, resultlist);
+                AddQuestion(dxlist, resultlist);
+                AddQuestion(dxxlist, resultlist);
 
-            //将三项整合到结果表
-            AddQuestion(pdlist, resultlist);
-            AddQuestion(dxlist, resultlist);
-            AddQuestion(dxxlist, resultlist);
-
+            }
+            catch (Exception)
+            {
+                
+            }
             return GetQuestionStr(resultlist);
         }
 
@@ -570,31 +627,34 @@ namespace Itop.WebFrame
         [ScriptMethod(UseHttpGet = false)]
         public string GetPractiseListByZY(string zyid, int pdnum, int dxnum, int dxxnum)
         {
-
             IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+            try
+            {
+                IList<E_QuestionBank> pdlist = GetQuBankListByZY(zyid, "判断题");
 
-            IList<E_QuestionBank> pdlist = GetQuBankListByZY(zyid, "判断题");
+                IList<E_QuestionBank> dxlist = GetQuBankListByZY(zyid, "单项选择题");
 
-            IList<E_QuestionBank> dxlist = GetQuBankListByZY(zyid, "单项选择题");
+                IList<E_QuestionBank> dxxlist = GetQuBankListByZY(zyid, "多项选择题");
 
-            IList<E_QuestionBank> dxxlist = GetQuBankListByZY(zyid, "多项选择题");
+                IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
+                IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
+                IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
 
-            IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
-            IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
-            IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
+                //随机生成判断题放入respdlist
+                RandSelectQuestion(pdlist, pdnum, respdlist);
+                //随机生成单项选择题放入resdxlist
+                RandSelectQuestion(dxlist, dxnum, resdxlist);
+                //随机生成多项选择题放入resdxxlist
+                RandSelectQuestion(dxxlist, dxnum, resdxxlist);
 
-            //随机生成判断题放入respdlist
-            RandSelectQuestion(pdlist, pdnum, respdlist);
-            //随机生成单项选择题放入resdxlist
-            RandSelectQuestion(dxlist, dxnum, resdxlist);
-            //随机生成多项选择题放入resdxxlist
-            RandSelectQuestion(dxxlist, dxnum, resdxxlist);
-
-            //将三项整合到结果表
-            AddQuestion(respdlist, resultlist);
-            AddQuestion(resdxlist, resultlist);
-            AddQuestion(resdxxlist, resultlist);
-
+                //将三项整合到结果表
+                AddQuestion(respdlist, resultlist);
+                AddQuestion(resdxlist, resultlist);
+                AddQuestion(resdxxlist, resultlist);
+            }
+            catch (Exception)
+            {
+            }
             return GetQuestionStr(resultlist);
         }
 
@@ -603,19 +663,25 @@ namespace Itop.WebFrame
         [ScriptMethod(UseHttpGet = false)]
         public string GetPractiseListByZYOrder(string zyid, int basepdnum, int pdnum, int basedxnum, int dxnum, int basedxxnum, int dxxnum)
         {
-
             IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+            try
+            {
+                IList<E_QuestionBank> pdlist = GetQuBankListByZYOrder(zyid, "判断题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> pdlist = GetQuBankListByZYOrder(zyid, "判断题", basepdnum, pdnum);
+                IList<E_QuestionBank> dxlist = GetQuBankListByZYOrder(zyid, "单项选择题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> dxlist = GetQuBankListByZYOrder(zyid, "单项选择题", basepdnum, pdnum);
+                IList<E_QuestionBank> dxxlist = GetQuBankListByZYOrder(zyid, "多项选择题", basepdnum, pdnum);
 
-            IList<E_QuestionBank> dxxlist = GetQuBankListByZYOrder(zyid, "多项选择题", basepdnum, pdnum);
+                //将三项整合到结果表
+                AddQuestion(pdlist, resultlist);
+                AddQuestion(dxlist, resultlist);
+                AddQuestion(dxxlist, resultlist);
 
-            //将三项整合到结果表
-            AddQuestion(pdlist, resultlist);
-            AddQuestion(dxlist, resultlist);
-            AddQuestion(dxxlist, resultlist);
+            }
+            catch (Exception)
+            {
+
+            }
 
             return GetQuestionStr(resultlist);
         }
@@ -626,9 +692,14 @@ namespace Itop.WebFrame
         public string GetFalseExamQuestionList(string tkid)
         {
             string strresult = string.Empty;
+            try
+            {
+                strresult = GetPractiseListByTKFalseExam(tkid, FalseExamPdNum, FalseExamDxNum, FalseExamDXxNum);
+            }
+            catch (Exception)
+            {
 
-            strresult = GetPractiseListByTKFalseExam(tkid, FalseExamPdNum, FalseExamDxNum, FalseExamDXxNum);
-
+            }
             return strresult;
         }
 
