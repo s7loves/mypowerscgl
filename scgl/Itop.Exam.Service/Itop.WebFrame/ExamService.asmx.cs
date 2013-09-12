@@ -190,19 +190,10 @@ namespace Itop.WebFrame
                             //试题已经准备好了
                             if (eep.BySCol1 == "1")
                             {
-                                string sqlwhere = " where ExID='" + eep.ID + "'";
-                                IList<E_ExaminationPaperQuestion> eepqlist = Global.SqlMapper.GetListByWhere<E_ExaminationPaperQuestion>(sqlwhere);
-                                string str = string.Empty;
-                                if (eepqlist.Count > 0)
-                                {
-                                    foreach (E_ExaminationPaperQuestion item in eepqlist)
-                                    {
-                                        str += "'" + item.QuID + "' ,";
-                                    }
-                                    str = str.Substring(0, str.Length - 1);
-
-                                    string stsqlwhere = " where ID in (" + str + ") order by  Type";
+                                    string strtemp = " select QuID from E_ExaminationPaperQuestion where ExID='" + eep.ID + "'";
+                                    string stsqlwhere = " where ID in (" + strtemp + ") order by  Type";
                                     IList<E_QuestionBank> banklist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(stsqlwhere);
+
                                     if (banklist.Count > 0)
                                     {
                                         foreach (E_QuestionBank item in banklist)
@@ -259,7 +250,12 @@ namespace Itop.WebFrame
 
 
                                     }
-                                }
+                                    //没有试题,则用随机试题
+                                    else
+                                    {
+                                        CreateRandomQuestion(eep.SettingID, returnlist);
+                                    }
+                                
                             }
                             //没有准备好，则用随机试题
                             else
@@ -862,18 +858,18 @@ namespace Itop.WebFrame
             foreach (E_R_ESetPro item in eresblist)
             {
 
-                string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'";
+                string sqlwherepd = " where Professional='" + item.PROID + "' and Type='判断题'  and ByScol1!='del' ";
                 IList<E_QuestionBank> eqpdblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwherepd);
                 E_Professional ep = Global.SqlMapper.GetOneByKey<E_Professional>(item.PROID);
 
                 RandSelectQuestion(eqpdblist, item.JudgeNUM, eqblist);
 
-                string sqlwhereselect = " where Professional='" + item.PROID + "' and Type='单项选择题'";
+                string sqlwhereselect = " where Professional='" + item.PROID + "' and Type='单项选择题' and ByScol1!='del' ";
                 IList<E_QuestionBank> eqselectblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhereselect);
 
                 RandSelectQuestion(eqselectblist, item.SelectNUM, eqblist);
 
-                string sqlwheremuselect = " where Professional='" + item.PROID + "' and Type='多项选择题'";
+                string sqlwheremuselect = " where Professional='" + item.PROID + "' and Type='多项选择题' and ByScol1!='del' ";
                 IList<E_QuestionBank> eqmuselectblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwheremuselect);
 
                 RandSelectQuestion(eqmuselectblist, item.MuSelectNUM, eqblist);
@@ -1022,9 +1018,9 @@ namespace Itop.WebFrame
 
                 TurnE_Professional tep = new TurnE_Professional();
                 string sqlwhere = " where Professional='" + item.PROID + "' ";
-                string pdsql = sqlwhere + " and Type='判断题'";
-                string dxsql = sqlwhere + " and Type='单项选择题'";
-                string dxxsql = sqlwhere + " and Type='多项选择题'";
+                string pdsql = sqlwhere + " and Type='判断题' and ByScol1!='del' ";
+                string dxsql = sqlwhere + " and Type='单项选择题' and ByScol1!='del' ";
+                string dxxsql = sqlwhere + " and Type='多项选择题' and ByScol1!='del' ";
 
 
                 tep.ID = item.PROID;
@@ -1053,7 +1049,7 @@ namespace Itop.WebFrame
             IList<E_R_EBankPro> ereblist = Global.SqlMapper.GetListByWhere<E_R_EBankPro>(" where EBID='" + tkid + "' order by ProID asc");
             foreach (E_R_EBankPro item in ereblist)
             {
-                string sqlwhere = " where Professional='" + item.PROID + "'  and Type='" + type + "' order by Sequence asc";
+                string sqlwhere = " where Professional='" + item.PROID + "'  and Type='" + type + "' and ByScol1!='del'  order by Sequence asc";
                 IList<E_QuestionBank> templist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhere);
                 AddQuestion(templist, eqblist);
             }
@@ -1078,7 +1074,7 @@ namespace Itop.WebFrame
                 IList<E_R_EBankPro> ereblist = Global.SqlMapper.GetListByWhere<E_R_EBankPro>(" where EBID='" + tkid + "' order by ProID asc");
                 foreach (E_R_EBankPro item in ereblist)
                 {
-                    string sqlwhere = " where Professional='" + item.PROID + "'  and Type='" + type + "' order by Sequence asc";
+                    string sqlwhere = " where Professional='" + item.PROID + "'  and Type='" + type + "' and ByScol1!='del'  order by Sequence asc";
                     IList<E_QuestionBank> templist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhere);
                     AddQuestion(templist, eqblist);
                 }
@@ -1102,7 +1098,7 @@ namespace Itop.WebFrame
         private IList<E_QuestionBank> GetQuBankListByZY(string zyid, string type)
         {
             IList<E_QuestionBank> eqblist = new List<E_QuestionBank>();
-            string sqlwhere = " where Professional='" + zyid + "'  and Type='" + type + "' order by Sequence asc";
+            string sqlwhere = " where Professional='" + zyid + "'  and Type='" + type + "' and ByScol1!='del'  order by Sequence asc";
             IList<E_QuestionBank> templist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhere);
             AddQuestion(templist, eqblist);
 
@@ -1123,7 +1119,7 @@ namespace Itop.WebFrame
             IList<E_QuestionBank> reseqblist = new List<E_QuestionBank>();
             if (basenum > 0 && num > 0)
             {
-                string sqlwhere = " where Professional='" + zyid + "'  and Type='" + type + "' order by Sequence asc";
+                string sqlwhere = " where Professional='" + zyid + "'  and Type='" + type + "' and ByScol1!='del'  order by Sequence asc";
                 IList<E_QuestionBank> templist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhere);
                 AddQuestion(templist, eqblist);
 
