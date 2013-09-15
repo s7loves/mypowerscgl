@@ -191,6 +191,10 @@
       <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ucm_EaddQuestion.resx">
+      <DependentUpon>Ucm_EaddQuestion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcTroQuestonPD.resx">
       <DependentUpon>UcTroQuestonPD.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -241,6 +245,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_PaperView.resx">
       <DependentUpon>FrmE_PaperView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_AddQuestion.resx">
+      <DependentUpon>FrmE_AddQuestion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_QuestionBankForAdd.resx">
+      <DependentUpon>UCE_QuestionBankForAdd.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -359,6 +371,12 @@
     <Compile Include="UCmOrgUserTree.Designer.cs">
       <DependentUpon>UCmOrgUserTree.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ucm_EaddQuestion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ucm_EaddQuestion.Designer.cs">
+      <DependentUpon>Ucm_EaddQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcTroQuestonPD.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -436,6 +454,18 @@
     </Compile>
     <Compile Include="FrmE_PaperView.Designer.cs">
       <DependentUpon>FrmE_PaperView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_AddQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_AddQuestion.Designer.cs">
+      <DependentUpon>FrmE_AddQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_QuestionBankForAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_QuestionBankForAdd.Designer.cs">
+      <DependentUpon>UCE_QuestionBankForAdd.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
