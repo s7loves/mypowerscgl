@@ -17,8 +17,36 @@ namespace Ebada.Exam
         public FrmE_PaperEdit()
         {
             InitializeComponent();
+            gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+        }
+        TurnE_R_ESetPro currtenter;
+        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (gridView1.GetFocusedRow()!=null)
+            {
+                currtenter=gridView1.GetFocusedRow() as TurnE_R_ESetPro;
+                CheckCanAdd();
+            }
         }
 
+        private void CheckCanAdd()
+        {
+            if (currtenter != null && currtenter.PROID != fixedid)
+            {
+                if (currtenter.JudgeNUM > currtenter.RealJudgeNUM || currtenter.SelectNUM > currtenter.RealSelectNUM || currtenter.MuSelectNUM > currtenter.RealMuSelectNUM)
+                {
+                    btnAdd.Enabled = true;
+                }
+                else
+                {
+                    btnAdd.Enabled = false;
+                }
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+            }
+        }
         //试卷编号
         public string EPID = string.Empty;
 
@@ -613,5 +641,73 @@ namespace Ebada.Exam
 
         }
 
+        private void AddDic(Dictionary<string, E_QuestionBank> FromDic, Dictionary<string, E_QuestionBank> ToDic)
+        {
+            foreach (string key in FromDic.Keys)
+            {
+                if (!ToDic.ContainsKey(key))
+                {
+                    ToDic.Add(key, FromDic[key]);
+
+                }
+            }
+        }
+        private void DelDic(Dictionary<string, E_QuestionBank> dic, string proid)
+        {
+            foreach (string key in dic.Keys)
+            {
+                if (dic[key].Professional == proid)
+                {
+                    dic.Remove(key);
+                }
+            }
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, E_QuestionBank> TempPdDic = new Dictionary<string, E_QuestionBank>();
+            Dictionary<string, E_QuestionBank> TempSelectDic = new Dictionary<string, E_QuestionBank>();
+            Dictionary<string, E_QuestionBank> TempMuSelectDic = new Dictionary<string, E_QuestionBank>();
+
+            foreach (string  key in PdDic.Keys)
+            {
+                if (PdDic[key].Professional==currtenter.PROID)
+                {
+                    TempPdDic.Add(key, PdDic[key]);
+                }
+
+            }
+            foreach (string key in SelectDic.Keys)
+            {
+                if (SelectDic[key].Professional == currtenter.PROID)
+                {
+                    TempSelectDic.Add(key, PdDic[key]);
+                }
+
+            }
+            foreach (string key in MuSelectDic.Keys)
+            {
+                if (MuSelectDic[key].Professional == currtenter.PROID)
+                {
+                    TempMuSelectDic.Add(key, PdDic[key]);
+                }
+
+            }
+            FrmE_AddQuestion frm = new FrmE_AddQuestion(currtenter, TempPdDic, TempSelectDic, TempMuSelectDic);
+
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+                DelDic(PdDic, currtenter.PROID);
+                DelDic(SelectDic, currtenter.PROID);
+                DelDic(MuSelectDic, currtenter.PROID);
+
+                AddDic(frm.PdDic, PdDic);
+                AddDic(frm.SelectDic, SelectDic);
+                AddDic(frm.MuSelectDic, MuSelectDic);
+
+                ViewQuestionPaper();
+            }
+        }
+
+       
     }
 }

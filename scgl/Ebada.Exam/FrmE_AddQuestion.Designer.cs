@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Exam
 {
-    partial class FrmE_PaperEdit
+    partial class FrmE_AddQuestion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,63 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRandPaper = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.labMB = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labWaring = new DevExpress.XtraEditors.LabelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAddQ = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            this.tab = new System.Windows.Forms.TabControl();
+            this.tabpagePD = new System.Windows.Forms.TabPage();
+            this.tabpageSelect = new System.Windows.Forms.TabPage();
+            this.tabpageMuSelect = new System.Windows.Forms.TabPage();
+            this.ucm_EaddQuestionPD = new Ebada.Exam.Ucm_EaddQuestion();
+            this.ucm_EaddQuestionSelect = new Ebada.Exam.Ucm_EaddQuestion();
+            this.ucm_EaddQuestionMuSelect = new Ebada.Exam.Ucm_EaddQuestion();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            this.tab.SuspendLayout();
+            this.tabpagePD.SuspendLayout();
+            this.tabpageSelect.SuspendLayout();
+            this.tabpageMuSelect.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.panel1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(2, 23);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1023, 440);
-            this.panelControl1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1019, 436);
-            this.panel1.TabIndex = 0;
-            // 
-            // btnRandPaper
-            // 
-            this.btnRandPaper.Location = new System.Drawing.Point(811, 12);
-            this.btnRandPaper.Name = "btnRandPaper";
-            this.btnRandPaper.Size = new System.Drawing.Size(95, 23);
-            this.btnRandPaper.TabIndex = 1;
-            this.btnRandPaper.Text = "生成随机试题";
-            this.btnRandPaper.Click += new System.EventHandler(this.btnRandPaper_Click);
             // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Location = new System.Drawing.Point(12, 9);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(783, 163);
+            this.groupControl2.Size = new System.Drawing.Size(783, 118);
             this.groupControl2.TabIndex = 29;
             this.groupControl2.Text = "试卷试题情况";
             // 
@@ -99,7 +74,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 23);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(779, 138);
+            this.gridControl1.Size = new System.Drawing.Size(779, 93);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -118,15 +93,6 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(920, 12);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(95, 23);
-            this.btnRefresh.TabIndex = 30;
-            this.btnRefresh.Text = "刷新试卷";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // labMB
             // 
             this.labMB.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
@@ -140,31 +106,16 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.labWaring);
-            this.groupControl1.Controls.Add(this.panelControl1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 196);
+            this.groupControl1.Controls.Add(this.tab);
+            this.groupControl1.Location = new System.Drawing.Point(0, 133);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1027, 465);
+            this.groupControl1.Size = new System.Drawing.Size(1025, 529);
             this.groupControl1.TabIndex = 32;
-            this.groupControl1.Text = "试卷预览";
-            // 
-            // labWaring
-            // 
-            this.labWaring.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.labWaring.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labWaring.Appearance.Options.UseFont = true;
-            this.labWaring.Appearance.Options.UseForeColor = true;
-            this.labWaring.Location = new System.Drawing.Point(68, 5);
-            this.labWaring.Name = "labWaring";
-            this.labWaring.Size = new System.Drawing.Size(82, 14);
-            this.labWaring.TabIndex = 1;
-            this.labWaring.Text = "labelControl1";
-            this.labWaring.Visible = false;
+            this.groupControl1.Text = "编辑试题";
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(811, 147);
+            this.btnOK.Location = new System.Drawing.Point(801, 54);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(95, 36);
             this.btnOK.TabIndex = 33;
@@ -174,62 +125,107 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(920, 147);
+            this.btnCancel.Location = new System.Drawing.Point(902, 54);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 36);
             this.btnCancel.TabIndex = 34;
             this.btnCancel.Text = "取消";
             // 
-            // btnAddQ
+            // tab
             // 
-            this.btnAddQ.Enabled = false;
-            this.btnAddQ.Location = new System.Drawing.Point(811, 65);
-            this.btnAddQ.Name = "btnAddQ";
-            this.btnAddQ.Size = new System.Drawing.Size(95, 23);
-            this.btnAddQ.TabIndex = 35;
-            this.btnAddQ.Text = "自动补齐试题";
-            this.btnAddQ.Click += new System.EventHandler(this.btnAddQ_Click);
+            this.tab.Controls.Add(this.tabpagePD);
+            this.tab.Controls.Add(this.tabpageSelect);
+            this.tab.Controls.Add(this.tabpageMuSelect);
+            this.tab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tab.Location = new System.Drawing.Point(2, 23);
+            this.tab.Name = "tab";
+            this.tab.SelectedIndex = 0;
+            this.tab.Size = new System.Drawing.Size(1021, 504);
+            this.tab.TabIndex = 0;
             // 
-            // btnAdd
+            // tabpagePD
             // 
-            this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(920, 65);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(95, 23);
-            this.btnAdd.TabIndex = 36;
-            this.btnAdd.Text = "手动添加试题";
-            this.btnAdd.ToolTip = "选择左侧缺少试题的专业，添加对应试题";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.tabpagePD.Controls.Add(this.ucm_EaddQuestionPD);
+            this.tabpagePD.Location = new System.Drawing.Point(4, 23);
+            this.tabpagePD.Name = "tabpagePD";
+            this.tabpagePD.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpagePD.Size = new System.Drawing.Size(1013, 477);
+            this.tabpagePD.TabIndex = 0;
+            this.tabpagePD.Text = "判断题";
+            this.tabpagePD.UseVisualStyleBackColor = true;
             // 
-            // FrmE_PaperEdit
+            // tabpageSelect
+            // 
+            this.tabpageSelect.Controls.Add(this.ucm_EaddQuestionSelect);
+            this.tabpageSelect.Location = new System.Drawing.Point(4, 23);
+            this.tabpageSelect.Name = "tabpageSelect";
+            this.tabpageSelect.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpageSelect.Size = new System.Drawing.Size(1013, 477);
+            this.tabpageSelect.TabIndex = 1;
+            this.tabpageSelect.Text = "单项选择题";
+            this.tabpageSelect.UseVisualStyleBackColor = true;
+            // 
+            // tabpageMuSelect
+            // 
+            this.tabpageMuSelect.Controls.Add(this.ucm_EaddQuestionMuSelect);
+            this.tabpageMuSelect.Location = new System.Drawing.Point(4, 23);
+            this.tabpageMuSelect.Name = "tabpageMuSelect";
+            this.tabpageMuSelect.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpageMuSelect.Size = new System.Drawing.Size(1013, 477);
+            this.tabpageMuSelect.TabIndex = 2;
+            this.tabpageMuSelect.Text = "多项选择题";
+            this.tabpageMuSelect.UseVisualStyleBackColor = true;
+            // 
+            // ucm_EaddQuestionPD
+            // 
+            this.ucm_EaddQuestionPD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucm_EaddQuestionPD.Location = new System.Drawing.Point(3, 3);
+            this.ucm_EaddQuestionPD.Name = "ucm_EaddQuestionPD";
+            this.ucm_EaddQuestionPD.Size = new System.Drawing.Size(1007, 471);
+            this.ucm_EaddQuestionPD.TabIndex = 0;
+            // 
+            // ucm_EaddQuestionSelect
+            // 
+            this.ucm_EaddQuestionSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucm_EaddQuestionSelect.Location = new System.Drawing.Point(3, 3);
+            this.ucm_EaddQuestionSelect.Name = "ucm_EaddQuestionSelect";
+            this.ucm_EaddQuestionSelect.Size = new System.Drawing.Size(1007, 471);
+            this.ucm_EaddQuestionSelect.TabIndex = 0;
+            // 
+            // ucm_EaddQuestionMuSelect
+            // 
+            this.ucm_EaddQuestionMuSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucm_EaddQuestionMuSelect.Location = new System.Drawing.Point(3, 3);
+            this.ucm_EaddQuestionMuSelect.Name = "ucm_EaddQuestionMuSelect";
+            this.ucm_EaddQuestionMuSelect.Size = new System.Drawing.Size(1007, 471);
+            this.ucm_EaddQuestionMuSelect.TabIndex = 0;
+            // 
+            // FrmE_AddQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 661);
+            this.ClientSize = new System.Drawing.Size(1026, 661);
             this.ControlBox = false;
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnAddQ);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.labMB);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.groupControl2);
-            this.Controls.Add(this.btnRandPaper);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "FrmE_PaperEdit";
+            this.Name = "FrmE_AddQuestion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑试卷试题";
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
+            this.tab.ResumeLayout(false);
+            this.tabpagePD.ResumeLayout(false);
+            this.tabpageSelect.ResumeLayout(false);
+            this.tabpageMuSelect.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,19 +233,19 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraEditors.SimpleButton btnRandPaper;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.LabelControl labMB;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.LabelControl labWaring;
-        private DevExpress.XtraEditors.SimpleButton btnAddQ;
-        private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private System.Windows.Forms.TabControl tab;
+        private System.Windows.Forms.TabPage tabpagePD;
+        private System.Windows.Forms.TabPage tabpageSelect;
+        private System.Windows.Forms.TabPage tabpageMuSelect;
+        private Ucm_EaddQuestion ucm_EaddQuestionPD;
+        private Ucm_EaddQuestion ucm_EaddQuestionSelect;
+        private Ucm_EaddQuestion ucm_EaddQuestionMuSelect;
     }
 }
