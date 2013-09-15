@@ -210,6 +210,7 @@ namespace Ebada.Exam
             gridView1.Columns["MuSelectNUM"].VisibleIndex = i++;
             gridView1.Columns["RealMuSelectNUM"].Width = 110;
             gridView1.Columns["RealMuSelectNUM"].VisibleIndex = i++;
+            CheckCanAdd();
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -654,13 +655,22 @@ namespace Ebada.Exam
         }
         private void DelDic(Dictionary<string, E_QuestionBank> dic, string proid)
         {
-            foreach (string key in dic.Keys)
+            Dictionary<string, string> tempdic = new Dictionary<string, string>();
+             foreach (string key in dic.Keys)
             {
                 if (dic[key].Professional == proid)
                 {
-                    dic.Remove(key);
+                    tempdic.Add(key, key);
+                    
                 }
             }
+             foreach (string  key in tempdic.Keys)
+             {
+                 if (dic.ContainsKey(key))
+                 {
+                     dic.Remove(key); 
+                 }
+             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -680,7 +690,7 @@ namespace Ebada.Exam
             {
                 if (SelectDic[key].Professional == currtenter.PROID)
                 {
-                    TempSelectDic.Add(key, PdDic[key]);
+                    TempSelectDic.Add(key, SelectDic[key]);
                 }
 
             }
@@ -688,7 +698,7 @@ namespace Ebada.Exam
             {
                 if (MuSelectDic[key].Professional == currtenter.PROID)
                 {
-                    TempMuSelectDic.Add(key, PdDic[key]);
+                    TempMuSelectDic.Add(key, MuSelectDic[key]);
                 }
 
             }
