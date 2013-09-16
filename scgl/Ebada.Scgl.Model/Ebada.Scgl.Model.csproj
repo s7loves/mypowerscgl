@@ -338,6 +338,7 @@
     <Compile Include="xxgx_ddyb.cs" />
     <Compile Include="xxgx_sbnb.cs" />
     <Compile Include="xxgx_ycjc.cs" />
+    <Compile Include="E_Notice.cs" />
     <Content Include="YY_bx.cs" />
     <Content Include="YY_lineckbdl.cs" />
     <Content Include="YY_tbdl.cs" />
