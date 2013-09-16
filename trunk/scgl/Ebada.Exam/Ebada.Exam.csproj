@@ -255,6 +255,14 @@
       <DependentUpon>UCE_QuestionBankForAdd.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_NoticeEdit.resx">
+      <DependentUpon>FrmE_NoticeEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_Notice.resx">
+      <DependentUpon>UCE_Notice.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -466,6 +474,18 @@
     </Compile>
     <Compile Include="UCE_QuestionBankForAdd.Designer.cs">
       <DependentUpon>UCE_QuestionBankForAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_NoticeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_NoticeEdit.Designer.cs">
+      <DependentUpon>FrmE_NoticeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_Notice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_Notice.Designer.cs">
+      <DependentUpon>UCE_Notice.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
