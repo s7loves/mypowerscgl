@@ -280,6 +280,27 @@ namespace Itop.WebFrame
         }
 
 
+        [WebMethod(Description = "反回练习试题列表，参数pdnum为判断题数,参数dxnum为单面选择题数,参数mdxnum为多项选择题数")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetPracticeQuestionListRand(int pdnum,int dxnum,int mdxnum)
+        {
+           
+            IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
+
+            try
+            {
+
+               CreateRandomQuestion(pdnum,dxnum,mdxnum, returnlist);
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return GetQuestionStr(returnlist);
+        }
+
+
         [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID")]
         [ScriptMethod(UseHttpGet = false)]
         public string GetExamResult(string examid, string userid)
@@ -877,6 +898,35 @@ namespace Itop.WebFrame
             }
             return hasst;
         }
+
+        /// <summary>
+        /// 生成随机试题
+        /// </summary>
+        /// <param name="pdnum">判断题数</param>
+        /// <param name="dxnum">单选题数</param>
+        /// <param name="mdxnum">多选题数</param>
+        /// <param name="eqblist">结果列表</param>
+        private void  CreateRandomQuestion(int pdnum, int dxnum,int mdxnum,IList<E_QuestionBank> eqblist)
+        {
+
+          
+            string sqlwherepd = " where  Type='判断题'  and ByScol1!='del' ";
+            IList<E_QuestionBank> eqpdblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwherepd);
+           
+            RandSelectQuestion(eqpdblist, pdnum, eqblist);
+
+            string sqlwhereselect = " where  Type='单项选择题' and ByScol1!='del' ";
+            IList<E_QuestionBank> eqselectblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwhereselect);
+
+            RandSelectQuestion(eqselectblist, dxnum, eqblist);
+
+            string sqlwheremuselect = " where Type='多项选择题' and ByScol1!='del' ";
+            IList<E_QuestionBank> eqmuselectblist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(sqlwheremuselect);
+
+            RandSelectQuestion(eqmuselectblist, mdxnum, eqblist);
+
+        }
+
         /// <summary>
         /// 从列表中随机取题
         /// </summary>
