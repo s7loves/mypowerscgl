@@ -27,8 +27,8 @@ namespace Ebada.Scgl.Model
         private bool _isright=false; 
         private string _randomid=String.Empty; 
         private string _examquestontype=String.Empty; 
-        private string _appraise=String.Empty; 
-        private int _scoure=0; 
+        private string _appraise=String.Empty;
+        private double _scoure = 0; 
         private string _comment=String.Empty; 
         private int _sequence=0; 
         private string _byscol1=String.Empty; 
@@ -197,7 +197,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[scoure],int
         /// </summary>
         [DisplayNameAttribute("得分")]
-        public int scoure
+        public double scoure
         {
             get { return _scoure; }
             set

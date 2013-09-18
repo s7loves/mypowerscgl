@@ -32,6 +32,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.ucE_R_ESetPro1 = new Ebada.Exam.UCE_R_ESetPro();
             this.lkueEBank = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -55,7 +56,6 @@
             this.txtSettingName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.ucE_R_ESetPro1 = new Ebada.Exam.UCE_R_ESetPro();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -75,7 +75,8 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(334, 450);
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Location = new System.Drawing.Point(480, 465);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(87, 27);
             this.btnOK.TabIndex = 3;
@@ -84,8 +85,9 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(434, 450);
+            this.btnCancel.Location = new System.Drawing.Point(580, 465);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 27);
             this.btnCancel.TabIndex = 4;
@@ -119,7 +121,7 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(25, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(499, 423);
+            this.groupControl1.Size = new System.Drawing.Size(648, 447);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "设置";
             // 
@@ -128,9 +130,18 @@
             this.groupControl2.Controls.Add(this.ucE_R_ESetPro1);
             this.groupControl2.Location = new System.Drawing.Point(18, 228);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(466, 175);
+            this.groupControl2.Size = new System.Drawing.Size(610, 202);
             this.groupControl2.TabIndex = 28;
             this.groupControl2.Text = "题库内各专业";
+            // 
+            // ucE_R_ESetPro1
+            // 
+            this.ucE_R_ESetPro1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucE_R_ESetPro1.ESETID = "";
+            this.ucE_R_ESetPro1.Location = new System.Drawing.Point(2, 23);
+            this.ucE_R_ESetPro1.Name = "ucE_R_ESetPro1";
+            this.ucE_R_ESetPro1.Size = new System.Drawing.Size(606, 177);
+            this.ucE_R_ESetPro1.TabIndex = 0;
             // 
             // lkueEBank
             // 
@@ -139,7 +150,7 @@
             this.lkueEBank.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lkueEBank.Properties.NullText = "选择题库";
-            this.lkueEBank.Size = new System.Drawing.Size(382, 21);
+            this.lkueEBank.Size = new System.Drawing.Size(509, 21);
             this.lkueEBank.TabIndex = 26;
             this.lkueEBank.EditValueChanged += new System.EventHandler(this.lkueEBank_EditValueChanged);
             // 
@@ -153,7 +164,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(218, 174);
+            this.labelControl11.Location = new System.Drawing.Point(287, 174);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(24, 14);
             this.labelControl11.TabIndex = 24;
@@ -172,8 +183,13 @@
             this.spTotalScore.Properties.Appearance.Options.UseForeColor = true;
             this.spTotalScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spTotalScore.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.spTotalScore.Properties.ReadOnly = true;
-            this.spTotalScore.Size = new System.Drawing.Size(137, 21);
+            this.spTotalScore.Size = new System.Drawing.Size(196, 21);
             this.spTotalScore.TabIndex = 23;
             // 
             // labelControl10
@@ -187,20 +203,25 @@
             // spPassScore
             // 
             this.spPassScore.EditValue = new decimal(new int[] {
-            1,
+            0,
             0,
             0,
             0});
-            this.spPassScore.Location = new System.Drawing.Point(376, 171);
+            this.spPassScore.Location = new System.Drawing.Point(435, 171);
             this.spPassScore.Name = "spPassScore";
             this.spPassScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spPassScore.Size = new System.Drawing.Size(108, 21);
+            this.spPassScore.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.spPassScore.Size = new System.Drawing.Size(177, 21);
             this.spPassScore.TabIndex = 21;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(289, 174);
+            this.labelControl9.Location = new System.Drawing.Point(369, 174);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(60, 14);
             this.labelControl9.TabIndex = 20;
@@ -227,7 +248,7 @@
             0,
             0,
             0});
-            this.spWaitTime.Size = new System.Drawing.Size(99, 21);
+            this.spWaitTime.Size = new System.Drawing.Size(158, 21);
             this.spWaitTime.TabIndex = 19;
             // 
             // labelControl8
@@ -244,11 +265,16 @@
             1,
             0,
             0,
-            0});
-            this.spJudgeScore.Location = new System.Drawing.Point(377, 90);
+            131072});
+            this.spJudgeScore.Location = new System.Drawing.Point(435, 90);
             this.spJudgeScore.Name = "spJudgeScore";
             this.spJudgeScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spJudgeScore.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.spJudgeScore.Properties.MaxValue = new decimal(new int[] {
             100,
             0,
@@ -258,8 +284,8 @@
             1,
             0,
             0,
-            0});
-            this.spJudgeScore.Size = new System.Drawing.Size(107, 21);
+            131072});
+            this.spJudgeScore.Size = new System.Drawing.Size(177, 21);
             this.spJudgeScore.TabIndex = 14;
             this.spJudgeScore.EditValueChanged += new System.EventHandler(this.spJudgeScore_EditValueChanged);
             // 
@@ -275,13 +301,12 @@
             this.spJudgeNUM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spJudgeNUM.Properties.ReadOnly = true;
-            this.spJudgeNUM.Size = new System.Drawing.Size(138, 21);
+            this.spJudgeNUM.Size = new System.Drawing.Size(197, 21);
             this.spJudgeNUM.TabIndex = 13;
-
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(271, 93);
+            this.labelControl6.Location = new System.Drawing.Point(345, 93);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(84, 14);
             this.labelControl6.TabIndex = 12;
@@ -301,11 +326,16 @@
             1,
             0,
             0,
-            0});
-            this.spMuSelectScore.Location = new System.Drawing.Point(377, 144);
+            131072});
+            this.spMuSelectScore.Location = new System.Drawing.Point(435, 144);
             this.spMuSelectScore.Name = "spMuSelectScore";
             this.spMuSelectScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spMuSelectScore.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.spMuSelectScore.Properties.MaxValue = new decimal(new int[] {
             100,
             0,
@@ -315,8 +345,8 @@
             1,
             0,
             0,
-            0});
-            this.spMuSelectScore.Size = new System.Drawing.Size(107, 21);
+            131072});
+            this.spMuSelectScore.Size = new System.Drawing.Size(177, 21);
             this.spMuSelectScore.TabIndex = 10;
             this.spMuSelectScore.EditValueChanged += new System.EventHandler(this.spMuSelectScore_EditValueChanged);
             // 
@@ -332,12 +362,12 @@
             this.spMuSelectNUM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spMuSelectNUM.Properties.ReadOnly = true;
-            this.spMuSelectNUM.Size = new System.Drawing.Size(138, 21);
+            this.spMuSelectNUM.Size = new System.Drawing.Size(197, 21);
             this.spMuSelectNUM.TabIndex = 9;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(272, 147);
+            this.labelControl3.Location = new System.Drawing.Point(345, 147);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(84, 14);
             this.labelControl3.TabIndex = 8;
@@ -357,11 +387,16 @@
             1,
             0,
             0,
-            0});
-            this.spSelectScore.Location = new System.Drawing.Point(377, 117);
+            131072});
+            this.spSelectScore.Location = new System.Drawing.Point(435, 117);
             this.spSelectScore.Name = "spSelectScore";
             this.spSelectScore.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spSelectScore.Properties.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.spSelectScore.Properties.MaxValue = new decimal(new int[] {
             100,
             0,
@@ -371,8 +406,8 @@
             1,
             0,
             0,
-            0});
-            this.spSelectScore.Size = new System.Drawing.Size(107, 21);
+            131072});
+            this.spSelectScore.Size = new System.Drawing.Size(177, 21);
             this.spSelectScore.TabIndex = 6;
             this.spSelectScore.EditValueChanged += new System.EventHandler(this.spSelectScore_EditValueChanged);
             // 
@@ -388,13 +423,12 @@
             this.spSelectNUM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spSelectNUM.Properties.ReadOnly = true;
-            this.spSelectNUM.Size = new System.Drawing.Size(138, 21);
+            this.spSelectNUM.Size = new System.Drawing.Size(197, 21);
             this.spSelectNUM.TabIndex = 5;
-  
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(272, 120);
+            this.labelControl4.Location = new System.Drawing.Point(345, 120);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(84, 14);
             this.labelControl4.TabIndex = 4;
@@ -404,7 +438,7 @@
             // 
             this.txtSettingName.Location = new System.Drawing.Point(103, 32);
             this.txtSettingName.Name = "txtSettingName";
-            this.txtSettingName.Size = new System.Drawing.Size(382, 21);
+            this.txtSettingName.Size = new System.Drawing.Size(509, 21);
             this.txtSettingName.TabIndex = 2;
             // 
             // labelControl2
@@ -423,20 +457,11 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "设置名称：";
             // 
-            // ucE_R_ESetPro1
-            // 
-            this.ucE_R_ESetPro1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucE_R_ESetPro1.ESETID = "";
-            this.ucE_R_ESetPro1.Location = new System.Drawing.Point(2, 23);
-            this.ucE_R_ESetPro1.Name = "ucE_R_ESetPro1";
-            this.ucE_R_ESetPro1.Size = new System.Drawing.Size(462, 150);
-            this.ucE_R_ESetPro1.TabIndex = 0;
-            // 
             // FrmE_ExamSettingEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 489);
+            this.ClientSize = new System.Drawing.Size(700, 504);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
