@@ -993,7 +993,7 @@ namespace Itop.WebFrame
         /// <param name="frmeqlist">源表</param>
         /// <param name="score"> 分数</param>
         /// <param name="toeqlist">目标表</param>
-        private void AddQuestionFalseExam(IList<E_QuestionBank> frmeqlist, int score,IList<E_QuestionBank> toeqlist)
+        private void AddQuestionFalseExam(IList<E_QuestionBank> frmeqlist, double score, IList<E_QuestionBank> toeqlist)
         {
             int i = 1;
             foreach (E_QuestionBank item in frmeqlist)
@@ -1244,7 +1244,7 @@ namespace Itop.WebFrame
             string sqlwhere = "  b.E_ID='" + examid + "' and b.EP_ID='" + expaper.ID + "' and b.UserID='" + userid + "'";
             IList<E_QuestionBank> qqblist = Global.SqlMapper.GetList<E_QuestionBank>("SelectE_QuestionBankCount",sqlwhere);
 
-                int score = 0;
+            double score = 0;
                 for (int i = 0; i < qqblist.Count; i++)
                 {
                     if (qqblist[i].Type == "判断题")
@@ -1320,15 +1320,15 @@ namespace Itop.WebFrame
         /// <summary>
         /// 模拟考试判断题每题分数
         /// </summary>
-        private static int FalseExamPdScore = 3;
+        private static double FalseExamPdScore = 3;
         /// <summary>
         /// 模拟考试单项选择每题分数
         /// </summary>
-        private static int FalseExamDxScore = 3;
+        private static double FalseExamDxScore = 3;
         /// <summary>
         /// 模拟考试多项选择每题分数
         /// </summary>
-        private static int FalseExamDXxScore = 4;
+        private static double FalseExamDXxScore = 4;
 
 
         #endregion

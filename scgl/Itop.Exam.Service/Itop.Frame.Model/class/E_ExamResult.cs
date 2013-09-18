@@ -27,8 +27,8 @@ namespace Itop.Frame.Model
         private string _userid=String.Empty; 
         private DateTime _realstarttime=new DateTime(1900,1,1); 
         private DateTime _realeentime=new DateTime(1900,1,1); 
-        private bool _isexamed=false; 
-        private int _score=0; 
+        private bool _isexamed=false;
+        private double _score = 0; 
         private bool _ispassed=false; 
         private string _comment=String.Empty; 
         private string _checkpeople=String.Empty; 
@@ -191,7 +191,7 @@ namespace Itop.Frame.Model
         /// 字段信息：[Score],int
         /// </summary>
         [DisplayNameAttribute("考试成绩")]
-        public int Score
+        public double Score
         {
             get { return _score; }
             set
