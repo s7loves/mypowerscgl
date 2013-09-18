@@ -25,7 +25,7 @@ namespace Ebada.Scgl.Model
         private string _ep_name=String.Empty; 
         private string _settingid=String.Empty; 
         private bool _orderrandom=false; 
-        private int _totalscore=0; 
+        private double _totalscore=0; 
         private DateTime _createtime=new DateTime(1900,1,1); 
         private string _createman=String.Empty; 
         private string _paper_type=String.Empty; 
@@ -131,7 +131,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[TotalScore],int
         /// </summary>
         [DisplayNameAttribute("总分")]
-        public int TotalScore
+        public double TotalScore
         {
             get { return _totalscore; }
             set

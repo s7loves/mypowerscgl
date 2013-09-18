@@ -27,16 +27,16 @@ namespace Ebada.Scgl.Model
         private bool _isused=false; 
         private int _selectnum=0; 
         private int _selectlevel=0; 
-        private int _selectscore=0; 
+        private double  _selectscore=0; 
         private int _muselectnum=0; 
-        private int _muselectlevel=0; 
-        private int _muselectscore=0; 
+        private int _muselectlevel=0;
+        private double _muselectscore = 0; 
         private int _judgenum=0; 
-        private int _judgelevel=0; 
-        private int _judgescore=0; 
-        private int _waittime=0; 
-        private int _passscore=0; 
-        private int _totalscore=0; 
+        private int _judgelevel=0;
+        private double _judgescore = 0; 
+        private int _waittime=0;
+        private double _passscore = 0;
+        private double _totalscore = 0; 
         private int _sequence=0; 
         private string _byscol1=String.Empty; 
         private string _byscol2=String.Empty; 
@@ -175,7 +175,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[JudgeScore],int
         /// </summary>
         [DisplayNameAttribute("判断每题分数")]
-        public int JudgeScore
+        public double JudgeScore
         {
             get { return _judgescore; }
             set
@@ -229,7 +229,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[SelectScore],int
         /// </summary>
         [DisplayNameAttribute("单选每题分数")]
-        public int SelectScore
+        public double SelectScore
         {
             get { return _selectscore; }
             set
@@ -284,7 +284,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[MuSelectScore],int
         /// </summary>
         [DisplayNameAttribute("多选每题分数")]
-        public int MuSelectScore
+        public double MuSelectScore
         {
             get { return _muselectscore; }
             set
@@ -322,7 +322,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[PassScore],int
         /// </summary>
         [DisplayNameAttribute("合格成绩")]
-        public int PassScore
+        public double PassScore
         {
             get { return _passscore; }
             set
@@ -340,7 +340,7 @@ namespace Ebada.Scgl.Model
         /// 字段信息：[TotalScore],int
         /// </summary>
         [DisplayNameAttribute("总分")]
-        public int TotalScore
+        public double TotalScore
         {
             get { return _totalscore; }
             set

@@ -140,18 +140,18 @@ namespace Ebada.Exam
         private void Account()
         {
 
-            int pdnum = (int)spJudgeNUM.Value;
-            int pdscore = (int)spJudgeScore.Value;
+            double pdnum = (double)spJudgeNUM.Value;
+            double pdscore = (double)spJudgeScore.Value;
 
             int dxnum = (int)spSelectNUM.Value;
-            int dxscore = (int)spSelectScore.Value;
+            double dxscore = (double)spSelectScore.Value;
 
-            int dxxnum = (int)spMuSelectNUM.Value;
-            int dxxscore = (int)spMuSelectScore.Value;
+            double dxxnum = (double)spMuSelectNUM.Value;
+            double dxxscore = (double)spMuSelectScore.Value;
 
-            int allscore = pdnum * pdscore + dxnum * dxscore + dxxnum * dxxscore;
-            rowData.TotalScore = allscore;
-            spTotalScore.Value = allscore;
+            double allscore = pdnum * pdscore + dxnum * dxscore + dxxnum * dxxscore;
+            rowData.TotalScore = Math.Round(allscore,2);
+            spTotalScore.Value = (decimal)(rowData.TotalScore);
         }
         public void SetComboBoxData(DevExpress.XtraEditors.LookUpEdit comboBox, string displayMember, string valueMember, string nullTest, string cnStr, IList<E_QBank> post)
         {
