@@ -297,7 +297,7 @@ namespace Itop.WebFrame
         private string _option = String.Empty;
         private string _answer = String.Empty;
         private string _explain = String.Empty;
-        private int  _score = 0;
+        private double _score = 0;
         private int _difficultylevel = 0;
         private string _professional = String.Empty;
         private int _sequence = 0;
@@ -458,7 +458,7 @@ namespace Itop.WebFrame
         /// 字段信息：[Score],int
         /// </summary>
         [DisplayNameAttribute("分数")]
-        public int Score
+        public double Score
         {
             get { return _score; }
             set
@@ -898,7 +898,7 @@ namespace Itop.WebFrame
     public class PdaExamResult
     {
         [DisplayNameAttribute("考试分数")]
-        public int Score { get; set; }
+        public double Score { get; set; }
 
         [DisplayNameAttribute("是否通过")]
         public bool Pass { get; set; }
@@ -939,7 +939,7 @@ namespace Itop.WebFrame
         public int OrderNum { get; set; }
 
         [DisplayNameAttribute("考试分数")]
-        public int Score { get; set; }
+        public double Score { get; set; }
 
         [DisplayNameAttribute("是否通过")]
         public bool Pass { get; set; }

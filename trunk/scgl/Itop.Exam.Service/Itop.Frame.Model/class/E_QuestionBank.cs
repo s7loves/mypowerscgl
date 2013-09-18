@@ -28,8 +28,8 @@ namespace Itop.Frame.Model
         private string _option=String.Empty; 
         private string _answer=String.Empty; 
         private string _explain=String.Empty; 
-        private int _difficultylevel=0; 
-        private int _scorenum=0; 
+        private int _difficultylevel=0;
+        private double _scorenum = 0; 
         private string _professional=String.Empty; 
         private int _sequence=0; 
         private DateTime _intime=new DateTime(1900,1,1); 
@@ -218,7 +218,7 @@ namespace Itop.Frame.Model
         /// 字段信息：[ScoreNum],int
         /// </summary>
         [DisplayNameAttribute("分数")]
-        public int ScoreNum
+        public double ScoreNum
         {
             get { return _scorenum; }
             set
