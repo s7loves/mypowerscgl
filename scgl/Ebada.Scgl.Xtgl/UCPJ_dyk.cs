@@ -51,6 +51,8 @@ namespace Ebada.Scgl.Xtgl
             gridViewOperation.AfterEdit += new ObjectEventHandler<PJ_dyk>(gridViewOperation_AfterEdit);
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<PJ_dyk>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridView1.OptionsView.ColumnAutoWidth = true;
+            gridView1.OptionsView.EnableAppearanceEvenRow = true;
 
         }
         private IViewOperation<PJ_dyk> childView;
@@ -66,7 +68,7 @@ namespace Ebada.Scgl.Xtgl
                 childView = value;
                 if (value != null)
                 {
-                    gridView1.Columns["bh"].Caption = "引用编号";
+                    //gridView1.Columns["bh"].Caption = "引用编号";
                     gridView1.Columns["zjm"].Caption = "备注";
                     gridViewOperation.EditForm = new PopupFormGridEdit();
                     bar3.Visible = false;
@@ -187,6 +189,7 @@ namespace Ebada.Scgl.Xtgl
             //需要隐藏列时在这写代码
 
             hideColumn("ParentID");
+            hideColumn("bh");
             if (parentID == "")
             {
                 hideColumn("nr");
@@ -203,6 +206,7 @@ namespace Ebada.Scgl.Xtgl
         public void RefreshData(string slqwhere)
         {
             gridViewOperation.RefreshData(slqwhere);
+            
         }
         /// <summary>
         /// 封装了数据操作的对象
