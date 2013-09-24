@@ -33,6 +33,9 @@ namespace Ebada.Exam {
         private E_ExamResult parentObj;
         public event SendDataEventHandler<E_ExamResult> FocusedRowChanged;
 
+
+        public bool ShowExamGL = false;
+
         public string SqlWhere
         {
             set
@@ -81,9 +84,21 @@ namespace Ebada.Exam {
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
+            this.ParentForm.Shown += new EventHandler(ParentForm_Shown);
             //InitColumns();//初始列
             InitData();//初始数据
+        }
+
+        void ParentForm_Shown(object sender, EventArgs e)
+        {
+            if (ShowExamGL)
+            {
+                barLkueExam.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                barLkueExam.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
