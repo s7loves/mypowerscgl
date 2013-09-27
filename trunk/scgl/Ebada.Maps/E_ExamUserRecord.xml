@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExamUserRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExamUserRecord"  type="Ebada.Scgl.Model.E_ExamUserRecord,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExamUserRecord_AllColumns" class="E_ExamUserRecord">
+        <result property="ID" column="ID" />
+        <result property="OrgName" column="OrgName" />
+        <result property="OrgCode" column="OrgCode" />
+        <result property="Name" column="Name" />
+        <result property="Post" column="Post" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateDate" column="CreateDate" />
+        <result property="BigData" column="BigData" />
+        <result property="WordData" column="WordData" />
+        <result property="Sequence" column="Sequence" />
+        <result property="ExamRecord" column="ExamRecord" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExamUserRecordList" resultMap="E_ExamUserRecord_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [Name],
+         [Post],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [WordData],
+         [Sequence],
+         [ExamRecord],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamUserRecord
+          $value$
+   </select>
+   
+   <select id="SelectE_ExamUserRecordByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [Name],
+         [Post],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [WordData],
+         [Sequence],
+         [ExamRecord],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamUserRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Post">[Post]='$Post$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="WordData">[WordData]='$WordData$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamRecord">[ExamRecord]='$ExamRecord$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExamUserRecordByKey" resultMap="E_ExamUserRecord_AllColumns" parameterClass="E_ExamUserRecord">
+         SELECT 
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [Name],
+         [Post],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [WordData],
+         [Sequence],
+         [ExamRecord],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExamUserRecord
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExamUserRecord" parameterClass="E_ExamUserRecord">
+        DELETE FROM 
+         E_ExamUserRecord
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExamUserRecordByWhere" parameterClass="string">
+     delete from E_ExamUserRecord $value$
+   </delete>
+   
+   <delete id="DeleteE_ExamUserRecordByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExamUserRecord
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExamUserRecord" parameterClass="E_ExamUserRecord" resultClass="int">
+          UPDATE E_ExamUserRecord
+           SET
+             [OrgName]=#OrgName#,
+             [OrgCode]=#OrgCode#,
+             [Name]=#Name#,
+             [Post]=#Post#,
+             [CreateMan]=#CreateMan#,
+             [CreateDate]=#CreateDate#,
+             [BigData]=#BigData#,
+             [WordData]=#WordData#,
+             [Sequence]=#Sequence#,
+             [ExamRecord]=#ExamRecord#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExamUserRecord" parameterClass="E_ExamUserRecord">
+        INSERT INTO E_ExamUserRecord
+         (
+         [ID],
+         [OrgName],
+         [OrgCode],
+         [Name],
+         [Post],
+         [CreateMan],
+         [CreateDate],
+         [BigData],
+         [WordData],
+         [Sequence],
+         [ExamRecord],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #OrgName#,
+         #OrgCode#,
+         #Name#,
+         #Post#,
+         #CreateMan#,
+         #CreateDate#,
+         #BigData#,
+         #WordData#,
+         #Sequence#,
+         #ExamRecord#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExamUserRecordRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExamUserRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgName">[OrgName]='$OrgName$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgCode">[OrgCode]='$OrgCode$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Post">[Post]='$Post$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateDate">[CreateDate]='$CreateDate$'</isNotNull>
+       <isNotNull prepend="AND" property="BigData">[BigData]='$BigData$'</isNotNull>
+       <isNotNull prepend="AND" property="WordData">[WordData]='$WordData$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamRecord">[ExamRecord]='$ExamRecord$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExamUserRecordRowCount" parameterClass="string">
+    select count(*) from E_ExamUserRecord $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

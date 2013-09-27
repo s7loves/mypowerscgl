@@ -267,6 +267,14 @@
       <DependentUpon>FrmE_ExamResult.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCE_BusinesInfo.resx">
+      <DependentUpon>UCE_BusinesInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_BusinesInfoEdit.resx">
+      <DependentUpon>FrmE_BusinesInfoEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -496,6 +504,18 @@
     </Compile>
     <Compile Include="FrmE_ExamResult.Designer.cs">
       <DependentUpon>FrmE_ExamResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_BusinesInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_BusinesInfo.Designer.cs">
+      <DependentUpon>UCE_BusinesInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_BusinesInfoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_BusinesInfoEdit.Designer.cs">
+      <DependentUpon>FrmE_BusinesInfoEdit.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

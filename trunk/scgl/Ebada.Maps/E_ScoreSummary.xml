@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ScoreSummary" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ScoreSummary"  type="Ebada.Scgl.Model.E_ScoreSummary,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ScoreSummary_AllColumns" class="E_ScoreSummary">
+        <result property="ID" column="ID" />
+        <result property="ExmaID" column="ExmaID" />
+        <result property="ExamName" column="ExamName" />
+        <result property="AverageSocre" column="AverageSocre" />
+        <result property="NeedExamUserNum" column="NeedExamUserNum" />
+        <result property="RealExamUseNum" column="RealExamUseNum" />
+        <result property="PassNum" column="PassNum" />
+        <result property="PassPercent" column="PassPercent" />
+        <result property="NoPassNum" column="NoPassNum" />
+        <result property="NoPassPercent" column="NoPassPercent" />
+        <result property="GoodPercent" column="GoodPercent" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="Sequence" column="Sequence" />
+        <result property="ByInt1" column="ByInt1" />
+        <result property="ByInt2" column="ByInt2" />
+        <result property="ByFloat1" column="ByFloat1" />
+        <result property="ByFloat2" column="ByFloat2" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ScoreSummaryList" resultMap="E_ScoreSummary_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [ExmaID],
+         [ExamName],
+         [AverageSocre],
+         [NeedExamUserNum],
+         [RealExamUseNum],
+         [PassNum],
+         [PassPercent],
+         [NoPassNum],
+         [NoPassPercent],
+         [GoodPercent],
+         [CreateTime],
+         [Sequence],
+         [ByInt1],
+         [ByInt2],
+         [ByFloat1],
+         [ByFloat2],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ScoreSummary
+          $value$
+   </select>
+   
+   <select id="SelectE_ScoreSummaryByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [ExmaID],
+         [ExamName],
+         [AverageSocre],
+         [NeedExamUserNum],
+         [RealExamUseNum],
+         [PassNum],
+         [PassPercent],
+         [NoPassNum],
+         [NoPassPercent],
+         [GoodPercent],
+         [CreateTime],
+         [Sequence],
+         [ByInt1],
+         [ByInt2],
+         [ByFloat1],
+         [ByFloat2],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ScoreSummary
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExmaID">[ExmaID]='$ExmaID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamName">[ExamName]='$ExamName$'</isNotNull>
+       <isNotNull prepend="AND" property="AverageSocre">[AverageSocre]='$AverageSocre$'</isNotNull>
+       <isNotNull prepend="AND" property="NeedExamUserNum">[NeedExamUserNum]='$NeedExamUserNum$'</isNotNull>
+       <isNotNull prepend="AND" property="RealExamUseNum">[RealExamUseNum]='$RealExamUseNum$'</isNotNull>
+       <isNotNull prepend="AND" property="PassNum">[PassNum]='$PassNum$'</isNotNull>
+       <isNotNull prepend="AND" property="PassPercent">[PassPercent]='$PassPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="NoPassNum">[NoPassNum]='$NoPassNum$'</isNotNull>
+       <isNotNull prepend="AND" property="NoPassPercent">[NoPassPercent]='$NoPassPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="GoodPercent">[GoodPercent]='$GoodPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ByInt1">[ByInt1]='$ByInt1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByInt2">[ByInt2]='$ByInt2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByFloat1">[ByFloat1]='$ByFloat1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByFloat2">[ByFloat2]='$ByFloat2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ScoreSummaryByKey" resultMap="E_ScoreSummary_AllColumns" parameterClass="E_ScoreSummary">
+         SELECT 
+         [ID],
+         [ExmaID],
+         [ExamName],
+         [AverageSocre],
+         [NeedExamUserNum],
+         [RealExamUseNum],
+         [PassNum],
+         [PassPercent],
+         [NoPassNum],
+         [NoPassPercent],
+         [GoodPercent],
+         [CreateTime],
+         [Sequence],
+         [ByInt1],
+         [ByInt2],
+         [ByFloat1],
+         [ByFloat2],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ScoreSummary
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ScoreSummary" parameterClass="E_ScoreSummary">
+        DELETE FROM 
+         E_ScoreSummary
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ScoreSummaryByWhere" parameterClass="string">
+     delete from E_ScoreSummary $value$
+   </delete>
+   
+   <delete id="DeleteE_ScoreSummaryByKey" parameterClass="string">
+        DELETE FROM 
+         E_ScoreSummary
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ScoreSummary" parameterClass="E_ScoreSummary" resultClass="int">
+          UPDATE E_ScoreSummary
+           SET
+             [ExmaID]=#ExmaID#,
+             [ExamName]=#ExamName#,
+             [AverageSocre]=#AverageSocre#,
+             [NeedExamUserNum]=#NeedExamUserNum#,
+             [RealExamUseNum]=#RealExamUseNum#,
+             [PassNum]=#PassNum#,
+             [PassPercent]=#PassPercent#,
+             [NoPassNum]=#NoPassNum#,
+             [NoPassPercent]=#NoPassPercent#,
+             [GoodPercent]=#GoodPercent#,
+             [CreateTime]=#CreateTime#,
+             [Sequence]=#Sequence#,
+             [ByInt1]=#ByInt1#,
+             [ByInt2]=#ByInt2#,
+             [ByFloat1]=#ByFloat1#,
+             [ByFloat2]=#ByFloat2#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ScoreSummary" parameterClass="E_ScoreSummary">
+        INSERT INTO E_ScoreSummary
+         (
+         [ID],
+         [ExmaID],
+         [ExamName],
+         [AverageSocre],
+         [NeedExamUserNum],
+         [RealExamUseNum],
+         [PassNum],
+         [PassPercent],
+         [NoPassNum],
+         [NoPassPercent],
+         [GoodPercent],
+         [CreateTime],
+         [Sequence],
+         [ByInt1],
+         [ByInt2],
+         [ByFloat1],
+         [ByFloat2],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #ExmaID#,
+         #ExamName#,
+         #AverageSocre#,
+         #NeedExamUserNum#,
+         #RealExamUseNum#,
+         #PassNum#,
+         #PassPercent#,
+         #NoPassNum#,
+         #NoPassPercent#,
+         #GoodPercent#,
+         #CreateTime#,
+         #Sequence#,
+         #ByInt1#,
+         #ByInt2#,
+         #ByFloat1#,
+         #ByFloat2#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ScoreSummaryRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ScoreSummary
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExmaID">[ExmaID]='$ExmaID$'</isNotNull>
+       <isNotNull prepend="AND" property="ExamName">[ExamName]='$ExamName$'</isNotNull>
+       <isNotNull prepend="AND" property="AverageSocre">[AverageSocre]='$AverageSocre$'</isNotNull>
+       <isNotNull prepend="AND" property="NeedExamUserNum">[NeedExamUserNum]='$NeedExamUserNum$'</isNotNull>
+       <isNotNull prepend="AND" property="RealExamUseNum">[RealExamUseNum]='$RealExamUseNum$'</isNotNull>
+       <isNotNull prepend="AND" property="PassNum">[PassNum]='$PassNum$'</isNotNull>
+       <isNotNull prepend="AND" property="PassPercent">[PassPercent]='$PassPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="NoPassNum">[NoPassNum]='$NoPassNum$'</isNotNull>
+       <isNotNull prepend="AND" property="NoPassPercent">[NoPassPercent]='$NoPassPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="GoodPercent">[GoodPercent]='$GoodPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="ByInt1">[ByInt1]='$ByInt1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByInt2">[ByInt2]='$ByInt2$'</isNotNull>
+       <isNotNull prepend="AND" property="ByFloat1">[ByFloat1]='$ByFloat1$'</isNotNull>
+       <isNotNull prepend="AND" property="ByFloat2">[ByFloat2]='$ByFloat2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ScoreSummaryRowCount" parameterClass="string">
+    select count(*) from E_ScoreSummary $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

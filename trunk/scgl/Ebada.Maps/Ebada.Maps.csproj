@@ -556,6 +556,18 @@
     <EmbeddedResource Include="E_Notice.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="E_BusinesInfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="E_ExamSet.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="E_ExamUserRecord.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="E_ScoreSummary.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_ExamSet" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_ExamSet"  type="Ebada.Scgl.Model.E_ExamSet,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_ExamSet_AllColumns" class="E_ExamSet">
+        <result property="ID" column="ID" />
+        <result property="Title" column="Title" />
+        <result property="Code" column="Code" />
+        <result property="Value" column="Value" />
+        <result property="CreateMan" column="CreateMan" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_ExamSetList" resultMap="E_ExamSet_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Title],
+         [Code],
+         [Value],
+         [CreateMan],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamSet
+          $value$
+   </select>
+   
+   <select id="SelectE_ExamSetByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Title],
+         [Code],
+         [Value],
+         [CreateMan],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_ExamSet
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="Code">[Code]='$Code$'</isNotNull>
+       <isNotNull prepend="AND" property="Value">[Value]='$Value$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_ExamSetByKey" resultMap="E_ExamSet_AllColumns" parameterClass="E_ExamSet">
+         SELECT 
+         [ID],
+         [Title],
+         [Code],
+         [Value],
+         [CreateMan],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_ExamSet
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_ExamSet" parameterClass="E_ExamSet">
+        DELETE FROM 
+         E_ExamSet
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_ExamSetByWhere" parameterClass="string">
+     delete from E_ExamSet $value$
+   </delete>
+   
+   <delete id="DeleteE_ExamSetByKey" parameterClass="string">
+        DELETE FROM 
+         E_ExamSet
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_ExamSet" parameterClass="E_ExamSet" resultClass="int">
+          UPDATE E_ExamSet
+           SET
+             [Title]=#Title#,
+             [Code]=#Code#,
+             [Value]=#Value#,
+             [CreateMan]=#CreateMan#,
+             [CreateTime]=#CreateTime#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_ExamSet" parameterClass="E_ExamSet">
+        INSERT INTO E_ExamSet
+         (
+         [ID],
+         [Title],
+         [Code],
+         [Value],
+         [CreateMan],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #Title#,
+         #Code#,
+         #Value#,
+         #CreateMan#,
+         #CreateTime#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_ExamSetRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_ExamSet
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="Code">[Code]='$Code$'</isNotNull>
+       <isNotNull prepend="AND" property="Value">[Value]='$Value$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateMan">[CreateMan]='$CreateMan$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_ExamSetRowCount" parameterClass="string">
+    select count(*) from E_ExamSet $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
