@@ -194,11 +194,11 @@ namespace Ebada.Scgl.Yxgl {
             kg = ot.ToString();
             ex.SetCellValue(kg, 18, 8);
             //跌落开关
-            ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_tqsb Where sbname='跌落保险'  and tqID in(select tqid from ps_tq WHERE xlCode ='{0}' )", obj.LineCode));
-            ot = ot ?? 0;
-            合计 += Convert.ToInt32(ot);
-            kg = ot.ToString();
-            ex.SetCellValue(kg, 19, 8);
+          //  ot = Client.ClientHelper.PlatformSqlMap.GetObject("SelectOneInt", string.Format("select sum(sbNumber) from ps_tqsb Where sbname='跌落保险'  and tqID in(select tqid from ps_tq WHERE xlCode ='{0}' )", obj.LineCode));
+        //    ot = ot ?? 0;
+        //    合计 += Convert.ToInt32(ot);
+         //   kg = ot.ToString();
+         //   ex.SetCellValue(kg, 19, 8);
             //开关合计
             //ot = Client.ClientHelper.PlatformSqlMap.GetObject("GetPS_kgRowCount", "Where gtID in(select gtID from ps_gt WHERE LineCode IN (SELECT lineid from ps_xl where lineid='" + obj.LineCode + "'or ParentID='" + obj.LineCode + "'))");
 
