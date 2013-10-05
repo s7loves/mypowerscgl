@@ -5,6 +5,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Ebada.Components;
 using Ebada.Server;
+using Itop.Frame.BLL;
 
 namespace Itop.WebFrame {
     public class Global : System.Web.HttpApplication {
@@ -27,7 +28,8 @@ namespace Itop.WebFrame {
                 new ServerContainer();
                 IOC = ServerContainer.PlatformServer;
             }
-           
+            dbGameHelper.Create();
+            gameHandler.ScoreList = dbGameHelper.getScores();
         }
 
         protected void Session_Start(object sender, EventArgs e) {
@@ -51,7 +53,8 @@ namespace Itop.WebFrame {
         }
 
         protected void Session_End(object sender, EventArgs e) {
-
+            dbGameHelper.Clear();
+            dbGameHelper.Insert(gameHandler.ScoreList);
         }
 
         protected void Application_End(object sender, EventArgs e) {
