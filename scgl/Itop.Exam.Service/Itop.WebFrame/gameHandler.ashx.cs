@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Services;
 using System.Web.Script.Serialization;
-
+using Itop.Frame.BLL;
 namespace Itop.WebFrame {
     /// <summary>
     /// $codebehindclassname$ 的摘要说明
@@ -12,7 +12,18 @@ namespace Itop.WebFrame {
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class gameHandler : IHttpHandler {
         static JavaScriptSerializer jsonHelper = new JavaScriptSerializer();
-        static List<GameScore> scoreList = new List<GameScore>();
+        static List<GameScore> scoreList = null;
+        
+        public static List<GameScore> ScoreList {
+            get {
+                if (scoreList == null)
+                    scoreList = dbGameHelper.getScores();
+                return scoreList;
+            }
+            set {
+                scoreList = value;
+            }
+        }
         static object lockObj = new object();
         public void ProcessRequest(HttpContext context) {
             GameResult result = new GameResult();
@@ -48,7 +59,7 @@ namespace Itop.WebFrame {
             if (!string.IsNullOrEmpty(username)) {
                 GameScore gs = new GameScore() { username = username };
                 lock (lockObj) {
-                    foreach (GameScore score in scoreList) {
+                    foreach (GameScore score in ScoreList) {
                         if (score.username == username) {
                             gs.score = score.score;
                             break;
@@ -67,25 +78,35 @@ namespace Itop.WebFrame {
 
             if (!string.IsNullOrEmpty(data)) {
                 GameScore gs = null;
-                try { gs = jsonHelper.Deserialize<GameScore>(data); } catch {
+                try {
+                   gs= Newtonsoft.Json.JsonConvert.DeserializeObject<GameScore>(data);
+                
+                
+                } catch {
 
                 }
                 if (gs != null && !string.IsNullOrEmpty(gs.username)) {
                     lock (lockObj) {
+                        List<GameScore> scoreList = ScoreList;
+                        bool isupdate = false;
                         for (int i = 0; i < scoreList.Count; i++) {
-                            if (gs.username == scoreList[i].username) {
-                                scoreList.RemoveAt(i); break;
+                            if (gs.username == scoreList[i].username && gs.score>scoreList[i].score) {
+                                scoreList.RemoveAt(i);
+                                isupdate = true;
                             }
                         }
 
                         for (int i = 0; i < scoreList.Count; i++) {
                             if (gs.score > scoreList[i].score) {
-                                scoreList.Insert(i, gs); gs = null; break;
+                                scoreList.Insert(i, gs); break;
                             }
                         }
-                        if (gs != null) {
+                        if (isupdate) {
+                            
+                            dbGameHelper.Update(gs);
+                        } else {
                             scoreList.Add(gs);
-                            gs = null;
+                            dbGameHelper.Insert(gs);
                         }
                     }
                 } else {
@@ -109,6 +130,7 @@ namespace Itop.WebFrame {
             string limit = context.Request.Params["limit"];
             int nlimit = 5;
             int.TryParse(limit, out nlimit);
+            List<GameScore> scoreList = ScoreList;
             nlimit = Math.Min(scoreList.Count, Math.Max(nlimit, 5));
             if (gameKey == "dafeiji") {
                 result.data = jsonHelper.Serialize(scoreList.GetRange(0,nlimit));
@@ -124,10 +146,7 @@ namespace Itop.WebFrame {
             public int errorCode = 0;
             public string data = "";
         }
-        class GameScore {
-            public string username;
-            public float score=0;
-        }
+        
         public bool IsReusable {
             get {
                 return false;
