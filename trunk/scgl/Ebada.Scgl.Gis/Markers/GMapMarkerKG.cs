@@ -43,10 +43,10 @@ namespace Ebada.Scgl.Gis.Markers {
             item.Text = "属性";
             item.Click += new EventHandler(属性_Click);
             contextMenu.MenuItems.Add(item);
-            item = new MenuItem();
-            item.Text = "负荷侧用户统计";
-            item.Click += new EventHandler(负荷侧用户统计_Click);
-            contextMenu.MenuItems.Add(item);
+            //item = new MenuItem();
+            //item.Text = "负荷侧用户统计";
+            //item.Click += new EventHandler(负荷侧用户统计_Click);
+            //contextMenu.MenuItems.Add(item);
             return contextMenu;
         }
         void 负荷侧用户统计_Click(object sender, EventArgs e) {
