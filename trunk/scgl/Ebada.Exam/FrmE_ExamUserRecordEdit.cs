@@ -14,9 +14,9 @@ using System.IO;
 
 namespace Ebada.Exam
 {
-    public partial class FrmE_BusinesInfoEdit :FormBase, IPopupFormEdit {
-        SortableSearchableBindingList<E_BusinesInfo> m_CityDic = new SortableSearchableBindingList<E_BusinesInfo>();
-        public FrmE_BusinesInfoEdit()
+    public partial class FrmE_ExamUserRecordEdit :FormBase, IPopupFormEdit {
+        SortableSearchableBindingList<E_ExamUserRecord> m_CityDic = new SortableSearchableBindingList<E_ExamUserRecord>();
+        public FrmE_ExamUserRecordEdit()
         {
             InitializeComponent();
         }
@@ -24,12 +24,16 @@ namespace Ebada.Exam
         void dataBind()
         {
 
-            this.txtTitle.DataBindings.Add("EditValue", rowData, "Title");
-            this.mtxtContent.DataBindings.Add("EditValue", rowData, "Content");
-            this.txtOther.DataBindings.Add("EditValue", rowData, "Other");
+            this.txtTitle.DataBindings.Add("EditValue", rowData, "Name");
+            this.txtPost.DataBindings.Add("EditValue", rowData, "Post");
+
+            this.mtxtContent.DataBindings.Add("EditValue", rowData, "ExamRecord");
+            this.txtOther.DataBindings.Add("EditValue", rowData, "OrgName");
+
+
 
         }
-        private E_BusinesInfo rowData = null;
+        private E_ExamUserRecord rowData = null;
 
         public object RowData
         {
@@ -42,15 +46,15 @@ namespace Ebada.Exam
                 if (value == null) return;
                 if (rowData == null)
                 {
-                    this.rowData = value as E_BusinesInfo;
+                    this.rowData = value as E_ExamUserRecord;
                     this.InitComboBoxData();
                     dataBind();
                 }
                 else
                 {
-                    ConvertHelper.CopyTo<E_BusinesInfo>(value as E_BusinesInfo, rowData);
+                    ConvertHelper.CopyTo<E_ExamUserRecord>(value as E_ExamUserRecord, rowData);
                 }
-                if (rowData.Other.Length>0)
+                if (rowData.OrgName.Length>0)
                 {
                     btnDownLoad.Enabled = true;
                 }
@@ -84,7 +88,7 @@ namespace Ebada.Exam
             }
             if (rowData.WordData.Length==0)
             {
-                rowData.Other = string.Empty;
+                rowData.OrgName = string.Empty;
             }
             this.DialogResult = DialogResult.OK;
         }
@@ -120,7 +124,7 @@ namespace Ebada.Exam
                 fsBLOBFile.Close();
 
                 txtOther.EditValue = fileName;
-                rowData.Other = fileName;
+                rowData.OrgName = fileName;
                 txtFileName.EditValue = filePath;
 
             }

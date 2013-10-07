@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Exam
 {
-    partial class UCE_BusinesInfo
+    partial class UCE_ExamUserRecord
     {
         /// <summary> 
         /// Required designer variable.
