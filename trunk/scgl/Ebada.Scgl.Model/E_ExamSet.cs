@@ -67,7 +67,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：标题
         /// 字段信息：[Title],nvarchar
         /// </summary>
-        [DisplayNameAttribute("标题")]
+        [DisplayNameAttribute("名称")]
         public string Title
         {
             get { return _title; }
@@ -75,7 +75,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[标题]长度不能大于50!");
+                    throw new Exception("[名称]长度不能大于50!");
                 if (_title as object == null || !_title.Equals(value))
                 {
                     _title = value;
@@ -88,6 +88,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：代码
         /// 字段信息：[Code],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("代码")]
         public string Code
         {
@@ -127,6 +128,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：创建人
         /// 字段信息：[CreateMan],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("创建人")]
         public string CreateMan
         {
@@ -148,6 +150,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：创建时间
         /// 字段信息：[CreateTime],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("创建时间")]
         public DateTime CreateTime
         {
@@ -166,6 +169,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {

@@ -111,6 +111,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：机构
         /// 字段信息：[OrgID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("机构")]
         public string OrgID
         {
@@ -132,7 +133,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：其它
         /// 字段信息：[Other],nvarchar
         /// </summary>
-        [DisplayNameAttribute("其它")]
+        [DisplayNameAttribute("附件")]
         public string Other
         {
             get { return _other; }
@@ -140,7 +141,7 @@ namespace Ebada.Scgl.Model
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[其它]长度不能大于50!");
+                throw new Exception("[附件]长度不能大于50!");
                 if (_other as object == null || !_other.Equals(value))
                 {
                     _other = value;
@@ -192,6 +193,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {
@@ -210,6 +212,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[WordData],image
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
         public byte[] WordData
         {
