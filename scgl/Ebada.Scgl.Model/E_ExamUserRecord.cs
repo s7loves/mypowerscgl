@@ -65,33 +65,35 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+
         /// <summary>
-        /// 属性名称：OrgName
-        /// 属性描述：供电所名称
-        /// 字段信息：[OrgName],nvarchar
+        /// 属性名称：Name
+        /// 属性描述：姓名
+        /// 字段信息：[Name],nvarchar
         /// </summary>
-        [DisplayNameAttribute("供电所名称")]
-        public string OrgName
+        [DisplayNameAttribute("姓名")]
+        public string Name
         {
-            get { return _orgname; }
+            get { return _name; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[供电所名称]长度不能大于50!");
-                if (_orgname as object == null || !_orgname.Equals(value))
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 500)
+                    throw new Exception("[姓名]长度不能大于500!");
+                if (_name as object == null || !_name.Equals(value))
                 {
-                    _orgname = value;
+                    _name = value;
                 }
-            }			 
+            }
         }
+       
   
         /// <summary>
         /// 属性名称：OrgCode
         /// 属性描述：供电所代码
         /// 字段信息：[OrgCode],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("供电所代码")]
         public string OrgCode
         {
@@ -108,26 +110,7 @@ namespace Ebada.Scgl.Model
             }			 
         }
   
-        /// <summary>
-        /// 属性名称：Name
-        /// 属性描述：姓名
-        /// 字段信息：[Name],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("姓名")]
-        public string Name
-        {
-            get { return _name; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[姓名]长度不能大于500!");
-                if (_name as object == null || !_name.Equals(value))
-                {
-                    _name = value;
-                }
-            }			 
-        }
+      
   
         /// <summary>
         /// 属性名称：Post
@@ -148,6 +131,26 @@ namespace Ebada.Scgl.Model
                     _post = value;
                 }
             }			 
+        }
+        /// <summary>
+        /// 属性名称：OrgName
+        /// 属性描述：供电所名称
+        /// 字段信息：[OrgName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("附件")]
+        public string OrgName
+        {
+            get { return _orgname; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[附件]长度不能大于50!");
+                if (_orgname as object == null || !_orgname.Equals(value))
+                {
+                    _orgname = value;
+                }
+            }
         }
   
         /// <summary>
@@ -194,6 +197,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[BigData],image
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
         public byte[] BigData
         {
@@ -212,6 +216,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：
         /// 字段信息：[WordData],image
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("")]
         public byte[] WordData
         {
@@ -230,6 +235,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {
