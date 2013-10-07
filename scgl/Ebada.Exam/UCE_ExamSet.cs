@@ -26,34 +26,34 @@ namespace Ebada.Exam {
     /// 
     /// </summary>
     //[ToolboxItem(false)]
-    public partial class UCE_BusinesInfo : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<E_BusinesInfo> gridViewOperation;
+    public partial class UCE_ExamSet : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<E_ExamSet> gridViewOperation;
         private string parentID = null;
-        private E_BusinesInfo parentObj;
-        public event SendDataEventHandler<E_BusinesInfo> FocusedRowChanged;
+        private E_ExamSet parentObj;
+        public event SendDataEventHandler<E_ExamSet> FocusedRowChanged;
 
-        public UCE_BusinesInfo()
+        public UCE_ExamSet()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<E_BusinesInfo>(gridControl1, gridView1, barManager1,new FrmE_BusinesInfoEdit());
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_BusinesInfo>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<E_ExamSet>(gridControl1, gridView1, barManager1,new FrmE_ExamSetEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_ExamSet>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_BusinesInfo>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_ExamSet>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
         }
 
         void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_BusinesInfo);
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_ExamSet);
         }
 
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_BusinesInfo> e) {
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_ExamSet> e) {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<E_BusinesInfo> e) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<E_ExamSet> e) {
    
         }
         protected override void OnLoad(EventArgs e) {
@@ -77,6 +77,15 @@ namespace Ebada.Exam {
         public void InitData() {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
+            IList<E_ExamSet> list = MainHelper.PlatformSqlMap.GetList<E_ExamSet>(" where Code='yxnum'");
+            if (list.Count==0)
+            {
+                E_ExamSet eset = new E_ExamSet();
+                eset.Code = "yxnum";
+                eset.Value = 80;
+                eset.Title = "优秀分数";
+                MainHelper.PlatformSqlMap.Create<E_ExamSet>(eset);
+            }
             RefreshData("  order by CreateTime desc");
         }
         /// <summary>
@@ -87,8 +96,8 @@ namespace Ebada.Exam {
             //需要隐藏列时在这写代码
 
             //hideColumn("ID");
-            gridView1.Columns["Title"].Width = 200;
-            gridView1.Columns["Content"].Width = 500;
+            //gridView1.Columns["Title"].Width = 200;
+            //gridView1.Columns["Content"].Width = 500;
         }
 
         /// <summary>
@@ -102,7 +111,7 @@ namespace Ebada.Exam {
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<E_BusinesInfo> GridViewOperation {
+        public GridViewOperation<E_ExamSet> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -110,9 +119,8 @@ namespace Ebada.Exam {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(E_BusinesInfo newobj) {
-            newobj.UserID = MainHelper.User.UserName;
-            newobj.CreateTime = DateTime.Now;
+        void gridViewOperation_CreatingObjectEvent(E_ExamSet newobj) {
+          
 
         }
 
@@ -136,7 +144,7 @@ namespace Ebada.Exam {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public E_BusinesInfo ParentObj
+        public E_ExamSet ParentObj
         {
             get { return parentObj; }
             set
@@ -158,18 +166,10 @@ namespace Ebada.Exam {
         {
             if (gridView1.GetFocusedRow()!=null)
             {
-                ParentObj = gridView1.GetFocusedRow() as E_BusinesInfo;
+                ParentObj = gridView1.GetFocusedRow() as E_ExamSet;
             }
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (gridView1.GetFocusedRow() != null)
-            {
-                ParentObj = gridView1.GetFocusedRow() as E_BusinesInfo;
-                CommentHelper.SaveFile(ParentObj.WordData, ParentObj.BySCol1);
-            }
-        }
 
        
     }

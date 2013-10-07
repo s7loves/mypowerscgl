@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentHelper.cs" />
     <Compile Include="FrmE_ExaminationUserEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +274,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_BusinesInfoEdit.resx">
       <DependentUpon>FrmE_BusinesInfoEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamUserRecord.resx">
+      <DependentUpon>UCE_ExamUserRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExamUserRecordEdit.resx">
+      <DependentUpon>FrmE_ExamUserRecordEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamSet.resx">
+      <DependentUpon>UCE_ExamSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmE_ExamSetEdit.resx">
+      <DependentUpon>FrmE_ExamSetEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -516,6 +533,30 @@
     </Compile>
     <Compile Include="FrmE_BusinesInfoEdit.Designer.cs">
       <DependentUpon>FrmE_BusinesInfoEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamUserRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamUserRecord.Designer.cs">
+      <DependentUpon>UCE_ExamUserRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_ExamUserRecordEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExamUserRecordEdit.Designer.cs">
+      <DependentUpon>FrmE_ExamUserRecordEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamSet.Designer.cs">
+      <DependentUpon>UCE_ExamSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmE_ExamSetEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmE_ExamSetEdit.Designer.cs">
+      <DependentUpon>FrmE_ExamSetEdit.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
