@@ -32,6 +32,7 @@ namespace Ebada.Exam
             this.dateStart.DataBindings.Add("EditValue", rowData, "StartTime");
             this.dateEnd.DataBindings.Add("EditValue", rowData, "EndTime");
 
+
             //this.lkuePro.DataBindings.Add("EditValue", rowData, "ProfessionalID");
 
         }
