@@ -12,16 +12,16 @@ namespace Itop.WebFrame {
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class gameHandler : IHttpHandler {
         static JavaScriptSerializer jsonHelper = new JavaScriptSerializer();
-        static List<GameScore> scoreList = null;
+        static List<GameScore> _scoreList = null;
         
         public static List<GameScore> ScoreList {
             get {
-                if (scoreList == null)
-                    scoreList = dbGameHelper.getScores();
-                return scoreList;
+                if (_scoreList == null)
+                    _scoreList = dbGameHelper.getScores();
+                return _scoreList;
             }
             set {
-                scoreList = value;
+                _scoreList = value;
             }
         }
         static object lockObj = new object();
@@ -89,24 +89,28 @@ namespace Itop.WebFrame {
                     lock (lockObj) {
                         List<GameScore> scoreList = ScoreList;
                         bool isupdate = false;
-                        for (int i = 0; i < scoreList.Count; i++) {
-                            if (gs.username == scoreList[i].username && gs.score>scoreList[i].score) {
-                                scoreList.RemoveAt(i);
-                                isupdate = true;
+                        for (int i = scoreList.Count-1; i>=0 ; i--) {
+                            if (gs.username == scoreList[i].username ) {
+                                if (gs.score > scoreList[i].score) {
+                                    scoreList.RemoveAt(i);
+                                    break;
+                                } else {
+                                    return result;
+                                }
                             }
                         }
 
                         for (int i = 0; i < scoreList.Count; i++) {
                             if (gs.score > scoreList[i].score) {
-                                scoreList.Insert(i, gs); break;
+                                scoreList.Insert(i, gs);
+                                dbGameHelper.Update(gs);
+                                gs = null;
+                                break;
                             }
                         }
-                        if (isupdate) {
-                            
-                            dbGameHelper.Update(gs);
-                        } else {
+                        if (gs != null) {
                             scoreList.Add(gs);
-                            dbGameHelper.Insert(gs);
+                            dbGameHelper.Update(gs);
                         }
                     }
                 } else {
