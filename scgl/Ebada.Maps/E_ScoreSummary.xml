@@ -290,6 +290,27 @@
    <select id="GetE_ScoreSummaryRowCount" parameterClass="string">
     select count(*) from E_ScoreSummary $value$
    </select>
+    <select id="SelectE_ScoreSummaryByTBBJ" resultMap="E_ScoreSummary_AllColumns" parameterClass="string">
+      select  b.* , case b.[RealExamUseNum] when 0 then 0 else  cast( b.PassNum as float) /b.[RealExamUseNum] end AS PassPercent,
+      case b.[RealExamUseNum] when 0 then 0 else  cast( b.yxrs as float) /b.[RealExamUseNum] end AS GoodPercent,
+      ( b.RealExamUseNum-b.PassNum ) as [NoPassNum],
+      case b.[RealExamUseNum] when 0 then 0 else  cast( (b.[RealExamUseNum]-b.PassNum )as float) /b.[RealExamUseNum] end AS [NoPassPercent]
+      from (
+      SELECT     a.ID, a.ID as ExmaID,a.E_Name as ExamName, a.StartTime, a.EndTime,
+      (SELECT     COUNT(ID) AS [RealExamUseNum]
+      FROM          dbo.E_ExamResult
+      WHERE      (E_ID = a.ID)) AS [RealExamUseNum],
+      (SELECT     AVG(Score) AS AverageSocre
+      FROM          dbo.E_ExamResult AS E_ExamResult_1
+      WHERE      (E_ID = a.ID)) AS AverageSocre,
+      (SELECT     COUNT(ID) AS PassNum
+      FROM          dbo.E_ExamResult AS E_ExamResult_2
+      WHERE      (E_ID = a.ID) AND (IsPassed = 1)) AS PassNum,
+      (SELECT     COUNT(ID) AS yxrs
+      FROM          dbo.E_ExamResult AS E_ExamResult_2
+      WHERE      (E_ID = a.ID) AND Score>= (select [value] from E_ExamSet where Code='yxnum')) AS yxrs
+      FROM         dbo.E_Examination AS a) as b
+    </select>
   </statements>
 </sqlMap>
  
