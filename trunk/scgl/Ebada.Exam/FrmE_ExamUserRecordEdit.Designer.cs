@@ -32,25 +32,26 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtPost = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtOther = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtFileName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.btnup = new DevExpress.XtraEditors.SimpleButton();
             this.mtxtContent = new DevExpress.XtraEditors.MemoEdit();
-            this.txtTitle = new DevExpress.XtraEditors.TextEdit();
+            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnDownLoad = new DevExpress.XtraEditors.SimpleButton();
-            this.txtPost = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.btnCreatExamRecord = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPost.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtContent.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPost.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -75,6 +76,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.btnCreatExamRecord);
             this.groupControl1.Controls.Add(this.txtPost);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.txtOther);
@@ -83,14 +85,29 @@
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.btnup);
             this.groupControl1.Controls.Add(this.mtxtContent);
-            this.groupControl1.Controls.Add(this.txtTitle);
+            this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(25, 12);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(549, 360);
             this.groupControl1.TabIndex = 5;
-            this.groupControl1.Text = "企业信息";
+            this.groupControl1.Text = "考生档案";
+            // 
+            // txtPost
+            // 
+            this.txtPost.Location = new System.Drawing.Point(83, 75);
+            this.txtPost.Name = "txtPost";
+            this.txtPost.Size = new System.Drawing.Size(443, 21);
+            this.txtPost.TabIndex = 51;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(26, 78);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(36, 14);
+            this.labelControl4.TabIndex = 50;
+            this.labelControl4.Text = "职务：";
             // 
             // txtOther
             // 
@@ -141,12 +158,12 @@
             this.mtxtContent.Size = new System.Drawing.Size(443, 171);
             this.mtxtContent.TabIndex = 3;
             // 
-            // txtTitle
+            // txtUserName
             // 
-            this.txtTitle.Location = new System.Drawing.Point(83, 48);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(443, 21);
-            this.txtTitle.TabIndex = 2;
+            this.txtUserName.Location = new System.Drawing.Point(83, 48);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(443, 21);
+            this.txtUserName.TabIndex = 2;
             // 
             // labelControl2
             // 
@@ -173,20 +190,14 @@
             this.btnDownLoad.Text = "下载附件";
             this.btnDownLoad.Click += new System.EventHandler(this.btnDownLoad_Click);
             // 
-            // txtPost
+            // btnCreatExamRecord
             // 
-            this.txtPost.Location = new System.Drawing.Point(83, 75);
-            this.txtPost.Name = "txtPost";
-            this.txtPost.Size = new System.Drawing.Size(443, 21);
-            this.txtPost.TabIndex = 51;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(26, 78);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(36, 14);
-            this.labelControl4.TabIndex = 50;
-            this.labelControl4.Text = "职务：";
+            this.btnCreatExamRecord.Location = new System.Drawing.Point(21, 132);
+            this.btnCreatExamRecord.Name = "btnCreatExamRecord";
+            this.btnCreatExamRecord.Size = new System.Drawing.Size(57, 23);
+            this.btnCreatExamRecord.TabIndex = 52;
+            this.btnCreatExamRecord.Text = "自动生成";
+            this.btnCreatExamRecord.Click += new System.EventHandler(this.btnCreatExamRecord_Click);
             // 
             // FrmE_ExamUserRecordEdit
             // 
@@ -203,11 +214,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPost.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtContent.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPost.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,7 +229,7 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.MemoEdit mtxtContent;
-        private DevExpress.XtraEditors.TextEdit txtTitle;
+        private DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.ButtonEdit txtFileName;
@@ -229,5 +240,6 @@
         private DevExpress.XtraEditors.SimpleButton btnDownLoad;
         private DevExpress.XtraEditors.TextEdit txtPost;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.SimpleButton btnCreatExamRecord;
     }
 }

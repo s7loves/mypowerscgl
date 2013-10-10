@@ -254,5 +254,31 @@
     <select id="GetE_ExamResultRowCount" parameterClass="string">
       select count(*) from E_ExamResult $value$
     </select>
+    <select id="SelectE_ExamResultListByUserRecord" resultMap="E_ExamResult_AllColumns" parameterClass="string">
+      SELECT
+      a.[ID],
+      a.[E_ID],
+      a.[EP_ID],
+      a.[UserID],
+      a.[RealStartTime],
+      a.[RealEenTime],
+      a.[IsExamed],
+      a.[Score],
+      a.[IsPassed],
+      a.[Comment],
+      a.[CheckPeople],
+      a.[Sequence],
+      a.[ShowScore],
+      a.[BySCol1],
+      a.[BySCol2],
+      a.[BySCol3],
+      a.[BySCol4],
+      a.[BySCol5],
+      b.[E_Name] as [Remark],
+      a.[RowVersion]
+      FROM E_ExamResult as a,E_Examination as b where
+      a.[E_ID]=b.ID
+      $value$
+    </select>
   </statements>
 </sqlMap>

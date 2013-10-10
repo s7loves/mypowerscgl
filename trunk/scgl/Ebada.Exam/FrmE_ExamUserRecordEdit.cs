@@ -24,7 +24,7 @@ namespace Ebada.Exam
         void dataBind()
         {
 
-            this.txtTitle.DataBindings.Add("EditValue", rowData, "Name");
+            this.txtUserName.DataBindings.Add("EditValue", rowData, "Name");
             this.txtPost.DataBindings.Add("EditValue", rowData, "Post");
 
             this.mtxtContent.DataBindings.Add("EditValue", rowData, "ExamRecord");
@@ -75,7 +75,7 @@ namespace Ebada.Exam
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            string pname = txtTitle.Text.Trim();
+            string pname = txtUserName.Text.Trim();
             if (pname.Length== 0)
             {
                 MsgBox.ShowWarningMessageBox("标题不能为空！");
@@ -140,6 +140,44 @@ namespace Ebada.Exam
         {
 
             CommentHelper.SaveFile(rowData.WordData,rowData.BySCol1);
+        }
+        //自动生成考生考试信息
+        private void btnCreatExamRecord_Click(object sender, EventArgs e)
+        {
+            string UserName=txtUserName.Text;
+            if (UserName.Length==0)
+            {
+                MsgBox.ShowWarningMessageBox("请填写考生姓名!");
+                return;
+            }
+            string sql=" where UserName='"+UserName+"'";
+            IList<mUser> userlist = MainHelper.PlatformSqlMap.GetListByWhere<mUser>(sql);
+            if (userlist.Count==0)
+            {
+                MsgBox.ShowWarningMessageBox("【"+UserName+"】查无此人!");
+                return;
+            }
+            else
+            {
+                string sqlwhere = " and  a.UserID='" + userlist[0].UserID + "' order by a.RealStartTime desc";
+                IList<E_ExamResult> resultlist = MainHelper.PlatformSqlMap.GetList<E_ExamResult>("SelectE_ExamResultListByUserRecord",sqlwhere);
+                if (resultlist.Count==0)
+                {
+                    MsgBox.ShowWarningMessageBox("【" + UserName + "】查考试记录!");
+                }
+                else
+                {
+                    string str = string.Empty;
+                    int index=1;
+                    foreach (E_ExamResult item in resultlist)
+                    {
+                        str +=index+","+ item.RealStartTime.ToString("yyyy年MM月dd日") + " 参加" + item.Remark + "考试,成绩：" + item.Score +", "+ (item.IsPassed ? "已通过" : "未通过")+"\r\n";
+                    }
+                    rowData.ExamRecord = str;
+                    mtxtContent.Text = str;
+                }
+               
+            }
         }
 
 
