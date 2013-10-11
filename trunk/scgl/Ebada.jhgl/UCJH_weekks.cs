@@ -115,6 +115,8 @@ namespace Ebada.jhgl {
             addjh.完成标记 = "未完成";
             addjh.完成时间 = DateTime.Now;
             addjh.ParentID = parentID;
+            addjh.预计时间 = ParentOBJ.开始日期;
+            addjh.预计时间2 = ParentOBJ.结束日期;
             Client.ClientHelper.PlatformSqlMap.Create<JH_weekks>(addjh);
             gridViewOperation.BindingList.Add(addjh);
             if (obj.计划种类.Contains("一")) {
