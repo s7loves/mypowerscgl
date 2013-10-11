@@ -71,6 +71,12 @@ string xtdm="jhgl";
             topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.gps监控管理;
             return this;
         }
+        public Control showKSXT() {
+            xtdm = "ksxt";
+            this.Text = MainHelper.UserCompany + "趣味培训考试系统";
+            topBackbmp = pictureEdit1.Image = Ebada.jhgl.Properties.Resources.趣味培训考试系统;
+            return this;
+        }
         void pictureEdit1_SizeChanged(object sender, EventArgs e) {
 
             if (pictureEdit1.Width > topbarWidth) {

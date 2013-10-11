@@ -80,5 +80,12 @@ namespace Ebada.jhgl.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap 趣味培训考试系统 {
+            get {
+                object obj = ResourceManager.GetObject("趣味培训考试系统", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
