@@ -30,6 +30,31 @@
         <result property="Remark" column="Remark" />
         <result property="RowVersion" column="RowVersion" />
       </resultMap>
+    <resultMap id="E_ScoreSummary_AllColumns2" class="E_ScoreSummary">
+      <result property="ID" column="ID" />
+      <result property="ExmaID" column="ExmaID" />
+      <result property="ExamName" column="ExamName" />
+      <result property="AverageSocre" column="AverageSocre" />
+      <result property="NeedExamUserNum" column="NeedExamUserNum" />
+      <result property="RealExamUseNum" column="RealExamUseNum" />
+      <result property="PassNum" column="PassNum" />
+      <result property="PassPercent" column="PassPercent" />
+      <result property="NoPassNum" column="NoPassNum" />
+      <result property="NoPassPercent" column="NoPassPercent" />
+      <result property="GoodPercent" column="GoodPercent" />
+      <result property="CreateTime" column="CreateTime" />
+      <result property="Sequence" column="Sequence" />
+      <result property="ByInt1" column="ByInt1" />
+      <result property="ByInt2" column="ByInt2" />
+      <result property="ByFloat1" column="ByFloat1" />
+      <result property="ByFloat2" column="ByFloat2" />
+      <result property="BySCol1" column="BySCol1" />
+      <result property="BySCol2" column="BySCol2" />
+      <result property="BySCol3" column="BySCol3" />
+      <result property="BySCol4" column="BySCol4" />
+      <result property="BySCol5" column="BySCol5" />
+      <result property="Remark" column="Remark" />
+    </resultMap>
   </resultMaps>
 
   <statements>
@@ -290,17 +315,49 @@
    <select id="GetE_ScoreSummaryRowCount" parameterClass="string">
     select count(*) from E_ScoreSummary $value$
    </select>
-    <select id="SelectE_ScoreSummaryByTBBJ" resultMap="E_ScoreSummary_AllColumns" parameterClass="string">
-      select  b.* , case b.[RealExamUseNum] when 0 then 0 else  cast( b.PassNum as float) /b.[RealExamUseNum] end AS PassPercent,
-      case b.[RealExamUseNum] when 0 then 0 else  cast( b.yxrs as float) /b.[RealExamUseNum] end AS GoodPercent,
-      ( b.RealExamUseNum-b.PassNum ) as [NoPassNum],
-      case b.[RealExamUseNum] when 0 then 0 else  cast( (b.[RealExamUseNum]-b.PassNum )as float) /b.[RealExamUseNum] end AS [NoPassPercent]
-      from (
-      SELECT     a.ID, a.ID as ExmaID,a.E_Name as ExamName, a.StartTime, a.EndTime,
-      (SELECT     COUNT(ID) AS [RealExamUseNum]
+    <select id="SelectE_ScoreSummaryByTBBJ" resultMap="E_ScoreSummary_AllColumns2" parameterClass="string">
+      insert into dbo.E_ScoreSummary
+      ( [ID],
+      [ExmaID],
+      [ExamName],
+      [AverageSocre],
+      [NeedExamUserNum],
+      [RealExamUseNum],
+      [PassNum],
+      [PassPercent],
+      [NoPassNum],
+      [NoPassPercent],
+      [GoodPercent],
+      [CreateTime],
+      [Sequence],
+      [ByInt1],
+      [ByInt2],
+      [ByFloat1],
+      [ByFloat2],
+      [BySCol1],
+      [BySCol2],
+      [BySCol3],
+      [BySCol4],
+      [BySCol5],
+      [Remark])
+      SELECT     ID, ExmaID, ExamName,
+      AverageSocre,
+      0 AS NeedExamUserNum,
+      RealExamUseNum,
+      PassNum,
+      CASE b.[RealExamUseNum] WHEN 0 THEN 0 ELSE CAST(b.PassNum AS float) / b.[RealExamUseNum] END AS PassPercent,
+      RealExamUseNum - PassNum AS NoPassNum,
+      CASE b.[RealExamUseNum] WHEN 0 THEN 0 ELSE CAST((b.[RealExamUseNum] - b.PassNum) AS float) / b.[RealExamUseNum] END AS NoPassPercent,
+      CASE b.[RealExamUseNum] WHEN 0 THEN 0 ELSE CAST(b.[ByInt1] AS float) / b.[RealExamUseNum] END AS GoodPercent,
+      CreateTime,
+      0 AS Sequence,  ByInt1, 0 AS ByInt2,
+      0 AS ByFloat1, 0 AS ByFloat2, '' AS BySCol1, '' AS BySCol2, '' AS BySCol3, '' AS BySCol4, '' AS BySCol5, '' AS Remark
+      FROM
+      (SELECT ID, ID AS ExmaID, E_Name AS ExamName, EndTime AS CreateTime,
+      (SELECT     COUNT(ID) AS RealExamUseNum
       FROM          dbo.E_ExamResult
-      WHERE      (E_ID = a.ID)) AS [RealExamUseNum],
-      (SELECT     AVG(Score) AS AverageSocre
+      WHERE      (E_ID = a.ID)) AS RealExamUseNum,
+      (SELECT     ISNULL(AVG(Score), 0) AS AverageSocre
       FROM          dbo.E_ExamResult AS E_ExamResult_1
       WHERE      (E_ID = a.ID)) AS AverageSocre,
       (SELECT     COUNT(ID) AS PassNum
@@ -308,8 +365,14 @@
       WHERE      (E_ID = a.ID) AND (IsPassed = 1)) AS PassNum,
       (SELECT     COUNT(ID) AS yxrs
       FROM          dbo.E_ExamResult AS E_ExamResult_2
-      WHERE      (E_ID = a.ID) AND Score>= (select [value] from E_ExamSet where Code='yxnum')) AS yxrs
-      FROM         dbo.E_Examination AS a) as b
+      WHERE      (E_ID = a.ID) AND (Score >=
+      (SELECT     Value
+      FROM          dbo.E_ExamSet
+      WHERE      (Code = 'yxnum')))) AS ByInt1
+      FROM          dbo.E_Examination AS a
+      WHERE      (GETDATE() > EndTime) AND (ID NOT IN
+      (SELECT     ID
+      FROM          dbo.E_ScoreSummary))) AS b
     </select>
   </statements>
 </sqlMap>

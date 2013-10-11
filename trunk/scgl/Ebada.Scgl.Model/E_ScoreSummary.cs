@@ -77,6 +77,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：考试
         /// 字段信息：[ExmaID],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("考试")]
         public string ExmaID
         {
@@ -137,6 +138,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：应考人数
         /// 字段信息：[NeedExamUserNum],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("应考人数")]
         public int NeedExamUserNum
         {
@@ -263,6 +265,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：发布时间
         /// 字段信息：[CreateTime],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("发布时间")]
         public DateTime CreateTime
         {
@@ -281,6 +284,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {
