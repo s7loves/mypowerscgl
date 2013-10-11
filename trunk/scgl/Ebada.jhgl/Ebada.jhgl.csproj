@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{33DA3681-4BD2-4C0A-9098-FA133DE22EBF}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -332,6 +332,7 @@
   <ItemGroup>
     <None Include="gps监控管理.jpg" />
     <Content Include="员工工作.jpg" />
+    <Content Include="趣味培训考试系统.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
