@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_Notice" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_Notice"  type="Itop.Frame.Model.E_Notice,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_Notice_AllColumns" class="E_Notice">
+        <result property="ID" column="ID" />
+        <result property="Title" column="Title" />
+        <result property="Content" column="Content" />
+        <result property="OrgID" column="OrgID" />
+        <result property="Other" column="Other" />
+        <result property="UserID" column="UserID" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_NoticeList" resultMap="E_Notice_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [Title],
+         [Content],
+         [OrgID],
+         [Other],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Notice
+          $value$
+   </select>
+   
+   <select id="SelectE_NoticeByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [Title],
+         [Content],
+         [OrgID],
+         [Other],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Notice
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="Content">[Content]='$Content$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="Other">[Other]='$Other$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_NoticeByKey" resultMap="E_Notice_AllColumns" parameterClass="E_Notice">
+         SELECT 
+         [ID],
+         [Title],
+         [Content],
+         [OrgID],
+         [Other],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_Notice
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_Notice" parameterClass="E_Notice">
+        DELETE FROM 
+         E_Notice
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_NoticeByWhere" parameterClass="string">
+     delete from E_Notice $value$
+   </delete>
+   
+   <delete id="DeleteE_NoticeByKey" parameterClass="string">
+        DELETE FROM 
+         E_Notice
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_Notice" parameterClass="E_Notice" resultClass="int">
+          UPDATE E_Notice
+           SET
+             [Title]=#Title#,
+             [Content]=#Content#,
+             [OrgID]=#OrgID#,
+             [Other]=#Other#,
+             [UserID]=#UserID#,
+             [CreateTime]=#CreateTime#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_Notice" parameterClass="E_Notice">
+        INSERT INTO E_Notice
+         (
+         [ID],
+         [Title],
+         [Content],
+         [OrgID],
+         [Other],
+         [UserID],
+         [CreateTime],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #Title#,
+         #Content#,
+         #OrgID#,
+         #Other#,
+         #UserID#,
+         #CreateTime#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_NoticeRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_Notice
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="Title">[Title]='$Title$'</isNotNull>
+       <isNotNull prepend="AND" property="Content">[Content]='$Content$'</isNotNull>
+       <isNotNull prepend="AND" property="OrgID">[OrgID]='$OrgID$'</isNotNull>
+       <isNotNull prepend="AND" property="Other">[Other]='$Other$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_NoticeRowCount" parameterClass="string">
+    select count(*) from E_Notice $value$
+   </select>
+    <select id="SelectE_NoticeListByUserCondition" resultMap="E_Notice_AllColumns" parameterClass="string">
+      $value$
+    </select>
+  </statements>
+</sqlMap>
+ 

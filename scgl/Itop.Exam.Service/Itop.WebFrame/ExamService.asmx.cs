@@ -703,7 +703,6 @@ namespace Itop.WebFrame
             return GetQuestionStr(resultlist);
         }
 
-
         [WebMethod(Description = "反回模拟试题，tkid为题库ID")]
         [ScriptMethod(UseHttpGet = false)]
         public string GetFalseExamQuestionList(string tkid)
@@ -719,6 +718,106 @@ namespace Itop.WebFrame
             }
             return strresult;
         }
+
+
+
+        #region 通知、企业信息
+
+        [WebMethod(Description = "反回通知列表，StartIndex为起始序号，Num为通知条数")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetENoticeList(int StartIndex,int Num)
+        {
+            List<TurnE_BusinesInfo> teqblist = new List<TurnE_BusinesInfo>();
+            string sql = " select top " + Num + " * from (select top " + (Num +StartIndex-1)+ " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime asc";
+            try
+            {
+                IList<E_BusinesInfo> eqblist = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", sql);
+
+                foreach (E_BusinesInfo item in eqblist)
+                {
+                    TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
+                    teqb.ID = item.ID;
+                    teqb.Title = item.Title;
+                    teqb.Content = item.Content;
+                    teqb.Other =item.Other;
+                    teqb.UserID = item.UserID;
+                    teqb.CreateTime = item.CreateTime;
+                    teqblist.Add(teqb);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return GetJsonStr<TurnE_BusinesInfo>(teqblist);
+        }
+
+
+
+        [WebMethod(Description = "反回企业信息表，StartIndex为起始序号，Num为企业信息条数")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetEBusinesInfoList(int StartIndex, int Num)
+        {
+            List<TurnE_Notice> teqblist = new List<TurnE_Notice>();
+            string sql = " select top " + Num + " * from (select top " + (Num + StartIndex - 1) + " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime asc";
+            try
+            {
+                IList<E_Notice> eqblist = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", sql);
+
+
+                foreach (E_Notice item in eqblist)
+                {
+                    TurnE_Notice teqb = new TurnE_Notice();
+                    teqb.ID = item.ID;
+                    teqb.Title = item.Title;
+                    teqb.Content = item.Content;
+                    teqb.UserID = item.UserID;
+                    teqb.CreateTime = item.CreateTime;
+                    teqblist.Add(teqb);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return GetJsonStr<TurnE_Notice>(teqblist);
+        }
+        static string FileDir = "Files";
+        [WebMethod(Description = "反回通知附件,NoticeID通知ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetENoticeFile(string NoticeID)
+        {
+            E_File efile = new E_File();
+            try
+            {
+             string BaseAddress=AppDomain.CurrentDomain.BaseDirectory+"/"+FileDir;
+             if (!Directory.Exists(BaseAddress))
+             {
+                 Directory.CreateDirectory(BaseAddress);
+             }
+            E_BusinesInfo eb = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
+            if (eb!=null&&eb.WordData.Length>0)
+            {
+               
+                string filename=eb.ID+eb.BySCol1;
+                string address = BaseAddress + "/" + filename;
+                GetFile(eb.WordData, address);
+
+
+                 efile.FileName = eb.Other;
+                 efile.Address = FileDir + "/" + filename;
+            }
+            }
+            catch (Exception)
+            {
+
+            }
+            return GetJsonStr<E_File>(efile);
+        }
+
+        #endregion
+
+
 
 
         #endregion
@@ -1357,7 +1456,25 @@ namespace Itop.WebFrame
             return obj;
         }
 
+        public static void GetFile(byte[] bt, string filename)
+        {
+            BinaryWriter bw;
+            FileStream fs;
+            try
+            {
+                fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                bw = new BinaryWriter(fs);
+                bw.Write(bt);
+                bw.Flush();
+                bw.Close();
+                fs.Close();
 
+            }
+            catch
+            {
+
+            }
+        }
 
         #endregion
 
