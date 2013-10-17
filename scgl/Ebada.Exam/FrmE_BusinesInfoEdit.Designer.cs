@@ -32,22 +32,22 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtOther = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtFileName = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.btnup = new DevExpress.XtraEditors.SimpleButton();
             this.mtxtContent = new DevExpress.XtraEditors.MemoEdit();
             this.txtTitle = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtFileName = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.btnup = new DevExpress.XtraEditors.SimpleButton();
-            this.txtOther = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnDownLoad = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtContent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -85,7 +85,49 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(549, 360);
             this.groupControl1.TabIndex = 5;
-            this.groupControl1.Text = "企业信息";
+            this.groupControl1.Text = "通知信息";
+            // 
+            // txtOther
+            // 
+            this.txtOther.Location = new System.Drawing.Point(83, 286);
+            this.txtOther.Name = "txtOther";
+            this.txtOther.Size = new System.Drawing.Size(443, 21);
+            this.txtOther.TabIndex = 49;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(26, 289);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(36, 14);
+            this.labelControl3.TabIndex = 48;
+            this.labelControl3.Text = "附件：";
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(83, 322);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "浏览本地文件", null, null, true)});
+            this.txtFileName.Properties.ReadOnly = true;
+            this.txtFileName.Size = new System.Drawing.Size(369, 21);
+            this.txtFileName.TabIndex = 47;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(26, 325);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(60, 14);
+            this.labelControl5.TabIndex = 46;
+            this.labelControl5.Text = "附件地址：";
+            // 
+            // btnup
+            // 
+            this.btnup.Location = new System.Drawing.Point(469, 321);
+            this.btnup.Name = "btnup";
+            this.btnup.Size = new System.Drawing.Size(57, 23);
+            this.btnup.TabIndex = 45;
+            this.btnup.Text = "上传附件";
+            this.btnup.Click += new System.EventHandler(this.btnup_Click);
             // 
             // mtxtContent
             // 
@@ -117,48 +159,6 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "标题：";
             // 
-            // txtFileName
-            // 
-            this.txtFileName.Location = new System.Drawing.Point(83, 322);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "浏览本地文件", null, null, true)});
-            this.txtFileName.Properties.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(369, 21);
-            this.txtFileName.TabIndex = 47;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(26, 325);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(60, 14);
-            this.labelControl5.TabIndex = 46;
-            this.labelControl5.Text = "附件地址：";
-            // 
-            // btnup
-            // 
-            this.btnup.Location = new System.Drawing.Point(469, 321);
-            this.btnup.Name = "btnup";
-            this.btnup.Size = new System.Drawing.Size(57, 23);
-            this.btnup.TabIndex = 45;
-            this.btnup.Text = "上传附件";
-            this.btnup.Click += new System.EventHandler(this.btnup_Click);
-            // 
-            // txtOther
-            // 
-            this.txtOther.Location = new System.Drawing.Point(83, 286);
-            this.txtOther.Name = "txtOther";
-            this.txtOther.Size = new System.Drawing.Size(443, 21);
-            this.txtOther.TabIndex = 49;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(26, 289);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(36, 14);
-            this.labelControl3.TabIndex = 48;
-            this.labelControl3.Text = "附件：";
-            // 
             // btnDownLoad
             // 
             this.btnDownLoad.Location = new System.Drawing.Point(51, 411);
@@ -179,14 +179,14 @@
             this.Controls.Add(this.btnOK);
             this.Name = "FrmE_BusinesInfoEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "编缉企业信息";
+            this.Text = "编缉通知信息";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtContent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOther.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
