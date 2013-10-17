@@ -848,6 +848,286 @@ namespace Itop.WebFrame
             }
         }
         #endregion
+    }
+
+    /// <summary>
+    /// 通知信息
+    ///[E_BusinesInfo]业务实体类
+    ///对应表名:E_BusinesInfo
+    /// </summary>
+    public class TurnE_BusinesInfo
+    {
+
+        #region Private 成员
+        private string _id = String.Empty;
+        private string _title = String.Empty;
+        private string _content = String.Empty;
+        private string _other = String.Empty; 
+        private string _userid = String.Empty;
+        private DateTime _createtime = new DateTime(1900, 1, 1);
+        private byte[] _worddata = new byte[] { };
+       
+        #endregion
+
+
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[]长度不能大于200!");
+                if (_id as object == null || !_id.Equals(value))
+                {
+                    _id = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Title
+        /// 属性描述：标题
+        /// 字段信息：[Title],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("标题")]
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[标题]长度不能大于50!");
+                if (_title as object == null || !_title.Equals(value))
+                {
+                    _title = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Content
+        /// 属性描述：内容
+        /// 字段信息：[Content],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("内容")]
+        public string Content
+        {
+            get { return _content; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 500)
+                    throw new Exception("[内容]长度不能大于500!");
+                if (_content as object == null || !_content.Equals(value))
+                {
+                    _content = value;
+                }
+            }
+        }
+
+      
+
+        /// <summary>
+        /// 属性名称：Other
+        /// 属性描述：其它
+        /// 字段信息：[Other],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("附件")]
+        public string Other
+        {
+            get { return _other; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[附件]长度不能大于50!");
+                if (_other as object == null || !_other.Equals(value))
+                {
+                    _other = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：发布人
+        /// 字段信息：[UserID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("发布人")]
+        public string UserID
+        {
+            get { return _userid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[发布人]长度不能大于50!");
+                if (_userid as object == null || !_userid.Equals(value))
+                {
+                    _userid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：CreateTime
+        /// 属性描述：发布时间
+        /// 字段信息：[CreateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("发布时间")]
+        public DateTime CreateTime
+        {
+            get { return _createtime; }
+            set
+            {
+                if (_createtime as object == null || !_createtime.Equals(value))
+                {
+                    _createtime = value;
+                }
+            }
+        }
+        #endregion
+
+    }
+
+
+    /// <summary>
+    /// 企业信息
+    ///[E_Notice]业务实体类
+    ///对应表名:E_Notice
+    /// </summary>
+    [Serializable]
+    public class TurnE_Notice
+    {
+
+        #region Private 成员
+        private string _id = String.Empty;
+        private string _title = String.Empty;
+        private string _content = String.Empty;
+        private string _userid = String.Empty;
+        private DateTime _createtime = new DateTime(1900, 1, 1);
+        #endregion
+
+
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get { return _id; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[]长度不能大于200!");
+                if (_id as object == null || !_id.Equals(value))
+                {
+                    _id = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Title
+        /// 属性描述：标题
+        /// 字段信息：[Title],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("标题")]
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[标题]长度不能大于50!");
+                if (_title as object == null || !_title.Equals(value))
+                {
+                    _title = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：Content
+        /// 属性描述：内容
+        /// 字段信息：[Content],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("内容")]
+        public string Content
+        {
+            get { return _content; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 500)
+                    throw new Exception("[内容]长度不能大于500!");
+                if (_content as object == null || !_content.Equals(value))
+                {
+                    _content = value;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：发布人
+        /// 字段信息：[UserID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("发布人")]
+        public string UserID
+        {
+            get { return _userid; }
+            set
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 50)
+                    throw new Exception("[考试人员]长度不能大于50!");
+                if (_userid as object == null || !_userid.Equals(value))
+                {
+                    _userid = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 属性名称：CreateTime
+        /// 属性描述：发布时间
+        /// 字段信息：[CreateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("发布时间")]
+        public DateTime CreateTime
+        {
+            get { return _createtime; }
+            set
+            {
+                if (_createtime as object == null || !_createtime.Equals(value))
+                {
+                    _createtime = value;
+                }
+            }
+        }
+
+        #endregion
+
     }	
 
     #endregion
@@ -946,6 +1226,14 @@ namespace Itop.WebFrame
 
     }
 
+    public class E_File
+    {
+        [DisplayNameAttribute("FileName")]
+        public string FileName { get; set; }
+
+        [DisplayNameAttribute("Address")]
+        public string Address { get; set; }
+    }
 
 
 
