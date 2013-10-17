@@ -71,7 +71,7 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(549, 319);
             this.groupControl1.TabIndex = 5;
-            this.groupControl1.Text = "通知";
+            this.groupControl1.Text = "企业信息";
             // 
             // mtxtContent
             // 
@@ -113,7 +113,7 @@
             this.Controls.Add(this.btnOK);
             this.Name = "FrmE_NoticeEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "编辑通知";
+            this.Text = "编辑企业信息";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
