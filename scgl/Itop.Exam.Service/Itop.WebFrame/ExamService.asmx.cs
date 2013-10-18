@@ -812,7 +812,6 @@ namespace Itop.WebFrame
                 E_Notice item = Global.SqlMapper.GetOneByKey<E_Notice>(BusinesInfoID);
                 teqb.ID = item.ID;
                 teqb.Title = item.Title;
-                teqb.Content = item.Content;
                 teqb.UserID = item.UserID;
                 teqb.CreateTime = item.CreateTime;
             }
