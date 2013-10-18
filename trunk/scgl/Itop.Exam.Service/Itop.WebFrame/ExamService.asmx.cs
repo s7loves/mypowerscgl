@@ -738,8 +738,8 @@ namespace Itop.WebFrame
                     TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
                     teqb.ID = item.ID;
                     teqb.Title = item.Title;
-                    teqb.Content = item.Content;
-                    teqb.Other =item.Other;
+                    //teqb.Content = item.Content;
+                    //teqb.Other =item.Other;
                     teqb.UserID = item.UserID;
                     teqb.CreateTime = item.CreateTime;
                     teqblist.Add(teqb);
@@ -751,7 +751,27 @@ namespace Itop.WebFrame
             }
             return GetJsonStr<TurnE_BusinesInfo>(teqblist);
         }
+        [WebMethod(Description = "反回通知，NoticeID为通知ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetENotice(string NoticeID)
+        {
+            TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
+            try
+            {
+                E_BusinesInfo item = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
+                teqb.ID = item.ID;
+                teqb.Title = item.Title;
+                teqb.Content = item.Content;
+                teqb.Other = item.Other;
+                teqb.UserID = item.UserID;
+                teqb.CreateTime = item.CreateTime;
+            }
+            catch (Exception)
+            {
 
+            }
+            return GetJsonStr<TurnE_BusinesInfo>(teqb);
+        }
 
 
         [WebMethod(Description = "反回企业信息表，StartIndex为起始序号，Num为企业信息条数")]
@@ -782,6 +802,28 @@ namespace Itop.WebFrame
             }
             return GetJsonStr<TurnE_Notice>(teqblist);
         }
+        [WebMethod(Description = "反回企业信息，BusinesInfoID为企业信息ID")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string GetEBusinesInfo(string BusinesInfoID)
+        {
+            TurnE_Notice teqb = new TurnE_Notice();
+            try
+            {
+                E_Notice item = Global.SqlMapper.GetOneByKey<E_Notice>(BusinesInfoID);
+                teqb.ID = item.ID;
+                teqb.Title = item.Title;
+                teqb.Content = item.Content;
+                teqb.UserID = item.UserID;
+                teqb.CreateTime = item.CreateTime;
+            }
+            catch (Exception)
+            {
+
+            }
+            return GetJsonStr<TurnE_Notice>(teqb);
+        }
+
+        //存放附件文件目录
         static string FileDir = "Files";
         [WebMethod(Description = "反回通知附件,NoticeID通知ID")]
         [ScriptMethod(UseHttpGet = false)]
