@@ -864,7 +864,7 @@ namespace Itop.WebFrame
         private string _content = String.Empty;
         private string _other = String.Empty; 
         private string _userid = String.Empty;
-        private DateTime _createtime = new DateTime(1900, 1, 1);
+        private string  _createtime = string.Empty;
         private byte[] _worddata = new byte[] { };
        
         #endregion
@@ -986,7 +986,7 @@ namespace Itop.WebFrame
         /// 字段信息：[CreateTime],datetime
         /// </summary>
         [DisplayNameAttribute("发布时间")]
-        public DateTime CreateTime
+        public string  CreateTime
         {
             get { return _createtime; }
             set
@@ -1016,7 +1016,7 @@ namespace Itop.WebFrame
         private string _title = String.Empty;
         private string _content = String.Empty;
         private string _userid = String.Empty;
-        private DateTime _createtime = new DateTime(1900, 1, 1);
+        private string _createtime = string.Empty;
         #endregion
 
 
@@ -1114,7 +1114,7 @@ namespace Itop.WebFrame
         /// 字段信息：[CreateTime],datetime
         /// </summary>
         [DisplayNameAttribute("发布时间")]
-        public DateTime CreateTime
+        public string  CreateTime
         {
             get { return _createtime; }
             set
