@@ -741,7 +741,7 @@ namespace Itop.WebFrame
                     //teqb.Content = item.Content;
                     //teqb.Other =item.Other;
                     teqb.UserID = item.UserID;
-                    teqb.CreateTime = item.CreateTime;
+                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
                     teqblist.Add(teqb);
                 }
             }
@@ -764,7 +764,7 @@ namespace Itop.WebFrame
                 teqb.Content = item.Content;
                 teqb.Other = item.Other;
                 teqb.UserID = item.UserID;
-                teqb.CreateTime = item.CreateTime;
+                teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
             }
             catch (Exception)
             {
@@ -792,7 +792,7 @@ namespace Itop.WebFrame
                     teqb.Title = item.Title;
                     teqb.Content = item.Content;
                     teqb.UserID = item.UserID;
-                    teqb.CreateTime = item.CreateTime;
+                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
                     teqblist.Add(teqb);
                 }
             }
@@ -813,7 +813,7 @@ namespace Itop.WebFrame
                 teqb.ID = item.ID;
                 teqb.Title = item.Title;
                 teqb.UserID = item.UserID;
-                teqb.CreateTime = item.CreateTime;
+                teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
             }
             catch (Exception)
             {
