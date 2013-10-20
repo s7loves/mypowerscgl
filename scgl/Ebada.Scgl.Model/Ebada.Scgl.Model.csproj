@@ -87,6 +87,7 @@
     <Compile Include="E_ExamSet.cs" />
     <Compile Include="E_ExamSetting.cs" />
     <Compile Include="E_ExamUserRecord.cs" />
+    <Compile Include="E_PracticeRecord.cs" />
     <Compile Include="E_Professional.cs" />
     <Compile Include="E_QBank.cs" />
     <Compile Include="E_QuestionBank.cs" />

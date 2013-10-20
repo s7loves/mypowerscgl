@@ -568,6 +568,9 @@
     <EmbeddedResource Include="E_ScoreSummary.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="E_PracticeRecord.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
