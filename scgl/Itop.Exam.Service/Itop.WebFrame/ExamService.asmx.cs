@@ -987,6 +987,46 @@ namespace Itop.WebFrame
             return GetJsonStr<ResponseResult>(result);
         }
 
+
+        [WebMethod(Description = "上传练习记录，参数jsonstr为json串")]
+        [ScriptMethod(UseHttpGet = false)]
+        public string SendE_PracticeRecord(string jsonstr)
+        {
+            List<TurnE_PracticeRecord> splist = null;
+            splist = JsonDeserialize<TurnE_PracticeRecord>(jsonstr);
+            ResponseResult result = new ResponseResult();
+            if (splist != null && splist.Count > 0)
+            {
+
+                try
+                {
+                    for (int i = 0; i < splist.Count; i++)
+                    {
+                        E_PracticeRecord eear = new E_PracticeRecord();
+                        eear.ID += i.ToString();
+                        eear.UserID = splist[i].UserID;
+                        eear.PracticeDate = DateTime.Parse(splist[i].PracticeDate);
+                        eear.PracticeNum = int.Parse(splist[i].PracticeNum);
+                        eear.RightPercent = double.Parse(splist[i].RightPercent);
+                        Global.SqlMapper.Create<E_PracticeRecord>(eear);
+                    }
+                    result.Details = "成功";
+                    result.Status = 1;
+                }
+                catch (Exception)
+                {
+                    result.Status = 0;
+                    result.Details = "操作遇到问题！";
+
+                }
+            }
+            else
+            {
+                result.Status = 0;
+                result.Details = "json转换失败";
+            }
+            return GetJsonStr<ResponseResult>(result);
+        }
         #endregion
 
 

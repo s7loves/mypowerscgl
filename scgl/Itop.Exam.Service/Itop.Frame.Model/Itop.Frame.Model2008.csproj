@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1A905521-20BF-4381-8E4B-BEB01DDE9EB3}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -71,6 +71,7 @@
     <Compile Include="class\E_ExamResult.cs" />
     <Compile Include="class\E_ExamSetting.cs" />
     <Compile Include="class\E_Notice.cs" />
+    <Compile Include="class\E_PracticeRecord.cs" />
     <Compile Include="class\E_Professional.cs" />
     <Compile Include="class\E_QBank.cs" />
     <Compile Include="class\E_QuestionBank.cs" />
@@ -120,6 +121,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Maps\E_BusinesInfo.xml" />
     <EmbeddedResource Include="Maps\E_Notice.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\E_PracticeRecord.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
