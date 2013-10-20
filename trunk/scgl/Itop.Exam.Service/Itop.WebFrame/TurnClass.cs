@@ -1235,6 +1235,24 @@ namespace Itop.WebFrame
         public string Address { get; set; }
     }
 
+    public class TurnE_PracticeRecord
+    {
+        [DisplayNameAttribute("ID")]
+        public string ID { get; set; }
+
+        [DisplayNameAttribute("考生ID")]
+        public string UserID { get; set; }
+
+        [DisplayNameAttribute("练习时间（日期）")]
+        public string PracticeDate { get; set; }
+
+        [DisplayNameAttribute("练习题数")]
+        public string PracticeNum { get; set; }
+
+        [DisplayNameAttribute("正确率(0.1234)")]
+        public string RightPercent { get; set; }
+
+    }
 
 
 

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_PracticeRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_PracticeRecord"  type="Itop.Frame.Model.E_PracticeRecord,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_PracticeRecord_AllColumns" class="E_PracticeRecord">
+        <result property="ID" column="ID" />
+        <result property="UserID" column="UserID" />
+        <result property="PracticeDate" column="PracticeDate" />
+        <result property="PracticeNum" column="PracticeNum" />
+        <result property="RightPercent" column="RightPercent" />
+        <result property="Sequence" column="Sequence" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_PracticeRecordList" resultMap="E_PracticeRecord_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserID],
+         [PracticeDate],
+         [PracticeNum],
+         [RightPercent],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_PracticeRecord
+          $value$
+   </select>
+   
+   <select id="SelectE_PracticeRecordByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserID],
+         [PracticeDate],
+         [PracticeNum],
+         [RightPercent],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_PracticeRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="PracticeDate">[PracticeDate]='$PracticeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="PracticeNum">[PracticeNum]='$PracticeNum$'</isNotNull>
+       <isNotNull prepend="AND" property="RightPercent">[RightPercent]='$RightPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_PracticeRecordByKey" resultMap="E_PracticeRecord_AllColumns" parameterClass="E_PracticeRecord">
+         SELECT 
+         [ID],
+         [UserID],
+         [PracticeDate],
+         [PracticeNum],
+         [RightPercent],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_PracticeRecord
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_PracticeRecord" parameterClass="E_PracticeRecord">
+        DELETE FROM 
+         E_PracticeRecord
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_PracticeRecordByWhere" parameterClass="string">
+     delete from E_PracticeRecord $value$
+   </delete>
+   
+   <delete id="DeleteE_PracticeRecordByKey" parameterClass="string">
+        DELETE FROM 
+         E_PracticeRecord
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_PracticeRecord" parameterClass="E_PracticeRecord" resultClass="int">
+          UPDATE E_PracticeRecord
+           SET
+             [UserID]=#UserID#,
+             [PracticeDate]=#PracticeDate#,
+             [PracticeNum]=#PracticeNum#,
+             [RightPercent]=#RightPercent#,
+             [Sequence]=#Sequence#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_PracticeRecord" parameterClass="E_PracticeRecord">
+        INSERT INTO E_PracticeRecord
+         (
+         [ID],
+         [UserID],
+         [PracticeDate],
+         [PracticeNum],
+         [RightPercent],
+         [Sequence],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserID#,
+         #PracticeDate#,
+         #PracticeNum#,
+         #RightPercent#,
+         #Sequence#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_PracticeRecordRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_PracticeRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="PracticeDate">[PracticeDate]='$PracticeDate$'</isNotNull>
+       <isNotNull prepend="AND" property="PracticeNum">[PracticeNum]='$PracticeNum$'</isNotNull>
+       <isNotNull prepend="AND" property="RightPercent">[RightPercent]='$RightPercent$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_PracticeRecordRowCount" parameterClass="string">
+    select count(*) from E_PracticeRecord $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
