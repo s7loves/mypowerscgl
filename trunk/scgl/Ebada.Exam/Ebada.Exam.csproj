@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -296,6 +296,10 @@
       <DependentUpon>UCE_ScoreSummary.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCE_PracticeRecord.resx">
+      <DependentUpon>UCE_PracticeRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -567,6 +571,12 @@
     </Compile>
     <Compile Include="UCE_ScoreSummary.Designer.cs">
       <DependentUpon>UCE_ScoreSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_PracticeRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_PracticeRecord.Designer.cs">
+      <DependentUpon>UCE_PracticeRecord.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
