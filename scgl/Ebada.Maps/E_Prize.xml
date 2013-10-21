@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_Prize" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_Prize"  type="Ebada.Scgl.Model.E_Prize,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_Prize_AllColumns" class="E_Prize">
+        <result property="ID" column="ID" />
+        <result property="PrizeName" column="PrizeName" />
+        <result property="Desc" column="Desc" />
+        <result property="Type" column="Type" />
+        <result property="SelectChar" column="SelectChar" />
+        <result property="Price" column="Price" />
+        <result property="Image" column="Image" />
+        <result property="Sequence" column="Sequence" />
+        <result property="AllNum" column="AllNum" />
+        <result property="CurrentNum" column="CurrentNum" />
+        <result property="BeginDate" column="BeginDate" />
+        <result property="EndDate" column="EndDate" />
+        <result property="Other" column="Other" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_PrizeList" resultMap="E_Prize_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [PrizeName],
+         [Desc],
+         [Type],
+         [SelectChar],
+         [Price],
+         [Image],
+         [Sequence],
+         [AllNum],
+         [CurrentNum],
+         [BeginDate],
+         [EndDate],
+         [Other],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Prize
+          $value$
+   </select>
+   
+   <select id="SelectE_PrizeByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [PrizeName],
+         [Desc],
+         [Type],
+         [SelectChar],
+         [Price],
+         [Image],
+         [Sequence],
+         [AllNum],
+         [CurrentNum],
+         [BeginDate],
+         [EndDate],
+         [Other],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Prize
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeName">[PrizeName]='$PrizeName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectChar">[SelectChar]='$SelectChar$'</isNotNull>
+       <isNotNull prepend="AND" property="Price">[Price]='$Price$'</isNotNull>
+       <isNotNull prepend="AND" property="Image">[Image]='$Image$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="AllNum">[AllNum]='$AllNum$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrentNum">[CurrentNum]='$CurrentNum$'</isNotNull>
+       <isNotNull prepend="AND" property="BeginDate">[BeginDate]='$BeginDate$'</isNotNull>
+       <isNotNull prepend="AND" property="EndDate">[EndDate]='$EndDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Other">[Other]='$Other$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_PrizeByKey" resultMap="E_Prize_AllColumns" parameterClass="E_Prize">
+         SELECT 
+         [ID],
+         [PrizeName],
+         [Desc],
+         [Type],
+         [SelectChar],
+         [Price],
+         [Image],
+         [Sequence],
+         [AllNum],
+         [CurrentNum],
+         [BeginDate],
+         [EndDate],
+         [Other],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_Prize
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_Prize" parameterClass="E_Prize">
+        DELETE FROM 
+         E_Prize
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_PrizeByWhere" parameterClass="string">
+     delete from E_Prize $value$
+   </delete>
+   
+   <delete id="DeleteE_PrizeByKey" parameterClass="string">
+        DELETE FROM 
+         E_Prize
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_Prize" parameterClass="E_Prize" resultClass="int">
+          UPDATE E_Prize
+           SET
+             [PrizeName]=#PrizeName#,
+             [Desc]=#Desc#,
+             [Type]=#Type#,
+             [SelectChar]=#SelectChar#,
+             [Price]=#Price#,
+             [Image]=#Image#,
+             [Sequence]=#Sequence#,
+             [AllNum]=#AllNum#,
+             [CurrentNum]=#CurrentNum#,
+             [BeginDate]=#BeginDate#,
+             [EndDate]=#EndDate#,
+             [Other]=#Other#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_Prize" parameterClass="E_Prize">
+        INSERT INTO E_Prize
+         (
+         [ID],
+         [PrizeName],
+         [Desc],
+         [Type],
+         [SelectChar],
+         [Price],
+         [Image],
+         [Sequence],
+         [AllNum],
+         [CurrentNum],
+         [BeginDate],
+         [EndDate],
+         [Other],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #PrizeName#,
+         #Desc#,
+         #Type#,
+         #SelectChar#,
+         #Price#,
+         #Image#,
+         #Sequence#,
+         #AllNum#,
+         #CurrentNum#,
+         #BeginDate#,
+         #EndDate#,
+         #Other#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_PrizeRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_Prize
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeName">[PrizeName]='$PrizeName$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Type">[Type]='$Type$'</isNotNull>
+       <isNotNull prepend="AND" property="SelectChar">[SelectChar]='$SelectChar$'</isNotNull>
+       <isNotNull prepend="AND" property="Price">[Price]='$Price$'</isNotNull>
+       <isNotNull prepend="AND" property="Image">[Image]='$Image$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="AllNum">[AllNum]='$AllNum$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrentNum">[CurrentNum]='$CurrentNum$'</isNotNull>
+       <isNotNull prepend="AND" property="BeginDate">[BeginDate]='$BeginDate$'</isNotNull>
+       <isNotNull prepend="AND" property="EndDate">[EndDate]='$EndDate$'</isNotNull>
+       <isNotNull prepend="AND" property="Other">[Other]='$Other$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_PrizeRowCount" parameterClass="string">
+    select count(*) from E_Prize $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

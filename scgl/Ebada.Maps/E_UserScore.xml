@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_UserScore" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_UserScore"  type="Ebada.Scgl.Model.E_UserScore,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_UserScore_AllColumns" class="E_UserScore">
+        <result property="ID" column="ID" />
+        <result property="UserID" column="UserID" />
+        <result property="AllScore" column="AllScore" />
+        <result property="CurrtenScore" column="CurrtenScore" />
+        <result property="UpdateTime" column="UpdateTime" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_UserScoreList" resultMap="E_UserScore_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserID],
+         [AllScore],
+         [CurrtenScore],
+         [UpdateTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_UserScore
+          $value$
+   </select>
+   
+   <select id="SelectE_UserScoreByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserID],
+         [AllScore],
+         [CurrtenScore],
+         [UpdateTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_UserScore
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="AllScore">[AllScore]='$AllScore$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenScore">[CurrtenScore]='$CurrtenScore$'</isNotNull>
+       <isNotNull prepend="AND" property="UpdateTime">[UpdateTime]='$UpdateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_UserScoreByKey" resultMap="E_UserScore_AllColumns" parameterClass="E_UserScore">
+         SELECT 
+         [ID],
+         [UserID],
+         [AllScore],
+         [CurrtenScore],
+         [UpdateTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_UserScore
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_UserScore" parameterClass="E_UserScore">
+        DELETE FROM 
+         E_UserScore
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_UserScoreByWhere" parameterClass="string">
+     delete from E_UserScore $value$
+   </delete>
+   
+   <delete id="DeleteE_UserScoreByKey" parameterClass="string">
+        DELETE FROM 
+         E_UserScore
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_UserScore" parameterClass="E_UserScore" resultClass="int">
+          UPDATE E_UserScore
+           SET
+             [UserID]=#UserID#,
+             [AllScore]=#AllScore#,
+             [CurrtenScore]=#CurrtenScore#,
+             [UpdateTime]=#UpdateTime#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_UserScore" parameterClass="E_UserScore">
+        INSERT INTO E_UserScore
+         (
+         [ID],
+         [UserID],
+         [AllScore],
+         [CurrtenScore],
+         [UpdateTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserID#,
+         #AllScore#,
+         #CurrtenScore#,
+         #UpdateTime#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_UserScoreRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_UserScore
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="AllScore">[AllScore]='$AllScore$'</isNotNull>
+       <isNotNull prepend="AND" property="CurrtenScore">[CurrtenScore]='$CurrtenScore$'</isNotNull>
+       <isNotNull prepend="AND" property="UpdateTime">[UpdateTime]='$UpdateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_UserScoreRowCount" parameterClass="string">
+    select count(*) from E_UserScore $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

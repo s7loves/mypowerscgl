@@ -571,6 +571,19 @@
     <EmbeddedResource Include="E_PracticeRecord.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="E_HonoraryTitle.xml" />
+    <EmbeddedResource Include="E_Level.xml" />
+    <EmbeddedResource Include="E_LevelSeason.xml" />
+    <EmbeddedResource Include="E_LevelStop.xml" />
+    <EmbeddedResource Include="E_LevelTryRecord.xml" />
+    <EmbeddedResource Include="E_Prize.xml" />
+    <EmbeddedResource Include="E_Prop.xml" />
+    <EmbeddedResource Include="E_UserPrizeRecord.xml" />
+    <EmbeddedResource Include="E_UserPropRecord.xml" />
+    <EmbeddedResource Include="E_UserScore.xml" />
+    <EmbeddedResource Include="E_UserScoreRecord.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />
