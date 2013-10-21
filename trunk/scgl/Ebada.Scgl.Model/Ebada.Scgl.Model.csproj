@@ -87,8 +87,15 @@
     <Compile Include="E_ExamSet.cs" />
     <Compile Include="E_ExamSetting.cs" />
     <Compile Include="E_ExamUserRecord.cs" />
+    <Compile Include="E_HonoraryTitle.cs" />
+    <Compile Include="E_Level.cs" />
+    <Compile Include="E_LevelSeason.cs" />
+    <Compile Include="E_LevelStop.cs" />
+    <Compile Include="E_LevelTryRecord.cs" />
     <Compile Include="E_PracticeRecord.cs" />
+    <Compile Include="E_Prize.cs" />
     <Compile Include="E_Professional.cs" />
+    <Compile Include="E_Prop.cs" />
     <Compile Include="E_QBank.cs" />
     <Compile Include="E_QuestionBank.cs" />
     <Compile Include="E_R_EBankORG.cs" />
@@ -97,6 +104,10 @@
     <Compile Include="E_R_ProOrg.cs" />
     <Compile Include="E_ScoreSummary.cs" />
     <Compile Include="E_User.cs" />
+    <Compile Include="E_UserPrizeRecord.cs" />
+    <Compile Include="E_UserPropRecord.cs" />
+    <Compile Include="E_UserScore.cs" />
+    <Compile Include="E_UserScoreRecord.cs" />
     <Compile Include="gps_carrier.cs" />
     <Compile Include="gps_device.cs" />
     <Compile Include="gps_position.cs" />

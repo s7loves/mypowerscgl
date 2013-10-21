@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_Prop" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_Prop"  type="Ebada.Scgl.Model.E_Prop,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_Prop_AllColumns" class="E_Prop">
+        <result property="ID" column="ID" />
+        <result property="PropName" column="PropName" />
+        <result property="Function" column="Function" />
+        <result property="Code" column="Code" />
+        <result property="Sequence" column="Sequence" />
+        <result property="Price" column="Price" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_PropList" resultMap="E_Prop_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [PropName],
+         [Function],
+         [Code],
+         [Sequence],
+         [Price],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Prop
+          $value$
+   </select>
+   
+   <select id="SelectE_PropByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [PropName],
+         [Function],
+         [Code],
+         [Sequence],
+         [Price],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_Prop
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PropName">[PropName]='$PropName$'</isNotNull>
+       <isNotNull prepend="AND" property="Function">[Function]='$Function$'</isNotNull>
+       <isNotNull prepend="AND" property="Code">[Code]='$Code$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="Price">[Price]='$Price$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_PropByKey" resultMap="E_Prop_AllColumns" parameterClass="E_Prop">
+         SELECT 
+         [ID],
+         [PropName],
+         [Function],
+         [Code],
+         [Sequence],
+         [Price],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_Prop
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_Prop" parameterClass="E_Prop">
+        DELETE FROM 
+         E_Prop
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_PropByWhere" parameterClass="string">
+     delete from E_Prop $value$
+   </delete>
+   
+   <delete id="DeleteE_PropByKey" parameterClass="string">
+        DELETE FROM 
+         E_Prop
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_Prop" parameterClass="E_Prop" resultClass="int">
+          UPDATE E_Prop
+           SET
+             [PropName]=#PropName#,
+             [Function]=#Function#,
+             [Code]=#Code#,
+             [Sequence]=#Sequence#,
+             [Price]=#Price#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_Prop" parameterClass="E_Prop">
+        INSERT INTO E_Prop
+         (
+         [ID],
+         [PropName],
+         [Function],
+         [Code],
+         [Sequence],
+         [Price],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #PropName#,
+         #Function#,
+         #Code#,
+         #Sequence#,
+         #Price#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_PropRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_Prop
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="PropName">[PropName]='$PropName$'</isNotNull>
+       <isNotNull prepend="AND" property="Function">[Function]='$Function$'</isNotNull>
+       <isNotNull prepend="AND" property="Code">[Code]='$Code$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="Price">[Price]='$Price$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_PropRowCount" parameterClass="string">
+    select count(*) from E_Prop $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_LevelTryRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_LevelTryRecord"  type="Ebada.Scgl.Model.E_LevelTryRecord,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_LevelTryRecord_AllColumns" class="E_LevelTryRecord">
+        <result property="ID" column="ID" />
+        <result property="UserID" column="UserID" />
+        <result property="SeasonID" column="SeasonID" />
+        <result property="LevelID" column="LevelID" />
+        <result property="PassDate" column="PassDate" />
+        <result property="TryTimes" column="TryTimes" />
+        <result property="UseTime" column="UseTime" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_LevelTryRecordList" resultMap="E_LevelTryRecord_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserID],
+         [SeasonID],
+         [LevelID],
+         [PassDate],
+         [TryTimes],
+         [UseTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_LevelTryRecord
+          $value$
+   </select>
+   
+   <select id="SelectE_LevelTryRecordByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserID],
+         [SeasonID],
+         [LevelID],
+         [PassDate],
+         [TryTimes],
+         [UseTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_LevelTryRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="SeasonID">[SeasonID]='$SeasonID$'</isNotNull>
+       <isNotNull prepend="AND" property="LevelID">[LevelID]='$LevelID$'</isNotNull>
+       <isNotNull prepend="AND" property="PassDate">[PassDate]='$PassDate$'</isNotNull>
+       <isNotNull prepend="AND" property="TryTimes">[TryTimes]='$TryTimes$'</isNotNull>
+       <isNotNull prepend="AND" property="UseTime">[UseTime]='$UseTime$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_LevelTryRecordByKey" resultMap="E_LevelTryRecord_AllColumns" parameterClass="E_LevelTryRecord">
+         SELECT 
+         [ID],
+         [UserID],
+         [SeasonID],
+         [LevelID],
+         [PassDate],
+         [TryTimes],
+         [UseTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_LevelTryRecord
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_LevelTryRecord" parameterClass="E_LevelTryRecord">
+        DELETE FROM 
+         E_LevelTryRecord
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_LevelTryRecordByWhere" parameterClass="string">
+     delete from E_LevelTryRecord $value$
+   </delete>
+   
+   <delete id="DeleteE_LevelTryRecordByKey" parameterClass="string">
+        DELETE FROM 
+         E_LevelTryRecord
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_LevelTryRecord" parameterClass="E_LevelTryRecord" resultClass="int">
+          UPDATE E_LevelTryRecord
+           SET
+             [UserID]=#UserID#,
+             [SeasonID]=#SeasonID#,
+             [LevelID]=#LevelID#,
+             [PassDate]=#PassDate#,
+             [TryTimes]=#TryTimes#,
+             [UseTime]=#UseTime#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_LevelTryRecord" parameterClass="E_LevelTryRecord">
+        INSERT INTO E_LevelTryRecord
+         (
+         [ID],
+         [UserID],
+         [SeasonID],
+         [LevelID],
+         [PassDate],
+         [TryTimes],
+         [UseTime],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserID#,
+         #SeasonID#,
+         #LevelID#,
+         #PassDate#,
+         #TryTimes#,
+         #UseTime#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_LevelTryRecordRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_LevelTryRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="SeasonID">[SeasonID]='$SeasonID$'</isNotNull>
+       <isNotNull prepend="AND" property="LevelID">[LevelID]='$LevelID$'</isNotNull>
+       <isNotNull prepend="AND" property="PassDate">[PassDate]='$PassDate$'</isNotNull>
+       <isNotNull prepend="AND" property="TryTimes">[TryTimes]='$TryTimes$'</isNotNull>
+       <isNotNull prepend="AND" property="UseTime">[UseTime]='$UseTime$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_LevelTryRecordRowCount" parameterClass="string">
+    select count(*) from E_LevelTryRecord $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

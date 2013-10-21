@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_LevelStop" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_LevelStop"  type="Ebada.Scgl.Model.E_LevelStop,Ebada.Scgl.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_LevelStop_AllColumns" class="E_LevelStop">
+        <result property="ID" column="ID" />
+        <result property="SeasonID" column="SeasonID" />
+        <result property="LevelID" column="LevelID" />
+        <result property="Name" column="Name" />
+        <result property="Desc" column="Desc" />
+        <result property="Sequence" column="Sequence" />
+        <result property="QuestionAllNUM" column="QuestionAllNUM" />
+        <result property="PdNumAndLevel" column="PdNumAndLevel" />
+        <result property="DxNumAndLevel" column="DxNumAndLevel" />
+        <result property="DDxNumAndLevel" column="DDxNumAndLevel" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_LevelStopList" resultMap="E_LevelStop_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [SeasonID],
+         [LevelID],
+         [Name],
+         [Desc],
+         [Sequence],
+         [QuestionAllNUM],
+         [PdNumAndLevel],
+         [DxNumAndLevel],
+         [DDxNumAndLevel],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_LevelStop
+          $value$
+   </select>
+   
+   <select id="SelectE_LevelStopByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [SeasonID],
+         [LevelID],
+         [Name],
+         [Desc],
+         [Sequence],
+         [QuestionAllNUM],
+         [PdNumAndLevel],
+         [DxNumAndLevel],
+         [DDxNumAndLevel],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_LevelStop
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="SeasonID">[SeasonID]='$SeasonID$'</isNotNull>
+       <isNotNull prepend="AND" property="LevelID">[LevelID]='$LevelID$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="QuestionAllNUM">[QuestionAllNUM]='$QuestionAllNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="PdNumAndLevel">[PdNumAndLevel]='$PdNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="DxNumAndLevel">[DxNumAndLevel]='$DxNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="DDxNumAndLevel">[DDxNumAndLevel]='$DDxNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_LevelStopByKey" resultMap="E_LevelStop_AllColumns" parameterClass="E_LevelStop">
+         SELECT 
+         [ID],
+         [SeasonID],
+         [LevelID],
+         [Name],
+         [Desc],
+         [Sequence],
+         [QuestionAllNUM],
+         [PdNumAndLevel],
+         [DxNumAndLevel],
+         [DDxNumAndLevel],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_LevelStop
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_LevelStop" parameterClass="E_LevelStop">
+        DELETE FROM 
+         E_LevelStop
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_LevelStopByWhere" parameterClass="string">
+     delete from E_LevelStop $value$
+   </delete>
+   
+   <delete id="DeleteE_LevelStopByKey" parameterClass="string">
+        DELETE FROM 
+         E_LevelStop
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_LevelStop" parameterClass="E_LevelStop" resultClass="int">
+          UPDATE E_LevelStop
+           SET
+             [SeasonID]=#SeasonID#,
+             [LevelID]=#LevelID#,
+             [Name]=#Name#,
+             [Desc]=#Desc#,
+             [Sequence]=#Sequence#,
+             [QuestionAllNUM]=#QuestionAllNUM#,
+             [PdNumAndLevel]=#PdNumAndLevel#,
+             [DxNumAndLevel]=#DxNumAndLevel#,
+             [DDxNumAndLevel]=#DDxNumAndLevel#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_LevelStop" parameterClass="E_LevelStop">
+        INSERT INTO E_LevelStop
+         (
+         [ID],
+         [SeasonID],
+         [LevelID],
+         [Name],
+         [Desc],
+         [Sequence],
+         [QuestionAllNUM],
+         [PdNumAndLevel],
+         [DxNumAndLevel],
+         [DDxNumAndLevel],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #SeasonID#,
+         #LevelID#,
+         #Name#,
+         #Desc#,
+         #Sequence#,
+         #QuestionAllNUM#,
+         #PdNumAndLevel#,
+         #DxNumAndLevel#,
+         #DDxNumAndLevel#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_LevelStopRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_LevelStop
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="SeasonID">[SeasonID]='$SeasonID$'</isNotNull>
+       <isNotNull prepend="AND" property="LevelID">[LevelID]='$LevelID$'</isNotNull>
+       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
+       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="QuestionAllNUM">[QuestionAllNUM]='$QuestionAllNUM$'</isNotNull>
+       <isNotNull prepend="AND" property="PdNumAndLevel">[PdNumAndLevel]='$PdNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="DxNumAndLevel">[DxNumAndLevel]='$DxNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="DDxNumAndLevel">[DDxNumAndLevel]='$DDxNumAndLevel$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_LevelStopRowCount" parameterClass="string">
+    select count(*) from E_LevelStop $value$
+   </select>
+  </statements>
+</sqlMap>
+ 
