@@ -1318,10 +1318,6 @@
       <Project>{FCE4B7F7-BDF8-40AE-8F28-88C624C32F25}</Project>
       <Name>Ebada.Scgl.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ebada.Scgl.WFlow\Ebada.Scgl.WFlow.csproj">
-      <Project>{DB517AF8-551D-4C08-83BE-69D803C89173}</Project>
-      <Name>Ebada.Scgl.WFlow</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmGtDel.resx">
