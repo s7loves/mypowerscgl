@@ -738,8 +738,8 @@ namespace Itop.WebFrame
                     TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
                     teqb.ID = item.ID;
                     teqb.Title = item.Title;
-                    //teqb.Content = item.Content;
-                    //teqb.Other =item.Other;
+                    teqb.Content = item.Content;
+                    teqb.Other =item.Other;
                     teqb.UserID = item.UserID;
                     teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
                     teqblist.Add(teqb);
@@ -779,7 +779,7 @@ namespace Itop.WebFrame
         public string GetEBusinesInfoList(int StartIndex, int Num)
         {
             List<TurnE_Notice> teqblist = new List<TurnE_Notice>();
-            string sql = " select top " + Num + " * from (select top " + (Num + StartIndex - 1) + " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime asc";
+            string sql = " select top " + Num + " * from (select top " + (Num + StartIndex - 1) + " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime asc";
             try
             {
                 IList<E_Notice> eqblist = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", sql);
@@ -812,6 +812,7 @@ namespace Itop.WebFrame
                 E_Notice item = Global.SqlMapper.GetOneByKey<E_Notice>(BusinesInfoID);
                 teqb.ID = item.ID;
                 teqb.Title = item.Title;
+                teqb.Content = item.Content;
                 teqb.UserID = item.UserID;
                 teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
             }
