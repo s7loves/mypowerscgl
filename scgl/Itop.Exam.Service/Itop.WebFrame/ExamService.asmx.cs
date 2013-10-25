@@ -751,6 +751,32 @@ namespace Itop.WebFrame
             }
             return GetJsonStr<TurnE_BusinesInfo>(teqblist);
         }
+        public List<TurnE_BusinesInfo> GetENoticeList2(int StartIndex, int Num)
+        {
+            List<TurnE_BusinesInfo> list = new List<TurnE_BusinesInfo>();
+            string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime desc" });
+            try
+            {
+                IList<E_BusinesInfo> list2 = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", str);
+                foreach (E_BusinesInfo info in list2)
+                {
+                    TurnE_BusinesInfo item = new TurnE_BusinesInfo
+                    {
+                        ID = info.ID,
+                        Title = info.Title,
+                        UserID = info.UserID,
+                        CreateTime = info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    };
+                    list.Add(item);
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return list;
+        }
+
+
         [WebMethod(Description = "反回通知，NoticeID为通知ID")]
         [ScriptMethod(UseHttpGet = false)]
         public string GetENotice(string NoticeID)
@@ -802,6 +828,32 @@ namespace Itop.WebFrame
             }
             return GetJsonStr<TurnE_Notice>(teqblist);
         }
+        public List<TurnE_Notice> GetEBusinesInfoList2(int StartIndex, int Num)
+        {
+            List<TurnE_Notice> list = new List<TurnE_Notice>();
+            string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime desc" });
+            try
+            {
+                IList<E_Notice> list2 = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", str);
+                foreach (E_Notice notice in list2)
+                {
+                    TurnE_Notice item = new TurnE_Notice
+                    {
+                        ID = notice.ID,
+                        Title = notice.Title,
+                        UserID = notice.UserID,
+                        CreateTime = notice.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    };
+                    list.Add(item);
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return list;
+        }
+
+
         [WebMethod(Description = "反回企业信息，BusinesInfoID为企业信息ID")]
         [ScriptMethod(UseHttpGet = false)]
         public string GetEBusinesInfo(string BusinesInfoID)
