@@ -14,6 +14,10 @@ namespace Itop.WebFrame
     public class newshandler : IHttpHandler
     {
         private static JavaScriptSerializer jsonHelper;
+        static newshandler()
+        {
+            jsonHelper = new JavaScriptSerializer();
+        }
 
         public void ProcessRequest(HttpContext context)
         {
