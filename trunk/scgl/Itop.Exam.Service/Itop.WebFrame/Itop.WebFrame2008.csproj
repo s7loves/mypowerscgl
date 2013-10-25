@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="app_Code\json.cs" />
     <Compile Include="IWcfExamSercice.cs" />
+    <Compile Include="newshandler.ashx.cs">
+      <DependentUpon>newshandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="PdaService.asmx.cs">
       <DependentUpon>PdaService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -174,6 +177,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="gameHandler.ashx" />
+    <Content Include="newshandler.ashx" />
     <None Include="Service References\ServiceReference1\Itop.WebFrame.ServiceReference1.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
