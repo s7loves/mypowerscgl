@@ -328,6 +328,26 @@
       <DependentUpon>UCE_LevelM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="考试\FrmExamSelect.resx">
+      <DependentUpon>FrmExamSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="考试\FrmUserExam.resx">
+      <DependentUpon>FrmUserExam.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="考试\UcExamTroQuestonMuSlect.resx">
+      <DependentUpon>UcExamTroQuestonMuSlect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="考试\UcExamTroQuestonPD.resx">
+      <DependentUpon>UcExamTroQuestonPD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="考试\UcExamTroQuestonSlect.resx">
+      <DependentUpon>UcExamTroQuestonSlect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -647,6 +667,36 @@
     </Compile>
     <Compile Include="UCE_LevelM.Designer.cs">
       <DependentUpon>UCE_LevelM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="考试\FrmExamSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="考试\FrmExamSelect.Designer.cs">
+      <DependentUpon>FrmExamSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="考试\FrmUserExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="考试\FrmUserExam.Designer.cs">
+      <DependentUpon>FrmUserExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonMuSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonMuSlect.Designer.cs">
+      <DependentUpon>UcExamTroQuestonMuSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonPD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonPD.Designer.cs">
+      <DependentUpon>UcExamTroQuestonPD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonSlect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="考试\UcExamTroQuestonSlect.Designer.cs">
+      <DependentUpon>UcExamTroQuestonSlect.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
