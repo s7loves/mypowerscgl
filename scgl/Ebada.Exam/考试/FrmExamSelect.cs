@@ -31,6 +31,7 @@ namespace Ebada.Exam
             if (list.Count==0)
             {
                 label1.Text = "您最近不需要考试";
+                linkLabel1.Show();
             }
 
             int index = 0;
@@ -68,6 +69,11 @@ namespace Ebada.Exam
                 frm.Show();
                 frm.TopMost = true;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+
+            ParentForm.Close();
         }
     }
 }
