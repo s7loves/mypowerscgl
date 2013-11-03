@@ -11,7 +11,7 @@ using Ebada.Client;
 
 namespace Ebada.Exam
 {
-    public partial class FrmExamSelect : DevExpress.XtraEditors.XtraForm
+    public partial class FrmExamSelect : DevExpress.XtraEditors.XtraUserControl
     {
         public FrmExamSelect()
         {
@@ -67,7 +67,6 @@ namespace Ebada.Exam
                 frm.Bounds = Screen.PrimaryScreen.Bounds;
                 frm.Show();
                 frm.TopMost = true;
-                this.Close();
             }
         }
     }
