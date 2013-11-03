@@ -51,10 +51,12 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl1.AppearanceCaption.Options.UseTextOptions = true;
             this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl1.Controls.Add(this.panelControl1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupControl1.Location = new System.Drawing.Point(0, 89);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(1082, 540);
@@ -91,6 +93,7 @@
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Location = new System.Drawing.Point(862, 19);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(95, 36);
@@ -114,7 +117,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 14);
             this.label3.TabIndex = 37;
-            this.label3.Text = "剩余题数：";
+            this.label3.Text = "未答题数：";
             // 
             // labLeftTime
             // 
@@ -175,6 +178,7 @@
             // 
             // simpleButton1
             // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton1.Location = new System.Drawing.Point(971, 19);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(95, 36);
