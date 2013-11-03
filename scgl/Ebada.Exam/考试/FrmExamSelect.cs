@@ -64,7 +64,10 @@ namespace Ebada.Exam
             if ( MsgBox.ShowAskMessageBox("您确定要开始考试码？开始后不能取消")==DialogResult.OK)
             {
                 FrmUserExam frm = new FrmUserExam(MainHelper.User.UserID, ee);
-                frm.ShowDialog();
+                frm.Bounds = Screen.PrimaryScreen.Bounds;
+                frm.Show();
+                frm.TopMost = true;
+                this.Close();
             }
         }
     }

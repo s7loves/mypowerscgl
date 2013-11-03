@@ -10,6 +10,7 @@ using Ebada.Client;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using Ebada.Client.Platform;
+using Ebada.UI.MessageBoxEx;
 
 namespace Ebada.Exam
 {
@@ -17,7 +18,7 @@ namespace Ebada.Exam
     {
 
         double ExamAllTime = 0;
-        double ExamLeftTime = 0;
+        public double ExamLeftTime = 0;
         double  HasExamTime = 0;
 
         double CurrtenScore = 0;
@@ -39,6 +40,11 @@ namespace Ebada.Exam
             UserID = userid;
             Exam = exam;
             this.Text = MainHelper.User.UserName + "  正在进行 " + exam.E_Name + " 考试     时间：" + exam.BySCol1 + " 分钟";
+            this.Move += new EventHandler(FrmUserExam_Move);
+        }
+
+        void FrmUserExam_Move(object sender, EventArgs e) {
+            this.Location = new Point(0, 0);
         }
         Dictionary<string, string> HasAnswerDic = new Dictionary<string, string>();
         private void FrmUserExam_Load(object sender, EventArgs e)
@@ -66,13 +72,31 @@ namespace Ebada.Exam
                 Client.ClientHelper.PlatformSqlMap.Update<E_ExamResult>(erlist[0]);
             }
             else
-            {
-                timer1.Enabled = true;
+            {   
+                createWaitDlg();              
                 InitData();
-               
+                panel1.AutoScrollPosition = new Point(X_Value, Y_Value);
+                closeWaitDlg();
+
+                timer1.Enabled = true;
             }
         }
-       
+        public void FullScrean() {
+            FormState formState = new FormState();
+            this.SetVisibleCore(false);
+            formState.Maximize(this);
+            this.SetVisibleCore(true);
+        }
+        WaitDialogForm waitdlg;
+        void createWaitDlg() {
+            waitdlg = new WaitDialogForm("", "正在下载试卷，请稍候。。。");
+        }
+        void closeWaitDlg() {
+            if (waitdlg != null) {
+                waitdlg.Close();
+                waitdlg = null;
+            }
+        }
         private void InitData()
         {
             PdDic.Clear();
@@ -683,6 +707,14 @@ namespace Ebada.Exam
             return result;
 
         }
+        DialogResult MsgAsk(string msg) {
+
+            return MessageBoxEx.Show(this, msg, MsgBox.GetProductName(), MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+        }
+        DialogResult MsgInfo(string msg) {
+
+            return MessageBoxEx.Show(this, msg, MsgBox.GetProductName(),MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+        }
         //交卷
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -695,7 +727,7 @@ namespace Ebada.Exam
                     SendExamEnd();
                     if (Exam.ShowResult)
                     {
-                        MsgBox.ShowTipMessageBox("得分：" + CurrtenScore);
+                        MsgInfo("得分：" + CurrtenScore);
                         btnOK.Enabled = false;
                         labLeftTime.Text = "考试已结束！";
                         labAllNum.Text = "0";
@@ -704,7 +736,7 @@ namespace Ebada.Exam
                 }
                 else
                 {
-                    MsgBox.ShowTipMessageBox("您本次考试已结束，不能提交当前结果!" );
+                    MsgInfo("您本次考试已结束，不能提交当前结果!");
                     btnOK.Enabled = false;
                     labLeftTime.Text = "考试已结束！";
                     labAllNum.Text = "0";
@@ -714,7 +746,7 @@ namespace Ebada.Exam
             }
             else//主动交卷
             {
-                if (MsgBox.ShowAskMessageBox("您确定要交卷吗？交卷后考试即结束！")==DialogResult.OK)
+                if (MsgAsk("您确定要交卷吗？交卷后考试即结束！") == DialogResult.OK)
                 {
                     if (!ExamIsEnd())
                     {
@@ -723,7 +755,7 @@ namespace Ebada.Exam
                         SendExamEnd();
                         if (Exam.ShowResult)
                         {
-                            MsgBox.ShowTipMessageBox("得分：" + CurrtenScore);
+                            MsgInfo("得分：" + CurrtenScore);
                             btnOK.Enabled = false;
                             labLeftTime.Text = "考试已结束！";
                             labAllNum.Text = "0";
@@ -732,7 +764,7 @@ namespace Ebada.Exam
                     }
                     else
                     {
-                        MsgBox.ShowTipMessageBox("您本次考试已结束，不能提交当前结果!");
+                        MsgInfo("您本次考试已结束，不能提交当前结果!");
                         btnOK.Enabled = false;
                         labLeftTime.Text = "考试已结束！";
                         labAllNum.Text = "0";
@@ -748,7 +780,7 @@ namespace Ebada.Exam
         {
             if (btnOK.Enabled)
             {
-                if (MsgBox.ShowAskMessageBox("您确定要退出考试吗？您还没有交卷！") == DialogResult.OK)
+                if (MsgAsk("您确定要退出考试吗？您还没有交卷！") == DialogResult.OK)
                 {
                     timer1.Enabled = false;
                     this.Close();
@@ -764,7 +796,7 @@ namespace Ebada.Exam
 
         private void FrmUserExam_Activated(object sender, EventArgs e)
         {
-            panel1.AutoScrollPosition = new Point(X_Value, Y_Value);
+            
         }
 
         private void panel1_Scroll(object sender, ScrollEventArgs e)
