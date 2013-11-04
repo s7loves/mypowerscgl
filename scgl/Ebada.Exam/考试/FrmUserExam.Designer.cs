@@ -43,6 +43,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labMB = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -65,8 +66,11 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.xtraScrollableControl1);
             this.panelControl1.Controls.Add(this.panel1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.FireScrollEventOnMouseWheel = true;
             this.panelControl1.Location = new System.Drawing.Point(2, 23);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1078, 515);
@@ -75,11 +79,12 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Location = new System.Drawing.Point(2, 80);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1074, 511);
+            this.panel1.Size = new System.Drawing.Size(929, 433);
             this.panel1.TabIndex = 0;
+            this.panel1.Visible = false;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel1_Scroll);
             // 
             // label1
@@ -186,6 +191,15 @@
             this.simpleButton1.Text = "退  出";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl1.FireScrollEventOnMouseWheel = true;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1078, 515);
+            this.xtraScrollableControl1.TabIndex = 1;
+            // 
             // FrmUserExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -237,5 +251,6 @@
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.LabelControl labMB;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
     }
 }

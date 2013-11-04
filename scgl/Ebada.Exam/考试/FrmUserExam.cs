@@ -135,7 +135,9 @@ namespace Ebada.Exam
         {
             HasAnswerDic.Clear();
             controldic.Clear();
-            panel1.Controls.Clear();
+            XtraScrollableControl panel2 = xtraScrollableControl1;
+
+            panel2.Controls.Clear();
             int x = 15;
             int y = 15;
 
@@ -143,7 +145,7 @@ namespace Ebada.Exam
             pdlab.Font = labMB.Font;
             pdlab.Text = "一、判断题（ " + PdDic.Count + "道，每题" + ESet.JudgeScore + "分， 共计" + PdDic.Count * ESet.JudgeScore + "分 ）";
             pdlab.AutoSize = true;
-            panel1.Controls.Add(pdlab);
+            panel2.Controls.Add(pdlab);
             pdlab.Location = new Point(x, y);
 
             y = y + pdlab.Height + 5;
@@ -154,7 +156,7 @@ namespace Ebada.Exam
                 E_QuestionBank eq=PdDic[key];
                 UcExamTroQuestonPD pd = new UcExamTroQuestonPD(pdjs, eq);
                 pd.AnswerEvent += new UcExamTroQuestonPD.AnswerQue(pd_AnswerEvent);
-                panel1.Controls.Add(pd);
+                panel2.Controls.Add(pd);
                 pd.Location = new Point(x, y);
                 y = y + pd.Height + 5;
                 pdjs++;
@@ -166,7 +168,7 @@ namespace Ebada.Exam
             selectlab.Font = labMB.Font;
             selectlab.Text = "二、单项选择题（ " + SelectDic.Count + "道，每题" + ESet.SelectScore + "分， 共计" + SelectDic.Count * ESet.SelectScore + "分 ）";
             selectlab.AutoSize = true;
-            panel1.Controls.Add(selectlab);
+            panel2.Controls.Add(selectlab);
             selectlab.Location = new Point(x, y);
             y = y + selectlab.Height + 5;
 
@@ -176,7 +178,7 @@ namespace Ebada.Exam
                 E_QuestionBank eq = SelectDic[key];
                 UcExamTroQuestonSlect select = new UcExamTroQuestonSlect(selectjs, eq);
                 select.AnswerEvent += new UcExamTroQuestonSlect.AnswerQue(select_AnswerEvent);
-                panel1.Controls.Add(select);
+                panel2.Controls.Add(select);
                 select.Location = new Point(x, y);
                 y = y + select.GetHeight + 5;
                 selectjs++;
@@ -187,7 +189,7 @@ namespace Ebada.Exam
             muselectlab.Font = labMB.Font;
             muselectlab.Text = "三、多项选择题（ " + MuSelectDic.Count + "道，每题" + ESet.MuSelectScore + "分， 共计" + MuSelectDic.Count * ESet.MuSelectScore + "分 ）";
             muselectlab.AutoSize = true;
-            panel1.Controls.Add(muselectlab);
+            panel2.Controls.Add(muselectlab);
             muselectlab.Location = new Point(x, y);
             y = y + muselectlab.Height + 5;
 
@@ -198,7 +200,7 @@ namespace Ebada.Exam
                 UcExamTroQuestonMuSlect muselect = new UcExamTroQuestonMuSlect(muselectjs, eq);
 
                 muselect.AnswerEvent += new UcExamTroQuestonMuSlect.AnswerQue(muselect_AnswerEvent);
-                panel1.Controls.Add(muselect);
+                panel2.Controls.Add(muselect);
                 muselect.Location = new Point(x, y);
                 y = y + muselect.GetHeight + 5;
                 muselectjs++;
@@ -801,15 +803,19 @@ namespace Ebada.Exam
 
         private void panel1_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.ScrollOrientation ==System.Windows.Forms.ScrollOrientation.HorizontalScroll)
-            {
-                X_Value = e.NewValue;
-            }
+            //if (e.ScrollOrientation ==System.Windows.Forms.ScrollOrientation.HorizontalScroll)
+            //{
+            //    X_Value = e.NewValue;
+            //}
 
-            if (e.ScrollOrientation == System.Windows.Forms.ScrollOrientation.VerticalScroll)
-            {
-                Y_Value = e.NewValue;
-            }
+            //if (e.ScrollOrientation == System.Windows.Forms.ScrollOrientation.VerticalScroll)
+            //{
+            //    Y_Value = e.NewValue;
+            //}
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e) {
 
         }
     }
