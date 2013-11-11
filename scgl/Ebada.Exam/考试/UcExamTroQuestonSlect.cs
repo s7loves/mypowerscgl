@@ -17,7 +17,7 @@ namespace Ebada.Exam
             InitializeComponent();
             Order = order;
             EQ = eq;
-            
+            this.Tag = EQ;
         }
         char spchar = '@';
         private int JSheight(E_QuestionBank eq)

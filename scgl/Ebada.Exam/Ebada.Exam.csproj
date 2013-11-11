@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -128,7 +128,7 @@
       <DependentUpon>UcEBNK.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCE_Level.resx">
+    <EmbeddedResource Include="闯关\UCE_Level.resx">
       <DependentUpon>UCE_Level.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -304,27 +304,27 @@
       <DependentUpon>UCE_PracticeRecord.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCE_LevelSeason.resx">
+    <EmbeddedResource Include="闯关\UCE_LevelSeason.resx">
       <DependentUpon>UCE_LevelSeason.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmE_LevelSeasonEdit.resx">
+    <EmbeddedResource Include="闯关\FrmE_LevelSeasonEdit.resx">
       <DependentUpon>FrmE_LevelSeasonEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmE_LevelEdit.resx">
+    <EmbeddedResource Include="闯关\FrmE_LevelEdit.resx">
       <DependentUpon>FrmE_LevelEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCE_LevelStop.resx">
+    <EmbeddedResource Include="闯关\UCE_LevelStop.resx">
       <DependentUpon>UCE_LevelStop.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmE_LevelStopEdit.resx">
+    <EmbeddedResource Include="闯关\FrmE_LevelStopEdit.resx">
       <DependentUpon>FrmE_LevelStopEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCE_LevelM.resx">
+    <EmbeddedResource Include="闯关\UCE_LevelM.resx">
       <DependentUpon>UCE_LevelM.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -368,10 +368,10 @@
     <Compile Include="UcEBNK.Designer.cs">
       <DependentUpon>UcEBNK.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCE_Level.cs">
+    <Compile Include="闯关\UCE_Level.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCE_Level.Designer.cs">
+    <Compile Include="闯关\UCE_Level.Designer.cs">
       <DependentUpon>UCE_Level.cs</DependentUpon>
     </Compile>
     <Compile Include="UCE_Professional.cs">
@@ -632,40 +632,40 @@
     <Compile Include="UCE_PracticeRecord.Designer.cs">
       <DependentUpon>UCE_PracticeRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCE_LevelSeason.cs">
+    <Compile Include="闯关\UCE_LevelSeason.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCE_LevelSeason.Designer.cs">
+    <Compile Include="闯关\UCE_LevelSeason.Designer.cs">
       <DependentUpon>UCE_LevelSeason.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmE_LevelSeasonEdit.cs">
+    <Compile Include="闯关\FrmE_LevelSeasonEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmE_LevelSeasonEdit.Designer.cs">
+    <Compile Include="闯关\FrmE_LevelSeasonEdit.Designer.cs">
       <DependentUpon>FrmE_LevelSeasonEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmE_LevelEdit.cs">
+    <Compile Include="闯关\FrmE_LevelEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmE_LevelEdit.Designer.cs">
+    <Compile Include="闯关\FrmE_LevelEdit.Designer.cs">
       <DependentUpon>FrmE_LevelEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCE_LevelStop.cs">
+    <Compile Include="闯关\UCE_LevelStop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCE_LevelStop.Designer.cs">
+    <Compile Include="闯关\UCE_LevelStop.Designer.cs">
       <DependentUpon>UCE_LevelStop.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmE_LevelStopEdit.cs">
+    <Compile Include="闯关\FrmE_LevelStopEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmE_LevelStopEdit.Designer.cs">
+    <Compile Include="闯关\FrmE_LevelStopEdit.Designer.cs">
       <DependentUpon>FrmE_LevelStopEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCE_LevelM.cs">
+    <Compile Include="闯关\UCE_LevelM.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCE_LevelM.Designer.cs">
+    <Compile Include="闯关\UCE_LevelM.Designer.cs">
       <DependentUpon>UCE_LevelM.cs</DependentUpon>
     </Compile>
     <Compile Include="考试\FrmExamSelect.cs">

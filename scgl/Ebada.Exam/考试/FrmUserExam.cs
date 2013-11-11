@@ -679,33 +679,37 @@ namespace Ebada.Exam
              string sqlwhere = " where E_ID='" + exam.ID + "' and EP_ID='" + exam .EP_ID+ "' and UserID='" + UserID + "'";
              Client.ClientHelper.PlatformSqlMap.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
 
-             try
-             {
                  int i = 0;
                  foreach (string key in controldic.Keys)
                  {
-                     i++;
-                     E_QuestionBank eq = controldic[key].Tag as E_QuestionBank;
+                     try
+                     {
 
-                     E_ExamAnswerResult eear = new E_ExamAnswerResult();
-                     eear.ID += i.ToString();
-                     eear.E_ID = exam.ID;
-                     eear.EP_ID = exam.EP_ID;
-                     eear.UserID = UserID;
-                     eear.ExamQueston_ID = eq.ID;
-                     eear.ExamQuestonType = eq.Type;
-                     eear.Answer = eq.BySCol5;
-                     eear.RandomID = eq.Sequence.ToString();
-                     Client.ClientHelper.PlatformSqlMap.Create<E_ExamAnswerResult>(eear);
+                         i++;
+                         E_QuestionBank eq = controldic[key].Tag as E_QuestionBank;
+
+                         E_ExamAnswerResult eear = new E_ExamAnswerResult();
+                         eear.ID += i.ToString();
+                         eear.E_ID = exam.ID;
+                         eear.EP_ID = exam.EP_ID;
+                         eear.UserID = UserID;
+                         eear.ExamQueston_ID = eq.ID;
+                         eear.ExamQuestonType = eq.Type;
+                         eear.Answer = eq.BySCol5;
+                         eear.RandomID = eq.Sequence.ToString();
+                         Client.ClientHelper.PlatformSqlMap.Create<E_ExamAnswerResult>(eear);
+                     }
+                     catch (Exception)
+                     {
+                         
+                         throw;
+                     }
+                     
 
                  }
                  result = true;
 
-             }
-             catch (Exception ee)
-             {
-                 
-             }
+            
             return result;
 
         }

@@ -247,133 +247,139 @@ namespace Ebada.Scgl.Model
                 }
             }			 
         }
-  
+
         /// <summary>
         /// 属性名称：BySCol1
         /// 属性描述：备用1
         /// 字段信息：[BySCol1],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用1")]
         public string BySCol1
         {
             get { return _byscol1; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备用1]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备用1]长度不能大于200!");
                 if (_byscol1 as object == null || !_byscol1.Equals(value))
                 {
                     _byscol1 = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：BySCol2
         /// 属性描述：备用2
         /// 字段信息：[BySCol2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用2")]
         public string BySCol2
         {
             get { return _byscol2; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备用2]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备用2]长度不能大于200!");
                 if (_byscol2 as object == null || !_byscol2.Equals(value))
                 {
                     _byscol2 = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：BySCol3
         /// 属性描述：备用3
         /// 字段信息：[BySCol3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用3")]
         public string BySCol3
         {
             get { return _byscol3; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备用3]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备用3]长度不能大于200!");
                 if (_byscol3 as object == null || !_byscol3.Equals(value))
                 {
                     _byscol3 = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：BySCol4
         /// 属性描述：备用4
         /// 字段信息：[BySCol4],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用4")]
         public string BySCol4
         {
             get { return _byscol4; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备用4]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备用4]长度不能大于200!");
                 if (_byscol4 as object == null || !_byscol4.Equals(value))
                 {
                     _byscol4 = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：BySCol5
         /// 属性描述：备用5
         /// 字段信息：[BySCol5],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用5")]
         public string BySCol5
         {
             get { return _byscol5; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备用5]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备用5]长度不能大于200!");
                 if (_byscol5 as object == null || !_byscol5.Equals(value))
                 {
                     _byscol5 = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：Remark
         /// 属性描述：备注
         /// 字段信息：[Remark],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备注")]
         public string Remark
         {
             get { return _remark; }
             set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[备注]长度不能大于200!");
+            {
+                if (value == null) return;
+                if (value.ToString().Length > 200)
+                    throw new Exception("[备注]长度不能大于200!");
                 if (_remark as object == null || !_remark.Equals(value))
                 {
                     _remark = value;
                 }
-            }			 
+            }
         }
-  
+
         /// <summary>
         /// 属性名称：RowVersion
         /// 属性描述：时间戳
@@ -385,12 +391,12 @@ namespace Ebada.Scgl.Model
         {
             get { return _rowversion; }
             set
-            {			
+            {
                 if (_rowversion as object == null || !_rowversion.Equals(value))
                 {
                     _rowversion = value;
                 }
-            }			 
+            }
         }
   
         #endregion 

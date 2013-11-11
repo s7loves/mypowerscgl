@@ -67,7 +67,33 @@ namespace Ebada.Exam
 
             }
         }
+
+        /// <summary>
+        /// 获取试题数量
+        /// </summary>
+        /// <param name="qustr"></param>
+        /// <returns></returns>
+        public static int GetQuestionNum(string qustr)
+        {
+            //1,6;2,6
+
+            int num = 0;
+
+            string[] array = qustr.Split(';');
+            for (int i = 0; i < array.Length; i++)
+            {
+                string[] array2 = array[i].Split(',');
+                if (array2.Length==2)
+                {
+                    int m = 0;
+                    int.TryParse(array2[1], out m);
+                    num += m;
+                }
+            }
+            return num;
+        }
     }
+    
     /// <summary>
     /// Selected Win AI Function Calls
     /// </summary>

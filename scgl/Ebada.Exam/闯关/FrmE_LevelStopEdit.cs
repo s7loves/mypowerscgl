@@ -88,6 +88,8 @@ namespace Ebada.Exam
                 MsgBox.ShowWarningMessageBox("序号 【"+rowData.Sequence+"】 已存在，请正确编号！");
                 return;
             }
+            //计算试题总数
+            rowData.QuestionAllNUM = CommentHelper.GetQuestionNum(rowData.PdNumAndLevel) + CommentHelper.GetQuestionNum(rowData.DxNumAndLevel) + CommentHelper.GetQuestionNum(rowData.DDxNumAndLevel);
 
             this.DialogResult = DialogResult.OK;
         }
