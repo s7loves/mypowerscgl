@@ -42,9 +42,36 @@ namespace Ebada.Exam {
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_LevelStop>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_LevelStop>(gridViewOperation_BeforeDelete);
+            gridViewOperation.AfterAdd += new ObjectEventHandler<E_LevelStop>(gridViewOperation_AfterAdd);
+            gridViewOperation.AfterDelete += new ObjectEventHandler<E_LevelStop>(gridViewOperation_AfterDelete);
             gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
         }
 
+        void gridViewOperation_AfterDelete(E_LevelStop obj)
+        {
+            ReCount(obj);
+        }
+
+        void gridViewOperation_AfterAdd(E_LevelStop obj)
+        {
+            ReCount(obj);
+        }
+
+        /// <summary>
+        /// 重新计算上级站点数量
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ReCount(E_LevelStop obj)
+        {
+            string sqlwhere = " where LevelID='" + obj.LevelID + "'";
+            int recordnum = MainHelper.PlatformSqlMap.GetRowCount<E_LevelStop>(sqlwhere);
+            E_Level el = MainHelper.PlatformSqlMap.GetOneByKey<E_Level>(obj.LevelID);
+            if (el!=null)
+            {
+                el.StopNum = recordnum;
+                MainHelper.PlatformSqlMap.Update<E_Level>(el);
+            }
+        }
         void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)

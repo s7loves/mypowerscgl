@@ -22,7 +22,7 @@ namespace Ebada.Exam
             InitializeComponent();
             Order = order;
             EQ = eq;
-            
+            this.Tag = EQ;
         }
         /// <summary>
         /// 计算高度

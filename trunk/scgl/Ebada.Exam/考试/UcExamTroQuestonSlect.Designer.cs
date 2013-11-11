@@ -31,12 +31,12 @@
             this.labQOrder = new DevExpress.XtraEditors.LabelControl();
             this.labTG = new DevExpress.XtraEditors.LabelControl();
             this.rA = new System.Windows.Forms.RadioButton();
-            this.rB = new System.Windows.Forms.RadioButton();
             this.rC = new System.Windows.Forms.RadioButton();
             this.rD = new System.Windows.Forms.RadioButton();
             this.rE = new System.Windows.Forms.RadioButton();
             this.rF = new System.Windows.Forms.RadioButton();
             this.labShowAnswer = new DevExpress.XtraEditors.LabelControl();
+            this.rB = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // labQOrder
@@ -73,19 +73,6 @@
             this.rA.UseVisualStyleBackColor = true;
             this.rA.Visible = false;
             this.rA.CheckedChanged += new System.EventHandler(this.rA_CheckedChanged);
-            // 
-            // rB
-            // 
-            this.rB.AutoSize = true;
-            this.rB.Location = new System.Drawing.Point(35, 73);
-            this.rB.Name = "rB";
-            this.rB.Size = new System.Drawing.Size(96, 18);
-            this.rB.TabIndex = 8;
-            this.rB.TabStop = true;
-            this.rB.Text = "radioButton1";
-            this.rB.UseVisualStyleBackColor = true;
-            this.rB.Visible = false;
-            this.rB.CheckedChanged += new System.EventHandler(this.rB_CheckedChanged);
             // 
             // rC
             // 
@@ -155,18 +142,30 @@
             this.labShowAnswer.Size = new System.Drawing.Size(917, 31);
             this.labShowAnswer.TabIndex = 13;
             // 
+            // rB
+            // 
+            this.rB.AutoSize = true;
+            this.rB.Location = new System.Drawing.Point(35, 72);
+            this.rB.Name = "rB";
+            this.rB.Size = new System.Drawing.Size(96, 18);
+            this.rB.TabIndex = 14;
+            this.rB.TabStop = true;
+            this.rB.Text = "radioButton1";
+            this.rB.UseVisualStyleBackColor = true;
+            this.rB.Visible = false;
+            // 
             // UcExamTroQuestonSlect
             // 
             this.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rB);
             this.Controls.Add(this.labShowAnswer);
             this.Controls.Add(this.rF);
             this.Controls.Add(this.rE);
             this.Controls.Add(this.rD);
             this.Controls.Add(this.rC);
-            this.Controls.Add(this.rB);
             this.Controls.Add(this.rA);
             this.Controls.Add(this.labTG);
             this.Controls.Add(this.labQOrder);
@@ -184,11 +183,11 @@
         private DevExpress.XtraEditors.LabelControl labQOrder;
         private DevExpress.XtraEditors.LabelControl labTG;
         private System.Windows.Forms.RadioButton rA;
-        private System.Windows.Forms.RadioButton rB;
         private System.Windows.Forms.RadioButton rC;
         private System.Windows.Forms.RadioButton rD;
         private System.Windows.Forms.RadioButton rE;
         private System.Windows.Forms.RadioButton rF;
         private DevExpress.XtraEditors.LabelControl labShowAnswer;
+        private System.Windows.Forms.RadioButton rB;
     }
 }
