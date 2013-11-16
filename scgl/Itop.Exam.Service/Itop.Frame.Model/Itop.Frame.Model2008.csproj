@@ -70,6 +70,9 @@
     <Compile Include="class\E_ExaminationPaperQuestionRandom.cs" />
     <Compile Include="class\E_ExamResult.cs" />
     <Compile Include="class\E_ExamSetting.cs" />
+    <Compile Include="class\E_Level.cs" />
+    <Compile Include="class\E_LevelSeason.cs" />
+    <Compile Include="class\E_LevelStop.cs" />
     <Compile Include="class\E_Notice.cs" />
     <Compile Include="class\E_PracticeRecord.cs" />
     <Compile Include="class\E_Professional.cs" />
@@ -124,6 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Maps\E_PracticeRecord.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\E_Level.xml" />
+    <EmbeddedResource Include="Maps\E_LevelSeason.xml" />
+    <EmbeddedResource Include="Maps\E_LevelStop.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

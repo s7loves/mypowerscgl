@@ -89,406 +89,367 @@ namespace Itop.WebFrame
 
         #region WebService方法
 
-        #region 考试相关
+            #region 考试相关
 
 
-        #region 获取
+            #region 获取
 
-        [WebMethod(Description = "反回考试列表，参数userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-      
-        public string GetExamList(string userid)
-        {
-            List<TurnE_Examination> tlist = new List<TurnE_Examination>();
-            try
+            [WebMethod(Description = "反回考试列表，参数userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+          
+            public string GetExamList(string userid)
             {
-                string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  and  id not in( select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime asc";
-                IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
-
-                foreach (E_Examination ex in list)
+                List<TurnE_Examination> tlist = new List<TurnE_Examination>();
+                try
                 {
-                    TurnE_Examination tex = new TurnE_Examination();
-                    tex.ID = ex.ID;
-                    tex.EP_ID = ex.EP_ID;
-                    tex.E_Name = ex.E_Name;
-                    tex.StartTime = ex.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    tex.EndTime = ex.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    tex.ShowResult = ex.ShowResult;
-                    tex.Time = ex.BySCol1;
-                    tex.PdNum = ex.BySCol2;
-                    tex.XzNum = ex.BySCol3;
-                    tex.DxXzNum = ex.BySCol4;
-                    tex.AllScore = ex.BySCol5;
-                    tex.Remark = ex.Remark;
-                    tlist.Add(tex);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            
-            return GetJsonStr<TurnE_Examination>(tlist);
-        }
+                    string datatimestr = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    string sqlwhere = " where StartTime<'" + datatimestr + "' and EndTime>'" + datatimestr + "' and UserIDS like '%," + userid + ",%'  and  id not in( select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime asc";
+                    IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sqlwhere);
 
-
-        [WebMethod(Description = "反回已考试列表，参数userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetHasExamList(string userid)
-        {
-            List<TurnE_Examination> tlist = new List<TurnE_Examination>();
-            try
-            {
-                string sql = " where ID in (select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime desc";
-                IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sql);
-                foreach (E_Examination ex in list)
-                {
-                    TurnE_Examination tex = new TurnE_Examination();
-                    tex.ID = ex.ID;
-                    tex.EP_ID = ex.EP_ID;
-                    tex.E_Name = ex.E_Name;
-                    tex.StartTime = ex.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    tex.EndTime = ex.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    tex.ShowResult = ex.ShowResult;
-                    tex.Time = ex.BySCol1;
-                    tex.PdNum = ex.BySCol2;
-                    tex.XzNum = ex.BySCol3;
-                    tex.DxXzNum = ex.BySCol4;
-                    tex.AllScore = ex.BySCol5;
-                    tex.Remark = ex.Remark;
-                    tlist.Add(tex);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-           
-            return GetJsonStr<TurnE_Examination>(tlist);
-        }
-
-        [WebMethod(Description = "反回考试试题列表，参数examid为考试ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetExamQuestionList(string examid)
-        {
-            Pdlist.Clear();
-            Selectlist.Clear();
-            MuSelectlist.Clear();
-            IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
-
-            try
-            {
-
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                if (exam != null)
-                {
-                    E_ExaminationPaper eep = Global.SqlMapper.GetOneByKey<E_ExaminationPaper>(exam.EP_ID);
-                    if (eep != null)
+                    foreach (E_Examination ex in list)
                     {
-                        if (eep.Paper_Type == "指定试题")
-                        {
-                            //试题已经准备好了
-                            if (eep.BySCol1 == "1")
-                            {
-                                    string strtemp = " select QuID from E_ExaminationPaperQuestion where ExID='" + eep.ID + "'";
-                                    string stsqlwhere = " where ID in (" + strtemp + ") order by  Type";
-                                    IList<E_QuestionBank> banklist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(stsqlwhere);
+                        TurnE_Examination tex = new TurnE_Examination();
+                        tex.ID = ex.ID;
+                        tex.EP_ID = ex.EP_ID;
+                        tex.E_Name = ex.E_Name;
+                        tex.StartTime = ex.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        tex.EndTime = ex.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        tex.ShowResult = ex.ShowResult;
+                        tex.Time = ex.BySCol1;
+                        tex.PdNum = ex.BySCol2;
+                        tex.XzNum = ex.BySCol3;
+                        tex.DxXzNum = ex.BySCol4;
+                        tex.AllScore = ex.BySCol5;
+                        tex.Remark = ex.Remark;
+                        tlist.Add(tex);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                
+                return GetJsonStr<TurnE_Examination>(tlist);
+            }
 
-                                    if (banklist.Count > 0)
-                                    {
-                                        foreach (E_QuestionBank item in banklist)
+
+            [WebMethod(Description = "反回已考试列表，参数userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetHasExamList(string userid)
+            {
+                List<TurnE_Examination> tlist = new List<TurnE_Examination>();
+                try
+                {
+                    string sql = " where ID in (select E_ID from dbo.E_ExamResult where IsExamed=1 and UserID='" + userid + "' ) order by StartTime desc";
+                    IList<E_Examination> list = Global.SqlMapper.GetList<E_Examination>(sql);
+                    foreach (E_Examination ex in list)
+                    {
+                        TurnE_Examination tex = new TurnE_Examination();
+                        tex.ID = ex.ID;
+                        tex.EP_ID = ex.EP_ID;
+                        tex.E_Name = ex.E_Name;
+                        tex.StartTime = ex.StartTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        tex.EndTime = ex.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        tex.ShowResult = ex.ShowResult;
+                        tex.Time = ex.BySCol1;
+                        tex.PdNum = ex.BySCol2;
+                        tex.XzNum = ex.BySCol3;
+                        tex.DxXzNum = ex.BySCol4;
+                        tex.AllScore = ex.BySCol5;
+                        tex.Remark = ex.Remark;
+                        tlist.Add(tex);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+               
+                return GetJsonStr<TurnE_Examination>(tlist);
+            }
+
+            [WebMethod(Description = "反回考试试题列表，参数examid为考试ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetExamQuestionList(string examid)
+            {
+                Pdlist.Clear();
+                Selectlist.Clear();
+                MuSelectlist.Clear();
+                IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
+
+                try
+                {
+
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    if (exam != null)
+                    {
+                        E_ExaminationPaper eep = Global.SqlMapper.GetOneByKey<E_ExaminationPaper>(exam.EP_ID);
+                        if (eep != null)
+                        {
+                            if (eep.Paper_Type == "指定试题")
+                            {
+                                //试题已经准备好了
+                                if (eep.BySCol1 == "1")
+                                {
+                                        string strtemp = " select QuID from E_ExaminationPaperQuestion where ExID='" + eep.ID + "'";
+                                        string stsqlwhere = " where ID in (" + strtemp + ") order by  Type";
+                                        IList<E_QuestionBank> banklist = Global.SqlMapper.GetListByWhere<E_QuestionBank>(stsqlwhere);
+
+                                        if (banklist.Count > 0)
                                         {
-                                            if (item.Type == "判断题")
+                                            foreach (E_QuestionBank item in banklist)
                                             {
-                                                Pdlist.Add(item);
+                                                if (item.Type == "判断题")
+                                                {
+                                                    Pdlist.Add(item);
+                                                }
+                                                if (item.Type == "单项选择题")
+                                                {
+                                                    Selectlist.Add(item);
+                                                }
+                                                if (item.Type == "多项选择题")
+                                                {
+                                                    MuSelectlist.Add(item);
+                                                }
                                             }
-                                            if (item.Type == "单项选择题")
+                                            //随机顺序
+                                            if (eep.OrderRandom)
                                             {
-                                                Selectlist.Add(item);
+                                                int[] pdtemparray = Helper.OrderINT(Pdlist.Count);
+                                                for (int i = 0; i < pdtemparray.Length; i++)
+                                                {
+                                                    returnlist.Add(Pdlist[pdtemparray[i]]);
+                                                }
+                                                int[] selecttemparray = Helper.OrderINT(Selectlist.Count);
+                                                for (int i = 0; i < selecttemparray.Length; i++)
+                                                {
+                                                    returnlist.Add(Selectlist[selecttemparray[i]]);
+                                                }
+                                                int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
+                                                for (int i = 0; i < muselecttemparray.Length; i++)
+                                                {
+                                                    returnlist.Add(MuSelectlist[muselecttemparray[i]]);
+                                                }
                                             }
-                                            if (item.Type == "多项选择题")
+                                            else
                                             {
-                                                MuSelectlist.Add(item);
+                                                for (int i = 0; i < Pdlist.Count; i++)
+                                                {
+                                                    returnlist.Add(Pdlist[i]);
+                                                }
+                                                for (int i = 0; i < Selectlist.Count; i++)
+                                                {
+                                                    returnlist.Add(Selectlist[i]);
+                                                }
+                                                int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
+                                                for (int i = 0; i < MuSelectlist.Count; i++)
+                                                {
+                                                    returnlist.Add(MuSelectlist[i]);
+                                                }
+
                                             }
+
+
                                         }
-                                        //随机顺序
-                                        if (eep.OrderRandom)
-                                        {
-                                            int[] pdtemparray = Helper.OrderINT(Pdlist.Count);
-                                            for (int i = 0; i < pdtemparray.Length; i++)
-                                            {
-                                                returnlist.Add(Pdlist[pdtemparray[i]]);
-                                            }
-                                            int[] selecttemparray = Helper.OrderINT(Selectlist.Count);
-                                            for (int i = 0; i < selecttemparray.Length; i++)
-                                            {
-                                                returnlist.Add(Selectlist[selecttemparray[i]]);
-                                            }
-                                            int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
-                                            for (int i = 0; i < muselecttemparray.Length; i++)
-                                            {
-                                                returnlist.Add(MuSelectlist[muselecttemparray[i]]);
-                                            }
-                                        }
+                                        //没有试题,则用随机试题
                                         else
                                         {
-                                            for (int i = 0; i < Pdlist.Count; i++)
-                                            {
-                                                returnlist.Add(Pdlist[i]);
-                                            }
-                                            for (int i = 0; i < Selectlist.Count; i++)
-                                            {
-                                                returnlist.Add(Selectlist[i]);
-                                            }
-                                            int[] muselecttemparray = Helper.OrderINT(MuSelectlist.Count);
-                                            for (int i = 0; i < MuSelectlist.Count; i++)
-                                            {
-                                                returnlist.Add(MuSelectlist[i]);
-                                            }
-
+                                            CreateRandomQuestion(eep.SettingID, returnlist);
                                         }
-
-
-                                    }
-                                    //没有试题,则用随机试题
-                                    else
-                                    {
-                                        CreateRandomQuestion(eep.SettingID, returnlist);
-                                    }
-                                
+                                    
+                                }
+                                //没有准备好，则用随机试题
+                                else
+                                {
+                                    CreateRandomQuestion(eep.SettingID, returnlist);
+                                }
                             }
-                            //没有准备好，则用随机试题
-                            else
+                            else if (eep.Paper_Type == "随机试题")
                             {
                                 CreateRandomQuestion(eep.SettingID, returnlist);
-                            }
-                        }
-                        else if (eep.Paper_Type == "随机试题")
-                        {
-                            CreateRandomQuestion(eep.SettingID, returnlist);
 
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-
-            }
-            
-            return GetQuestionStr(returnlist);
-        }
-
-
-        [WebMethod(Description = "反回练习试题列表，参数pdnum为判断题数,参数dxnum为单面选择题数,参数mdxnum为多项选择题数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetPracticeQuestionListRand(int pdnum,int dxnum,int mdxnum)
-        {
-           
-            IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
-
-            try
-            {
-
-               CreateRandomQuestion(pdnum,dxnum,mdxnum, returnlist);
-
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetQuestionStr(returnlist);
-        }
-
-
-        [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetExamResult(string examid, string userid)
-        {
-            PdaExamResult per = new PdaExamResult();
-            try
-            {
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
-                //有考试记录
-                if (resultlist.Count > 0)
+                catch (Exception)
                 {
-                    //是否已经提交结果
-                    if (resultlist[0].IsExamed)
-                    {
-                        //是否已经计算过分数
-                        if (resultlist[0].BySCol1 == "1")
-                        {
-                            per.Score = resultlist[0].Score;
-                            per.Pass = resultlist[0].IsPassed;
-                        }
-
-                        else
-                        {
-                            per = CountExamResult(examid, userid);
-                        }
-
-                    }
 
                 }
+                
+                return GetQuestionStr(returnlist);
             }
-            catch (Exception)
-            {
 
-            }
-            return GetJsonStr<PdaExamResult>(per);
-        }
 
-        [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID,ReCount 是否重新算分")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetExamResultReCount(string examid, string userid, bool ReCount)
-        {
-            PdaExamResult per = new PdaExamResult();
-            try
+            [WebMethod(Description = "反回练习试题列表，参数pdnum为判断题数,参数dxnum为单面选择题数,参数mdxnum为多项选择题数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetPracticeQuestionListRand(int pdnum,int dxnum,int mdxnum)
             {
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
-                //有考试记录
-                if (resultlist.Count > 0)
+               
+                IList<E_QuestionBank> returnlist = new List<E_QuestionBank>();
+
+                try
                 {
-                    //是否已经提交结果
-                    if (resultlist[0].IsExamed)
+
+                   CreateRandomQuestion(pdnum,dxnum,mdxnum, returnlist);
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetQuestionStr(returnlist);
+            }
+
+
+            [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetExamResult(string examid, string userid)
+            {
+                PdaExamResult per = new PdaExamResult();
+                try
+                {
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                    IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
+                    //有考试记录
+                    if (resultlist.Count > 0)
                     {
-                        //是否已经计算过分数
-                        if (resultlist[0].BySCol1 == "1")
+                        //是否已经提交结果
+                        if (resultlist[0].IsExamed)
                         {
-                            // 是否重新计算分数
-                            if (ReCount)
-                            {
-                                per = CountExamResult(examid, userid);
-                            }
-                            else
+                            //是否已经计算过分数
+                            if (resultlist[0].BySCol1 == "1")
                             {
                                 per.Score = resultlist[0].Score;
                                 per.Pass = resultlist[0].IsPassed;
                             }
 
-                        }
+                            else
+                            {
+                                per = CountExamResult(examid, userid);
+                            }
 
-                        else
-                        {
-                            per = CountExamResult(examid, userid);
                         }
 
                     }
                 }
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<PdaExamResult>(per);
-        }
-
-
-        [WebMethod(Description = "反回考试考试剩余时间(秒)，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetRemainingTime(string examid, string userid)
-        {
-            SysRemainingTime rtime = new SysRemainingTime();
-            rtime.Seconds = 0;
-            try
-            {
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-                IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
-                if (erlist.Count > 0)
+                catch (Exception)
                 {
-                    int time = 1;
-                    int.TryParse(exam.BySCol1, out time);
 
-                    DateTime endtime = erlist[0].RealStartTime.AddMinutes(time);
+                }
+                return GetJsonStr<PdaExamResult>(per);
+            }
 
-                    if (DateTime.Now >= endtime)
+            [WebMethod(Description = "反回考试结果，参数examid为考试ID，userid为用户ID,ReCount 是否重新算分")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetExamResultReCount(string examid, string userid, bool ReCount)
+            {
+                PdaExamResult per = new PdaExamResult();
+                try
+                {
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    string sqlresultwhere = " where E_ID='" + examid + "' and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                    IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>(sqlresultwhere);
+                    //有考试记录
+                    if (resultlist.Count > 0)
                     {
-                        rtime.Seconds = 0;
+                        //是否已经提交结果
+                        if (resultlist[0].IsExamed)
+                        {
+                            //是否已经计算过分数
+                            if (resultlist[0].BySCol1 == "1")
+                            {
+                                // 是否重新计算分数
+                                if (ReCount)
+                                {
+                                    per = CountExamResult(examid, userid);
+                                }
+                                else
+                                {
+                                    per.Score = resultlist[0].Score;
+                                    per.Pass = resultlist[0].IsPassed;
+                                }
+
+                            }
+
+                            else
+                            {
+                                per = CountExamResult(examid, userid);
+                            }
+
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<PdaExamResult>(per);
+            }
+
+
+            [WebMethod(Description = "反回考试考试剩余时间(秒)，参数examid为考试ID，userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetRemainingTime(string examid, string userid)
+            {
+                SysRemainingTime rtime = new SysRemainingTime();
+                rtime.Seconds = 0;
+                try
+                {
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                    IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
+                    if (erlist.Count > 0)
+                    {
+                        int time = 1;
+                        int.TryParse(exam.BySCol1, out time);
+
+                        DateTime endtime = erlist[0].RealStartTime.AddMinutes(time);
+
+                        if (DateTime.Now >= endtime)
+                        {
+                            rtime.Seconds = 0;
+                        }
+                        else
+                        {
+                            rtime.Seconds = (int)endtime.Subtract(DateTime.Now).TotalSeconds;
+
+                        }
+                    }
+                }
+                catch (Exception ee)
+                {
+
+                }
+                return GetJsonStr<SysRemainingTime>(rtime);
+            }
+
+            [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，topnum为用前多少名,topnum为零时返回当次考试所有排名")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEaxmResultOrder(string examid, int topnum)
+            {
+                List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
+                try
+                {
+                    string sqlwere = string.Empty;
+                    if (topnum > 0)
+                    {
+                        sqlwere += " SELECT top " + topnum;
                     }
                     else
                     {
-                        rtime.Seconds = (int)endtime.Subtract(DateTime.Now).TotalSeconds;
-
+                        sqlwere += " SELECT ";
                     }
-                }
-            }
-            catch (Exception ee)
-            {
+                    sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+                    sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
 
-            }
-            return GetJsonStr<SysRemainingTime>(rtime);
-        }
-
-        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，topnum为用前多少名,topnum为零时返回当次考试所有排名")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEaxmResultOrder(string examid, int topnum)
-        {
-            List<PdaExamResultOrder> tlist = new List<PdaExamResultOrder>();
-            try
-            {
-                string sqlwere = string.Empty;
-                if (topnum > 0)
-                {
-                    sqlwere += " SELECT top " + topnum;
-                }
-                else
-                {
-                    sqlwere += " SELECT ";
-                }
-                sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
-                sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
-
-                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+                    IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
 
 
-                int i = 1;
-                foreach (E_ExamResult eer in resultlist)
-                {
-                    PdaExamResultOrder per = new PdaExamResultOrder();
-                    per.ID = eer.ID;
-                    per.UserID = eer.UserID;
-                    per.ExamID = eer.E_ID;
-                    per.ExamName = eer.BySCol2;
-                    per.UserName = eer.BySCol1;
-                    per.OrderNum = i;
-                    per.Score = eer.Score;
-                    per.Pass = eer.IsPassed;
-                    tlist.Add(per);
-                    i++;
-                }
-
-            }
-            catch (Exception)
-            {
-            }
-           
-            return GetJsonStr<PdaExamResultOrder>(tlist);
-        }
-
-        [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEaxmResultOrderByUser(string examid, string userid)
-        {
-            PdaExamResultOrder per = new PdaExamResultOrder();
-            try
-            {
-                string sqlwere = string.Empty;
-                sqlwere += " SELECT ";
-                sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
-                sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
-
-                IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
-                int i = 0;
-                foreach (E_ExamResult eer in resultlist)
-                {
-                    i++;
-                    if (eer.UserID == userid)
+                    int i = 1;
+                    foreach (E_ExamResult eer in resultlist)
                     {
+                        PdaExamResultOrder per = new PdaExamResultOrder();
                         per.ID = eer.ID;
                         per.UserID = eer.UserID;
                         per.ExamID = eer.E_ID;
@@ -497,601 +458,736 @@ namespace Itop.WebFrame
                         per.OrderNum = i;
                         per.Score = eer.Score;
                         per.Pass = eer.IsPassed;
+                        tlist.Add(per);
+                        i++;
+                    }
+
+                }
+                catch (Exception)
+                {
+                }
+               
+                return GetJsonStr<PdaExamResultOrder>(tlist);
+            }
+
+            [WebMethod(Description = "反回考试排名列表，参数examid为考试ID，userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEaxmResultOrderByUser(string examid, string userid)
+            {
+                PdaExamResultOrder per = new PdaExamResultOrder();
+                try
+                {
+                    string sqlwere = string.Empty;
+                    sqlwere += " SELECT ";
+                    sqlwere += "  a.[ID],a.[E_ID],a.[EP_ID],a.[UserID],a.[RealStartTime], a.[RealEenTime],a.[IsExamed], a.[Score],a.[IsPassed],a.[Comment],a.[CheckPeople],a.[Sequence],a.[ShowScore],b.[UserName] as [BySCol1],c.[E_Name] as [BySCol2],a.[BySCol3], a.[BySCol4],a.[BySCol5],a.[Remark],a.[RowVersion]";
+                    sqlwere += " FROM E_ExamResult as a,mUser as b,E_Examination  as c where a.[UserID]=b.[UserID] and a.[E_ID]=c.[ID] order by a.Score desc";
+
+                    IList<E_ExamResult> resultlist = Global.SqlMapper.GetList<E_ExamResult>("SelectE_ExamResultOrder", sqlwere);
+                    int i = 0;
+                    foreach (E_ExamResult eer in resultlist)
+                    {
+                        i++;
+                        if (eer.UserID == userid)
+                        {
+                            per.ID = eer.ID;
+                            per.UserID = eer.UserID;
+                            per.ExamID = eer.E_ID;
+                            per.ExamName = eer.BySCol2;
+                            per.UserName = eer.BySCol1;
+                            per.OrderNum = i;
+                            per.Score = eer.Score;
+                            per.Pass = eer.IsPassed;
+                        }
                     }
                 }
-            }
-            catch (Exception)
-            {
-            }
-            return GetJsonStr<PdaExamResultOrder>(per);
-        }
-
-        [WebMethod(Description = "反回系统时间")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetSysTime()
-        {
-            SysTime time = new SysTime();
-            time.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); ;
-            return GetJsonStr<SysTime>(time);
-        }
-
-        [WebMethod(Description = "校验登录，username用户名，pwd密码")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string CheckLogin(string username, string pwd)
-        {
-            ResponseResultUser res = new ResponseResultUser();
-            try
-            {
-                string name = username.Trim();
-                string password = MainHelper.EncryptoPassword(pwd.Trim());
-                string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
-                IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
-                if (list.Count > 0)
+                catch (Exception)
                 {
-                    res.Status = 1;
-                    res.Details = list[0].UserID;
-                    res.UserName = list[0].UserName;
                 }
-                else
+                return GetJsonStr<PdaExamResultOrder>(per);
+            }
+
+            [WebMethod(Description = "反回系统时间")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetSysTime()
+            {
+                SysTime time = new SysTime();
+                time.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); ;
+                return GetJsonStr<SysTime>(time);
+            }
+
+            [WebMethod(Description = "校验登录，username用户名，pwd密码")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string CheckLogin(string username, string pwd)
+            {
+                ResponseResultUser res = new ResponseResultUser();
+                try
+                {
+                    string name = username.Trim();
+                    string password = MainHelper.EncryptoPassword(pwd.Trim());
+                    string sqlwhere = " where LoginID='" + name + "' and Password='" + password + "'";
+                    IList<mUser> list = Global.SqlMapper.GetListByWhere<mUser>(sqlwhere);
+                    if (list.Count > 0)
+                    {
+                        res.Status = 1;
+                        res.Details = list[0].UserID;
+                        res.UserName = list[0].UserName;
+                    }
+                    else
+                    {
+                        res.Status = 0;
+                        res.Details = "验证失败!";
+                    }
+                }
+                catch (Exception ee)
                 {
                     res.Status = 0;
-                    res.Details = "验证失败!";
+                    res.Details = ee.Message;
                 }
+               
+                return GetJsonStr<ResponseResultUser>(res);
             }
-            catch (Exception ee)
+
+
+
+            [WebMethod(Description = "反回题库列表")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEQBankList()
             {
-                res.Status = 0;
-                res.Details = ee.Message;
-            }
-           
-            return GetJsonStr<ResponseResultUser>(res);
-        }
-
-
-
-        [WebMethod(Description = "反回题库列表")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEQBankList()
-        {
-            List<TurnE_QBank> teqblist = new List<TurnE_QBank>();
-            try
-            {
-                IList<E_QBank> eqblist = Global.SqlMapper.GetListByWhere<E_QBank>(string.Empty);
-                foreach (E_QBank item in eqblist)
+                List<TurnE_QBank> teqblist = new List<TurnE_QBank>();
+                try
                 {
-                    TurnE_QBank teqb = new TurnE_QBank();
-                    teqb.ID = item.ID;
-                    teqb.TKName = item.TKName;
-                    teqb.Desc = item.Desc;
-                    teqb.EProList = GetTEPList(item.ID);
-                    teqblist.Add(teqb);
+                    IList<E_QBank> eqblist = Global.SqlMapper.GetListByWhere<E_QBank>(string.Empty);
+                    foreach (E_QBank item in eqblist)
+                    {
+                        TurnE_QBank teqb = new TurnE_QBank();
+                        teqb.ID = item.ID;
+                        teqb.TKName = item.TKName;
+                        teqb.Desc = item.Desc;
+                        teqb.EProList = GetTEPList(item.ID);
+                        teqblist.Add(teqb);
+                    }
                 }
+                catch (Exception)
+                {
+
+                }
+                
+                return GetJsonStr<TurnE_QBank>(teqblist);
             }
-            catch (Exception)
+
+            [WebMethod(Description = "反回练习题列表（根据题库），tkid参数为题库ID，dxnum参数为判断题数，dxnum参数为单项选择题数，dxnum参数为多项选择题数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetPractiseListByTK(string tkid, int pdnum, int dxnum, int dxxnum)
             {
 
+                IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+
+                try
+                {
+                    IList<E_QuestionBank> pdlist = GetQuBankListByTK(tkid, "判断题");
+
+                    IList<E_QuestionBank> dxlist = GetQuBankListByTK(tkid, "单项选择题");
+
+                    IList<E_QuestionBank> dxxlist = GetQuBankListByTK(tkid, "多项选择题");
+
+                    IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
+                    IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
+                    IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
+
+                    //随机生成判断题放入respdlist
+                    RandSelectQuestion(pdlist, pdnum, respdlist);
+                    //随机生成单项选择题放入resdxlist
+                    RandSelectQuestion(dxlist, dxnum, resdxlist);
+                    //随机生成多项选择题放入resdxxlist
+                    RandSelectQuestion(dxxlist, dxnum, resdxxlist);
+
+                    //将三项整合到结果表
+                    AddQuestion(respdlist, resultlist);
+                    AddQuestion(resdxlist, resultlist);
+                    AddQuestion(resdxxlist, resultlist);
+
+                }
+                catch (Exception)
+                {
+                }
+                return GetQuestionStr(resultlist);
+            }
+
+            [WebMethod(Description = "反回练习题列表（根据题库），tkid为题库ID，basepdnum为判断基数，dxnum为判断题数，basedxnum为单选基数，dxnum参数为单项选择题数，basedxxnum为多选基数，dxnum为多项选择题数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetPractiseListByTKOrder(string tkid, int basepdnum, int pdnum, int basedxnum, int dxnum, int basedxxnum, int dxxnum)
+            {
+
+                IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+                try
+                {
+                    IList<E_QuestionBank> pdlist = GetQuBankListByTKOrder(tkid, "判断题", basepdnum, pdnum);
+
+                    IList<E_QuestionBank> dxlist = GetQuBankListByTKOrder(tkid, "单项选择题", basepdnum, pdnum);
+
+                    IList<E_QuestionBank> dxxlist = GetQuBankListByTKOrder(tkid, "多项选择题", basepdnum, pdnum);
+
+                    //将三项整合到结果表
+                    AddQuestion(pdlist, resultlist);
+                    AddQuestion(dxlist, resultlist);
+                    AddQuestion(dxxlist, resultlist);
+
+                }
+                catch (Exception)
+                {
+                    
+                }
+                return GetQuestionStr(resultlist);
+            }
+
+            [WebMethod(Description = "反回练习题列表（根据专业），zyid参数为专业ID，dxnum参数为判断题数，dxnum参数为单项选择题数，dxnum参数为多项选择题数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetPractiseListByZY(string zyid, int pdnum, int dxnum, int dxxnum)
+            {
+                IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+                try
+                {
+                    IList<E_QuestionBank> pdlist = GetQuBankListByZY(zyid, "判断题");
+
+                    IList<E_QuestionBank> dxlist = GetQuBankListByZY(zyid, "单项选择题");
+
+                    IList<E_QuestionBank> dxxlist = GetQuBankListByZY(zyid, "多项选择题");
+
+                    IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
+                    IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
+                    IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
+
+                    //随机生成判断题放入respdlist
+                    RandSelectQuestion(pdlist, pdnum, respdlist);
+                    //随机生成单项选择题放入resdxlist
+                    RandSelectQuestion(dxlist, dxnum, resdxlist);
+                    //随机生成多项选择题放入resdxxlist
+                    RandSelectQuestion(dxxlist, dxnum, resdxxlist);
+
+                    //将三项整合到结果表
+                    AddQuestion(respdlist, resultlist);
+                    AddQuestion(resdxlist, resultlist);
+                    AddQuestion(resdxxlist, resultlist);
+                }
+                catch (Exception)
+                {
+                }
+                return GetQuestionStr(resultlist);
+            }
+
+
+            [WebMethod(Description = "反回练习题列表（根据专业），tkid为题库ID，basepdnum为判断基数，dxnum为判断题数，basedxnum为单选基数，dxnum参数为单项选择题数，basedxxnum为多选基数，dxnum为多项选择题数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetPractiseListByZYOrder(string zyid, int basepdnum, int pdnum, int basedxnum, int dxnum, int basedxxnum, int dxxnum)
+            {
+                IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
+                try
+                {
+                    IList<E_QuestionBank> pdlist = GetQuBankListByZYOrder(zyid, "判断题", basepdnum, pdnum);
+
+                    IList<E_QuestionBank> dxlist = GetQuBankListByZYOrder(zyid, "单项选择题", basepdnum, pdnum);
+
+                    IList<E_QuestionBank> dxxlist = GetQuBankListByZYOrder(zyid, "多项选择题", basepdnum, pdnum);
+
+                    //将三项整合到结果表
+                    AddQuestion(pdlist, resultlist);
+                    AddQuestion(dxlist, resultlist);
+                    AddQuestion(dxxlist, resultlist);
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                return GetQuestionStr(resultlist);
+            }
+
+            [WebMethod(Description = "反回模拟试题，tkid为题库ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetFalseExamQuestionList(string tkid)
+            {
+                string strresult = string.Empty;
+                try
+                {
+                    strresult = GetPractiseListByTKFalseExam(tkid, FalseExamPdNum, FalseExamDxNum, FalseExamDXxNum);
+                }
+                catch (Exception)
+                {
+
+                }
+                return strresult;
+            }
+
+
+
+            #region 通知、企业信息
+
+            [WebMethod(Description = "反回通知列表，StartIndex为起始序号，Num为通知条数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetENoticeList(int StartIndex,int Num)
+            {
+                List<TurnE_BusinesInfo> teqblist = new List<TurnE_BusinesInfo>();
+                string sql = " select top " + Num + " * from (select top " + (Num +StartIndex-1)+ " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime asc";
+                try
+                {
+                    IList<E_BusinesInfo> eqblist = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", sql);
+
+                    foreach (E_BusinesInfo item in eqblist)
+                    {
+                        TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
+                        teqb.ID = item.ID;
+                        teqb.Title = item.Title;
+                        teqb.Content = item.Content;
+                        teqb.Other =item.Other;
+                        teqb.UserID = item.UserID;
+                        teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        teqblist.Add(teqb);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<TurnE_BusinesInfo>(teqblist);
+            }
+            public List<TurnE_BusinesInfo> GetENoticeList2(int StartIndex, int Num)
+            {
+                List<TurnE_BusinesInfo> list = new List<TurnE_BusinesInfo>();
+                string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime desc" });
+                try
+                {
+                    IList<E_BusinesInfo> list2 = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", str);
+                    foreach (E_BusinesInfo info in list2)
+                    {
+                        TurnE_BusinesInfo item = new TurnE_BusinesInfo
+                        {
+                            ID = info.ID,
+                            Title = info.Title,
+                            UserID = info.UserID,
+                            CreateTime = info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                        };
+                        list.Add(item);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                return list;
+            }
+
+
+            [WebMethod(Description = "反回通知，NoticeID为通知ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetENotice(string NoticeID)
+            {
+                TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
+                try
+                {
+                    E_BusinesInfo item = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
+                    teqb.ID = item.ID;
+                    teqb.Title = item.Title;
+                    teqb.Content = item.Content;
+                    teqb.Other = item.Other;
+                    teqb.UserID = item.UserID;
+                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<TurnE_BusinesInfo>(teqb);
+            }
+
+
+            [WebMethod(Description = "反回企业信息表，StartIndex为起始序号，Num为企业信息条数")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEBusinesInfoList(int StartIndex, int Num)
+            {
+                List<TurnE_Notice> teqblist = new List<TurnE_Notice>();
+                string sql = " select top " + Num + " * from (select top " + (Num + StartIndex - 1) + " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime asc";
+                try
+                {
+                    IList<E_Notice> eqblist = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", sql);
+
+
+                    foreach (E_Notice item in eqblist)
+                    {
+                        TurnE_Notice teqb = new TurnE_Notice();
+                        teqb.ID = item.ID;
+                        teqb.Title = item.Title;
+                        teqb.Content = item.Content;
+                        teqb.UserID = item.UserID;
+                        teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        teqblist.Add(teqb);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<TurnE_Notice>(teqblist);
+            }
+            public List<TurnE_Notice> GetEBusinesInfoList2(int StartIndex, int Num)
+            {
+                List<TurnE_Notice> list = new List<TurnE_Notice>();
+                string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime desc" });
+                try
+                {
+                    IList<E_Notice> list2 = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", str);
+                    foreach (E_Notice notice in list2)
+                    {
+                        TurnE_Notice item = new TurnE_Notice
+                        {
+                            ID = notice.ID,
+                            Title = notice.Title,
+                            UserID = notice.UserID,
+                            CreateTime = notice.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                        };
+                        list.Add(item);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                return list;
+            }
+
+
+            [WebMethod(Description = "反回企业信息，BusinesInfoID为企业信息ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEBusinesInfo(string BusinesInfoID)
+            {
+                TurnE_Notice teqb = new TurnE_Notice();
+                try
+                {
+                    E_Notice item = Global.SqlMapper.GetOneByKey<E_Notice>(BusinesInfoID);
+                    teqb.ID = item.ID;
+                    teqb.Title = item.Title;
+                    teqb.Content = item.Content;
+                    teqb.UserID = item.UserID;
+                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<TurnE_Notice>(teqb);
+            }
+
+            //存放附件文件目录
+            static string FileDir = "Files";
+            [WebMethod(Description = "反回通知附件,NoticeID通知ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetENoticeFile(string NoticeID)
+            {
+                E_File efile = new E_File();
+                try
+                {
+                 string BaseAddress=AppDomain.CurrentDomain.BaseDirectory+"/"+FileDir;
+                 if (!Directory.Exists(BaseAddress))
+                 {
+                     Directory.CreateDirectory(BaseAddress);
+                 }
+                E_BusinesInfo eb = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
+                if (eb!=null&&eb.WordData.Length>0)
+                {
+                   
+                    string filename=eb.ID+eb.BySCol1;
+                    string address = BaseAddress + "/" + filename;
+                    GetFile(eb.WordData, address);
+
+
+                     efile.FileName = eb.Other;
+                     efile.Address = FileDir + "/" + filename;
+                }
+                }
+                catch (Exception)
+                {
+
+                }
+                return GetJsonStr<E_File>(efile);
+            }
+
+            #endregion
+
+
+
+
+            #endregion
+
+
+            #region 上传
+
+
+            [WebMethod(Description = "上传考试开始，参数examid为考试ID，userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string SendExamStart(string examid, string userid)
+            {
+                ResponseResult result = new ResponseResult();
+                try
+                {
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                    IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
+                    if (erlist.Count > 0)
+                    {
+                        result.Status = 0;
+                        result.Details = "该生已开始考试，不能重复考试！";
+                    }
+                    else
+                    {
+                        E_ExamResult er = new E_ExamResult();
+                        er.E_ID = examid;
+                        er.EP_ID = exam.EP_ID;
+                        er.UserID = userid;
+                        er.RealStartTime = DateTime.Now;
+                        er.IsExamed = false;
+                        Global.SqlMapper.Create<E_ExamResult>(er);
+                        result.Status = 1;
+                        result.Details = "已记录该考生考试数据！";
+
+                    }
+
+                }
+                catch (Exception ee)
+                {
+                    result.Status = 0;
+                    result.Details = ee.Message;
+                }
+                return GetJsonStr<ResponseResult>(result);
+            }
+
+            [WebMethod(Description = "上传考试结束，参数examid为考试ID，userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string SendExamEnd(string examid, string userid)
+            {
+                ResponseResult result = new ResponseResult();
+                try
+                {
+                    E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
+                    string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
+                    IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
+                    if (erlist.Count > 0)
+                    {
+                        erlist[0].RealEenTime = DateTime.Now;
+                        erlist[0].IsExamed = true;
+                        Global.SqlMapper.Update<E_ExamResult>(erlist[0]);
+                        //计算考试结果
+                        CountExamResult(examid, userid);
+                        result.Status = 1;
+                        result.Details = "已记录该考生考试数据!";
+                    }
+                    else
+                    {
+                        result.Status = 0;
+                        result.Details = "该考生考没有开始考试数据，不能结束考试！";
+
+                    }
+
+                }
+                catch (Exception ee)
+                {
+                    result.Status = 0;
+                    result.Details = ee.Message;
+                }
+                return GetJsonStr<ResponseResult>(result);
+            }
+
+
+            [WebMethod(Description = "上传考试考试答案，参数jsonstr为json串")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string SendExamAnswer(string jsonstr)
+            {
+                List<PdaAnswer> splist = null;
+                splist = JsonDeserialize<PdaAnswer>(jsonstr);
+                ResponseResult result = new ResponseResult();
+                if (splist != null && splist.Count > 0)
+                {
+
+                    try
+                    {
+                        string sqlwhere = " where E_ID='" + splist[0].E_ID + "' and EP_ID='" + splist[0].EP_ID + "' and UserID='" + splist[0].UserID + "'";
+                        Global.SqlMapper.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
+                        for (int i = 0; i < splist.Count; i++)
+                        {
+                            E_ExamAnswerResult eear = new E_ExamAnswerResult();
+                            eear.ID += i.ToString();
+                            eear.E_ID = splist[i].E_ID;
+                            eear.EP_ID = splist[i].EP_ID;
+                            eear.UserID = splist[i].UserID;
+                            eear.ExamQueston_ID = splist[i].ExamQueston_ID;
+                            eear.ExamQuestonType = splist[i].ExamQuestonType;
+                            eear.Answer = splist[i].Answer;
+                            eear.RandomID = splist[i].RandomID;
+                            Global.SqlMapper.Create<E_ExamAnswerResult>(eear);
+                        }
+                        result.Details = "成功";
+                        result.Status = 1;
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
+
+                    }
+                }
+                else
+                {
+                    result.Status = 0;
+                    result.Details = "json转换失败";
+                }
+                return GetJsonStr<ResponseResult>(result);
+            }
+
+
+            [WebMethod(Description = "上传练习记录，参数jsonstr为json串")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string SendE_PracticeRecord(string jsonstr)
+            {
+                List<TurnE_PracticeRecord> splist = null;
+                splist = JsonDeserialize<TurnE_PracticeRecord>(jsonstr);
+                ResponseResult result = new ResponseResult();
+                if (splist != null && splist.Count > 0)
+                {
+
+                    try
+                    {
+                        for (int i = 0; i < splist.Count; i++)
+                        {
+                            E_PracticeRecord eear = new E_PracticeRecord();
+                            eear.ID += i.ToString();
+                            eear.UserID = splist[i].UserID;
+                            eear.PracticeDate = DateTime.Parse(splist[i].PracticeDate);
+                            eear.PracticeNum = int.Parse(splist[i].PracticeNum);
+                            eear.RightPercent = double.Parse(splist[i].RightPercent);
+                            Global.SqlMapper.Create<E_PracticeRecord>(eear);
+                        }
+                        result.Details = "成功";
+                        result.Status = 1;
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
+
+                    }
+                }
+                else
+                {
+                    result.Status = 0;
+                    result.Details = "json转换失败";
+                }
+                return GetJsonStr<ResponseResult>(result);
+            }
+            #endregion
+
+
+
+            #endregion
+
+
+
+            #region 闯关相关
+
+            #region 关卡版本
+
+
+            private static string CutttenChatValue = "1.1.1";
+            [WebMethod(Description = "获取闯关的版本信息")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetLevelChat()
+            {
+                ChatStr chat = new ChatStr();
+                chat.Value = CutttenChatValue;
+                return GetJsonStr<ChatStr>(chat);
             }
             
-            return GetJsonStr<TurnE_QBank>(teqblist);
-        }
 
-        [WebMethod(Description = "反回练习题列表（根据题库），tkid参数为题库ID，dxnum参数为判断题数，dxnum参数为单项选择题数，dxnum参数为多项选择题数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetPractiseListByTK(string tkid, int pdnum, int dxnum, int dxxnum)
-        {
+            #endregion
 
-            IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
-
-            try
+            #region   季、关、站点
+            [WebMethod(Description = "获取闯关关口站点信息")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetLevelInfo()
             {
-                IList<E_QuestionBank> pdlist = GetQuBankListByTK(tkid, "判断题");
-
-                IList<E_QuestionBank> dxlist = GetQuBankListByTK(tkid, "单项选择题");
-
-                IList<E_QuestionBank> dxxlist = GetQuBankListByTK(tkid, "多项选择题");
-
-                IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
-                IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
-                IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
-
-                //随机生成判断题放入respdlist
-                RandSelectQuestion(pdlist, pdnum, respdlist);
-                //随机生成单项选择题放入resdxlist
-                RandSelectQuestion(dxlist, dxnum, resdxlist);
-                //随机生成多项选择题放入resdxxlist
-                RandSelectQuestion(dxxlist, dxnum, resdxxlist);
-
-                //将三项整合到结果表
-                AddQuestion(respdlist, resultlist);
-                AddQuestion(resdxlist, resultlist);
-                AddQuestion(resdxxlist, resultlist);
-
-            }
-            catch (Exception)
-            {
-            }
-            return GetQuestionStr(resultlist);
-        }
-
-        [WebMethod(Description = "反回练习题列表（根据题库），tkid为题库ID，basepdnum为判断基数，dxnum为判断题数，basedxnum为单选基数，dxnum参数为单项选择题数，basedxxnum为多选基数，dxnum为多项选择题数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetPractiseListByTKOrder(string tkid, int basepdnum, int pdnum, int basedxnum, int dxnum, int basedxxnum, int dxxnum)
-        {
-
-            IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
-            try
-            {
-                IList<E_QuestionBank> pdlist = GetQuBankListByTKOrder(tkid, "判断题", basepdnum, pdnum);
-
-                IList<E_QuestionBank> dxlist = GetQuBankListByTKOrder(tkid, "单项选择题", basepdnum, pdnum);
-
-                IList<E_QuestionBank> dxxlist = GetQuBankListByTKOrder(tkid, "多项选择题", basepdnum, pdnum);
-
-                //将三项整合到结果表
-                AddQuestion(pdlist, resultlist);
-                AddQuestion(dxlist, resultlist);
-                AddQuestion(dxxlist, resultlist);
-
-            }
-            catch (Exception)
-            {
-                
-            }
-            return GetQuestionStr(resultlist);
-        }
-
-        [WebMethod(Description = "反回练习题列表（根据专业），zyid参数为专业ID，dxnum参数为判断题数，dxnum参数为单项选择题数，dxnum参数为多项选择题数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetPractiseListByZY(string zyid, int pdnum, int dxnum, int dxxnum)
-        {
-            IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
-            try
-            {
-                IList<E_QuestionBank> pdlist = GetQuBankListByZY(zyid, "判断题");
-
-                IList<E_QuestionBank> dxlist = GetQuBankListByZY(zyid, "单项选择题");
-
-                IList<E_QuestionBank> dxxlist = GetQuBankListByZY(zyid, "多项选择题");
-
-                IList<E_QuestionBank> respdlist = new List<E_QuestionBank>();
-                IList<E_QuestionBank> resdxlist = new List<E_QuestionBank>();
-                IList<E_QuestionBank> resdxxlist = new List<E_QuestionBank>();
-
-                //随机生成判断题放入respdlist
-                RandSelectQuestion(pdlist, pdnum, respdlist);
-                //随机生成单项选择题放入resdxlist
-                RandSelectQuestion(dxlist, dxnum, resdxlist);
-                //随机生成多项选择题放入resdxxlist
-                RandSelectQuestion(dxxlist, dxnum, resdxxlist);
-
-                //将三项整合到结果表
-                AddQuestion(respdlist, resultlist);
-                AddQuestion(resdxlist, resultlist);
-                AddQuestion(resdxxlist, resultlist);
-            }
-            catch (Exception)
-            {
-            }
-            return GetQuestionStr(resultlist);
-        }
-
-
-        [WebMethod(Description = "反回练习题列表（根据专业），tkid为题库ID，basepdnum为判断基数，dxnum为判断题数，basedxnum为单选基数，dxnum参数为单项选择题数，basedxxnum为多选基数，dxnum为多项选择题数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetPractiseListByZYOrder(string zyid, int basepdnum, int pdnum, int basedxnum, int dxnum, int basedxxnum, int dxxnum)
-        {
-            IList<E_QuestionBank> resultlist = new List<E_QuestionBank>();
-            try
-            {
-                IList<E_QuestionBank> pdlist = GetQuBankListByZYOrder(zyid, "判断题", basepdnum, pdnum);
-
-                IList<E_QuestionBank> dxlist = GetQuBankListByZYOrder(zyid, "单项选择题", basepdnum, pdnum);
-
-                IList<E_QuestionBank> dxxlist = GetQuBankListByZYOrder(zyid, "多项选择题", basepdnum, pdnum);
-
-                //将三项整合到结果表
-                AddQuestion(pdlist, resultlist);
-                AddQuestion(dxlist, resultlist);
-                AddQuestion(dxxlist, resultlist);
-
-            }
-            catch (Exception)
-            {
-
-            }
-
-            return GetQuestionStr(resultlist);
-        }
-
-        [WebMethod(Description = "反回模拟试题，tkid为题库ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetFalseExamQuestionList(string tkid)
-        {
-            string strresult = string.Empty;
-            try
-            {
-                strresult = GetPractiseListByTKFalseExam(tkid, FalseExamPdNum, FalseExamDxNum, FalseExamDXxNum);
-            }
-            catch (Exception)
-            {
-
-            }
-            return strresult;
-        }
-
-
-
-        #region 通知、企业信息
-
-        [WebMethod(Description = "反回通知列表，StartIndex为起始序号，Num为通知条数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetENoticeList(int StartIndex,int Num)
-        {
-            List<TurnE_BusinesInfo> teqblist = new List<TurnE_BusinesInfo>();
-            string sql = " select top " + Num + " * from (select top " + (Num +StartIndex-1)+ " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime asc";
-            try
-            {
-                IList<E_BusinesInfo> eqblist = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", sql);
-
-                foreach (E_BusinesInfo item in eqblist)
-                {
-                    TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
-                    teqb.ID = item.ID;
-                    teqb.Title = item.Title;
-                    teqb.Content = item.Content;
-                    teqb.Other =item.Other;
-                    teqb.UserID = item.UserID;
-                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    teqblist.Add(teqb);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<TurnE_BusinesInfo>(teqblist);
-        }
-        public List<TurnE_BusinesInfo> GetENoticeList2(int StartIndex, int Num)
-        {
-            List<TurnE_BusinesInfo> list = new List<TurnE_BusinesInfo>();
-            string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_BusinesInfo order by CreateTime desc ) as a order by a.CreateTime desc" });
-            try
-            {
-                IList<E_BusinesInfo> list2 = Global.SqlMapper.GetList<E_BusinesInfo>("SelectE_BusinesInfoByUserCondition", str);
-                foreach (E_BusinesInfo info in list2)
-                {
-                    TurnE_BusinesInfo item = new TurnE_BusinesInfo
-                    {
-                        ID = info.ID,
-                        Title = info.Title,
-                        UserID = info.UserID,
-                        CreateTime = info.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
-                    };
-                    list.Add(item);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return list;
-        }
-
-
-        [WebMethod(Description = "反回通知，NoticeID为通知ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetENotice(string NoticeID)
-        {
-            TurnE_BusinesInfo teqb = new TurnE_BusinesInfo();
-            try
-            {
-                E_BusinesInfo item = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
-                teqb.ID = item.ID;
-                teqb.Title = item.Title;
-                teqb.Content = item.Content;
-                teqb.Other = item.Other;
-                teqb.UserID = item.UserID;
-                teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<TurnE_BusinesInfo>(teqb);
-        }
-
-
-        [WebMethod(Description = "反回企业信息表，StartIndex为起始序号，Num为企业信息条数")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEBusinesInfoList(int StartIndex, int Num)
-        {
-            List<TurnE_Notice> teqblist = new List<TurnE_Notice>();
-            string sql = " select top " + Num + " * from (select top " + (Num + StartIndex - 1) + " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime asc";
-            try
-            {
-                IList<E_Notice> eqblist = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", sql);
-
-
-                foreach (E_Notice item in eqblist)
-                {
-                    TurnE_Notice teqb = new TurnE_Notice();
-                    teqb.ID = item.ID;
-                    teqb.Title = item.Title;
-                    teqb.Content = item.Content;
-                    teqb.UserID = item.UserID;
-                    teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                    teqblist.Add(teqb);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<TurnE_Notice>(teqblist);
-        }
-        public List<TurnE_Notice> GetEBusinesInfoList2(int StartIndex, int Num)
-        {
-            List<TurnE_Notice> list = new List<TurnE_Notice>();
-            string str = string.Concat(new object[] { " select top ", Num, " * from (select top ", (Num + StartIndex) - 1, " * from dbo.E_Notice order by CreateTime desc ) as a order by a.CreateTime desc" });
-            try
-            {
-                IList<E_Notice> list2 = Global.SqlMapper.GetList<E_Notice>("SelectE_NoticeListByUserCondition", str);
-                foreach (E_Notice notice in list2)
-                {
-                    TurnE_Notice item = new TurnE_Notice
-                    {
-                        ID = notice.ID,
-                        Title = notice.Title,
-                        UserID = notice.UserID,
-                        CreateTime = notice.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
-                    };
-                    list.Add(item);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return list;
-        }
-
-
-        [WebMethod(Description = "反回企业信息，BusinesInfoID为企业信息ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetEBusinesInfo(string BusinesInfoID)
-        {
-            TurnE_Notice teqb = new TurnE_Notice();
-            try
-            {
-                E_Notice item = Global.SqlMapper.GetOneByKey<E_Notice>(BusinesInfoID);
-                teqb.ID = item.ID;
-                teqb.Title = item.Title;
-                teqb.Content = item.Content;
-                teqb.UserID = item.UserID;
-                teqb.CreateTime = item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<TurnE_Notice>(teqb);
-        }
-
-        //存放附件文件目录
-        static string FileDir = "Files";
-        [WebMethod(Description = "反回通知附件,NoticeID通知ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string GetENoticeFile(string NoticeID)
-        {
-            E_File efile = new E_File();
-            try
-            {
-             string BaseAddress=AppDomain.CurrentDomain.BaseDirectory+"/"+FileDir;
-             if (!Directory.Exists(BaseAddress))
-             {
-                 Directory.CreateDirectory(BaseAddress);
-             }
-            E_BusinesInfo eb = Global.SqlMapper.GetOneByKey<E_BusinesInfo>(NoticeID);
-            if (eb!=null&&eb.WordData.Length>0)
-            {
-               
-                string filename=eb.ID+eb.BySCol1;
-                string address = BaseAddress + "/" + filename;
-                GetFile(eb.WordData, address);
-
-
-                 efile.FileName = eb.Other;
-                 efile.Address = FileDir + "/" + filename;
-            }
-            }
-            catch (Exception)
-            {
-
-            }
-            return GetJsonStr<E_File>(efile);
-        }
-
-        #endregion
-
-
-
-
-        #endregion
-
-
-        #region 上传
-
-
-        [WebMethod(Description = "上传考试开始，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string SendExamStart(string examid, string userid)
-        {
-            ResponseResult result = new ResponseResult();
-            try
-            {
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-                IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
-                if (erlist.Count > 0)
-                {
-                    result.Status = 0;
-                    result.Details = "该生已开始考试，不能重复考试！";
-                }
-                else
-                {
-                    E_ExamResult er = new E_ExamResult();
-                    er.E_ID = examid;
-                    er.EP_ID = exam.EP_ID;
-                    er.UserID = userid;
-                    er.RealStartTime = DateTime.Now;
-                    er.IsExamed = false;
-                    Global.SqlMapper.Create<E_ExamResult>(er);
-                    result.Status = 1;
-                    result.Details = "已记录该考生考试数据！";
-
-                }
-
-            }
-            catch (Exception ee)
-            {
-                result.Status = 0;
-                result.Details = ee.Message;
-            }
-            return GetJsonStr<ResponseResult>(result);
-        }
-
-        [WebMethod(Description = "上传考试结束，参数examid为考试ID，userid为用户ID")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string SendExamEnd(string examid, string userid)
-        {
-            ResponseResult result = new ResponseResult();
-            try
-            {
-                E_Examination exam = Global.SqlMapper.GetOneByKey<E_Examination>(examid);
-                string sqlwhere = " where E_ID='" + examid + "'  and EP_ID='" + exam.EP_ID + "' and UserID='" + userid + "'";
-                IList<E_ExamResult> erlist = Global.SqlMapper.GetListByWhere<E_ExamResult>(sqlwhere);
-                if (erlist.Count > 0)
-                {
-                    erlist[0].RealEenTime = DateTime.Now;
-                    erlist[0].IsExamed = true;
-                    Global.SqlMapper.Update<E_ExamResult>(erlist[0]);
-                    //计算考试结果
-                    CountExamResult(examid, userid);
-                    result.Status = 1;
-                    result.Details = "已记录该考生考试数据!";
-                }
-                else
-                {
-                    result.Status = 0;
-                    result.Details = "该考生考没有开始考试数据，不能结束考试！";
-
-                }
-
-            }
-            catch (Exception ee)
-            {
-                result.Status = 0;
-                result.Details = ee.Message;
-            }
-            return GetJsonStr<ResponseResult>(result);
-        }
-
-
-        [WebMethod(Description = "上传考试考试答案，参数jsonstr为json串")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string SendExamAnswer(string jsonstr)
-        {
-            List<PdaAnswer> splist = null;
-            splist = JsonDeserialize<PdaAnswer>(jsonstr);
-            ResponseResult result = new ResponseResult();
-            if (splist != null && splist.Count > 0)
-            {
+                List<TurnSeason> tslist = new List<TurnSeason>();
+                List<TurnLevel> tllist = new List<TurnLevel>();
+                List<TurnLevelStop> tlslist = new List<TurnLevelStop>();
 
                 try
                 {
-                    string sqlwhere = " where E_ID='" + splist[0].E_ID + "' and EP_ID='" + splist[0].EP_ID + "' and UserID='" + splist[0].UserID + "'";
-                    Global.SqlMapper.DeleteByWhere<E_ExamAnswerResult>(sqlwhere);
-                    for (int i = 0; i < splist.Count; i++)
+                    string sqlwhere = "  Order by Sequence asc";
+                    IList<E_LevelSeason> elslist = Global.SqlMapper.GetList<E_LevelSeason>(sqlwhere);
+
+                    foreach (E_LevelSeason item in elslist)
                     {
-                        E_ExamAnswerResult eear = new E_ExamAnswerResult();
-                        eear.ID += i.ToString();
-                        eear.E_ID = splist[i].E_ID;
-                        eear.EP_ID = splist[i].EP_ID;
-                        eear.UserID = splist[i].UserID;
-                        eear.ExamQueston_ID = splist[i].ExamQueston_ID;
-                        eear.ExamQuestonType = splist[i].ExamQuestonType;
-                        eear.Answer = splist[i].Answer;
-                        eear.RandomID = splist[i].RandomID;
-                        Global.SqlMapper.Create<E_ExamAnswerResult>(eear);
+                        string sqlwhere2 = "  where SeasonID='" + item.ID + "' Order by Sequence asc";
+                        IList<E_Level> elevellist = Global.SqlMapper.GetList<E_Level>(sqlwhere2);
+                        tllist.Clear();
+                        foreach (E_Level item2 in elevellist)
+                        {
+                            string sqlwhere3 = "  where LevelID='" + item2.ID + "' Order by Sequence asc";
+                            IList<E_LevelStop> Eelslist = Global.SqlMapper.GetList<E_LevelStop>(sqlwhere3);
+                            tlslist.Clear();
+                            foreach (E_LevelStop item3 in Eelslist)
+                            {
+                                TurnLevelStop tempstop = new TurnLevelStop();
+                                tempstop.ID = item3.ID;
+                                tempstop.SeasonID = item3.SeasonID;
+                                tempstop.LevelID = item3.LevelID;
+                                tempstop.Name = item3.Name;
+                                tempstop.Desc = item3.Desc;
+                                tempstop.Sequence = item3.Sequence;
+                                tempstop.QuestionAllNUM = item3.QuestionAllNUM;
+                                tempstop.Remark = item3.Remark;
+                                tlslist.Add(tempstop);
+
+                            }
+                            TurnLevel temptl = new TurnLevel();
+                            temptl.ID = item2.ID;
+                            temptl.SeasonID = item2.SeasonID;
+                            temptl.Name = item2.Name;
+                            temptl.Desc = item2.Desc;
+                            temptl.Sequence = item2.Sequence;
+                            temptl.StopNum = item2.StopNum;
+                            temptl.ExChange = item2.ExChange;
+                            temptl.Remark = item2.Remark;
+                            temptl.StopList = tlslist;
+                            tllist.Add(temptl);
+
+                        }
+                        TurnSeason tempts = new TurnSeason();
+                        tempts.ID = item.ID;
+                        tempts.Name = item.Name;
+                        tempts.Desc = item.Desc;
+                        tempts.Sequence = item.Sequence;
+                        tempts.LevelNum = item.LevelNum;
+                        tempts.Remark = item.Remark;
+                        tempts.LevelList = tllist;
+                        tslist.Add(tempts);
+
                     }
-                    result.Details = "成功";
-                    result.Status = 1;
                 }
-                catch (Exception)
+                catch (Exception ee)
                 {
-                    result.Status = 0;
-                    result.Details = "操作遇到问题！";
-
                 }
+                return GetJsonStr<TurnSeason>(tslist);
             }
-            else
-            {
-                result.Status = 0;
-                result.Details = "json转换失败";
-            }
-            return GetJsonStr<ResponseResult>(result);
-        }
+
+            
+            #endregion
 
 
-        [WebMethod(Description = "上传练习记录，参数jsonstr为json串")]
-        [ScriptMethod(UseHttpGet = false)]
-        public string SendE_PracticeRecord(string jsonstr)
-        {
-            List<TurnE_PracticeRecord> splist = null;
-            splist = JsonDeserialize<TurnE_PracticeRecord>(jsonstr);
-            ResponseResult result = new ResponseResult();
-            if (splist != null && splist.Count > 0)
-            {
-
-                try
-                {
-                    for (int i = 0; i < splist.Count; i++)
-                    {
-                        E_PracticeRecord eear = new E_PracticeRecord();
-                        eear.ID += i.ToString();
-                        eear.UserID = splist[i].UserID;
-                        eear.PracticeDate = DateTime.Parse(splist[i].PracticeDate);
-                        eear.PracticeNum = int.Parse(splist[i].PracticeNum);
-                        eear.RightPercent = double.Parse(splist[i].RightPercent);
-                        Global.SqlMapper.Create<E_PracticeRecord>(eear);
-                    }
-                    result.Details = "成功";
-                    result.Status = 1;
-                }
-                catch (Exception)
-                {
-                    result.Status = 0;
-                    result.Details = "操作遇到问题！";
-
-                }
-            }
-            else
-            {
-                result.Status = 0;
-                result.Details = "json转换失败";
-            }
-            return GetJsonStr<ResponseResult>(result);
-        }
-        #endregion
+            #endregion
 
 
-
-        #endregion
-
-        #endregion
+            #endregion
 
 
-        #region 辅助方法
+            #region 辅助方法
 
-        List<E_QuestionBank> Pdlist = new List<E_QuestionBank>();
+            List<E_QuestionBank> Pdlist = new List<E_QuestionBank>();
         List<E_QuestionBank> Selectlist = new List<E_QuestionBank>();
         List<E_QuestionBank> MuSelectlist = new List<E_QuestionBank>();
         Random rand = new Random();
