@@ -175,6 +175,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：图片
         /// 字段信息：[Image],image
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("图片")]
         public byte[] Image
         {
@@ -193,6 +194,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {
@@ -304,6 +306,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用1
         /// 字段信息：[BySCol1],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用1")]
         public string BySCol1
         {
@@ -325,6 +328,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用2
         /// 字段信息：[BySCol2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用2")]
         public string BySCol2
         {
@@ -346,6 +350,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用3
         /// 字段信息：[BySCol3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用3")]
         public string BySCol3
         {
@@ -367,6 +372,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用4
         /// 字段信息：[BySCol4],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用4")]
         public string BySCol4
         {
@@ -388,6 +394,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用5
         /// 字段信息：[BySCol5],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用5")]
         public string BySCol5
         {
@@ -409,6 +416,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备注
         /// 字段信息：[Remark],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备注")]
         public string Remark
         {

@@ -348,6 +348,34 @@
       <DependentUpon>UcExamTroQuestonSlect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_HonoraryTitle.resx">
+      <DependentUpon>UCE_HonoraryTitle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\FrmE_HonoraryTitleEdit.resx">
+      <DependentUpon>FrmE_HonoraryTitleEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_Prize.resx">
+      <DependentUpon>UCE_Prize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\FrmE_PrizeEdit.resx">
+      <DependentUpon>FrmE_PrizeEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\FrmE_PropEdit.resx">
+      <DependentUpon>FrmE_PropEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_Prop.resx">
+      <DependentUpon>UCE_Prop.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_UserScore.resx">
+      <DependentUpon>UCE_UserScore.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -697,6 +725,48 @@
     </Compile>
     <Compile Include="考试\UcExamTroQuestonSlect.Designer.cs">
       <DependentUpon>UcExamTroQuestonSlect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_HonoraryTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_HonoraryTitle.Designer.cs">
+      <DependentUpon>UCE_HonoraryTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\FrmE_HonoraryTitleEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="闯关\FrmE_HonoraryTitleEdit.Designer.cs">
+      <DependentUpon>FrmE_HonoraryTitleEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_Prize.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_Prize.Designer.cs">
+      <DependentUpon>UCE_Prize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\FrmE_PrizeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="闯关\FrmE_PrizeEdit.Designer.cs">
+      <DependentUpon>FrmE_PrizeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\FrmE_PropEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="闯关\FrmE_PropEdit.Designer.cs">
+      <DependentUpon>FrmE_PropEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_Prop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_Prop.Designer.cs">
+      <DependentUpon>UCE_Prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_UserScore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_UserScore.Designer.cs">
+      <DependentUpon>UCE_UserScore.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
