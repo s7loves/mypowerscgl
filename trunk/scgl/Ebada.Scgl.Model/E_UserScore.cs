@@ -122,6 +122,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：更新时间
         /// 字段信息：[UpdateTime],datetime
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("更新时间")]
         public DateTime UpdateTime
         {
@@ -140,7 +141,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用1
         /// 字段信息：[BySCol1],nvarchar
         /// </summary>
-        [DisplayNameAttribute("备用1")]
+        [DisplayNameAttribute("排名")]
         public string BySCol1
         {
             get { return _byscol1; }
@@ -161,6 +162,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用2
         /// 字段信息：[BySCol2],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用2")]
         public string BySCol2
         {
@@ -182,6 +184,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用3
         /// 字段信息：[BySCol3],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用3")]
         public string BySCol3
         {
@@ -203,6 +206,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用4
         /// 字段信息：[BySCol4],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用4")]
         public string BySCol4
         {
@@ -224,6 +228,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用5
         /// 字段信息：[BySCol5],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备用5")]
         public string BySCol5
         {
@@ -245,6 +250,7 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备注
         /// 字段信息：[Remark],nvarchar
         /// </summary>
+        [Browsable(false)]
         [DisplayNameAttribute("备注")]
         public string Remark
         {

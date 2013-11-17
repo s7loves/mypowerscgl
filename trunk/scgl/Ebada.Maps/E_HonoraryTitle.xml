@@ -182,6 +182,9 @@
    <select id="GetE_HonoraryTitleRowCount" parameterClass="string">
     select count(*) from E_HonoraryTitle $value$
    </select>
+    <select id="SelectE_HonoraryTitleEndScoreBySql" parameterClass="string">
+       $value$
+    </select>
   </statements>
 </sqlMap>
  
