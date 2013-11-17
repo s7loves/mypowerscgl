@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="E_UserPrizeRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+  <typeAlias alias="E_UserPrizeRecord"  type="Itop.Frame.Model.E_UserPrizeRecord,Itop.Frame.Model" />
+  </alias>
+  <resultMaps>
+      <resultMap id="E_UserPrizeRecord_AllColumns" class="E_UserPrizeRecord">
+        <result property="ID" column="ID" />
+        <result property="UserID" column="UserID" />
+        <result property="PrizeID" column="PrizeID" />
+        <result property="SendTime" column="SendTime" />
+        <result property="PrizeNum" column="PrizeNum" />
+        <result property="Sequence" column="Sequence" />
+        <result property="HasFinished" column="HasFinished" />
+        <result property="Handler" column="Handler" />
+        <result property="ExchangeTime" column="ExchangeTime" />
+        <result property="Record" column="Record" />
+        <result property="BySCol1" column="BySCol1" />
+        <result property="BySCol2" column="BySCol2" />
+        <result property="BySCol3" column="BySCol3" />
+        <result property="BySCol4" column="BySCol4" />
+        <result property="BySCol5" column="BySCol5" />
+        <result property="Remark" column="Remark" />
+        <result property="RowVersion" column="RowVersion" />
+      </resultMap>
+  </resultMaps>
+
+  <statements>
+   <select id="SelectE_UserPrizeRecordList" resultMap="E_UserPrizeRecord_AllColumns" parameterClass="string">
+        SELECT 
+         [ID],
+         [UserID],
+         [PrizeID],
+         [SendTime],
+         [PrizeNum],
+         [Sequence],
+         [HasFinished],
+         [Handler],
+         [ExchangeTime],
+         [Record],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_UserPrizeRecord
+          $value$
+   </select>
+   
+   <select id="SelectE_UserPrizeRecordByHash" parameterClass="Hashtable">
+         SELECT 
+         [ID],
+         [UserID],
+         [PrizeID],
+         [SendTime],
+         [PrizeNum],
+         [Sequence],
+         [HasFinished],
+         [Handler],
+         [ExchangeTime],
+         [Record],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+          FROM E_UserPrizeRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeID">[PrizeID]='$PrizeID$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime">[SendTime]='$SendTime$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeNum">[PrizeNum]='$PrizeNum$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="HasFinished">[HasFinished]='$HasFinished$'</isNotNull>
+       <isNotNull prepend="AND" property="Handler">[Handler]='$Handler$'</isNotNull>
+       <isNotNull prepend="AND" property="ExchangeTime">[ExchangeTime]='$ExchangeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Record">[Record]='$Record$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+   </select>
+   <select id="SelectE_UserPrizeRecordByKey" resultMap="E_UserPrizeRecord_AllColumns" parameterClass="E_UserPrizeRecord">
+         SELECT 
+         [ID],
+         [UserID],
+         [PrizeID],
+         [SendTime],
+         [PrizeNum],
+         [Sequence],
+         [HasFinished],
+         [Handler],
+         [ExchangeTime],
+         [Record],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark],
+         [RowVersion]
+         FROM E_UserPrizeRecord
+         WHERE 
+           ID = #ID#
+
+   </select>
+ 
+   <delete id="DeleteE_UserPrizeRecord" parameterClass="E_UserPrizeRecord">
+        DELETE FROM 
+         E_UserPrizeRecord
+           WHERE
+         ID = #ID#
+
+   </delete>
+   
+   <delete id="DeleteE_UserPrizeRecordByWhere" parameterClass="string">
+     delete from E_UserPrizeRecord $value$
+   </delete>
+   
+   <delete id="DeleteE_UserPrizeRecordByKey" parameterClass="string">
+        DELETE FROM 
+         E_UserPrizeRecord
+           WHERE
+         ID = #ID#
+    
+   </delete>
+   
+   <update id="UpdateE_UserPrizeRecord" parameterClass="E_UserPrizeRecord" resultClass="int">
+          UPDATE E_UserPrizeRecord
+           SET
+             [UserID]=#UserID#,
+             [PrizeID]=#PrizeID#,
+             [SendTime]=#SendTime#,
+             [PrizeNum]=#PrizeNum#,
+             [Sequence]=#Sequence#,
+             [HasFinished]=#HasFinished#,
+             [Handler]=#Handler#,
+             [ExchangeTime]=#ExchangeTime#,
+             [Record]=#Record#,
+             [BySCol1]=#BySCol1#,
+             [BySCol2]=#BySCol2#,
+             [BySCol3]=#BySCol3#,
+             [BySCol4]=#BySCol4#,
+             [BySCol5]=#BySCol5#,
+             [Remark]=#Remark#
+            WHERE 
+              ID = #ID#
+
+   </update>
+  
+   <insert id="InsertE_UserPrizeRecord" parameterClass="E_UserPrizeRecord">
+        INSERT INTO E_UserPrizeRecord
+         (
+         [ID],
+         [UserID],
+         [PrizeID],
+         [SendTime],
+         [PrizeNum],
+         [Sequence],
+         [HasFinished],
+         [Handler],
+         [ExchangeTime],
+         [Record],
+         [BySCol1],
+         [BySCol2],
+         [BySCol3],
+         [BySCol4],
+         [BySCol5],
+         [Remark]
+         )
+       VALUES
+         (
+         #ID#,
+         #UserID#,
+         #PrizeID#,
+         #SendTime#,
+         #PrizeNum#,
+         #Sequence#,
+         #HasFinished#,
+         #Handler#,
+         #ExchangeTime#,
+         #Record#,
+         #BySCol1#,
+         #BySCol2#,
+         #BySCol3#,
+         #BySCol4#,
+         #BySCol5#,
+         #Remark#
+         )
+
+   </insert>
+   
+   <select id="GetE_UserPrizeRecordRowCountByHash" parameterClass="Hashtable">
+         SELECT Count(*) 
+          FROM E_UserPrizeRecord
+     <dynamic prepend="WHERE">
+       <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeID">[PrizeID]='$PrizeID$'</isNotNull>
+       <isNotNull prepend="AND" property="SendTime">[SendTime]='$SendTime$'</isNotNull>
+       <isNotNull prepend="AND" property="PrizeNum">[PrizeNum]='$PrizeNum$'</isNotNull>
+       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
+       <isNotNull prepend="AND" property="HasFinished">[HasFinished]='$HasFinished$'</isNotNull>
+       <isNotNull prepend="AND" property="Handler">[Handler]='$Handler$'</isNotNull>
+       <isNotNull prepend="AND" property="ExchangeTime">[ExchangeTime]='$ExchangeTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Record">[Record]='$Record$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol4">[BySCol4]='$BySCol4$'</isNotNull>
+       <isNotNull prepend="AND" property="BySCol5">[BySCol5]='$BySCol5$'</isNotNull>
+       <isNotNull prepend="AND" property="Remark">[Remark]='$Remark$'</isNotNull>
+       <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
+     </dynamic>
+
+   </select>
+   
+   <select id="GetE_UserPrizeRecordRowCount" parameterClass="string">
+    select count(*) from E_UserPrizeRecord $value$
+   </select>
+  </statements>
+</sqlMap>
+ 

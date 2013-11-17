@@ -70,18 +70,26 @@
     <Compile Include="class\E_ExaminationPaperQuestionRandom.cs" />
     <Compile Include="class\E_ExamResult.cs" />
     <Compile Include="class\E_ExamSetting.cs" />
+    <Compile Include="class\E_HonoraryTitle.cs" />
     <Compile Include="class\E_Level.cs" />
     <Compile Include="class\E_LevelSeason.cs" />
     <Compile Include="class\E_LevelStop.cs" />
+    <Compile Include="class\E_LevelTryRecord.cs" />
     <Compile Include="class\E_Notice.cs" />
     <Compile Include="class\E_PracticeRecord.cs" />
+    <Compile Include="class\E_Prize.cs" />
     <Compile Include="class\E_Professional.cs" />
+    <Compile Include="class\E_Prop.cs" />
     <Compile Include="class\E_QBank.cs" />
     <Compile Include="class\E_QuestionBank.cs" />
     <Compile Include="class\E_R_EBankORG.cs" />
     <Compile Include="class\E_R_EBankPro.cs" />
     <Compile Include="class\E_R_ESetPro.cs" />
     <Compile Include="class\E_User.cs" />
+    <Compile Include="class\E_UserPrizeRecord.cs" />
+    <Compile Include="class\E_UserPropRecord.cs" />
+    <Compile Include="class\E_UserScore.cs" />
+    <Compile Include="class\E_UserScoreRecord.cs" />
     <Compile Include="class\mUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,6 +140,16 @@
     <EmbeddedResource Include="Maps\E_Level.xml" />
     <EmbeddedResource Include="Maps\E_LevelSeason.xml" />
     <EmbeddedResource Include="Maps\E_LevelStop.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\E_HonoraryTitle.xml" />
+    <EmbeddedResource Include="Maps\E_LevelTryRecord.xml" />
+    <EmbeddedResource Include="Maps\E_Prize.xml" />
+    <EmbeddedResource Include="Maps\E_Prop.xml" />
+    <EmbeddedResource Include="Maps\E_UserPrizeRecord.xml" />
+    <EmbeddedResource Include="Maps\E_UserPropRecord.xml" />
+    <EmbeddedResource Include="Maps\E_UserScore.xml" />
+    <EmbeddedResource Include="Maps\E_UserScoreRecord.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
