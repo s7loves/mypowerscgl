@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="E_LevelSeason" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="E_UserScoreRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="E_LevelSeason"  type="Itop.Frame.Model.E_LevelSeason,Itop.Frame.Model" />
+  <typeAlias alias="E_UserScoreRecord"  type="Itop.Frame.Model.E_UserScoreRecord,Itop.Frame.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="E_LevelSeason_AllColumns" class="E_LevelSeason">
+      <resultMap id="E_UserScoreRecord_AllColumns" class="E_UserScoreRecord">
         <result property="ID" column="ID" />
-        <result property="Name" column="Name" />
-        <result property="Desc" column="Desc" />
-        <result property="Sequence" column="Sequence" />
-        <result property="LevelNum" column="LevelNum" />
+        <result property="UserID" column="UserID" />
+        <result property="Flag" column="Flag" />
+        <result property="Score" column="Score" />
+        <result property="CreateTime" column="CreateTime" />
+        <result property="Reason" column="Reason" />
         <result property="BySCol1" column="BySCol1" />
         <result property="BySCol2" column="BySCol2" />
         <result property="BySCol3" column="BySCol3" />
@@ -21,13 +22,14 @@
   </resultMaps>
 
   <statements>
-   <select id="SelectE_LevelSeasonList" resultMap="E_LevelSeason_AllColumns" parameterClass="string">
+   <select id="SelectE_UserScoreRecordList" resultMap="E_UserScoreRecord_AllColumns" parameterClass="string">
         SELECT 
          [ID],
-         [Name],
-         [Desc],
-         [Sequence],
-         [LevelNum],
+         [UserID],
+         [Flag],
+         [Score],
+         [CreateTime],
+         [Reason],
          [BySCol1],
          [BySCol2],
          [BySCol3],
@@ -35,17 +37,18 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-          FROM E_LevelSeason
+          FROM E_UserScoreRecord
           $value$
    </select>
    
-   <select id="SelectE_LevelSeasonByHash" parameterClass="Hashtable">
+   <select id="SelectE_UserScoreRecordByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
-         [Name],
-         [Desc],
-         [Sequence],
-         [LevelNum],
+         [UserID],
+         [Flag],
+         [Score],
+         [CreateTime],
+         [Reason],
          [BySCol1],
          [BySCol2],
          [BySCol3],
@@ -53,13 +56,14 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-          FROM E_LevelSeason
+          FROM E_UserScoreRecord
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
-       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
-       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
-       <isNotNull prepend="AND" property="LevelNum">[LevelNum]='$LevelNum$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="Flag">[Flag]='$Flag$'</isNotNull>
+       <isNotNull prepend="AND" property="Score">[Score]='$Score$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Reason">[Reason]='$Reason$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
@@ -69,13 +73,14 @@
        <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectE_LevelSeasonByKey" resultMap="E_LevelSeason_AllColumns" parameterClass="E_LevelSeason">
+   <select id="SelectE_UserScoreRecordByKey" resultMap="E_UserScoreRecord_AllColumns" parameterClass="E_UserScoreRecord">
          SELECT 
          [ID],
-         [Name],
-         [Desc],
-         [Sequence],
-         [LevelNum],
+         [UserID],
+         [Flag],
+         [Score],
+         [CreateTime],
+         [Reason],
          [BySCol1],
          [BySCol2],
          [BySCol3],
@@ -83,39 +88,40 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-         FROM E_LevelSeason
+         FROM E_UserScoreRecord
          WHERE 
            ID = #ID#
 
    </select>
  
-   <delete id="DeleteE_LevelSeason" parameterClass="E_LevelSeason">
+   <delete id="DeleteE_UserScoreRecord" parameterClass="E_UserScoreRecord">
         DELETE FROM 
-         E_LevelSeason
+         E_UserScoreRecord
            WHERE
          ID = #ID#
 
    </delete>
    
-   <delete id="DeleteE_LevelSeasonByWhere" parameterClass="string">
-     delete from E_LevelSeason $value$
+   <delete id="DeleteE_UserScoreRecordByWhere" parameterClass="string">
+     delete from E_UserScoreRecord $value$
    </delete>
    
-   <delete id="DeleteE_LevelSeasonByKey" parameterClass="string">
+   <delete id="DeleteE_UserScoreRecordByKey" parameterClass="string">
         DELETE FROM 
-         E_LevelSeason
+         E_UserScoreRecord
            WHERE
          ID = #ID#
     
    </delete>
    
-   <update id="UpdateE_LevelSeason" parameterClass="E_LevelSeason" resultClass="int">
-          UPDATE E_LevelSeason
+   <update id="UpdateE_UserScoreRecord" parameterClass="E_UserScoreRecord" resultClass="int">
+          UPDATE E_UserScoreRecord
            SET
-             [Name]=#Name#,
-             [Desc]=#Desc#,
-             [Sequence]=#Sequence#,
-             [LevelNum]=#LevelNum#,
+             [UserID]=#UserID#,
+             [Flag]=#Flag#,
+             [Score]=#Score#,
+             [CreateTime]=#CreateTime#,
+             [Reason]=#Reason#,
              [BySCol1]=#BySCol1#,
              [BySCol2]=#BySCol2#,
              [BySCol3]=#BySCol3#,
@@ -127,14 +133,15 @@
 
    </update>
   
-   <insert id="InsertE_LevelSeason" parameterClass="E_LevelSeason">
-        INSERT INTO E_LevelSeason
+   <insert id="InsertE_UserScoreRecord" parameterClass="E_UserScoreRecord">
+        INSERT INTO E_UserScoreRecord
          (
          [ID],
-         [Name],
-         [Desc],
-         [Sequence],
-         [LevelNum],
+         [UserID],
+         [Flag],
+         [Score],
+         [CreateTime],
+         [Reason],
          [BySCol1],
          [BySCol2],
          [BySCol3],
@@ -145,10 +152,11 @@
        VALUES
          (
          #ID#,
-         #Name#,
-         #Desc#,
-         #Sequence#,
-         #LevelNum#,
+         #UserID#,
+         #Flag#,
+         #Score#,
+         #CreateTime#,
+         #Reason#,
          #BySCol1#,
          #BySCol2#,
          #BySCol3#,
@@ -159,15 +167,16 @@
 
    </insert>
    
-   <select id="GetE_LevelSeasonRowCountByHash" parameterClass="Hashtable">
+   <select id="GetE_UserScoreRecordRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM E_LevelSeason
+          FROM E_UserScoreRecord
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
-       <isNotNull prepend="AND" property="Name">[Name]='$Name$'</isNotNull>
-       <isNotNull prepend="AND" property="Desc">[Desc]='$Desc$'</isNotNull>
-       <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
-       <isNotNull prepend="AND" property="LevelNum">[LevelNum]='$LevelNum$'</isNotNull>
+       <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
+       <isNotNull prepend="AND" property="Flag">[Flag]='$Flag$'</isNotNull>
+       <isNotNull prepend="AND" property="Score">[Score]='$Score$'</isNotNull>
+       <isNotNull prepend="AND" property="CreateTime">[CreateTime]='$CreateTime$'</isNotNull>
+       <isNotNull prepend="AND" property="Reason">[Reason]='$Reason$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol3">[BySCol3]='$BySCol3$'</isNotNull>
@@ -179,17 +188,9 @@
 
    </select>
    
-   <select id="GetE_LevelSeasonRowCount" parameterClass="string">
-    select count(*) from E_LevelSeason $value$
+   <select id="GetE_UserScoreRecordRowCount" parameterClass="string">
+    select count(*) from E_UserScoreRecord $value$
    </select>
-    <select id="GetE_LevelChartBySqlWhere" parameterClass="string">
-      select top 1 id from E_LevelChat order by id desc
-    </select>
-
-
-    <select id="SelectDataTableBySql" parameterClass="string">
-      $value$
-    </select>
   </statements>
 </sqlMap>
  

@@ -1470,7 +1470,6 @@ namespace Itop.WebFrame
         #endregion
     }
 
-
     public class TurnLevelStop
     {
         #region Public 成员
@@ -1556,8 +1555,166 @@ namespace Itop.WebFrame
         /// </summary>
        
         #endregion
-    }	
+    }
 
+
+    public class TurnSeasonState
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        { get; set; }
+
+
+        /// <summary>
+        /// 属性名称：Sequence
+        /// 属性描述：序号
+        /// 字段信息：[Sequence],int
+        /// </summary>
+        [DisplayNameAttribute("序号")]
+        public int Sequence
+        { get; set; }
+
+
+        /// <summary>
+        /// 属性名称：State
+        /// 属性描述：状态
+        /// 字段信息：[State],int
+        /// </summary>
+        [DisplayNameAttribute("状态")]
+        public int State
+        { get; set; }
+
+        public List<TurnLevelState> LevelStateList
+        { get; set; }
+        #endregion
+    }
+
+    public class TurnLevelState
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：Sequence
+        /// 属性描述：序号
+        /// 字段信息：[Sequence],int
+        /// </summary>
+        [DisplayNameAttribute("序号")]
+        public int Sequence
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：State
+        /// 属性描述：状态
+        /// 字段信息：[State],int
+        /// </summary>
+        [DisplayNameAttribute("状态")]
+        public int State
+        { get; set; }
+
+        #endregion
+    }
+
+    public class TrunE_LevelTryRecord
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：考生
+        /// 字段信息：[UserID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("考生")]
+        public string UserID
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：SeasonID
+        /// 属性描述：季名
+        /// 字段信息：[SeasonID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("季名")]
+        public string SeasonID
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：LevelID
+        /// 属性描述：关卡名
+        /// 字段信息：[LevelID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("关卡名")]
+        public string LevelID
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：PassDate
+        /// 属性描述：通过时间
+        /// 字段信息：[PassDate],datetime
+        /// </summary>
+        [DisplayNameAttribute("通过时间")]
+        public DateTime PassDate
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：TryTimes
+        /// 属性描述：闯关次数
+        /// 字段信息：[TryTimes],int
+        /// </summary>
+        [DisplayNameAttribute("闯关次数")]
+        public int TryTimes
+        { get; set; }
+
+        /// <summary>
+        /// 属性名称：UseTime
+        /// 属性描述：最短时间（秒）
+        /// 字段信息：[UseTime],int
+        /// </summary>
+        [DisplayNameAttribute("最短时间（秒）")]
+        public int UseTime
+        { get; set; }
+       
+        /// <summary>
+        /// 属性名称：Remark
+        /// 属性描述：备注
+        /// 字段信息：[Remark],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("备注")]
+        public string Remark
+        { get; set; }
+
+       
+
+        #endregion
+
+       
+    }	
     #endregion
 
 

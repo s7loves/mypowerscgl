@@ -87,6 +87,7 @@ namespace Itop.WebFrame
 
         #endregion
 
+
         #region WebService方法
 
             #region 考试相关
@@ -1090,102 +1091,315 @@ namespace Itop.WebFrame
 
             #region 闯关相关
 
-            #region 关卡版本
+              #region 获取
+
+                #region 关卡版本
 
 
-            private static string CutttenChatValue = "1.1.1";
-            [WebMethod(Description = "获取闯关的版本信息")]
-            [ScriptMethod(UseHttpGet = false)]
-            public string GetLevelChat()
-            {
-                ChatStr chat = new ChatStr();
-                chat.Value = CutttenChatValue;
-                return GetJsonStr<ChatStr>(chat);
-            }
-            
-
-            #endregion
-
-            #region   季、关、站点
-            [WebMethod(Description = "获取闯关关口站点信息")]
-            [ScriptMethod(UseHttpGet = false)]
-            public string GetLevelInfo()
-            {
-                List<TurnSeason> tslist = new List<TurnSeason>();
-                List<TurnLevel> tllist = new List<TurnLevel>();
-                List<TurnLevelStop> tlslist = new List<TurnLevelStop>();
-
-                try
+                [WebMethod(Description = "获取闯关的版本信息")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetLevelChat()
                 {
-                    string sqlwhere = "  Order by Sequence asc";
-                    IList<E_LevelSeason> elslist = Global.SqlMapper.GetList<E_LevelSeason>(sqlwhere);
+                    ChatStr chat = new ChatStr();
 
-                    foreach (E_LevelSeason item in elslist)
+                    int lastchat = 1;
+                    try
                     {
-                        string sqlwhere2 = "  where SeasonID='" + item.ID + "' Order by Sequence asc";
-                        IList<E_Level> elevellist = Global.SqlMapper.GetList<E_Level>(sqlwhere2);
-                        tllist.Clear();
-                        foreach (E_Level item2 in elevellist)
+                        lastchat = (int)Global.SqlMapper.GetObject("GetE_LevelChartBySqlWhere", "");
+
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    chat.Value = lastchat.ToString();
+                    return GetJsonStr<ChatStr>(chat);
+                }
+
+
+                #endregion
+
+                #region   季、关、站点
+                [WebMethod(Description = "获取闯关关口站点信息")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetLevelInfo()
+                {
+                    List<TurnSeason> tslist = new List<TurnSeason>();
+                    List<TurnLevel> tllist = new List<TurnLevel>();
+                    List<TurnLevelStop> tlslist = new List<TurnLevelStop>();
+
+                    try
+                    {
+                        string sqlwhere = "  Order by Sequence asc";
+                        IList<E_LevelSeason> elslist = Global.SqlMapper.GetList<E_LevelSeason>(sqlwhere);
+
+                        foreach (E_LevelSeason item in elslist)
                         {
-                            string sqlwhere3 = "  where LevelID='" + item2.ID + "' Order by Sequence asc";
-                            IList<E_LevelStop> Eelslist = Global.SqlMapper.GetList<E_LevelStop>(sqlwhere3);
-                            tlslist.Clear();
-                            foreach (E_LevelStop item3 in Eelslist)
+                            string sqlwhere2 = "  where SeasonID='" + item.ID + "' Order by Sequence asc";
+                            IList<E_Level> elevellist = Global.SqlMapper.GetList<E_Level>(sqlwhere2);
+                            tllist.Clear();
+                            foreach (E_Level item2 in elevellist)
                             {
-                                TurnLevelStop tempstop = new TurnLevelStop();
-                                tempstop.ID = item3.ID;
-                                tempstop.SeasonID = item3.SeasonID;
-                                tempstop.LevelID = item3.LevelID;
-                                tempstop.Name = item3.Name;
-                                tempstop.Desc = item3.Desc;
-                                tempstop.Sequence = item3.Sequence;
-                                tempstop.QuestionAllNUM = item3.QuestionAllNUM;
-                                tempstop.Remark = item3.Remark;
-                                tlslist.Add(tempstop);
+                                string sqlwhere3 = "  where LevelID='" + item2.ID + "' Order by Sequence asc";
+                                IList<E_LevelStop> Eelslist = Global.SqlMapper.GetList<E_LevelStop>(sqlwhere3);
+                                tlslist.Clear();
+                                foreach (E_LevelStop item3 in Eelslist)
+                                {
+                                    TurnLevelStop tempstop = new TurnLevelStop();
+                                    tempstop.ID = item3.ID;
+                                    tempstop.SeasonID = item3.SeasonID;
+                                    tempstop.LevelID = item3.LevelID;
+                                    tempstop.Name = item3.Name;
+                                    tempstop.Desc = item3.Desc;
+                                    tempstop.Sequence = item3.Sequence;
+                                    tempstop.QuestionAllNUM = item3.QuestionAllNUM;
+                                    tempstop.Remark = item3.Remark;
+                                    tlslist.Add(tempstop);
+
+                                }
+                                TurnLevel temptl = new TurnLevel();
+                                temptl.ID = item2.ID;
+                                temptl.SeasonID = item2.SeasonID;
+                                temptl.Name = item2.Name;
+                                temptl.Desc = item2.Desc;
+                                temptl.Sequence = item2.Sequence;
+                                temptl.StopNum = item2.StopNum;
+                                temptl.ExChange = item2.ExChange;
+                                temptl.Remark = item2.Remark;
+                                temptl.StopList = tlslist;
+                                tllist.Add(temptl);
 
                             }
-                            TurnLevel temptl = new TurnLevel();
-                            temptl.ID = item2.ID;
-                            temptl.SeasonID = item2.SeasonID;
-                            temptl.Name = item2.Name;
-                            temptl.Desc = item2.Desc;
-                            temptl.Sequence = item2.Sequence;
-                            temptl.StopNum = item2.StopNum;
-                            temptl.ExChange = item2.ExChange;
-                            temptl.Remark = item2.Remark;
-                            temptl.StopList = tlslist;
-                            tllist.Add(temptl);
+                            TurnSeason tempts = new TurnSeason();
+                            tempts.ID = item.ID;
+                            tempts.Name = item.Name;
+                            tempts.Desc = item.Desc;
+                            tempts.Sequence = item.Sequence;
+                            tempts.LevelNum = item.LevelNum;
+                            tempts.Remark = item.Remark;
+                            tempts.LevelList = tllist;
+                            tslist.Add(tempts);
 
                         }
-                        TurnSeason tempts = new TurnSeason();
-                        tempts.ID = item.ID;
-                        tempts.Name = item.Name;
-                        tempts.Desc = item.Desc;
-                        tempts.Sequence = item.Sequence;
-                        tempts.LevelNum = item.LevelNum;
-                        tempts.Remark = item.Remark;
-                        tempts.LevelList = tllist;
-                        tslist.Add(tempts);
+                    }
+                    catch (Exception ee)
+                    {
+                    }
+                    return GetJsonStr<TurnSeason>(tslist);
+                }
+
+
+                #endregion
+
+                #region 闯关信息
+
+                [WebMethod(Description = "获取闯关信息，参数userid为用户ID")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetLevelInfoByUser(string userid)
+                {
+                    List<TurnSeasonState> tsslist = new List<TurnSeasonState>();
+                    List<TurnLevelState> tlslist = new List<TurnLevelState>();
+                    try
+                    {
+                        string sqlwhere = string.Empty;
+                        sqlwhere += " SELECT    ID, Sequence, CASE WHEN( A.LevelNum=(SELECT     COUNT(*) AS Expr1 FROM  dbo.E_LevelTryRecord WHERE (SeasonID = A.ID and UserID='" + userid + "'))) Then 1 ELSE  0 end as State";
+                        sqlwhere += " FROM   dbo.E_LevelSeason AS A  ORDER BY Sequence asc";
+
+                        DataTable dt = Global.SqlMapper.GetDataTable("SelectDataTableBySql", sqlwhere);
+                        tsslist = (List<TurnSeasonState>)ConvertHelper.ToIList<TurnSeasonState>(dt);
+
+                        int lastState = 0;
+                        for (int i = 0; i < tsslist.Count; i++)
+                        {
+                            //如果第一季为没有通过，则可以开始第一季
+                            if (tsslist[i].State == 0 && i == 0)
+                            {
+                                tsslist[i].State = 2;
+                            }
+                            //如果上一季已通过，则本季可以开始
+                            if (lastState == 1 && tsslist[i].State == 0)
+                            {
+                                tsslist[i].State = 2;
+                            }
+                            lastState = tsslist[i].State;
+
+                            int lastLevelState = 0;
+                            string sqlwhere2 = string.Empty;
+                            sqlwhere2 += " SELECT ID, Sequence, CASE WHEN (SELECT     COUNT(*) AS Expr1  FROM  dbo.E_LevelTryRecord WHERE  (LevelID = A.ID  and UserID='" + userid + "' )) < 1 THEN 0 ELSE 1 END AS State, SeasonID ";
+                            sqlwhere2 += " FROM  dbo.E_Level AS A where  A.SeasonID='" + tsslist[i].ID + "' ORDER BY Sequence asc";
+                            DataTable dt2 = Global.SqlMapper.GetDataTable("SelectDataTableBySql", sqlwhere2);
+                            tlslist = (List<TurnLevelState>)ConvertHelper.ToIList<TurnLevelState>(dt2);
+
+                            for (int j = 0; j < tlslist.Count; j++)
+                            {
+                                if (tsslist[i].State == 2)
+                                {
+                                    //如果季可以开始，并且该季的第一关没有通过，则可以开始第一关
+                                    if (tlslist[j].State == 0 && j == 0)
+                                    {
+                                        tlslist[j].State = 2;
+                                        break;
+                                    }
+                                    //如果上一关已通过，则本关可以开始
+                                    if (lastLevelState == 1 && tlslist[j].State == 0)
+                                    {
+                                        tlslist[j].State = 2;
+                                        break;
+                                    }
+                                    lastLevelState = tlslist[j].State;
+                                }
+                            }
+                            tsslist[i].LevelStateList = tlslist;
+
+                        }
+
+                    }
+                    catch (Exception ee)
+                    {
+
+                    }
+                    return GetJsonStr<TurnSeasonState>(tsslist);
+                }
+
+                #endregion
+
+                #region 获取随机试题
+
+                [WebMethod(Description = "获取闯关试题，参数stopid为站点ID")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetQuestonListByLevelStop(string stopid)
+                {
+                    IList<E_QuestionBank> eqblist = new List<E_QuestionBank>();
+                    try
+                    {
+                        E_LevelStop els = Global.SqlMapper.GetOneByKey<E_LevelStop>(stopid);
+                        string pdstr = els.PdNumAndLevel;
+                        string dxstr = els.DxNumAndLevel;
+                        string ddxstr = els.DDxNumAndLevel;
+
+                        string[] pdarray = pdstr.Split(';');
+                        for (int i = 0; i < pdarray.Length; i++)
+                        {
+                            string[] pdarray2 = pdarray[i].Split(',');
+                            if (pdarray2.Length == 2)
+                            {
+                                int nd = 0;
+                                int xl = 0;
+                                int.TryParse(pdarray2[0], out nd);
+                                int.TryParse(pdarray2[1], out xl);
+                                string sql = " where Type='判断题' and DifficultyLevel=" + nd;
+                                IList<E_QuestionBank> templist = Global.SqlMapper.GetList<E_QuestionBank>(sql);
+                                RandSelectQuestion(templist, xl, eqblist);
+
+                            }
+                        }
+
+                        string[] dxarray = dxstr.Split(';');
+                        for (int i = 0; i < dxarray.Length; i++)
+                        {
+                            string[] dxarray2 = dxarray[i].Split(',');
+                            if (dxarray2.Length == 2)
+                            {
+                                int nd = 0;
+                                int xl = 0;
+                                int.TryParse(dxarray2[0], out nd);
+                                int.TryParse(dxarray2[1], out xl);
+                                string sql = " where Type='单项选择题' and DifficultyLevel=" + nd;
+                                IList<E_QuestionBank> templist = Global.SqlMapper.GetList<E_QuestionBank>(sql);
+                                RandSelectQuestion(templist, xl, eqblist);
+
+                            }
+                        }
+
+                        string[] ddxarray = ddxstr.Split(';');
+                        for (int i = 0; i < ddxarray.Length; i++)
+                        {
+                            string[] ddxarray2 = ddxarray[i].Split(',');
+                            if (ddxarray2.Length == 2)
+                            {
+                                int nd = 0;
+                                int xl = 0;
+                                int.TryParse(ddxarray2[0], out nd);
+                                int.TryParse(ddxarray2[1], out xl);
+                                string sql = " where Type='多项选择题' and DifficultyLevel=" + nd;
+                                IList<E_QuestionBank> templist = Global.SqlMapper.GetList<E_QuestionBank>(sql);
+                                RandSelectQuestion(templist, xl, eqblist);
+
+                            }
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+
+
+                    }
+
+                    return GetQuestionStr(eqblist);
+                }
+
+
+                #endregion
+
+                #endregion
+
+              #region 上传
+
+            #region 上传闯关记录
+
+            [WebMethod(Description = "上传闯关记录，参数jsonstr为json串")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string SendE_LevelTryRecord(string jsonstr)
+            {
+                List<TrunE_LevelTryRecord> splist = null;
+                splist = JsonDeserialize<TrunE_LevelTryRecord>(jsonstr);
+                ResponseResult result = new ResponseResult();
+                if (splist != null && splist.Count > 0)
+                {
+
+                    try
+                    {
+                        for (int i = 0; i < splist.Count; i++)
+                        {
+                            E_LevelTryRecord eear = new E_LevelTryRecord();
+                            eear.ID += i.ToString();
+                            eear.UserID = splist[i].UserID;
+                            eear.SeasonID = splist[i].SeasonID;
+                            eear.LevelID = splist[i].LevelID;
+                            eear.PassDate = splist[i].PassDate;
+                            eear.TryTimes = splist[i].TryTimes;
+                            eear.Remark = splist[i].Remark;
+
+                            Global.SqlMapper.Create<E_LevelTryRecord>(eear);
+                        }
+                        result.Details = "成功";
+                        result.Status = 1;
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
 
                     }
                 }
-                catch (Exception ee)
+                else
                 {
+                    result.Status = 0;
+                    result.Details = "json转换失败";
                 }
-                return GetJsonStr<TurnSeason>(tslist);
+                return GetJsonStr<ResponseResult>(result);
             }
+            #endregion
 
-            
+
+	      #endregion
+
+
             #endregion
 
 
             #endregion
 
 
-            #endregion
-
-
-            #region 辅助方法
+        #region 辅助方法
 
             List<E_QuestionBank> Pdlist = new List<E_QuestionBank>();
         List<E_QuestionBank> Selectlist = new List<E_QuestionBank>();
