@@ -584,6 +584,9 @@
     <EmbeddedResource Include="E_UserScoreRecord.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="E_UserProp.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="flow\" />
     <Folder Include="gis\" />
     <Folder Include="pdsb\" />

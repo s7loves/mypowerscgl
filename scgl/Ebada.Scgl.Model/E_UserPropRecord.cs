@@ -4,13 +4,13 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2013/10/21 21:29:43
+生成时间:2013/11/19 22:14:14
 ***********************************************/
 
 using System;
 using System.Threading;
 using System.ComponentModel;
-namespace Ebada.Scgl.Model
+namespace Ebada.Platform.Model
 {
     /// <summary>
     ///[E_UserPropRecord]业务实体类
@@ -25,10 +25,8 @@ namespace Ebada.Scgl.Model
         private string _userid=String.Empty; 
         private string _propid=String.Empty; 
         private int _num=0; 
-        private int _usednum=0; 
-        private int _canusenum=0; 
-        private DateTime _buytime=new DateTime(1900,1,1); 
-        private string _userecord=String.Empty; 
+        private DateTime _buyorusetime=new DateTime(1900,1,1); 
+        private string _flag=String.Empty; 
         private int _sequence=0; 
         private string _byscol1=String.Empty; 
         private string _byscol2=String.Empty; 
@@ -125,76 +123,40 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：UsedNum
-        /// 属性描述：已用数量
-        /// 字段信息：[UsedNum],int
-        /// </summary>
-        [DisplayNameAttribute("已用数量")]
-        public int UsedNum
-        {
-            get { return _usednum; }
-            set
-            {			
-                if (_usednum as object == null || !_usednum.Equals(value))
-                {
-                    _usednum = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：CanUseNum
-        /// 属性描述：剩余数量
-        /// 字段信息：[CanUseNum],int
-        /// </summary>
-        [DisplayNameAttribute("剩余数量")]
-        public int CanUseNum
-        {
-            get { return _canusenum; }
-            set
-            {			
-                if (_canusenum as object == null || !_canusenum.Equals(value))
-                {
-                    _canusenum = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：BuyTime
+        /// 属性名称：BuyOrUseTime
         /// 属性描述：购买日期
-        /// 字段信息：[BuyTime],datetime
+        /// 字段信息：[BuyOrUseTime],datetime
         /// </summary>
         [DisplayNameAttribute("购买日期")]
-        public DateTime BuyTime
+        public DateTime BuyOrUseTime
         {
-            get { return _buytime; }
+            get { return _buyorusetime; }
             set
             {			
-                if (_buytime as object == null || !_buytime.Equals(value))
+                if (_buyorusetime as object == null || !_buyorusetime.Equals(value))
                 {
-                    _buytime = value;
+                    _buyorusetime = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：UseRecord
+        /// 属性名称：Flag
         /// 属性描述：使用记录
-        /// 字段信息：[UseRecord],nvarchar
+        /// 字段信息：[Flag],nvarchar
         /// </summary>
         [DisplayNameAttribute("使用记录")]
-        public string UseRecord
+        public string Flag
         {
-            get { return _userecord; }
+            get { return _flag; }
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 500)
-                throw new Exception("[使用记录]长度不能大于500!");
-                if (_userecord as object == null || !_userecord.Equals(value))
+                if( value.ToString().Length > 50)
+                throw new Exception("[使用记录]长度不能大于50!");
+                if (_flag as object == null || !_flag.Equals(value))
                 {
-                    _userecord = value;
+                    _flag = value;
                 }
             }			 
         }

@@ -4,7 +4,7 @@
 模块:系统平台
 Ebada.com 版权所有
 生成者：Rabbit
-生成时间:2013/10/21 21:29:43
+生成时间:2013/11/19 22:14:14
 ***********************************************/
 
 using System;
@@ -13,24 +13,22 @@ using System.ComponentModel;
 namespace Ebada.Scgl.Model
 {
     /// <summary>
-    ///[E_UserPrizeRecord]业务实体类
-    ///对应表名:E_UserPrizeRecord
+    ///[E_UserProp]业务实体类
+    ///对应表名:E_UserProp
     /// </summary>
     [Serializable]
-    public class E_UserPrizeRecord
+    public class E_UserProp
     {
         
         #region Private 成员
         private string _id=Newid(); 
         private string _userid=String.Empty; 
-        private string _prizeid=String.Empty; 
-        private DateTime _sendtime=new DateTime(1900,1,1); 
-        private int _prizenum=0; 
+        private string _propid=String.Empty; 
+        private int _num=0; 
+        private int _usednum=0; 
+        private int _canusenum=0; 
+        private DateTime _updatetime=new DateTime(1900,1,1); 
         private int _sequence=0; 
-        private bool _hasfinished=false; 
-        private string _handler=String.Empty; 
-        private DateTime _exchangetime=new DateTime(1900,1,1); 
-        private string _record=String.Empty; 
         private string _byscol1=String.Empty; 
         private string _byscol2=String.Empty; 
         private string _byscol3=String.Empty; 
@@ -68,7 +66,7 @@ namespace Ebada.Scgl.Model
         /// <summary>
         /// 属性名称：UserID
         /// 属性描述：考生
-        /// 字段信息：[UserID],nvarchar
+        /// 字段信息：[UserID],nchar
         /// </summary>
         [DisplayNameAttribute("考生")]
         public string UserID
@@ -77,8 +75,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[考生]长度不能大于50!");
+                if( value.ToString().Length > 10)
+                throw new Exception("[考生]长度不能大于10!");
                 if (_userid as object == null || !_userid.Equals(value))
                 {
                     _userid = value;
@@ -87,58 +85,94 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：PrizeID
-        /// 属性描述：奖品
-        /// 字段信息：[PrizeID],nvarchar
+        /// 属性名称：PropID
+        /// 属性描述：道具名
+        /// 字段信息：[PropID],nvarchar
         /// </summary>
-        [DisplayNameAttribute("奖品")]
-        public string PrizeID
+        [DisplayNameAttribute("道具名")]
+        public string PropID
         {
-            get { return _prizeid; }
+            get { return _propid; }
             set
             {			
                 if(value==null)return;
                 if( value.ToString().Length > 50)
-                throw new Exception("[奖品]长度不能大于50!");
-                if (_prizeid as object == null || !_prizeid.Equals(value))
+                throw new Exception("[道具名]长度不能大于50!");
+                if (_propid as object == null || !_propid.Equals(value))
                 {
-                    _prizeid = value;
+                    _propid = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：SendTime
-        /// 属性描述：提交日期
-        /// 字段信息：[SendTime],datetime
+        /// 属性名称：Num
+        /// 属性描述：购买数量
+        /// 字段信息：[Num],int
         /// </summary>
-        [DisplayNameAttribute("提交日期")]
-        public DateTime SendTime
+        [DisplayNameAttribute("购买数量")]
+        public int Num
         {
-            get { return _sendtime; }
+            get { return _num; }
             set
             {			
-                if (_sendtime as object == null || !_sendtime.Equals(value))
+                if (_num as object == null || !_num.Equals(value))
                 {
-                    _sendtime = value;
+                    _num = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：PrizeNum
-        /// 属性描述：兑换数量
-        /// 字段信息：[PrizeNum],int
+        /// 属性名称：UsedNum
+        /// 属性描述：已用数量
+        /// 字段信息：[UsedNum],int
         /// </summary>
-        [DisplayNameAttribute("兑换数量")]
-        public int PrizeNum
+        [DisplayNameAttribute("已用数量")]
+        public int UsedNum
         {
-            get { return _prizenum; }
+            get { return _usednum; }
             set
             {			
-                if (_prizenum as object == null || !_prizenum.Equals(value))
+                if (_usednum as object == null || !_usednum.Equals(value))
                 {
-                    _prizenum = value;
+                    _usednum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：CanUseNum
+        /// 属性描述：剩余数量
+        /// 字段信息：[CanUseNum],int
+        /// </summary>
+        [DisplayNameAttribute("剩余数量")]
+        public int CanUseNum
+        {
+            get { return _canusenum; }
+            set
+            {			
+                if (_canusenum as object == null || !_canusenum.Equals(value))
+                {
+                    _canusenum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：UpdateTime
+        /// 属性描述：购买日期
+        /// 字段信息：[UpdateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("购买日期")]
+        public DateTime UpdateTime
+        {
+            get { return _updatetime; }
+            set
+            {			
+                if (_updatetime as object == null || !_updatetime.Equals(value))
+                {
+                    _updatetime = value;
                 }
             }			 
         }
@@ -148,7 +182,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：序号
         /// 字段信息：[Sequence],int
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("序号")]
         public int Sequence
         {
@@ -163,89 +196,10 @@ namespace Ebada.Scgl.Model
         }
   
         /// <summary>
-        /// 属性名称：HasFinished
-        /// 属性描述：是否支付将品
-        /// 字段信息：[HasFinished],bit
-        /// </summary>
-        [DisplayNameAttribute("已兑换")]
-        public bool HasFinished
-        {
-            get { return _hasfinished; }
-            set
-            {			
-                if (_hasfinished as object == null || !_hasfinished.Equals(value))
-                {
-                    _hasfinished = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：Handler
-        /// 属性描述：经办人
-        /// 字段信息：[Handler],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("经办人")]
-        public string Handler
-        {
-            get { return _handler; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[经办人]长度不能大于50!");
-                if (_handler as object == null || !_handler.Equals(value))
-                {
-                    _handler = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：ExchangeTime
-        /// 属性描述：兑换日期
-        /// 字段信息：[ExchangeTime],datetime
-        /// </summary>
-        [DisplayNameAttribute("兑换日期")]
-        public DateTime ExchangeTime
-        {
-            get { return _exchangetime; }
-            set
-            {			
-                if (_exchangetime as object == null || !_exchangetime.Equals(value))
-                {
-                    _exchangetime = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
-        /// 属性名称：Record
-        /// 属性描述：兑换记事
-        /// 字段信息：[Record],nvarchar
-        /// </summary>
-        [DisplayNameAttribute("兑换记事")]
-        public string Record
-        {
-            get { return _record; }
-            set
-            {			
-                if(value==null)return;
-                if( value.ToString().Length > 200)
-                throw new Exception("[兑换记事]长度不能大于200!");
-                if (_record as object == null || !_record.Equals(value))
-                {
-                    _record = value;
-                }
-            }			 
-        }
-  
-        /// <summary>
         /// 属性名称：BySCol1
         /// 属性描述：备用1
         /// 字段信息：[BySCol1],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用1")]
         public string BySCol1
         {
@@ -267,7 +221,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用2
         /// 字段信息：[BySCol2],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用2")]
         public string BySCol2
         {
@@ -289,7 +242,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用3
         /// 字段信息：[BySCol3],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用3")]
         public string BySCol3
         {
@@ -311,7 +263,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用4
         /// 字段信息：[BySCol4],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用4")]
         public string BySCol4
         {
@@ -333,7 +284,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用5
         /// 字段信息：[BySCol5],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备用5")]
         public string BySCol5
         {
@@ -355,7 +305,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备注
         /// 字段信息：[Remark],nvarchar
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("备注")]
         public string Remark
         {
