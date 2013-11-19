@@ -13,11 +13,11 @@ using System.ComponentModel;
 namespace Itop.Frame.Model
 {
     /// <summary>
-    ///[E_UserPropRecord]业务实体类
-    ///对应表名:E_UserPropRecord
+    ///[E_UserProp]业务实体类
+    ///对应表名:E_UserProp
     /// </summary>
     [Serializable]
-    public class E_UserPropRecord
+    public class E_UserProp
     {
         
         #region Private 成员
@@ -25,8 +25,9 @@ namespace Itop.Frame.Model
         private string _userid=String.Empty; 
         private string _propid=String.Empty; 
         private int _num=0; 
-        private DateTime _buyorusetime=new DateTime(1900,1,1); 
-        private string _flag=String.Empty; 
+        private int _usednum=0; 
+        private int _canusenum=0; 
+        private DateTime _updatetime=new DateTime(1900,1,1); 
         private int _sequence=0; 
         private string _byscol1=String.Empty; 
         private string _byscol2=String.Empty; 
@@ -123,40 +124,55 @@ namespace Itop.Frame.Model
         }
   
         /// <summary>
-        /// 属性名称：BuyOrUseTime
-        /// 属性描述：购买日期
-        /// 字段信息：[BuyOrUseTime],datetime
+        /// 属性名称：UsedNum
+        /// 属性描述：已用数量
+        /// 字段信息：[UsedNum],int
         /// </summary>
-        [DisplayNameAttribute("购买日期")]
-        public DateTime BuyOrUseTime
+        [DisplayNameAttribute("已用数量")]
+        public int UsedNum
         {
-            get { return _buyorusetime; }
+            get { return _usednum; }
             set
             {			
-                if (_buyorusetime as object == null || !_buyorusetime.Equals(value))
+                if (_usednum as object == null || !_usednum.Equals(value))
                 {
-                    _buyorusetime = value;
+                    _usednum = value;
                 }
             }			 
         }
   
         /// <summary>
-        /// 属性名称：Flag
-        /// 属性描述：使用记录
-        /// 字段信息：[Flag],nvarchar
+        /// 属性名称：CanUseNum
+        /// 属性描述：剩余数量
+        /// 字段信息：[CanUseNum],int
         /// </summary>
-        [DisplayNameAttribute("使用记录")]
-        public string Flag
+        [DisplayNameAttribute("剩余数量")]
+        public int CanUseNum
         {
-            get { return _flag; }
+            get { return _canusenum; }
             set
             {			
-                if(value==null)return;
-                if( value.ToString().Length > 50)
-                throw new Exception("[使用记录]长度不能大于50!");
-                if (_flag as object == null || !_flag.Equals(value))
+                if (_canusenum as object == null || !_canusenum.Equals(value))
                 {
-                    _flag = value;
+                    _canusenum = value;
+                }
+            }			 
+        }
+  
+        /// <summary>
+        /// 属性名称：UpdateTime
+        /// 属性描述：购买日期
+        /// 字段信息：[UpdateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("购买日期")]
+        public DateTime UpdateTime
+        {
+            get { return _updatetime; }
+            set
+            {			
+                if (_updatetime as object == null || !_updatetime.Equals(value))
+                {
+                    _updatetime = value;
                 }
             }			 
         }

@@ -1088,7 +1088,6 @@ namespace Itop.WebFrame
             #endregion
 
 
-
             #region 闯关相关
 
               #region 获取
@@ -1339,39 +1338,252 @@ namespace Itop.WebFrame
 
                 #endregion
 
+                #region 获取分数
+                [WebMethod(Description = "获取闯关分数，参数userid为用户ID")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetUserScoreByUser(string userid)
+                {
+                    TurnE_UserScore teus = new TurnE_UserScore();
+                    try
+                    {
+                        string sqlwhere = " where UserID='" + userid + "'";
+                        E_UserScore ues = Global.SqlMapper.GetOne<E_UserScore>(sqlwhere);
+                        if (ues != null)
+                        {
+                            teus.ID = ues.ID;
+                            teus.AllScore = ues.AllScore;
+                            teus.CurrtenScore = ues.CurrtenScore;
+                            teus.UserID = ues.UserID;
+                            teus.UpdateTime = ues.UpdateTime;
+                        }
+
+                    } 
+                    catch (Exception)
+                    {
+
+                    }
+
+
+                    return GetJsonStr<TurnE_UserScore>(teus);
+                }
+         
                 #endregion
 
-              #region 上传
-
-            #region 上传闯关记录
-
-            [WebMethod(Description = "上传闯关记录，参数jsonstr为json串")]
-            [ScriptMethod(UseHttpGet = false)]
-            public string SendE_LevelTryRecord(string jsonstr)
-            {
-                List<TrunE_LevelTryRecord> splist = null;
-                splist = JsonDeserialize<TrunE_LevelTryRecord>(jsonstr);
-                ResponseResult result = new ResponseResult();
-                if (splist != null && splist.Count > 0)
+                #region 获取荣誉称号
+                [WebMethod(Description = "获取荣誉称号，参数userid为用户ID")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetUserHonoraryTitleByUser(string userid)
                 {
+                    TurnE_HonoraryTitle teht = new TurnE_HonoraryTitle();
+                    try
+                    {
+                        string sqlwhere = " where UserID='" + userid + "'";
+                        E_UserScore ues = Global.SqlMapper.GetOne<E_UserScore>(sqlwhere);
+
+                        string sqlwhere2 = " where StartScore<=" + ues.CurrtenScore + " and " + ues.CurrtenScore + "<=EndScore";
+                        E_HonoraryTitle eht = Global.SqlMapper.GetOne<E_HonoraryTitle>(sqlwhere2);
+                        if (eht != null)
+                        {
+                            teht.Name = eht.HonoraryTitle;
+                            teht.StartScore = eht.StartScore;
+                            teht.EndScore = eht.EndScore;
+                            
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    return GetJsonStr<TurnE_HonoraryTitle>(teht);
+                }
+
+                #endregion
+
+                #region 奖品列表
+                [WebMethod(Description = "获取奖品列表")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetE_PrizeList()
+                {
+                    List<TurnE_Prize> teplist = new List<TurnE_Prize>();
+                    
+                    try
+                    {
+                        DateTime dt = DateTime.Now;
+                        string sqlwhere = " where BeginDate<'" + dt + "'  and  '" + dt + "'< EndDate";
+                        IList <E_Prize>  eplist= Global.SqlMapper.GetList<E_Prize>(sqlwhere);
+                        foreach (E_Prize item in eplist)
+                        {
+                            TurnE_Prize tep = new TurnE_Prize();
+                            tep.ID = item.ID;
+                            tep.PrizeName = item.PrizeName;
+                            tep.Type = item.Type;
+                            tep.SelectChar = item.SelectChar;
+                            tep.Image = item.Image;
+                            tep.AllNum = item.AllNum;
+                            tep.CurrentNum = item.CurrentNum;
+                            tep.Desc = item.Desc;
+                            tep.BeginDate = item.BeginDate;
+                            tep.EndDate = item.EndDate;
+                            tep.Price = item.Price;
+                            teplist.Add(tep);
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+
+                    return GetJsonStr<TurnE_Prize>(teplist);
+                }
+                #endregion
+
+                #region 道具列表
+                [WebMethod(Description = "获取道具列表")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetE_PropList()
+                {
+                    List<TrunE_Prop> teplist = new List<TrunE_Prop>();
 
                     try
                     {
-                        for (int i = 0; i < splist.Count; i++)
-                        {
-                            E_LevelTryRecord eear = new E_LevelTryRecord();
-                            eear.ID += i.ToString();
-                            eear.UserID = splist[i].UserID;
-                            eear.SeasonID = splist[i].SeasonID;
-                            eear.LevelID = splist[i].LevelID;
-                            eear.PassDate = splist[i].PassDate;
-                            eear.TryTimes = splist[i].TryTimes;
-                            eear.Remark = splist[i].Remark;
 
-                            Global.SqlMapper.Create<E_LevelTryRecord>(eear);
+                        IList<E_Prop> eplist = Global.SqlMapper.GetList<E_Prop>("");
+                        foreach (E_Prop item in eplist)
+                        {
+                            TrunE_Prop tep = new TrunE_Prop();
+                            tep.ID = item.ID;
+                            tep.PropName = item.PropName;
+                            tep.Function = item.Function;
+                            tep.Code = item.Code;
+                            tep.Price = item.Price;
+                            teplist.Add(tep);
                         }
-                        result.Details = "成功";
-                        result.Status = 1;
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    return GetJsonStr<TrunE_Prop>(teplist);
+                }
+                #endregion
+
+
+                #region 某人道具列表
+                [WebMethod(Description = "获取某人道具列表,参数userid为用户id")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetE_PropListByUser(string userid)
+                {
+                    List<TrunE_UserProp> teplist = new List<TrunE_UserProp>();
+
+                    try
+                    {
+                        string sqlwhere = " where UserID='" + userid + "'  and CanUseNum>0";
+
+                        IList<E_UserProp> eplist = Global.SqlMapper.GetList<E_UserProp>(sqlwhere);
+                        foreach (E_UserProp item in eplist)
+                        {
+                            TrunE_UserProp tep = new TrunE_UserProp();
+                            tep.ID = item.ID;
+                            tep.UserID = item.UserID;
+                            tep.PropID = item.PropID;
+                            tep.Num = item.Num;
+                            tep.UsedNum = item.UsedNum;
+                            tep.CanUseNum = item.CanUseNum;
+                            teplist.Add(tep);
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    return GetJsonStr<TrunE_UserProp>(teplist);
+                }
+                #endregion
+
+                #endregion
+
+                #region 上传
+
+                #region 上传闯关记录
+
+                [WebMethod(Description = "上传闯关记录，参数jsonstr为json串")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string SendE_LevelTryRecord(string jsonstr)
+                {
+                    List<TrunE_LevelTryRecord> splist = null;
+                    splist = JsonDeserialize<TrunE_LevelTryRecord>(jsonstr);
+                    ResponseResult result = new ResponseResult();
+                    if (splist != null && splist.Count > 0)
+                    {
+
+                        try
+                        {
+                            for (int i = 0; i < splist.Count; i++)
+                            {
+                                E_LevelTryRecord eear = new E_LevelTryRecord();
+                                eear.ID += i.ToString();
+                                eear.UserID = splist[i].UserID;
+                                eear.SeasonID = splist[i].SeasonID;
+                                eear.LevelID = splist[i].LevelID;
+                                eear.PassDate = splist[i].PassDate;
+                                eear.TryTimes = splist[i].TryTimes;
+                                eear.Remark = splist[i].Remark;
+
+                                Global.SqlMapper.Create<E_LevelTryRecord>(eear);
+                            }
+                            result.Details = "成功";
+                            result.Status = 1;
+                        }
+                        catch (Exception)
+                        {
+                            result.Status = 0;
+                            result.Details = "操作遇到问题！";
+
+                        }
+                    }
+                    else
+                    {
+                        result.Status = 0;
+                        result.Details = "json转换失败";
+                    }
+                    return GetJsonStr<ResponseResult>(result);
+                }
+                #endregion
+
+                #region 上传兑换奖品记录
+                [WebMethod(Description = "上传兑换奖品记录，参数userid为用户id,参数prizeid为奖品id,参数num为兑换奖品数量")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string SendE_UserBuyPrize(string userid,string prizeid,int num)
+                {
+                    ResponseResult result = new ResponseResult();
+                    try
+                    {
+                        E_Prize ep = Global.SqlMapper.GetOneByKey<E_Prize>(prizeid);
+                        if (ep.CurrentNum>=num)
+                        {
+                            E_UserPrizeRecord eupr = new E_UserPrizeRecord();
+                            eupr.UserID = userid;
+                            eupr.PrizeID = prizeid;
+                            eupr.PrizeNum = num;
+                            eupr.SendTime = DateTime.Now;
+                            eupr.HasFinished = false;
+                            Global.SqlMapper.Create<E_UserPrizeRecord>(eupr);
+
+                            result.Details = "成功";
+                            result.Status = 1;
+                        }
+                        else
+                        {
+                            result.Status = 0;
+                            result.Details = "当前奖品剩余数量："+ep.CurrentNum+" 个";
+                        }
+
+                       
                     }
                     catch (Exception)
                     {
@@ -1379,29 +1591,129 @@ namespace Itop.WebFrame
                         result.Details = "操作遇到问题！";
 
                     }
+                   
+                    return GetJsonStr<ResponseResult>(result);
+                   
                 }
-                else
+                #endregion
+
+                #region 上传购买道具记录
+                [WebMethod(Description = "上传购买道具记录，参数userid为用户id,参数propid为道具id,参数num为购买道具数量")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string SendE_UserBuyProp(string userid, string propid, int num)
                 {
-                    result.Status = 0;
-                    result.Details = "json转换失败";
+                    ResponseResult result = new ResponseResult();
+                    try
+                    {
+
+                        E_UserPropRecord eupr = new E_UserPropRecord();
+                        eupr.UserID = userid;
+                        eupr.PropID = propid;
+                        eupr.Num= num;
+                        eupr.BuyOrUseTime = DateTime.Now;
+                        eupr.Flag = "+1";
+                        Global.SqlMapper.Create<E_UserPropRecord>(eupr);
+                        result.Details = "成功";
+                        result.Status = 1;
+                      
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
+
+                    }
+
+                    return GetJsonStr<ResponseResult>(result);
+
                 }
-                return GetJsonStr<ResponseResult>(result);
-            }
+                #endregion
+
+                #region 上传使用道具记录
+                [WebMethod(Description = "上传使用道具记录，参数userid为用户id,参数propid为道具id,参数num为使用道具数量")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string SendE_UserUseProp(string userid, string propid, int num)
+                {
+                    ResponseResult result = new ResponseResult();
+                    try
+                    {
+                        E_UserProp eup = Global.SqlMapper.GetOne<E_UserProp>(" where UserID='" + userid + "' and PropID='" + propid + "'");
+                        //判断该用户的该种道具是否可用
+                        if (eup.CanUseNum >= num)
+                        {
+                            E_UserPropRecord eupr = new E_UserPropRecord();
+                            eupr.UserID = userid;
+                            eupr.PropID = propid;
+                            eupr.Num = num;
+                            eupr.BuyOrUseTime = DateTime.Now;
+                            eupr.Flag = "-1";
+                            Global.SqlMapper.Create<E_UserPropRecord>(eupr);
+                            result.Details = "成功";
+                            result.Status = 1;
+                        }
+                        else
+                        {
+                            result.Details = "该用户的该种道具不足";
+                            result.Status = 0;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
+
+                    }
+
+                    return GetJsonStr<ResponseResult>(result);
+
+                }
+                #endregion
+                #region 上传闯关分数
+                [WebMethod(Description = "上传闯关分数，参数userid为用户id,参数score为得分，参数remark为得分简纪")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string SendE_UserScoreRecord(string userid, int score,string remark)
+                {
+                    ResponseResult result = new ResponseResult();
+                    try
+                    {
+                        E_UserScoreRecord eusr = new E_UserScoreRecord();
+                        eusr.UserID = userid;
+                        eusr.Score = score;
+                        eusr.Flag = "+1";
+                        eusr.Reason = "闯关得分"; 
+                        eusr.BySCol4 = remark;
+                        eusr.CreateTime = DateTime.Now;
+                        Global.SqlMapper.Create<E_UserScoreRecord>(eusr);
+
+                        result.Details = "成功";
+                        result.Status = 1;
+
+                    }
+                    catch (Exception)
+                    {
+                        result.Status = 0;
+                        result.Details = "操作遇到问题！";
+
+                    }
+
+                    return GetJsonStr<ResponseResult>(result);
+
+                }
+                #endregion
+
+              
+                #endregion
+
+
             #endregion
 
-
-	      #endregion
-
-
-            #endregion
-
-
-            #endregion
-
-
+        #endregion
+              
+        
         #region 辅助方法
 
-            List<E_QuestionBank> Pdlist = new List<E_QuestionBank>();
+                List<E_QuestionBank> Pdlist = new List<E_QuestionBank>();
         List<E_QuestionBank> Selectlist = new List<E_QuestionBank>();
         List<E_QuestionBank> MuSelectlist = new List<E_QuestionBank>();
         Random rand = new Random();
@@ -1879,13 +2191,6 @@ namespace Itop.WebFrame
 
         #region 其它
 
-
-
-
-
-
-
-
         public static List<T> JsonDeserialize<T>(string jsonString)
         {
             List<T> obj = new List<T>();
@@ -1928,3 +2233,4 @@ namespace Itop.WebFrame
 
     }
 }
+        

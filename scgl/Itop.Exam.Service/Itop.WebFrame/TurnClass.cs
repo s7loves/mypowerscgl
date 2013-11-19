@@ -1718,6 +1718,426 @@ namespace Itop.WebFrame
     #endregion
 
 
+    #region 其它
+
+    /// <summary>
+    /// 用户得分表
+    /// </summary>
+    public class TurnE_UserScore
+    {
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get ;
+            set ;
+        }
+
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：考生
+        /// 字段信息：[UserID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("考生")]
+        public string UserID
+        {
+            get ;
+            set ;
+        }
+
+        /// <summary>
+        /// 属性名称：AllScore
+        /// 属性描述：总得分
+        /// 字段信息：[AllScore],int
+        /// </summary>
+        [DisplayNameAttribute("总得分")]
+        public int AllScore
+         {
+            get ;
+            set ;
+        }
+
+        /// <summary>
+        /// 属性名称：CurrtenScore
+        /// 属性描述：当前分数
+        /// 字段信息：[CurrtenScore],int
+        /// </summary>
+        [DisplayNameAttribute("当前分数")]
+        public int CurrtenScore
+         {
+            get ;
+            set ;
+        }
+
+        /// <summary>
+        /// 属性名称：UpdateTime
+        /// 属性描述：更新时间
+        /// 字段信息：[UpdateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("更新时间")]
+        public DateTime UpdateTime
+        {
+            get ;
+            set ;
+        }
+    }	
+
+     /// <summary>
+     /// 奖品表
+     /// </summary>
+     public class TurnE_Prize
+    {
+        
+       
+  
+        #region Public 成员
+   
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：PrizeName
+        /// 属性描述：奖品名称
+        /// 字段信息：[PrizeName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("奖品名称")]
+        public string PrizeName
+       {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：Desc
+        /// 属性描述：说明
+        /// 字段信息：[Desc],nchar
+        /// </summary>
+        [DisplayNameAttribute("说明")]
+        public string Desc
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：Type
+        /// 属性描述：分类
+        /// 字段信息：[Type],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("分类")]
+        public string Type
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：SelectChar
+        /// 属性描述：关键字
+        /// 字段信息：[SelectChar],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("关键字")]
+        public string SelectChar
+       {
+            get ;
+            set ;
+        }
+        /// <summary>
+        /// 属性名称：Price
+        /// 属性描述：兑换分数
+        /// 字段信息：[Price],int
+        /// </summary>
+        [DisplayNameAttribute("兑换分数")]
+        public int Price
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：Image
+        /// 属性描述：图片
+        /// 字段信息：[Image],image
+        /// </summary>
+        [DisplayNameAttribute("图片")]
+        public byte[] Image
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：AllNum
+        /// 属性描述：总数量
+        /// 字段信息：[AllNum],int
+        /// </summary>
+        [DisplayNameAttribute("总数量")]
+        public int AllNum
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：CurrentNum
+        /// 属性描述：剩余数量
+        /// 字段信息：[CurrentNum],int
+        /// </summary>
+        [DisplayNameAttribute("剩余数量")]
+        public int CurrentNum
+       {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：BeginDate
+        /// 属性描述：启始日期
+        /// 字段信息：[BeginDate],datetime
+        /// </summary>
+        [DisplayNameAttribute("启始日期")]
+        public DateTime BeginDate
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：EndDate
+        /// 属性描述：结束日期
+        /// 字段信息：[EndDate],datetime
+        /// </summary>
+        [DisplayNameAttribute("结束日期")]
+        public DateTime EndDate
+        {
+            get ;
+            set ;
+        }
+  
+        /// <summary>
+        /// 属性名称：Other
+        /// 属性描述：领取说明
+        /// 字段信息：[Other],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("领取说明")]
+        public string Other
+        {
+            get ;
+            set ;
+        }
+  
+        #endregion 
+
+    }	
+
+    /// <summary>
+    /// 荣誉称号表
+    /// </summary>
+    public class TurnE_HonoraryTitle
+    {
+        /// <summary>
+        /// 称号
+        /// </summary>
+        public string Name
+        {
+            set;
+            get;
+        }
+        public int StartScore
+         {
+            set;
+            get;
+        }
+        public int EndScore
+        {
+            set;
+            get;
+        }
+    }
+
+    /// <summary>
+    /// 道具表
+    /// </summary>
+    public class TrunE_Prop
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：PropName
+        /// 属性描述：道具名
+        /// 字段信息：[PropName],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("道具名")]
+        public string PropName
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：Function
+        /// 属性描述：功能
+        /// 字段信息：[Function],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("功能")]
+        public string Function
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：Code
+        /// 属性描述：代码
+        /// 字段信息：[Code],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("代码")]
+        public string Code
+        {
+            set;
+            get;
+        }
+        /// <summary>
+        /// 属性名称：Price
+        /// 属性描述：价格
+        /// 字段信息：[Price],int
+        /// </summary>
+        [DisplayNameAttribute("价格")]
+        public int Price
+        {
+            set;
+            get;
+        }
+        #endregion
+    }
+
+    public class TrunE_UserProp
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：考生
+        /// 字段信息：[UserID],nchar
+        /// </summary>
+        [DisplayNameAttribute("考生")]
+        public string UserID
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：PropID
+        /// 属性描述：道具名
+        /// 字段信息：[PropID],nvarchar
+        /// </summary>
+        [DisplayNameAttribute("道具名")]
+        public string PropID
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：Num
+        /// 属性描述：购买数量
+        /// 字段信息：[Num],int
+        /// </summary>
+        [DisplayNameAttribute("购买数量")]
+        public int Num
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：UsedNum
+        /// 属性描述：已用数量
+        /// 字段信息：[UsedNum],int
+        /// </summary>
+        [DisplayNameAttribute("已用数量")]
+        public int UsedNum
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：CanUseNum
+        /// 属性描述：剩余数量
+        /// 字段信息：[CanUseNum],int
+        /// </summary>
+        [DisplayNameAttribute("剩余数量")]
+        public int CanUseNum
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：UpdateTime
+        /// 属性描述：购买日期
+        /// 字段信息：[UpdateTime],datetime
+        /// </summary>
+        [DisplayNameAttribute("购买日期")]
+        public DateTime UpdateTime
+        {
+            set;
+            get;
+        }
+
+        #endregion
+
+       
+    }	
+
+
+
+    #endregion
+
 
     #endregion
 
