@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sqlMap namespace="E_UserPropRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="E_UserPropRecord"  type=" Ebada.Scgl.Model.E_UserPropRecord,Ebada.Scgl.Model" />
+  <typeAlias alias="E_UserPropRecord"  type="Ebada.Scgl.Model.E_UserPropRecord,Ebada.Scgl.Model" />
   </alias>
   <resultMaps>
       <resultMap id="E_UserPropRecord_AllColumns" class="E_UserPropRecord">

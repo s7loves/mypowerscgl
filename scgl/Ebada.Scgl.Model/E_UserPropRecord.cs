@@ -10,7 +10,7 @@ Ebada.com 版权所有
 using System;
 using System.Threading;
 using System.ComponentModel;
-namespace Ebada.Platform.Model
+namespace Ebada.Scgl.Model
 {
     /// <summary>
     ///[E_UserPropRecord]业务实体类
