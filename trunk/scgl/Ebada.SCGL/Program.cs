@@ -70,7 +70,10 @@ namespace Ebada.SCGL
         }
         
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
-            Client.MsgBox.ShowException(e.Exception);
+            Exception err = e.Exception;
+            if (e.Exception.Message.Contains("无响应"))
+                err = new Exception("服务器繁忙，请稍候再操作！", err);
+            Client.MsgBox.ShowException(err);
         }
         public static void killmsg() {
             System.Diagnostics.Process[] pTemp = System.Diagnostics.Process.GetProcesses();
