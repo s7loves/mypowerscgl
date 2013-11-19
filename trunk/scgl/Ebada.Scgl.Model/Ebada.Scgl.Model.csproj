@@ -105,6 +105,7 @@
     <Compile Include="E_ScoreSummary.cs" />
     <Compile Include="E_User.cs" />
     <Compile Include="E_UserPrizeRecord.cs" />
+    <Compile Include="E_UserProp.cs" />
     <Compile Include="E_UserPropRecord.cs" />
     <Compile Include="E_UserScore.cs" />
     <Compile Include="E_UserScoreRecord.cs" />

@@ -27,34 +27,57 @@ namespace Ebada.Exam {
     /// 
     /// </summary>
     //[ToolboxItem(false)]
-    public partial class UCE_UserScore : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<E_UserScore> gridViewOperation;
+    public partial class UCE_UserPrizeRecord : DevExpress.XtraEditors.XtraUserControl {
+        private GridViewOperation<E_UserPrizeRecord> gridViewOperation;
         private string parentID = null;
-        private E_UserScore parentObj;
-        public event SendDataEventHandler<E_UserScore> FocusedRowChanged;
+        private E_UserPrizeRecord parentObj;
+        public event SendDataEventHandler<E_UserPrizeRecord> FocusedRowChanged;
 
-        public UCE_UserScore()
+        public UCE_UserPrizeRecord()
         {
             InitializeComponent();
             initImageList();
-            gridViewOperation = new GridViewOperation<E_UserScore>(gridControl1, gridView1, barManager1);
-            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_UserScore>(gridViewOperation_BeforeAdd);
+            gridViewOperation = new GridViewOperation<E_UserPrizeRecord>(gridControl1, gridView1, barManager1,new FrmE_UserPrizeRecordEdit());
+            gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_UserPrizeRecord>(gridViewOperation_BeforeAdd);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
-            gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_UserScore>(gridViewOperation_BeforeDelete);
+            gridViewOperation.BeforeEdit += new ObjectOperationEventHandler<E_UserPrizeRecord>(gridViewOperation_BeforeEdit);
             gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+        }
+
+        void gridViewOperation_BeforeEdit(object render, ObjectOperationEventArgs<E_UserPrizeRecord> e)
+        {
+            e.Value.ExchangeTime = DateTime.Now;
         }
 
         void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (FocusedRowChanged != null)
-                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_UserScore);
-        }
+            {
+                FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_UserPrizeRecord);
+            }
+            CheckDH();
 
-        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_UserScore> e) {
+        }
+        private void CheckDH()
+        {
+            E_UserPrizeRecord eur = gridView1.GetFocusedRow() as E_UserPrizeRecord;
+            if (eur!=null)
+            {
+                if (eur.HasFinished)
+                {
+                    btEdit.Enabled = false;
+                }
+                else
+                {
+                    btEdit.Enabled = true;
+                }
+            }
+        }
+        void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_UserPrizeRecord> e) {
            
         }
 
-        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<E_UserScore> e) {
+        void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<E_UserPrizeRecord> e) {
    
         }
         protected override void OnLoad(EventArgs e) {
@@ -79,7 +102,7 @@ namespace Ebada.Exam {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
 
-            RefreshData("  order by  cast (BySCol1 as int) asc");
+            RefreshData("  order by HasFinished , SendTime desc");
         }
         /// <summary>
         /// 初始化列,
@@ -91,6 +114,8 @@ namespace Ebada.Exam {
             //hideColumn("ID");
             //gridView1.Columns["Title"].Width = 200;
             gridView1.Columns["UserID"].ColumnEdit = DicTypeHelper.UserDic;
+            gridView1.Columns["PrizeID"].ColumnEdit = DicTypeHelper.PrizeDic;
+            gridView1.Columns["Handler"].ColumnEdit = DicTypeHelper.UserDic;
             //gridView1.Columns["Content"].Width = 500;
         }
 
@@ -99,19 +124,14 @@ namespace Ebada.Exam {
         /// </summary>
         /// <param name="slqwhere">sql where 子句 ，为空时查询全部数据</param>
         public void RefreshData(string slqwhere) {
-            IList<E_UserScore> list = Client.ClientHelper.PlatformSqlMap.GetList<E_UserScore>("SelectE_UserScoreListCreateOrder", slqwhere);
-            // for (int i = 0; i < list.Count; i++)
-            // {
-            //     list[i].Sequence = i + 1;
-            // }
-            gridControl1.DataSource = list;
-            //gridViewOperation.RefreshData(slqwhere);
+            
+            gridViewOperation.RefreshData(slqwhere);
         }
         /// <summary>
         /// 封装了数据操作的对象
         /// </summary>
         [Browsable(false)]
-        public GridViewOperation<E_UserScore> GridViewOperation {
+        public GridViewOperation<E_UserPrizeRecord> GridViewOperation {
             get { return gridViewOperation; }
             set { gridViewOperation = value; }
         }
@@ -119,7 +139,7 @@ namespace Ebada.Exam {
         /// 新建对象设置Key值
         /// </summary>
         /// <param name="newobj"></param>
-        void gridViewOperation_CreatingObjectEvent(E_UserScore newobj) {
+        void gridViewOperation_CreatingObjectEvent(E_UserPrizeRecord newobj) {
 
            
         }
@@ -144,7 +164,7 @@ namespace Ebada.Exam {
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public E_UserScore ParentObj
+        public E_UserPrizeRecord ParentObj
         {
             get { return parentObj; }
             set
@@ -166,7 +186,7 @@ namespace Ebada.Exam {
         {
             if (gridView1.GetFocusedRow()!=null)
             {
-                ParentObj = gridView1.GetFocusedRow() as E_UserScore;
+                ParentObj = gridView1.GetFocusedRow() as E_UserPrizeRecord;
             }
         }
 

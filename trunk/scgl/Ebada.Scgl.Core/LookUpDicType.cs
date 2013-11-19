@@ -451,7 +451,7 @@ namespace Ebada.Scgl.Core {
             }
             set
             {
-                _SettingDic = value;
+                _ExPaperDic = value;
             }
         }
 
@@ -559,5 +559,66 @@ namespace Ebada.Scgl.Core {
                 return DicTypeHelper._user;
             }
         }
+
+        static IList<DicType> _UserList;
+        public static IList<DicType> UserList
+        {
+            get
+            {
+
+                IList<mUser> list = Client.ClientHelper.PlatformSqlMap.GetList<mUser>(" ");
+                IList<DicType> dic = new List<DicType>();
+                foreach (mUser pro in list)
+                {
+                    dic.Add(new DicType(pro.UserID, pro.UserName));
+                }
+
+                _UserList = dic;
+
+                return _UserList;
+            }
+
+        }
+
+        static RepositoryItem _Prize;
+
+        public static RepositoryItem PrizeDic
+        {
+            get
+            {
+                if (_user == null || _user.LinkCount == 1)
+                {
+                    IList<E_Prize> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Prize>(" ");
+                    IList<DicType> dic = new List<DicType>();
+                    foreach (E_Prize pro in list)
+                    {
+                        dic.Add(new DicType(pro.ID, pro.PrizeName));
+                    }
+                    _Prize = new LookUpDicType(dic);
+                }
+                return DicTypeHelper._Prize;
+            }
+        }
+
+        static IList<DicType> _PrizeList;
+        public static IList<DicType> PrizeList
+        {
+            get
+            {
+
+                IList<E_Prize> list = Client.ClientHelper.PlatformSqlMap.GetList<E_Prize>(" ");
+                IList<DicType> dic = new List<DicType>();
+                foreach (E_Prize pro in list)
+                {
+                    dic.Add(new DicType(pro.ID, pro.PrizeName));
+                }
+
+                _PrizeList = dic;
+
+                return _PrizeList;
+            }
+           
+        }
+
     }
 }
