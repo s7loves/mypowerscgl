@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="E_UserPropRecord" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sqlMap namespace="E_UserProp" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <alias>
-  <typeAlias alias="E_UserPropRecord"  type="Itop.Frame.Model.E_UserPropRecord,Itop.Frame.Model" />
+  <typeAlias alias="E_UserProp"  type="Itop.Frame.Model.E_UserProp,Itop.Frame.Model" />
   </alias>
   <resultMaps>
-      <resultMap id="E_UserPropRecord_AllColumns" class="E_UserPropRecord">
+      <resultMap id="E_UserProp_AllColumns" class="E_UserProp">
         <result property="ID" column="ID" />
         <result property="UserID" column="UserID" />
         <result property="PropID" column="PropID" />
         <result property="Num" column="Num" />
-        <result property="BuyOrUseTime" column="BuyOrUseTime" />
-        <result property="Flag" column="Flag" />
+        <result property="UsedNum" column="UsedNum" />
+        <result property="CanUseNum" column="CanUseNum" />
+        <result property="UpdateTime" column="UpdateTime" />
         <result property="Sequence" column="Sequence" />
         <result property="BySCol1" column="BySCol1" />
         <result property="BySCol2" column="BySCol2" />
@@ -23,14 +24,15 @@
   </resultMaps>
 
   <statements>
-   <select id="SelectE_UserPropRecordList" resultMap="E_UserPropRecord_AllColumns" parameterClass="string">
+   <select id="SelectE_UserPropList" resultMap="E_UserProp_AllColumns" parameterClass="string">
         SELECT 
          [ID],
          [UserID],
          [PropID],
          [Num],
-         [BuyOrUseTime],
-         [Flag],
+         [UsedNum],
+         [CanUseNum],
+         [UpdateTime],
          [Sequence],
          [BySCol1],
          [BySCol2],
@@ -39,18 +41,19 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-          FROM E_UserPropRecord
+          FROM E_UserProp
           $value$
    </select>
    
-   <select id="SelectE_UserPropRecordByHash" parameterClass="Hashtable">
+   <select id="SelectE_UserPropByHash" parameterClass="Hashtable">
          SELECT 
          [ID],
          [UserID],
          [PropID],
          [Num],
-         [BuyOrUseTime],
-         [Flag],
+         [UsedNum],
+         [CanUseNum],
+         [UpdateTime],
          [Sequence],
          [BySCol1],
          [BySCol2],
@@ -59,14 +62,15 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-          FROM E_UserPropRecord
+          FROM E_UserProp
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
        <isNotNull prepend="AND" property="PropID">[PropID]='$PropID$'</isNotNull>
        <isNotNull prepend="AND" property="Num">[Num]='$Num$'</isNotNull>
-       <isNotNull prepend="AND" property="BuyOrUseTime">[BuyOrUseTime]='$BuyOrUseTime$'</isNotNull>
-       <isNotNull prepend="AND" property="Flag">[Flag]='$Flag$'</isNotNull>
+       <isNotNull prepend="AND" property="UsedNum">[UsedNum]='$UsedNum$'</isNotNull>
+       <isNotNull prepend="AND" property="CanUseNum">[CanUseNum]='$CanUseNum$'</isNotNull>
+       <isNotNull prepend="AND" property="UpdateTime">[UpdateTime]='$UpdateTime$'</isNotNull>
        <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
@@ -77,14 +81,15 @@
        <isNotNull prepend="AND" property="RowVersion">[RowVersion]='$RowVersion$'</isNotNull>
      </dynamic>
    </select>
-   <select id="SelectE_UserPropRecordByKey" resultMap="E_UserPropRecord_AllColumns" parameterClass="E_UserPropRecord">
+   <select id="SelectE_UserPropByKey" resultMap="E_UserProp_AllColumns" parameterClass="E_UserProp">
          SELECT 
          [ID],
          [UserID],
          [PropID],
          [Num],
-         [BuyOrUseTime],
-         [Flag],
+         [UsedNum],
+         [CanUseNum],
+         [UpdateTime],
          [Sequence],
          [BySCol1],
          [BySCol2],
@@ -93,40 +98,41 @@
          [BySCol5],
          [Remark],
          [RowVersion]
-         FROM E_UserPropRecord
+         FROM E_UserProp
          WHERE 
            ID = #ID#
 
    </select>
  
-   <delete id="DeleteE_UserPropRecord" parameterClass="E_UserPropRecord">
+   <delete id="DeleteE_UserProp" parameterClass="E_UserProp">
         DELETE FROM 
-         E_UserPropRecord
+         E_UserProp
            WHERE
          ID = #ID#
 
    </delete>
    
-   <delete id="DeleteE_UserPropRecordByWhere" parameterClass="string">
-     delete from E_UserPropRecord $value$
+   <delete id="DeleteE_UserPropByWhere" parameterClass="string">
+     delete from E_UserProp $value$
    </delete>
    
-   <delete id="DeleteE_UserPropRecordByKey" parameterClass="string">
+   <delete id="DeleteE_UserPropByKey" parameterClass="string">
         DELETE FROM 
-         E_UserPropRecord
+         E_UserProp
            WHERE
          ID = #ID#
     
    </delete>
    
-   <update id="UpdateE_UserPropRecord" parameterClass="E_UserPropRecord" resultClass="int">
-          UPDATE E_UserPropRecord
+   <update id="UpdateE_UserProp" parameterClass="E_UserProp" resultClass="int">
+          UPDATE E_UserProp
            SET
              [UserID]=#UserID#,
              [PropID]=#PropID#,
              [Num]=#Num#,
-             [BuyOrUseTime]=#BuyOrUseTime#,
-             [Flag]=#Flag#,
+             [UsedNum]=#UsedNum#,
+             [CanUseNum]=#CanUseNum#,
+             [UpdateTime]=#UpdateTime#,
              [Sequence]=#Sequence#,
              [BySCol1]=#BySCol1#,
              [BySCol2]=#BySCol2#,
@@ -139,15 +145,16 @@
 
    </update>
   
-   <insert id="InsertE_UserPropRecord" parameterClass="E_UserPropRecord">
-        INSERT INTO E_UserPropRecord
+   <insert id="InsertE_UserProp" parameterClass="E_UserProp">
+        INSERT INTO E_UserProp
          (
          [ID],
          [UserID],
          [PropID],
          [Num],
-         [BuyOrUseTime],
-         [Flag],
+         [UsedNum],
+         [CanUseNum],
+         [UpdateTime],
          [Sequence],
          [BySCol1],
          [BySCol2],
@@ -162,8 +169,9 @@
          #UserID#,
          #PropID#,
          #Num#,
-         #BuyOrUseTime#,
-         #Flag#,
+         #UsedNum#,
+         #CanUseNum#,
+         #UpdateTime#,
          #Sequence#,
          #BySCol1#,
          #BySCol2#,
@@ -175,16 +183,17 @@
 
    </insert>
    
-   <select id="GetE_UserPropRecordRowCountByHash" parameterClass="Hashtable">
+   <select id="GetE_UserPropRowCountByHash" parameterClass="Hashtable">
          SELECT Count(*) 
-          FROM E_UserPropRecord
+          FROM E_UserProp
      <dynamic prepend="WHERE">
        <isNotNull prepend="AND" property="ID">[ID]='$ID$'</isNotNull>
        <isNotNull prepend="AND" property="UserID">[UserID]='$UserID$'</isNotNull>
        <isNotNull prepend="AND" property="PropID">[PropID]='$PropID$'</isNotNull>
        <isNotNull prepend="AND" property="Num">[Num]='$Num$'</isNotNull>
-       <isNotNull prepend="AND" property="BuyOrUseTime">[BuyOrUseTime]='$BuyOrUseTime$'</isNotNull>
-       <isNotNull prepend="AND" property="Flag">[Flag]='$Flag$'</isNotNull>
+       <isNotNull prepend="AND" property="UsedNum">[UsedNum]='$UsedNum$'</isNotNull>
+       <isNotNull prepend="AND" property="CanUseNum">[CanUseNum]='$CanUseNum$'</isNotNull>
+       <isNotNull prepend="AND" property="UpdateTime">[UpdateTime]='$UpdateTime$'</isNotNull>
        <isNotNull prepend="AND" property="Sequence">[Sequence]='$Sequence$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol1">[BySCol1]='$BySCol1$'</isNotNull>
        <isNotNull prepend="AND" property="BySCol2">[BySCol2]='$BySCol2$'</isNotNull>
@@ -197,8 +206,8 @@
 
    </select>
    
-   <select id="GetE_UserPropRecordRowCount" parameterClass="string">
-    select count(*) from E_UserPropRecord $value$
+   <select id="GetE_UserPropRowCount" parameterClass="string">
+    select count(*) from E_UserProp $value$
    </select>
   </statements>
 </sqlMap>

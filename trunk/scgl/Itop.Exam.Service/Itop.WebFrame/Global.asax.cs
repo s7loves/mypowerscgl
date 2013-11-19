@@ -5,7 +5,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Ebada.Components;
 using Ebada.Server;
-using Itop.Frame.BLL;
+
 
 namespace Itop.WebFrame {
     public class Global : System.Web.HttpApplication {
