@@ -384,6 +384,10 @@
       <DependentUpon>FrmE_UserPrizeRecordEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_UserScoreRecord.resx">
+      <DependentUpon>UCE_UserScoreRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -787,6 +791,12 @@
     </Compile>
     <Compile Include="闯关\FrmE_UserPrizeRecordEdit.Designer.cs">
       <DependentUpon>FrmE_UserPrizeRecordEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_UserScoreRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_UserScoreRecord.Designer.cs">
+      <DependentUpon>UCE_UserScoreRecord.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
