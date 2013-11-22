@@ -96,14 +96,20 @@ namespace Ebada.Scgl.Gis {
             int j = -1;
             int i = 0;
             Point offset = new Point(1, 1 * j);
+            int nlines = 0;
             foreach (gtNode node in xl.nodes) {
                 
                 if (!node.NeedDraw) continue;
                 i++;
+                if (node.lines.Count > 0) {
+                    nlines++;
+                }
                 node.Location = new Point( 50 + (int)(i * step),top);
                 node.render(g);
+                
                 foreach (xl xl0 in node.lines) {
                     if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    xl0.index = nlines;
                     strList.Add(xl0.xlValue.LineCode);
                     drawchildxltop(g, xl0, offset, (int)step * 2, mHeight-n300);
                     offset.Y *= -1;
@@ -129,6 +135,8 @@ namespace Ebada.Scgl.Gis {
             int left = xl.parentNode.Location.X;
             int bottom = xl.parentNode.Location.Y;
             int top = bottom + offset.Y* height;
+            int offx = xl.getOffx()*offset.Y;
+            top += offx;
             g.DrawLine(Pens.BlueViolet, left, bottom, left, top);
             //if (!xl.nodes[0].NeedDraw) {
             //    xl.nodes[0].Location = new Point(left,(int)step);
@@ -141,16 +149,27 @@ namespace Ebada.Scgl.Gis {
             }
             int j = -1;
             int i = 0;
+            int nlines = 0;
             //Point offset = new Point(0, 50 * j);
             foreach (gtNode node in xl.nodes) {
 
                 if (!node.NeedDraw) continue;
                 i++;
-                node.Location = new Point(left,bottom+(int)(i * step));
+
+                if (node.lines.Count > 0) {
+                    nlines++;
+                }
+
+                node.Location = new Point(left, offx+bottom + (int)(i * step));
+                
                 node.render(g);
+
                 foreach (xl xl0 in node.lines) {
                     if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    xl0.index = nlines;
+                    xl0.isV = true;
                     strList.Add(xl0.xlValue.LineCode);
+
                     drawchildxlright(g, xl0, offset, width,(int)Math.Abs(step)*3/2);
                     offset.X *= -1;
                 }
@@ -177,6 +196,10 @@ namespace Ebada.Scgl.Gis {
             int left = xl.parentNode.Location.X;
             int bottom = xl.parentNode.Location.Y;
             int right = left + offset.X * width;
+
+            int offx = xl.getOffx() * offset.X;
+            right += offx;
+
             g.DrawLine(Pens.BlueViolet, left, bottom, right, bottom);
             //if (!xl.nodes[0].NeedDraw) {
             //    xl.nodes[0].Location = new Point(left,(int)step);
@@ -190,14 +213,19 @@ namespace Ebada.Scgl.Gis {
             int j = -1;
             int i = 0;
             //Point offset = new Point(0, 50 * j);
+            int nlines = 0;
             foreach (gtNode node in xl.nodes) {
 
                 if (!node.NeedDraw) continue;
                 i++;
-                node.Location = new Point( left + (int)(i * step),bottom);
+                if (node.lines.Count > 0) {
+                    nlines++;
+                }
+                node.Location = new Point(offx+ left + (int)(i * step),bottom);
                 node.render(g);
                 foreach (xl xl0 in node.lines) {
                     if (strList.Contains(xl0.xlValue.LineCode)) continue;
+                    xl0.index = nlines;
                     strList.Add(xl0.xlValue.LineCode);
                     drawchildxltop(g, xl0, offset, (int)step * 3/2, height);
                 }
@@ -219,7 +247,7 @@ namespace Ebada.Scgl.Gis {
 
 
         }
-        public static void renderbyq(Graphics g, int x, int y, string name) {
+        public static void renderbyq(Graphics g, int x, int y, string name,bool flag) {
             System.Drawing.Point p1 = new System.Drawing.Point(x, y);
             p1.Offset(-7, -5);
             //new Pen(Color.FromArgb(144, Color.MidnightBlue));
@@ -233,12 +261,20 @@ namespace Ebada.Scgl.Gis {
             //Size sf = g.MeasureString(name, mFont).ToSize();
 
             //g.DrawString(name, mFont, Brushes.Black, x + 7 - sf.Width / 2, y - 15);
-            if (isHrow) {
-                Rectangle r3 = new Rectangle(x + 7, y - 10, mMinDJ, 30);
+            if (flag) {
+                Rectangle r3 = new Rectangle(x + 7, y - 10, 20, 130);
 
                 g.DrawString(name, mFont, Brushes.Black, r3);
-            } else {
-                g.DrawString(name, mFont, Brushes.Black, x + 7, y - 10);
+            }
+            else {
+                if (isHrow) {
+                    Rectangle r3 = new Rectangle(x + 7, y - 10, mMinDJ, 30);
+
+                    g.DrawString(name, mFont, Brushes.Black, r3);
+                }
+                else {
+                    g.DrawString(name, mFont, Brushes.Black, x + 7, y - 10);
+                }
             }
             
         }
@@ -258,14 +294,31 @@ namespace Ebada.Scgl.Gis {
             public List<xl> lines;
             public PS_gt gtValue;
             public xl ownerLine;
-
             public List<PS_kg> kgList;
             //public List<PS_tqbyq> byqList;
             public List<PS_tq> tqList;
+            private bool hasNextTq {
+                get { 
+                    List<gtNode> list = ownerLine.nodes;
+                    bool flag = false;
+
+                    int index = list.IndexOf(this);
+                    for (int i = index + 1; i < list.Count; i++) {
+                        if (list[i].tqList.Count > 0) {
+                            flag = true; break;
+                        }
+                    }
+
+                    return flag;
+                }
+            }
             public bool NeedDraw {
                 get {
                     return kgList.Count + tqList.Count + lines.Count > 0;
                 }
+            }
+            private bool isLine3 {
+                get { return ownerLine.xlValue.LineType == "3" && ownerLine.tqNodes.Count>1 && ownerLine.isV; }
             }
             public Point Location;
             public gtNode() {
@@ -288,8 +341,10 @@ namespace Ebada.Scgl.Gis {
                 Font f = new Font("宋体", 9);
                 g.DrawString(gtValue.gth, f, Brushes.Blue, p.X-22, Location.Y + 3);
                 int i = 0;
+                bool flag = isLine3;
+                
                 foreach (PS_tq tq in tqList) {
-                    DrawingDxt2.renderbyq(g, Location.X, Location.Y+i*14, tq.tqName);
+                    DrawingDxt2.renderbyq(g, Location.X, Location.Y+i*14, tq.tqName,isLine3);
                     i++; break;
                 }
                 foreach (PS_kg kg in kgList) {
@@ -302,11 +357,17 @@ namespace Ebada.Scgl.Gis {
             public List<xl> lines;
             public PS_xl xlValue;
             public gtNode parentNode;
+            public List<gtNode> tqNodes;
+            public int index = 0;
+            public bool isV = false;//是否横向
             public xl() {
                 nodes = new List<gtNode>();
                 lines = new List<xl>();
-
+                tqNodes = new List<gtNode>();
         }
+            public int getOffx() {
+                return ((index + 1) % 4 == 0 || index % 4 == 0) ? 12 : 0;
+            }
             public void addGt(ICollection<PS_gt> list) {
                 foreach (PS_gt gt in list) {
                     if (gt.gth == "0000") continue;
@@ -330,7 +391,11 @@ namespace Ebada.Scgl.Gis {
                 IList<PS_tq> tqlist = Client.ClientHelper.PlatformSqlMap.GetList<PS_tq>(string.Format(DrawingDxt2.tqfilter, xlValue.LineCode));
                 foreach (PS_tq tq in tqlist) {
                     gtNode node = getNodeByID(tq.gtID);
-                    if (node != null) node.tqList.Add(tq);
+                    if (node != null) {
+                        node.tqList.Add(tq);
+                        if (!tqNodes.Contains(node))
+                            tqNodes.Add(node);
+                    }
 
                 }
                 IList<PS_kg> kglist = Client.ClientHelper.PlatformSqlMap.GetList<PS_kg>(string.Format(DrawingDxt2.kgfilter, xlValue.LineCode));
