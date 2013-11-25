@@ -21,6 +21,8 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.Core;
+using System.Collections;
 
 namespace Ebada.Exam {
     /// <summary>
@@ -60,7 +62,9 @@ namespace Ebada.Exam {
         {
             if (barLkueExam.EditValue!=null&&barLkueExam.EditValue.ToString()!=string.Empty)
             {
-                string sqlwhere = " where E_ID='" + barLkueExam.EditValue.ToString() + "' order by Score desc";
+                //string sqlwhere = " where E_ID='" + barLkueExam.EditValue.ToString() + "' order by Score desc";
+                //RefreshDataOrder(sqlwhere);
+                string sqlwhere = barLkueExam.EditValue.ToString();
                 RefreshDataOrder(sqlwhere);
             }
         }
@@ -126,7 +130,8 @@ namespace Ebada.Exam {
         }
         public void RefreshDataOrder(string sqlhwere)
         {
-            IList<E_ExamResult> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_ExamResult>(sqlhwere);
+            //IList<E_ExamResult> list = Client.ClientHelper.PlatformSqlMap.GetListByWhere<E_ExamResult>(sqlhwere);
+            IList<E_ExamResult> list = Client.ClientHelper.PlatformSqlMap.GetList<E_ExamResult>("SelectE_ExamResultListCreateOrder", sqlhwere);
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].Sequence = i + 1;
@@ -195,6 +200,18 @@ namespace Ebada.Exam {
                 FrmE_PaperView frm = new FrmE_PaperView(eer.E_ID, eer.UserID);
                 frm.ShowDialog();
             }
+        }
+
+        private void gridView1_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
+        {
+            if (gridView1.GetRow(e.RowHandle) == null) return;
+
+            E_ExamResult dr = gridView1.GetRow(e.RowHandle) as E_ExamResult;
+            if (!dr.IsExamed)
+            {
+                e.Appearance.BackColor = Color.Red;
+            }
+           
         }
     }
 }

@@ -283,28 +283,27 @@
 
     <select id="SelectE_ExamResultListCreateOrder" resultMap="E_ExamResult_AllColumns" parameterClass="string">
       SELECT
-      [ID],
-      [E_ID],
-      [EP_ID],
-      [UserID],
-      [RealStartTime],
-      [RealEenTime],
-      [IsExamed],
-      [Score],
-      [IsPassed],
-      [Comment],
-      [CheckPeople],
-      Sequence=(SELECT   COUNT(Score)   FROM   dbo.E_ExamResult  WHERE   Score   >   a.Score)   +   1 ,
-      [ShowScore],
-      [BySCol1],
-      [BySCol2],
-      [BySCol3],
-      [BySCol4],
-      [BySCol5],
-      [Remark],
-      [RowVersion]
-      FROM E_ExamResult as a
-      $value$
+      B.[ID],
+      '$value$' as [E_ID],
+      B.[EP_ID],
+      A.[UserID] as [UserID],
+      B.[RealStartTime],
+      B.[RealEenTime],
+      B.[IsExamed],
+      B.[Score],
+      B.[IsPassed],
+      B.[Comment],
+      B.[CheckPeople],
+      B.[Sequence],
+      B.[ShowScore],
+      B.[BySCol1],
+      B.[BySCol2],
+      B.[BySCol3],
+      B.[BySCol4],
+      A.OrgName as [BySCol5],
+      B.[Remark],
+      B.[RowVersion]
+      FROM (select UserID,OrgName from dbo.mUser where (select  UserIDS from dbo.E_Examination where ID='$value$') like  '%,'+UserID+',%' ) as A LEFT OUTER JOIN dbo.E_ExamResult as B  on A.UserID=B.UserID and B.E_ID='$value$'  order by B.Score desc
     </select>
 
 
