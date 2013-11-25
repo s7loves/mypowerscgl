@@ -173,7 +173,6 @@ namespace Ebada.Scgl.Model
         /// 属性描述：是否已考
         /// 字段信息：[IsExamed],bit
         /// </summary>
-        [Browsable(false)]
         [DisplayNameAttribute("是否已考")]
         public bool IsExamed
         {
@@ -396,8 +395,8 @@ namespace Ebada.Scgl.Model
         /// 属性描述：备用5
         /// 字段信息：[BySCol5],nvarchar
         /// </summary>
-        [Browsable(false)]
-        [DisplayNameAttribute("备用5")]
+   
+        [DisplayNameAttribute("单位")]
         public string BySCol5
         {
             get { return _byscol5; }
