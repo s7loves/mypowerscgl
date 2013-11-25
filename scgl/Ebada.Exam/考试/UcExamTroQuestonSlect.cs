@@ -51,12 +51,13 @@ namespace Ebada.Exam
         public event AnswerQue AnswerEvent;
         private void HasAnswer(string DN)
         {
+            EQ.BySCol5 = DN;
+            this.Tag = EQ;
             if (AnswerEvent != null)
             {
                 AnswerEvent(EQ.ID);
             }
-            EQ.BySCol5 = DN;
-            this.Tag = EQ;
+           
         }
 
         protected override void OnLoad(EventArgs e)

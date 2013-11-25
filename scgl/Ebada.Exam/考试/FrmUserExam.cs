@@ -198,7 +198,6 @@ namespace Ebada.Exam
             {
                 E_QuestionBank eq = MuSelectDic[key];
                 UcExamTroQuestonMuSlect muselect = new UcExamTroQuestonMuSlect(muselectjs, eq);
-
                 muselect.AnswerEvent += new UcExamTroQuestonMuSlect.AnswerQue(muselect_AnswerEvent);
                 panel2.Controls.Add(muselect);
                 muselect.Location = new Point(x, y);

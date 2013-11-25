@@ -51,12 +51,13 @@ namespace Ebada.Exam
         public event AnswerQue AnswerEvent;
         private void HasAnswer()
         {
+            EQ.BySCol5 = GetAnswer();
+            this.Tag = EQ;
             if (AnswerEvent != null)
             {
                 AnswerEvent(EQ.ID);
             }
-            EQ.BySCol5 = GetAnswer();
-            this.Tag = EQ;
+            
         }
         private string GetAnswer()
         {
@@ -148,6 +149,30 @@ namespace Ebada.Exam
                         break;
                 }
             }
+        }
+
+        private void cA_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
+        }
+
+        private void cB_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
+        }
+
+        private void cC_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
+        }
+
+        private void cD_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
+        }
+
+        private void cE_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
+        }
+
+        private void cF_CheckedChanged(object sender, EventArgs e) {
+            HasAnswer();
         }
        
 

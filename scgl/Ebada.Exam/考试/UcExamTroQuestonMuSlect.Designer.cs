@@ -87,6 +87,7 @@
             this.cA.Text = "checkBox1";
             this.cA.UseVisualStyleBackColor = true;
             this.cA.Visible = false;
+            this.cA.CheckedChanged += new System.EventHandler(this.cA_CheckedChanged);
             // 
             // cB
             // 
@@ -98,6 +99,7 @@
             this.cB.Text = "checkBox1";
             this.cB.UseVisualStyleBackColor = true;
             this.cB.Visible = false;
+            this.cB.CheckedChanged += new System.EventHandler(this.cB_CheckedChanged);
             // 
             // cC
             // 
@@ -109,6 +111,7 @@
             this.cC.Text = "checkBox1";
             this.cC.UseVisualStyleBackColor = true;
             this.cC.Visible = false;
+            this.cC.CheckedChanged += new System.EventHandler(this.cC_CheckedChanged);
             // 
             // cF
             // 
@@ -120,6 +123,7 @@
             this.cF.Text = "checkBox1";
             this.cF.UseVisualStyleBackColor = true;
             this.cF.Visible = false;
+            this.cF.CheckedChanged += new System.EventHandler(this.cF_CheckedChanged);
             // 
             // cD
             // 
@@ -131,6 +135,7 @@
             this.cD.Text = "checkBox1";
             this.cD.UseVisualStyleBackColor = true;
             this.cD.Visible = false;
+            this.cD.CheckedChanged += new System.EventHandler(this.cD_CheckedChanged);
             // 
             // cE
             // 
@@ -142,6 +147,7 @@
             this.cE.Text = "checkBox1";
             this.cE.UseVisualStyleBackColor = true;
             this.cE.Visible = false;
+            this.cE.CheckedChanged += new System.EventHandler(this.cE_CheckedChanged);
             // 
             // UcExamTroQuestonMuSlect
             // 
