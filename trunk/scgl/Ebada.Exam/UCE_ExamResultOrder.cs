@@ -209,7 +209,7 @@ namespace Ebada.Exam {
             E_ExamResult dr = gridView1.GetRow(e.RowHandle) as E_ExamResult;
             if (!dr.IsExamed)
             {
-                e.Appearance.BackColor = Color.Red;
+                e.Appearance.ForeColor = Color.Red;
             }
            
         }
