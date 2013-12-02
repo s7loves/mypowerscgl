@@ -1,0 +1,1 @@
+ALTER TABLE dbo.E_Prize ALTER COLUMN [Desc]  nvarchar(200)
