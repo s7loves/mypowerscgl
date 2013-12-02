@@ -101,8 +101,8 @@ namespace Ebada.Scgl.Model
             set
             {			
                 if(value==null)return;
-                if( value.ToString().Length > 10)
-                throw new Exception("[说明]长度不能大于10!");
+                if( value.ToString().Length > 200)
+                throw new Exception("[说明]长度不能大于200!");
                 if (_desc as object == null || !_desc.Equals(value))
                 {
                     _desc = value;
