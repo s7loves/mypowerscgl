@@ -10,7 +10,7 @@ using Ebada.Client.Platform;
 
 namespace Ebada.Exam
 {
-    public partial class FrmE_ExamResultOrder : DevExpress.XtraEditors.XtraForm
+    public partial class FrmE_ExamResultOrder : DevExpress.XtraEditors.XtraUserControl
     {
         public FrmE_ExamResultOrder()
         {
