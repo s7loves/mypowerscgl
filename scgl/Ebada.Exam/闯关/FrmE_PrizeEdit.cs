@@ -55,7 +55,7 @@ namespace Ebada.Exam
                 {
                     ConvertHelper.CopyTo<E_Prize>(value as E_Prize, rowData);
                 }
-                if (rowData.Image.Length>0)
+                if (rowData.Image!=null&&rowData.Image.Length > 0)
                 {
                     pictureEdit1.EditValue = rowData.Image;
 
@@ -77,6 +77,10 @@ namespace Ebada.Exam
         private void btnOK_Click(object sender, EventArgs e)
         {
             string pname = txtPrizeName.Text.Trim();
+            if (rowData.Image==null)
+            {
+                rowData.Image = new byte[] { };
+            }
             if (pname.Length== 0)
             {
                 MsgBox.ShowWarningMessageBox("奖品名称不能为空！");

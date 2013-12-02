@@ -109,7 +109,7 @@
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(269, 14);
             this.labelControl8.TabIndex = 33;
-            this.labelControl8.Text = "说明:表示难道系数1，6道题;难道系数2，6道题";
+            this.labelControl8.Text = "说明:表示难度系数1，6道题;难度系数2，6道题";
             // 
             // labelControl7
             // 

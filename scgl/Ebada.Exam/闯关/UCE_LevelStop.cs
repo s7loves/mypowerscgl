@@ -79,7 +79,14 @@ namespace Ebada.Exam {
         }
 
         void gridViewOperation_BeforeDelete(object render, ObjectOperationEventArgs<E_LevelStop> e) {
-           
+
+            string sqlwhere = " where LevelID='" + ParentIDB + "'";
+            int recordnum = MainHelper.PlatformSqlMap.GetRowCount<E_LevelStop>(sqlwhere);
+            if (recordnum==10)
+            {
+                e.Cancel = true;
+            }
+
         }
 
         void gridViewOperation_BeforeAdd(object render, ObjectOperationEventArgs<E_LevelStop> e) {
@@ -88,7 +95,45 @@ namespace Ebada.Exam {
                 MsgBox.ShowWarningMessageBox("请选添加关卡信息，然后再添加站点信息！");
                 e.Cancel = true;
             }
+            else
+            {
+                string sqlwhere = " where LevelID='" + ParentIDB + "'";
+                int recordnum = MainHelper.PlatformSqlMap.GetRowCount<E_LevelStop>(sqlwhere);
+                if (recordnum == 10)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    AddRecord();
+                    e.Cancel = true;
+                    RefreshData(" where LevelID='" + ParentIDB + "'   order by Sequence asc");
+                }
+            }
    
+        }
+        private void AddRecord()
+        {
+            string sqlwhere = " where LevelID='" + ParentIDB + "'";
+            MainHelper.PlatformSqlMap.DeleteByWhere<E_LevelStop>(sqlwhere);
+
+            for (int i = 0; i < 10; i++)
+            {
+                E_LevelStop tempstop = new E_LevelStop();
+                tempstop.ID += i;
+                tempstop.SeasonID = ParentIDA;
+                tempstop.LevelID = ParentIDB;
+                tempstop.Name = "站点" + (i + 1);
+                tempstop.Sequence = (i + 1);
+                tempstop.PdNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
+                tempstop.DxNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
+                tempstop.DDxNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
+                tempstop.QuestionAllNUM = 10;
+                MainHelper.PlatformSqlMap.Create<E_LevelStop>(tempstop);
+            }
+            E_LevelStop tempstop2 = new E_LevelStop();
+            tempstop2.LevelID = ParentIDB;
+            ReCount(tempstop2);
         }
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
