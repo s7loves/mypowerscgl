@@ -153,7 +153,7 @@
     <EmbeddedResource Include="Maps\E_UserScoreRecord.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Maps\E_UserProp.xml" />
+    <EmbeddedResource Include="Maps\E_UserProp.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
