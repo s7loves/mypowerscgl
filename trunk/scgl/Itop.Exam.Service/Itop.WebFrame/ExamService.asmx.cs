@@ -564,8 +564,11 @@ namespace Itop.WebFrame
                         teqb.ID = item.ID;
                         teqb.TKName = item.TKName;
                         teqb.Desc = item.Desc;
-                        teqb.EProList = GetTEPList(item.ID);
-                        teqblist.Add(teqb);
+                        try {
+                            teqb.EProList = GetTEPList(item.ID);
+                            teqblist.Add(teqb);
+                        }
+                        catch { }
                     }
                 }
                 catch (Exception)
@@ -1135,12 +1138,12 @@ namespace Itop.WebFrame
                         {
                             string sqlwhere2 = "  where SeasonID='" + item.ID + "' Order by Sequence asc";
                             IList<E_Level> elevellist = Global.SqlMapper.GetList<E_Level>(sqlwhere2);
-                            tllist.Clear();
+                            tllist = new List<TurnLevel>();
                             foreach (E_Level item2 in elevellist)
                             {
                                 string sqlwhere3 = "  where LevelID='" + item2.ID + "' Order by Sequence asc";
                                 IList<E_LevelStop> Eelslist = Global.SqlMapper.GetList<E_LevelStop>(sqlwhere3);
-                                tlslist.Clear();
+                                tlslist = new List<TurnLevelStop>();
                                 foreach (E_LevelStop item3 in Eelslist)
                                 {
                                     TurnLevelStop tempstop = new TurnLevelStop();
@@ -1920,7 +1923,7 @@ namespace Itop.WebFrame
             foreach (E_R_EBankPro item in ereblist)
             {
                 E_Professional ep = Global.SqlMapper.GetOneByKey<E_Professional>(item.PROID);
-
+                if (ep == null) continue;
                 TurnE_Professional tep = new TurnE_Professional();
                 string sqlwhere = " where Professional='" + item.PROID + "' ";
                 string pdsql = sqlwhere + " and Type='判断题' and ByScol1!='del' ";
