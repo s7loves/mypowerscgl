@@ -548,8 +548,6 @@ namespace Itop.WebFrame
                 return GetJsonStr<ResponseResultUser>(res);
             }
 
-
-
             [WebMethod(Description = "反回题库列表")]
             [ScriptMethod(UseHttpGet = false)]
             public string GetEQBankList()
@@ -578,7 +576,32 @@ namespace Itop.WebFrame
                 
                 return GetJsonStr<TurnE_QBank>(teqblist);
             }
+            [WebMethod(Description = "反回题库列表,参数userid为用户ID")]
+            [ScriptMethod(UseHttpGet = false)]
+            public string GetEQBankListByUserID(string userid)
+            {
+                List<TurnE_QBank> teqblist = new List<TurnE_QBank>();
+                try
+                {
+                    string sqlwhere=" where  ID in (select  EBID from  dbo.E_R_EBankORG where ORGID in( select OrgCode from muser where UserID='"+userid+"'))";
+                    IList<E_QBank> eqblist = Global.SqlMapper.GetListByWhere<E_QBank>(sqlwhere);
+                    foreach (E_QBank item in eqblist)
+                    {
+                        TurnE_QBank teqb = new TurnE_QBank();
+                        teqb.ID = item.ID;
+                        teqb.TKName = item.TKName;
+                        teqb.Desc = item.Desc;
+                        teqb.EProList = GetTEPList(item.ID);
+                        teqblist.Add(teqb);
+                    }
+                }
+                catch (Exception)
+                {
 
+                }
+                
+                return GetJsonStr<TurnE_QBank>(teqblist);
+            }
             [WebMethod(Description = "反回练习题列表（根据题库），tkid参数为题库ID，dxnum参数为判断题数，dxnum参数为单项选择题数，dxnum参数为多项选择题数")]
             [ScriptMethod(UseHttpGet = false)]
             public string GetPractiseListByTK(string tkid, int pdnum, int dxnum, int dxxnum)
