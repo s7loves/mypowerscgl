@@ -22,6 +22,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Data.OleDb;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Ebada.Exam {
     /// <summary>
@@ -629,9 +630,37 @@ namespace Ebada.Exam {
                 return;
             }
             FrmE_QuestionBankSelect dlg = new FrmE_QuestionBankSelect();
+            dlg.Type = barTypeCom.EditValue.ToString();
             if (dlg.ShowDialog() == DialogResult.OK) {
+                GridView gv = dlg.GridView;
+                string zy = barEproLuk.EditValue.ToString();
+                string pro = dlg.Professional;
+                int count = 0;
+                
+                foreach (int handle in dlg.GridView.GetSelectedRows()) {
+                    var q= gv.GetRow(handle) as E_QuestionBank;
+                    if (q != null) {
+                        var findobj= gridViewOperation.BindingList.Find("Title", q.Title);
+                        if (findobj != null) continue;
+                        var nq = new E_QuestionBank();
 
+                        Ebada.Core.ConvertHelper.CopyTo<E_QuestionBank>(q, nq);
 
+                        nq.ID = nq.CreateID();
+
+                        nq.Professional = zy; 
+                        nq.InTime = DateTime.Now;
+                        nq.InUser = MainHelper.User.UserName+"["+pro+"]";
+                        ClientHelper.PlatformSqlMap.Create<E_QuestionBank>(nq);
+                        count++;
+                       
+                    }
+                }
+                if (count > 0) {
+
+                    MsgBox.ShowTipMessageBox(string.Format("本次操作共导入{0}条记录",count));
+                    btRefresh.PerformClick();
+                }
             }
         }
 

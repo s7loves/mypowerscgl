@@ -38,8 +38,8 @@
             this.btRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btFind = new DevExpress.XtraBars.BarButtonItem();
             this.btExport = new DevExpress.XtraBars.BarSubItem();
-            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnIn = new DevExpress.XtraBars.BarButtonItem();
+            this.btClose = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.bsItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -194,6 +194,13 @@
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
+            // barbtnIn
+            // 
+            this.barbtnIn.Caption = "确认";
+            this.barbtnIn.Id = 16;
+            this.barbtnIn.Name = "barbtnIn";
+            this.barbtnIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnIn_ItemClick);
+            // 
             // btClose
             // 
             this.btClose.Caption = "关闭";
@@ -201,13 +208,6 @@
             this.btClose.ImageIndex = 13;
             this.btClose.Name = "btClose";
             this.btClose.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // barbtnIn
-            // 
-            this.barbtnIn.Caption = "确认";
-            this.barbtnIn.Id = 16;
-            this.barbtnIn.Name = "barbtnIn";
-            this.barbtnIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnIn_ItemClick);
             // 
             // bar3
             // 
@@ -279,7 +279,7 @@
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -295,7 +295,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmE_QuestionBankSelect";
-            this.Text = "导入题库试题";
+            this.Text = "导入题库专业试题";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
