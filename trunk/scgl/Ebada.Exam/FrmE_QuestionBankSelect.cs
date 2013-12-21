@@ -22,19 +22,23 @@ using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
 using System.Data.OleDb;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Ebada.Exam {
     /// <summary>
     /// 
     /// </summary>
     //[ToolboxItem(false)]
-    public partial class UCE_QuestionBank : DevExpress.XtraEditors.XtraUserControl {
-        private GridViewOperation<E_QuestionBank> gridViewOperation;
+    public partial class FrmE_QuestionBankSelect : XtraForm {
+        public GridViewOperation<E_QuestionBank> gridViewOperation;
         private string parentID = null;
         private E_QuestionBank parentObj;
         public event SendDataEventHandler<E_QuestionBank> FocusedRowChanged;
+        public GridView GridView {
 
-        public UCE_QuestionBank()
+            get { return gridView1; }
+        }
+        public FrmE_QuestionBankSelect()
         {
             InitializeComponent();
             initImageList();
@@ -45,6 +49,7 @@ namespace Ebada.Exam {
             
             barEproLuk.EditValueChanged += new EventHandler(barEproLuk_EditValueChanged);
             barTypeCom.EditValueChanged += new EventHandler(barTypeCom_EditValueChanged);
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         void barTypeCom_EditValueChanged(object sender, EventArgs e)
@@ -208,54 +213,7 @@ namespace Ebada.Exam {
         //导入试题
         private void barbtnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            eqbList.Clear();
-            prodic.Clear();
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Microsoft Excel (*.xls)|*.xls";
-            string filename = string.Empty;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                filename = openFileDialog1.FileName;
-            }
-            if (string.IsNullOrEmpty(filename))
-                return;
-           
-            try
-            {
-                ReadExcel(filename);
-            }
-            catch
-            {
-                MsgBox.ShowWarningMessageBox("导入数据错误!请检查Excel文件格式!");
-                return;
-            }
-
-            if (eqbList.Count > 0)
-            {
-                try
-                {
-                    foreach (E_QuestionBank yc in eqbList)
-                    {
-                        Client.ClientHelper.PlatformSqlMap.Create<E_QuestionBank>(yc);
-                    }
-                    MsgBox.ShowSuccessfulMessageBox("导入数据成功!");
-                }
-                catch (Exception ex)
-                {
-                    MsgBox.ShowWarningMessageBox("导入数据失败!"+ex.Message);
-                    //数据回滚
-                    foreach (E_QuestionBank yc in eqbList)
-                    {
-                        Client.ClientHelper.PlatformSqlMap.Delete<E_QuestionBank>(yc);
-                    }
-
-                }
-                finally
-                {
-                    eqbList.Clear(); 
-                }
-            }
-            Refresh();
+            
         }
        
 
@@ -620,18 +578,6 @@ namespace Ebada.Exam {
                     ClientHelper.PlatformSqlMap.Update<E_QuestionBank>(eq);
                     Refresh();
                 }
-            }
-        }
-
-        private void barbtnIn2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
-            if (barEproLuk.EditValue == null) {
-                MsgBox.ShowTipMessageBox("请先选择专业后再操作本功能!");
-                return;
-            }
-            FrmE_QuestionBankSelect dlg = new FrmE_QuestionBankSelect();
-            if (dlg.ShowDialog() == DialogResult.OK) {
-
-
             }
         }
 
