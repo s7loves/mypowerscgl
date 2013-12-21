@@ -38,6 +38,14 @@ namespace Ebada.Exam {
 
             get { return gridView1; }
         }
+        public string Type {
+            set { barTypeCom.EditValue = value; }
+            get {return barTypeCom.EditValue.ToString(); }
+        }
+        public string Professional {
+            get { int handle= repositoryItemLookUpEdit1.GetDataSourceRowIndex("Key",barEproLuk.EditValue);
+                return barEproLuk.Edit.GetDisplayText(barEproLuk.EditValue); }
+        }
         public FrmE_QuestionBankSelect()
         {
             InitializeComponent();
@@ -50,6 +58,9 @@ namespace Ebada.Exam {
             barEproLuk.EditValueChanged += new EventHandler(barEproLuk_EditValueChanged);
             barTypeCom.EditValueChanged += new EventHandler(barTypeCom_EditValueChanged);
             this.StartPosition = FormStartPosition.CenterScreen;
+            barTypeCom.AutoFillWidth = true;
+            repositoryItemComboBox1.ReadOnly = true;
+            barTypeCom.EditValue = "单项选择题";
         }
 
         void barTypeCom_EditValueChanged(object sender, EventArgs e)
@@ -97,7 +108,7 @@ namespace Ebada.Exam {
             barEproLuk.Edit = DicTypeHelper.E_proDic;
             InitData();//初始数据
 
-            barTypeCom.EditValue = "单项选择题";
+            
         }
         private void initImageList() {
             ImageList imagelist = new ImageList();
@@ -213,7 +224,8 @@ namespace Ebada.Exam {
         //导入试题
         private void barbtnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+            if (gridView1.SelectedRowsCount > 0)
+                DialogResult = DialogResult.OK;
         }
        
 
