@@ -1,6 +1,6 @@
 ﻿namespace Ebada.Exam
 {
-    partial class UCE_QuestionBank
+    partial class FrmE_QuestionBankSelect
     {
         /// <summary> 
         /// Required designer variable.
@@ -48,8 +48,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.barbtnIn2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -78,10 +76,8 @@
             this.btExport,
             this.barEproLuk,
             this.barTypeCom,
-            this.barbtnIn,
-            this.barSubItem1,
-            this.barbtnIn2});
-            this.barManager1.MaxItemId = 19;
+            this.barbtnIn});
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemComboBox1});
@@ -103,7 +99,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnIn, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -152,6 +148,7 @@
             this.btAdd.ImageIndex = 6;
             this.btAdd.Name = "btAdd";
             this.btAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btAdd.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btEdit
             // 
@@ -160,6 +157,7 @@
             this.btEdit.ImageIndex = 1;
             this.btEdit.Name = "btEdit";
             this.btEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btDelete1
             // 
@@ -168,6 +166,7 @@
             this.btDelete1.ImageIndex = 12;
             this.btDelete1.Name = "btDelete1";
             this.btDelete1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btDelete1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btDelete1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btDelete1_ItemClick);
             // 
             // btRefresh
@@ -193,6 +192,7 @@
             this.btExport.ImageIndex = 7;
             this.btExport.Name = "btExport";
             this.btExport.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btExport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btClose
             // 
@@ -204,7 +204,7 @@
             // 
             // barbtnIn
             // 
-            this.barbtnIn.Caption = "从文件导入...";
+            this.barbtnIn.Caption = "确认";
             this.barbtnIn.Id = 16;
             this.barbtnIn.Name = "barbtnIn";
             this.barbtnIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnIn_ItemClick);
@@ -225,6 +225,7 @@
             // 
             // bsItem1
             // 
+            this.bsItem1.Caption = "选择记录后点导入";
             this.bsItem1.Id = 6;
             this.bsItem1.Name = "bsItem1";
             this.bsItem1.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -233,25 +234,25 @@
             // 
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(710, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(837, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 289);
-            this.barDockControlBottom.Size = new System.Drawing.Size(710, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 466);
+            this.barDockControlBottom.Size = new System.Drawing.Size(837, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 264);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 441);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(710, 25);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 264);
+            this.barDockControlRight.Location = new System.Drawing.Point(837, 25);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 441);
             // 
             // gridControl1
             // 
@@ -265,7 +266,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(710, 264);
+            this.gridControl1.Size = new System.Drawing.Size(837, 441);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -280,37 +281,21 @@
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "导入";
-            this.barSubItem1.Id = 17;
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnIn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnIn2)});
-            this.barSubItem1.Name = "barSubItem1";
-            // 
-            // barbtnIn2
-            // 
-            this.barbtnIn2.Caption = "从题库导入...";
-            this.barbtnIn2.Id = 18;
-            this.barbtnIn2.Name = "barbtnIn2";
-            this.barbtnIn2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnIn2_ItemClick);
-            // 
-            // UCE_QuestionBank
+            // FrmE_QuestionBankSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(837, 491);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "UCE_QuestionBank";
-            this.Size = new System.Drawing.Size(710, 314);
+            this.Name = "FrmE_QuestionBankSelect";
+            this.Text = "导入题库试题";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
@@ -344,7 +329,5 @@
         private DevExpress.XtraBars.BarEditItem barTypeCom;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraBars.BarButtonItem barbtnIn;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
-        private DevExpress.XtraBars.BarButtonItem barbtnIn2;
     }
 }
