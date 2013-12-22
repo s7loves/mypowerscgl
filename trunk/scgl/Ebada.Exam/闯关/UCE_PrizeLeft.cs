@@ -26,37 +26,38 @@ namespace Ebada.Exam {
     /// 
     /// </summary>
     //[ToolboxItem(false)]
-    public partial class UCE_Prize : DevExpress.XtraEditors.XtraUserControl {
+    public partial class UCE_PrizeLeft : DevExpress.XtraEditors.XtraUserControl {
         private GridViewOperation<E_Prize> gridViewOperation;
         private string parentID = null;
         private E_Prize parentObj;
         public event SendDataEventHandler<E_Prize> FocusedRowChanged;
-
-        public UCE_Prize()
+        public delegate void AfterChexiao();
+        public event AfterChexiao afterchexiao;
+        public UCE_PrizeLeft()
         {
             InitializeComponent();
             initImageList();
             gridViewOperation = new GridViewOperation<E_Prize>(gridControl1, gridView1, barManager1,new FrmE_PrizeEdit());
             gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_Prize>(gridViewOperation_BeforeAdd);
-            gridViewOperation.BeforeInsert += new ObjectOperationEventHandler<E_Prize>(gridViewOperation_BeforeInsert);
-            gridViewOperation.BeforeUpdate += new ObjectOperationEventHandler<E_Prize>(gridViewOperation_BeforeUpdate);
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_Prize>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
         }
 
-        void gridViewOperation_BeforeUpdate(object render, ObjectOperationEventArgs<E_Prize> e)
-        {
-            e.Value.CurrentNum = (e.Value.AllNum - (e.ValueOld.AllNum - e.ValueOld.CurrentNum));
-        }
-
-        void gridViewOperation_BeforeInsert(object render, ObjectOperationEventArgs<E_Prize> e)
-        {
-            e.Value.CurrentNum = e.Value.AllNum;
-        }
-
         void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
+            E_Prize p = gridView1.GetFocusedRow() as E_Prize;
+            if (p!=null)
+            {
+                if (p.Price>Eus.CurrtenScore)
+                {
+                    barButtonItem1.Enabled = false;
+                }
+                else
+                {
+                    barButtonItem1.Enabled = true;
+                }
+            }
             if (FocusedRowChanged != null)
                 FocusedRowChanged(gridView1, gridView1.GetFocusedRow() as E_Prize);
         }
@@ -83,6 +84,7 @@ namespace Ebada.Exam {
         private void hideColumn(string colname) {
             gridView1.Columns[colname].Visible = false;
         }
+        E_UserScore Eus;
         /// <summary>
         /// 初始化数据
         /// </summary>
@@ -90,7 +92,10 @@ namespace Ebada.Exam {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
 
-            RefreshData("  order by BeginDate desc");
+            Eus = MainHelper.PlatformSqlMap.GetOne<E_UserScore>(" where UserID='" + MainHelper.User.UserID + "'");
+            DateTime dt=DateTime.Now;
+            string sql = " where CurrentNum>0 and BeginDate<'" + dt + "' and EndDate>'" + dt + "' order by BeginDate desc";
+            RefreshData(sql);
         }
         /// <summary>
         /// 初始化列,
@@ -179,6 +184,24 @@ namespace Ebada.Exam {
             if (gridView1.GetFocusedRow()!=null)
             {
                 ParentObj = gridView1.GetFocusedRow() as E_Prize;
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            E_Prize p = gridView1.GetFocusedRow() as E_Prize;
+            if (p!=null)
+            {
+                FrmE_UUserBuyPrize frm = new FrmE_UUserBuyPrize();
+                frm.RowData = p;
+                if (frm.ShowDialog()==DialogResult.OK)
+                {
+                    btRefresh.PerformClick();
+                    if (afterchexiao!=null)
+                    {
+                        afterchexiao();
+                    }
+                }
             }
         }
 
