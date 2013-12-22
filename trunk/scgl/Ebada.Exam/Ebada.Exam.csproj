@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -130,6 +130,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_QuestionBankSelect.resx">
       <DependentUpon>FrmE_QuestionBankSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\FrmE_PrizeUser.resx">
+      <DependentUpon>FrmE_PrizeUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\FrmE_UUserBuyPrize.resx">
+      <DependentUpon>FrmE_UUserBuyPrize.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="闯关\UCE_Level.resx">
@@ -372,8 +380,16 @@
       <DependentUpon>FrmE_PropEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_PrizeLeft.resx">
+      <DependentUpon>UCE_PrizeLeft.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="闯关\UCE_Prop.resx">
       <DependentUpon>UCE_Prop.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="闯关\UCE_UserPrizeRecordBy.resx">
+      <DependentUpon>UCE_UserPrizeRecordBy.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="闯关\UCE_UserScore.resx">
@@ -417,6 +433,18 @@
     </Compile>
     <Compile Include="FrmE_QuestionBankSelect.Designer.cs">
       <DependentUpon>FrmE_QuestionBankSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\FrmE_PrizeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="闯关\FrmE_PrizeUser.Designer.cs">
+      <DependentUpon>FrmE_PrizeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\FrmE_UUserBuyPrize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="闯关\FrmE_UUserBuyPrize.Designer.cs">
+      <DependentUpon>FrmE_UUserBuyPrize.cs</DependentUpon>
     </Compile>
     <Compile Include="闯关\UCE_Level.cs">
       <SubType>UserControl</SubType>
@@ -778,11 +806,23 @@
     <Compile Include="闯关\FrmE_PropEdit.Designer.cs">
       <DependentUpon>FrmE_PropEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="闯关\UCE_PrizeLeft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_PrizeLeft.Designer.cs">
+      <DependentUpon>UCE_PrizeLeft.cs</DependentUpon>
+    </Compile>
     <Compile Include="闯关\UCE_Prop.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="闯关\UCE_Prop.Designer.cs">
       <DependentUpon>UCE_Prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="闯关\UCE_UserPrizeRecordBy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="闯关\UCE_UserPrizeRecordBy.Designer.cs">
+      <DependentUpon>UCE_UserPrizeRecordBy.cs</DependentUpon>
     </Compile>
     <Compile Include="闯关\UCE_UserScore.cs">
       <SubType>UserControl</SubType>
