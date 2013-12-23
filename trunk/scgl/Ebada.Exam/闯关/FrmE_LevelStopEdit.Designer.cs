@@ -133,6 +133,7 @@
             this.txtddx.Name = "txtddx";
             this.txtddx.Size = new System.Drawing.Size(192, 21);
             this.txtddx.TabIndex = 30;
+            this.txtddx.Visible = false;
             // 
             // labelControl5
             // 
@@ -141,6 +142,7 @@
             this.labelControl5.Size = new System.Drawing.Size(108, 14);
             this.labelControl5.TabIndex = 29;
             this.labelControl5.Text = "多选题难度与数量：";
+            this.labelControl5.Visible = false;
             // 
             // txtds
             // 

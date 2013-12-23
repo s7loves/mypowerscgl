@@ -32,7 +32,7 @@ namespace Ebada.Exam {
         private string parentID = null;
         private E_UserScoreRecord parentObj;
         public event SendDataEventHandler<E_UserScoreRecord> FocusedRowChanged;
-
+        public string UserID = string.Empty;
         public UCE_UserScoreRecord()
         {
             InitializeComponent();
@@ -87,7 +87,11 @@ namespace Ebada.Exam {
             if (this.Site!=null &&this.Site.DesignMode) return;//必要的，否则设计时可能会报错
             //需要初始化数据时在这写代码
 
-            RefreshData("  where UserID='"+MainHelper.User.UserID+"'  order by CreateTime desc");
+            if (UserID==string.Empty)
+            {
+                UserID=MainHelper.User.UserID;
+            }
+            RefreshData("  where UserID='" + UserID + "'  order by CreateTime desc");
         }
         /// <summary>
         /// 初始化列,

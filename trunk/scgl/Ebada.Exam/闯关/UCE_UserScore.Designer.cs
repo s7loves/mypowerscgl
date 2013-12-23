@@ -43,6 +43,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btReadMX = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -66,8 +67,9 @@
             this.btRefresh,
             this.btClose,
             this.bsItem1,
-            this.btExport});
-            this.barManager1.MaxItemId = 15;
+            this.btExport,
+            this.btReadMX});
+            this.barManager1.MaxItemId = 16;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -84,6 +86,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btFind, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btExport, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btReadMX, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btClose, true)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DisableClose = true;
@@ -226,6 +229,13 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.GotFocus += new System.EventHandler(this.gridView1_GotFocus);
             // 
+            // btReadMX
+            // 
+            this.btReadMX.Caption = "查看详细记录";
+            this.btReadMX.Id = 15;
+            this.btReadMX.Name = "btReadMX";
+            this.btReadMX.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btReadMX_ItemClick);
+            // 
             // UCE_UserScore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -263,5 +273,6 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraBars.BarSubItem btExport;
+        private DevExpress.XtraBars.BarButtonItem btReadMX;
     }
 }
