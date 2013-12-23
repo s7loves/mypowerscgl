@@ -21,6 +21,7 @@ using Ebada.Client;
 using DevExpress.XtraGrid.Views.Base;
 using Ebada.Scgl.Model;
 using Ebada.Scgl.Core;
+using Ebada.UI.Base;
 
 namespace Ebada.Exam {
     /// <summary>
@@ -42,6 +43,14 @@ namespace Ebada.Exam {
             gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_UserScore>(gridViewOperation_BeforeDelete);
             gridView1.FocusedRowChanged += new FocusedRowChangedEventHandler(gridView1_FocusedRowChanged);
+            if (MainHelper.User.UserName=="rabbit")
+            {
+                btReadMX.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                btReadMX.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
         }
 
         void gridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -167,6 +176,24 @@ namespace Ebada.Exam {
             if (gridView1.GetFocusedRow()!=null)
             {
                 ParentObj = gridView1.GetFocusedRow() as E_UserScore;
+            }
+        }
+
+        private void btReadMX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            E_UserScore eu = gridView1.GetFocusedRow() as E_UserScore;
+            if (eu!=null)
+            {
+                FormBase frm = new FormBase();
+                frm.Height = 450;
+                frm.Width = 650;
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                UCE_UserScoreRecord uc = new UCE_UserScoreRecord();
+                frm.Controls.Add(uc);
+                uc.Dock = DockStyle.Fill;
+                frm.Text = "查看分数明细";
+                uc.UserID = eu.UserID;
+                frm.ShowDialog();
             }
         }
 

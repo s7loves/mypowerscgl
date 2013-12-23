@@ -127,8 +127,8 @@ namespace Ebada.Exam {
                 tempstop.Sequence = (i + 1);
                 tempstop.PdNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
                 tempstop.DxNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
-                tempstop.DDxNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
-                tempstop.QuestionAllNUM = 10;
+                //tempstop.DDxNumAndLevel = "1,2;2,2;3,2;4,2;5,2";
+                tempstop.QuestionAllNUM = 20;
                 MainHelper.PlatformSqlMap.Create<E_LevelStop>(tempstop);
             }
             E_LevelStop tempstop2 = new E_LevelStop();
