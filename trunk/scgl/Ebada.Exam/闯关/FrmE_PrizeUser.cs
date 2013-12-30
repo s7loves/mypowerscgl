@@ -9,7 +9,7 @@ using Ebada.UI.Base;
 
 namespace Ebada.Exam
 {
-    public partial class FrmE_PrizeUser : FormBase
+    public partial class FrmE_PrizeUser : DevExpress.XtraEditors.XtraUserControl
     {
         public FrmE_PrizeUser()
         {
