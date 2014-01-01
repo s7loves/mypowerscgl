@@ -1531,6 +1531,38 @@ namespace Itop.WebFrame
                 }
                 #endregion
 
+
+                #region 获取成绩排名
+                [WebMethod(Description = "获取闯关成绩排名前50名")]
+                [ScriptMethod(UseHttpGet = false)]
+                public string GetE_UserScoreOrder()
+                {
+                    List<TrunE_UserScoreOrder> teplist = new List<TrunE_UserScoreOrder>();
+
+                    try
+                    {
+
+
+                        IList<E_UserScore> eplist = Global.SqlMapper.GetList<E_UserScore>("SelectE_UserScoreListTopwushi", "");
+                        foreach (E_UserScore item in eplist)
+                        {
+                            TrunE_UserScoreOrder tep = new TrunE_UserScoreOrder();
+                            tep.ID = item.ID;
+                            tep.UserName = item.UserID;
+                            tep.AllScore = item.AllScore;
+                            tep.CurrtenScore = item.CurrtenScore;
+                            tep.Order = int.Parse(item.BySCol1);
+                            teplist.Add(tep);
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    return GetJsonStr<TrunE_UserScoreOrder>(teplist);
+                }
+                #endregion
                 #endregion
 
                 #region 上传
