@@ -182,6 +182,23 @@
    <select id="GetE_UserScoreRowCount" parameterClass="string">
     select count(*) from E_UserScore $value$
    </select>
+    <select id="SelectE_UserScoreListTopwushi" resultMap="E_UserScore_AllColumns" parameterClass="string">
+      select top 50 * from (SELECT
+      [ID],
+      [UserID] =(select username from muser  as c where c.userid=a.userid ),
+      [AllScore],
+      [CurrtenScore],
+      [UpdateTime],
+      [BySCol1]= cast(((SELECT   COUNT(CurrtenScore)   FROM   dbo.E_UserScore  WHERE   CurrtenScore   >   a.CurrtenScore)   +   1 ) as nvarchar (50)),
+      [BySCol2],
+      [BySCol3],
+      [BySCol4],
+      [BySCol5],
+      [Remark],
+      [RowVersion]
+      FROM E_UserScore as a ) as b  order by  cast (b.BySCol1 as int) asc
+    </select>
   </statements>
+  
 </sqlMap>
  

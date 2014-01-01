@@ -2132,8 +2132,78 @@ namespace Itop.WebFrame
         #endregion
 
        
-    }	
+    }
 
+    public class TrunE_UserScoreOrder
+    {
+        #region Public 成员
+
+        /// <summary>
+        /// 属性名称：ID
+        /// 属性描述：
+        /// 字段信息：[ID],nvarchar
+        /// </summary>
+        [Browsable(false)]
+        [DisplayNameAttribute("")]
+        public string ID
+        {
+            set;
+            get;
+        }
+        /// <summary>
+        /// 属性名称：UserID
+        /// 属性描述：考生
+        /// 字段信息：[UserID],nchar
+        /// </summary>
+        [DisplayNameAttribute("考生")]
+        public string UserName
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：AllScore
+        /// 属性描述：总得分
+        /// 字段信息：[AllScore],int
+        /// </summary>
+        [DisplayNameAttribute("总得分")]
+        public int AllScore
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// 属性名称：CurrtenScore
+        /// 属性描述：当前分数
+        /// 字段信息：[CurrtenScore],int
+        /// </summary>
+        [DisplayNameAttribute("当前分数")]
+        public int CurrtenScore
+        {
+            set;
+            get;
+        }
+  
+
+      
+
+        /// <summary>
+        /// 属性名称：Order
+        /// 属性描述：排名
+        /// 字段信息：[Order],int
+        /// </summary>
+        [DisplayNameAttribute("排名")]
+        public int Order
+        {
+            set;
+            get;
+        }
+        #endregion
+
+
+    }	
 
 
     #endregion
