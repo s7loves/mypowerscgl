@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EC6E1169-552C-47F1-8C11-D0099EE1BCE8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -130,6 +130,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmE_QuestionBankSelect.resx">
       <DependentUpon>FrmE_QuestionBankSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCE_ExamResultOrgOrder.resx">
+      <DependentUpon>UCE_ExamResultOrgOrder.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="闯关\FrmE_PrizeUser.resx">
@@ -433,6 +437,12 @@
     </Compile>
     <Compile Include="FrmE_QuestionBankSelect.Designer.cs">
       <DependentUpon>FrmE_QuestionBankSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCE_ExamResultOrgOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCE_ExamResultOrgOrder.Designer.cs">
+      <DependentUpon>UCE_ExamResultOrgOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="闯关\FrmE_PrizeUser.cs">
       <SubType>UserControl</SubType>
