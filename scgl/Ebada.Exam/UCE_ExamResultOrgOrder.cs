@@ -50,12 +50,24 @@ namespace Ebada.Exam {
         {
             InitializeComponent();
             initImageList();
-            //gridViewOperation = new GridViewOperation<E_ExamResult>(gridControl1, gridView1, barManager1);
+            gridViewOperation = new GridViewOperation<E_ExamResult>(gridControl1, gridView1, barManager1);
             //gridViewOperation.BeforeAdd += new ObjectOperationEventHandler<E_ExamResult>(gridViewOperation_BeforeAdd);
             //gridViewOperation.CreatingObjectEvent +=gridViewOperation_CreatingObjectEvent;
             //gridViewOperation.BeforeDelete += new ObjectOperationEventHandler<E_ExamResult>(gridViewOperation_BeforeDelete);
             //gridViewOperation.FocusedRowChanged += new SendDataEventHandler<E_ExamResult>(gridViewOperation_FocusedRowChanged);
+            //gridView1.Columns.Clear();
             barLkueExam.EditValueChanged += new EventHandler(barLkueExam_EditValueChanged);
+            btClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btClose_ItemClick);
+            btExport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(btExport_ItemClick);
+        }
+
+        void btExport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            
+        }
+
+        void btClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            //if (ParentForm != null)
+            //    ParentForm.Close();
         }
 
         void barLkueExam_EditValueChanged(object sender, EventArgs e)
@@ -113,8 +125,8 @@ namespace Ebada.Exam {
         public void InitColumns() {
 
             //需要隐藏列时在这写代码
-
-            //hideColumn("ID");
+            hideColumn("ordernum");
+            //hideColumn("Sequence");
             //gridView1.Columns["E_ID"].ColumnEdit = DicTypeHelper.E_Exam;
             //gridView1.Columns["UserID"].ColumnEdit = DicTypeHelper.UserDic;
             barLkueExam.Edit = DicTypeHelper.E_Exam;
@@ -147,6 +159,7 @@ namespace Ebada.Exam {
                 bj = htlist;
                 dt = ConvertHelper.ToDataTable((IList)bj);
                 gridControl1.DataSource = dt;
+                
             }
             else
             {

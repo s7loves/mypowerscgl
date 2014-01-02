@@ -261,7 +261,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "机构";
+            this.gridColumn1.Caption = "单位名称";
             this.gridColumn1.FieldName = "org";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
