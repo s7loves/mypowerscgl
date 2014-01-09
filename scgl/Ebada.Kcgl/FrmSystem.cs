@@ -109,6 +109,8 @@ namespace Ebada.Kcgl {
             ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null);
         }
         private void FrmSystem_Load(object sender, EventArgs e) {
+            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
+            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
             CreateMenu();
 
         }
@@ -117,8 +119,7 @@ namespace Ebada.Kcgl {
             nbctSystem.Groups.Clear();
             nbctSystem.Items.Clear();
 
-            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
-            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
+            
 
             string sqlwhere = "where  Description='kcgl'  order by Sequence";
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);

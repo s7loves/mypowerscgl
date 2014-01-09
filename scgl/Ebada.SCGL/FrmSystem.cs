@@ -162,10 +162,11 @@ namespace Ebada.SCGL {
             nbctSystem.Groups.Clear();
             nbctSystem.Items.Clear();
             listView1.Items.Clear();
-            string sqlwhere = "where  Description='system'  order by Sequence";
+            string sqlwhere = "where   Description='system'  order by Sequence";
 
             if (!string.IsNullOrEmpty(MainHelper.LoginName)) {
-                sqlwhere = "where  Description='" + "system" + "'" + "and Modu_ID in (select distinct modu_id from vusermodule where userid='" + MainHelper.User.UserID + "')" + "  order by Sequence ";
+
+                sqlwhere = "where (visiableflag='true' or parentid='0') and Description='" + "system" + "'" + "and Modu_ID in (select distinct modu_id from vusermodule where userid='" + MainHelper.User.UserID + "')" + "  order by Sequence ";
 
             }
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);

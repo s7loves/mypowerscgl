@@ -128,6 +128,8 @@ string xtdm="jhgl";
             //ClientHelper.TransportSqlMap.GetList<Model.kc_账套>(null);
         }
         private void FrmSystem_Load(object sender, EventArgs e) {
+            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
+            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
             CreateMenu();
 
         }
@@ -136,10 +138,16 @@ string xtdm="jhgl";
             nbctSystem.Groups.Clear();
             nbctSystem.Items.Clear();
 
-            nbctSystem.LargeImages = ImageListRes.GetimageListAll(40, "");
-            nbctSystem.SmallImages = ImageListRes.GetimageListAll(28, "");
+           
 
-            string sqlwhere = string.Format("where  Description='{0}'  order by Sequence",xtdm);
+            string sqlwhere = string.Format("where (visiableflag='true' or parentid='0') and Description='{0}'  order by Sequence", xtdm);
+            if (!string.IsNullOrEmpty(MainHelper.LoginName)) {
+
+                sqlwhere = "where (visiableflag='true' or parentid='0') and Description='" + xtdm + "'" + "and Modu_ID in (select distinct modu_id from vusermodule where userid='" + MainHelper.User.UserID + "')" + "  order by Sequence ";
+
+            }
+            if(MainHelper.User.LoginID=="rabbit")
+                sqlwhere = string.Format("where   Description='{0}'  order by Sequence", xtdm);
             IList<mModule> mlist = Ebada.Client.ClientHelper.PlatformSqlMap.GetList<mModule>(sqlwhere);
 
             DataTable table = progtable = Ebada.Core.ConvertHelper.ToDataTable((IList)mlist);
