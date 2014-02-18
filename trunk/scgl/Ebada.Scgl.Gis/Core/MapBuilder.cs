@@ -106,7 +106,7 @@ namespace Ebada.Scgl.Gis {
                          marker.MarkerType = MarkerEnum.gt;
                          preMarker = marker;
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
-                         marker.Text = count+"";
+                         marker.Text = string.IsNullOrEmpty(gt.c1) ? count + "" : gt.c1;
                          marker.Tag = gt;
                          marker.Id = gt.gtID;
                          layer.Markers.Insert(0,marker);
@@ -214,7 +214,7 @@ namespace Ebada.Scgl.Gis {
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Tag = gt;
                          if(count%2==1)
-                         marker.Text = count+"";
+                             marker.Text = string.IsNullOrEmpty(gt.c1)? count+"":gt.c1;
                          marker.Id = gt.gtID;
                          layer.Markers.Add(marker);
                          route.Markers.Add(marker);
@@ -357,7 +357,7 @@ namespace Ebada.Scgl.Gis {
                          marker.ToolTipText = gt.gth + "\n" + line.LineName;
                          marker.Tag = gt;
                          if (count % 2 == 1)
-                             marker.Text = count + "";
+                             marker.Text = string.IsNullOrEmpty(gt.c1) ? count + "" : gt.c1;
                          marker.Id = gt.gtID;
                          layer.Markers.Add(marker);
                          route.Markers.Add(marker);
